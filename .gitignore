@@ -1,0 +1,15 @@
+*.egg-info
+*.mo
+*.pyc
+.installed.cfg
+.mr.developer.cfg
+.project
+.pydevproject
+.settings/
+bin/
+buildout-cache/
+develop-eggs/
+parts/
+src/*
+!src/bobtemplates
+var/

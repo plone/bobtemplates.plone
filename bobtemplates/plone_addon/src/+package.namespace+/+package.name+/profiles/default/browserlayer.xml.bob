@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="{{{ package.namespace }}}.{{{ package.name }}}"
+    interface="{{{ package.namespace }}}.{{{ package.name }}}.interfaces.I{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer"
+  />
+</layers>

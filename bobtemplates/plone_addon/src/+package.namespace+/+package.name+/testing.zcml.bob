@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="{{{ package.namespace }}}.{{{ package.name}}}">
+
+  <include file="configure.zcml" />
+
+  <include package="ecreall.helpers.testing" />
+
+  <genericsetup:registerProfile
+      name="testing"
+      title="{{{ package.namespace }}}.{{{ package.name}}} tests"
+      directory="profiles/testing"
+      description="Steps to ease tests of {{{ package.namespace }}}.{{{ package.name}}}"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>

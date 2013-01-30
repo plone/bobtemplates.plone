@@ -1,0 +1,12 @@
+language: python
+python:
+  - {{{ python.version }}}
+install:
+  - mkdir -p buildout-cache/{eggs,downloads}
+  - python bootstrap.py -c travis.cfg -d
+  - bin/buildout -Nc travis.cfg
+script:
+  - bin/test
+notifications:
+  {{{ travis.notifications.type }}}:
+    - {{{ travis.notifications.destination }}}

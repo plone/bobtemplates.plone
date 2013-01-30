@@ -1,0 +1,15 @@
+language: python
+python:
+  - 2.7
+
+install:
+  - python bootstrap.py
+  - bin/buildout
+
+script:
+  - bin/nosetests
+  - bin/mrbob -O collective.foo --config test_answers.ini ./bobtemplates/plone_addon
+
+notifications:
+  email:                                                                       
+    - travis-reports@ecreall.com

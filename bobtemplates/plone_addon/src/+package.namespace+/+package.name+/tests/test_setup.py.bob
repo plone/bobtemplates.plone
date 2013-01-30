@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+"""Setup/installation tests for this package."""
+
+from {{{ package.namespace }}}.{{{ package.name }}}.testing import IntegrationTestCase
+from plone import api
+
+
+class TestInstall(IntegrationTestCase):
+    """Test installation of {{{ package.namespace }}}.{{{ package.name }}} into Plone."""
+
+    def setUp(self):
+        """Custom shared utility setup for tests."""
+        self.portal = self.layer['portal']
+        self.installer = api.portal.get_tool('portal_quickinstaller')
+
+    def test_product_installed(self):
+        """Test if {{{ package.namespace }}}.{{{ package.name }}} is installed with portal_quickinstaller."""
+        self.assertTrue(self.installer.isProductInstalled('{{{ package.namespace }}}.{{{ package.name }}}'))
+
+    def test_uninstall(self):
+        """Test if {{{ package.namespace }}}.{{{ package.name }}} is cleanly uninstalled."""
+        self.installer.uninstallProducts(['{{{ package.namespace }}}.{{{ package.name }}}'])
+        self.assertFalse(self.installer.isProductInstalled('{{{ package.namespace }}}.{{{ package.name }}}'))
+
+    # browserlayer.xml
+    def test_browserlayer(self):
+        """Test that I{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer is registered."""
+        from {{{ package.namespace }}}.{{{ package.name }}}.interfaces import I{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer
+        from plone.browserlayer import utils
+        self.failUnless(I{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer in utils.registered_layers())
+

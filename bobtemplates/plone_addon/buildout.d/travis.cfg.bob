@@ -1,0 +1,27 @@
+[buildout]
+extends =
+    base.cfg
+
+parts =
+    download
+    install
+    test
+
+# network speedup
+eggs-directory = buildout-cache/eggs
+download-cache = buildout-cache/downloads
+
+socket-timeout = 3
+
+allow-hosts =
+    *.python.org
+    launchpad.net
+
+[download]
+recipe = hexagonit.recipe.download
+url = https://launchpad.net/plone/4.2/{{{ plone.version }}}/+download/Plone-{{{ plone.version }}}-UnifiedInstaller.tgz
+
+[install]
+recipe = collective.recipe.cmd
+on_install = true
+cmds = tar jxvf ${download:location}/Plone-{{{ plone.version }}}-UnifiedInstaller/packages/buildout-cache.tar.bz2 1>/dev/null

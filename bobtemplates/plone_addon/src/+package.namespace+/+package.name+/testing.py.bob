@@ -14,6 +14,8 @@ from plone.testing import z2
 
 import unittest2 as unittest
 
+import {{{ package.namespace }}}.{{{ package.name }}}
+
 
 class {{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer(PloneSandboxLayer):
 
@@ -22,7 +24,6 @@ class {{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Lay
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
         # Load ZCML
-        import {{{ package.namespace }}}.{{{ package.name }}}
         self.loadZCML(package={{{ package.namespace }}}.{{{ package.name }}})
         z2.installProduct(app, '{{{ package.namespace }}}.{{{ package.name }}}')
 

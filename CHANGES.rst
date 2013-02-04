@@ -4,7 +4,7 @@ Changelog
 0.2 (unreleased)
 ----------------
 
-- Minor fixes to plone_addon template
+- Many fixes and enhancements to plone_addon template
   [cedricmessiant]
 
 

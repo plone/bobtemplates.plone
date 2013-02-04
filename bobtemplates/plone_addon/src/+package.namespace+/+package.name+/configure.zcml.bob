@@ -25,4 +25,11 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <genericsetup:importStep
+        name="{{{ package.namespace }}}{{{ package.name }}}-postInstall"
+        title="{{{ package.namespace }}}.{{{ package.name }}} post_install import step"
+        description="Post install import step from {{{ package.namespace }}}.{{{ package.name }}}"
+        handler=".setuphandlers.post_install">
+    </genericsetup:importStep>
+
 </configure>

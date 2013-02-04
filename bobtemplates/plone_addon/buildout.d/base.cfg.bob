@@ -3,7 +3,7 @@ package-name = {{{ package.namespace }}}.{{{ package.name }}}
 package-extras = [test]
 
 extends =
-    http://dist.plone.org/release/{{{ plone.version }}}/versions.cfg
+    https://raw.github.com/collective/buildout.plonetest/master/plone-{{{ plone.version }}}.cfg
     checkouts.cfg
     sources.cfg
     versions.cfg

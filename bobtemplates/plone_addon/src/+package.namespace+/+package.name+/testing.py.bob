@@ -46,20 +46,32 @@ class {{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Lay
         z2.uninstallProduct(app, '{{{ package.namespace }}}.{{{ package.name }}}')
 
 
-FIXTURE = {{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer()
+FIXTURE = {{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer(
+    zcml_package={{{ package.namespace }}}.{{{ package.name }}},
+    zcml_filename='testing.zcml',
+    gs_profile_id='{{{ package.namespace }}}.{{{ package.name }}}:testing',
+    name="FIXTURE"
+    )
+
 INTEGRATION = IntegrationTesting(
     bases=(FIXTURE,),
-    name="{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer:Integration")
+    name="INTEGRATION"
+    )
+
 FUNCTIONAL = FunctionalTesting(
     bases=(FIXTURE,),
-    name="{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer:Functional"
-)
+    name="FUNCTIONAL"
+    )
 
 
 class IntegrationTestCase(unittest.TestCase):
     """Base class for integration tests."""
 
     layer = INTEGRATION
+
+    def setUp(self):
+        super(IntegrationTestCase, self).setUp()
+        self.portal = self.layer['portal']
 
 
 class FunctionalTestCase(unittest.TestCase):

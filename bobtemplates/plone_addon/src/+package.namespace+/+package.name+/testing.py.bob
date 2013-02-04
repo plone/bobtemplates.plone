@@ -24,7 +24,8 @@ class {{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Lay
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
         # Load ZCML
-        self.loadZCML(package={{{ package.namespace }}}.{{{ package.name }}})
+        self.loadZCML(package={{{ package.namespace }}}.{{{ package.name }}},
+                      name='testing.zcml')
         z2.installProduct(app, '{{{ package.namespace }}}.{{{ package.name }}}')
 
     def setUpPloneSite(self, portal):

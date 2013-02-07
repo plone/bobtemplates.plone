@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2 (unreleased)
+0.2 (2013-02-07)
 ----------------
 
 - Many fixes and enhancements to plone_addon template

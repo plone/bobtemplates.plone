@@ -4,8 +4,6 @@
 from setuptools import find_packages
 from setuptools import setup
 
-import os.path
-
 
 long_description = (
     open('README.rst').read()
@@ -26,9 +24,9 @@ setup(
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
-    	"Environment :: Web Environment",
+        "Environment :: Web Environment",
         "Framework :: Plone",
-        "Framework :: Plone :: {{{ plone.version }}}",
+        "Framework :: Plone :: 4.2",
         "Programming Language :: Python",
         "Programming Language :: Python :: {{{ python.version }}}",
     ],

@@ -10,10 +10,9 @@
 
     <five:registerPackage package="." initialize=".initialize" />
 
-    <includeDependencies package="." />
-
     <include package=".browser" />
     <include package=".content" />
+    <include package="plone.api" />
 
     <grok:grok package="." />
 

@@ -4,7 +4,9 @@ Changelog
 0.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Use Plone 4.3.1 as default
+  Fix travis build for plone_addon template.
+  [cedricmessiant]
 
 
 0.3 (2013-03-22)

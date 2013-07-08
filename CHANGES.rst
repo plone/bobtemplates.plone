@@ -1,10 +1,11 @@
 Changelog
 =========
 
-0.4 (unreleased)
+0.4 (2013-07-08)
 ----------------
 
-- Use Plone 4.3.1 as default
+- Add plone_addon_nested template.
+  Use Plone 4.3.1 as default for templates.
   Fix travis build for plone_addon template.
   [cedricmessiant]
 

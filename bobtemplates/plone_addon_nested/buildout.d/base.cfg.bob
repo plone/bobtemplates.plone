@@ -1,0 +1,15 @@
+[buildout]
+package-name = {{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}
+package-extras = [test]
+
+extends =
+    https://raw.github.com/collective/buildout.plonetest/master/plone-4.3.x.cfg
+    checkouts.cfg
+    sources.cfg
+    versions.cfg
+
+develop = .
+
+eggs +=
+	Pillow
+	ipdb

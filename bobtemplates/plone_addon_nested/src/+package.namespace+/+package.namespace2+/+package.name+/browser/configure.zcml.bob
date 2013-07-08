@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}">
+
+    <!-- Publish static files -->
+    <browser:resourceDirectory
+      name="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}"
+      directory="static"
+      />
+
+</configure>

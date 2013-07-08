@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}">
+
+    <i18n:registerTranslations directory="locales" />
+
+    <five:registerPackage package="." initialize=".initialize" />
+    
+    <include package="five.grok" />
+    <include package="plone.api" />
+
+    <include package=".browser" />
+    <include package=".content" />
+
+    <grok:grok package="." />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}"
+        directory="profiles/default"
+        description="Installs the {{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}} add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:importStep
+        name="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}-postInstall"
+        title="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}} post_install import step"
+        description="Post install import step from {{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}"
+        handler=".setuphandlers.post_install">
+    </genericsetup:importStep>
+
+</configure>

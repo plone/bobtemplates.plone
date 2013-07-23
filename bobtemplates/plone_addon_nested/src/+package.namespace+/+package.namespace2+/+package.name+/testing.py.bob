@@ -31,7 +31,7 @@ class {{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
         # Install into Plone site using portal_setup
-        applyProfile(portal, '{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}:default')
+        applyProfile(portal, '{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}:testing')
 
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])

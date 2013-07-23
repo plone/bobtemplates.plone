@@ -4,7 +4,8 @@ Changelog
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Install testing profile in test layer.
+  [cedricmessiant]
 
 
 0.4 (2013-07-08)

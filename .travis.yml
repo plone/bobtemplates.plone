@@ -3,7 +3,7 @@ python:
   - 2.7
 
 install:
-  - python -S bootstrap.py
+  - python bootstrap.py -d
   - bin/buildout
 
 script:

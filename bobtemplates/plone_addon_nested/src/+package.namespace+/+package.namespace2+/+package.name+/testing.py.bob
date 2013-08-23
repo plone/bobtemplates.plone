@@ -37,10 +37,10 @@ class {{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() 
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
-        portal.invokeFactory('Folder', 'folder')
+        folder_id = portal.invokeFactory('Folder', 'folder')
+        portal[folder_id].reindexObject()
 
         # Commit so that the test browser sees these objects
-        portal.portal_catalog.clearFindAndRebuild()
         import transaction
         transaction.commit()
 

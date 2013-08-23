@@ -53,10 +53,12 @@ FIXTURE = {{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitaliz
     name="FIXTURE"
     )
 
+
 INTEGRATION = IntegrationTesting(
     bases=(FIXTURE,),
     name="INTEGRATION"
     )
+
 
 FUNCTIONAL = FunctionalTesting(
     bases=(FIXTURE,),
@@ -68,6 +70,7 @@ ACCEPTANCE = FunctionalTesting(bases=(FIXTURE,
                                       AUTOLOGIN_LIBRARY_FIXTURE,
                                       z2.ZSERVER_FIXTURE),
                                name="ACCEPTANCE")
+
 
 class IntegrationTestCase(unittest.TestCase):
     """Base class for integration tests."""

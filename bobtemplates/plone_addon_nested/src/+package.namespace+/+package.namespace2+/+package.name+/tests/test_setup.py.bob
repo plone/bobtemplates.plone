@@ -27,5 +27,5 @@ class TestInstall(IntegrationTestCase):
         """Test that I{{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() }}}{{{ package.name.capitalize() }}}Layer is registered."""
         from {{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}.interfaces import I{{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() }}}{{{ package.name.capitalize() }}}Layer
         from plone.browserlayer import utils
-        self.failUnless(I{{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() }}}{{{ package.name.capitalize() }}}Layer in utils.registered_layers())
+        self.assertIn(I{{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() }}}{{{ package.name.capitalize() }}}Layer, utils.registered_layers())
 

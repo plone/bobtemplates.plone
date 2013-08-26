@@ -4,6 +4,10 @@ Changelog
 0.5 (unreleased)
 ----------------
 
+- Add robot tests.
+  Update bootstrap.py in generated packages.
+  Use IDefaultBrowserLayer instead of IDefaultPloneLayer.
+  [vincentfretin]
 - Install testing profile in test layer.
   [cedricmessiant]
 

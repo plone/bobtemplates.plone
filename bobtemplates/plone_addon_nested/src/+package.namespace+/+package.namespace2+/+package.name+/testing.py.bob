@@ -21,13 +21,16 @@ import {{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}
 class {{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() }}}{{{ package.name.capitalize() }}}Layer(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
+    products = ('{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}',
+               )
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
         # Load ZCML
         self.loadZCML(package={{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}},
                       name='testing.zcml')
-        z2.installProduct(app, '{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}')
+        for p in self.products:
+            z2.installProduct(app, p)
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
@@ -46,7 +49,8 @@ class {{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() 
 
     def tearDownZope(self, app):
         """Tear down Zope."""
-        z2.uninstallProduct(app, '{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}')
+        for p in reversed(self.products):
+            z2.uninstallProduct(app, p)
 
 
 FIXTURE = {{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() }}}{{{ package.name.capitalize() }}}Layer(

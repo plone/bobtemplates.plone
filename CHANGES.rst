@@ -4,7 +4,8 @@ Changelog
 0.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Use products class variable in the layer to install several products.
+  [vincentfretin]
 
 
 0.5 (2013-08-26)
@@ -14,6 +15,7 @@ Changelog
   Update bootstrap.py in generated packages.
   Use IDefaultBrowserLayer instead of IDefaultPloneLayer.
   [vincentfretin]
+
 - Install testing profile in test layer.
   [cedricmessiant]
 

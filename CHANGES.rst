@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5 (unreleased)
+0.5 (2013-08-26)
 ----------------
 
 - Add robot tests.

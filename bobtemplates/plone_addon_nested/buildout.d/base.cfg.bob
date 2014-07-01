@@ -4,6 +4,7 @@ package-extras = [test]
 
 extends =
     https://raw.github.com/collective/buildout.plonetest/master/plone-4.3.x.cfg
+    https://raw.github.com/collective/buildout.plonetest/master/qa.cfg
     checkouts.cfg
     sources.cfg
     versions.cfg
@@ -11,5 +12,10 @@ extends =
 develop = .
 
 eggs +=
-	Pillow
-	ipdb
+Pillow
+ipdb
+
+[code-analysis]
+recipe = plone.recipe.codeanalysis
+directory = src/{{{ package.namespace }}}
+flake8-ignore = E123,E124,E501,E126,E127,E128

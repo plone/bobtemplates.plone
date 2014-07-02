@@ -14,8 +14,8 @@ parts += createcoverage
 develop = .
 
 eggs +=
-Pillow
-ipdb
+    Pillow
+    ipdb
 
 [code-analysis]
 recipe = plone.recipe.codeanalysis

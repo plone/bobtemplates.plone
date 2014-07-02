@@ -4,6 +4,9 @@ Changelog
 0.6 (unreleased)
 ----------------
 
+- Coverage and integration with coveralls.
+  [thomasdesvenain]
+
 - Use products class variable in the layer to install several products.
   [vincentfretin]
 

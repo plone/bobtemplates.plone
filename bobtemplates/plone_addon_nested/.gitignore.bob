@@ -13,3 +13,9 @@ parts/
 src/*
 !src/{{{ package.namespace }}}
 var/
+htmlcov/
+.coverage
+*.html
+*.log
+output.xml
+*.swp

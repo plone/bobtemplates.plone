@@ -1,0 +1,5 @@
+[report]
+include =
+    src/{{{ package.namespace }}}/*
+omit =
+    */test*

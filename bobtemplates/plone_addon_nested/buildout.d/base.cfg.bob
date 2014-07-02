@@ -8,6 +8,8 @@ extends =
     sources.cfg
     versions.cfg
 
+parts += createcoverage
+
 develop = .
 
 eggs +=

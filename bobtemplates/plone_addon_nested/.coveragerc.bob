@@ -3,3 +3,4 @@ include =
     src/{{{ package.namespace }}}/*
 omit =
     */test*
+    */upgrades/*

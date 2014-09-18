@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6 (unreleased)
+0.6 (2014-09-18)
 ----------------
 
 - Coverage and integration with coveralls.

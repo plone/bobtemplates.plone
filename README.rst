@@ -4,7 +4,7 @@ Introduction
 ``bobtemplates.plone`` provides `mr.bob`_ templates to generate packages for
 Plone projects.
 
-This product is based on ``bobtemplates.niteoweb`` and ``bobtemplates.ecreall``.
+It is based on `bobtemplates.niteoweb <https://github.com/niteoweb/bobtemplates.niteoweb>`_ and `bobtemplates.ecreall <https://github.com/cedricmessiant/bobtemplates.ecreall>`_
 
 
 Options
@@ -101,7 +101,7 @@ Use in a buildout
 
     [sources]
     # if you want to make local changes on the templates
-    bobtemplates.plone = git https://github.com/starzel/bobtemplates.plone.git pushurl=git@github.com:starzel/bobtemplates.plone.git
+    bobtemplates.plone = git https://github.com/collective/bobtemplates.plone.git pushurl=git@github.com:collective/bobtemplates.plone.git
 
 
 In the ``src``-directory of your Plone project do:
@@ -139,3 +139,5 @@ Create your package
   mrbob -O collective.foo bobtemplates:plone_addon
 
 See `mr.bob`_ documentation for further information : http://mrbob.readthedocs.org/en/latest/
+
+.. _mr.bob: http://mrbob.readthedocs.org/en/latest/

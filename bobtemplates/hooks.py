@@ -41,6 +41,7 @@ def post_profile(configurator, question, answer):
         configurator.variables['package.setuphandlers'] = False
         configurator.variables['package.testing'] = False
         configurator.variables['package.theme'] = False
+        configurator.variables['travis.integration.enabled'] = False
         configurator.variables['travis.notifications.destination'] = False
         configurator.variables['travis.notifications.type'] = False
     return value
@@ -51,8 +52,19 @@ def post_testing(configurator, question, answer):
     """
     value = to_boolean(configurator, question, answer)
     if not value:
+        configurator.variables['travis.integration.enabled'] = False
         configurator.variables['travis.notifications.destination'] = False
         configurator.variables['travis.notifications.type'] = False
+    return value
+
+
+def post_travis(configurator, question, answer):
+    """ Skip questions on travis.
+    """
+    value = to_boolean(configurator, question, answer)
+    if not value:
+        configurator.variables['travis.notifications.type'] = 'email'
+        configurator.variables['travis.notifications.destination'] = 'test@plone.org'
     return value
 
 
@@ -101,6 +113,12 @@ def cleanup_package(configurator):
             "{0}/travis.cfg",
             "{0}/.coveragerc",
             "{0}/profile/testing",
+        ])
+
+    if not configurator.variables['travis.integration.enabled']:
+        to_delete.extend([
+            "{0}/.travis.yml",
+            "{0}/travis.cfg",
         ])
 
     if not configurator.variables['package.theme']:

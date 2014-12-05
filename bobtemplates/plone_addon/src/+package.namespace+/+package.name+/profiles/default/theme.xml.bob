@@ -1,0 +1,4 @@
+<theme>
+    <name>{{{ package.namespace }}}.{{{ package.name }}}</name>
+    <enabled>true</enabled>
+</theme>

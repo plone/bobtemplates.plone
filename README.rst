@@ -1,7 +1,7 @@
 Introduction
 ============
 
-``bobtemplates.ecreall`` provides `mr.bob`_ templates to generate packages for
+``bobtemplates.plone`` provides `mr.bob`_ templates to generate packages for
 Plone projects.
 
 This product is freely based on ``bobtemplates.niteoweb``.
@@ -16,14 +16,14 @@ Create a mr.bob virtualenv
 
   mkvirtualenv mrbob
 
-Install mr.bob and bobtemplates.ecreall
+Install mr.bob and bobtemplates.plone
 ---------------------------------------
 
 ::
 
   pip install mr.bob
 
-  pip install bobtemplates.ecreall
+  pip install bobtemplates.plone
 
 Create your package
 -------------------

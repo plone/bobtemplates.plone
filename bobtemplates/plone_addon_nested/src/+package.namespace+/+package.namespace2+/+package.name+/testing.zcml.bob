@@ -5,8 +5,6 @@
 
   <include file="configure.zcml" />
 
-  <include package="ecreall.helpers.testing" />
-
   <genericsetup:registerProfile
       name="testing"
       title="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name}}} tests"

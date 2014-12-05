@@ -6,9 +6,9 @@ from setuptools import setup
 version = '0.7.dev0'
 
 setup(
-    name='bobtemplates.ecreall',
+    name='bobtemplates.plone',
     version=version,
-    description="Templates for Ecréall projects.",
+    description="Templates for Plone projects.",
     long_description=open("README.rst").read(),
     classifiers=[
         "Environment :: Console",
@@ -20,9 +20,9 @@ setup(
         "Topic :: Utilities",
     ],
     keywords='',
-    author='Cédric Messiant',
-    author_email='cedricmessiant@ecreall.com',
-    url='https://github.com/cedricmessiant/bobtemplates.ecreall',
+    author='Philip Bauer',
+    author_email='community@plone.com',
+    url='https://github.com/collective/bobtemplates.plone',
     license='GPL',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['bobtemplates'],

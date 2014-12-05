@@ -1,0 +1,106 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""Render bobtemplates.plone hooks.
+"""
+from mrbob.bobexceptions import ValidationError
+
+import os
+import shutil
+
+
+def to_boolean(configurator, question, answer):
+    """
+    If you want to convert an answer to Python boolean, you can
+    use this function as :ref:`post-question-hook`:
+
+    .. code-block:: ini
+
+        [questions]
+        idiot.question = Are you young?
+        idiot.post_ask_question = mrbob.hooks:to_boolean
+
+    Following variables can be converted to a boolean: **y, n, yes, no, true, false, 1, 0**
+    """
+    if isinstance(answer, bool):
+        return answer
+    value = answer.lower()
+    if value in ['y', 'yes', 'true', '1']:
+        return True
+    elif value in ['n', 'no', 'false', '0']:
+        return False
+    else:
+        raise ValidationError('Value must be a boolean (y/n)')
+
+
+def post_profile(configurator, question, answer):
+    value = to_boolean(configurator, question, answer)
+    if not value:
+        configurator.variables['package.theme'] = False
+        configurator.variables['package.setuphandlers'] = False
+        configurator.variables['package.testing'] = False
+        configurator.variables['package.theme'] = False
+        configurator.variables['travis.notifications.destination'] = False
+        configurator.variables['travis.notifications.type'] = False
+    return value
+
+
+def post_testing(configurator, question, answer):
+    value = to_boolean(configurator, question, answer)
+    if not value:
+        configurator.variables['travis.notifications.destination'] = False
+        configurator.variables['travis.notifications.type'] = False
+    return value
+
+
+def cleanup_package(configurator):
+    to_delete = []
+
+    base_path = "{0}/src/{1}/{2}".format(
+        configurator.target_directory,
+        configurator.variables['package.namespace'],
+        configurator.variables['package.name'])
+
+
+    if not configurator.variables['package.profile']:
+        to_delete.extend([
+            "{0}/profiles",
+            "{0}/testing.zcml",
+            "{0}/setuphandlers.py",
+            "{0}/interfaces.py",
+        ])
+
+    if not configurator.variables['package.setuphandlers']:
+        to_delete.extend([
+            "{0}/setuphandlers.py",
+        ])
+
+    if not configurator.variables['package.locales']:
+        to_delete.extend([
+            "{0}/locales",
+        ])
+
+    if not configurator.variables['package.testing']:
+        to_delete.extend([
+            "{0}/tests",
+            "{0}/testing.py",
+            "{0}/testing.zcml",
+            "{0}/.travis.yml",
+            "{0}/travis.cfg",
+            "{0}/.coveragerc",
+            "{0}/profile/testing",
+        ])
+
+    if not configurator.variables['package.theme']:
+        to_delete.extend([
+            "{0}/theme",
+            "{0}/profiles/default/theme.xml",
+        ])
+
+    # remove unselected parts
+    for path in to_delete:
+        path = path.format(base_path)
+        if os.path.exists(path):
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+            else:
+                os.remove(path)

@@ -75,6 +75,9 @@ Add a diazo-theme? [False]
 Add tests? [True]
     Do you want to add a basic setup for tests, robot-tests and travis-integration?
 
+Prepare Travis Integration? [False]
+    Should the package be prepared to be integrated into travis (http://travis-ci.org)? If you select False all following questions will be skipped.
+
 Type of Travis CI notifications [email]
     Should be something like 'email' or 'irc', see : http://about.travis-ci.org/docs/user/notifications for more information.
 

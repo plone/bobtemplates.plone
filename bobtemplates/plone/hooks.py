@@ -33,6 +33,8 @@ def to_boolean(configurator, question, answer):
 
 
 def post_profile(configurator, question, answer):
+    """ Skip many questions if we have no profile.
+    """
     value = to_boolean(configurator, question, answer)
     if not value:
         configurator.variables['package.theme'] = False
@@ -45,6 +47,8 @@ def post_profile(configurator, question, answer):
 
 
 def post_testing(configurator, question, answer):
+    """ Skip questions on travis if we have no profile.
+    """
     value = to_boolean(configurator, question, answer)
     if not value:
         configurator.variables['travis.notifications.destination'] = False
@@ -53,6 +57,9 @@ def post_testing(configurator, question, answer):
 
 
 def cleanup_package(configurator):
+    """ Remove parts that are not needed depending on the chosen configuration.
+    """
+
     to_delete = []
 
     base_path = "{0}/src/{1}/{2}".format(
@@ -60,6 +67,12 @@ def cleanup_package(configurator):
         configurator.variables['package.namespace'],
         configurator.variables['package.name'])
 
+    if configurator.template_dir.endswith('plone_addon_nested'):
+        base_path = "{0}/src/{1}/{2}/{3}".format(
+            configurator.target_directory,
+            configurator.variables['package.namespace'],
+            configurator.variables['package.namespace2'],
+            configurator.variables['package.name'])
 
     if not configurator.variables['package.profile']:
         to_delete.extend([
@@ -96,7 +109,7 @@ def cleanup_package(configurator):
             "{0}/profiles/default/theme.xml",
         ])
 
-    # remove unselected parts
+    # remove parts
     for path in to_delete:
         path = path.format(base_path)
         if os.path.exists(path):

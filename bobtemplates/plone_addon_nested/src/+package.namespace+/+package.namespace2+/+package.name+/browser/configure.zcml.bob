@@ -4,6 +4,12 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}">
 
+    <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+    <include package="z3c.jbot" file="meta.zcml" />
+    <browser:jbot
+        directory="overrides"
+        layer="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}.interfaces.I{{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() }}}{{{ package.name.capitalize() }}}Layer" />
+
     <!-- Publish static files -->
     <browser:resourceDirectory
       name="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}"

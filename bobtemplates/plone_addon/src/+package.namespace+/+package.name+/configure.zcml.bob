@@ -7,8 +7,10 @@
 {{% if package.theme %}}
     xmlns:plone="http://namespaces.plone.org/plone"
 {{% endif %}}
-    xmlns:i18n="http://namespaces.zope.org/i18n"
+{{% if package.profile %}}
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+{{% endif %}}
+    xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="{{{ package.namespace }}}.{{{ package.name }}}">
 
 {{% if package.locales %}}
@@ -51,5 +53,4 @@
     </genericsetup:importStep>
 
 {{% endif %}}
-
 </configure>

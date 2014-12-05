@@ -15,8 +15,7 @@ develop = .
 
 eggs +=
     Pillow
-    ipdb
-	
+
 [code-analysis]
 recipe = plone.recipe.codeanalysis
 directory = src/{{{ package.namespace }}}

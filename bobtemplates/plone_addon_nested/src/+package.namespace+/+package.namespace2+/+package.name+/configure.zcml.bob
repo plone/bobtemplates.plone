@@ -23,6 +23,7 @@
 
 {{% if package.grok %}}
     <!-- Register all components defined with grok -->
+    <include package="five.grok" />
     <grok:grok package="." />
 
 {{% endif %}}

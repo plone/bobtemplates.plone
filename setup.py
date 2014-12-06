@@ -21,11 +21,10 @@ setup(
     ],
     keywords='',
     author='Philip Bauer',
-    author_email='community@plone.com',
+    author_email='bauer@starzel.de',
     url='https://github.com/collective/bobtemplates.plone',
     license='GPL',
     packages=find_packages(exclude=['ez_setup']),
-    namespace_packages=['bobtemplates'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[

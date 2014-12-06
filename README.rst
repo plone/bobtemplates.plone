@@ -7,10 +7,10 @@ Plone projects.
 It is based on `bobtemplates.niteoweb <https://github.com/niteoweb/bobtemplates.niteoweb>`_ and `bobtemplates.ecreall <https://github.com/cedricmessiant/bobtemplates.ecreall>`_
 
 
-Options
-=======
+Templates
+=========
 
-This package provided two templaes to be used with Plone:
+This package provides two templates to be used with Plone:
 
 plone_addon
     A Plone addon like ``collective.myaddon``
@@ -18,8 +18,17 @@ plone_addon
 plone_addon_nested
     A Plone with nested namespaces like ``collective.behavior.myaddon``
 
+Use them like this::
 
-On creating a package the templates let you choose from the following options:
+    $ mrbob -O collective.foo bobtemplates:plone_addon
+
+    $ mrbob -O plone.app.bar bobtemplates:plone_addon_nested
+
+
+Options
+=======
+
+On creating a package the templates let you choose from the following options. The default value is in square brackets:
 
 Namespace of the package
     Should be something like 'plone' or 'collective'.
@@ -30,18 +39,6 @@ Namespace of the package (part 2)
 Name of the package
     Should be something like 'myaddon'.
 
-Package description
-    One-liner describing what this package does. Should be something like 'Plone add-on that ...'.
-
-Package keywords
-    Keywords/categoris describing this package. Should be something like 'Plone Python Diazo...'.
-
-Version of the package [0.1]
-    Should be something like '0.1'.
-
-License of the package [GPL]
-    Should be something like 'GPL'.
-
 Author's name
     Should be something like 'John Smith'.
 
@@ -50,6 +47,18 @@ Author's email
 
 Author's github username
     Should be something like 'john'.
+
+Package description [An add-on for Plone]
+    One-liner describing what this package does. Should be something like 'Plone add-on that ...'.
+
+Package keywords [Plone Python]
+    Keywords/categoris describing this package. Should be something like 'Plone Python Diazo...'.
+
+Version of the package [0.1]
+    Should be something like '0.1'.
+
+License of the package [GPL]
+    Should be something like 'GPL'.
 
 Plone version [4.3.4]
     Which Plone version would you like to use?
@@ -85,8 +94,13 @@ Destination for Travis CI notifications
     Should be something like 'travis-reports@example.com' or 'irc.freenode.org#plone'.
 
 
+Installation
+============
+
 Use in a buildout
 -----------------
+
+Untill the package is released on pypi it is recommended to use this option.
 
 ::
 
@@ -111,24 +125,16 @@ In the ``src``-directory of your Plone project do:
     ../bin/mrbob -O collective.foo bobtemplates:plone_addon
 
 
+Installation in a virtualenv
+----------------------------
 
-Create a mr.bob virtualenv
---------------------------
-
-Alternatively you can install the package in your virtualenv.
-
-::
-
-  mkvirtualenv mrbob
-
-Install mr.bob and bobtemplates.plone
----------------------------------------
+Once the package is released on pypi you can install it in a virtualenv.
 
 ::
 
-  pip install mr.bob
+    $ pip install mr.bob
 
-  pip install bobtemplates.plone
+    $ pip install bobtemplates.plone
 
 
 Create your package
@@ -136,7 +142,7 @@ Create your package
 
 ::
 
-  mrbob -O collective.foo bobtemplates:plone_addon
+    $ mrbob -O collective.foo bobtemplates:plone_addon
 
 See `mr.bob`_ documentation for further information : http://mrbob.readthedocs.org/en/latest/
 

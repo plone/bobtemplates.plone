@@ -6,6 +6,7 @@ from mrbob.bobexceptions import ValidationError
 
 import os
 import shutil
+import sys
 
 
 def to_boolean(configurator, question, answer):
@@ -32,6 +33,39 @@ def to_boolean(configurator, question, answer):
         raise ValidationError('Value must be a boolean (y/n)')
 
 
+def query_yes_no(question, default="yes"):
+    """Ask a yes/no question via raw_input() and return their answer.
+
+    "question" is a string that is presented to the user.
+    "default" is the presumed answer if the user just hits <Enter>.
+        It must be "yes" (the default), "no" or None (meaning
+        an answer is required of the user).
+
+    The "answer" return value is one of "yes" or "no".
+    """
+    valid = {"yes": True, "y": True, "ye": True,
+             "no": False, "n": False}
+    if default is None:
+        prompt = " [y/n] "
+    elif default == "yes":
+        prompt = " [Y/n] "
+    elif default == "no":
+        prompt = " [y/N] "
+    else:
+        raise ValueError("invalid default answer: '%s'" % default)
+
+    while True:
+        sys.stdout.write(question + prompt)
+        choice = raw_input().lower()
+        if default is not None and choice == '':
+            return valid[default]
+        elif choice in valid:
+            return valid[choice]
+        else:
+            sys.stdout.write("Please respond with 'yes' or 'no' "
+                             "(or 'y' or 'n').\n")
+
+
 def suggest_namespace(configurator, question):
     package_dir = configurator.target_directory.split('/')[-1]
     namespace = package_dir.split('.')[0]
@@ -48,6 +82,21 @@ def suggest_name(configurator, question):
     package_dir = configurator.target_directory.split('/')[-1]
     name = package_dir.split('.')[-1]
     question.default = name
+
+
+def validate_packagename(configurator, question, answer):
+    """ Check if the target-dir and the package-name match.
+    We allow this but ask if the user want's to continue?
+    """
+    package_dir = configurator.target_directory.split('/')[-1]
+    package_name = base_path = "{0}.{1}".format(
+        configurator.variables['package.namespace'],
+        answer)
+    if not package_dir == package_name:
+        msg = "Directory ({0}) and name ({1}) do not match. Continue anyway?"
+        if not query_yes_no(msg.format(package_dir, package_name)):
+            sys.exit("Aborted!")
+    return answer
 
 
 def post_profile(configurator, question, answer):

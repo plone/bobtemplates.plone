@@ -18,18 +18,6 @@ Options
 
 On creating a package you can choose from the following options. The default value is in [square brackets]:
 
-Create normal or nested package
-    Create a normal (collective.myaddon) or nested (collective.foo.myaddon) package? The default is calculated from the packagename.
-
-Namespace of the package
-    Should be something like 'plone' or 'collective'.  The default is calculated from the packagename.
-
-Namespace of the package (part 2)
-    Should be something like 'app'. (Only for nested packages)
-    The default is calculated from the packagename.
-
-Name of the package
-    Should be something like 'myaddon'.  The default is calculated from the packagename.
 
 Author's name
     Should be something like 'John Smith'.

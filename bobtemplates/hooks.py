@@ -7,6 +7,7 @@ from mrbob.bobexceptions import ValidationError
 import os
 import shutil
 import sys
+import string
 
 
 def to_boolean(configurator, question, answer):
@@ -33,97 +34,29 @@ def to_boolean(configurator, question, answer):
         raise ValidationError('Value must be a boolean (y/n)')
 
 
-def query_yes_no(question, default="yes"):
-    """Ask a yes/no question via raw_input() and return their answer.
-
-    "question" is a string that is presented to the user.
-    "default" is the presumed answer if the user just hits <Enter>.
-        It must be "yes" (the default), "no" or None (meaning
-        an answer is required of the user).
-
-    The "answer" return value is one of "yes" or "no".
-    """
-    valid = {"yes": True, "y": True, "ye": True,
-             "no": False, "n": False}
-    if default is None:
-        prompt = " [y/n] "
-    elif default == "yes":
-        prompt = " [Y/n] "
-    elif default == "no":
-        prompt = " [y/N] "
-    else:
-        raise ValueError("invalid default answer: '%s'" % default)
-
-    while True:
-        sys.stdout.write(question + prompt)
-        choice = raw_input().lower()
-        if default is not None and choice == '':
-            return valid[default]
-        elif choice in valid:
-            return valid[choice]
-        else:
-            sys.stdout.write("Please respond with 'yes' or 'no' "
-                             "(or 'y' or 'n').\n")
-
-
-def suggest_packagetype(configurator, question):
-    """ Suggest the type of package form the name of the folder.
+def validate_packagename(configurator, question):
+    """Find out if the name target-dir entered when invoking the command
+    can be a valid python-package
     """
     package_dir = configurator.target_directory.split('/')[-1]
-    if len(package_dir.split('.')) == 3:
-        packagetype = 'nested'
-    else:
-        packagetype = 'normal'
-    question.default = packagetype
+    fail = False
 
+    allowed = set(string.ascii_letters + string.digits + '.')
+    if not set(package_dir).issubset(allowed):
+        fail = True
 
-def after_packagetype(configurator, question, answer):
-    """ Skip namespace2 for normal packages.
-    """
-    if answer.lower() == 'normal':
-        configurator.variables['package.namespace2'] = False
-    return answer.lower()
+    if package_dir.startswith('.') or package_dir.endswith('.'):
+        fail = True
 
+    parts = len(package_dir.split('.'))
+    if parts < 2 or parts > 3:
+        fail = True
 
-def suggest_namespace(configurator, question):
-    package_dir = configurator.target_directory.split('/')[-1]
-    namespace = package_dir.split('.')[0]
-    question.default = namespace
-
-
-def suggest_namespace2(configurator, question):
-    package_dir = configurator.target_directory.split('/')[-1]
-    namespace2 = package_dir.split('.')[1]
-    question.default = namespace2
-
-
-def suggest_name(configurator, question):
-    package_dir = configurator.target_directory.split('/')[-1]
-    name = package_dir.split('.')[-1]
-    question.default = name
-
-
-def validate_packagename(configurator, question, answer):
-    """ Check if the target-dir and the package-name match.
-    We allow this but ask if the user want's to continue?
-    """
-    nested = bool(configurator.variables['package.type'] == 'nested')
-    package_dir = configurator.target_directory.split('/')[-1]
-    if nested:
-        package_name = "{0}.{1}.{2}".format(
-            configurator.variables['package.namespace'],
-            configurator.variables['package.namespace2'],
-            answer)
-    else:
-        package_name = "{0}.{1}".format(
-            configurator.variables['package.namespace'],
-            answer)
-
-    if not package_dir == package_name:
-        msg = "Directory ({0}) and name ({1}) do not match. Continue anyway?"
-        if not query_yes_no(msg.format(package_dir, package_name)):
-            sys.exit("Aborted!")
-    return answer
+    if fail:
+        msg = "Error: '{0}' is not a valid packagename.\n".format(package_dir)
+        msg += "Please use a valid name (like collective.myaddon or "
+        msg += "plone.app.myaddon)"
+        sys.exit(msg)
 
 
 def post_profile(configurator, question, answer):
@@ -165,9 +98,21 @@ def post_travis(configurator, question, answer):
 def prepare_render(configurator):
     """Some variables to make templating easier.
 
-    This is especially important for alowing nested and normal packages.
+    This is especially important for allowing nested and normal packages.
     """
-    if configurator.variables['package.type'] == 'nested':
+    # get package-name and package-type from user-input
+    package_dir = configurator.target_directory.split('/')[-1]
+    nested = bool(len(package_dir.split('.')) == 3)
+    configurator.variables['package.nested'] = nested
+    configurator.variables['package.namespace'] = package_dir.split('.')[0]
+    if nested:
+        namespace2 = package_dir.split('.')[1]
+    else:
+        namespace2 = None
+    configurator.variables['package.namespace2'] = namespace2
+    configurator.variables['package.name'] = package_dir.split('.')[-1]
+
+    if nested:
         dottedname = "{0}.{1}.{2}".format(
             configurator.variables['package.namespace'],
             configurator.variables['package.namespace2'],
@@ -193,7 +138,7 @@ def prepare_render(configurator):
     configurator.variables['jenkins.directories'] = dottedname.replace('.', '/')
 
     # namespace_packages = "['collective', 'collective.foo']"
-    if configurator.variables['package.type'] == 'nested':
+    if nested:
         namespace_packages = "'{0}'".format(
             configurator.variables['package.namespace'])
     else:
@@ -210,7 +155,7 @@ def cleanup_package(configurator):
     Remove parts that are not needed depending on the chosen configuration.
     """
 
-    nested = bool(configurator.variables['package.type'] == 'nested')
+    nested = configurator.variables['package.nested']
 
     # construct full path '.../src/collective'
     start_path = "{0}/src/{1}".format(

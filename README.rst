@@ -1,43 +1,35 @@
 Introduction
 ============
 
-``bobtemplates.plone`` provides `mr.bob`_ templates to generate packages for
+``bobtemplates.plone`` provides a `mr.bob`_ template to generate packages for
 Plone projects.
 
-It is based on `bobtemplates.niteoweb <https://github.com/niteoweb/bobtemplates.niteoweb>`_ and `bobtemplates.ecreall <https://github.com/cedricmessiant/bobtemplates.ecreall>`_
+To create an package ``collective.myaddon``::
 
+    $ mrbob -O collective.myaddon bobtemplates:plone_addon
 
-Templates
-=========
+You can also create an package with nested namespace ``collective.foo.myaddon``::
 
-This package provides two templates to be used with Plone:
-
-plone_addon
-    A Plone addon like ``collective.myaddon``
-
-plone_addon_nested
-    A Plone with nested namespaces like ``collective.behavior.myaddon``
-
-Use them like this::
-
-    $ mrbob -O collective.foo bobtemplates:plone_addon
-
-    $ mrbob -O plone.app.bar bobtemplates:plone_addon_nested
+    $ mrbob -O collective.foo.myaddon bobtemplates:plone_addon
 
 
 Options
 =======
 
-On creating a package the templates let you choose from the following options. The default value is in square brackets:
+On creating a package you can choose from the following options. The default value is in [square brackets]:
+
+Create normal or nested package
+    Create a normal (collective.myaddon) or nested (collective.foo.myaddon) package? The default is calculated from the packagename.
 
 Namespace of the package
-    Should be something like 'plone' or 'collective'.
+    Should be something like 'plone' or 'collective'.  The default is calculated from the packagename.
 
 Namespace of the package (part 2)
-    Should be something like 'app'. (Only for the template plone_addon_nested)
+    Should be something like 'app'. (Only for nested packages)
+    The default is calculated from the packagename.
 
 Name of the package
-    Should be something like 'myaddon'.
+    Should be something like 'myaddon'.  The default is calculated from the packagename.
 
 Author's name
     Should be something like 'John Smith'.
@@ -71,6 +63,9 @@ Use grok? [False]
 
 Add locales? [False]
     Do you want to add translations to this package?
+
+Add example view? [True]
+    Do you want to register a browser view 'demoview' as an example?
 
 Use generic setup profile? [True]
     Do you want the package to have a generic setup profile? If you select False all following questions will be skipped.
@@ -147,3 +142,16 @@ Create your package
 See `mr.bob`_ documentation for further information : http://mrbob.readthedocs.org/en/latest/
 
 .. _mr.bob: http://mrbob.readthedocs.org/en/latest/
+
+
+Contributors
+============
+
+This package is based on `bobtemplates.niteoweb <https://github.com/niteoweb/bobtemplates.niteoweb>`_ and `bobtemplates.ecreall <https://github.com/cedricmessiant/bobtemplates.ecreall>`_
+
+- Philip Bauer [pbauer]
+- Cédric Messiant [cedricmessiant]
+- Vincent Fretin [vincentfretin]
+- Thomas Desvenain [thomasdesvenain]
+- Domen Kožar [iElectric]
+- Nejc Zupan [zupo]

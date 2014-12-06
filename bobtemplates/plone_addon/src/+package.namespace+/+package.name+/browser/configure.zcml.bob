@@ -16,4 +16,14 @@
         directory="static"
         />
 
+{{% if package.example %}}
+    <browser:page
+        name="demoview"
+        for="*"
+        class=".views.DemoView"
+        template="templates/demoview.pt"
+        permission="zope2.View"
+        />
+
+{{% endif %}}
 </configure>

@@ -104,6 +104,12 @@ def cleanup_package(configurator):
             "{0}/locales",
         ])
 
+    if not configurator.variables['package.example']:
+        to_delete.extend([
+            "{0}/browser/templates",
+            "{0}/browser/views.py",
+        ])
+
     if not configurator.variables['package.testing']:
         to_delete.extend([
             "{0}/tests",

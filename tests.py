@@ -83,6 +83,9 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/browser/overrides/.gitkeep',
                 self.project + '/src/collective/foo/browser/static',
                 self.project + '/src/collective/foo/browser/static/.gitkeep',
+                self.project + '/src/collective/foo/browser/templates',
+                self.project + '/src/collective/foo/browser/templates/demoview.pt',
+                self.project + '/src/collective/foo/browser/views.py',
                 self.project + '/src/collective/foo/configure.zcml',
                 self.project + '/src/collective/foo/interfaces.py',
                 self.project + '/src/collective/foo/locales',
@@ -122,7 +125,7 @@ class PloneTemplateTest(BaseTemplateTest):
         Generate a project from a template, test which files were created
         and run all tests in the generated package.
         """
-        self.template = 'plone_addon_nested'
+        self.template = 'plone_addon'
         self.project = 'collective.foo.bar'
         self.answers_file = 'test_answers_nested.ini'
         self.maxDiff = None
@@ -164,6 +167,9 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/browser/overrides/.gitkeep',
                 self.project + '/src/collective/foo/bar/browser/static',
                 self.project + '/src/collective/foo/bar/browser/static/.gitkeep',
+                self.project + '/src/collective/foo/bar/browser/templates',
+                self.project + '/src/collective/foo/bar/browser/templates/demoview.pt',
+                self.project + '/src/collective/foo/bar/browser/views.py',
                 self.project + '/src/collective/foo/bar/configure.zcml',
                 self.project + '/src/collective/foo/bar/interfaces.py',
                 self.project + '/src/collective/foo/bar/locales',

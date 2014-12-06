@@ -5,7 +5,7 @@ extends =
     https://raw.github.com/plone/buildout.jenkins/master/jenkins-code-analysis.cfg
 
 jenkins-test-eggs = ${buildout:package-name} ${buildout:package-extras}
-jenkins-test-directories = src/{{{ package.namespace }}}/{{{ package.namespace2 }}}/{{{ package.name }}}
+jenkins-test-directories = src/{{{ jenkins.directories }}}
 
 parts += pylint
 

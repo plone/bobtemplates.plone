@@ -148,13 +148,30 @@ def prepare_render(configurator):
             configurator.variables['package.namespace2'],
             configurator.variables['package.name'])
 
-    # package.dottedname can be used in both templates
+    # package.dottedname = 'collective.foo.something'
     configurator.variables['package.dottedname'] = dottedname
 
     camelcasename = dottedname.replace('.', ' ').title().replace(' ', '')
     browserlayer = "{0}Layer".format(camelcasename)
-    # package.browserlayer can be used in both templates
+
+    # package.browserlayer = 'CollectiveFooSomethingLayer'
     configurator.variables['package.browserlayer'] = browserlayer
+
+    # package.longname = 'collectivefoosomething'
+    configurator.variables['package.longname'] = camelcasename.lower()
+
+    # jenkins.directories = 'collective/foo/something'
+    configurator.variables['jenkins.directories'] = dottedname.replace('.', '/')
+
+    # namespace_packages = "['collective', 'collective.foo']"
+    if configurator.variables['package.type'] == 'nested':
+        namespace_packages = "'{0}'".format(
+            configurator.variables['package.namespace'])
+    else:
+        namespace_packages = "'{0}', '{0}.{1}'".format(
+            configurator.variables['package.namespace'],
+            configurator.variables['package.namespace2'])
+    configurator.variables['package.namespace_packages'] = namespace_packages
 
 
 def cleanup_package(configurator):

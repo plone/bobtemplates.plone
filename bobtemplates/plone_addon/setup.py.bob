@@ -36,7 +36,7 @@ setup(
     url='http://pypi.python.org/pypi/{{{ package.dottedname }}}',
     license='{{{ package.license }}}',
     packages=find_packages('src', exclude=['ez_setup']),
-    namespace_packages=['{{{ package.namespace }}}'],
+    namespace_packages=[{{{ package.namespace_packages }}}],
     package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,

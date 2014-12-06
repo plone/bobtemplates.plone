@@ -1,3 +1,0 @@
-graft src/{{{ package.namespace }}}
-graft docs/
-include *.cfg *.rst *.in

@@ -66,6 +66,25 @@ def query_yes_no(question, default="yes"):
                              "(or 'y' or 'n').\n")
 
 
+def suggest_packagetype(configurator, question):
+    """ Suggest the type of package form the name of the folder.
+    """
+    package_dir = configurator.target_directory.split('/')[-1]
+    if len(package_dir.split('.')) == 3:
+        packagetype = 'nested'
+    else:
+        packagetype = 'normal'
+    question.default = packagetype
+
+
+def after_packagetype(configurator, question, answer):
+    """ Skip namespace2 for normal packages.
+    """
+    if answer.lower() == 'normal':
+        configurator.variables['package.namespace2'] = False
+    return answer.lower()
+
+
 def suggest_namespace(configurator, question):
     package_dir = configurator.target_directory.split('/')[-1]
     namespace = package_dir.split('.')[0]
@@ -88,10 +107,18 @@ def validate_packagename(configurator, question, answer):
     """ Check if the target-dir and the package-name match.
     We allow this but ask if the user want's to continue?
     """
+    nested = bool(configurator.variables['package.type'] == 'nested')
     package_dir = configurator.target_directory.split('/')[-1]
-    package_name = "{0}.{1}".format(
-        configurator.variables['package.namespace'],
-        answer)
+    if nested:
+        package_name = "{0}.{1}.{2}".format(
+            configurator.variables['package.namespace'],
+            configurator.variables['package.namespace2'],
+            answer)
+    else:
+        package_name = "{0}.{1}".format(
+            configurator.variables['package.namespace'],
+            answer)
+
     if not package_dir == package_name:
         msg = "Directory ({0}) and name ({1}) do not match. Continue anyway?"
         if not query_yes_no(msg.format(package_dir, package_name)):
@@ -136,16 +163,18 @@ def post_travis(configurator, question, answer):
 
 
 def prepare_render(configurator):
-    """Calculate some variables to make templating easier.
-    """
-    dottedname = "{0}.{1}".format(
-        configurator.variables['package.namespace'],
-        configurator.variables['package.name'])
+    """Some variables to make templating easier.
 
-    if configurator.template_dir.endswith('plone_addon_nested'):
+    This is especially important for alowing nested and normal packages.
+    """
+    if configurator.variables['package.type'] == 'nested':
         dottedname = "{0}.{1}.{2}".format(
             configurator.variables['package.namespace'],
             configurator.variables['package.namespace2'],
+            configurator.variables['package.name'])
+    else:
+        dottedname = "{0}.{1}".format(
+            configurator.variables['package.namespace'],
             configurator.variables['package.name'])
 
     # package.dottedname = 'collective.foo.something'
@@ -175,22 +204,51 @@ def prepare_render(configurator):
 
 
 def cleanup_package(configurator):
-    """ Remove parts that are not needed depending on the chosen configuration.
+    """ Cleanup and make nested if needed.
+
+    Transform into a nested package if that was the selected option.
+    Remove parts that are not needed depending on the chosen configuration.
     """
 
-    to_delete = []
+    nested = bool(configurator.variables['package.type'] == 'nested')
 
-    base_path = "{0}/src/{1}/{2}".format(
+    # construct full path '.../src/collective'
+    start_path = "{0}/src/{1}".format(
         configurator.target_directory,
-        configurator.variables['package.namespace'],
+        configurator.variables['package.namespace'])
+
+    # path for normal packages: '.../src/collective/myaddon'
+    base_path = "{0}/{1}".format(
+        start_path,
         configurator.variables['package.name'])
 
-    if configurator.template_dir.endswith('plone_addon_nested'):
-        base_path = "{0}/src/{1}/{2}/{3}".format(
-            configurator.target_directory,
-            configurator.variables['package.namespace'],
+    if nested:
+        # Modify the created package to be nested by adding a new folder
+        # from namespace2 and moving the created stuff in there.
+
+        # path for nested packages: '.../src/collective/behavior/myaddon'
+        base_path_nested = "{0}/{1}/{2}".format(
+            start_path,
             configurator.variables['package.namespace2'],
             configurator.variables['package.name'])
+
+        namespace2 = configurator.variables['package.namespace2']
+        newpath = "{0}/{1}".format(start_path, namespace2)
+        if not os.path.exists(newpath):
+            # create new directory '.../src/collective/behavior' and move
+            os.makedirs(newpath)
+            # copy the __init__.py into it
+            shutil.copy2(
+                "{0}/__init__.py".format(base_path),
+                newpath)
+            # move the whole 'myaddon'-directory into it
+            shutil.move(base_path, base_path_nested)
+
+        # use the new path for deleting
+        base_path = base_path_nested
+
+    # find out what to delete
+    to_delete = []
 
     if not configurator.variables['package.profile']:
         to_delete.extend([

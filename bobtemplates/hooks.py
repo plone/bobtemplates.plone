@@ -32,6 +32,24 @@ def to_boolean(configurator, question, answer):
         raise ValidationError('Value must be a boolean (y/n)')
 
 
+def suggest_namespace(configurator, question):
+    package_dir = configurator.target_directory.split('/')[-1]
+    namespace = package_dir.split('.')[0]
+    question.default = namespace
+
+
+def suggest_namespace2(configurator, question):
+    package_dir = configurator.target_directory.split('/')[-1]
+    namespace2 = package_dir.split('.')[1]
+    question.default = namespace2
+
+
+def suggest_name(configurator, question):
+    package_dir = configurator.target_directory.split('/')[-1]
+    name = package_dir.split('.')[-1]
+    question.default = name
+
+
 def post_profile(configurator, question, answer):
     """ Skip many questions if we have no profile.
     """

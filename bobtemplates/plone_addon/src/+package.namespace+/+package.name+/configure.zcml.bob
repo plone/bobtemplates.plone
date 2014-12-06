@@ -17,8 +17,6 @@
     <i18n:registerTranslations directory="locales" />
 
 {{% endif %}}
-    <five:registerPackage package="." initialize=".initialize" />
-
     <include package=".browser" />
 
 {{% if package.grok %}}

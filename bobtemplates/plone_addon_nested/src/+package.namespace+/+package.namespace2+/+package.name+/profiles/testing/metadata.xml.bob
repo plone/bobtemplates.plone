@@ -2,6 +2,6 @@
 <metadata>
   <version>1</version>
   <dependencies>
-    <dependency>profile-{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}:default</dependency>
+    <dependency>profile-{{{ package.dottedname }}}:default</dependency>
   </dependencies>
 </metadata>

@@ -1,5 +1,5 @@
 [buildout]
-package-name = {{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}
+package-name = {{{ package.dottedname }}}
 package-extras = [test]
 
 extends =

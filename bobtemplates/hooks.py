@@ -135,6 +135,23 @@ def post_travis(configurator, question, answer):
     return value
 
 
+def prepare_render(configurator):
+    """Calculate some variables to make templating easier.
+    """
+    dottedname = "{0}.{1}".format(
+        configurator.variables['package.namespace'],
+        configurator.variables['package.name'])
+
+    if configurator.template_dir.endswith('plone_addon_nested'):
+        dottedname = "{0}.{1}.{2}".format(
+            configurator.variables['package.namespace'],
+            configurator.variables['package.namespace2'],
+            configurator.variables['package.name'])
+
+    # package.dottedname can be used in both templates
+    configurator.variables['package.dottedname'] = dottedname
+
+
 def cleanup_package(configurator):
     """ Remove parts that are not needed depending on the chosen configuration.
     """

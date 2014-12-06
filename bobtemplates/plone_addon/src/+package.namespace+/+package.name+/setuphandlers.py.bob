@@ -9,3 +9,4 @@ def post_install(context):
     """Post install script"""
     if isNotCurrentProfile(context):
         return
+    # Do something during the installation of this package

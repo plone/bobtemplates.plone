@@ -2,17 +2,17 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="{{{ package.namespace }}}.{{{ package.name }}}">
+    i18n_domain="{{{ package.dottedname }}}">
 
     <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
     <include package="z3c.jbot" file="meta.zcml" />
     <browser:jbot
         directory="overrides"
-        layer="{{{ package.namespace }}}.{{{ package.name }}}.interfaces.I{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer" />
+        layer="{{{ package.dottedname }}}.interfaces.I{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer" />
 
     <!-- Publish static files -->
     <browser:resourceDirectory
-        name="{{{ package.namespace }}}.{{{ package.name }}}"
+        name="{{{ package.dottedname }}}"
         directory="static"
         />
 

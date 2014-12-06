@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """Setup/installation tests for this package."""
 
-from {{{ package.namespace }}}.{{{ package.name }}}.testing import IntegrationTestCase
+from {{{ package.dottedname }}}.testing import IntegrationTestCase
 from plone import api
 
 
 class TestInstall(IntegrationTestCase):
-    """Test installation of {{{ package.namespace }}}.{{{ package.name }}} into Plone."""
+    """Test installation of {{{ package.dottedname }}} into Plone."""
 
     def setUp(self):
         """Custom shared utility setup for tests."""
@@ -14,18 +14,18 @@ class TestInstall(IntegrationTestCase):
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_product_installed(self):
-        """Test if {{{ package.namespace }}}.{{{ package.name }}} is installed with portal_quickinstaller."""
-        self.assertTrue(self.installer.isProductInstalled('{{{ package.namespace }}}.{{{ package.name }}}'))
+        """Test if {{{ package.dottedname }}} is installed with portal_quickinstaller."""
+        self.assertTrue(self.installer.isProductInstalled('{{{ package.dottedname }}}'))
 
     def test_uninstall(self):
-        """Test if {{{ package.namespace }}}.{{{ package.name }}} is cleanly uninstalled."""
-        self.installer.uninstallProducts(['{{{ package.namespace }}}.{{{ package.name }}}'])
-        self.assertFalse(self.installer.isProductInstalled('{{{ package.namespace }}}.{{{ package.name }}}'))
+        """Test if {{{ package.dottedname }}} is cleanly uninstalled."""
+        self.installer.uninstallProducts(['{{{ package.dottedname }}}'])
+        self.assertFalse(self.installer.isProductInstalled('{{{ package.dottedname }}}'))
 
     # browserlayer.xml
     def test_browserlayer(self):
         """Test that I{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer is registered."""
-        from {{{ package.namespace }}}.{{{ package.name }}}.interfaces import I{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer
+        from {{{ package.dottedname }}}.interfaces import I{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer
         from plone.browserlayer import utils
         self.assertIn(I{{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer, utils.registered_layers())
 

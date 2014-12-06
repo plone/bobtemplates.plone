@@ -1,5 +1,5 @@
 [theme]
-title = {{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}
+title = {{{ package.dottedname }}}
 description = A diazo theme
 
 [theme:overrides]

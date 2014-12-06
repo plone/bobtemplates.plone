@@ -3,7 +3,7 @@
 
 from zope.i18nmessageid import MessageFactory
 
-_ = MessageFactory('{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}')
+_ = MessageFactory('{{{ package.dottedname }}}')
 
 
 def initialize(context):

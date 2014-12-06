@@ -15,19 +15,19 @@ from plone.testing import z2
 
 import unittest2 as unittest
 
-import {{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}
+import {{{ package.dottedname }}}
 
 
 class {{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() }}}{{{ package.name.capitalize() }}}Layer(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
-    products = ('{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}',
+    products = ('{{{ package.dottedname }}}',
                )
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
         # Load ZCML
-        self.loadZCML(package={{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}},
+        self.loadZCML(package={{{ package.dottedname }}},
                       name='testing.zcml')
         for p in self.products:
             z2.installProduct(app, p)
@@ -35,7 +35,7 @@ class {{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
         # Install into Plone site using portal_setup
-        applyProfile(portal, '{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}:testing')
+        applyProfile(portal, '{{{ package.dottedname }}}:testing')
 
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])

@@ -11,7 +11,7 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
 {{% endif %}}
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    i18n_domain="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}">
+    i18n_domain="{{{ package.dottedname }}}">
 
 {{% if package.locales %}}
     <i18n:registerTranslations directory="locales" />
@@ -31,25 +31,25 @@
     <plone:static
         directory="theme"
         type="theme"
-        name="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}"
+        name="{{{ package.dottedname }}}"
         />
 
 {{% endif %}}
 {{% if package.profile %}}
     <genericsetup:registerProfile
         name="default"
-        title="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}"
+        title="{{{ package.dottedname }}}"
         directory="profiles/default"
-        description="Installs the {{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}} add-on."
+        description="Installs the {{{ package.dottedname }}} add-on."
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
 {{% endif %}}
 {{% if package.setuphandlers %}}
     <genericsetup:importStep
-        name="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}-postInstall"
-        title="{{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}} post_install import step"
-        description="Post install import step from {{{ package.namespace }}}.{{{ package.namespace2 }}}.{{{ package.name }}}"
+        name="{{{ package.dottedname }}}-postInstall"
+        title="{{{ package.dottedname }}} post_install import step"
+        description="Post install import step from {{{ package.dottedname }}}"
         handler=".setuphandlers.post_install">
     </genericsetup:importStep>
 

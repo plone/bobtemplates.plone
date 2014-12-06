@@ -1,4 +1,4 @@
 <theme>
-    <name>{{{ package.namespace }}}.{{{ package.name }}}</name>
+    <name>{{{ package.dottedname }}}</name>
     <enabled>true</enabled>
 </theme>

@@ -28,7 +28,7 @@ setup(
         "Framework :: Plone",
         "Framework :: Plone :: {{{ plone.version }}}",
         "Programming Language :: Python",
-        "Programming Language :: Python :: {{{ python.version }}}",
+        "Programming Language :: Python :: 2.7",
     ],
     keywords='{{{ package.keywords }}}',
     author='{{{ author.name }}}',

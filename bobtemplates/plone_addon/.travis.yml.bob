@@ -1,6 +1,6 @@
 language: python
 python:
-  - {{{ python.version }}}
+  - 2.7
 install:
   - mkdir -p buildout-cache/{eggs,downloads}
   - python bootstrap.py -c travis.cfg

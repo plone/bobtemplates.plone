@@ -43,9 +43,6 @@ License of the package [GPL]
 Plone version [4.3.4]
     Which Plone version would you like to use?
 
-Python version [2.7]
-    Which Python version would you like to use?
-
 Use grok? [False]
     Do you want to use grok in the package?
 

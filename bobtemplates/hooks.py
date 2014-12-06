@@ -139,12 +139,12 @@ def prepare_render(configurator):
 
     # namespace_packages = "['collective', 'collective.foo']"
     if nested:
-        namespace_packages = "'{0}'".format(
-            configurator.variables['package.namespace'])
-    else:
         namespace_packages = "'{0}', '{0}.{1}'".format(
             configurator.variables['package.namespace'],
             configurator.variables['package.namespace2'])
+    else:
+        namespace_packages = "'{0}'".format(
+            configurator.variables['package.namespace'])
     configurator.variables['package.namespace_packages'] = namespace_packages
 
 

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.1 (unreleased)
+0.1 (2014-12-07)
 ----------------
 
 - Initial release based on a reworked version of bobtemplates.ecreall by

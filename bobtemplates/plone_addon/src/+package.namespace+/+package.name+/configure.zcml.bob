@@ -49,7 +49,7 @@
     <genericsetup:importStep
         name="{{{ package.namespace }}}{{{ package.name }}}-postInstall"
         title="{{{ package.dottedname }}} post_install import step"
-        description="Post install import step from "{{{ package.dottedname }}}"
+        description="Post install import step from {{{ package.dottedname }}}"
         handler=".setuphandlers.post_install">
     </genericsetup:importStep>
 

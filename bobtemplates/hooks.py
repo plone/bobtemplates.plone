@@ -89,7 +89,7 @@ def validate_packagename(configurator, question, answer):
     We allow this but ask if the user want's to continue?
     """
     package_dir = configurator.target_directory.split('/')[-1]
-    package_name = base_path = "{0}.{1}".format(
+    package_name = "{0}.{1}".format(
         configurator.variables['package.namespace'],
         answer)
     if not package_dir == package_name:

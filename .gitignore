@@ -13,3 +13,5 @@ parts/
 src/*
 !src/bobtemplates
 var/
+lib/
+include/

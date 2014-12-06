@@ -151,6 +151,11 @@ def prepare_render(configurator):
     # package.dottedname can be used in both templates
     configurator.variables['package.dottedname'] = dottedname
 
+    camelcasename = dottedname.replace('.', ' ').title().replace(' ', '')
+    browserlayer = "{0}Layer".format(camelcasename)
+    # package.browserlayer can be used in both templates
+    configurator.variables['package.browserlayer'] = browserlayer
+
 
 def cleanup_package(configurator):
     """ Remove parts that are not needed depending on the chosen configuration.

@@ -8,7 +8,7 @@
     <include package="z3c.jbot" file="meta.zcml" />
     <browser:jbot
         directory="overrides"
-        layer="{{{ package.dottedname }}}.interfaces.I{{{ package.namespace.capitalize() }}}{{{ package.namespace2.capitalize() }}}{{{ package.name.capitalize() }}}Layer" />
+        layer="{{{ package.dottedname }}}.interfaces.I{{{ package.browserlayer }}}" />
 
     <!-- Publish static files -->
     <browser:resourceDirectory

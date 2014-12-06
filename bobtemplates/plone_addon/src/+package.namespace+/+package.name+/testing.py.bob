@@ -18,7 +18,7 @@ import unittest2 as unittest
 import {{{ package.dottedname }}}
 
 
-class {{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer(PloneSandboxLayer):
+class {{{ package.browserlayer }}}(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
     products = ('{{{ package.dottedname }}}',
@@ -53,7 +53,7 @@ class {{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Lay
             z2.uninstallProduct(app, p)
 
 
-FIXTURE = {{{ package.namespace.capitalize() }}}{{{ package.name.capitalize() }}}Layer(
+FIXTURE = {{{ package.browserlayer }}}(
     name="FIXTURE"
     )
 

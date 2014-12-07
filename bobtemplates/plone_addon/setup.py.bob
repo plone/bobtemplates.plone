@@ -44,9 +44,7 @@ setup(
         'plone.api',
         'setuptools',
         'z3c.jbot',
-{{% if package.grok %}}
-        'five.grok',
-{{% endif %}}
+#        'five.grok',  # uncomment if you want to use grok.
 {{% if package.theme %}}
         'plone.app.theming',
         'plone.app.themingplugins',

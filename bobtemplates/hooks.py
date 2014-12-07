@@ -168,26 +168,34 @@ def cleanup_package(configurator):
         configurator.variables['package.name'])
 
     if nested:
-        # Modify the created package to be nested by adding a new folder
-        # from namespace2 and moving the created stuff in there.
+        # Event though the target-dir was 'collective.behavior.myaddon' mrbob
+        # created a package collective.behavior.myaddon/src/collective/myaddon
+        # since the template does not hava a folder for namespace2.
+        # Here this package is turned into a nested package
+        # collective.behavior.myaddon/src/collective/behavior/myaddon by
+        # inserting a folder with the namepsace2 ('behavior') and oopying
+        # a __init__.py into it.
 
-        # path for nested packages: '.../src/collective/behavior/myaddon'
+        # full path for nested packages: '.../src/collective/behavior/myaddon'
         base_path_nested = "{0}/{1}/{2}".format(
             start_path,
             configurator.variables['package.namespace2'],
             configurator.variables['package.name'])
 
-        namespace2 = configurator.variables['package.namespace2']
-        newpath = "{0}/{1}".format(start_path, namespace2)
+        # directory to be created: .../src/collective/behavior
+        newpath = "{0}/{1}".format(
+            start_path,
+            configurator.variables['package.namespace2'])
         if not os.path.exists(newpath):
-            # create new directory '.../src/collective/behavior' and move
+            # create new directory .../src/collective/behavior
             os.makedirs(newpath)
-            # copy the __init__.py into it
-            shutil.copy2(
-                "{0}/__init__.py".format(base_path),
-                newpath)
-            # move the whole 'myaddon'-directory into it
-            shutil.move(base_path, base_path_nested)
+
+        # copy .../src/collective/__init__.py to
+        # .../src/collective/myaddon/__init__.py
+        shutil.copy2("{0}/__init__.py".format(start_path), newpath)
+
+        # move .../src/collective/myaddon to .../src/collective/behavior
+        shutil.move(base_path, base_path_nested)
 
         # use the new path for deleting
         base_path = base_path_nested

@@ -4,7 +4,14 @@ Changelog
 0.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Pinn robotframework to 2.8.4 to fix package-tests
+  [pbauer]
+
+- Add browserlayer to demoview to allow multiple addons
+  [pbauer]
+
+- Fix creation of nested packages (wrong __init__.py)
+  [pbauer]
 
 
 0.2 (2014-12-07)

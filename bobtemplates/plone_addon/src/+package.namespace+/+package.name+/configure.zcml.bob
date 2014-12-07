@@ -1,9 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
-{{% if package.grok %}}
-    xmlns:grok="http://namespaces.zope.org/grok"
-{{% endif %}}
+    xmlns:zcml="http://namespaces.zope.org/zcml"
 {{% if package.theme %}}
     xmlns:plone="http://namespaces.plone.org/plone"
 {{% endif %}}
@@ -19,12 +17,13 @@
 {{% endif %}}
     <include package=".browser" />
 
-{{% if package.grok %}}
     <!-- Register all components defined with grok -->
-    <include package="five.grok" />
-    <grok:grok package="." />
+    <configure zcml:condition="installed five.grok"
+               xmlns:grok="http://namespaces.zope.org/grok">
+        <include package="five.grok" />
+        <grok:grok package="." />
+    </configure>
 
-{{% endif %}}
 {{% if package.theme %}}
     <plone:static
         directory="theme"

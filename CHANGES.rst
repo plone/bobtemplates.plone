@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3 (unreleased)
+0.3 (2014-12-07)
 ----------------
 
 - Pinn robotframework to 2.8.4 to fix package-tests

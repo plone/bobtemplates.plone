@@ -5,11 +5,22 @@ from setuptools import setup
 
 version = '0.2.dev0'
 
+long_description = (
+    open('README.rst').read()
+    + '\n' +
+    'Contributors\n'
+    '============\n'
+    + '\n' +
+    open('CONTRIBUTORS.rst').read()
+    + '\n' +
+    open('CHANGES.rst').read()
+    + '\n')
+
 setup(
     name='bobtemplates.plone',
     version=version,
     description="Templates for Plone projects.",
-    long_description=open("README.rst").read(),
+    long_description=long_description,
     classifiers=[
         "Environment :: Console",
         "Intended Audience :: Developers",

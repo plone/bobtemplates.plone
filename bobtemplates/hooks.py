@@ -6,8 +6,9 @@ from mrbob.bobexceptions import ValidationError
 
 import os
 import shutil
-import sys
 import string
+import subprocess
+import sys
 
 
 def to_boolean(configurator, question, answer):
@@ -34,7 +35,29 @@ def to_boolean(configurator, question, answer):
         raise ValidationError('Value must be a boolean (y/n)')
 
 
-def validate_packagename(configurator, question):
+def first_question_hook(configurator, question):
+    """
+    Set some clever defaults and validate package name
+    """
+    gitargs = ['git', 'config', '--get']
+    try:
+        username = subprocess.check_output(gitargs + ['user.name']).strip()
+        question.default = username
+    except (OSError, subprocess.CalledProcessError), e:
+        pass
+    validate_packagename(configurator)
+
+
+def email_question_hook(configurator, question):
+    gitargs = ['git', 'config', '--get']
+    try:
+        email = subprocess.check_output(gitargs + ['user.email']).strip()
+        question.default = email
+    except (OSError, subprocess.CalledProcessError), e:
+        pass
+
+
+def validate_packagename(configurator):
     """Find out if the name target-dir entered when invoking the command
     can be a valid python-package
     """

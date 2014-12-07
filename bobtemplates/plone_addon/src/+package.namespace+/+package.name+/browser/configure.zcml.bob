@@ -22,6 +22,7 @@
         for="*"
         class=".views.DemoView"
         template="templates/demoview.pt"
+        layer="{{{ package.dottedname }}}.interfaces.I{{{ package.browserlayer }}}"
         permission="zope2.View"
         />
 

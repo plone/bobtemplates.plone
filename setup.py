@@ -47,6 +47,7 @@ setup(
             'nose',
             'nose-selecttests',
             'scripttest',
+            'six',
             'unittest2',
         ]
     },

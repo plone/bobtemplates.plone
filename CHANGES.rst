@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.4 (unreleased)
+0.4 (2014-12-08)
 ----------------
 
 - Remove grok.

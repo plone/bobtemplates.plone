@@ -4,7 +4,14 @@ Changelog
 0.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fix missed removals when testing was deselected.
+  [pbauer]
+
+- Only use jbot when there is a profile and a browser layer
+  [pbauer]
+
+- Get username and email from git
+  [do3cc]
 
 
 0.3 (2014-12-07)

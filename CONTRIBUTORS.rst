@@ -6,3 +6,4 @@ This package is based on `bobtemplates.niteoweb <https://github.com/niteoweb/bob
 - Thomas Desvenain [thomasdesvenain]
 - Domen Kožar [iElectric]
 - Nejc Zupan [zupo]
+- Patrick Gerken [do3cc]

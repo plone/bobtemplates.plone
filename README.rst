@@ -91,10 +91,6 @@ Use in a buildout
         mr.bob
         bobtemplates.plone
 
-    [sources]
-    # if you want to make local changes on the templates
-    bobtemplates.plone = git https://github.com/collective/bobtemplates.plone.git pushurl=git@github.com:collective/bobtemplates.plone.git
-
 
 This creates a mrbob-executeable in your bin-directory.
 Call it from the ``src``-directory of your Plone project like this.::

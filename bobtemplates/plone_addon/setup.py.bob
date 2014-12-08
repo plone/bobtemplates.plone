@@ -46,9 +46,6 @@ setup(
 {{% if package.profile %}}
         'z3c.jbot',
 {{% endif %}}
-{{% if package.grok %}}
-        'five.grok',
-{{% endif %}}
 {{% if package.theme %}}
         'plone.app.theming',
         'plone.app.themingplugins',

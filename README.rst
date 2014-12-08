@@ -43,9 +43,6 @@ License of the package [GPL]
 Plone version [4.3.4]
     Which Plone version would you like to use?
 
-Use grok? [False]
-    Do you want to use grok in the package?
-
 Add locales? [False]
     Do you want to add translations to this package?
 

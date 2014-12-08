@@ -35,36 +35,25 @@ def to_boolean(configurator, question, answer):
         raise ValidationError('Value must be a boolean (y/n)')
 
 
-def first_question_hook(configurator, question):
-    """
-    Set some clever defaults and validate package name
+def get_git_info(value):
+    """Try to get information from the git-config.
     """
     gitargs = ['git', 'config', '--get']
     try:
-        username = subprocess.check_output(gitargs + ['user.name']).strip()
-        question.default = username
-    except (OSError, subprocess.CalledProcessError), e:
-        pass
-    validate_packagename(configurator)
-
-
-def email_question_hook(configurator, question):
-    gitargs = ['git', 'config', '--get']
-    try:
-        email = subprocess.check_output(gitargs + ['user.email']).strip()
-        question.default = email
+        result = subprocess.check_output(gitargs + [value]).strip()
+        return result
     except (OSError, subprocess.CalledProcessError), e:
         pass
 
 
 def validate_packagename(configurator):
     """Find out if the name target-dir entered when invoking the command
-    can be a valid python-package
+    can be a valid python-package.
     """
     package_dir = configurator.target_directory.split('/')[-1]
     fail = False
 
-    allowed = set(string.ascii_letters + string.digits + '.')
+    allowed = set(string.ascii_letters + string.digits + '.-_')
     if not set(package_dir).issubset(allowed):
         fail = True
 
@@ -80,6 +69,25 @@ def validate_packagename(configurator):
         msg += "Please use a valid name (like collective.myaddon or "
         msg += "plone.app.myaddon)"
         sys.exit(msg)
+
+
+def pre_username(configurator, question):
+    """Get email from git and validate package name.
+    """
+    # validate_packagename should be run before asking the first question.
+    validate_packagename(configurator)
+
+    default = get_git_info('user.name')
+    if default:
+        question.default = default
+
+
+def pre_email(configurator, question):
+    """Get email from git.
+    """
+    default = get_git_info('user.email')
+    if default:
+        question.default = default
 
 
 def post_profile(configurator, question, answer):

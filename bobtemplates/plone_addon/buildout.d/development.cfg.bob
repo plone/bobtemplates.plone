@@ -23,6 +23,7 @@ show-picked-versions = true
 recipe = collective.recipe.omelette
 eggs = ${test:eggs}
 
+{{% if package.testing %}}
 [test]
 recipe = zc.recipe.testrunner
 eggs =
@@ -36,3 +37,4 @@ eggs =
     Pillow
     ${test:eggs}
     plone.app.robotframework[ride,reload]
+{{% endif %}}

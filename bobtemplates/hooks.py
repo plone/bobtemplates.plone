@@ -100,8 +100,8 @@ def post_profile(configurator, question, answer):
         configurator.variables['package.testing'] = False
         configurator.variables['package.theme'] = False
         configurator.variables['travis.integration.enabled'] = False
-        configurator.variables['travis.notifications.destination'] = False
-        configurator.variables['travis.notifications.type'] = False
+        configurator.variables['travis.notifications.type'] = 'email'
+        configurator.variables['travis.notifications.destination'] = 'test@plone.org'
     return value
 
 
@@ -111,8 +111,8 @@ def post_testing(configurator, question, answer):
     value = to_boolean(configurator, question, answer)
     if not value:
         configurator.variables['travis.integration.enabled'] = False
-        configurator.variables['travis.notifications.destination'] = False
-        configurator.variables['travis.notifications.type'] = False
+        configurator.variables['travis.notifications.type'] = 'email'
+        configurator.variables['travis.notifications.destination'] = 'test@plone.org'
     return value
 
 
@@ -263,16 +263,14 @@ def cleanup_package(configurator):
             "{0}/tests",
             "{0}/testing.py",
             "{0}/testing.zcml",
-            "{0}/.travis.yml",
-            "{0}/travis.cfg",
-            "{0}/.coveragerc",
-            "{0}/profile/testing",
+            "{0}/.coveragerc".format(configurator.target_directory),
+            "{0}/buildout.d/jenkins.cfg".format(configurator.target_directory),
         ])
 
     if not configurator.variables['travis.integration.enabled']:
         to_delete.extend([
-            "{0}/.travis.yml",
-            "{0}/travis.cfg",
+            "{0}/.travis.yml".format(configurator.target_directory),
+            "{0}/travis.cfg".format(configurator.target_directory),
         ])
 
     if not configurator.variables['package.theme']:

@@ -43,7 +43,9 @@ setup(
     install_requires=[
         'plone.api',
         'setuptools',
+{{% if package.profile %}}
         'z3c.jbot',
+{{% endif %}}
 {{% if package.grok %}}
         'five.grok',
 {{% endif %}}
@@ -52,12 +54,14 @@ setup(
         'plone.app.themingplugins',
 {{% endif %}}
     ],
+{{% if package.testing %}}
     extras_require={
         'test': [
             'plone.app.testing',
             'plone.app.robotframework',
         ],
     },
+{{% endif %}}
     entry_points="""
     [z3c.autoinclude.plugin]
     target = plone

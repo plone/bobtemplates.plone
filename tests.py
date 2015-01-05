@@ -47,6 +47,7 @@ class PloneTemplateTest(BaseTemplateTest):
         self.template = 'plone_addon'
         self.project = 'collective.foo'
         self.answers_file = 'test_answers.ini'
+        self.maxDiff = None
         result = self.create_template()
         self.assertItemsEqual(
             result.files_created.keys(),
@@ -116,6 +117,7 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/theme/template-overrides/.gitkeep',
                 self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
+                self.project + '/.editorconfig',
             ]
         )
 
@@ -200,5 +202,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/theme/template-overrides/.gitkeep',
                 self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
+                self.project + '/.editorconfig',
             ]
         )

@@ -4,7 +4,8 @@ Changelog
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added .editorconfig file
+  [ale-rt]
 
 
 0.4 (2014-12-08)

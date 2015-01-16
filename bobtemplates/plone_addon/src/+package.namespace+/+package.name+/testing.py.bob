@@ -54,26 +54,26 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
 
 
 FIXTURE = {{{ package.browserlayer }}}(
-    name="FIXTURE"
+    name='FIXTURE'
     )
 
 
 INTEGRATION = IntegrationTesting(
     bases=(FIXTURE,),
-    name="INTEGRATION"
+    name='INTEGRATION'
     )
 
 
 FUNCTIONAL = FunctionalTesting(
     bases=(FIXTURE,),
-    name="FUNCTIONAL"
+    name='FUNCTIONAL'
     )
 
 
 ACCEPTANCE = FunctionalTesting(bases=(FIXTURE,
                                       AUTOLOGIN_LIBRARY_FIXTURE,
                                       z2.ZSERVER_FIXTURE),
-                               name="ACCEPTANCE")
+                               name='ACCEPTANCE')
 
 
 class IntegrationTestCase(unittest.TestCase):

@@ -1,10 +1,10 @@
 # -*- coding: UTF-8 -*-
-import os
-import unittest
-import robotsuite
+from ..testing import ACCEPTANCE
 from plone.testing import layered
 
-from ..testing import ACCEPTANCE
+import os
+import robotsuite
+import unittest
 
 
 def test_suite():

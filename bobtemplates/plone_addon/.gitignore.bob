@@ -15,7 +15,6 @@ src/*
 var/
 htmlcov/
 .coverage
-*.html
 *.log
 output.xml
 *.swp

@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 """Setup/installation tests for this package."""
-from {{{ package.dottedname }}}.testing import IntegrationTestCase
+from {{{ package.dottedname }}}.testing import INTEGRATION
 from plone import api
 
+import unittest2 as unittest
 
-class TestInstall(IntegrationTestCase):
+
+class TestInstall(unittest.TestCase):
     """Test installation of {{{ package.dottedname }}} into Plone."""
+
+    layer = INTEGRATION
 
     def setUp(self):
         """Custom shared utility setup for tests."""
@@ -27,4 +31,3 @@ class TestInstall(IntegrationTestCase):
         from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
         from plone.browserlayer import utils
         self.assertIn(I{{{ package.browserlayer }}}, utils.registered_layers())
-

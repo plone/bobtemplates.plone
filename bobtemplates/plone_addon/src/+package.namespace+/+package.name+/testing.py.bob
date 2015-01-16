@@ -13,7 +13,6 @@ from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.testing import z2
 
-import unittest2 as unittest
 import {{{ package.dottedname }}}
 
 
@@ -70,23 +69,7 @@ FUNCTIONAL = FunctionalTesting(
     )
 
 
-ACCEPTANCE = FunctionalTesting(bases=(FIXTURE,
-                                      AUTOLOGIN_LIBRARY_FIXTURE,
-                                      z2.ZSERVER_FIXTURE),
-                               name='ACCEPTANCE')
-
-
-class IntegrationTestCase(unittest.TestCase):
-    """Base class for integration tests."""
-
-    layer = INTEGRATION
-
-    def setUp(self):
-        super(IntegrationTestCase, self).setUp()
-        self.portal = self.layer['portal']
-
-
-class FunctionalTestCase(unittest.TestCase):
-    """Base class for functional tests."""
-
-    layer = FUNCTIONAL
+ACCEPTANCE = FunctionalTesting(
+    bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
+    name='ACCEPTANCE'
+    )

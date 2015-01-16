@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from ..testing import ACCEPTANCE
+from {{{ package.dottedname }}}.testing import ACCEPTANCE
 from plone.testing import layered
 
 import os

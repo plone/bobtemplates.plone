@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Setup/installation tests for this package."""
-
 from {{{ package.dottedname }}}.testing import IntegrationTestCase
 from plone import api
 

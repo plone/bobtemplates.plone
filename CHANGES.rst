@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6 (unreleased)
+0.6 (2015-01-17)
 ----------------
 
 - Use PLONE_APP_CONTENTTYPES_FIXTURE for tests on when using Plone 5.

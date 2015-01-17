@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 """Base module for unittesting."""
 
+{{% if plone.is_plone5 %}}
+from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
+{{% endif %}}
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
+{{% if not plone.is_plone5 %}}
 from plone.app.testing import PLONE_FIXTURE
+{{% endif %}}
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
@@ -18,18 +23,23 @@ import {{{ package.dottedname }}}
 
 class {{{ package.browserlayer }}}(PloneSandboxLayer):
 
+{{% if plone.is_plone5 %}}
+    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
+{{% endif %}}
+{{% if not plone.is_plone5 %}}
     defaultBases = (PLONE_FIXTURE,)
-    products = (
+{{% endif %}}
+    products = [
         '{{{ package.dottedname }}}',
-    )
+    ]
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
         # Load ZCML
         self.loadZCML(package={{{ package.dottedname }}},
                       name='testing.zcml')
-        for p in self.products:
-            z2.installProduct(app, p)
+        for product in self.products:
+            z2.installProduct(app, product)
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
@@ -39,17 +49,11 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
-        folder_id = portal.invokeFactory('Folder', 'folder')
-        portal[folder_id].reindexObject()
-
-        # Commit so that the test browser sees these objects
-        import transaction
-        transaction.commit()
 
     def tearDownZope(self, app):
         """Tear down Zope."""
-        for p in reversed(self.products):
-            z2.uninstallProduct(app, p)
+        for product in reversed(self.products):
+            z2.uninstallProduct(app, product)
 
 
 FIXTURE = {{{ package.browserlayer }}}(

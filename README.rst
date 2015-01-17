@@ -12,6 +12,8 @@ You can also create a package with nested namespace::
 
     $ mrbob -O collective.foo.myaddon bobtemplates:plone_addon
 
+The packages created with bobtemplates.plone work well in Plone 4.3.x and Plone. They should also work with older versions but that was not tested.
+
 
 Options
 =======
@@ -111,3 +113,9 @@ Now you can use it like this::
 See `mr.bob`_ documentation for further information : http://mrbob.readthedocs.org/en/latest/
 
 .. _mr.bob: http://mrbob.readthedocs.org/en/latest/
+
+
+Use in Plone 5
+--------------
+
+Tests do not have any content-types available in Plone 5.

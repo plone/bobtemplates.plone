@@ -89,9 +89,18 @@ def pre_email(configurator, question):
     if default:
         question.default = default
 
+def post_version(configurator, question, answer):
+    """Find out if it is supposed to be Plone 5.
+    """
+    if answer.startswith("5"):
+        configurator.variables['plone.is_plone5'] = True
+    else:
+        configurator.variables['plone.is_plone5'] = False
+    return answer
+
 
 def post_profile(configurator, question, answer):
-    """ Skip many questions if we have no profile.
+    """Skip many questions if we have no profile.
     """
     value = to_boolean(configurator, question, answer)
     if not value:
@@ -106,7 +115,7 @@ def post_profile(configurator, question, answer):
 
 
 def post_testing(configurator, question, answer):
-    """ Skip questions on travis if we have no profile.
+    """Skip questions on travis if we have no profile.
     """
     value = to_boolean(configurator, question, answer)
     if not value:
@@ -117,7 +126,7 @@ def post_testing(configurator, question, answer):
 
 
 def post_travis(configurator, question, answer):
-    """ Skip questions on travis.
+    """Skip questions on travis.
     """
     value = to_boolean(configurator, question, answer)
     if not value:
@@ -180,7 +189,7 @@ def prepare_render(configurator):
 
 
 def cleanup_package(configurator):
-    """ Cleanup and make nested if needed.
+    """Cleanup and make nested if needed.
 
     Transform into a nested package if that was the selected option.
     Remove parts that are not needed depending on the chosen configuration.

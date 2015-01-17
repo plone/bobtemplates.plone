@@ -113,9 +113,3 @@ Now you can use it like this::
 See `mr.bob`_ documentation for further information : http://mrbob.readthedocs.org/en/latest/
 
 .. _mr.bob: http://mrbob.readthedocs.org/en/latest/
-
-
-Use in Plone 5
---------------
-
-Tests do not have any content-types available in Plone 5.

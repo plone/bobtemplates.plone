@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5 (unreleased)
+0.5 (2015-01-17)
 ----------------
 
 - Remove useless base-classes for tests. Use layer = xxx instead

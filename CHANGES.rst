@@ -4,19 +4,20 @@ Changelog
 0.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Use PLONE_APP_CONTENTTYPES_FIXTURE for tests on when using Plone 5.
+  [pbauer]
 
 
 0.5 (2015-01-17)
 ----------------
 
-- Remove useless base-classes for tests. Use layer = xxx instead
+- Remove useless base-classes for tests. Use 'layer = xxx' instead.
   [pbauer]
 
-- Fix some minor code-analysis issues
+- Fix some minor code-analysis issues.
   [pbauer]
 
-- Added .editorconfig file
+- Added .editorconfig file.
   [ale-rt]
 
 

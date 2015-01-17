@@ -89,10 +89,11 @@ def pre_email(configurator, question):
     if default:
         question.default = default
 
-def post_version(configurator, question, answer):
+
+def post_plone_version(configurator, question, answer):
     """Find out if it is supposed to be Plone 5.
     """
-    if answer.startswith("5"):
+    if answer.startswith('5'):
         configurator.variables['plone.is_plone5'] = True
     else:
         configurator.variables['plone.is_plone5'] = False

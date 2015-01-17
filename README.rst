@@ -1,8 +1,7 @@
 Introduction
 ============
 
-``bobtemplates.plone`` provides a `mr.bob`_ template to generate packages for
-Plone projects.
+``bobtemplates.plone`` provides a `mr.bob`_ template to generate packages for Plone projects.
 
 To create a package like ``collective.myaddon``::
 
@@ -11,8 +10,6 @@ To create a package like ``collective.myaddon``::
 You can also create a package with nested namespace::
 
     $ mrbob -O collective.foo.myaddon bobtemplates:plone_addon
-
-The packages created with bobtemplates.plone work well in Plone 4.3.x and Plone. They should also work with older versions but that was not tested.
 
 
 Options
@@ -71,6 +68,13 @@ Type of Travis CI notifications [email]
 
 Destination for Travis CI notifications
     Should be something like 'travis-reports@example.com' or 'irc.freenode.org#plone'.
+
+
+Compatibility
+=============
+
+Addons created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
+They should also work with older versions but that was not tested.
 
 
 Installation

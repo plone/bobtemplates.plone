@@ -4,6 +4,12 @@ Changelog
 0.5 (unreleased)
 ----------------
 
+- Remove useless base-classes for tests. Use layer = xxx instead
+  [pbauer]
+
+- Fix some minor code-analysis issues
+  [pbauer]
+
 - Added .editorconfig file
   [ale-rt]
 

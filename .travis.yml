@@ -8,9 +8,7 @@ install:
 
 script:
   - bin/nosetests
-#  - bin/mrbob -O collective.foo --config test_answers.ini ./bobtemplates/plone_addon
-#  - bin/mrbob -O collective.foo.bar --config test_answers_nested.ini ./bobtemplates/plone_addon_nested
-  - cat bin/test
+  - bin/mrbob -O collective.foo --config test_answers.ini ./bobtemplates/plone_addon
   - bin/test
 
 notifications:

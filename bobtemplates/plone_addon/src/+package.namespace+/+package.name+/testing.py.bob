@@ -5,6 +5,7 @@
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 {{% endif %}}
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
+from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 {{% if not plone.is_plone5 %}}
@@ -13,10 +14,10 @@ from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import applyProfile
 from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.testing import z2
+from zope.configuration import xmlconfig
 
 import {{{ package.dottedname }}}
 
@@ -31,16 +32,15 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
 {{% endif %}}
 
     def setUpZope(self, app, configurationContext):
-        """Set up Zope."""
-        # Load ZCML
-        self.loadZCML(package={{{ package.dottedname }}},
-                      name='testing.zcml')
+        xmlconfig.file(
+            'configure.zcml',
+            {{{ package.dottedname }}},
+            context=configurationContext
+        )
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
-        # Install into Plone site using portal_setup
-        applyProfile(portal, '{{{ package.dottedname }}}:testing')
-
+        applyProfile(portal, '{{{ package.dottedname }}}:default')
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)

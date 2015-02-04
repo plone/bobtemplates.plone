@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_ACCEPTANCE_TESTING  # noqa
+from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered
 
 import os
@@ -15,10 +16,12 @@ def test_suite():
         os.path.join('robot', doc) for doc in os.listdir(robot_dir)
         if doc.endswith('.robot') and doc.startswith('test_')
     ]
-    for test in robot_tests:
+    for robot_test in robot_tests:
+        robottestsuite = robotsuite.RobotTestSuite(robot_test)
+        robottestsuite.level = ROBOT_TEST_LEVEL
         suite.addTests([
             layered(
-                robotsuite.RobotTestSuite(test),
+                robottestsuite,
                 layer={{{package.uppercasename}}}_ACCEPTANCE_TESTING
             ),
         ])

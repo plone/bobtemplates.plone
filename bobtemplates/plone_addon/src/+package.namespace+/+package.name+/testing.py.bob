@@ -29,9 +29,6 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
 {{% if not plone.is_plone5 %}}
     defaultBases = (PLONE_FIXTURE,)
 {{% endif %}}
-    products = [
-        '{{{ package.dottedname }}}',
-    ]
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
@@ -49,24 +46,22 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
         login(portal, TEST_USER_NAME)
 
 
-FIXTURE = {{{ package.browserlayer }}}(
-    name='FIXTURE'
-    )
+{{{package.uppercasename}}}_FIXTURE = {{{ package.browserlayer }}}()
 
 
-INTEGRATION = IntegrationTesting(
-    bases=(FIXTURE,),
-    name='INTEGRATION'
-    )
+{{{package.uppercasename}}}_INTEGRATION_TESTING = IntegrationTesting(
+    bases=({{{package.uppercasename}}}_FIXTURE,),
+    name='{{{ package.browserlayer }}}:IntegrationTesting'
+)
 
 
-FUNCTIONAL = FunctionalTesting(
-    bases=(FIXTURE,),
-    name='FUNCTIONAL'
-    )
+{{{package.uppercasename}}}_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=({{{package.uppercasename}}}_FIXTURE,),
+    name='{{{ package.browserlayer }}}:FunctionalTesting'
+)
 
 
-ACCEPTANCE = FunctionalTesting(
-    bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
-    name='ACCEPTANCE'
-    )
+{{{package.uppercasename}}}_ACCEPTANCE_TESTING = FunctionalTesting(
+    bases=({{{package.uppercasename}}}_FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
+    name='{{{ package.browserlayer }}}:AcceptanceTesting'
+)

@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from {{{ package.dottedname }}}.testing import ACCEPTANCE
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_ACCEPTANCE_TESTING  # noqa
 from plone.testing import layered
 
 import os
@@ -19,7 +19,7 @@ def test_suite():
         suite.addTests([
             layered(
                 robotsuite.RobotTestSuite(test),
-                layer=ACCEPTANCE
+                layer={{{package.uppercasename}}}_ACCEPTANCE_TESTING
             ),
         ])
     return suite

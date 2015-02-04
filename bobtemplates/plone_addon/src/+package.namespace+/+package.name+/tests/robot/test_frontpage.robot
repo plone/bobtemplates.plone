@@ -15,7 +15,7 @@ ${BROWSER}=  Firefox
 
 Scenario: Test Front Page
   Go to  http://localhost:55001/plone/
-  Page should contain  Replace this template with your own theme
+  Page should contain  Plone site
 
 
 *** Keywords *****************************************************************

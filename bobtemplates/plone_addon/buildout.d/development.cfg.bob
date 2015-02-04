@@ -36,5 +36,5 @@ recipe = zc.recipe.egg
 eggs =
     Pillow
     ${test:eggs}
-    plone.app.robotframework[ride,reload]
+    plone.app.robotframework[debug,ride,reload]
 {{% endif %}}

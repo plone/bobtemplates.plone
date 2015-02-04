@@ -29,17 +29,12 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
 {{% if not plone.is_plone5 %}}
     defaultBases = (PLONE_FIXTURE,)
 {{% endif %}}
-    products = [
-        '{{{ package.dottedname }}}',
-    ]
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
         # Load ZCML
         self.loadZCML(package={{{ package.dottedname }}},
                       name='testing.zcml')
-        for product in self.products:
-            z2.installProduct(app, product)
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
@@ -50,30 +45,23 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
 
-    def tearDownZope(self, app):
-        """Tear down Zope."""
-        for product in reversed(self.products):
-            z2.uninstallProduct(app, product)
+
+{{{package.uppercasename}}}_FIXTURE = {{{ package.browserlayer }}}()
 
 
-FIXTURE = {{{ package.browserlayer }}}(
-    name='FIXTURE'
-    )
+{{{package.uppercasename}}}_INTEGRATION_TESTING = IntegrationTesting(
+    bases=({{{package.uppercasename}}}_FIXTURE,),
+    name='{{{ package.browserlayer }}}:IntegrationTesting'
+)
 
 
-INTEGRATION = IntegrationTesting(
-    bases=(FIXTURE,),
-    name='INTEGRATION'
-    )
+{{{package.uppercasename}}}_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=({{{package.uppercasename}}}_FIXTURE,),
+    name='{{{ package.browserlayer }}}:FunctionalTesting'
+)
 
 
-FUNCTIONAL = FunctionalTesting(
-    bases=(FIXTURE,),
-    name='FUNCTIONAL'
-    )
-
-
-ACCEPTANCE = FunctionalTesting(
-    bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
-    name='ACCEPTANCE'
-    )
+{{{package.uppercasename}}}_ACCEPTANCE_TESTING = FunctionalTesting(
+    bases=({{{package.uppercasename}}}_FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
+    name='{{{ package.browserlayer }}}:AcceptanceTesting'
+)

@@ -22,7 +22,8 @@ def to_boolean(configurator, question, answer):
         idiot.question = Are you young?
         idiot.post_ask_question = mrbob.hooks:to_boolean
 
-    Following variables can be converted to a boolean: **y, n, yes, no, true, false, 1, 0**
+    Following variables can be converted to a boolean:
+    **y, n, yes, no, true, false, 1, 0**
     """
     if isinstance(answer, bool):
         return answer
@@ -42,7 +43,7 @@ def get_git_info(value):
     try:
         result = subprocess.check_output(gitargs + [value]).strip()
         return result
-    except (OSError, subprocess.CalledProcessError), e:
+    except (OSError, subprocess.CalledProcessError):
         pass
 
 
@@ -111,7 +112,9 @@ def post_profile(configurator, question, answer):
         configurator.variables['package.theme'] = False
         configurator.variables['travis.integration.enabled'] = False
         configurator.variables['travis.notifications.type'] = 'email'
-        configurator.variables['travis.notifications.destination'] = 'test@plone.org'
+        configurator.variables[
+            'travis.notifications.destination'
+        ] = 'test@plone.org'
     return value
 
 
@@ -122,7 +125,9 @@ def post_testing(configurator, question, answer):
     if not value:
         configurator.variables['travis.integration.enabled'] = False
         configurator.variables['travis.notifications.type'] = 'email'
-        configurator.variables['travis.notifications.destination'] = 'test@plone.org'
+        configurator.variables[
+            'travis.notifications.destination'
+        ] = 'test@plone.org'
     return value
 
 
@@ -132,7 +137,9 @@ def post_travis(configurator, question, answer):
     value = to_boolean(configurator, question, answer)
     if not value:
         configurator.variables['travis.notifications.type'] = 'email'
-        configurator.variables['travis.notifications.destination'] = 'test@plone.org'
+        configurator.variables[
+            'travis.notifications.destination'
+        ] = 'test@plone.org'
     return value
 
 
@@ -176,7 +183,9 @@ def prepare_render(configurator):
     configurator.variables['package.longname'] = camelcasename.lower()
 
     # jenkins.directories = 'collective/foo/something'
-    configurator.variables['jenkins.directories'] = dottedname.replace('.', '/')
+    configurator.variables[
+        'jenkins.directories'
+    ] = dottedname.replace('.', '/')
 
     # namespace_packages = "['collective', 'collective.foo']"
     if nested:

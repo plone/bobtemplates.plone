@@ -81,25 +81,25 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/browser/__init__.py',
                 self.project + '/src/collective/foo/browser/configure.zcml',
                 self.project + '/src/collective/foo/browser/overrides',
-                self.project + '/src/collective/foo/browser/overrides/.gitkeep',
+                self.project + '/src/collective/foo/browser/overrides/.gitkeep',  # noqa
                 self.project + '/src/collective/foo/browser/static',
                 self.project + '/src/collective/foo/browser/static/.gitkeep',
                 self.project + '/src/collective/foo/browser/templates',
-                self.project + '/src/collective/foo/browser/templates/demoview.pt',
+                self.project + '/src/collective/foo/browser/templates/demoview.pt',  # noqa
                 self.project + '/src/collective/foo/browser/views.py',
                 self.project + '/src/collective/foo/configure.zcml',
                 self.project + '/src/collective/foo/interfaces.py',
                 self.project + '/src/collective/foo/locales',
-                self.project + '/src/collective/foo/locales/collective.foo.pot',
+                self.project + '/src/collective/foo/locales/collective.foo.pot',  # noqa
                 self.project + '/src/collective/foo/locales/update.sh',
                 self.project + '/src/collective/foo/profiles',
                 self.project + '/src/collective/foo/profiles/default',
-                self.project + '/src/collective/foo/profiles/default/browserlayer.xml',
-                self.project + '/src/collective/foo/profiles/default/collectivefoo_marker.txt',
-                self.project + '/src/collective/foo/profiles/default/metadata.xml',
-                self.project + '/src/collective/foo/profiles/default/theme.xml',
+                self.project + '/src/collective/foo/profiles/default/browserlayer.xml',  # noqa
+                self.project + '/src/collective/foo/profiles/default/collectivefoo_marker.txt',  # noqa
+                self.project + '/src/collective/foo/profiles/default/metadata.xml',  # noqa
+                self.project + '/src/collective/foo/profiles/default/theme.xml',  # noqa
                 self.project + '/src/collective/foo/profiles/testing',
-                self.project + '/src/collective/foo/profiles/testing/metadata.xml',
+                self.project + '/src/collective/foo/profiles/testing/metadata.xml',  # noqa
                 self.project + '/src/collective/foo/setuphandlers.py',
                 self.project + '/src/collective/foo/testing.py',
                 self.project + '/src/collective/foo/testing.zcml',
@@ -114,7 +114,7 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/theme/manifest.cfg',
                 self.project + '/src/collective/foo/theme/rules.xml',
                 self.project + '/src/collective/foo/theme/template-overrides',
-                self.project + '/src/collective/foo/theme/template-overrides/.gitkeep',
+                self.project + '/src/collective/foo/theme/template-overrides/.gitkeep',  # noqa
                 self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',
@@ -164,27 +164,27 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/__init__.py',
                 self.project + '/src/collective/foo/bar/browser',
                 self.project + '/src/collective/foo/bar/browser/__init__.py',
-                self.project + '/src/collective/foo/bar/browser/configure.zcml',
-                self.project + '/src/collective/foo/bar/browser/overrides',
-                self.project + '/src/collective/foo/bar/browser/overrides/.gitkeep',
+                self.project + '/src/collective/foo/bar/browser/configure.zcml',  # noqa
+                self.project + '/src/collective/foo/bar/browser/overrides',  # noqa
+                self.project + '/src/collective/foo/bar/browser/overrides/.gitkeep',  # noqa
                 self.project + '/src/collective/foo/bar/browser/static',
-                self.project + '/src/collective/foo/bar/browser/static/.gitkeep',
+                self.project + '/src/collective/foo/bar/browser/static/.gitkeep',  # noqa
                 self.project + '/src/collective/foo/bar/browser/templates',
-                self.project + '/src/collective/foo/bar/browser/templates/demoview.pt',
+                self.project + '/src/collective/foo/bar/browser/templates/demoview.pt',  # noqa
                 self.project + '/src/collective/foo/bar/browser/views.py',
                 self.project + '/src/collective/foo/bar/configure.zcml',
                 self.project + '/src/collective/foo/bar/interfaces.py',
                 self.project + '/src/collective/foo/bar/locales',
-                self.project + '/src/collective/foo/bar/locales/collective.foo.bar.pot',
+                self.project + '/src/collective/foo/bar/locales/collective.foo.bar.pot',  # noqa
                 self.project + '/src/collective/foo/bar/locales/update.sh',
                 self.project + '/src/collective/foo/bar/profiles',
                 self.project + '/src/collective/foo/bar/profiles/default',
-                self.project + '/src/collective/foo/bar/profiles/default/browserlayer.xml',
-                self.project + '/src/collective/foo/bar/profiles/default/collectivefoobar_marker.txt',
-                self.project + '/src/collective/foo/bar/profiles/default/metadata.xml',
-                self.project + '/src/collective/foo/bar/profiles/default/theme.xml',
+                self.project + '/src/collective/foo/bar/profiles/default/browserlayer.xml',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/default/collectivefoobar_marker.txt',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/default/metadata.xml',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/default/theme.xml',  # noqa
                 self.project + '/src/collective/foo/bar/profiles/testing',
-                self.project + '/src/collective/foo/bar/profiles/testing/metadata.xml',
+                self.project + '/src/collective/foo/bar/profiles/testing/metadata.xml',  # noqa
                 self.project + '/src/collective/foo/bar/setuphandlers.py',
                 self.project + '/src/collective/foo/bar/testing.py',
                 self.project + '/src/collective/foo/bar/testing.zcml',
@@ -198,8 +198,8 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/theme/index.html',
                 self.project + '/src/collective/foo/bar/theme/manifest.cfg',
                 self.project + '/src/collective/foo/bar/theme/rules.xml',
-                self.project + '/src/collective/foo/bar/theme/template-overrides',
-                self.project + '/src/collective/foo/bar/theme/template-overrides/.gitkeep',
+                self.project + '/src/collective/foo/bar/theme/template-overrides',  # noqa
+                self.project + '/src/collective/foo/bar/theme/template-overrides/.gitkeep',  # noqa
                 self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',

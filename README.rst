@@ -1,6 +1,25 @@
 Introduction
 ============
 
+.. image:: https://secure.travis-ci.org/collective/bobtemplates.plone.png?branch=master
+    :target: http://travis-ci.org/collective/bobtemplates.plone
+
+.. image:: https://pypip.in/d/bobtemplates.plone/badge.png
+    :target: https://pypi.python.org/pypi/bobtemplates.plone/
+    :alt: Downloads
+
+.. image:: https://pypip.in/v/bobtemplates.plone/badge.png
+    :target: https://pypi.python.org/pypi/bobtemplates.plone/
+    :alt: Latest Version
+
+.. image:: https://pypip.in/egg/bobtemplates.plone/badge.png
+    :target: https://pypi.python.org/pypi/bobtemplates.plone/
+    :alt: Egg Status
+
+.. image:: https://pypip.in/license/bobtemplates.plone/badge.png
+    :target: https://pypi.python.org/pypi/bobtemplates.plone/
+    :alt: License
+
 ``bobtemplates.plone`` provides a `mr.bob`_ template to generate packages for Plone projects.
 
 To create a package like ``collective.myaddon``::

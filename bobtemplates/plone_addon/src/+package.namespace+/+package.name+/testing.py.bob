@@ -38,8 +38,6 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
         # Load ZCML
         self.loadZCML(package={{{ package.dottedname }}},
                       name='testing.zcml')
-        for product in self.products:
-            z2.installProduct(app, product)
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
@@ -49,11 +47,6 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
-
-    def tearDownZope(self, app):
-        """Tear down Zope."""
-        for product in reversed(self.products):
-            z2.uninstallProduct(app, product)
 
 
 FIXTURE = {{{ package.browserlayer }}}(

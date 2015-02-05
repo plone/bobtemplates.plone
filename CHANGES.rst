@@ -4,7 +4,42 @@ Changelog
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Use latest buildout-bootstrap.py.
+  [timo]
+
+- Fix failing nosetests.
+  [timo]
+
+- Add test that creates an add_on and runs all its tests and code analysis.
+  [timo]
+
+- Run tests on travis.
+  [timo]
+
+- Run code analysis on travis. Build fails on PEP8 violations.
+  [timo]
+
+- Add code analysis.
+  [timo]
+
+- Remove z2.InstallProducts. Not needed any longer.
+  [timo]
+
+- Use testing best practices and follow common naming conventions.
+  [timo]
+
+- Remove testing profile. Global testing state is considered an anti-pattern.
+  [timo]
+
+- Add example robot test.
+  [timo]
+
+- Add travis and pypip.in badges.
+  [timo]
+
+- Run code analysis on the generated addon as well within the tests to make
+  sure we always ship 100% PEP8 compliant code.
+  [timo]
 
 
 0.6 (2015-01-17)

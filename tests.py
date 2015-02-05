@@ -97,7 +97,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/profiles/default/browserlayer.xml',  # noqa
                 self.project + '/src/collective/foo/profiles/default/collectivefoo_marker.txt',  # noqa
                 self.project + '/src/collective/foo/profiles/default/metadata.xml',  # noqa
-                self.project + '/src/collective/foo/profiles/default/theme.xml',  # noqa
                 self.project + '/src/collective/foo/setuphandlers.py',
                 self.project + '/src/collective/foo/testing.py',
                 self.project + '/src/collective/foo/tests',
@@ -107,12 +106,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/tests/robot/test_frontpage.robot',  # noqa
                 self.project + '/src/collective/foo/tests/test_robot.py',
                 self.project + '/src/collective/foo/tests/test_setup.py',
-                self.project + '/src/collective/foo/theme',
-                self.project + '/src/collective/foo/theme/index.html',
-                self.project + '/src/collective/foo/theme/manifest.cfg',
-                self.project + '/src/collective/foo/theme/rules.xml',
-                self.project + '/src/collective/foo/theme/template-overrides',
-                self.project + '/src/collective/foo/theme/template-overrides/.gitkeep',  # noqa
                 self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',

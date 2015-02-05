@@ -103,9 +103,92 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/tests/__init__.py',
                 self.project + '/src/collective/foo/tests/robot',
                 self.project + '/src/collective/foo/tests/robot/.gitkeep',
-                self.project + '/src/collective/foo/tests/robot/test_example.robot',  # noqa
+                self.project + '/src/collective/foo/tests/robot/test_frontpage.robot',  # noqa
                 self.project + '/src/collective/foo/tests/test_robot.py',
                 self.project + '/src/collective/foo/tests/test_setup.py',
+                self.project + '/travis.cfg',
+                self.project + '/.coveragerc',
+                self.project + '/.editorconfig',
+            ]
+        )
+
+    def test_plone_addon_nested_template(self):
+        """Test the `plone_addon_nested` template.
+
+        Generate a project from a template, test which files were created
+        and run all tests in the generated package.
+        """
+        self.template = 'plone_addon'
+        self.project = 'collective.foo.bar'
+        self.answers_file = 'test_answers_nested.ini'
+        self.maxDiff = None
+        result = self.create_template()
+        self.assertItemsEqual(
+            result.files_created.keys(),
+            [
+                self.project,
+                self.project + '/.gitignore',
+                self.project + '/.travis.yml',
+                self.project + '/CHANGES.rst',
+                self.project + '/CONTRIBUTORS.rst',
+                self.project + '/MANIFEST.in',
+                self.project + '/README.rst',
+                self.project + '/bootstrap-buildout.py',
+                self.project + '/buildout.cfg',
+                self.project + '/buildout.d',
+                self.project + '/buildout.d/base.cfg',
+                self.project + '/buildout.d/checkouts.cfg',
+                self.project + '/buildout.d/development.cfg',
+                self.project + '/buildout.d/jenkins.cfg',
+                self.project + '/buildout.d/sources.cfg',
+                self.project + '/buildout.d/versions.cfg',
+                self.project + '/docs',
+                self.project + '/docs/LICENSE.GPL',
+                self.project + '/docs/LICENSE.rst',
+                self.project + '/setup.py',
+                self.project + '/src',
+                self.project + '/src/collective',
+                self.project + '/src/collective/__init__.py',
+                self.project + '/src/collective/foo',
+                self.project + '/src/collective/foo/__init__.py',
+                self.project + '/src/collective/foo/bar',
+                self.project + '/src/collective/foo/bar/__init__.py',
+                self.project + '/src/collective/foo/bar/browser',
+                self.project + '/src/collective/foo/bar/browser/__init__.py',
+                self.project + '/src/collective/foo/bar/browser/configure.zcml',  # noqa
+                self.project + '/src/collective/foo/bar/browser/overrides',  # noqa
+                self.project + '/src/collective/foo/bar/browser/overrides/.gitkeep',  # noqa
+                self.project + '/src/collective/foo/bar/browser/static',
+                self.project + '/src/collective/foo/bar/browser/static/.gitkeep',  # noqa
+                self.project + '/src/collective/foo/bar/browser/templates',
+                self.project + '/src/collective/foo/bar/browser/templates/demoview.pt',  # noqa
+                self.project + '/src/collective/foo/bar/browser/views.py',
+                self.project + '/src/collective/foo/bar/configure.zcml',
+                self.project + '/src/collective/foo/bar/interfaces.py',
+                self.project + '/src/collective/foo/bar/locales',
+                self.project + '/src/collective/foo/bar/locales/collective.foo.bar.pot',  # noqa
+                self.project + '/src/collective/foo/bar/locales/update.sh',
+                self.project + '/src/collective/foo/bar/profiles',
+                self.project + '/src/collective/foo/bar/profiles/default',
+                self.project + '/src/collective/foo/bar/profiles/default/browserlayer.xml',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/default/collectivefoobar_marker.txt',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/default/metadata.xml',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/default/theme.xml',  # noqa
+                self.project + '/src/collective/foo/bar/setuphandlers.py',
+                self.project + '/src/collective/foo/bar/testing.py',
+                self.project + '/src/collective/foo/bar/tests',
+                self.project + '/src/collective/foo/bar/tests/__init__.py',
+                self.project + '/src/collective/foo/bar/tests/robot',
+                self.project + '/src/collective/foo/bar/tests/robot/.gitkeep',
+                self.project + '/src/collective/foo/bar/tests/robot/test_frontpage.robot',  # noqa
+                self.project + '/src/collective/foo/bar/tests/test_robot.py',
+                self.project + '/src/collective/foo/bar/tests/test_setup.py',
+                self.project + '/src/collective/foo/bar/theme',
+                self.project + '/src/collective/foo/bar/theme/index.html',
+                self.project + '/src/collective/foo/bar/theme/manifest.cfg',
+                self.project + '/src/collective/foo/bar/theme/rules.xml',
+                self.project + '/src/collective/foo/bar/theme/template-overrides',  # noqa
+                self.project + '/src/collective/foo/bar/theme/template-overrides/.gitkeep',  # noqa
                 self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',

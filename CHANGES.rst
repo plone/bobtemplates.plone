@@ -37,6 +37,10 @@ Changelog
 - Add travis and pypip.in badges.
   [timo]
 
+- Run code analysis on the generated addon as well within the tests to make
+  sure we always ship 100% PEP8 compliant code.
+  [timo]
+
 
 0.6 (2015-01-17)
 ----------------

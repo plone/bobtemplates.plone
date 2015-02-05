@@ -1,0 +1,68 @@
+# ============================================================================
+# EXAMPLE ROBOT TESTS
+# ============================================================================
+#
+# Start robot server:
+#
+# $ bin/robot-server {{{ package.dottedname }}}.testing.{{{package.uppercasename}}}_ACCEPTANCE_TESTING
+#
+# Run robot tests:
+#
+# $ bin/robot src/{{{ jenkins.directories }}}/tests/robot/test_example.robot
+#
+# ============================================================================
+
+*** Settings *****************************************************************
+
+Resource  plone/app/robotframework/selenium.robot
+Resource  plone/app/robotframework/keywords.robot
+
+Library  Remote  ${PLONE_URL}/RobotRemote
+
+Test Setup  Open test browser
+Test Teardown  Close all browsers
+
+
+*** Test Cases ***************************************************************
+
+Test Plone Site Root
+  [Documentation]  Example of a very simple functional test.
+  Go to  ${PLONE_URL}
+  Page should contain  Plone site
+
+Scenario: As a site administrator I can add a document
+  [Documentation]  Example of a BDD-style (Behavior-driven development) test.
+  Given a logged-in site administrator
+    and the add document form
+   When I type 'My Document' into the title field
+    and I press the save button
+   Then a document with the title 'My Document' has been created
+
+
+*** Keywords *****************************************************************
+
+# --- Given ------------------------------------------------------------------
+
+a logged-in site administrator
+  Enable autologin as  Site Administrator
+
+the add document form
+  Go To  ${PLONE_URL}/++add++Document
+  Wait until page contains  Add Page
+
+
+# --- WHEN -------------------------------------------------------------------
+
+I type '${title}' into the title field
+  Page should contain element  name=form.widgets.IDublinCore.title
+  Input Text  name=form.widgets.IDublinCore.title  My Document
+
+I press the save button
+  Click Button  Save
+
+
+# --- THEN -------------------------------------------------------------------
+
+a document with the title '${title}' has been created
+  Page should contain  Item created
+  Page should contain  ${title}

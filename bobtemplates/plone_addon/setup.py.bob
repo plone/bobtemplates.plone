@@ -56,7 +56,7 @@ setup(
         'test': [
             'plone.app.testing',
             'plone.app.contenttypes',
-            'plone.app.robotframework',
+            'plone.app.robotframework[debug]',
         ],
     },
 {{% endif %}}

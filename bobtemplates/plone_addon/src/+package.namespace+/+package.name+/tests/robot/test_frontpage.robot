@@ -9,16 +9,16 @@ Suite Teardown  Close All Browsers
 *** Variables ****************************************************************
 
 ${BROWSER}=  Firefox
-
+${PLONE_URL}=  http://localhost:55001/plone/
 
 *** Test Cases ***************************************************************
 
 Scenario: Test Front Page
-  Go to  http://localhost:55001/plone/
+  Go to  ${PLONE_URL}
   Page should contain  Plone site
 
 
 *** Keywords *****************************************************************
 
 Start browser
-  Open browser  http://localhost:55001/plone/  browser=${BROWSER}
+  Open browser  ${PLONE_URL}  browser=${BROWSER}

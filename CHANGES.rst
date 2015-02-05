@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.7 (unreleased)
+0.7 (2015-02-05)
 ----------------
 
 - Use latest buildout-bootstrap.py.

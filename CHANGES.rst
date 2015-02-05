@@ -41,6 +41,9 @@ Changelog
   sure we always ship 100% PEP8 compliant code.
   [timo]
 
+- Add REMOTE_LIBRARY_BUNDLE_FIXTURE to acceptance test fixture.
+  [timo]
+
 
 0.6 (2015-01-17)
 ----------------

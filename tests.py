@@ -103,7 +103,7 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/tests/__init__.py',
                 self.project + '/src/collective/foo/tests/robot',
                 self.project + '/src/collective/foo/tests/robot/.gitkeep',
-                self.project + '/src/collective/foo/tests/robot/test_frontpage.robot',  # noqa
+                self.project + '/src/collective/foo/tests/robot/test_example.robot',  # noqa
                 self.project + '/src/collective/foo/tests/test_robot.py',
                 self.project + '/src/collective/foo/tests/test_setup.py',
                 self.project + '/travis.cfg',
@@ -180,7 +180,7 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/tests/__init__.py',
                 self.project + '/src/collective/foo/bar/tests/robot',
                 self.project + '/src/collective/foo/bar/tests/robot/.gitkeep',
-                self.project + '/src/collective/foo/bar/tests/robot/test_frontpage.robot',  # noqa
+                self.project + '/src/collective/foo/bar/tests/robot/test_example.robot',  # noqa
                 self.project + '/src/collective/foo/bar/tests/test_robot.py',
                 self.project + '/src/collective/foo/bar/tests/test_setup.py',
                 self.project + '/src/collective/foo/bar/theme',

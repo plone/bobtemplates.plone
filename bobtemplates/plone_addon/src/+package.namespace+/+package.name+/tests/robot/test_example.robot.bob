@@ -2,13 +2,21 @@
 # EXAMPLE ROBOT TESTS
 # ============================================================================
 #
-# Start robot server:
+# Run this robot test stand-alone:
+#
+#  $ bin/test -s {{{ package.dottedname }}} -t test_example.robot --all
+#
+# Run this robot test with robot server (which is faster):
+#
+# 1) Start robot server:
 #
 # $ bin/robot-server {{{ package.dottedname }}}.testing.{{{package.uppercasename}}}_ACCEPTANCE_TESTING
 #
-# Run robot tests:
+# 2) Run robot tests:
 #
 # $ bin/robot src/{{{ jenkins.directories }}}/tests/robot/test_example.robot
+#
+# See the robot framework docs for further details: http://docs.plone.org/external/plone.app.robotframework/docs/source/index.html
 #
 # ============================================================================
 
@@ -25,44 +33,34 @@ Test Teardown  Close all browsers
 
 *** Test Cases ***************************************************************
 
-Test Plone Site Root
-  [Documentation]  Example of a very simple functional test.
-  Go to  ${PLONE_URL}
-  Page should contain  Plone site
-
-Scenario: As a site administrator I can add a document
+Scenario: As a member I want to be able to log into the website
   [Documentation]  Example of a BDD-style (Behavior-driven development) test.
-  Given a logged-in site administrator
-    and the add document form
-   When I type 'My Document' into the title field
-    and I press the save button
-   Then a document with the title 'My Document' has been created
+  Given a login form
+   When I enter valid credentials
+   Then I am logged in
 
 
 *** Keywords *****************************************************************
 
 # --- Given ------------------------------------------------------------------
 
-a logged-in site administrator
-  Enable autologin as  Site Administrator
-
-the add document form
-  Go To  ${PLONE_URL}/++add++Document
-  Wait until page contains  Add Page
+a login form
+  Go To  ${PLONE_URL}/login_form
+  Wait until page contains  Login Name
+  Wait until page contains  Password
 
 
 # --- WHEN -------------------------------------------------------------------
 
-I type '${title}' into the title field
-  Page should contain element  name=form.widgets.IDublinCore.title
-  Input Text  name=form.widgets.IDublinCore.title  My Document
-
-I press the save button
-  Click Button  Save
+I enter valid credentials
+  Input Text  __ac_name  admin
+  Input Text  __ac_password  secret
+  Click Button  Log in
 
 
 # --- THEN -------------------------------------------------------------------
 
-a document with the title '${title}' has been created
-  Page should contain  Item created
-  Page should contain  ${title}
+I am logged in
+  Wait until page contains  Site Map
+  Page should contain  You are now logged in
+  Page should contain  admin

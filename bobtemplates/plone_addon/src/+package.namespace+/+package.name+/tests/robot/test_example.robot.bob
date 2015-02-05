@@ -16,7 +16,8 @@
 #
 # $ bin/robot src/{{{ jenkins.directories }}}/tests/robot/test_example.robot
 #
-# See the robot framework docs for further details: http://docs.plone.org/external/plone.app.robotframework/docs/source/index.html
+# See the http://docs.plone.org for further details (search for robot
+# framework).
 #
 # ============================================================================
 

@@ -10,7 +10,7 @@
 #
 # 1) Start robot server:
 #
-# $ bin/robot-server {{{ package.dottedname }}}.testing.{{{package.uppercasename}}}_ACCEPTANCE_TESTING
+# $ bin/robot-server --reload-path src {{{ package.dottedname }}}.testing.{{{package.uppercasename}}}_ACCEPTANCE_TESTING
 #
 # 2) Run robot tests:
 #

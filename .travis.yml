@@ -1,6 +1,10 @@
 language: python
 python:
   - 2.7
+sudo: false
+cache:
+  directories:
+  - test.plone_addon/eggs
 
 install:
   - python bootstrap-buildout.py --setuptools-version=8.3

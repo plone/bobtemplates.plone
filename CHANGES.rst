@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.8 (unreleased)
+0.8 (2015-02-06)
 ----------------
 
 - Add includeDependencies. This fixes #23.

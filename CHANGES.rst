@@ -4,7 +4,8 @@ Changelog
 0.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add includeDependencies. This fixes #23.
+  [timo]
 
 
 0.7 (2015-02-05)

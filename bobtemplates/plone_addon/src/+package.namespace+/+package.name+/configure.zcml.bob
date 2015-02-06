@@ -10,6 +10,8 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="{{{ package.dottedname }}}">
 
+    <includeDependencies package="." />
+
 {{% if package.locales %}}
     <i18n:registerTranslations directory="locales" />
 

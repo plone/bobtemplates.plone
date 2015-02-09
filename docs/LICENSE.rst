@@ -1,4 +1,4 @@
-bobtemplates.plone Copyright 2014, "Philip Bauer"
+bobtemplates.plone Copyright 2014, Plone Foundation
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

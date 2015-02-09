@@ -1,8 +1,8 @@
 Introduction
 ============
 
-.. image:: https://secure.travis-ci.org/collective/bobtemplates.plone.png?branch=master
-    :target: http://travis-ci.org/collective/bobtemplates.plone
+.. image:: https://secure.travis-ci.org/plone/bobtemplates.plone.png?branch=master
+    :target: http://travis-ci.org/plone/bobtemplates.plone
 
 .. image:: https://pypip.in/d/bobtemplates.plone/badge.png
     :target: https://pypi.python.org/pypi/bobtemplates.plone/

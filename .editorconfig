@@ -1,5 +1,0 @@
-[*.js]
-indent_size = 2
-
-[{*.html,*.dtml,*.pt,*.zcml}]
-indent_size = 2

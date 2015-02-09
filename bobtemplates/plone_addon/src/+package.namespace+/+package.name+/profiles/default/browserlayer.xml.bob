@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="{{{ package.dottedname }}}"
+    interface="{{{ package.dottedname }}}.interfaces.I{{{ package.browserlayer }}}"
+  />
+</layers>

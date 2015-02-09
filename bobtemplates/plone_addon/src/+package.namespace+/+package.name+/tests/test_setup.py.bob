@@ -1,0 +1,33 @@
+# -*- coding: utf-8 -*-
+"""Setup/installation tests for this package."""
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+from plone import api
+
+import unittest2 as unittest
+
+
+class TestInstall(unittest.TestCase):
+    """Test installation of {{{ package.dottedname }}} into Plone."""
+
+    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+
+    def setUp(self):
+        """Custom shared utility setup for tests."""
+        self.portal = self.layer['portal']
+        self.installer = api.portal.get_tool('portal_quickinstaller')
+
+    def test_product_installed(self):
+        """Test if {{{ package.dottedname }}} is installed with portal_quickinstaller."""
+        self.assertTrue(self.installer.isProductInstalled('{{{ package.dottedname }}}'))
+
+    def test_uninstall(self):
+        """Test if {{{ package.dottedname }}} is cleanly uninstalled."""
+        self.installer.uninstallProducts(['{{{ package.dottedname }}}'])
+        self.assertFalse(self.installer.isProductInstalled('{{{ package.dottedname }}}'))
+
+    # browserlayer.xml
+    def test_browserlayer(self):
+        """Test that I{{{ package.browserlayer }}} is registered."""
+        from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
+        from plone.browserlayer import utils
+        self.assertIn(I{{{ package.browserlayer }}}, utils.registered_layers())

@@ -1,0 +1,6 @@
+[theme]
+title = {{{ package.dottedname }}}
+description = A diazo theme
+
+[theme:overrides]
+directory = template-overrides

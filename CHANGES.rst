@@ -4,7 +4,8 @@ Changelog
 0.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fix bootstrap command in travis.yml.
+  [timo]
 
 
 0.8 (2015-02-06)

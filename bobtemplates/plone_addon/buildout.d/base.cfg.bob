@@ -19,4 +19,4 @@ eggs +=
 [code-analysis]
 recipe = plone.recipe.codeanalysis
 directory = src/{{{ package.namespace }}}
-flake8-ignore = E123,E124,E501,E126,E127,E128
+

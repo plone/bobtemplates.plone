@@ -27,7 +27,9 @@ eggs =
 
 [code-analysis]
 recipe = plone.recipe.codeanalysis
-directory = src/{{{ package.namespace }}}
+directory = ${buildout:directory}/src/{{{ package.namespace }}}
+flake8-exclude = bootstrap.py,bootstrap-buildout.py,docs,*.egg.,omelette
+flake8-max-complexity = 15
 
 
 [omelette]
@@ -47,16 +49,8 @@ defaults = ['-s', '${buildout:package-name}', '--auto-color', '--auto-progress']
 [robot]
 recipe = zc.recipe.egg
 eggs =
-    Pillow
     ${test:eggs}
     plone.app.robotframework[debug,ride,reload]
-
-
-[code-analysis]
-recipe = plone.recipe.codeanalysis
-directory = ${buildout:directory}/src/
-flake8-exclude = bootstrap.py,bootstrap-buildout.py,docs,*.egg.,omelette
-flake8-max-complexity = 15
 
 {{% endif %}}
 

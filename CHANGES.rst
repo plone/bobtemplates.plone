@@ -4,6 +4,9 @@ Changelog
 0.9 (unreleased)
 ----------------
 
+- Unify buildout configuration in buildout.cfg
+  [timo]
+
 - Fix bootstrap command in travis.yml.
   [timo]
 

@@ -11,6 +11,7 @@ env:
     - PLONE_VERSION=4.1.6
     - PLONE_VERSION=4.2.7
     - PLONE_VERSION=4.3.4
+    - PLONE_VERSION=5.0a3
 
 install:
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini

@@ -4,7 +4,6 @@ package-extras = [test]
 
 extends =
     https://raw.github.com/collective/buildout.plonetest/master/plone-4.3.x.cfg
-    https://raw.github.com/collective/buildout.plonetest/master/qa.cfg
 parts =
     createcoverage
     omelette

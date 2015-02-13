@@ -14,6 +14,10 @@ env:
     - PLONE_VERSION=4.3.4
     - PLONE_VERSION=5.0a3
 
+matrix:
+  allow_failures:
+    - env: PLONE_VERSION=4.0.10
+
 install:
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini
   - python bootstrap-buildout.py --setuptools-version=8.3

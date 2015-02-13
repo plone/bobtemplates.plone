@@ -17,6 +17,8 @@ env:
 matrix:
   allow_failures:
     - env: PLONE_VERSION=4.0.10
+    - env: PLONE_VERSION=4.1.6
+    - env: PLONE_VERSION=4.2.7
 
 install:
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini

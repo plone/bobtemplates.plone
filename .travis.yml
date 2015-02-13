@@ -8,6 +8,7 @@ cache:
 
 env:
   matrix:
+    - PLONE_VERSION=4.0.10
     - PLONE_VERSION=4.1.6
     - PLONE_VERSION=4.2.7
     - PLONE_VERSION=4.3.4

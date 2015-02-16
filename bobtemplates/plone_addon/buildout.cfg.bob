@@ -1,28 +1,20 @@
 [buildout]
-package-name = {{{ package.dottedname }}}
-package-extras = [test]
-
-extends =
-    https://raw.github.com/collective/buildout.plonetest/master/plone-4.3.x.cfg
-    https://raw.github.com/collective/buildout.plonetest/master/qa.cfg
+extends = http://dist.plone.org/release/{{{ plone.version }}}/versions.cfg
+extensions = mr.developer
 parts =
-    createcoverage
-    omelette
+    instance
     test
-    robot
     code-analysis
-show-picked-versions = true
-
 develop = .
 
+[instance]
+recipe = plone.recipe.zope2instance
+user = admin:admin
+http-address = 8080
 eggs =
+    Plone
     Pillow
-    plone.reload
-    Products.PDBDebugMode
-    Products.DocFinderTab
-    aws.zope2zcmldoc
-    collective.profiler
-
+    {{{ package.dottedname }}} [test]
 
 [code-analysis]
 recipe = plone.recipe.codeanalysis
@@ -33,16 +25,14 @@ flake8-max-complexity = 15
 
 [omelette]
 recipe = collective.recipe.omelette
-eggs = ${buildout:eggs}
-
+eggs = ${instance:eggs}
 
 {{% if package.testing %}}
+
 [test]
 recipe = zc.recipe.testrunner
-eggs =
-    ${buildout:eggs}
-    ${buildout:package-name} ${buildout:package-extras}
-defaults = ['-s', '${buildout:package-name}', '--auto-color', '--auto-progress']
+eggs = ${instance:eggs}
+defaults = ['-s', '{{{ package.dottedname }}}', '--auto-color', '--auto-progress']
 
 
 [robot]

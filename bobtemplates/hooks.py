@@ -235,6 +235,7 @@ def cleanup_package(configurator):
             "{0}/profiles/default/types.xml",
             "{0}/profiles/default/types",
             "{0}/tests/test_dexterity.py",
+            "{0}/tests/robot/test_dexterity.robot",
         ])
 
     # remove parts

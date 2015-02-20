@@ -16,5 +16,7 @@ class TestDexterity(unittest.TestCase):
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_plone_app_dexterity_installed(self):
-        """Test if {{{ package.dottedname }}} is installed with portal_quickinstaller."""
-        self.assertTrue(self.installer.isProductInstalled('plone.app.dexterity'))
+        """Test if plone.app.dexterity is installed."""
+        self.assertTrue(
+            self.installer.isProductInstalled('plone.app.dexterity')
+        )

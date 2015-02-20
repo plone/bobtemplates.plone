@@ -10,10 +10,8 @@
 
     <includeDependencies package="." />
 
-{{% if package.locales %}}
     <i18n:registerTranslations directory="locales" />
 
-{{% endif %}}
     <include package=".browser" />
 
 {{% if package.theme %}}

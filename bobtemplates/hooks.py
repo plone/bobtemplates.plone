@@ -218,11 +218,6 @@ def cleanup_package(configurator):
     # find out what to delete
     to_delete = []
 
-    if not configurator.variables['package.locales']:
-        to_delete.extend([
-            "{0}/locales",
-        ])
-
     if not configurator.variables['package.example']:
         to_delete.extend([
             "{0}/browser/templates",

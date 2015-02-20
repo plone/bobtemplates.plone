@@ -46,7 +46,7 @@ class PloneTemplateTest(BaseTemplateTest):
         """
         self.template = 'plone_addon'
         self.project = 'collective.foo'
-        self.answers_file = 'test_answers.ini'
+        self.answers_file = 'nosetests_answers.ini'
         self.maxDiff = None
         result = self.create_template()
         self.assertItemsEqual(
@@ -114,7 +114,7 @@ class PloneTemplateTest(BaseTemplateTest):
         """
         self.template = 'plone_addon'
         self.project = 'collective.foo.bar'
-        self.answers_file = 'test_answers_nested.ini'
+        self.answers_file = 'nosetests_answers_nested.ini'
         self.maxDiff = None
         result = self.create_template()
         self.assertItemsEqual(

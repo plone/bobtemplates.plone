@@ -49,44 +49,14 @@ Author's github username
 Package description [An add-on for Plone]
     One-liner describing what this package does. Should be something like 'Plone add-on that ...'.
 
-Package keywords [Plone Python]
-    Keywords/categoris describing this package. Should be something like 'Plone Python Diazo...'.
-
-Version of the package [0.1]
-    Should be something like '0.1'.
-
-License of the package [GPL]
-    Should be something like 'GPL'.
-
 Plone version [4.3.4]
     Which Plone version would you like to use?
-
-Add locales? [False]
-    Do you want to add translations to this package?
 
 Add example view? [True]
     Do you want to register a browser view 'demoview' as an example?
 
-Use generic setup profile? [True]
-    Do you want the package to have a generic setup profile? If you select False all following questions will be skipped.
-
-Add setuphandlers? [True]
-    Do you want the package to have a setuphander.py to run cusotm code during install?
-
 Add a diazo-theme? [False]
     Do you want to add a empty theme using diazo/plone.app.theming to the package?
-
-Add tests? [True]
-    Do you want to add a basic setup for tests, robot-tests and travis-integration?
-
-Prepare Travis Integration? [False]
-    Should the package be prepared to be integrated into travis (http://travis-ci.org)? If you select False all following questions will be skipped.
-
-Type of Travis CI notifications [email]
-    Should be something like 'email' or 'irc', see : http://about.travis-ci.org/docs/user/notifications for more information.
-
-Destination for Travis CI notifications
-    Should be something like 'travis-reports@example.com' or 'irc.freenode.org#plone'.
 
 
 Compatibility

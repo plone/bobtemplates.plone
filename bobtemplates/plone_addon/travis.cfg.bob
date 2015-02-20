@@ -1,0 +1,11 @@
+[buildout]
+extends =
+{{% if plone.is_plone5 %}}
+    https://raw.githubusercontent.com/collective/buildout.plonetest/master/travis-5.x.cfg
+{{% endif %}}
+{{% if not plone.is_plone5 %}}
+    https://raw.githubusercontent.com/collective/buildout.plonetest/master/travis-4.3.x.cfg
+{{% endif %}}
+    buildout.cfg
+parts = download install test createcoverage
+

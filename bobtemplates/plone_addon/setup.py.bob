@@ -48,6 +48,9 @@ setup(
         'plone.app.theming',
         'plone.app.themingplugins',
 {{% endif %}}
+{{% if package.type == 'Dexterity' %}}
+        'plone.app.dexterity',
+{{% endif %}}
     ],
     extras_require={
         'test': [

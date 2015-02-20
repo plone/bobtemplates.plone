@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+"""Setup/installation tests for this package."""
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+from plone import api
+
+import unittest2 as unittest
+
+
+class TestDexterity(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+
+    def setUp(self):
+        """Custom shared utility setup for tests."""
+        self.portal = self.layer['portal']
+        self.installer = api.portal.get_tool('portal_quickinstaller')
+
+    def test_plone_app_dexterity_installed(self):
+        """Test if {{{ package.dottedname }}} is installed with portal_quickinstaller."""
+        self.assertTrue(self.installer.isProductInstalled('plone.app.dexterity'))

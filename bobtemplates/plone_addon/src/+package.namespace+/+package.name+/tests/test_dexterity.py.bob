@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-"""Setup/installation tests for this package."""
-from plone.testing.z2 import Browser
 from plone.app.testing import TEST_USER_ID
 from zope.component import queryUtility
 from zope.component import createObject
@@ -27,7 +25,8 @@ class TaskIntegrationTest(unittest.TestCase):
     def test_plone_app_dexterity_installed(self):
         """Test if plone.app.dexterity is installed."""
         self.assertTrue(
-            self.installer.isProductInstalled('plone.app.dexterity')
+            self.installer.isProductInstalled('plone.app.dexterity'),
+            'plone.app.dexterity seems to not be properly installed.'
         )
 
     def test_schema(self):

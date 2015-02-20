@@ -59,6 +59,30 @@ Add a diazo-theme? [False]
     Do you want to add a empty theme using diazo/plone.app.theming to the package?
 
 
+Features
+========
+
+Package created with ``bobtemplates.plone`` use the current best-practices when creating an addon.
+
+Buildout
+    The package is contained in a buildout that allows you to build Plone with the new package installed for testing-purposes.
+
+Tests
+    The package comes with a test setup and some `tests <http://docs.plone.org/external/plone.app.testing/docs/source/index.html>`_ for installing the package. It also contains a `robot-test <http://docs.plone.org/external/plone.app.robotframework/docs/source/index.html>`_ that tests logging in. The buildout also contains a config to allow testing the package on `travis <http://travis-ci.org/>`_ that sends `notifications <http://about.travis-ci.org/docs/user/notifications>`_ by email to the package autor.
+
+Profile
+    The package contains a `Generic Setup Profile <http://docs.plone.org/develop/addons/components/genericsetup.html>`_ that installs a browserlayer.
+
+Locales
+    The package registers a directory for locales.
+
+Template-Overrides
+    The package registers the folder ``browser/overrides`` as a directory where you can drop template-overrides using `z3c.jbot <https://pypi.python.org/pypi/z3c.jbot>`_.
+
+Setuphandler
+    The package contains a `setuphandlers.py <http://docs.plone.org/develop/addons/components/genericsetup.html?highlight=setuphandler#custom-installer-code-setuphandlers-py>`_ where you can add code that is executed on installing the package.
+
+
 Compatibility
 =============
 

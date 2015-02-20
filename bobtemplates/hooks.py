@@ -232,6 +232,8 @@ def cleanup_package(configurator):
 
     if configurator.variables['package.type'] != 'Dexterity':
         to_delete.extend([
+            "{0}/profiles/default/types.xml",
+            "{0}/profiles/default/types",
             "{0}/tests/test_dexterity.py",
         ])
 

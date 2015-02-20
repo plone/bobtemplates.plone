@@ -1,18 +1,27 @@
 # -*- coding: utf-8 -*-
 """Setup/installation tests for this package."""
-from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+from plone.testing.z2 import Browser
+from plone.app.testing import TEST_USER_ID
+from zope.component import queryUtility
+from zope.component import createObject
+from plone.app.testing import setRoles
+from plone.dexterity.interfaces import IDexterityFTI
 from plone import api
+
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+from {{{ package.dottedname }}}.interfaces import ITask
 
 import unittest2 as unittest
 
 
-class TestDexterity(unittest.TestCase):
+class TaskIntegrationTest(unittest.TestCase):
 
     layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
 
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_plone_app_dexterity_installed(self):
@@ -20,3 +29,22 @@ class TestDexterity(unittest.TestCase):
         self.assertTrue(
             self.installer.isProductInstalled('plone.app.dexterity')
         )
+
+    def test_schema(self):
+        fti = queryUtility(IDexterityFTI, name='Task')
+        schema = fti.lookupSchema()
+        self.assertEqual(ITask, schema)
+
+    def test_fti(self):
+        fti = queryUtility(IDexterityFTI, name='Task')
+        self.assertTrue(fti)
+
+    def test_factory(self):
+        fti = queryUtility(IDexterityFTI, name='Task')
+        factory = fti.factory
+        task = createObject(factory)
+        self.assertTrue(ITask.providedBy(task))
+
+    def test_adding(self):
+        self.portal.invokeFactory('Task', 'task')
+        self.assertTrue(ITask.providedBy(self.portal.task))

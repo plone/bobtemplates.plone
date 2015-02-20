@@ -4,6 +4,9 @@ Changelog
 0.9 (unreleased)
 ----------------
 
+- Remove questions for profile, setuphandler, and testing.
+  [timo]
+
 - Unify buildout configuration in buildout.cfg
   [timo]
 

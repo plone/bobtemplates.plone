@@ -4,6 +4,18 @@ Changelog
 0.9 (unreleased)
 ----------------
 
+- Remove question for keywords.
+  [timo]
+
+- Remove question for locales.
+  [timo]
+
+- Remove questions for version and license.
+  [timo]
+
+- Remove questions for profile, setuphandler, and testing.
+  [timo]
+
 - Unify buildout configuration in buildout.cfg
   [timo]
 

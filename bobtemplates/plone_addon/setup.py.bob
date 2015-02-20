@@ -19,7 +19,7 @@ long_description = (
 
 setup(
     name='{{{ package.dottedname }}}',
-    version='{{{ package.version }}}',
+    version='0.1',
     description="{{{ package.description }}}",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -30,11 +30,11 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
     ],
-    keywords='{{{ package.keywords }}}',
+    keywords='Python Plone',
     author='{{{ author.name }}}',
     author_email='{{{ author.email }}}',
     url='http://pypi.python.org/pypi/{{{ package.dottedname }}}',
-    license='{{{ package.license }}}',
+    license='GPL',
     packages=find_packages('src', exclude=['ez_setup']),
     namespace_packages=[{{{ package.namespace_packages }}}],
     package_dir={'': 'src'},
@@ -43,15 +43,12 @@ setup(
     install_requires=[
         'plone.api',
         'setuptools',
-{{% if package.profile %}}
         'z3c.jbot',
-{{% endif %}}
 {{% if package.theme %}}
         'plone.app.theming',
         'plone.app.themingplugins',
 {{% endif %}}
     ],
-{{% if package.testing %}}
     extras_require={
         'test': [
             'plone.app.testing',
@@ -59,7 +56,6 @@ setup(
             'plone.app.robotframework[debug]',
         ],
     },
-{{% endif %}}
     entry_points="""
     [z3c.autoinclude.plugin]
     target = plone

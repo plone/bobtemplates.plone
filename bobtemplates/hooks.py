@@ -101,48 +101,6 @@ def post_plone_version(configurator, question, answer):
     return answer
 
 
-def post_profile(configurator, question, answer):
-    """Skip many questions if we have no profile.
-    """
-    value = to_boolean(configurator, question, answer)
-    if not value:
-        configurator.variables['package.theme'] = False
-        configurator.variables['package.setuphandlers'] = False
-        configurator.variables['package.testing'] = False
-        configurator.variables['package.theme'] = False
-        configurator.variables['travis.integration.enabled'] = False
-        configurator.variables['travis.notifications.type'] = 'email'
-        configurator.variables[
-            'travis.notifications.destination'
-        ] = 'test@plone.org'
-    return value
-
-
-def post_testing(configurator, question, answer):
-    """Skip questions on travis if we have no profile.
-    """
-    value = to_boolean(configurator, question, answer)
-    if not value:
-        configurator.variables['travis.integration.enabled'] = False
-        configurator.variables['travis.notifications.type'] = 'email'
-        configurator.variables[
-            'travis.notifications.destination'
-        ] = 'test@plone.org'
-    return value
-
-
-def post_travis(configurator, question, answer):
-    """Skip questions on travis.
-    """
-    value = to_boolean(configurator, question, answer)
-    if not value:
-        configurator.variables['travis.notifications.type'] = 'email'
-        configurator.variables[
-            'travis.notifications.destination'
-        ] = 'test@plone.org'
-    return value
-
-
 def prepare_render(configurator):
     """Some variables to make templating easier.
 
@@ -260,19 +218,6 @@ def cleanup_package(configurator):
     # find out what to delete
     to_delete = []
 
-    if not configurator.variables['package.profile']:
-        to_delete.extend([
-            "{0}/profiles",
-            "{0}/testing.zcml",
-            "{0}/setuphandlers.py",
-            "{0}/interfaces.py",
-        ])
-
-    if not configurator.variables['package.setuphandlers']:
-        to_delete.extend([
-            "{0}/setuphandlers.py",
-        ])
-
     if not configurator.variables['package.locales']:
         to_delete.extend([
             "{0}/locales",
@@ -282,21 +227,6 @@ def cleanup_package(configurator):
         to_delete.extend([
             "{0}/browser/templates",
             "{0}/browser/views.py",
-        ])
-
-    if not configurator.variables['package.testing']:
-        to_delete.extend([
-            "{0}/tests",
-            "{0}/testing.py",
-            "{0}/testing.zcml",
-            "{0}/.coveragerc".format(configurator.target_directory),
-            "{0}/buildout.d/jenkins.cfg".format(configurator.target_directory),
-        ])
-
-    if not configurator.variables['travis.integration.enabled']:
-        to_delete.extend([
-            "{0}/.travis.yml".format(configurator.target_directory),
-            "{0}/travis.cfg".format(configurator.target_directory),
         ])
 
     if not configurator.variables['package.theme']:

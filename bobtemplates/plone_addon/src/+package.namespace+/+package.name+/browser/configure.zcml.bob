@@ -4,14 +4,12 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="{{{ package.dottedname }}}">
 
-{{% if package.profile %}}
     <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
     <include package="z3c.jbot" file="meta.zcml" />
     <browser:jbot
         directory="overrides"
         layer="{{{ package.dottedname }}}.interfaces.I{{{ package.browserlayer }}}"
         />
-{{% endif %}}
 
     <!-- Publish static files -->
     <browser:resourceDirectory
@@ -19,7 +17,7 @@
         directory="static"
         />
 
-{{% if package.example and package.profile %}}
+{{% if package.example %}}
     <browser:page
         name="demoview"
         for="*"
@@ -29,13 +27,12 @@
         permission="zope2.View"
         />
 
-{{% endif %}}
-{{% if package.example and not package.profile %}}
     <browser:page
         name="demoview"
         for="*"
         class=".views.DemoView"
         template="templates/demoview.pt"
+        permission="zope2.View"
         />
 
 {{% endif %}}

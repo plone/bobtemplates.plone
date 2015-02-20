@@ -7,6 +7,7 @@ parts =
     code-analysis
 develop = .
 
+
 [instance]
 recipe = plone.recipe.zope2instance
 user = admin:admin
@@ -15,6 +16,7 @@ eggs =
     Plone
     Pillow
     {{{ package.dottedname }}} [test]
+
 
 [code-analysis]
 recipe = plone.recipe.codeanalysis
@@ -27,7 +29,6 @@ flake8-max-complexity = 15
 recipe = collective.recipe.omelette
 eggs = ${instance:eggs}
 
-{{% if package.testing %}}
 
 [test]
 recipe = zc.recipe.testrunner
@@ -41,7 +42,6 @@ eggs =
     ${test:eggs}
     plone.app.robotframework[debug,ride,reload]
 
-{{% endif %}}
 
 [versions]
 setuptools = 6.1

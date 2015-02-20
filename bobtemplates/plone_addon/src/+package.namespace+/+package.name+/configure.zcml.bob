@@ -4,9 +4,7 @@
 {{% if package.theme %}}
     xmlns:plone="http://namespaces.plone.org/plone"
 {{% endif %}}
-{{% if package.profile %}}
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-{{% endif %}}
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="{{{ package.dottedname }}}">
 
@@ -24,9 +22,8 @@
         type="theme"
         name="{{{ package.dottedname }}}"
         />
-
 {{% endif %}}
-{{% if package.profile %}}
+
     <genericsetup:registerProfile
         name="default"
         title="{{{ package.dottedname }}}"
@@ -35,8 +32,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-{{% endif %}}
-{{% if package.setuphandlers %}}
     <genericsetup:importStep
         name="{{{ package.dottedname }}}-postInstall"
         title="{{{ package.dottedname }}} post_install import step"
@@ -44,5 +39,4 @@
         handler=".setuphandlers.post_install">
     </genericsetup:importStep>
 
-{{% endif %}}
 </configure>

@@ -102,6 +102,7 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',
+                self.project + '/.gitattributes',
             ]
         )
 
@@ -178,5 +179,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',
+                self.project + '/.gitattributes',
             ]
         )

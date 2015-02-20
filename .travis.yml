@@ -25,6 +25,7 @@ matrix:
 install:
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini
   - sed -ie "s/^package.type.*/package.type = $PACKAGE_TYPE/g" test_answers.ini
+  - cat test_answers.ini
   - python bootstrap-buildout.py --setuptools-version=8.3
   - bin/buildout
 

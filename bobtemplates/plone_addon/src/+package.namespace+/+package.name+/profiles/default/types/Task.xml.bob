@@ -4,7 +4,7 @@
   <property name="title" i18n:translate="">Task</property>
   <property name="description"
     i18n:translate=""></property>
-  <property name="icon_expr">string:${portal_url}/++theme++plonetraining.testing/Task.png</property>
+  <property name="icon_expr"></property>
   <property name="factory">Task</property>
   <property name="add_view_expr">string:${folder_url}/++add++Task</property>
   <property name="link_target"></property>

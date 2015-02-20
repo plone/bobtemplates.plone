@@ -4,6 +4,9 @@ Changelog
 0.9 (unreleased)
 ----------------
 
+- Remove questions for version and license.
+  [timo]
+
 - Remove questions for profile, setuphandler, and testing.
   [timo]
 

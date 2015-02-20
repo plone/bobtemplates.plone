@@ -30,7 +30,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
     ],
-    keywords='{{{ package.keywords }}}',
+    keywords='Python Plone',
     author='{{{ author.name }}}',
     author_email='{{{ author.email }}}',
     url='http://pypi.python.org/pypi/{{{ package.dottedname }}}',

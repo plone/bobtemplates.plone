@@ -4,6 +4,9 @@ Changelog
 0.9 (unreleased)
 ----------------
 
+- Remove question for keywords.
+  [timo]
+
 - Remove question for locales.
   [timo]
 

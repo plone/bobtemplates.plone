@@ -106,6 +106,7 @@ def post_type(configurator, question, answer):
     """
     if answer != 'Dexterity':
         configurator.variables['package.dexterity_type_name'] = ''
+        configurator.variables['package.dexterity_type_name_lower'] = ''
     # XXX: Why is this encode neccessary here?
     return answer.encode('utf-8')
 
@@ -248,8 +249,8 @@ def cleanup_package(configurator):
         to_delete.extend([
             "{0}/profiles/default/types.xml",
             "{0}/profiles/default/types",
-            "{0}/tests/test_dexterity.py",
-            "{0}/tests/robot/test_dexterity.robot",
+            "{0}/tests/test_.py"
+            "{0}/tests/robot/test_.robot"
         ])
 
     # remove parts

@@ -3,6 +3,7 @@
 """Render bobtemplates.plone hooks.
 """
 from mrbob.bobexceptions import ValidationError
+from mrbob.hooks import validate_choices
 
 import os
 import shutil
@@ -104,11 +105,12 @@ def post_plone_version(configurator, question, answer):
 def post_type(configurator, question, answer):
     """Skip questions depending on the type answer.
     """
-    if answer != 'Dexterity':
+    value = validate_choices(configurator, question, answer)
+    if value != u'Dexterity':
         configurator.variables['package.dexterity_type_name'] = ''
         configurator.variables['package.dexterity_type_name_lower'] = ''
     # XXX: Why is this encode neccessary here?
-    return answer.encode('utf-8')
+    return value.encode('utf-8')
 
 
 def prepare_render(configurator):

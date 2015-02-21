@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<object name="Task" meta_type="Dexterity FTI" i18n:domain="{{{ package.dottedname }}}"
+<object name="{{{ package.dexterity_type_name }}}" meta_type="Dexterity FTI" i18n:domain="{{{ package.dottedname }}}"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-  <property name="title" i18n:translate="">Task</property>
+  <property name="title" i18n:translate="">{{{ package.dexterity_type_name }}}</property>
   <property name="description"
     i18n:translate=""></property>
   <property name="icon_expr"></property>
-  <property name="factory">Task</property>
-  <property name="add_view_expr">string:${folder_url}/++add++Task</property>
+  <property name="factory">{{{ package.dexterity_type_name }}}</property>
+  <property name="add_view_expr">string:${folder_url}/++add++{{{ package.dexterity_type_name }}}</property>
   <property name="link_target"></property>
   <property name="immediate_view">view</property>
   <property name="global_allow">True</property>
@@ -24,7 +24,7 @@
   <property name="behaviors">
     <element value="plone.app.content.interfaces.INameFromTitle"/>
   </property>
-  <property name="schema">{{{ package.dottedname }}}.interfaces.ITask</property>
+  <property name="schema">{{{ package.dottedname }}}.interfaces.I{{{ package.dexterity_type_name }}}</property>
   <property name="model_source"></property>
   <property name="model_file"></property>
   <alias from="(Default)" to="(dynamic view)"/>

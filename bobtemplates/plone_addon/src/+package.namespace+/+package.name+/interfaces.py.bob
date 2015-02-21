@@ -11,7 +11,7 @@ class I{{{ package.browserlayer }}}(IDefaultBrowserLayer):
     """Marker interface that defines a browser layer."""
 
 
-class ITask(Interface):
+class I{{{ package.dexterity_type_name }}}(Interface):
 
     title = schema.TextLine(
         title=_(u"Title"),

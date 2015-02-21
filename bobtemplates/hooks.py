@@ -101,6 +101,15 @@ def post_plone_version(configurator, question, answer):
     return answer
 
 
+def post_type(configurator, question, answer):
+    """Skip questions depending on the type answer.
+    """
+    if answer != 'Dexterity':
+        configurator.variables['package.dexterity_type_name'] = ''
+    # XXX: Why is this encode neccessary here?
+    return answer.encode('utf-8')
+
+
 def prepare_render(configurator):
     """Some variables to make templating easier.
 
@@ -161,6 +170,11 @@ def prepare_render(configurator):
         namespace_packages = "'{0}'".format(
             configurator.variables['package.namespace'])
     configurator.variables['package.namespace_packages'] = namespace_packages
+
+    if configurator.variables['package.dexterity_type_name']:
+        configurator.variables[
+            'package.dexterity_type_name_lower'
+        ] = configurator.variables['package.dexterity_type_name'].lower()
 
 
 def cleanup_package(configurator):

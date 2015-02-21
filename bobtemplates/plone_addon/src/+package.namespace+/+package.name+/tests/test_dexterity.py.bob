@@ -7,12 +7,12 @@ from plone.dexterity.interfaces import IDexterityFTI
 from plone import api
 
 from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
-from {{{ package.dottedname }}}.interfaces import ITask
+from {{{ package.dottedname }}}.interfaces import I{{{ package.dexterity_type_name }}}
 
 import unittest2 as unittest
 
 
-class TaskIntegrationTest(unittest.TestCase):
+class {{{ package.dexterity_type_name }}}IntegrationTest(unittest.TestCase):
 
     layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
 
@@ -30,20 +30,20 @@ class TaskIntegrationTest(unittest.TestCase):
         )
 
     def test_schema(self):
-        fti = queryUtility(IDexterityFTI, name='Task')
+        fti = queryUtility(IDexterityFTI, name='{{{ package.dexterity_type_name }}}')
         schema = fti.lookupSchema()
-        self.assertEqual(ITask, schema)
+        self.assertEqual(I{{{ package.dexterity_type_name }}}, schema)
 
     def test_fti(self):
-        fti = queryUtility(IDexterityFTI, name='Task')
+        fti = queryUtility(IDexterityFTI, name='{{{ package.dexterity_type_name }}}')
         self.assertTrue(fti)
 
     def test_factory(self):
-        fti = queryUtility(IDexterityFTI, name='Task')
+        fti = queryUtility(IDexterityFTI, name='{{{ package.dexterity_type_name }}}')
         factory = fti.factory
-        task = createObject(factory)
-        self.assertTrue(ITask.providedBy(task))
+        obj = createObject(factory)
+        self.assertTrue(I{{{ package.dexterity_type_name }}}.providedBy(obj))
 
     def test_adding(self):
-        self.portal.invokeFactory('Task', 'task')
-        self.assertTrue(ITask.providedBy(self.portal.task))
+        self.portal.invokeFactory('{{{ package.dexterity_type_name }}}', '{{{ package.dexterity_type_name }}}')
+        self.assertTrue(I{{{ package.dexterity_type_name }}}.providedBy(self.portal['{{{ package.dexterity_type_name }}}']))

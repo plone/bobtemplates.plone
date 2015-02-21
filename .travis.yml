@@ -25,6 +25,7 @@ matrix:
 install:
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini
   - sed -ie "s/^package.type.*/package.type = $PACKAGE_TYPE/g" test_answers.ini
+  - if [ "$PACKAGE_TYPE" == "Dexterity" ]; then echo "dexterity_type_name = MyDextrityTestType" >> test_answers.ini; fi
   - python bootstrap-buildout.py --setuptools-version=8.3 -c travis.cfg
   - bin/buildout -c travis.cfg
 

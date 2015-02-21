@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """Render bobtemplates.plone hooks.
 """
+from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.hooks import validate_choices
 
@@ -112,6 +113,11 @@ def post_type(configurator, question, answer):
     return value
 
 
+def pre_dexterity_type_name(configurator, question):
+    if configurator.variables['package.type'] != 'Dexterity':
+        raise SkipQuestion
+
+
 def prepare_render(configurator):
     """Some variables to make templating easier.
 
@@ -173,11 +179,16 @@ def prepare_render(configurator):
             configurator.variables['package.namespace'])
     configurator.variables['package.namespace_packages'] = namespace_packages
 
-    configurator.variables['package.dexterity_type_name_lower'] = ''
-    if configurator.variables['package.dexterity_type_name']:
+    if configurator.variables.get('package.dexterity_type_name'):
         configurator.variables[
             'package.dexterity_type_name_lower'
         ] = configurator.variables['package.dexterity_type_name'].lower()
+    else:
+        # We have to make sure those variables are always set because we are
+        # going to create files that contain those variables. Even if we
+        # remove those files afterwards. This is just how mr.bob rolls.
+        configurator.variables['package.dexterity_type_name'] = ''
+        configurator.variables['package.dexterity_type_name_lower'] = ''
 
 
 def cleanup_package(configurator):

@@ -109,8 +109,7 @@ def post_type(configurator, question, answer):
     if value != u'Dexterity':
         configurator.variables['package.dexterity_type_name'] = ''
         configurator.variables['package.dexterity_type_name_lower'] = ''
-    # XXX: Why is this encode neccessary here?
-    return value.encode('utf-8')
+    return value
 
 
 def prepare_render(configurator):
@@ -174,6 +173,7 @@ def prepare_render(configurator):
             configurator.variables['package.namespace'])
     configurator.variables['package.namespace_packages'] = namespace_packages
 
+    configurator.variables['package.dexterity_type_name_lower'] = ''
     if configurator.variables['package.dexterity_type_name']:
         configurator.variables[
             'package.dexterity_type_name_lower'
@@ -247,12 +247,12 @@ def cleanup_package(configurator):
             "{0}/profiles/default/theme.xml",
         ])
 
-    if configurator.variables['package.type'] != 'Dexterity':
+    if configurator.variables['package.type'] != u'Dexterity':
         to_delete.extend([
             "{0}/profiles/default/types.xml",
             "{0}/profiles/default/types",
-            "{0}/tests/test_.py"
-            "{0}/tests/robot/test_.robot"
+            "{0}/tests/test_.py",
+            "{0}/tests/robot/test_.robot",
         ])
 
     # remove parts

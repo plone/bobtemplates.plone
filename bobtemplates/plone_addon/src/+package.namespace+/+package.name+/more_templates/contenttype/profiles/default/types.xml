@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<object name="portal_types" meta_type="Plone Types Tool">
+  <!-- For each content type, you create a new files types/{{{ name }}}.xml
+       Then you create a new entry below, where the attribute name must match
+       {{{ name }}} from above. The other other attribute you will only modify
+       if you do something non dexterity like -->
+  <object name="thing" meta_type="Dexterity FTI"/>
+</object>

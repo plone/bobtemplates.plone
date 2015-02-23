@@ -1,0 +1,88 @@
+# -*- coding: utf-8 -*-
+from plone.app.testing import setRoles
+from plone.app.testing import SITE_OWNER_NAME
+from plone.app.testing import SITE_OWNER_PASSWORD
+from plone.app.testing import TEST_USER_ID
+from plone.dexterity.interfaces import IDexterityFTI
+from plone.testing.z2 import Browser
+from {{{ package.dottedname }}}.interfaces import IThing
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING  # noqa
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING  # noqa
+from zope.component import createObject
+from zope.component import queryUtility
+import unittest
+
+
+class ThingIntegrationTest(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+
+    def test_schema(self):
+        fti = queryUtility(IDexterityFTI, name='Thing')
+        schema = fti.lookupSchema()
+        self.assertEqual(IThing, schema)
+
+    def test_fti(self):
+        fti = queryUtility(IDexterityFTI, name='Thing')
+        self.assertTrue(fti)
+
+    def test_factory(self):
+        fti = queryUtility(IDexterityFTI, name='Thing')
+        factory = fti.factory
+        thing = createObject(factory)
+        self.assertTrue(IThing.providedBy(thing))
+
+    def test_adding(self):
+        self.portal.invokeFactory('Thing', 'thing')
+        self.assertTrue(IThing.providedBy(self.portal.thing))
+
+
+class ThingFunctionalTest(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+
+    def setUp(self):
+        app = self.layer['app']
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        self.portal_url = self.portal.absolute_url()
+
+        # Set up browser
+        self.browser = Browser(app)
+        self.browser.handleErrors = False
+        self.browser.addHeader(
+            'Authorization',
+            'Basic %s:%s' % (SITE_OWNER_NAME, SITE_OWNER_PASSWORD,)
+        )
+
+    def test_add_thing(self):
+        self.browser.open(self.portal_url + '/++add++Thing')
+        self.browser.getControl(name="form.widgets.title").value = \
+            "My Thing"
+        self.browser.getControl(name="form.widgets.description")\
+            .value = "This is my thing"
+        self.browser.getControl("Save").click()
+
+        self.assertEqual(
+            self.portal['my-thing'].title,
+            "My Thing"
+        )
+
+    def test_view_thing(self):
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory(
+            "Thing",
+            id="my-thing",
+            title="My Thing",
+        )
+
+        import transaction
+        transaction.commit()
+
+        self.browser.open(self.portal_url + '/my-thing')
+
+        self.assertTrue('My Thing' in self.browser.contents)

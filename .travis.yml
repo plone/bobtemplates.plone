@@ -38,6 +38,10 @@ script:
   - bin/nosetests
   - bin/test
 
+after_success:
+  - pip install -q coveralls
+  - coveralls
+
 after_failure:
   - cat test_answers.ini
 

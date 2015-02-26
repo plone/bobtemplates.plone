@@ -44,12 +44,6 @@ def combine(list_a, combinations):
     return retval
 
 
-def is_plone5(version):
-    if version.startswith('5'):
-        return True
-    return False
-
-
 def generate_all_combinations():
     keys = SOURCE.keys()
     first = SOURCE[keys[0]]
@@ -60,7 +54,13 @@ def generate_all_combinations():
     return combinations
 
 
-def run_test_scripts(directory):
+def is_plone5(version):
+    if version.startswith('5'):
+        return True
+    return False
+
+
+def run_all_scripts(directory):
     to_purge = ['collective.bar.foo', 'collective.foo']
     results = []
     for test_script in os.listdir(directory):
@@ -77,7 +77,7 @@ def run_test_scripts(directory):
     return results
 
 
-def main():
+def test_all_combinations():
     """Create all possible test_answers_files and the test-scripts using them.
     """
     # Set Plone-version
@@ -127,9 +127,9 @@ def main():
         print(script_string, file=f)
         f.close()
         os.chmod(script_path, 0755)
-    results = run_test_scripts(test_scripts_dir)
+    results = run_all_scripts(test_scripts_dir)
     print(results)
 
 
 if __name__ == '__main__':
-    main()
+    test_all_combinations()

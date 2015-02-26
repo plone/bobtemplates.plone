@@ -31,7 +31,7 @@ set -e
 cd {local_dir}/{package}
 python bootstrap-buildout.py --setuptools-version=8.3
 {local_dir}/{package}/bin/buildout
-{local_dir}/{package}/bin/test
+{local_dir}/{package}/bin/test --all
 {local_dir}/{package}/bin/code-analysis
 rm -rf {local_dir}/{package}/"""
 

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-"""Setup/installation tests for this package."""
+"""Setup tests for this package."""
 from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
 from plone import api
 
 import unittest2 as unittest
 
 
-class TestInstall(unittest.TestCase):
-    """Test installation of {{{ package.dottedname }}} into Plone."""
+class TestSetup(unittest.TestCase):
+    """Test that {{{ package.dottedname }}} is properly installed."""
 
     layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
 

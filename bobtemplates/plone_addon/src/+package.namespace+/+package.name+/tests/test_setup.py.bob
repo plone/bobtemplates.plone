@@ -25,7 +25,6 @@ class TestSetup(unittest.TestCase):
         self.installer.uninstallProducts(['{{{ package.dottedname }}}'])
         self.assertFalse(self.installer.isProductInstalled('{{{ package.dottedname }}}'))
 
-    # browserlayer.xml
     def test_browserlayer(self):
         """Test that I{{{ package.browserlayer }}} is registered."""
         from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}

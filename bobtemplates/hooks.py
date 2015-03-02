@@ -252,7 +252,7 @@ def cleanup_package(configurator):
             "{0}/browser/views.py",
         ])
 
-    if not configurator.variables['package.theme']:
+    if configurator.variables['package.type'] != u'Theme':
         to_delete.extend([
             "{0}/theme",
             "{0}/profiles/default/theme.xml",

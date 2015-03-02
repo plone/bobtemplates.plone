@@ -5,7 +5,7 @@
 {{% if package.type == 'Dexterity' %}}
     <dependency>profile-plone.app.dexterity:default</dependency>
 {{% endif %}}
-{{% if package.theme %}}
+{{% if package.type == 'Theme' %}}
     <dependency>profile-plone.app.theming:default</dependency>
 {{% endif %}}
   </dependencies>

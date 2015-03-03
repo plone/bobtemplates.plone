@@ -246,12 +246,6 @@ def cleanup_package(configurator):
     # find out what to delete
     to_delete = []
 
-    if not configurator.variables['package.example']:
-        to_delete.extend([
-            "{0}/browser/templates",
-            "{0}/browser/views.py",
-        ])
-
     if configurator.variables['package.type'] != u'Theme':
         to_delete.extend([
             "{0}/theme",

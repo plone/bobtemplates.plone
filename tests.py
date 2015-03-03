@@ -77,9 +77,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/browser/overrides/.gitkeep',  # noqa
                 self.project + '/src/collective/foo/browser/static',
                 self.project + '/src/collective/foo/browser/static/.gitkeep',
-                self.project + '/src/collective/foo/browser/templates',
-                self.project + '/src/collective/foo/browser/templates/demoview.pt',  # noqa
-                self.project + '/src/collective/foo/browser/views.py',
                 self.project + '/src/collective/foo/configure.zcml',
                 self.project + '/src/collective/foo/interfaces.py',
                 self.project + '/src/collective/foo/locales',
@@ -146,9 +143,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/browser/overrides/.gitkeep',  # noqa
                 self.project + '/src/collective/foo/bar/browser/static',
                 self.project + '/src/collective/foo/bar/browser/static/.gitkeep',  # noqa
-                self.project + '/src/collective/foo/bar/browser/templates',
-                self.project + '/src/collective/foo/bar/browser/templates/demoview.pt',  # noqa
-                self.project + '/src/collective/foo/bar/browser/views.py',
                 self.project + '/src/collective/foo/bar/configure.zcml',
                 self.project + '/src/collective/foo/bar/interfaces.py',
                 self.project + '/src/collective/foo/bar/locales',

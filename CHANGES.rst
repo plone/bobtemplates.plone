@@ -4,6 +4,9 @@ Changelog
 0.9 (unreleased)
 ----------------
 
+- Remove example view.
+  [timo]
+
 - Remove question for keywords.
   [timo]
 

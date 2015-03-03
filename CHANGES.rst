@@ -4,6 +4,12 @@ Changelog
 0.9 (unreleased)
 ----------------
 
+- Add Theme package type with simple bootstrap-based theme.
+  [timo]
+
+- Add Dexterity package type.
+  [timo]
+
 - Remove example view.
   [timo]
 

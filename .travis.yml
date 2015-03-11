@@ -8,21 +8,12 @@ cache:
 
 env:
   matrix:
-    - PLONE_VERSION=4.0.10
-    - PLONE_VERSION=4.1.6
-    - PLONE_VERSION=4.2.7
     - PLONE_VERSION=4.3.4 PACKAGE_TYPE=Basic
     - PLONE_VERSION=4.3.4 PACKAGE_TYPE=Dexterity
     - PLONE_VERSION=4.3.4 PACKAGE_TYPE=Theme
     - PLONE_VERSION=5.0a3 PACKAGE_TYPE=Basic
     - PLONE_VERSION=5.0a3 PACKAGE_TYPE=Dexterity
     - PLONE_VERSION=5.0a3 PACKAGE_TYPE=Theme
-
-matrix:
-  allow_failures:
-    - env: PLONE_VERSION=4.0.10
-    - env: PLONE_VERSION=4.1.6
-    - env: PLONE_VERSION=4.2.7
 
 install:
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini

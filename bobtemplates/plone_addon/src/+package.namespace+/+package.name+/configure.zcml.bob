@@ -1,7 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
-{{% if package.theme %}}
+{{% if package.type == 'Theme' %}}
     xmlns:plone="http://namespaces.plone.org/plone"
 {{% endif %}}
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
@@ -14,7 +14,7 @@
 
     <include package=".browser" />
 
-{{% if package.theme %}}
+{{% if package.type == 'Theme' %}}
     <plone:static
         directory="theme"
         type="theme"

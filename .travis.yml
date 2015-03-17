@@ -8,22 +8,19 @@ cache:
 
 env:
   matrix:
-    - PLONE_VERSION=4.0.10
-    - PLONE_VERSION=4.1.6
-    - PLONE_VERSION=4.2.7
-    - PLONE_VERSION=4.3.4
-    - PLONE_VERSION=5.0a3
-
-matrix:
-  allow_failures:
-    - env: PLONE_VERSION=4.0.10
-    - env: PLONE_VERSION=4.1.6
-    - env: PLONE_VERSION=4.2.7
+    - PLONE_VERSION=4.3.4 PACKAGE_TYPE=Basic
+    - PLONE_VERSION=4.3.4 PACKAGE_TYPE=Dexterity
+    - PLONE_VERSION=4.3.4 PACKAGE_TYPE=Theme
+    - PLONE_VERSION=5.0a3 PACKAGE_TYPE=Basic
+    - PLONE_VERSION=5.0a3 PACKAGE_TYPE=Dexterity
+    - PLONE_VERSION=5.0a3 PACKAGE_TYPE=Theme
 
 install:
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini
-  - python bootstrap-buildout.py --setuptools-version=8.3
-  - bin/buildout
+  - sed -ie "s/^package.type.*/package.type = $PACKAGE_TYPE/g" test_answers.ini
+  - if [ "$PACKAGE_TYPE" == "Dexterity" ]; then echo "package.dexterity_type_name = MyDextrityTestType" >> test_answers.ini; fi
+  - python bootstrap-buildout.py --setuptools-version=8.3 -c travis.cfg
+  - bin/buildout -c travis.cfg
 
 before_script:
   - export DISPLAY=:99.0
@@ -33,6 +30,13 @@ script:
   - bin/code-analysis
   - bin/nosetests
   - bin/test
+
+after_success:
+  - pip install -q coveralls
+  - coveralls
+
+after_failure:
+  - cat test_answers.ini
 
 notifications:
   email:

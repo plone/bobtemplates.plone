@@ -62,6 +62,5 @@ I enter valid credentials
 # --- THEN -------------------------------------------------------------------
 
 I am logged in
-  Wait until page contains  Site Map
+  Wait until page contains  You are now logged in
   Page should contain  You are now logged in
-  Page should contain  admin

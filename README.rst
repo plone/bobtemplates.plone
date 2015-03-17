@@ -36,6 +36,8 @@ Options
 
 On creating a package you can choose from the following options. The default value is in [square brackets]:
 
+Package Type? [Basic]
+    Options are Basic, Dexterity and Theme.
 
 Author's name
     Should be something like 'John Smith'.
@@ -54,9 +56,6 @@ Plone version [4.3.4]
 
 Add example view? [True]
     Do you want to register a browser view 'demoview' as an example?
-
-Add a diazo-theme? [False]
-    Do you want to add a empty theme using diazo/plone.app.theming to the package?
 
 
 Features

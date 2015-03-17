@@ -46,7 +46,7 @@ class PloneTemplateTest(BaseTemplateTest):
         """
         self.template = 'plone_addon'
         self.project = 'collective.foo'
-        self.answers_file = 'test_answers.ini'
+        self.answers_file = 'nosetests_answers.ini'
         self.maxDiff = None
         result = self.create_template()
         self.assertItemsEqual(
@@ -77,9 +77,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/browser/overrides/.gitkeep',  # noqa
                 self.project + '/src/collective/foo/browser/static',
                 self.project + '/src/collective/foo/browser/static/.gitkeep',
-                self.project + '/src/collective/foo/browser/templates',
-                self.project + '/src/collective/foo/browser/templates/demoview.pt',  # noqa
-                self.project + '/src/collective/foo/browser/views.py',
                 self.project + '/src/collective/foo/configure.zcml',
                 self.project + '/src/collective/foo/interfaces.py',
                 self.project + '/src/collective/foo/locales',
@@ -95,7 +92,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/tests',
                 self.project + '/src/collective/foo/tests/__init__.py',
                 self.project + '/src/collective/foo/tests/robot',
-                self.project + '/src/collective/foo/tests/robot/.gitkeep',
                 self.project + '/src/collective/foo/tests/robot/test_example.robot',  # noqa
                 self.project + '/src/collective/foo/tests/test_robot.py',
                 self.project + '/src/collective/foo/tests/test_setup.py',
@@ -114,7 +110,7 @@ class PloneTemplateTest(BaseTemplateTest):
         """
         self.template = 'plone_addon'
         self.project = 'collective.foo.bar'
-        self.answers_file = 'test_answers_nested.ini'
+        self.answers_file = 'nosetests_answers_nested.ini'
         self.maxDiff = None
         result = self.create_template()
         self.assertItemsEqual(
@@ -147,9 +143,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/browser/overrides/.gitkeep',  # noqa
                 self.project + '/src/collective/foo/bar/browser/static',
                 self.project + '/src/collective/foo/bar/browser/static/.gitkeep',  # noqa
-                self.project + '/src/collective/foo/bar/browser/templates',
-                self.project + '/src/collective/foo/bar/browser/templates/demoview.pt',  # noqa
-                self.project + '/src/collective/foo/bar/browser/views.py',
                 self.project + '/src/collective/foo/bar/configure.zcml',
                 self.project + '/src/collective/foo/bar/interfaces.py',
                 self.project + '/src/collective/foo/bar/locales',
@@ -160,22 +153,14 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/profiles/default/browserlayer.xml',  # noqa
                 self.project + '/src/collective/foo/bar/profiles/default/collectivefoobar_marker.txt',  # noqa
                 self.project + '/src/collective/foo/bar/profiles/default/metadata.xml',  # noqa
-                self.project + '/src/collective/foo/bar/profiles/default/theme.xml',  # noqa
                 self.project + '/src/collective/foo/bar/setuphandlers.py',
                 self.project + '/src/collective/foo/bar/testing.py',
                 self.project + '/src/collective/foo/bar/tests',
                 self.project + '/src/collective/foo/bar/tests/__init__.py',
                 self.project + '/src/collective/foo/bar/tests/robot',
-                self.project + '/src/collective/foo/bar/tests/robot/.gitkeep',
                 self.project + '/src/collective/foo/bar/tests/robot/test_example.robot',  # noqa
                 self.project + '/src/collective/foo/bar/tests/test_robot.py',
                 self.project + '/src/collective/foo/bar/tests/test_setup.py',
-                self.project + '/src/collective/foo/bar/theme',
-                self.project + '/src/collective/foo/bar/theme/index.html',
-                self.project + '/src/collective/foo/bar/theme/manifest.cfg',
-                self.project + '/src/collective/foo/bar/theme/rules.xml',
-                self.project + '/src/collective/foo/bar/theme/template-overrides',  # noqa
-                self.project + '/src/collective/foo/bar/theme/template-overrides/.gitkeep',  # noqa
                 self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',

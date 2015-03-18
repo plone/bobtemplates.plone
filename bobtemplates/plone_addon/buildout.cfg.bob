@@ -16,6 +16,7 @@ eggs =
     Plone
     Pillow
     {{{ package.dottedname }}} [test]
+zcml = {{{ package.dottedname }}}-testing
 
 
 [code-analysis]

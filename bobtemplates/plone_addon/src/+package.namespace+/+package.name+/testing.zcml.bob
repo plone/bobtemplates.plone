@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="{{{ package.dottedname }}}">
+
+    <include file="configure.zcml" />
+
+    <genericsetup:registerProfile
+        name="testing"
+        title="{{{ package.dottedname }}} tests"
+        directory="profiles/testing"
+        description="Installs the tests fixture for {{{ package.dottedname }}} add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+    
+    <genericsetup:importStep
+        name="{{{ package.dottedname }}}-testFixture"
+        title="{{{ package.dottedname }}} test_fixture import step"
+        description="Test fixture import step from {{{ package.dottedname }}}"
+        handler=".setuphandlers.test_fixture">
+    </genericsetup:importStep>
+
+</configure>

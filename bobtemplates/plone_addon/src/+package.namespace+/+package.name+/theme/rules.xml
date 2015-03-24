@@ -22,7 +22,7 @@
       />
 
     <!-- Copy link, style, meta tags from Plone head -->
-    <after
+    <before
       content="/html/head/link | /html/head/style | /html/head/meta"
       css:theme-children="html head"
       />

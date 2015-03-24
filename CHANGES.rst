@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9 (unreleased)
+0.9 (2015-03-24)
 ----------------
 
 - Add Theme package type with simple bootstrap-based theme.

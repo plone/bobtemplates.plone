@@ -13,7 +13,40 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
   <style type="text/css">
-    body { padding-top: 70px; }
+    html body {
+      /* Space for the bootstrap top navigation bar */
+      padding-top: 70px;
+      font-size: 15px;
+    }
+    /* Top Navigation css adjustments */
+    .navbar .selected a {
+      color: #fff;
+      background: #080808;
+    }
+    /* Edit Bar css adjustments */
+    .nav-tabs .selected {
+      border-width: 1px;
+      border-style: solid;
+      border-color: #DDD #DDD transparent;
+      -moz-border-top-colors: none;
+      -moz-border-right-colors: none;
+      -moz-border-bottom-colors: none;
+      -moz-border-left-colors: none;
+      border-bottom: 1px solid #fff;
+    }
+    .nav-tabs .selected a {
+      margin-right: 0;
+    }
+    .pull-left, .pull-right {
+      width: 50%;
+    }
+    .pull-right > li {
+      float: right;
+      display: inline-block;
+    }
+    #contentMenuAddNew li a {
+      width: 100%;
+    }
   </style>
 
 </head>
@@ -29,18 +62,21 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Project name</a>
+        <a class="navbar-brand" href="#">Plone</a>
       </div>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
+      <div class="collapse navbar-collapse">
+        <ul id="navbar" class="nav navbar-nav">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" id="user-name" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <span id="user-name">Username</span>
+              <span class="caret"></span>
+            </a>
+            <ul id="action-menu-content" class="dropdown-menu" role="menu">
               <li><a href="#">Action</a></li>
               <li><a href="#">Another action</a></li>
               <li><a href="#">Something else here</a></li>
@@ -56,23 +92,82 @@
 
   <div class="container">
 
+    <ol id="breadcrumbs" class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Library</a></li>
+      <li class="active">Data</li>
+    </ol>
+
+    <div class="row">
+      <div class="col-md-12">
+        <ul id="contentViews" class="nav nav-tabs pull-left">
+          <li role="presentation" class="active"><a href="#">Contents</a></li>
+          <li role="presentation"><a href="#">Edit</a></li>
+          <li role="presentation"><a href="#">Sharing</a></li>
+        </ul>
+        <ul class="nav nav-tabs pull-right">
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              <span id="currentWorkflowState">State</span>
+              <span class="caret"></span>
+            </a>
+            <ul id="contentMenuWorkflowState" class="dropdown-menu dropdown-menu-right" role="menu">
+              <li>
+                <a href="#">One</a>
+              </li>
+              <li>
+                <a href="#">Two</a>
+              </li>
+            </ul>
+          </li>
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              Add new <span class="caret"></span>
+            </a>
+            <ul id="contentMenuAddNew" class="dropdown-menu dropdown-menu-right" role="menu">
+              <li>
+                <a href="#">One</a>
+              </li>
+              <li>
+                <a href="#">Two</a>
+              </li>
+            </ul>
+          </li>
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              Display <span class="caret"></span>
+            </a>
+            <ul id="contentMenuDisplay" class="dropdown-menu dropdown-menu-right" role="menu">
+              <li>
+                <a href="#">One</a>
+              </li>
+              <li>
+                <a href="#">Two</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
     <div class="row">
       <div id="content" class="col-md-12">
         <h1>Bootstrap starter template</h1>
         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
       </div>
     </div>
+
+    <footer>
+      <p>&copy; Company 2015</p>
+    </footer>
+
   </div><!-- /.container -->
 
-  <footer>
-    <p>&copy; Company 2015</p>
-  </footer>
-
-  <!-- Bootstrap core JavaScript
-  ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

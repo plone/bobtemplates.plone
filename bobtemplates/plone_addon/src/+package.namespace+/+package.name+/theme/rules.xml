@@ -10,28 +10,121 @@
     <theme href="index.html" />
 
     <!-- Replace title with Plone's page title  -->
-    <replace css:theme="html head title" css:content="html head title" />
+    <replace
+      css:content="html head title"
+      css:theme="html head title"
+      />
 
     <!-- Copy base tag from Plone -->
-    <before css:theme-children="html head" css:content="html head base" />
+    <before
+      css:content="html head base"
+      css:theme-children="html head"
+      />
 
     <!-- Copy link, style, meta tags from Plone head -->
-    <after css:theme-children="html head"
-           content="/html/head/link | /html/head/style | /html/head/meta" />
+    <after
+      content="/html/head/link | /html/head/style | /html/head/meta"
+      css:theme-children="html head"
+      />
 
     <!-- merge classes from Plone body with theme body -->
-    <merge attributes="class" css:theme="body" css:content="body" />
+    <merge
+      attributes="class"
+      css:content="body"
+      css:theme="body"
+      />
 
     <!-- Copy script tags from Plone head to end of body -->
-    <after css:theme-children="html body" css:content="html head script" />
+    <after
+      css:content="html head script"
+      css:theme-children="html body"
+      />
 
-    <replace css:theme-children="#portal-personaltools" css:content="#portal-personaltools" />
+    <!-- LOGO -->
+    <copy
+      attributes="href"
+      css:content="#portal-logo"
+      css:theme=".navbar-brand"
+      />
 
-    <replace css:theme="#user-name" css:content="#user-name" />
+    <!-- PORTAL NAVIGATION -->
+    <replace
+      css:content-children="#portal-globalnav"
+      css:theme-children="#navbar"
+      />
 
-    <replace css:theme-children="#content" css:content="#content" />
+    <!-- LOGIN (FOR ANONYMOUS USERS) -->
+    <replace
+      if-content="//li[@id='anon-personalbar']"
+      css:content="#personaltools-login"
+      css:theme=".dropdown-toggle"
+      />
 
-    <replace css:theme-children="footer" css:content="#portal-siteactions" />
+    <!-- USER NAME (FOR LOGGED-IN USERS) -->
+    <replace
+      if-content="not(//li[@id='anon-personalbar'])"
+      content="//a[@id='user-name']/text()"
+      css:theme="#user-name"
+      />
+
+    <!-- USER ACTIONS (FOR LOGGED-IN USERS) -->
+    <replace
+      if-content="not(//li[@id='anon-personalbar'])"
+      css:content-children="#portal-personaltools .actionMenuContent ul"
+      css:theme-children="#action-menu-content"
+      />
+
+    <!-- BREADCRUMBS -->
+    <replace
+      css:content-children="div#portal-breadcrumbs"
+      css:theme-children="ol.breadcrumb"
+      />
+    <drop css:content="span#breadcrumbs-you-are-here" />
+
+    <!-- EDIT BAR (CONTENT VIEWS) -->
+    <replace
+      css:content-children="#content-views"
+      css:theme-children="#contentViews"
+      />
+
+    <!-- EDIT BAR (DISPLAY) -->
+    <replace
+      css:content-children="#plone-contentmenu-display .actionMenuContent ul"
+      css:theme-children="#contentMenuDisplay"
+      />
+
+    <!-- EDIT BAR (ADD NEW) -->
+    <replace
+      css:content-children="#plone-contentmenu-factories .actionMenuContent ul"
+      css:theme-children="#contentMenuAddNew"
+      />
+
+    <!-- EDIT BAR (WORKFLOW STATE) -->
+    <replace
+      css:content-children="#plone-contentmenu-workflow .actionMenuContent ul"
+      css:theme-children="#contentMenuWorkflowState"
+      />
+    <!-- copy current workflow state into the -->
+    <replace
+      css:content="#plone-contentmenu-workflow .actionMenuHeader a span"
+      css:theme="#currentWorkflowState"
+      />
+    <!-- drop Plone dropdown arrow -->
+    <drop
+      css:content="#plone-contentmenu-workflow .arrowDownAlternative"
+      />
+
+    <!-- CONTENT -->
+    <replace
+      css:content="#content"
+      css:theme-children="#content"
+      />
+
+    <!-- FOOTER -->
+    <replace
+      css:content="#portal-siteactions"
+      css:theme-children="footer"
+      />
 
   </rules>
 

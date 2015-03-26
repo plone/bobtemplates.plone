@@ -50,7 +50,7 @@
     <!-- PORTAL NAVIGATION -->
     <replace
       css:content-children="#portal-globalnav"
-      css:theme-children="#navbar"
+      css:theme-children="#navbar ul"
       />
 
     <!-- LOGIN (FOR ANONYMOUS USERS) -->

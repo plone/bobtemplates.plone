@@ -4,7 +4,11 @@ Changelog
 0.10 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Add flake8-extensions to code-analysis.
+  [timo]
+
+- Upgrade Selenium to 2.45.0.
+  [timo]
 
 
 0.9 (2015-03-24)

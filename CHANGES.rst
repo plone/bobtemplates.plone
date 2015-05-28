@@ -4,7 +4,8 @@ Changelog
 0.10 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Don't create a type-schema unless it is needed.
+  [pbauer]
 
 
 0.9 (2015-03-24)

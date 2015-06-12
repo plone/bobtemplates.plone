@@ -20,6 +20,7 @@ install:
   - sed -ie "s/^package.type.*/package.type = $PACKAGE_TYPE/g" test_answers.ini
   - if [ "$PACKAGE_TYPE" == "Dexterity" ]; then echo "package.dexterity_type_name = MyDextrityTestType" >> test_answers.ini; fi
   - python bootstrap-buildout.py --setuptools-version=8.3 -c travis.cfg
+  - pip install docutils
   - bin/buildout -c travis.cfg
 
 before_script:

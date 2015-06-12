@@ -2,13 +2,16 @@
 """Module where all interfaces, events and exceptions live."""
 
 from {{{ package.dottedname }}} import _
+{{% if package.type == 'Dexterity' %}}
 from zope import schema
 from zope.interface import Interface
+{{% endif %}}
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
 
 class I{{{ package.browserlayer }}}(IDefaultBrowserLayer):
     """Marker interface that defines a browser layer."""
+{{% if package.type == 'Dexterity' %}}
 
 
 class I{{{ package.dexterity_type_name }}}(Interface):
@@ -22,3 +25,5 @@ class I{{{ package.dexterity_type_name }}}(Interface):
         title=_(u"Description"),
         required=False,
     )
+
+{{% endif %}}

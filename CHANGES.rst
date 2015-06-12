@@ -10,6 +10,9 @@ Changelog
 - Upgrade Selenium to 2.45.0.
   [timo]
 
+- Don't create a type-schema unless it is needed.
+  [pbauer]
+
 
 0.9 (2015-03-24)
 ----------------

@@ -88,8 +88,12 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/profiles/default/browserlayer.xml',  # noqa
                 self.project + '/src/collective/foo/profiles/default/collectivefoo_marker.txt',  # noqa
                 self.project + '/src/collective/foo/profiles/default/metadata.xml',  # noqa
+                self.project + '/src/collective/foo/profiles/testing',
+                self.project + '/src/collective/foo/profiles/testing/collectivefoo_testing.txt',  # noqa
+                self.project + '/src/collective/foo/profiles/testing/metadata.xml',  # noqa
                 self.project + '/src/collective/foo/setuphandlers.py',
                 self.project + '/src/collective/foo/testing.py',
+                self.project + '/src/collective/foo/testing.zcml',
                 self.project + '/src/collective/foo/tests',
                 self.project + '/src/collective/foo/tests/__init__.py',
                 self.project + '/src/collective/foo/tests/robot',
@@ -155,8 +159,12 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/profiles/default/browserlayer.xml',  # noqa
                 self.project + '/src/collective/foo/bar/profiles/default/collectivefoobar_marker.txt',  # noqa
                 self.project + '/src/collective/foo/bar/profiles/default/metadata.xml',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/testing',
+                self.project + '/src/collective/foo/bar/profiles/testing/collectivefoobar_testing.txt',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/testing/metadata.xml',  # noqa
                 self.project + '/src/collective/foo/bar/setuphandlers.py',
                 self.project + '/src/collective/foo/bar/testing.py',
+                self.project + '/src/collective/foo/bar/testing.zcml',
                 self.project + '/src/collective/foo/bar/tests',
                 self.project + '/src/collective/foo/bar/tests/__init__.py',
                 self.project + '/src/collective/foo/bar/tests/robot',

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-def isNotCurrentProfile(context):
-    return context.readDataFile('{{{ package.longname }}}_marker.txt') is None
+def isNotCurrentProfile(context, marker='marker'):
+    filename = '{{{ package.longname }}}_{}.txt'.format(marker)
+    return context.readDataFile(filename) is None
 
 
 def post_install(context):
@@ -10,3 +11,10 @@ def post_install(context):
     if isNotCurrentProfile(context):
         return
     # Do something during the installation of this package
+
+
+def test_fixture(context):
+    """Test fixture setup"""
+    if isNotCurrentProfile(context, 'testing'):
+        return
+    # Do something for test fixture

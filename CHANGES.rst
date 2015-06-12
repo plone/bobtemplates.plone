@@ -4,7 +4,14 @@ Changelog
 0.10 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Add flake8-extensions to code-analysis.
+  [timo]
+
+- Upgrade Selenium to 2.46.0.
+  [timo,pbauer]
+
+- Don't create a type-schema unless it is needed.
+  [pbauer]
 
 
 0.9 (2015-03-24)

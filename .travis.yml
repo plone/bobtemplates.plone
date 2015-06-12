@@ -11,9 +11,9 @@ env:
     - PLONE_VERSION=4.3.6 PACKAGE_TYPE=Basic
     - PLONE_VERSION=4.3.6 PACKAGE_TYPE=Dexterity
     - PLONE_VERSION=4.3.6 PACKAGE_TYPE=Theme
-    - PLONE_VERSION=5.0b1 PACKAGE_TYPE=Basic
-    - PLONE_VERSION=5.0b1 PACKAGE_TYPE=Dexterity
-    - PLONE_VERSION=5.0b1 PACKAGE_TYPE=Theme
+    - PLONE_VERSION=5.0b2 PACKAGE_TYPE=Basic
+    - PLONE_VERSION=5.0b2 PACKAGE_TYPE=Dexterity
+    - PLONE_VERSION=5.0b2 PACKAGE_TYPE=Theme
 
 install:
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini

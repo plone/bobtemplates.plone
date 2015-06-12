@@ -4,6 +4,9 @@ Changelog
 0.10 (unreleased)
 -----------------
 
+- Upgrade default Plone version to 4.3.6.
+  [timo]
+
 - Add zest.releaser to package buildout.
   [timo]
 

@@ -4,6 +4,9 @@ Changelog
 0.10 (unreleased)
 -----------------
 
+- Add zest.releaser to package buildout.
+  [timo]
+
 - Update README according to Plone docs best practice.
   [do3cc, timo]
 

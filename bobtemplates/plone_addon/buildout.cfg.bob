@@ -5,6 +5,7 @@ parts =
     instance
     test
     code-analysis
+    releaser
 develop = .
 
 
@@ -44,6 +45,10 @@ recipe = zc.recipe.egg
 eggs =
     ${test:eggs}
     plone.app.robotframework[debug,ride,reload]
+
+[releaser]
+recipe = zc.recipe.egg
+eggs = zest.releaser
 
 
 [versions]

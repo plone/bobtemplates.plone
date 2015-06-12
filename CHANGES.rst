@@ -4,6 +4,9 @@ Changelog
 0.10 (unreleased)
 -----------------
 
+- Update README according to Plone docs best practice.
+  [do3cc, timo]
+
 - Add flake8-extensions to code-analysis.
   [timo]
 

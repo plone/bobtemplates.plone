@@ -26,7 +26,7 @@ setup(
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",
-        "Framework :: Plone :: {{{ plone.version }}}",
+        "Framework :: Plone :: {{{ plone.minor_version }}}",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
     ],

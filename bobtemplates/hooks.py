@@ -100,6 +100,10 @@ def post_plone_version(configurator, question, answer):
         configurator.variables['plone.is_plone5'] = True
     else:
         configurator.variables['plone.is_plone5'] = False
+    # extract minor version (4.3)
+    # (according to https://plone.org/support/version-support-policy)
+    # this is used for the trove classifier in setup.py of the product
+    configurator.variables['plone.minor_version']'.'.join(answer.split('.')[:2])
     return answer
 
 

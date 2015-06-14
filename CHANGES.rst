@@ -4,6 +4,9 @@ Changelog
 0.10 (unreleased)
 -----------------
 
+- Use class method to load ZCML in tests
+  [tomgross]
+
 - Upgrade default Plone version to 4.3.6.
   [timo]
 

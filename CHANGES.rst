@@ -7,9 +7,6 @@ Changelog
 - Use class method to load ZCML in tests
   [tomgross]
 
-- Use only version up to minor version in setup.py of package #56
-  [tomgross]
-
 - Upgrade default Plone version to 4.3.6.
   [timo]
 

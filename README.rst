@@ -33,11 +33,7 @@ You can also create a package with nested namespace::
 
 Options
 =======
-`afdafds
-afds
-af
-   afdsafsd
-    af
+
 On creating a package you can choose from the following options. The default value is in [square brackets]:
 
 Package Type? [Basic]

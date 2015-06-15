@@ -4,6 +4,9 @@ Changelog
 0.10 (unreleased)
 -----------------
 
+- Use only version up to minor version in setup.py of package #56
+  [tomgross]
+
 - Use class method to load ZCML in tests
   [tomgross]
 
@@ -20,7 +23,7 @@ Changelog
   [timo]
 
 - Upgrade Selenium to 2.46.0.
-  [timo,pbauer]
+  [timo, pbauer]
 
 - Don't create a type-schema unless it is needed.
   [pbauer]

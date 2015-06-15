@@ -20,7 +20,7 @@ Introduction
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: License
 
-``bobtemplates.plone`` provides a `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ template to generate packages for Plone projects.
+``bobtemplates.plone`` provides a `mr.bob`_ template to generate packages for Plone projects.
 
 To create a package like ``collective.myaddon``::
 
@@ -126,4 +126,6 @@ Now you can use it like this::
 
     $ mrbob -O collective.foo bobtemplates:plone_addon
 
-See `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ documentation for further information.
+See `mr.bob`_ documentation for further information.
+
+.. _`mr.bob`: http://mrbob.readthedocs.org/en/latest/

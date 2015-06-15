@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10 (unreleased)
+0.10 (2015-06-15)
 -----------------
 
 - Use only version up to minor version in setup.py of package #56

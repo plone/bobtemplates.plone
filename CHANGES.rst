@@ -4,6 +4,9 @@ Changelog
 0.10 (unreleased)
 -----------------
 
+- Add check-readme script that detects Restructured Text issues.
+  [timo]
+
 - Use only version up to minor version in setup.py of package #56
   [tomgross]
 

@@ -48,7 +48,7 @@ eggs =
 
 [releaser]
 recipe = zc.recipe.egg
-eggs = zest.releaser[recommended]
+eggs = zest.releaser
 
 
 [versions]

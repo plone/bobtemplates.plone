@@ -11,7 +11,6 @@ from plone.app.testing import PLONE_FIXTURE
 {{% endif %}}
 from plone.app.testing import PloneSandboxLayer
 from plone.testing import z2
-from zope.configuration import xmlconfig
 
 import {{{ package.dottedname }}}
 
@@ -26,11 +25,7 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
 {{% endif %}}
 
     def setUpZope(self, app, configurationContext):
-        xmlconfig.file(
-            'configure.zcml',
-            {{{ package.dottedname }}},
-            context=configurationContext
-        )
+        self.loadZCML(package={{{ package.dottedname }}})
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, '{{{ package.dottedname }}}:default')

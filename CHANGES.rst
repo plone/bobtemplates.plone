@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.10 (unreleased)
+0.10 (2015-06-15)
 -----------------
 
 - Add check-readme script that detects Restructured Text issues.

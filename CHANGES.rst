@@ -4,8 +4,8 @@ Changelog
 0.11 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Enable code analysis on travis and fail if the code does not pass.
+  [gforcada]
 
 0.10 (2015-06-15)
 -----------------

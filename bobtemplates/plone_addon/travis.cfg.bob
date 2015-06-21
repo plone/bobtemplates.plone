@@ -11,3 +11,7 @@ parts = download install test createcoverage code-analysis
 
 [code-analysis]
 return-status-codes = True
+
+[createcoverage]
+recipe = zc.recipe.egg
+eggs = createcoverage

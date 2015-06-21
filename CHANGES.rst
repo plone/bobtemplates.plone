@@ -4,6 +4,9 @@ Changelog
 0.11 (unreleased)
 -----------------
 
+- Fix coverage on travis template
+  [gil-cano]
+
 - Enable code analysis on travis and fail if the code does not pass.
   [gforcada]
 

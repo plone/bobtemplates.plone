@@ -4,6 +4,10 @@ Introduction
 .. image:: https://secure.travis-ci.org/plone/bobtemplates.plone.png?branch=master
     :target: http://travis-ci.org/plone/bobtemplates.plone
 
+.. image:: https://img.shields.io/coveralls/plone/bobtemplates.plone.svg
+    :target: https://coveralls.io/github/plone/bobtemplates.plone
+    :alt: Coveralls
+
 .. image:: https://img.shields.io/pypi/dm/bobtemplates.plone.svg
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: Downloads

@@ -4,11 +4,15 @@ Changelog
 0.11 (unreleased)
 -----------------
 
+- Move badges from pypin to shields.io.
+  [timo]
+
 - Fix coverage on travis template
   [gil-cano]
 
 - Enable code analysis on travis and fail if the code does not pass.
   [gforcada]
+
 
 0.10 (2015-06-15)
 -----------------

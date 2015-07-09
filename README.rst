@@ -20,7 +20,7 @@ Introduction
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: Egg Status
 
-.. image:: img.shields.io/pypi/l/bobtemplates.plone.svg
+.. image:: https://img.shields.io/pypi/l/bobtemplates.plone.svg
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: License
 

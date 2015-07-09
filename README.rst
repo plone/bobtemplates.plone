@@ -4,8 +4,8 @@ Introduction
 .. image:: https://secure.travis-ci.org/plone/bobtemplates.plone.png?branch=master
     :target: http://travis-ci.org/plone/bobtemplates.plone
 
-.. image:: https://img.shields.io/coveralls/plone/bobtemplates.plone.svg
-    :target: https://coveralls.io/github/plone/bobtemplates.plone
+.. image:: https://coveralls.io/repos/plone/bobtemplates.plone/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/plone/bobtemplates.plone?branch=master
     :alt: Coveralls
 
 .. image:: https://img.shields.io/pypi/dm/bobtemplates.plone.svg

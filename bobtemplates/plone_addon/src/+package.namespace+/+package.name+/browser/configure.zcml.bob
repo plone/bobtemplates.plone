@@ -1,20 +1,20 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:browser="http://namespaces.zope.org/browser"
-  xmlns:plone="http://namespaces.plone.org/plone"
-  i18n_domain="{{{ package.dottedname }}}">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="{{{ package.dottedname }}}">
 
   <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
   <include package="z3c.jbot" file="meta.zcml" />
   <browser:jbot
-    directory="overrides"
-    layer="{{{ package.dottedname }}}.interfaces.I{{{ package.browserlayer }}}"
-    />
+      directory="overrides"
+      layer="{{{ package.dottedname }}}.interfaces.I{{{ package.browserlayer }}}"
+      />
 
   <!-- Publish static files -->
   <browser:resourceDirectory
-    name="{{{ package.dottedname }}}"
-    directory="static"
-    />
+      name="{{{ package.dottedname }}}"
+      directory="static"
+      />
 
 </configure>

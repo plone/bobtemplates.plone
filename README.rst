@@ -55,11 +55,8 @@ Author's github username
 Package description [An add-on for Plone]
     One-liner describing what this package does. Should be something like 'Plone add-on that ...'.
 
-Plone version [4.3.4]
+Plone version [4.3.6]
     Which Plone version would you like to use?
-
-Add example view? [True]
-    Do you want to register a browser view 'demoview' as an example?
 
 
 Features

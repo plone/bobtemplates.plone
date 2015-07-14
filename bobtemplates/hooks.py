@@ -254,6 +254,7 @@ def cleanup_package(configurator):
         to_delete.extend([
             "{0}/theme",
             "{0}/profiles/default/theme.xml",
+            "{0}/profiles/uninstall/theme.xml",
         ])
 
     if configurator.variables['package.type'] != u'Dexterity':
@@ -262,6 +263,11 @@ def cleanup_package(configurator):
             "{0}/profiles/default/types",
             "{0}/tests/test_.py",
             "{0}/tests/robot/test_.robot",
+        ])
+
+    if not configurator.variables['plone.is_plone5']:
+        to_delete.extend([
+            "{0}/profiles/uninstall",
         ])
 
     # remove parts

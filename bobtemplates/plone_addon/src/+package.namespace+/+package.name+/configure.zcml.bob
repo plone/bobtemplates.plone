@@ -37,4 +37,21 @@
       handler=".setuphandlers.post_install">
   </genericsetup:importStep>
 
+{{% if plone.is_plone5 %}}
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="{{{ package.dottedname }}}"
+      directory="profiles/uninstall"
+      description="Uninstalls the {{{ package.dottedname }}} add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:importStep
+      name="{{{ package.dottedname }}}-uninstall"
+      title="{{{ package.dottedname }}} uninstall import step"
+      description="Import step run during ininstalling {{{ package.dottedname }}}"
+      handler=".setuphandlers.uninstall">
+  </genericsetup:importStep>
+
+{{% endif %}}
 </configure>

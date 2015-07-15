@@ -86,8 +86,11 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/profiles',
                 self.project + '/src/collective/foo/profiles/default',
                 self.project + '/src/collective/foo/profiles/default/browserlayer.xml',  # noqa
-                self.project + '/src/collective/foo/profiles/default/collectivefoo_marker.txt',  # noqa
+                self.project + '/src/collective/foo/profiles/default/collectivefoo_default.txt',  # noqa
                 self.project + '/src/collective/foo/profiles/default/metadata.xml',  # noqa
+                self.project + '/src/collective/foo/profiles/uninstall',  # noqa
+                self.project + '/src/collective/foo/profiles/uninstall/browserlayer.xml',  # noqa
+                self.project + '/src/collective/foo/profiles/uninstall/collectivefoo_uninstall.txt',  # noqa
                 self.project + '/src/collective/foo/setuphandlers.py',
                 self.project + '/src/collective/foo/testing.py',
                 self.project + '/src/collective/foo/tests',
@@ -153,8 +156,11 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/profiles',
                 self.project + '/src/collective/foo/bar/profiles/default',
                 self.project + '/src/collective/foo/bar/profiles/default/browserlayer.xml',  # noqa
-                self.project + '/src/collective/foo/bar/profiles/default/collectivefoobar_marker.txt',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/default/collectivefoobar_default.txt',  # noqa
                 self.project + '/src/collective/foo/bar/profiles/default/metadata.xml',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/uninstall',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/uninstall/browserlayer.xml',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/uninstall/collectivefoobar_uninstall.txt',  # noqa
                 self.project + '/src/collective/foo/bar/setuphandlers.py',
                 self.project + '/src/collective/foo/bar/testing.py',
                 self.project + '/src/collective/foo/bar/tests',

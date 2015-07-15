@@ -1,0 +1,4 @@
+<theme>
+  <name>{{{ package.dottedname }}}</name>
+  <enabled>false</enabled>
+</theme>

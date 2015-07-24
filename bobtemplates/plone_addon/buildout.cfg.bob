@@ -59,9 +59,6 @@ eggs = i18ndude
 
 
 [versions]
-setuptools = 6.1
-zc.buildout = 2.2.5
-zc.recipe.egg = 2.0.1
 flake8 = 2.3.0
 i18ndude = 3.4.0
 robotframework = 2.8.4

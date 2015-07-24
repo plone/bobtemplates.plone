@@ -4,6 +4,12 @@ Changelog
 0.11 (unreleased)
 -----------------
 
+- Fix update.sh
+  [pbauer]
+
+- Add i18ndude to buildout
+  [pbauer]
+
 - Fix package-creation on Windows. Fixes #72.
   [pbauer]
 

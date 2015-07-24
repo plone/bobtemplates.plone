@@ -4,6 +4,9 @@ Changelog
 0.11 (unreleased)
 -----------------
 
+- Fix package-creation on Windows. Fixes #72.
+  [pbauer]
+
 - Add packagename to licence.
   [pbauer]
 

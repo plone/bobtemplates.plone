@@ -53,7 +53,7 @@ def validate_packagename(configurator):
     """Find out if the name target-dir entered when invoking the command
     can be a valid python-package.
     """
-    package_dir = configurator.target_directory.split('/')[-1]
+    package_dir = os.path.basename(configurator.target_directory)
     fail = False
 
     allowed = set(string.ascii_letters + string.digits + '.-_')
@@ -128,7 +128,7 @@ def prepare_render(configurator):
     This is especially important for allowing nested and normal packages.
     """
     # get package-name and package-type from user-input
-    package_dir = configurator.target_directory.split('/')[-1]
+    package_dir = os.path.basename(configurator.target_directory)
     nested = bool(len(package_dir.split('.')) == 3)
     configurator.variables['package.nested'] = nested
     configurator.variables['package.namespace'] = package_dir.split('.')[0]

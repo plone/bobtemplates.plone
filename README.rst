@@ -88,6 +88,7 @@ Compatibility
 
 Addons created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
 They should also work with older versions but that was not tested.
+It should work on Linux, Mac and Windows.
 
 
 Installation

@@ -2,10 +2,10 @@
 <metadata>
   <version>1000</version>
   <dependencies>
-{{% if package.type == 'Dexterity' %}}
+{{% if package.type == 'Dexterity' and not plone.is_plone5 %}}
     <dependency>profile-plone.app.dexterity:default</dependency>
 {{% endif %}}
-{{% if package.type == 'Theme' %}}
+{{% if package.type == 'Theme' and not plone.is_plone5 %}}
     <dependency>profile-plone.app.theming:default</dependency>
 {{% endif %}}
   </dependencies>

@@ -29,6 +29,7 @@ flake8-extensions =
     flake8-debugger
     flake8-coding
 
+
 [omelette]
 recipe = collective.recipe.omelette
 eggs = ${instance:eggs}
@@ -46,18 +47,23 @@ eggs =
     ${test:eggs}
     plone.app.robotframework[debug,ride,reload]
 
+
 [releaser]
 recipe = zc.recipe.egg
 eggs = zest.releaser
+
+
+[i18ndude]
+recipe = zc.recipe.egg
+eggs = i18ndude
 
 
 [versions]
 setuptools = 6.1
 zc.buildout = 2.2.5
 zc.recipe.egg = 2.0.1
-
 flake8 = 2.3.0
-
+i18ndude = 3.4.0
 robotframework = 2.8.4
 robotframework-ride = 1.3
 robotframework-selenium2library = 1.6.0

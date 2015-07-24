@@ -4,10 +4,19 @@ Changelog
 0.11 (unreleased)
 -----------------
 
+- Add packagename to licence.
+  [pbauer]
+
+- Add uninstall-profile for Plone 5.
+  [pbauer]
+
+- Fix indentation to follow the conventions of plone.api.
+  [pbauer]
+
 - Move badges from pypin to shields.io.
   [timo]
 
-- Fix coverage on travis template
+- Fix coverage on travis template.
   [gil-cano]
 
 - Enable code analysis on travis and fail if the code does not pass.
@@ -20,10 +29,10 @@ Changelog
 - Add check-readme script that detects Restructured Text issues.
   [timo]
 
-- Use only version up to minor version in setup.py of package #56
+- Use only version up to minor version in setup.py of package #56.
   [tomgross]
 
-- Use class method to load ZCML in tests
+- Use class method to load ZCML in tests.
   [tomgross]
 
 - Upgrade default Plone version to 4.3.6.

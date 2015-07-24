@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.11 (unreleased)
+0.11 (2015-07-24)
 -----------------
 
 - Fix update.sh

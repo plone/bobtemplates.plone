@@ -184,6 +184,11 @@ def prepare_render(configurator):
     configurator.variables['package.namespace_packages'] = namespace_packages
 
     if configurator.variables.get('package.dexterity_type_name'):
+        dexterity_type_name = configurator.variables[
+                            'package.dexterity_type_name']
+        configurator.variables[
+                            'package.dexterity_type_name'
+               ] = dexterity_type_name.replace(' ', '').replace('_', '')
         configurator.variables[
             'package.dexterity_type_name_lower'
         ] = configurator.variables['package.dexterity_type_name'].lower()

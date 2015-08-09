@@ -53,5 +53,9 @@
       handler=".setuphandlers.uninstall">
   </genericsetup:importStep>
 
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="{{{ package.dottedname }}}-hiddenprofiles" />
+
 {{% endif %}}
 </configure>

@@ -4,6 +4,9 @@ Changelog
 0.12 (unreleased)
 -----------------
 
+- Added support for Dexterity content types with spaces in their names
+  [pigeonflight]
+
 - Fix #84 Make travis cache the egg directory of the generated package.
   [jensens]
 
@@ -12,6 +15,7 @@ Changelog
 
 - Remove unittest2 dependency.
   [gforcada]
+
 
 0.11 (2015-07-24)
 -----------------

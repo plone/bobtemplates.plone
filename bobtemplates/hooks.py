@@ -191,8 +191,9 @@ def prepare_render(configurator):
             ] = dexterity_type_name.replace(' ', '')\
             .replace('_', '')
         configurator.variables[
-                            'package.dexterity_type_name'
-               ] = dexterity_type_name.replace(' ', '').replace('_', '')
+            'package.dexterity_type_name'
+            ] = dexterity_type_name.replace(' ', '')\
+            .replace('_', '')
         configurator.variables[
             'package.dexterity_type_name_lower'
         ] = configurator.variables['package.dexterity_type_name'].lower()

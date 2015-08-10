@@ -4,7 +4,8 @@ Changelog
 0.12 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Update tests to use Plone 5.0b3.
+  [jensens]
 
 
 0.11 (2015-07-24)

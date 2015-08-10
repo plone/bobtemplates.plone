@@ -1,8 +1,18 @@
 language: python
+sudo: false
+cache:
+  pip: true
+  directories:
+    - $HOME/buildout-cache
 python:
   - 2.7
+before_install:
+  - mkdir -p $HOME/buildout-cache/{eggs,downloads}
+  - mkdir $HOME/.buildout
+  - echo "[buildout]" > $HOME/.buildout/default.cfg
+  - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
+  - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
 install:
-  - mkdir -p buildout-cache/{eggs,downloads}
   - python bootstrap-buildout.py -c travis.cfg
   - bin/buildout -Nc travis.cfg
 script:

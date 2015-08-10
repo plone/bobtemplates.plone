@@ -4,6 +4,9 @@ Changelog
 0.12 (unreleased)
 -----------------
 
+- Fix #84 Make travis cache the egg directory of the generated package.
+  [jensens]
+
 - Update tests to use Plone 5.0b3.
   [jensens]
 

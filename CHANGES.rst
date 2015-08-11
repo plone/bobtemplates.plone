@@ -7,6 +7,8 @@ Changelog
 - Update tests to use Plone 5.0b3.
   [jensens]
 
+- Remove unittest2 dependency.
+  [gforcada]
 
 0.11 (2015-07-24)
 -----------------

@@ -28,6 +28,7 @@ Introduction
 
 To create a package like ``collective.myaddon``::
 
+    $ pip install bobtemplates.plone
     $ mrbob -O collective.myaddon bobtemplates:plone_addon
 
 You can also create a package with nested namespace::

@@ -6,6 +6,8 @@ parts =
     test
     code-analysis
     releaser
+    i18ndude
+    omelette
 develop = .
 
 

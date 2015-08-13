@@ -8,7 +8,8 @@ ${buildout:directory}/bin/mrbob -O ${:addon_name} bobtemplates:plone_addon --con
 
 # buildout addon
 cd ${buildout:directory}/${:addon_name}
-python bootstrap-buildout.py --setuptools-version=8.3
+virtualenv ${buildout:directory}/${:addon_name}
+${buildout:directory}/${:addon_name}/bin/python bootstrap-buildout.py --setuptools-version=8.3
 ${buildout:directory}/${:addon_name}/bin/buildout
 
 # run tests on addon

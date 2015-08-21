@@ -28,6 +28,7 @@ Introduction
 
 To create a package like ``collective.myaddon``::
 
+    $ pip install bobtemplates.plone
     $ mrbob -O collective.myaddon bobtemplates:plone_addon
 
 You can also create a package with nested namespace::
@@ -128,9 +129,11 @@ Installation in a virtualenv
 
 You can also install ``bobtemplates.plone`` in a virtualenv.::
 
-    $ pip install mr.bob
-
     $ pip install bobtemplates.plone
+
+With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.::
+
+    $ pip install mr.bob
 
 Now you can use it like this::
 

@@ -13,6 +13,7 @@ Changelog
 - Remove unittest2 dependency.
   [gforcada]
 
+
 0.11 (2015-07-24)
 -----------------
 

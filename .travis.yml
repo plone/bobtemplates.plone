@@ -14,7 +14,7 @@ before_install:
   - virtualenv .
   - bin/pip install --upgrade pip setuptools zc.buildout
 install:
-  - bin/buildout -N -t 3 -c travis.cfg
+  - bin/buildout -N -t 3 -c ci.cfg
 
 env:
   matrix:
@@ -30,7 +30,7 @@ install:
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini
   - sed -ie "s/^package.type.*/package.type = $PACKAGE_TYPE/g" test_answers.ini
   - if [ "$PACKAGE_TYPE" == "Dexterity" ]; then echo "package.dexterity_type_name = MyDextrityTestType" >> test_answers.ini; fi
-  - bin/buildout -c travis.cfg
+  - bin/buildout -c ci.cfg
 
 before_script:
   - export DISPLAY=:99.0

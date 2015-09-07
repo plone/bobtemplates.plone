@@ -13,6 +13,9 @@ Changelog
 - Remove unittest2 dependency.
   [gforcada]
 
+- Rename travis.cfg to ci.cfg
+  [do3cc]
+
 
 0.11 (2015-07-24)
 -----------------

@@ -1,3 +1,4 @@
+!src/bobtemplates
 *.egg-info
 *.mo
 *.pyc
@@ -9,11 +10,11 @@
 bin/
 buildout-cache/
 develop-eggs/
+eggs/
 include/
 lib/
 local/
 parts/
 src/*
-!src/bobtemplates
 test.plone_addon/
 var/

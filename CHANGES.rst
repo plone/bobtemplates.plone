@@ -4,6 +4,10 @@ Changelog
 0.12 (unreleased)
 -----------------
 
+- Use Plone minor version for ``setup.py`` classifier.  So 4.3 instead
+  of 4.3.6.
+  [maurits]
+
 - Enabled robot part in generated package.
   [maurits]
 

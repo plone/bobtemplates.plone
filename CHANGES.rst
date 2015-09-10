@@ -4,6 +4,9 @@ Changelog
 0.12 (unreleased)
 -----------------
 
+- Enabled robot part in generated package.
+  [maurits]
+
 - Fix #84 Make travis cache the egg directory of the generated package.
   [jensens]
 

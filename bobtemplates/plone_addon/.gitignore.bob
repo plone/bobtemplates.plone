@@ -18,3 +18,5 @@ htmlcov/
 *.log
 output.xml
 *.swp
+log.html
+report.html

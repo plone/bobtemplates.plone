@@ -22,7 +22,7 @@ setup(
     version='0.1',
     description="{{{ package.description }}}",
     long_description=long_description,
-    # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
+    # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",
@@ -35,7 +35,7 @@ setup(
     keywords='Python Plone',
     author='{{{ author.name }}}',
     author_email='{{{ author.email }}}',
-    url='http://pypi.python.org/pypi/{{{ package.dottedname }}}',
+    url='https://pypi.python.org/pypi/{{{ package.dottedname }}}',
     license='GPL version 2',
     packages=find_packages('src', exclude=['ez_setup']),
     namespace_packages=[{{{ package.namespace_packages }}}],

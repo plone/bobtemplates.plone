@@ -40,7 +40,7 @@ Installation
 
 Install {{{ package.dottedname }}} by adding it to your buildout::
 
-   [buildout]
+    [buildout]
 
     ...
 

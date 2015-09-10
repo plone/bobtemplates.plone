@@ -48,7 +48,7 @@ Install {{{ package.dottedname }}} by adding it to your buildout::
         {{{ package.dottedname }}}
 
 
-and then running "bin/buildout"
+and then running ``bin/buildout``
 
 
 Contribute

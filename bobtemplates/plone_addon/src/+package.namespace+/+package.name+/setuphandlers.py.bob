@@ -20,8 +20,8 @@ def post_install(context):
     if context.readDataFile('{{{ package.longname }}}_default.txt') is None:
         return
     # Do something during the installation of this package
-
 {{% if plone.is_plone5 %}}
+
 
 def uninstall(context):
     """Uninstall script"""

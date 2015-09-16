@@ -2,6 +2,7 @@
 *.egg-info
 *.mo
 *.pyc
+.coverage
 .installed.cfg
 .mr.developer.cfg
 .project
@@ -11,6 +12,7 @@ bin/
 buildout-cache/
 develop-eggs/
 eggs/
+htmlcov/
 include/
 lib/
 local/

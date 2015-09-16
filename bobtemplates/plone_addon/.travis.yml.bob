@@ -18,8 +18,8 @@ install:
 script:
   - bin/code-analysis
   - bin/test
-  - bin/createcoverage
 after_success:
+  - bin/createcoverage
   - pip install coveralls
   - coveralls
 

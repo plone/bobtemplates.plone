@@ -101,6 +101,7 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',
                 self.project + '/.gitattributes',
+                self.project + '/setup.cfg',
             ]
         )
 
@@ -168,5 +169,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',
                 self.project + '/.gitattributes',
+                self.project + '/setup.cfg',
             ]
         )

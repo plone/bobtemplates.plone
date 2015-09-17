@@ -1,0 +1,7 @@
+[check-manifest]
+ignore =
+    *.cfg
+    .coveragerc
+    .editorconfig
+    .gitattributes
+    bootstrap-buildout.py

@@ -4,6 +4,9 @@ Changelog
 0.12 (unreleased)
 -----------------
 
+- Always start with 1.0a1. No more 0.x releases please.
+  [timo]
+
 - Use Plone minor version for ``setup.py`` classifier.  So 4.3 instead
   of 4.3.6.
   [maurits]

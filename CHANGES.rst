@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0b1 (unreleased)
+1.0b1 (2015-09-17)
 ------------------
 
 - Always start with 1.0a1. No more 0.x releases please.

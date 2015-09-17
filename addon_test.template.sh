@@ -14,7 +14,14 @@ ${buildout:directory}/${:addon_name}/bin/buildout
 
 # run tests on addon
 ${buildout:directory}/${:addon_name}/bin/test --all
+# save the exit code of the test command
+testresult=$?
+
+# run code analysis
 ${buildout:directory}/${:addon_name}/bin/code-analysis
 
 # remove addon
 rm -rf ${buildout:directory}/${:addon_name}/
+
+# return the exit code of the test command
+exit $testresult

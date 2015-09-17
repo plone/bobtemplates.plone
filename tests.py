@@ -4,6 +4,7 @@ import os
 import tempfile
 import shutil
 
+from bobtemplates import hooks
 from scripttest import TestFileEnvironment
 
 
@@ -172,3 +173,10 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/setup.cfg',
             ]
         )
+
+
+class HooksTest(unittest.TestCase):
+
+    def test_to_boolean(self):
+        # Initial simple test to show coverage in hooks.py.
+        self.assertEqual(hooks.to_boolean(None, None, 'y'), True)

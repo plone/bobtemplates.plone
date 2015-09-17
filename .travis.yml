@@ -29,7 +29,7 @@ install:
   - pip install docutils
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini
   - sed -ie "s/^package.type.*/package.type = $PACKAGE_TYPE/g" test_answers.ini
-  - if [ "$PACKAGE_TYPE" == "Dexterity" ]; then echo "package.dexterity_type_name = MyDextrityTestType" >> test_answers.ini; fi
+  - if [ "$PACKAGE_TYPE" == "Dexterity" ]; then echo "package.dexterity_type_name = MyDexterityTestType" >> test_answers.ini; fi
   - bin/buildout -c travis.cfg
 
 before_script:
@@ -39,10 +39,11 @@ before_script:
 script:
   - bin/check-readme
   - bin/code-analysis
-  - bin/nosetests
   - bin/test
+  - bin/test-plone_addon
 
 after_success:
+  - bin/createcoverage
   - pip install -q coveralls
   - coveralls
 

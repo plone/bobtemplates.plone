@@ -96,15 +96,34 @@ def pre_email(configurator, question):
 def post_plone_version(configurator, question, answer):
     """Find out if it is supposed to be Plone 5.
     """
-    if answer.startswith('5'):
-        configurator.variables['plone.is_plone5'] = True
-    else:
-        configurator.variables['plone.is_plone5'] = False
-    # extract minor version (4.3)
-    # (according to https://plone.org/support/version-support-policy)
-    # this is used for the trove classifier in setup.py of the product
-    configurator.variables['plone.minor_version'] = '.'.join(answer.split('.')[:2])  # noqa
+    _set_plone_version_variables(configurator, answer)
     return answer
+
+
+def _set_plone_version_variables(configurator, version):
+    if 'plone.is_plone5' not in configurator.variables:
+        # Find out if it is supposed to be Plone 5.
+        if version.startswith('5'):
+            configurator.variables['plone.is_plone5'] = True
+        else:
+            configurator.variables['plone.is_plone5'] = False
+    if 'plone.minor_version' not in configurator.variables:
+        # extract minor version (4.3)
+        # (according to https://plone.org/support/version-support-policy)
+        # this is used for the trove classifier in setup.py of the product
+        configurator.variables['plone.minor_version'] = '.'.join(
+            version.split('.')[:2])
+
+
+def post_ask(configurator):
+    """Make sure some variables are set, also in non-interactive mode.
+
+    This is called after all questions have been asked.
+    """
+    version = configurator.variables.get('plone.version')
+    if not version:
+        return
+    _set_plone_version_variables(configurator, version)
 
 
 def post_type(configurator, question, answer):

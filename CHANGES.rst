@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.12 (unreleased)
------------------
+1.0b1 (unreleased)
+------------------
 
 - Always start with 1.0a1. No more 0.x releases please.
   [timo]

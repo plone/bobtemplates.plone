@@ -17,12 +17,14 @@ class TestSetup(unittest.TestCase):
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_product_installed(self):
-        """Test if {{{ package.dottedname }}} is installed with portal_quickinstaller."""
-        self.assertTrue(self.installer.isProductInstalled('{{{ package.dottedname }}}'))
+        """Test if {{{ package.dottedname }}} is installed."""
+        self.assertTrue(self.installer.isProductInstalled(
+            '{{{ package.dottedname }}}'))
 
     def test_browserlayer(self):
         """Test that I{{{ package.browserlayer }}} is registered."""
-        from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
+        from {{{ package.dottedname }}}.interfaces import (
+            I{{{ package.browserlayer }}})
         from plone.browserlayer import utils
         self.assertIn(I{{{ package.browserlayer }}}, utils.registered_layers())
 
@@ -38,7 +40,8 @@ class TestUninstall(unittest.TestCase):
 
     def test_product_uninstalled(self):
         """Test if {{{ package.dottedname }}} is cleanly uninstalled."""
-        self.assertFalse(self.installer.isProductInstalled('{{{ package.dottedname }}}'))
+        self.assertFalse(self.installer.isProductInstalled(
+            '{{{ package.dottedname }}}'))
 {{% if plone.is_plone5 %}}
 
     def test_browserlayer_removed(self):

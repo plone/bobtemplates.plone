@@ -4,7 +4,8 @@ Changelog
 1.0 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Avoid pyflakes warnings for long package names.
+  [maurits]
 
 
 1.0b1 (2015-09-17)

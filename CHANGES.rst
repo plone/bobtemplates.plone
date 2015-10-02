@@ -4,6 +4,9 @@ Changelog
 1.0 (unreleased)
 ----------------
 
+- Upgrade to Plone 4.3.7 and 5.0.
+  [timo]
+
 - Avoid pyflakes warnings for long package names.
   [maurits]
 

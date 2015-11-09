@@ -62,7 +62,7 @@ eggs = i18ndude
 
 
 [versions]
-# Don't use a relased version of {{{ package.dottedname }}}
+# Don't use a released version of {{{ package.dottedname }}}
 {{{ package.dottedname }}} =
 
 setuptools = 18.1

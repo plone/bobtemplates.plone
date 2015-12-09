@@ -8,9 +8,9 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="{{{ package.dottedname }}}">
 
-  <includeDependencies package="." />
-
   <i18n:registerTranslations directory="locales" />
+
+  <includeDependencies package="." />
 
   <include package=".browser" />
 

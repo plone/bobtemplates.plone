@@ -24,6 +24,7 @@ setup(
         "Natural Language :: English",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
+        "Development Status :: 5 - Production/Stable",
         "Topic :: Software Development :: Code Generators",
         "Topic :: Utilities",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",

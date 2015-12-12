@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1 (unreleased)
-----------------
+1.0.1 (2015-12-12)
+------------------
 
 - Register locales directory before loading dependencies to avoid issues when overriding translations.
   [hvelarde]

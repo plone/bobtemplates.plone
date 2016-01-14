@@ -4,7 +4,9 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Update robot test framework versions including Selenium to work with recent
+  firefox releases.
+  [thet]
 
 
 1.0.1 (2015-12-12)

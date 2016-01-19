@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""Module with custom installer code."""
 {{% if plone.is_plone5 %}}
 from Products.CMFPlone.interfaces import INonInstallable
 from zope.interface import implementer

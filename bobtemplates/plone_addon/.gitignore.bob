@@ -1,22 +1,33 @@
+# any of...
+.*
 *.egg-info
+*.log
 *.mo
-*.pyc
-.installed.cfg
-.mr.developer.cfg
-.project
-.pydevproject
-.settings/
+*.py?
+*.swp
+# dirs
 bin/
 buildout-cache/
 develop-eggs/
+eggs/
+htmlcov/
+include/
+lib/
+local/
 parts/
 src/*
-!src/{{{ package.namespace }}}
+test.plone_addon/
 var/
-htmlcov/
-.coverage
-*.log
-output.xml
-*.swp
+# files
+lib64
 log.html
+output.xml
+pip-selfcheck.json
 report.html
+# excludes
+!.coveragerc
+!.editorconfig
+!.gitattributes
+!.gitignore
+!.travis.yml
+!src/{{{ package.namespace }}}

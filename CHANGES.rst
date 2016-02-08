@@ -4,10 +4,12 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Simplify concatenation of ``.rst`` files for ``setup.py``.
+  [thet]
+
 - Update ``.gitignores`` in repository to exclude ``lib64``, ``pip-selfcheck.json`` and all ``.*`` except necessary.
   Update ``.gitignore.bob`` in templates with these changes too.
   Add ``.gitattributes`` in repository for union-merge CHANGES.rst files.
-- Simplify concatenation of ``.rst`` files for ``setup.py``.
   [thet]
 
 - Update robot test framework versions including Selenium to work with recent

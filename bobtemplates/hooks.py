@@ -67,9 +67,6 @@ def validate_packagename(configurator):
     if parts < 1 or parts > 3:
         fail = True
 
-    configurator.variables['package.nested'] = parts == 3
-    configurator.variables['package.toplevel'] = parts == 1
-
     if fail:
         msg = "Error: '{0}' is not a valid packagename.\n".format(package_dir)
         msg += "Please use a valid name (like collective.myaddon or "
@@ -151,8 +148,10 @@ def prepare_render(configurator):
     """
     # get package-name and package-type from user-input
     package_dir = os.path.basename(configurator.target_directory)
-    nested = configurator.variables['package.nested']
-    toplevel = configurator.variables['package.toplevel']
+
+    parts = len(package_dir.split('.'))
+    nested = configurator.variables['package.nested'] = parts == 3
+    toplevel = configurator.variables['package.toplevel'] = parts == 1
 
     configurator.variables['package.namespace'] = package_dir.split('.')[0]
     namespace2 = None

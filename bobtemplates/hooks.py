@@ -64,7 +64,7 @@ def validate_packagename(configurator):
         fail = True
 
     parts = len(package_dir.split('.'))
-    if parts < 2 or parts > 3:
+    if parts < 1 or parts > 3:
         fail = True
 
     if fail:
@@ -148,14 +148,19 @@ def prepare_render(configurator):
     """
     # get package-name and package-type from user-input
     package_dir = os.path.basename(configurator.target_directory)
-    nested = bool(len(package_dir.split('.')) == 3)
-    configurator.variables['package.nested'] = nested
+
+    parts = len(package_dir.split('.'))
+    nested = configurator.variables['package.nested'] = parts == 3
+    toplevel = configurator.variables['package.toplevel'] = parts == 1
+
     configurator.variables['package.namespace'] = package_dir.split('.')[0]
+    namespace2 = None
     if nested:
         namespace2 = package_dir.split('.')[1]
-    else:
-        namespace2 = None
     configurator.variables['package.namespace2'] = namespace2
+
+    # for toplevel packages that is the same as the namespace (e.g. yafowil)
+    # for others it is the last item (e.g. something)
     configurator.variables['package.name'] = package_dir.split('.')[-1]
 
     if nested:
@@ -163,6 +168,8 @@ def prepare_render(configurator):
             configurator.variables['package.namespace'],
             configurator.variables['package.namespace2'],
             configurator.variables['package.name'])
+    elif toplevel:
+        dottedname = "{0}".format(configurator.variables['package.name'])
     else:
         dottedname = "{0}.{1}".format(
             configurator.variables['package.namespace'],
@@ -172,9 +179,9 @@ def prepare_render(configurator):
     configurator.variables['package.dottedname'] = dottedname
 
     # package.uppercasename = 'COLLECTIVE_FOO_SOMETHING'
-    configurator.variables['package.uppercasename'] = configurator.variables[
-        'package.dottedname'
-    ].replace('.', '_').upper()
+    # used for test-layers
+    configurator.variables['package.uppercasename'] = dottedname.replace(
+        '.', '_').upper()
 
     camelcasename = dottedname.replace('.', ' ').title()\
         .replace(' ', '')\
@@ -185,6 +192,7 @@ def prepare_render(configurator):
     configurator.variables['package.browserlayer'] = browserlayer
 
     # package.longname = 'collectivefoosomething'
+    # used for marker-files
     configurator.variables['package.longname'] = camelcasename.lower()
 
     # jenkins.directories = 'collective/foo/something'
@@ -222,6 +230,7 @@ def cleanup_package(configurator):
     """
 
     nested = configurator.variables['package.nested']
+    toplevel = configurator.variables['package.toplevel']
 
     # construct full path '.../src/collective'
     start_path = "{0}/src/{1}".format(
@@ -239,7 +248,7 @@ def cleanup_package(configurator):
         # since the template does not hava a folder for namespace2.
         # Here this package is turned into a nested package
         # collective.behavior.myaddon/src/collective/behavior/myaddon by
-        # inserting a folder with the namepsace2 ('behavior') and oopying
+        # inserting a folder with the namespace2 ('behavior') and copying
         # a __init__.py into it.
 
         # full path for nested packages: '.../src/collective/behavior/myaddon'
@@ -265,6 +274,20 @@ def cleanup_package(configurator):
 
         # use the new path for deleting
         base_path = base_path_nested
+
+    if toplevel:
+        # For toplevel packages we need to remove a obsolete folder:
+        # turn .../src/myaddon/myaddon into .../src/myaddon
+        tmp_target_path = "{0}/src/{1}_tmp".format(
+            configurator.target_directory,
+            configurator.variables['package.name'])
+        # move .../src/myaddon/myaddon to .../src/myaddon_tmp
+        shutil.move(base_path, tmp_target_path)
+        # delete .../src/myaddon
+        shutil.rmtree(start_path)
+        # rename .../src/myaddon_tmp to .../src/myaddon
+        shutil.move(tmp_target_path, start_path)
+        base_path = start_path
 
     # find out what to delete
     to_delete = []

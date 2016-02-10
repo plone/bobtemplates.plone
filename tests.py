@@ -174,6 +174,70 @@ class PloneTemplateTest(BaseTemplateTest):
             ]
         )
 
+    def test_plone_toplevel_template(self):
+        """Test creating a toplevel package.
+
+        Generate a project from a template, test which files were created
+        and run all tests in the generated package.
+        """
+        self.template = 'plone_addon'
+        self.project = 'foo'
+        self.answers_file = 'nosetests_answers_toplevel.ini'
+        self.maxDiff = None
+        result = self.create_template()
+        self.assertItemsEqual(
+            result.files_created.keys(),
+            [
+                self.project,
+                self.project + '/.gitignore',
+                self.project + '/.travis.yml',
+                self.project + '/CHANGES.rst',
+                self.project + '/CONTRIBUTORS.rst',
+                self.project + '/MANIFEST.in',
+                self.project + '/README.rst',
+                self.project + '/bootstrap-buildout.py',
+                self.project + '/buildout.cfg',
+                self.project + '/docs',
+                self.project + '/docs/LICENSE.GPL',
+                self.project + '/docs/LICENSE.rst',
+                self.project + '/docs/index.rst',
+                self.project + '/setup.py',
+                self.project + '/src',
+                self.project + '/src/foo',
+                self.project + '/src/foo/__init__.py',
+                self.project + '/src/foo/browser',
+                self.project + '/src/foo/browser/__init__.py',
+                self.project + '/src/foo/browser/configure.zcml',
+                self.project + '/src/foo/browser/overrides',
+                self.project + '/src/foo/browser/overrides/.gitkeep',  # noqa
+                self.project + '/src/foo/browser/static',
+                self.project + '/src/foo/browser/static/.gitkeep',
+                self.project + '/src/foo/configure.zcml',
+                self.project + '/src/foo/interfaces.py',
+                self.project + '/src/foo/locales',
+                self.project + '/src/foo/locales/foo.pot',  # noqa
+                self.project + '/src/foo/locales/update.sh',
+                self.project + '/src/foo/profiles',
+                self.project + '/src/foo/profiles/default',
+                self.project + '/src/foo/profiles/default/browserlayer.xml',  # noqa
+                self.project + '/src/foo/profiles/default/foo_default.txt',  # noqa
+                self.project + '/src/foo/profiles/default/metadata.xml',  # noqa
+                self.project + '/src/foo/setuphandlers.py',
+                self.project + '/src/foo/testing.py',
+                self.project + '/src/foo/tests',
+                self.project + '/src/foo/tests/__init__.py',
+                self.project + '/src/foo/tests/robot',
+                self.project + '/src/foo/tests/robot/test_example.robot',  # noqa
+                self.project + '/src/foo/tests/test_robot.py',
+                self.project + '/src/foo/tests/test_setup.py',
+                self.project + '/travis.cfg',
+                self.project + '/.coveragerc',
+                self.project + '/.editorconfig',
+                self.project + '/.gitattributes',
+                self.project + '/setup.cfg',
+            ]
+        )
+
 
 class HooksTest(unittest.TestCase):
 

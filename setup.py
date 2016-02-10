@@ -6,7 +6,7 @@ from setuptools import setup
 version = '1.0.2.dev0'
 
 
-long_description = '\n'.join([
+long_description = '\n\n'.join([
     open('README.rst').read(),
     open('CONTRIBUTORS.rst').read(),
     open('CHANGES.rst').read(),

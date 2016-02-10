@@ -4,6 +4,9 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Allow to create toplevel-packages.
+  [pbauer]
+
 - Simplify concatenation of ``.rst`` files for ``setup.py``.
   [thet]
 

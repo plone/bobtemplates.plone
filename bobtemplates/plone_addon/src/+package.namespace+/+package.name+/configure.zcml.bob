@@ -40,7 +40,7 @@
 {{% if plone.is_plone5 %}}
   <genericsetup:registerProfile
       name="uninstall"
-      title="{{{ package.dottedname }}}"
+      title="{{{ package.dottedname }}} (uninstall)"
       directory="profiles/uninstall"
       description="Uninstalls the {{{ package.dottedname }}} add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"

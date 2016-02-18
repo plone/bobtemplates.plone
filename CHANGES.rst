@@ -4,6 +4,9 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Complete the ``theme.xml`` GenericSetup registry file with an a xmlheader and a ``themes`` tag.
+  [thet]
+
 - Add "(uninstall)" to the uninstall profile title.
   Otherwise it cannot be distinguished from the install profile in portal_setup.
   [thet]

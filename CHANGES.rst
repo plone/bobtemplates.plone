@@ -4,6 +4,11 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Declare the xml encoding for all GenericSetup profile files.
+  Otherwise the parser has to autodetect it.
+  Also add an xml version and encoding declaration to ``theme.xml``.
+  [thet]
+
 - Add "(uninstall)" to the uninstall profile title.
   Otherwise it cannot be distinguished from the install profile in portal_setup.
   [thet]

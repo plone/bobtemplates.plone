@@ -286,11 +286,6 @@ def cleanup_package(configurator):
             "{0}/tests/robot/test_.robot",
         ])
 
-    if not configurator.variables['plone.is_plone5']:
-        to_delete.extend([
-            "{0}/profiles/uninstall",
-        ])
-
     # remove parts
     for path in to_delete:
         path = path.format(base_path)

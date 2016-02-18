@@ -4,6 +4,9 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Create uninstall profile also for Plone 4.3.x, since it already depends on ``Products.CMFQuickInstallerTool >= 3.0.9``.
+  [thet]
+
 - Update Plone versions to 4.3.9 and 5.0.4.
   [thet]
 

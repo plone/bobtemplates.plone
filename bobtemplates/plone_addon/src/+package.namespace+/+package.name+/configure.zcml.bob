@@ -30,7 +30,6 @@
       post_handler=".setuphandlers.post_install"
       />
 
-{{% if plone.is_plone5 %}}
   <genericsetup:registerProfile
       name="uninstall"
       title="{{{ package.dottedname }}} (uninstall)"
@@ -44,5 +43,4 @@
       factory=".setuphandlers.HiddenProfiles"
       name="{{{ package.dottedname }}}-hiddenprofiles" />
 
-{{% endif %}}
 </configure>

@@ -4,6 +4,10 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Add "(uninstall)" to the uninstall profile title.
+  Otherwise it cannot be distinguished from the install profile in portal_setup.
+  [thet]
+
 - Simplify concatenation of ``.rst`` files for ``setup.py``.
   [thet]
 

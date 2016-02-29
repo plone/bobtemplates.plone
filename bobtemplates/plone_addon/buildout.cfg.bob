@@ -75,3 +75,6 @@ robotframework-ride = 1.5
 robotframework-selenium2library = 1.7.4
 robotsuite = 1.7.0
 selenium = 2.48.0
+{{% if not plone.is_plone5 %}}
+plone.app.locales = 4.3.9
+{{% endif %}}

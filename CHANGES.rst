@@ -4,6 +4,9 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Fix build failure on Plone 4.x due to plone.app.contenttypes pulled in and having a plone.app.locales >= 4.3.9 dependency in it's depending packages.
+  [thet]
+
 - Declare the xml encoding for all GenericSetup profile files.
   Otherwise the parser has to autodetect it.
   Also add an xml version and encoding declaration to ``theme.xml``.

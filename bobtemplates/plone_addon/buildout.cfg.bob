@@ -68,10 +68,13 @@ eggs = i18ndude
 setuptools = 18.1
 zc.buildout = 2.4.1
 zc.recipe.egg = 2.0.2
-flake8 = 2.3.0
+flake8 = 2.5.4
 i18ndude = 3.4.0
 robotframework = 3.0
 robotframework-ride = 1.5
 robotframework-selenium2library = 1.7.4
 robotsuite = 1.7.0
 selenium = 2.48.0
+{{% if not plone.is_plone5 %}}
+plone.app.locales = 4.3.9
+{{% endif %}}

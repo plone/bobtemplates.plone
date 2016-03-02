@@ -25,6 +25,9 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
 {{% endif %}}
 
     def setUpZope(self, app, configurationContext):
+        # Load any other ZCML from your package' dependencies manually here.
+        # The z3c.autoinclude feature is disabled for the Plone fixture base
+        # layer.
         self.loadZCML(package={{{ package.dottedname }}})
 
     def setUpPloneSite(self, portal):

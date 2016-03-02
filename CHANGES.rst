@@ -4,6 +4,9 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Note about disabled ``z3c.autoinclude`` in test layer setup.
+  [thet]
+
 - Remove the ``xmlns:five`` namespace, as it is not used at all.
   [thet]
 

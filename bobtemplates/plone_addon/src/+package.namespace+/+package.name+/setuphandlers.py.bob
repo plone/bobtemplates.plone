@@ -17,15 +17,11 @@ class HiddenProfiles(object):
 
 def post_install(context):
     """Post install script"""
-    if context.readDataFile('{{{ package.longname }}}_default.txt') is None:
-        return
-    # Do something during the installation of this package
+    # Do something at the end of the installation of this package.
 {{% if plone.is_plone5 %}}
 
 
 def uninstall(context):
     """Uninstall script"""
-    if context.readDataFile('{{{ package.longname }}}_uninstall.txt') is None:
-        return
-    # Do something during the uninstallation of this package
+    # Do something at the end of the uninstallation of this package.
 {{% endif %}}

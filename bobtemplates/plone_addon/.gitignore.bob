@@ -1,5 +1,3 @@
-# any of...
-.*
 *.egg-info
 *.log
 *.mo

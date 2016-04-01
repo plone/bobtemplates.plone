@@ -65,6 +65,10 @@ Changelog
 - Enabled robot part in generated package.
   [maurits]
 
+- Add depedency on plone.testing 5.0.0. Despite the major version number,
+  this change does not contain breaking changes.
+  [do3cc]
+
 - Fix #84 Make travis cache the egg directory of the generated package.
   [jensens]
 

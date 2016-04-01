@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """Render bobtemplates.plone hooks.
 """
+from datetime import date
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.hooks import validate_choices
@@ -120,6 +121,7 @@ def post_ask(configurator):
 
     This is called after all questions have been asked.
     """
+    configurator.variables['year'] = date.today().year
     version = configurator.variables.get('plone.version')
     if not version:
         return

@@ -1,3 +1,4 @@
+.coverage
 *.egg-info
 *.mo
 *.pyc
@@ -22,5 +23,6 @@ pip-selfcheck.json
 !.editorconfig
 !.gitattributes
 !.gitignore
+!.gitkeep
 !.travis.yml
-!src/bobtemplates
+!bobtemplates

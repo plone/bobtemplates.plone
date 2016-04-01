@@ -96,7 +96,7 @@ Use in a buildout
 This creates a mrbob-executable in your bin-directory.
 Call it from the ``src``-directory of your Plone project like this.
 
-.. code-block:: shell
+.. code-block:: bash
 
     $ ../bin/mrbob -O collective.foo bobtemplates:plone_addon
 
@@ -106,19 +106,19 @@ Installation in a virtualenv
 
 You can also install ``bobtemplates.plone`` in a virtualenv.
 
-.. code-block:: shell
+.. code-block:: bash
     
     $ pip install bobtemplates.plone
 
 With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
 
-.. code-block:: shell
+.. code-block:: bash
 
     $ pip install mr.bob
 
 Now you can use it like this
 
-.. code-block:: shell
+.. code-block:: bash
 
     $ mrbob -O collective.foo bobtemplates:plone_addon
 

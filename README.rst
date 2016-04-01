@@ -25,7 +25,7 @@
 bobtemplates.plone
 ==================
 
-``bobtemplates.plone`` provides a `mr.bob`_ template to generate packages for Plone projects.
+``bobtemplates.plone`` provides a `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ template to generate packages for Plone projects.
 
 
 Features
@@ -94,9 +94,7 @@ Use in a buildout
 
 
 This creates a mrbob-executable in your bin-directory.
-Call it from the ``src``-directory of your Plone project like this.
-
-.. code-block:: bash
+Call it from the ``src``-directory of your Plone project like this.::
 
     $ ../bin/mrbob -O collective.foo bobtemplates:plone_addon
 
@@ -104,27 +102,20 @@ Call it from the ``src``-directory of your Plone project like this.
 Installation in a virtualenv
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can also install ``bobtemplates.plone`` in a virtualenv.
-
-.. code-block:: bash
+You can also install ``bobtemplates.plone`` in a virtualenv.::
     
     $ pip install bobtemplates.plone
 
-With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
-
-.. code-block:: bash
+With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.::
 
     $ pip install mr.bob
 
-Now you can use it like this
-
-.. code-block:: bash
+Now you can use it like this::
 
     $ mrbob -O collective.foo bobtemplates:plone_addon
 
-See `mr.bob`_ documentation for further information.
+See `the documentation of mr.bob <http://mrbob.readthedocs.org/en/latest/>`_  for further information.
 
-.. _`mr.bob`: http://mrbob.readthedocs.org/en/latest/
 
 Contribute
 ----------

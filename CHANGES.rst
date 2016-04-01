@@ -4,6 +4,10 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Replaced import steps by post_handlers.  Needs GenericSetup 1.8.2 or
+  higher.  This is included by default in Plone 4.3.8 and 5.0.3 but
+  should be fine to use on older Plone versions.  [maurits]
+
 - Removed ``.*`` from the ``.gitignore`` file.  This would ignore the
   ``.gitkeep`` files, which would mean some directories are not added
   when you do ``git add`` after generating a new project.  [maurits]

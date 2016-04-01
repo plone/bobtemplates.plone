@@ -27,14 +27,8 @@
       directory="profiles/default"
       description="Installs the {{{ package.dottedname }}} add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
       />
-
-  <genericsetup:importStep
-      name="{{{ package.dottedname }}}-postInstall"
-      title="{{{ package.dottedname }}} post_install import step"
-      description="Post install import step from {{{ package.dottedname }}}"
-      handler=".setuphandlers.post_install">
-  </genericsetup:importStep>
 
 {{% if plone.is_plone5 %}}
   <genericsetup:registerProfile
@@ -43,14 +37,8 @@
       directory="profiles/uninstall"
       description="Uninstalls the {{{ package.dottedname }}} add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.uninstall"
       />
-
-  <genericsetup:importStep
-      name="{{{ package.dottedname }}}-uninstall"
-      title="{{{ package.dottedname }}} uninstall import step"
-      description="Import step run during ininstalling {{{ package.dottedname }}}"
-      handler=".setuphandlers.uninstall">
-  </genericsetup:importStep>
 
   <utility
       factory=".setuphandlers.HiddenProfiles"

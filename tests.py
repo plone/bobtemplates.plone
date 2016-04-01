@@ -88,7 +88,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/profiles',
                 self.project + '/src/collective/foo/profiles/default',
                 self.project + '/src/collective/foo/profiles/default/browserlayer.xml',  # noqa
-                self.project + '/src/collective/foo/profiles/default/collectivefoo_default.txt',  # noqa
                 self.project + '/src/collective/foo/profiles/default/metadata.xml',  # noqa
                 self.project + '/src/collective/foo/setuphandlers.py',
                 self.project + '/src/collective/foo/testing.py',
@@ -156,7 +155,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/profiles',
                 self.project + '/src/collective/foo/bar/profiles/default',
                 self.project + '/src/collective/foo/bar/profiles/default/browserlayer.xml',  # noqa
-                self.project + '/src/collective/foo/bar/profiles/default/collectivefoobar_default.txt',  # noqa
                 self.project + '/src/collective/foo/bar/profiles/default/metadata.xml',  # noqa
                 self.project + '/src/collective/foo/bar/setuphandlers.py',
                 self.project + '/src/collective/foo/bar/testing.py',

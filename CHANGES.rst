@@ -4,6 +4,10 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Removed ``.*`` from the ``.gitignore`` file.  This would ignore the
+  ``.gitkeep`` files, which would mean some directories are not added
+  when you do ``git add`` after generating a new project.  [maurits]
+
 - Note about disabled ``z3c.autoinclude`` in test layer setup.
   [thet]
 

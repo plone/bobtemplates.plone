@@ -76,7 +76,7 @@ Full documentation for end users can be found in the "docs" folder.
 It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone
 
 Installation
--------------
+------------
 
 Use in a buildout
 ^^^^^^^^^^^^^^^^^

@@ -31,13 +31,13 @@ bobtemplates.plone
 Features
 --------
 
-Package created with ``bobtemplates.plone`` use the current best-practices when creating an addon.
+Package created with ``bobtemplates.plone`` use the current best-practices when creating an add-on.
 
 Buildout
     The package is contained in a buildout that allows you to build Plone with the new package installed for testing-purposes.
 
 Tests
-    The package comes with a test setup and some `tests <http://docs.plone.org/external/plone.app.testing/docs/source/index.html>`_ for installing the package. It also contains a `robot-test <http://docs.plone.org/external/plone.app.robotframework/docs/source/index.html>`_ that tests logging in. The buildout also contains a config to allow testing the package on `travis <http://travis-ci.org/>`_ that sends `notifications <http://about.travis-ci.org/docs/user/notifications>`_ by email to the package autor.
+    The package comes with a test setup and some `tests <http://docs.plone.org/external/plone.app.testing/docs/source/index.html>`_ for installing the package. It also contains a `robot-test <http://docs.plone.org/external/plone.app.robotframework/docs/source/index.html>`_ that tests logging in. The buildout also contains a config to allow testing the package on `travis <http://travis-ci.org/>`_ that sends `notifications <http://about.travis-ci.org/docs/user/notifications>`_ by email to the package author.
 
 Profile
     The package contains a `Generic Setup Profile <http://docs.plone.org/develop/addons/components/genericsetup.html>`_ that installs a browserlayer. For Plone 5 it also contains a uninstall-profile.
@@ -63,7 +63,7 @@ Theme
 Compatibility
 =============
 
-Addons created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
+Add-ons created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
 They should also work with older versions but that was not tested.
 It should work on Linux, Mac and Windows.
 
@@ -93,7 +93,7 @@ Use in a buildout
         bobtemplates.plone
 
 
-This creates a mrbob-executeable in your bin-directory.
+This creates a mrbob-executable in your bin-directory.
 Call it from the ``src``-directory of your Plone project like this.
 
 .. code-block:: shell

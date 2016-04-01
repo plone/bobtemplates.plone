@@ -34,6 +34,8 @@ Changelog
   firefox releases.
   [thet]
 
+- Update docs and README
+  [svx]
 
 1.0.1 (2015-12-12)
 ------------------

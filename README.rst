@@ -1,5 +1,3 @@
-Introduction
-============
 
 .. image:: https://secure.travis-ci.org/plone/bobtemplates.plone.png?branch=master
     :target: http://travis-ci.org/plone/bobtemplates.plone
@@ -24,44 +22,14 @@ Introduction
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: License
 
+bobtemplates.plone
+==================
+
 ``bobtemplates.plone`` provides a `mr.bob`_ template to generate packages for Plone projects.
-
-To create a package like ``collective.myaddon``::
-
-    $ pip install bobtemplates.plone
-    $ mrbob -O collective.myaddon bobtemplates:plone_addon
-
-You can also create a package with nested namespace::
-
-    $ mrbob -O collective.foo.myaddon bobtemplates:plone_addon
-
-
-Options
-=======
-
-On creating a package you can choose from the following options. The default value is in [square brackets]:
-
-Package Type? [Basic]
-    Options are Basic, Dexterity and Theme.
-
-Author's name
-    Should be something like 'John Smith'.
-
-Author's email
-    Should be something like 'john@plone.org'.
-
-Author's github username
-    Should be something like 'john'.
-
-Package description [An add-on for Plone]
-    One-liner describing what this package does. Should be something like 'Plone add-on that ...'.
-
-Plone version [4.3.7]
-    Which Plone version would you like to use?
 
 
 Features
-========
+--------
 
 Package created with ``bobtemplates.plone`` use the current best-practices when creating an addon.
 
@@ -100,11 +68,18 @@ They should also work with older versions but that was not tested.
 It should work on Linux, Mac and Windows.
 
 
+Documentation
+-------------
+
+Full documentation for end users can be found in the "docs" folder.
+
+It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone
+
 Installation
-============
+-------------
 
 Use in a buildout
------------------
+^^^^^^^^^^^^^^^^^
 
 ::
 
@@ -119,26 +94,47 @@ Use in a buildout
 
 
 This creates a mrbob-executeable in your bin-directory.
-Call it from the ``src``-directory of your Plone project like this.::
+Call it from the ``src``-directory of your Plone project like this.
+
+.. code-block:: shell
 
     $ ../bin/mrbob -O collective.foo bobtemplates:plone_addon
 
 
 Installation in a virtualenv
-----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can also install ``bobtemplates.plone`` in a virtualenv.::
+You can also install ``bobtemplates.plone`` in a virtualenv.
 
+.. code-block:: shell
+    
     $ pip install bobtemplates.plone
 
-With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.::
+With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
+
+.. code-block:: shell
 
     $ pip install mr.bob
 
-Now you can use it like this::
+Now you can use it like this
+
+.. code-block:: shell
 
     $ mrbob -O collective.foo bobtemplates:plone_addon
 
 See `mr.bob`_ documentation for further information.
 
 .. _`mr.bob`: http://mrbob.readthedocs.org/en/latest/
+
+Contribute
+----------
+
+- Issue Tracker: https://github.com/plone/bobtemplates.plone/issues
+- Source Code: https://github.com/plone/bobtemplates.plone
+- Documentation: http://docs.plone.org/develop/addons/bobtemplates.plone
+
+
+Support
+-------
+
+If you are having issues, please let us know.

@@ -12,3 +12,4 @@ This package is based on `bobtemplates.niteoweb <https://github.com/niteoweb/bob
 - Patrick Gerken [do3cc]
 - Timo Stollenwerk [timo]
 - Johannes Raggam [thet]
+- Sven Strack [svx]

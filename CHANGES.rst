@@ -10,9 +10,6 @@ Changelog
 - Update robot test framework versions including Selenium to work with recent firefox releases.
   [thet]
 
-- Create uninstall profile also for Plone 4.3.x, since it already depends on ``Products.CMFQuickInstallerTool >= 3.0.9``.
-  [thet]
-
 - Replaced import steps by post_handlers.  Needs GenericSetup 1.8.2 or
   higher.  This is included by default in Plone 4.3.8 and 5.0.3 but
   should be fine to use on older Plone versions.  [maurits]

@@ -4,6 +4,15 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
+- Update Plone versions to 4.3.9 and 5.0.4.
+  [thet]
+
+- Update robot test framework versions including Selenium to work with recent firefox releases.
+  [thet]
+
+- Create uninstall profile also for Plone 4.3.x, since it already depends on ``Products.CMFQuickInstallerTool >= 3.0.9``.
+  [thet]
+
 - Replaced import steps by post_handlers.  Needs GenericSetup 1.8.2 or
   higher.  This is included by default in Plone 4.3.8 and 5.0.3 but
   should be fine to use on older Plone versions.  [maurits]
@@ -36,10 +45,6 @@ Changelog
 - Update ``.gitignores`` in repository to exclude ``lib64``, ``pip-selfcheck.json`` and all ``.*`` except necessary.
   Update ``.gitignore.bob`` in templates with these changes too.
   Add ``.gitattributes`` in repository for union-merge CHANGES.rst files.
-  [thet]
-
-- Update robot test framework versions including Selenium to work with recent
-  firefox releases.
   [thet]
 
 - Update docs and README

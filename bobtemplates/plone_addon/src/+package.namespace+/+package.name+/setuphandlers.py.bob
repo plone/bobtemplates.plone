@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-{{% if plone.is_plone5 %}}
 from Products.CMFPlone.interfaces import INonInstallable
 from zope.interface import implementer
 
@@ -12,16 +11,13 @@ class HiddenProfiles(object):
         return [
             '{{{ package.dottedname }}}:uninstall',
         ]
-{{% endif %}}
 
 
 def post_install(context):
     """Post install script"""
     # Do something at the end of the installation of this package.
-{{% if plone.is_plone5 %}}
 
 
 def uninstall(context):
     """Uninstall script"""
     # Do something at the end of the uninstallation of this package.
-{{% endif %}}

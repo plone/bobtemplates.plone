@@ -4,7 +4,8 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix Plone default version to 4.3.9.
+  [timo]
 
 
 1.0.2 (2016-04-13)

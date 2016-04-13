@@ -78,3 +78,4 @@ selenium = 2.53.1
 {{% if not plone.is_plone5 %}}
 plone.app.locales = 4.3.10
 {{% endif %}}
+plone.testing = 5.0.0

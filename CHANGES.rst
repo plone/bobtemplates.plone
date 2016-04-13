@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.3 (unreleased)
+1.0.3 (2016-04-13)
 ------------------
 
 - Fix Plone default version (Plone 4.3.9).

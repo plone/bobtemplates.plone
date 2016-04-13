@@ -18,6 +18,7 @@ install:
 
 env:
   matrix:
+    - PLONE_VERSION=      PACKAGE_TYPE=
     - PLONE_VERSION=4.3.9 PACKAGE_TYPE=Basic
     - PLONE_VERSION=4.3.9 PACKAGE_TYPE=Dexterity
     - PLONE_VERSION=4.3.9 PACKAGE_TYPE=Theme

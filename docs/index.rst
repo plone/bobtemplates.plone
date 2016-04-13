@@ -37,7 +37,7 @@ Author's github username
 Package description [An add-on for Plone]
     One-liner describing what this package does. Should be something like 'Plone add-on that ...'.
 
-Plone version [4.3.7]
+Plone version [4.3.9]
     Which Plone version would you like to use?
 
 
@@ -125,7 +125,7 @@ With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a depend
 Now you can use it like this
 
 .. code-block:: shell
-    
+
     mrbob -O collective.foo bobtemplates:plone_addon
 
 See `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ documentation for further information.

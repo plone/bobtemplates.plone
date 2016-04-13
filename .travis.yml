@@ -30,7 +30,7 @@ install:
   - pip install docutils
   - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini
   - sed -ie "s/^package.type.*/package.type = $PACKAGE_TYPE/g" test_answers.ini
-  - if [ "$PLONE_VERSION" == "" && "$PACKAGE_TYPE" == ""]; then sed -ie "s/^package.type.*//g"; sed -ie "s/^plone.version.*//g"; fi
+  - if [[ "$PLONE_VERSION" == "" && "$PACKAGE_TYPE" == "" ]]; then sed -ie "s/^plone.version.*//g" test_answers.ini; sed -ie "s/^package.type.*//g" test_answers.ini; fi
   - if [ "$PACKAGE_TYPE" == "Dexterity" ]; then echo "package.dexterity_type_name = MyDexterityTestType" >> test_answers.ini; fi
   - bin/buildout -c travis.cfg
 

@@ -4,7 +4,7 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Fix Plone default version to 4.3.9.
+- Fix Plone default version (Plone 4.3.9).
   [timo]
 
 

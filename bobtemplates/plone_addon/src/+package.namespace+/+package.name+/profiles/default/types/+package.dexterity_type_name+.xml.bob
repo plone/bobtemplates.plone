@@ -4,6 +4,7 @@
     meta_type="Dexterity FTI"
     name="{{{ package.dexterity_type_name }}}"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
   <!-- Basic properties -->
   <property
       i18n:translate=""
@@ -16,29 +17,35 @@
   <property name="icon_expr"></property>
   <property name="link_target"></property>
   <property name="allow_discussion">False</property>
+
   <!-- Hierarchy control -->
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
     <!-- <element value="" />-->
   </property>
+
   <!-- Schema, class and security -->
   <property name="klass">plone.dexterity.content.Item</property>
   <property name="add_permission">cmf.AddPortalContent</property>
   <property name="schema">{{{ package.dottedname }}}.interfaces.I{{{ package.dexterity_type_name }}}</property>
   <property name="model_source"></property>
   <property name="model_file"></property>
+
   <!-- Enabled behaviors -->
   <property name="behaviors">
     <element value="plone.app.content.interfaces.INameFromTitle" />
   </property>
-  <!-- View and aliases -->
+
+  <!-- Views -->
   <property name="immediate_view">view</property>
   <property name="default_view">view</property>
   <property name="view_methods">
     <element value="view" />
   </property>
   <property name="default_view_fallback">False</property>
+
+  <!-- Aliases -->
   <alias
       from="(Default)"
       to="(dynamic view)"
@@ -55,6 +62,8 @@
       from="view"
       to="(selected layout)"
   />
+
+  <!-- Actions -->
   <action
       action_id="view"
       category="object"
@@ -79,4 +88,5 @@
       visible="True">
     <permission value="Modify portal content" />
   </action>
+
 </object>

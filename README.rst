@@ -73,7 +73,7 @@ Documentation
 
 Full documentation for end users can be found in the "docs" folder.
 
-It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone
+It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone/bobtemplates.plone/README.html
 
 Installation
 ------------

@@ -4,7 +4,8 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Ordered sections of generated FTI xml into semantical block and added comments for each block.
+  [jensens]
 
 
 1.0.3 (2016-04-13)

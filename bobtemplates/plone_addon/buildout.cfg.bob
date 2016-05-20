@@ -65,7 +65,7 @@ eggs = i18ndude
 # Don't use a released version of {{{ package.dottedname }}}
 {{{ package.dottedname }}} =
 
-setuptools = 20.7.0
+setuptools = 21.0.0
 zc.buildout = 2.5.1
 zc.recipe.egg = 2.0.3
 flake8 = 2.5.4

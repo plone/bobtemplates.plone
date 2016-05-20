@@ -7,6 +7,9 @@ Changelog
 - Ordered sections of generated FTI xml into semantical block and added comments for each block.
   [jensens]
 
+- Configure buildout to install all recommended codeanalysis plugins
+  [staeff]
+
 
 1.0.3 (2016-04-13)
 ------------------

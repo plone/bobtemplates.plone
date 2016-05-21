@@ -6,6 +6,9 @@ Changelog
 
 - Ordered sections of generated FTI xml into semantical block and added comments for each block.
   [jensens]
+  
+- Bump setuptools version to 21.0.0 in buildout.cfg.bob
+  [staeff]
 
 
 1.0.3 (2016-04-13)

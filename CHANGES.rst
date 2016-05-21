@@ -10,6 +10,9 @@ Changelog
 - Bump setuptools version to 21.0.0 in buildout.cfg.bob
   [staeff]
 
+- Configure buildout to install all recommended codeanalysis plugins
+  [staeff]
+
 
 1.0.3 (2016-04-13)
 ------------------

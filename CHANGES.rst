@@ -4,12 +4,15 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
+- Default to Plone 5.0.4.
+  [jensens]
+
 - Git ignore ``.installed.cfg`` and ``mr.developer.cfg`` by default.
   [jensens]
 
 - Ordered sections of generated FTI xml into semantical block and added comments for each block.
   [jensens]
-  
+
 - Bump setuptools version to 21.0.0 in buildout.cfg.bob
   [staeff]
 

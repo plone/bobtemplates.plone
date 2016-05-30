@@ -4,6 +4,9 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
+- Git ignore ``.installed.cfg`` and ``mr.developer.cfg`` by default.
+  [jensens]
+
 - Ordered sections of generated FTI xml into semantical block and added comments for each block.
   [jensens]
   

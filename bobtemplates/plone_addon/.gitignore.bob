@@ -18,6 +18,8 @@ src/*
 test.plone_addon/
 var/
 # files
+.installed.cfg
+.mr.developer.cfg
 lib64
 log.html
 output.xml

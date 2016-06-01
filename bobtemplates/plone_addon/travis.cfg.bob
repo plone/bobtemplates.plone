@@ -15,3 +15,7 @@ return-status-codes = True
 [createcoverage]
 recipe = zc.recipe.egg
 eggs = createcoverage
+
+[versions]
+coverage = 3.7
+createcoverage = 1.4.1

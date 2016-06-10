@@ -4,6 +4,9 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
+- Pin versions of coverage/createcoverage
+  [staeff]
+
 - Default to Plone 5.0.4.
   [jensens]
 

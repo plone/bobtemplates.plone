@@ -4,6 +4,10 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
+- Add the generated package explicitly to the buildouts instance zcml section to make sure it's loaded first.
+  That ensures, that core locales can be overloaded by the package.
+  [thet]
+
 - Pin versions of coverage/createcoverage
   [staeff]
 

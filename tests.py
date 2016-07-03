@@ -5,6 +5,7 @@ import tempfile
 import shutil
 
 from bobtemplates import hooks
+from mrbob.bobexceptions import ValidationError
 from scripttest import TestFileEnvironment
 
 
@@ -182,3 +183,27 @@ class HooksTest(unittest.TestCase):
     def test_to_boolean(self):
         # Initial simple test to show coverage in hooks.py.
         self.assertEqual(hooks.to_boolean(None, None, 'y'), True)
+
+    def test_post_dexterity_type_name(self):
+        """Test validation of extered dx type names
+        """
+        def hookit(value):
+            return hooks.post_dexterity_type_name(None, None, value)
+
+        with self.assertRaises(ValidationError):
+            hookit('import')
+        with self.assertRaises(ValidationError):
+            hookit(u'süpertype')
+        with self.assertRaises(ValidationError):
+            hookit(u'Staff Member')
+        with self.assertRaises(ValidationError):
+            hookit(u'2ndComing')
+        with self.assertRaises(ValidationError):
+            hookit(u'Second Coming')
+        with self.assertRaises(ValidationError):
+            hookit(u'Staff Member')
+        with self.assertRaises(ValidationError):
+            hookit(u'*sterisk')
+        self.assertEqual(hookit(u'Supertype'), u'Supertype')
+        self.assertEqual(hookit(u'second_coming'), u'second_coming')
+        self.assertEqual(hookit(u'the_2nd_coming'), u'the_2nd_coming')

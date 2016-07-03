@@ -185,7 +185,7 @@ class HooksTest(unittest.TestCase):
         self.assertEqual(hooks.to_boolean(None, None, 'y'), True)
 
     def test_post_dexterity_type_name(self):
-        """Test validation of extered dx type names
+        """Test validation of entered dexterity type names
         """
         def hookit(value):
             return hooks.post_dexterity_type_name(None, None, value)

@@ -7,7 +7,9 @@ from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.hooks import validate_choices
 
+import keyword
 import os
+import re
 import shutil
 import string
 import subprocess
@@ -141,6 +143,14 @@ def post_type(configurator, question, answer):
 def pre_dexterity_type_name(configurator, question):
     if configurator.variables['package.type'] != 'Dexterity':
         raise SkipQuestion
+
+
+def post_dexterity_type_name(configurator, question, answer):
+    if keyword.iskeyword(answer):
+        raise ValidationError('%s is a reserved keyword' % answer)
+    if not re.match('[_A-Za-z][_a-zA-Z0-9_]*$', answer):
+        raise ValidationError('%s is not a valid identifier' % answer)
+    return answer
 
 
 def prepare_render(configurator):

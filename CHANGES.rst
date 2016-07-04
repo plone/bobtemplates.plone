@@ -9,6 +9,8 @@ Changelog
 
 - Default to Plone 5.0.4.
   [jensens]
+- Validate type name input (fixes #81).
+  [pbauer]
 
 - Git ignore ``.installed.cfg`` and ``mr.developer.cfg`` by default.
   [jensens]

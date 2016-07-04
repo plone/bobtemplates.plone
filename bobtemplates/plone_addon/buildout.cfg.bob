@@ -21,6 +21,10 @@ eggs =
     Pillow
     {{{ package.dottedname }}} [test]
 
+# To be able to overload core locales, our package zcml needs to be loaded first.
+zcml =
+    {{{ package.dottedname }}}
+
 
 [code-analysis]
 recipe = plone.recipe.codeanalysis[recommended]

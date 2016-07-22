@@ -10,6 +10,9 @@ Changelog
 - Upgrade to 5.0.5 and test against that.
   [pbauer]
 
+- Add ``i18n:attributes`` for action nodes in FTI profile.
+  [thet]
+
 - Pin versions of coverage/createcoverage
   [staeff]
 

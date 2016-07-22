@@ -12,40 +12,41 @@
   <property
       i18n:translate=""
       name="description"></property>
+
+  <property name="allow_discussion">False</property>
   <property name="factory">{{{ package.dexterity_type_name }}}</property>
-  <property name="add_view_expr">string:${folder_url}/++add++{{{ package.dexterity_type_name }}}</property>
   <property name="icon_expr"></property>
   <property name="link_target"></property>
-  <property name="allow_discussion">False</property>
 
   <!-- Hierarchy control -->
-  <property name="global_allow">True</property>
-  <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
     <!-- <element value="" />-->
   </property>
+  <property name="filter_content_types">True</property>
+  <property name="global_allow">True</property>
 
   <!-- Schema, class and security -->
-  <property name="klass">plone.dexterity.content.Item</property>
   <property name="add_permission">cmf.AddPortalContent</property>
-  <property name="schema">{{{ package.dottedname }}}.interfaces.I{{{ package.dexterity_type_name }}}</property>
-  <property name="model_source"></property>
+  <property name="klass">plone.dexterity.content.Item</property>
   <property name="model_file"></property>
+  <property name="model_source"></property>
+  <property name="schema">{{{ package.dottedname }}}.interfaces.I{{{ package.dexterity_type_name }}}</property>
 
   <!-- Enabled behaviors -->
   <property name="behaviors">
     <element value="plone.app.content.interfaces.INameFromTitle" />
   </property>
 
-  <!-- Views -->
+  <!-- View information -->
+  <property name="add_view_expr">string:${folder_url}/++add++{{{ package.dexterity_type_name }}}</property>
   <property name="immediate_view">view</property>
   <property name="default_view">view</property>
+  <property name="default_view_fallback">False</property>
   <property name="view_methods">
     <element value="view" />
   </property>
-  <property name="default_view_fallback">False</property>
 
-  <!-- Aliases -->
+  <!-- Method aliases -->
   <alias
       from="(Default)"
       to="(dynamic view)"
@@ -69,8 +70,7 @@
       category="object"
       condition_expr=""
       description=""
-      icon_expr=""
-      link_target=""
+      i18n:attributes="title description"
       title="View"
       url_expr="string:${object_url}"
       visible="True">
@@ -81,8 +81,7 @@
       category="object"
       condition_expr=""
       description=""
-      icon_expr=""
-      link_target=""
+      i18n:attributes="title description"
       title="Edit"
       url_expr="string:${object_url}/edit"
       visible="True">

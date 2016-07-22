@@ -4,11 +4,18 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
+- Upgrade some pinns.
+  [pbauer]
+
+- Upgrade to 5.0.5 and test against that.
+  [pbauer]
+
 - Pin versions of coverage/createcoverage
   [staeff]
 
 - Default to Plone 5.0.4.
   [jensens]
+
 - Validate type name input (fixes #81).
   [pbauer]
 

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.4 (unreleased)
+1.0.4 (2016-07-23)
 ------------------
 
 - Upgrade some pinns.

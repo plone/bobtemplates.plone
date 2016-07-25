@@ -12,8 +12,9 @@
       />
 
   <!-- Publish static files -->
-  <browser:resourceDirectory
+  <plone:static
       name="{{{ package.dottedname }}}"
+      type="plone"
       directory="static"
       />
 

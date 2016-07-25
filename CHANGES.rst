@@ -4,7 +4,8 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use plone:static instead of browser:resourceDirectory to allow ttw-overrrides.
+  [pbauer]
 
 
 1.0.4 (2016-07-23)

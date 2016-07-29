@@ -1,5 +1,7 @@
 [buildout]
-extends = http://dist.plone.org/release/{{{ plone.version }}}/versions.cfg
+extends =
+    http://dist.plone.org/release/{{{ plone.version }}}/versions.cfg
+    https://raw.githubusercontent.com/plone/plone.app.robotframework/master/versions.cfg
 show-picked-versions = true
 extensions = mr.developer
 parts =
@@ -74,10 +76,6 @@ zc.buildout = 2.5.2
 zc.recipe.egg = 2.0.3
 flake8 = 2.5.5
 i18ndude = 4.0.1
-robotframework = 3.0
 robotframework-ride = 1.5.2.1
-robotframework-selenium2library = 1.7.4
-robotsuite = 1.7.0
-selenium = 2.53.1
 plone.testing = 5.0.0
 coverage =

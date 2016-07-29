@@ -4,6 +4,9 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
+- Keep versions of Robot Framework and friends centralized and updated.
+  [hvelarde]
+
 - Update ``.coveragerc`` with better defaults.
   [hvelarde]
 

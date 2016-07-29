@@ -3,11 +3,16 @@ python: 2.7
 sudo: false
 cache:
   directories:
-  - eggs
-  - test.plone_addon/eggs
+  - buildout-cache
 matrix:
   fast_finish: true
 before_install:
+  - mkdir -p $HOME/buildout-cache/{eggs,downloads,extends}
+  - mkdir $HOME/.buildout
+  - echo "[buildout]" > $HOME/.buildout/default.cfg
+  - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
+  - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
+  - echo "eggs-directory = $HOME/buildout-cache/extends" >> $HOME/.buildout/default.cfg
   - virtualenv .
   - bin/pip install --upgrade pip setuptools zc.buildout
 install:

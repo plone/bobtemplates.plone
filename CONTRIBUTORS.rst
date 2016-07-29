@@ -13,3 +13,4 @@ This package is based on `bobtemplates.niteoweb <https://github.com/niteoweb/bob
 - Timo Stollenwerk [timo]
 - Johannes Raggam [thet]
 - Sven Strack [svx]
+- Héctor Velarde [hvelarde]

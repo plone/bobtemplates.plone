@@ -4,12 +4,11 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
-- Update ``bootstrap-buildout.py`` to latest version.
+- Get rid of ``travis.cfg`` configuration as its use is no longer considered best practice.
   [hvelarde]
 
-- Fix: Travis cache got no grip.
-  Simplified caching setup in travis and explicit pass directories to buildout.
-  [jensens]
+- Update ``bootstrap-buildout.py`` to latest version.
+  [hvelarde]
 
 - Fix imports to follow conventions.
   [hvelarde]

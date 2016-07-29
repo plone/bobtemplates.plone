@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-from plone.app.testing import TEST_USER_ID
-from zope.component import queryUtility
-from zope.component import createObject
-from plone.app.testing import setRoles
-from plone.dexterity.interfaces import IDexterityFTI
 from plone import api
-
-from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.dexterity.interfaces import IDexterityFTI
 from {{{ package.dottedname }}}.interfaces import I{{{ package.dexterity_type_name }}}
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+from zope.component import createObject
+from zope.component import queryUtility
 
-import unittest2 as unittest
+import unittest
 
 
 class {{{ package.dexterity_type_name }}}IntegrationTest(unittest.TestCase):

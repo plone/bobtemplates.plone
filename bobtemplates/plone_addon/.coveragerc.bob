@@ -1,6 +1,3 @@
 [report]
 include =
-    src/{{{ package.namespace }}}/*
-omit =
-    */test*
-    */upgrades/*
+    src/{{{ package.namespace }}}/{{{ package.name }}}/*

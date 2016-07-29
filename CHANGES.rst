@@ -4,6 +4,9 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
+- Update ``.coveragerc`` with better defaults.
+  [hvelarde]
+
 - Get rid of ``travis.cfg`` configuration as its use is no longer considered best practice.
   [hvelarde]
 

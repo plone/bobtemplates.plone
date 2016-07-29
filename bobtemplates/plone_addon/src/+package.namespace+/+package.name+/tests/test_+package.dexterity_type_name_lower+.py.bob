@@ -37,7 +37,9 @@ class {{{ package.dexterity_type_name }}}IntegrationTest(unittest.TestCase):
         self.assertTrue(I{{{ package.dexterity_type_name }}}.providedBy(obj))
 
     def test_adding(self):
-        self.portal.invokeFactory('{{{ package.dexterity_type_name }}}', '{{{ package.dexterity_type_name }}}')
-        self.assertTrue(
-            I{{{ package.dexterity_type_name }}}.providedBy(self.portal['{{{ package.dexterity_type_name }}}'])
+        obj = api.content.create(
+            container=self.portal,
+            type='{{{ package.dexterity_type_name }}}',
+            id='{{{ package.dexterity_type_name }}}',
         )
+        self.assertTrue(I{{{ package.dexterity_type_name }}}.providedBy(obj))

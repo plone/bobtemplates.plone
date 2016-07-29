@@ -6,6 +6,7 @@ parts =
     instance
     test
     code-analysis
+    createcoverage
     releaser
     i18ndude
     omelette
@@ -28,6 +29,12 @@ recipe = plone.recipe.codeanalysis[recommended]
 directory = ${buildout:directory}/src/{{{ package.namespace }}}
 flake8-exclude = bootstrap.py,bootstrap-buildout.py,docs,*.egg.,omelette
 flake8-max-complexity = 15
+return-status-codes = True
+
+
+[createcoverage]
+recipe = zc.recipe.egg
+eggs = createcoverage
 
 
 [omelette]
@@ -73,3 +80,4 @@ robotframework-selenium2library = 1.7.4
 robotsuite = 1.7.0
 selenium = 2.53.1
 plone.testing = 5.0.0
+coverage =

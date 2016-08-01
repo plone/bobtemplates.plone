@@ -4,6 +4,9 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
+- Use selenium v2.53.6.
+  [hvelarde]
+
 - Use plone:static instead of browser:resourceDirectory to allow ttw-overrrides.
   [pbauer]
 

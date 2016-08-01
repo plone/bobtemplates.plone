@@ -71,5 +71,5 @@ robotframework = 3.0
 robotframework-ride = 1.5.2.1
 robotframework-selenium2library = 1.7.4
 robotsuite = 1.7.0
-selenium = 2.53.1
+selenium = 2.53.6
 plone.testing = 5.0.0

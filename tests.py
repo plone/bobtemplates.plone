@@ -100,7 +100,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/tests/robot/test_example.robot',  # noqa
                 self.project + '/src/collective/foo/tests/test_robot.py',
                 self.project + '/src/collective/foo/tests/test_setup.py',
-                self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',
                 self.project + '/.gitattributes',
@@ -169,7 +168,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/tests/robot/test_example.robot',  # noqa
                 self.project + '/src/collective/foo/bar/tests/test_robot.py',
                 self.project + '/src/collective/foo/bar/tests/test_setup.py',
-                self.project + '/travis.cfg',
                 self.project + '/.coveragerc',
                 self.project + '/.editorconfig',
                 self.project + '/.gitattributes',

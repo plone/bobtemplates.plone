@@ -4,6 +4,15 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
+- Keep versions of Robot Framework and friends centralized and updated.
+  [hvelarde]
+
+- Update ``.coveragerc`` with better defaults.
+  [hvelarde]
+
+- Get rid of ``travis.cfg`` configuration as its use is no longer considered best practice.
+  [hvelarde]
+
 - Use plone:static instead of browser:resourceDirectory to allow ttw-overrrides.
   [pbauer]
 

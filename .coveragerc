@@ -1,7 +1,3 @@
 [report]
-omit =
-    */bin/test
-    */eggs/*
-    */lib/python*
-    */parts/*
-    */usr/*
+include =
+  bobtemplates/*

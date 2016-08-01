@@ -1,7 +1,6 @@
 [report]
+include =
+    src/{{{ package.namespace }}}/*
 omit =
-    */bin/test
-    */eggs/*
-    */lib/python*
-    */parts/*
-    */usr/*
+    */test*
+    */upgrades/*

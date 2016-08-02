@@ -4,6 +4,18 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
+- Fix imports to follow conventions.
+  [hvelarde]
+
+- Avoid usage of double quotes on strings.
+  [hvelarde]
+
+- Avoid usage of invokeFactory.
+  [hvelarde]
+
+- Remove dependency on unittest2 as package is not intended to be compatible with Python 2.6.
+  [hvelarde]
+
 - Use selenium v2.53.6.
   [hvelarde]
 

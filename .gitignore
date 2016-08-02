@@ -1,4 +1,5 @@
 .coverage
+.installed.cfg
 *.egg-info
 *.mo
 *.pyc

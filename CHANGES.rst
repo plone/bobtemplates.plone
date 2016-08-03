@@ -4,6 +4,9 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
+- Update ``bootstrap-buildout.py`` to latest version.
+  [hvelarde]
+
 - Fix imports to follow conventions.
   [hvelarde]
 

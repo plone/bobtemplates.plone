@@ -7,6 +7,10 @@ Changelog
 - Update ``bootstrap-buildout.py`` to latest version.
   [hvelarde]
 
+- Fix: Travis cache got no grip.
+  Simplified caching setup in travis and explicit pass directories to buildout.
+  [jensens]
+
 - Fix imports to follow conventions.
   [hvelarde]
 

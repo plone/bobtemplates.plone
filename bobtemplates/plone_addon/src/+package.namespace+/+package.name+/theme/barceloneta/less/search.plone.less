@@ -1,0 +1,48 @@
+.searchPage{
+  position: relative;
+
+  .actionMenu.activated{
+    dd{
+      display: block;
+    }
+  }
+  .actionMenu{
+    float: right;
+
+    dt{
+      top: 0;
+      right: 0;
+      position: absolute;
+    }
+
+    dd{
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 35px;
+      width: 300px;
+      background-color:#fcfcfd;
+      border: 1px solid #e5e5e5;
+      padding: 15px;
+      z-index:10;
+    }
+  }
+}
+#search-results-bar{
+  #results-count{
+    float: right;
+    padding-top: 15px;
+    padding-right: 15px;
+  }
+}
+#searchform{
+  .input-group{
+    max-width: 600px;
+    input.searchPage.btn{
+      width: 120px;
+    }
+  }
+}
+#search-filter input {
+  margin-right: 0.5rem;
+}

@@ -1,0 +1,98 @@
+//*// DISCUSSION //*//
+
+#commenting {
+  .clearfix();
+}
+#commenting legend,
+.discussion legend {
+  padding: 0.5em 0.5em 0.5em 0;
+  font-weight: normal;
+}
+
+.discussion {
+  .clearfix();
+  .comment {
+    margin-bottom: 12px;
+    padding-left: 40px;
+  }
+
+  .commentImage {
+    .pull-left();
+    border-radius: 50px;
+    overflow: hidden;
+    position: absolute;
+    margin-left: -40px;
+    margin-top: 3px;
+  }
+
+  .documentByLine {
+    font-weight: normal;
+  }
+
+  .commentDate {
+    .pull-right();
+    display: inline;
+    font-size: @plone-font-size-small;
+    color: #76797C;
+  }
+
+  .commentBody {
+    margin: 1em 0;
+    padding: 1em;
+    overflow: auto;
+    border: 1px solid #ccc;
+    p {
+      float: left;
+      margin-bottom: 0;
+    }
+
+  }
+
+  .commentactionsform {
+    display: inline;
+    margin-left: 6px;
+  }
+
+  .commentActions {
+    float: right;
+    text-align: right;
+  }
+
+  .reply {
+    border-bottom: @plone-portlet-border;
+  }
+}
+
+//*// Reply Form
+.cancelreplytocomment {
+  /* Hide the cancel button in the comment form, show it only in the reply form
+   * in order to close it.
+   */
+  display: none;
+}
+
+.replyTreeLevel0 { margin-left: 0; }
+.replyTreeLevel1 { margin-left: @plone-padding-base-horizontal*2;}
+.replyTreeLevel2 { margin-left: @plone-padding-base-horizontal*4;}
+.replyTreeLevel3 { margin-left: @plone-padding-base-horizontal*6;}
+.replyTreeLevel4 { margin-left: @plone-padding-base-horizontal*8;}
+.replyTreeLevel5 { margin-left: @plone-padding-base-horizontal*10;}
+.replyTreeLevel6 { margin-left: @plone-padding-base-horizontal*12;}
+.replyTreeLevel7 { margin-left: @plone-padding-base-horizontal*14;}
+.replyTreeLevel8 { margin-left: @plone-padding-base-horizontal*16;}
+.replyTreeLevel9 { margin-left: @plone-padding-base-horizontal*18;}
+.replyTreeLevel10{ margin-left: @plone-padding-base-horizontal*20;}
+
+//*// Button to login
+#viewlet-below-content .loginbutton {margin: @plone-padding-base-horizontal 0;}
+//first button login out
+#viewlet-below-content .reply .loginbutton {display: none;}
+#viewlet-below-content .reply ~ .reply .loginbutton {display: inline-block;}
+
+//*// Moderation View
+#dobulkaction {
+  margin: 0.3em 0;
+}
+
+//*// Discussion Control Panel
+.template-discussion-controlpanel .unclickable {  .opacity(0.6);}

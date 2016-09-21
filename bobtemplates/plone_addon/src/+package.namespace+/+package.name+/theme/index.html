@@ -1,172 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Starter Template for Bootstrap</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-  <style type="text/css">
-    html body {
-      /* Space for the bootstrap top navigation bar */
-      padding-top: 70px;
-    }
-    /* Top Navigation css adjustments */
-    .navbar .selected a {
-      color: #fff;
-      background: #080808;
-    }
-    /* Edit Bar css adjustments */
-    .nav-tabs .selected {
-      border-width: 1px;
-      border-style: solid;
-      border-color: #DDD #DDD transparent;
-      -moz-border-top-colors: none;
-      -moz-border-right-colors: none;
-      -moz-border-bottom-colors: none;
-      -moz-border-left-colors: none;
-      border-bottom: 1px solid #fff;
-    }
-    .nav-tabs .selected a {
-      margin-right: 0;
-    }
-    .pull-left, .pull-right {
-      width: 50%;
-    }
-    .pull-right > li {
-      float: right;
-      display: inline-block;
-    }
-    #contentMenuAddNew li a {
-      width: 100%;
-    }
-  </style>
-
-</head>
-
-<body>
-
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Plone</a>
+<!doctype html>
+<html>
+  <head>
+    <title>Plone Theme</title>
+    <link rel="shortcut icon" type="image/x-icon"
+          href="barceloneta-favicon.ico" />
+    <link rel="apple-touch-icon"
+          href="barceloneta-apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="barceloneta-apple-touch-icon-144x144-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="barceloneta-apple-touch-icon-114x114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="barceloneta-apple-touch-icon-72x72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57"
+          href="barceloneta-apple-touch-icon-57x57-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed"
+          href="barceloneta-apple-touch-icon-precomposed.png" />
+  </head>
+  <body>
+    <section id="portal-toolbar">
+    </section>
+    <div class="outer-wrapper">
+      <header id="content-header" role="banner">
+        <div class="container">
+          <header id="portal-top">
+          </header>
+          <div id="anonymous-actions">
+          </div>
+        </div>
+      </header>
+      <div id="mainnavigation-wrapper">
+        <div id="mainnavigation">
+        </div>
       </div>
-      <div class="collapse navbar-collapse">
-        <ul id="navbar" class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-              <span id="user-name">Username</span>
-              <span class="caret"></span>
-            </a>
-            <ul id="action-menu-content" class="dropdown-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li class="dropdown-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </nav>
-
-  <div class="container">
-
-    <ol id="breadcrumbs" class="breadcrumb">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Library</a></li>
-      <li class="active">Data</li>
-    </ol>
-
-    <div class="row">
-      <div class="col-md-12 hidden-xs">
-        <ul id="contentViews" class="nav nav-tabs pull-left">
-          <li role="presentation" class="active"><a href="#">Contents</a></li>
-          <li role="presentation"><a href="#">Edit</a></li>
-          <li role="presentation"><a href="#">Sharing</a></li>
-        </ul>
-        <ul class="nav nav-tabs pull-right">
-          <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-              <span id="currentWorkflowState">State</span>
-              <span class="caret"></span>
-            </a>
-            <ul id="contentMenuWorkflowState" class="dropdown-menu dropdown-menu-right" role="menu">
-              <li>
-                <a href="#">One</a>
-              </li>
-              <li>
-                <a href="#">Two</a>
-              </li>
-            </ul>
-          </li>
-          <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-              Add new <span class="caret"></span>
-            </a>
-            <ul id="contentMenuAddNew" class="dropdown-menu dropdown-menu-right" role="menu">
-              <li>
-                <a href="#">One</a>
-              </li>
-              <li>
-                <a href="#">Two</a>
-              </li>
-            </ul>
-          </li>
-          <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-              Display <span class="caret"></span>
-            </a>
-            <ul id="contentMenuDisplay" class="dropdown-menu dropdown-menu-right" role="menu">
-              <li>
-                <a href="#">One</a>
-              </li>
-              <li>
-                <a href="#">Two</a>
-              </li>
-            </ul>
-          </li>
-
-        </ul>
+      <div id="above-content-wrapper">
+          <div id="above-content">
+          </div>
       </div>
+      <div class="container">
 
-    </div>
+        <!-- DELETE ME: -->
+        <h1 class="custom-theme-marker">Custom Plone theme based on Baceloneta</h1>
 
-    <div class="row">
-      <div id="content" class="col-md-12">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
-    </div>
-
-    <footer>
-      <p>&copy; Company 2016</p>
+        <div class="row">
+          <aside id="global_statusmessage"></aside>
+        </div>
+        <main id="main-container" class="row row-offcanvas row-offcanvas-right" role="main">
+          <div id="column1-container">
+          </div>
+          <div id="content-container">
+          </div>
+          <div id="column2-container">
+          </div>
+        </main><!--/row-->
+      </div><!--/container-->
+    </div> <!--/outer-wrapper -->
+    <footer id="portal-footer-wrapper" role="contentinfo">
+      <div class="container" id="portal-footer"></div>
     </footer>
-
-  </div><!-- /.container -->
-
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-</body>
+  </body>
 </html>

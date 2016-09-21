@@ -1,0 +1,60 @@
+//*// BREADCRUMBS //*//
+
+.plone-breadcrumb {
+  clear: left;
+  background-color: @plone-breadcrumb-bg;
+  margin-bottom: @plone-line-height-computed;
+  margin-top: -@plone-line-height-computed;
+  > * > span { //you are here
+    display: inline-block;
+    color: @plone-gray-light;
+    padding: @plone-breadcrumb-padding-vertical 0;
+    font-weight: @plone-font-weight-regular;
+    @media (max-width: @plone-screen-sm-min) {
+      display: none;
+    }
+  }
+  ol {
+    display: inline-block;
+    padding: @plone-breadcrumb-padding-vertical 0;
+    list-style: none;
+    margin: 0;
+    > li {
+      font-weight: @plone-font-weight-regular;
+      display: inline-block;
+      line-height: 0; // match ol & span height
+      position: relative;
+      padding: 0 @plone-breadcrumb-padding-horizontal*2 0 0;
+      + li:after {
+        content: "";
+        position: absolute;
+        padding: 0 5px;
+        color: @plone-breadcrumb-bg;
+        border-left: 5px solid;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        left: -21px;
+        top: -15px;
+        padding: 0 !important;
+      }
+      + li:before {
+        content: "";
+        position: absolute;
+        padding: 0 5px;
+        color: @plone-breadcrumb-color;
+        border-left: 5px solid;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        left: -20px;
+        top: -15px;
+        padding: 0 !important;
+      }
+    }
+    > #breadcrumbs-current {
+      color: @plone-breadcrumb-active-color;
+    }
+  }
+  /* uncomment to hide breadcrumbs on home
+  body.section-front-page & {display: none;} //not breadcrumbs on homepage
+  */
+}

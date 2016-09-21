@@ -10,6 +10,9 @@ parts =
     i18ndude
     omelette
     robot
+{{% if package.type == 'Theme' %}}
+    npm-install
+{{% endif %}}
 develop = .
 
 
@@ -57,6 +60,22 @@ eggs = zest.releaser
 recipe = zc.recipe.egg
 eggs = i18ndude
 
+
+{{% if package.type == 'Theme' %}}
+[npm-install]
+recipe = collective.recipe.template
+input = inline:
+    #!/bin/sh
+    # runs npm install on package root and in theme folder:
+    cd ${buildout:directory}
+    echo "run 'npm install' in package root..."
+    npm install .
+    cd ${buildout:directory}/src/{{{ package.namespace }}}/{{{ package.name}}}/theme
+    echo "run 'npm install' in '${buildout:directory}/src/{{{ package.namespace }}}/{{{ package.name}}}/theme' ..."
+    npm install .
+output = ${buildout:directory}/bin/npm-install
+mode = 775
+{{% endif %}}
 
 [versions]
 # Don't use a released version of {{{ package.dottedname }}}

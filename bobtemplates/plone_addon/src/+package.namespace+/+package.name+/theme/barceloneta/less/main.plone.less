@@ -1,0 +1,48 @@
+//*// MAIN //*//
+
+
+//*// Principal box
+.principal {
+	background: darken(@plone-breadcrumb-bg,5%);
+	background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 14%, transparent 14%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 64%, transparent 64%, transparent);
+	background-size: 20px 20px;
+	margin-top: -20px;
+	margin-bottom: 20px;
+	padding: 50px 0;
+	& .container-fluid {margin: 0 auto; width: 960px;}
+}
+
+.gigantic {
+	h1 { font-size: 500%;}
+	p { font-size: 150%;}
+}
+
+//*// Adjustments
+#content {margin-bottom: @plone-padding-base-horizontal * 4;}
+
+//*// Containers
+.container, .container-fluid {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+@media (min-width: @plone-screen-sm-min) { .container {width: @plone-container-sm;}}
+@media (min-width: @plone-screen-md-min) { .container {width: @plone-container-md;}}
+@media (min-width: @plone-screen-lg-min) { .container {width: @plone-container-lg;}}
+
+@media (min-width: @plone-screen-sm-min) { .plone-toolbar-top-default .container {width: @plone-container-sm;}}
+@media(min-width: (@plone-screen-sm-min + @plone-left-toolbar)) { .plone-toolbar-left-default .container {width: (@plone-container-sm);}}
+@media(min-width: (@plone-screen-sm-min + @plone-left-toolbar-expanded)) {.plone-toolbar-left-expanded .container {width: (@plone-container-sm);}}
+
+@media (min-width: @plone-screen-md-min) {.plone-toolbar-top-default .container {width: @plone-container-md;}}
+@media(min-width: (@plone-screen-md-min + @plone-left-toolbar)) {.plone-toolbar-left-default .container {width: (@plone-container-md);}}
+@media(min-width: (@plone-screen-md-min + @plone-left-toolbar-expanded)) {.plone-toolbar-left-expanded .container {width: (@plone-container-md);}}
+
+@media (min-width: @plone-screen-lg-min) {	.plone-toolbar-top-default .container {width: @plone-container-lg;}	}
+@media(min-width: (@plone-screen-lg-min + @plone-left-toolbar)) { .plone-toolbar-left-default .container {width: (@plone-container-lg);}}
+@media(min-width: (@plone-screen-lg-min + @plone-left-toolbar-expanded)) {.plone-toolbar-left-expanded .container {width: (@plone-container-lg);}}
+
+ //#edit-zone {display: none}
+

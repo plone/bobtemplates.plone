@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <theme>
-  <name>{{{ package.dottedname }}}</name>
-  <enabled>false</enabled>
+  <name>barceloneta</name>
+  <enabled>true</enabled>
 </theme>

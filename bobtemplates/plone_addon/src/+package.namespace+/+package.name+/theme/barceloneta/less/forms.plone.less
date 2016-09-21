@@ -1,0 +1,300 @@
+//*// FORMS //*//
+
+// Normalize non-controls
+// Restyle and baseline non-control form elements.
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  // Chrome and Firefox set a `min-width: -webkit-min-content;` on fieldsets,
+  // so we reset that to ensure it behaves more like a standard block element.
+  // See https://github.com/twbs/bootstrap/issues/12359.
+  min-width: 0;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: @plone-line-height-computed;
+  font-size: (@plone-font-size-base * 1.5);
+  line-height: inherit;
+  color: @plone-legend-color;
+  border: 0;
+  border-bottom: 1px solid @plone-legend-border-color;
+  font-weight: @plone-font-weight-light;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%; // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
+  margin-bottom: @plone-padding-base-vertical;
+  font-weight: bold;
+}
+
+
+// Normalize form controls
+//
+// While most of our form styles require extra classes, some basic normalization
+// is required to ensure optimum display with or without those classes to better
+// address browser inconsistencies.
+// Override content-box in Normalize (* isn't specific enough)
+input[type="search"] {
+  .box-sizing(border-box);
+}
+
+// Position radios and checkboxes better
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 4px 0 0;
+  margin-top: 1px \9; // IE8-9
+  line-height: normal;
+}
+
+// Set the height of file controls to match text inputs
+input[type="file"] {
+  display: block;
+}
+
+// Make range inputs behave like textual form controls
+input[type="range"] {
+  display: block;
+  width: 100%;
+}
+
+// Make multiple select elements height not fixed
+select[multiple],
+select[size] {
+  height: auto;
+  min-width: 10em;
+}
+select[size="1"] {
+  height: @plone-input-height-base;
+}
+
+// Focus for file, radio, and checkbox
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  .tab-focus();
+}
+
+// Adjust output element
+output {
+  display: block;
+  padding-top: (@plone-padding-base-vertical + 1);
+  font-size: @plone-font-size-base;
+  line-height: @plone-line-height-base;
+  color: @plone-input-color;
+}
+
+/*.form-control,*/ input[type="text"], input[type="password"], textarea, select {
+  display: block;
+  width: 100%;
+  height: @plone-input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+  padding: @plone-padding-base-vertical @plone-padding-base-horizontal;
+  font-size: @plone-font-size-base;
+  line-height: @plone-line-height-base;
+  color: @plone-input-color;
+  background-color: @plone-input-bg;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid @plone-input-border;
+  border-radius: @plone-input-border-radius;
+  .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+  .transition(~"border-color ease-in-out .15s, box-shadow ease-in-out .15s");
+
+  // Customize the `:focus` state to imitate native WebKit styles.
+  .form-control-focus();
+
+  // Placeholder
+  .placeholder();
+
+  // Disabled and read-only inputs
+  //
+  // HTML5 says that controls under a fieldset > legend:first-child won't be
+  // disabled if the fieldset is disabled. Due to implementation difficulty, we
+  // don't honor that edge case; we style them as disabled anyway.
+  &[disabled],
+  &[readonly],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    background-color: @plone-input-bg-disabled;
+    opacity: 1; // iOS fix for unreadable disabled content
+  }
+}
+// Reset height for `textarea`s
+textarea {
+  min-height: 9em;
+  min-width: 10em;
+  resize: vertical; //as default, only vertical resize
+
+  &[name='form.widgets.IRichText.text'] {
+    min-height: 12em;
+    font-family: @plone-font-family-monospace;  // when typing without richtext editor
+  }
+}
+
+// Search inputs in iOS
+//
+// This overrides the extra rounded corners on search inputs in iOS so that our
+// `.form-control` class can properly style them. Note that this cannot simply
+// be added to `.form-control` as it's not specific enough. For details, see
+// https://github.com/twbs/bootstrap/issues/11586.
+
+input[type="search"] {
+  -webkit-appearance: none;
+}
+
+
+// Special styles for iOS temporal inputs
+//
+// In Mobile Safari, setting `display: block` on temporal inputs causes the
+// text within the input to become vertically misaligned.
+// As a workaround, we set a pixel line-height that matches the
+// given height of the input. Since this fucks up everything else, we have to
+// appropriately reset it for Internet Explorer and the size variations.
+
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  line-height: @plone-input-height-base;
+  // IE8+ misaligns the text within date inputs, so we reset
+  line-height: @plone-line-height-base ~"\0";
+}
+
+// Apply same disabled cursor tweak as for inputs
+input[type="radio"],
+input[type="checkbox"] {
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+  }
+}
+
+//*// Form field
+.field {
+  margin-bottom: 15px;
+  // each option in a multi-checkbox field should be on a separate line
+  span.option {
+    display: block;
+  }
+}
+
+.field.error {
+  .form-control-validation(@plone-state-error-text; @plone-state-error-text; @plone-state-error-bg);
+  background: lighten(@plone-state-error-bg,20%);
+  .box-shadow(0 0 0 5px lighten(@plone-state-error-bg,20%));
+  > label, div.error {
+    color: @plone-toolbar-private-color;
+  }
+  div.error {
+    padding-left: 30px;
+    font-weight: @plone-font-weight-regular;
+    &:before {
+      background-color: @plone-alert-error-bullet; content:"×";
+      font-size:@plone-font-size-base; 
+      font-weight: @plone-font-weight-regular; 
+      margin-left: -30px;
+      margin-right: 5px;
+      display: inline-block; 
+      border-radius: 20px;
+      text-align:center;
+      color:rgba(255, 255, 255, 0.9); 
+      width:16px; 
+      height:16px;
+      line-height: 16px; //IE fix
+      text-shadow: 0 -1px rgba(0,0,0,.5);
+      top: -1px;
+      position: relative;
+    }
+  }
+  input,textarea,select {
+    border-color: @plone-toolbar-private-color;
+    &:focus {
+      .box-shadow(0 0 8px lighten(@plone-toolbar-private-color,40%) );
+    }
+  }
+}
+
+.formHelp {
+  //display: block; if want all helps to be block. As default span.formHelp inline and div.formHelp block
+  margin-top: 0;
+  margin-bottom: 0;
+  color: lighten(@plone-text-color, 10%);
+  font-weight: @plone-font-weight-regular;
+  font-style: italic;
+}
+
+.formControls {
+  border-top: 1px solid @plone-gray-lighter;
+  background: @plone-portlet-footer-bg;
+  padding: @plone-padding-base-horizontal;
+  box-shadow: inset 0 10px 10px -10px rgba(0,0,0,.05);
+}
+// don't show formControls in modal body,
+// because the actual controls get moved to the footer
+.plone-modal-body .formControls {
+  border: none;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+}
+
+//*// Required
+label .required {
+  &:after{
+    color: @plone-toolbar-private-color;
+    content:"•";
+    font-size: 200%;
+    line-height: 0;
+    position: relative;
+    top: 7px;
+    margin-left: -4px;
+  }
+}
+
+//*// Input + Submit groups (manual because we still have no standard for this)
+.searchField.portlet-search-gadget, 
+#sharing-user-group-search,
+#select-rules  {width: 100%; display: inline-block;}
+
+.searchField.portlet-search-gadget + .searchButton,
+#sharing-user-group-search + #sharing-search-button,
+#select-rules + input  {position: relative; float:right;margin-top: -@plone-input-height-base;}
+
+
+
+//*// Highlighted search
+#search-results li {margin: @plone-padding-base-horizontal 0;
+  .croppedDescription {margin-bottom: 0;}
+}
+.highlightedSearchTerm {
+  background: #fea;
+  box-shadow: 0 0 1px 1px #fea;
+}
+.search-date-options > div, .search-type-options > div {
+display: inline-block;
+margin-right: 12px;
+}
+.optionsToggle label {font-weight: 300; color:@plone-gray;}
+
+.ordered-selection-field{
+  td {
+    vertical-align: middle;
+    text-align: center;
+  }
+  td button{
+    float: left;
+    margin-left: 2rem;
+  }
+}
+
+.folder-factories{
+  list-style:none;
+}
+
+//*// Correct input + label on plone structure widgets
+.widget input + label {
+  display: inline;
+}

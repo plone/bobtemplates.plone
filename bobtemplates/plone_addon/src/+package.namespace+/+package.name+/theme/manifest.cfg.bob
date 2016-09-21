@@ -1,6 +1,21 @@
 [theme]
-title = {{{ package.dottedname }}}
-description = A diazo theme
+title = Plone Theme: {{{ package.name|capitalize }}}
+description = A Diazo based Plone theme
+doctype = <!DOCTYPE html>
+rules = /++theme++{{{ package.name }}}/rules.xml
+prefix = /++theme++{{{ package.name }}}
+enabled-bundles =
+disabled-bundles =
+
+development-css = /++theme++{{{ package.name }}}/less/theme.less
+production-css = /++theme++{{{ package.name }}}/less/theme-compiled.css
+tinymce-content-css = /++theme++{{{ package.name }}}/less/theme-compiled.css
+
+# development-js = /++theme++{{{ package.name }}}/js/theme.js
+# production-js = /++theme++{{{ package.name }}}/js/theme-compiled.js
 
 [theme:overrides]
 directory = template-overrides
+
+[theme:parameters]
+# portal_url = python: portal.absolute_url()

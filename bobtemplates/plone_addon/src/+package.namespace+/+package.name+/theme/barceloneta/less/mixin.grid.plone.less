@@ -1,0 +1,132 @@
+//*// BOOTSTRAP GRID MIXIN //*//
+
+//*// This is exactly BOOTSTRAP GRID, replace it for your system
+
+
+
+
+
+
+
+// Grid system
+//
+// Generate semantic grid columns with these mixins.
+
+// Centered container element
+.container-fixed(@gutter: @plone-grid-gutter-width) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+  &:extend(.clearfix all);
+}
+
+// Creates a wrapper for a series of columns
+.make-row(@gutter: @plone-grid-gutter-width) {
+  margin-left:  (@gutter / -2);
+  margin-right: (@gutter / -2);
+  &:extend(.clearfix all);
+}
+
+// Generate the extra small columns
+.make-xs-column(@columns; @gutter: @plone-grid-gutter-width) {
+  position: relative;
+  float: left;
+  width: percentage((@columns / @plone-grid-columns));
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+}
+.make-xs-column-offset(@columns) {
+  margin-left: percentage((@columns / @plone-grid-columns));
+}
+.make-xs-column-push(@columns) {
+  left: percentage((@columns / @plone-grid-columns));
+}
+.make-xs-column-pull(@columns) {
+  right: percentage((@columns / @plone-grid-columns));
+}
+
+// Generate the small columns
+.make-sm-column(@columns; @gutter: @plone-grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  @media (min-width: @plone-screen-sm-min) {
+    float: left;
+    width: percentage((@columns / @plone-grid-columns));
+  }
+}
+.make-sm-column-offset(@columns) {
+  @media (min-width: @plone-screen-sm-min) {
+    margin-left: percentage((@columns / @plone-grid-columns));
+  }
+}
+.make-sm-column-push(@columns) {
+  @media (min-width: @plone-screen-sm-min) {
+    left: percentage((@columns / @plone-grid-columns));
+  }
+}
+.make-sm-column-pull(@columns) {
+  @media (min-width: @plone-screen-sm-min) {
+    right: percentage((@columns / @plone-grid-columns));
+  }
+}
+
+// Generate the medium columns
+.make-md-column(@columns; @gutter: @plone-grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  @media (min-width: @plone-screen-md-min) {
+    float: left;
+    width: percentage((@columns / @plone-grid-columns));
+  }
+}
+.make-md-column-offset(@columns) {
+  @media (min-width: @plone-screen-md-min) {
+    margin-left: percentage((@columns / @plone-grid-columns));
+  }
+}
+.make-md-column-push(@columns) {
+  @media (min-width: @plone-screen-md-min) {
+    left: percentage((@columns / @plone-grid-columns));
+  }
+}
+.make-md-column-pull(@columns) {
+  @media (min-width: @plone-screen-md-min) {
+    right: percentage((@columns / @plone-grid-columns));
+  }
+}
+
+// Generate the large columns
+.make-lg-column(@columns; @gutter: @plone-grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+
+  @media (min-width: @plone-screen-lg-min) {
+    float: left;
+    width: percentage((@columns / @plone-grid-columns));
+  }
+}
+.make-lg-column-offset(@columns) {
+  @media (min-width: @plone-screen-lg-min) {
+    margin-left: percentage((@columns / @plone-grid-columns));
+  }
+}
+.make-lg-column-push(@columns) {
+  @media (min-width: @plone-screen-lg-min) {
+    left: percentage((@columns / @plone-grid-columns));
+  }
+}
+.make-lg-column-pull(@columns) {
+  @media (min-width: @plone-screen-lg-min) {
+    right: percentage((@columns / @plone-grid-columns));
+  }
+}

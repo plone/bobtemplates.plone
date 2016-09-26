@@ -25,14 +25,26 @@ module.exports = function (grunt) {
                 }
             }
         },
-
+        postcss: {
+            options: {
+                map: true,
+                processors: [
+                    require('autoprefixer')({
+                        browsers: ['last 2 versions']
+                    })
+                ]
+            },
+            dist: {
+                src: 'less/*.css'
+            }
+        },
         watch: {
             scripts: {
                 files: [
                     'less/*.less',
                     'barceloneta/less/*.less'
                 ],
-                tasks: ['less']
+                tasks: ['less', 'postcss']
             }
         },
         browserSync: {
@@ -76,11 +88,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-postcss');
 
     // CWD to theme folder
     grunt.file.setBase('./src/{{{ package.namespace }}}/{{{ package.name }}}/theme');
 
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('compile', ['less', 'postcss']);
+    grunt.registerTask('default', ['compile']);
     grunt.registerTask('bsync', ["browserSync:html", "watch"]);
     grunt.registerTask('plone-bsync', ["browserSync:plone", "watch"]);
 };

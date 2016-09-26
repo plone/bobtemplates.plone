@@ -13,8 +13,8 @@ parts =
 {{% if package.type == 'Theme' %}}
     npm-install
     run-npm-install
-    grunt-task-less
-    run-grunt-task-less
+    grunt-task-compile
+    run-grunt-task-compile
 {{% endif %}}
 develop = .
 
@@ -86,22 +86,22 @@ on_install = true
 on_update = true
 cmds = ${buildout:directory}/bin/npm-install
 
-[grunt-task-less]
+[grunt-task-compile]
 recipe = collective.recipe.template
 input = inline:
     #!/bin/sh
     cd ${buildout:directory}
-    echo "run 'grunt less' in package root to compiles less into css..."
-    grunt less
-output = ${buildout:directory}/bin/grunt-task-less
+    echo "run 'grunt compile' in package root to compiles less into css..."
+    grunt compile
+output = ${buildout:directory}/bin/grunt-task-compile
 mode = 775
 
-[run-grunt-task-less]
+[run-grunt-task-compile]
 recipe = collective.recipe.cmd
 shell = /bin/bash
 on_install = true
 on_update = true
-cmds = ${buildout:directory}/bin/grunt-task-less
+cmds = ${buildout:directory}/bin/grunt-task-compile
 
 {{% endif %}}
 

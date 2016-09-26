@@ -6,6 +6,10 @@
     "grunt": "~0.4.4",
     "grunt-browser-sync": "^2.2.0",
     "grunt-contrib-less": "latest",
-    "grunt-contrib-watch": "latest"
+    "grunt-contrib-watch": "latest",
+    "grunt-postcss": "latest",
+    "pixrem": "latest",
+    "autoprefixer": "latest",
+    "cssnano": "latest"
   }
 }

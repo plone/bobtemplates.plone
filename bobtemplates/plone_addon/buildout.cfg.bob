@@ -12,6 +12,9 @@ parts =
     robot
 {{% if package.type == 'Theme' %}}
     npm-install
+    run-npm-install
+    grunt-task-less
+    run-grunt-task-less
 {{% endif %}}
 develop = .
 
@@ -75,14 +78,41 @@ input = inline:
     npm install .
 output = ${buildout:directory}/bin/npm-install
 mode = 775
+
+[run-npm-install]
+recipe = collective.recipe.cmd
+shell = /bin/bash
+on_install = true
+on_update = true
+cmds = ${buildout:directory}/bin/npm-install
+
+[grunt-task-less]
+recipe = collective.recipe.template
+input = inline:
+    #!/bin/sh
+    cd ${buildout:directory}
+    echo "run 'grunt less' in package root to compiles less into css..."
+    grunt less
+output = ${buildout:directory}/bin/grunt-task-less
+mode = 775
+
+[run-grunt-task-less]
+recipe = collective.recipe.cmd
+shell = /bin/bash
+on_install = true
+on_update = true
+cmds = ${buildout:directory}/bin/grunt-task-less
+
 {{% endif %}}
 
 [versions]
 # Don't use a released version of {{{ package.dottedname }}}
 {{{ package.dottedname }}} =
 
-setuptools = 24.3.0
-zc.buildout = 2.5.2
+setuptools =
+zc.buildout =
+#setuptools = 24.3.0
+#zc.buildout = 2.5.2
 zc.recipe.egg = 2.0.3
 flake8 = 2.5.5
 i18ndude = 4.0.1

@@ -1,13 +1,12 @@
-In order to develop the theme you need to execute on the package root folder::
+In order to develop the theme you need to install grunt-cli global::
 
     $ sudo npm install -g grunt-cli
-    $ npm install
 
-Then go to the theme folder and install the theme dependencies::
+You can use the helper script `npm-install`::
 
-    $ cd src/{{{ package.namespace }}}/{{{ package.name }}}/theme/
-    $ npm install
-    $ cd -
+    $ ./bin/npm-install
+
+It will run npm install in package root and in the theme folder.
 
 After executing these commands you can run grunt on the package root folder to watch for any less changes::
 

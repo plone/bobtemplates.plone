@@ -4,6 +4,9 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
+- Use same lines width than package name for title ##
+  [AuroreMariscal]
+
 - Get rid of ``travis.cfg`` configuration as its use is no longer considered best practice.
   [hvelarde]
 

@@ -28,6 +28,9 @@ Changelog
 - Use plone:static instead of browser:resourceDirectory to allow ttw-overrrides.
   [pbauer]
 
+- Bump flake8 version to 3.x.
+  [gforcada]
+
 
 1.0.4 (2016-07-23)
 ------------------

@@ -1,18 +1,18 @@
 [theme]
-title = Plone Theme: {{{ package.name|capitalize }}}
+title = Plone Theme: {{{ theme.name|capitalize }}}
 description = A Diazo based Plone theme
 doctype = <!DOCTYPE html>
-rules = /++theme++{{{ package.name }}}/rules.xml
-prefix = /++theme++{{{ package.name }}}
+rules = /++theme++{{{ theme.normalized_name }}}/rules.xml
+prefix = /++theme++{{{ theme.normalized_name }}}
 enabled-bundles =
 disabled-bundles =
 
-development-css = /++theme++{{{ package.name }}}/less/theme.less
-production-css = /++theme++{{{ package.name }}}/less/theme-compiled.css
-tinymce-content-css = /++theme++{{{ package.name }}}/less/theme-compiled.css
+development-css = /++theme++{{{ theme.normalized_name }}}/less/theme.less
+production-css = /++theme++{{{ theme.normalized_name }}}/less/theme-compiled.css
+tinymce-content-css = /++theme++{{{ theme.normalized_name }}}/less/theme-compiled.css
 
-# development-js = /++theme++{{{ package.name }}}/js/theme.js
-# production-js = /++theme++{{{ package.name }}}/js/theme-compiled.js
+# development-js = /++theme++{{{ theme.normalized_name }}}/js/theme.js
+# production-js = /++theme++{{{ theme.normalized_name }}}/js/theme-compiled.js
 
 [theme:overrides]
 directory = template-overrides

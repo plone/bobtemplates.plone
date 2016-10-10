@@ -17,12 +17,12 @@
   <plone:static
       directory="theme"
       type="theme"
-      name="{{{ package.name }}}"
+      name="{{{ theme.normalized_name }}}"
       />
 
   <genericsetup:registerProfile
       name="default"
-      title="Plone Theme: {{{ package.name }}}"
+      title="Plone Theme: {{{ theme.name }}}"
       directory="profiles/default"
       description="Installs the Plone theme package {{{ package.dottedname }}}."
       provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -31,7 +31,7 @@
 
   <genericsetup:registerProfile
       name="uninstall"
-      title="{{{ package.dottedname }}} (uninstall)"
+      title="Uninstall: Plone Theme: {{{ theme.name }}}"
       directory="profiles/uninstall"
       description="Uninstalls the Plone theme package {{{ package.dottedname }}}."
       provides="Products.GenericSetup.interfaces.EXTENSION"

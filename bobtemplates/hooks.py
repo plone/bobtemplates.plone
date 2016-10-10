@@ -153,6 +153,34 @@ def post_dexterity_type_name(configurator, question, answer):
     return answer
 
 
+def pre_theme_name(configurator, question):
+    validate_packagename(configurator)
+
+    if configurator.variables['package.type'] != 'Theme':
+        raise SkipQuestion
+
+    default = os.path.basename(
+        configurator.target_directory).split('.')[-1].capitalize()
+    if default:
+        question.default = default
+
+
+def validate_themename(configurator):
+    fail = False
+
+    allowed = set(string.ascii_letters + string.digits + '.-_')
+    if not set(configurator.varibles['theme.name']).issubset(allowed):
+        fail = True
+
+    if fail:
+        msg = "Error: '{0}' is not a valid themename.\n".format(
+            configurator.variables["theme.name"])
+        msg += "Please use a valid name (like 'Tango' or 'my-tango.com')!\n"
+        msg += "No '.' at beginning or end of the name and "
+        msg += "only letters, digits and '.-_' are allowed."
+        sys.exit(msg)
+
+
 def prepare_render(configurator):
     """Some variables to make templating easier.
 
@@ -225,6 +253,13 @@ def prepare_render(configurator):
         configurator.variables['package.dexterity_type_name'] = ''
         configurator.variables['package.dexterity_type_name_lower'] = ''
 
+    if configurator.variables.get('theme.name'):
+        configurator.variables[
+            "theme.normalized_name"] = configurator.variables.get(
+                'theme.name').replace(" ", "-").strip('.').lower()
+    else:
+        configurator.variables["theme.normalized_name"] = ""
+
 
 def cleanup_package(configurator):
     """Cleanup and make nested if needed.
@@ -283,24 +318,31 @@ def cleanup_package(configurator):
 
     if configurator.variables['package.type'] != u'Theme':
         to_delete.extend([
-            "{0}/theme",
-            "{0}/profiles/default/theme.xml",
-            "{0}/profiles/uninstall/theme.xml",
+            base_path + "/theme",
+            base_path + "/profiles/default/theme.xml",
+            base_path + "/profiles/uninstall/theme.xml",
+            configurator.target_directory + "/Gruntfile.js",
+            configurator.target_directory + "/package.json",
         ])
 
     if configurator.variables['package.type'] != u'Dexterity':
         to_delete.extend([
-            "{0}/profiles/default/types.xml",
-            "{0}/profiles/default/types",
-            "{0}/tests/test_.py",
-            "{0}/tests/robot/test_.robot",
+            base_path + "/profiles/default/types.xml",
+            base_path + "/profiles/default/types",
+            base_path + "/tests/test_.py",
+            base_path + "/tests/robot/test_.robot",
         ])
 
     # remove parts
     for path in to_delete:
-        path = path.format(base_path)
         if os.path.exists(path):
             if os.path.isdir(path):
                 shutil.rmtree(path)
             else:
                 os.remove(path)
+
+    if configurator.variables['package.type'] == u'Theme':
+        # make a copy of the HOWTO_DEVELOP.rst also in the package root
+        shutil.copy2(
+            base_path + "/theme/HOWTO_DEVELOP.rst",
+            configurator.target_directory + "/HOWTO_DEVELOP.rst")

@@ -24,9 +24,16 @@ If you prefer to do a one time compile of the less files you can run::
 
     $ grunt compile
 
+or use the helper script from buildout::
+
+    $ ./bin/grunt-task-compile
+
+Actually on a buildout run buildout will run the npm-install and the grunt-task-compile script for you. So you only need the commands above while developing gin the filesystem.
+
 Note
 ----
 
 - If you are make changes TTW, make sure that Development Mode is enabled by going to the `Site Setup` > `Resource Registries`
   and check the `Development Mode` checkbox, this ensures that your changes show up and aren't cached.
 - this theme is using a Grunt setup to compile the resources. The grunt setup is outside of the theme folder in the package root. If you only have a Zip-file version of this theme, have a look at the example theme plonetheme.tango (github.com/collective) for the Gruntfile.js and package.json to setup your own Grunt above your theme folder.
+- You can delete the "custom-theme-marker" in the index.html and in custom.less

@@ -37,7 +37,7 @@ Author's github username
 Package description [An add-on for Plone]
     One-liner describing what this package does. Should be something like 'Plone add-on that ...'.
 
-Plone version [4.3.9]
+Plone version [5.0.6]
     Which Plone version would you like to use?
 
 

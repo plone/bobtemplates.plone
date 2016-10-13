@@ -1,0 +1,40 @@
+/* our custom styles */
+
+// DELETE ME:
+.custom-theme-marker {
+    display: none;
+    position: absolute;
+    top: 300px;
+    left: 30%;
+    margin: auto 0;
+    transform: rotate(-20deg);
+    background: #00ECFF;
+    color: #fff;
+    padding: 1em;
+    z-index: 100;
+}
+.section-front-page .custom-theme-marker{
+    display: block;
+}
+
+
+/* TinyMCE templates */
+
+// image-grid-2x2:
+.image-grid-2x2 {
+    padding: 0;
+    margin: 0 0 @grid-gutter-width 0;
+    list-style: none;
+    .make-row();
+
+    > li {
+        .make-xs-column(12);
+        .make-sm-column(6);
+        margin-top: @grid-gutter-width;
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+}

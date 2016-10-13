@@ -1,0 +1,163 @@
+//*// PORTLETS //*//
+
+.portlet {
+	border: @plone-portlet-border;
+	margin-bottom: 20px;
+	border-radius: @plone-border-radius-base;
+	box-shadow:  0 1px 3px rgba(0,0,0,.05);
+	> :first-child {border-radius: 4px 4px 0 0;}
+	> :last-child {border-radius: 0 0 4px 4px;}
+	.portletHeader {
+		background: @plone-portlet-header-bg;
+		font-weight: @plone-font-weight-bold;
+		font-size: @plone-font-size-large;
+		padding: 13px 15px;
+		color: @plone-portlet-header-color;
+	}
+	&.portletCalendar .portletHeader {
+		text-align: center;
+		position: relative;
+		.calendarPrevious, .calendarNext { width:30px; height:30px; padding: 0 1px 2px; border-radius:50%; position: absolute; display: inline-block; left: 5px; font-size: @plone-font-size-h3; margin-top:-3px; line-height: 28px; font-weight: @plone-font-weight-light;}
+		.calendarPrevious:hover, .calendarNext:hover {background: @plone-portlet-content-bg; text-decoration: none;}
+		.calendarNext {right: 5px; left: inherit;}
+	}
+	.portletContent {
+		font-size: @plone-font-size-base;
+		border-top: @plone-portlet-border;
+		background: @plone-portlet-content-bg;
+		font-weight: @plone-font-weight-regular;
+		& > *, & > div:not(.portalMessage) { //all but ul and tables and portalMessage
+			padding: 10px 15px;
+			margin: 0;
+			font-weight: @plone-font-weight-regular;
+			color: @plone-gray;
+		}
+		> ul {
+			padding: 0;
+			list-style: none;
+			position: relative;
+			> li {
+				a {
+				display: block;
+				padding: 10px 15px 26px 30px;
+				position: relative;
+				z-index: 1;
+				}
+				> a {border-top: @plone-portlet-border;}
+				&:first-child > a {border-top: 0;}
+				& a:before {
+					content:"•"; position: absolute; font-size: @plone-font-size-h3+1; margin-top: -9px; left: 15px;
+					color: lighten(@plone-portlet-list-bullet, 15%);
+				}
+			}
+			ul {padding-left:15px; list-style: none;
+			}
+			.portletItemDetails {display: block; z-index: 0; padding: 0 15px 10px 30px; font-weight:@plone-font-weight-light; position: relative; margin-top:-26px; font-size: @plone-font-size-small; color: @plone-portlet-list-small-text;}
+			li:hover {background: @plone-portlet-list-hover-bg;
+				a:before {color: @plone-portlet-list-bullet;}
+			}
+		}
+		table {width: 100%; text-align: center; text-align: middle; border-collapse: collapse; border-spacing: 0;
+			tr {line-height: 30px; }
+			thead {background: @plone-portlet-footer-bg; border-bottom: @plone-portlet-border;
+				th {color: @plone-gray-light; font-weight: @plone-font-weight-light; height: 40px; text-align: center;}
+			}
+			td {}
+			td > * {border-radius: 50%; display: inline-block; width: 20px; height: 20px; line-height: 20px;}
+			.cal_has_events {
+				position: relative;
+				a:hover {background: @plone-portlet-event-bullet; text-decoration: none; box-shadow: 0 0 0 5px @plone-portlet-event-bullet;}
+				a:after {
+					content: "•";
+					position: absolute;
+					margin-left: 50%;
+					left: -3px;
+					font-size: @plone-font-size-large+2;
+					color: lighten(@plone-portlet-list-bullet, 15%);
+					margin-top: 9px;
+				}
+				a:hover:after {color: @plone-portlet-list-bullet;}
+
+			}
+			.cal_next_month, .cal_prev_month {
+				color: #cccccc;
+				&.cal_has_events > a {color: lighten(@plone-portlet-list-bullet, 15%);}
+				&.cal_has_events > a:after {color: lighten(@plone-portlet-list-bullet, 25%);}
+				&.cal_has_events > a:hover {color: darken(@plone-link-color,15%);}
+				&.cal_has_events > a:hover:after {color: @plone-portlet-list-bullet;}
+			}
+			.today > * {background: @plone-portlet-contrast-bg; font-weight: 500; box-shadow: 0 0 0 5px @plone-portlet-contrast-bg;} //using shadow to expand background is because then table is only 20px per cell and not 30px
+			tbody tr:first-child td > * {margin-top: 10px;}
+			tbody tr:last-child td > * {margin-bottom: 10px;}
+		}
+	}
+	.formControls {border:0; background: none; padding: 0; box-shadow: none;}
+	.portletFooter {
+		border-top: @plone-portlet-border;
+		background: @plone-portlet-footer-bg;
+		padding: 10px 15px;
+		font-size: @plone-font-size-small;
+		font-weight: @plone-font-weight-regular;
+		box-shadow: inset 0 10px 10px -10px rgba(0,0,0,.05);
+	}
+}
+
+
+//*// Navigation
+.portletNavigationTree nav.portletContent > ul > li a { padding: 10px 15px 10px 15px; border-top: @plone-portlet-border;}
+.portletNavigationTree nav.portletContent > ul > li strong { padding: 10px 15px 10px 15px; border-top: @plone-portlet-border; background: @plone-portlet-footer-bg; color: @plone-gray; display: block; font-weight: @plone-font-weight-regular;}
+.portletNavigationTree {
+	.portletContent {
+		border-top: 0;
+		> ul > li > a {display: block; background: darken(@plone-portlet-header-bg,2%);
+			&:before {content: ""; }
+			&:hover {background: @plone-portlet-footer-bg;}
+			&:hover:after {content:"⟩"; position: absolute; right: 10px; font-size: @plone-font-size-large; margin-top:-3px; color: @plone-gray-light;}
+		}
+		> ul > li > ul a {padding-left:40px;}
+		> ul ul {padding-left: 0;}
+		.navTreeCurrentNode > a {background: @plone-portlet-footer-bg; color: @plone-gray;
+			&:after {content:"⟩"; position: absolute; right: 10px; font-size: @plone-font-size-large; margin-top:-3px; color: @plone-gray-light;}
+		}
+	}
+}
+
+#upgrade-products .configlets,
+#install-products .configlets,
+#activated-products .configlets,
+#broken-products .configlets {
+	li {padding: @plone-padding-base-horizontal; border-top: 1px dotted @plone-table-border-color;}
+	li:first-child {border-top: 0;}
+	h3, p {margin: 0;}
+	.portletContent:last-child {margin-bottom: 0;}
+	.pull-right {margin: 0 0 @plone-padding-base-horizontal @plone-padding-base-horizontal;}
+}
+
+
+//*// Search
+// See forms: input + submit (manual)
+
+
+//*// Manage portlets
+.managedPortletActions {
+	float:right;
+	margin-top: -@plone-padding-base-vertical;
+	form {display: inline-block;}
+}
+.managedPortlet {
+	.portlet;
+
+	&.inheritedPortlet{
+		margin: 5px 15px;
+
+		.portletHeader{
+			padding: 3px 15px;
+		}
+	}
+	.portletHeader{
+		font-weight: 300;
+	}
+	&.blockedPortlet{
+		opacity: 0.7;
+	}
+}

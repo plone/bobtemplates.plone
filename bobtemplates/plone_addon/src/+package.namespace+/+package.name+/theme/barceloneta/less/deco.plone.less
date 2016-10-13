@@ -1,0 +1,54 @@
+//*// DECO //*//
+
+
+//*// /!\ IMPORTANT
+//*// This is not the original deco.gs
+//*// This not uses the position, so elements need to be on the correct order.
+//*// Original deco here: https://github.com/limi/deco.gs
+
+
+//*// Adapted deco
+@media (min-width: @plone-grid-float-breakpoint) {
+	div.row {
+	  position: relative;
+	}
+
+	div.cell {
+	  float: left;
+	  top: 0;
+	}
+	 
+	div.width-1                     { width:  8.33333% }
+	div.width-2                     { width: 16.66667% }
+	div.width-3, div.width-1\3a 4   { width: 25%       } //¼
+	div.width-4, div.width-1\3a 3   { width: 33.33333% } //⅓
+	div.width-5                     { width: 41.66667% }
+	div.width-6, div.width-1\3a 2   { width: 50% } //½
+	div.width-7                     { width: 58.33333% }
+	div.width-8, div.width-2\3a 3   { width: 66.66667% } //⅔
+	div.width-9, div.width-3\3a 4   { width: 75% } //¾
+	div.width-10                    { width: 83.33333% }
+	div.width-11                    { width: 91.66667% }
+	div.width-12                    { width: 100% }
+}
+div.row {padding-bottom: 1px;} //hack
+
+//Everything 100% for mobile
+
+
+//*// Dashboard
+@media (min-width: @plone-grid-float-breakpoint) {
+	#dashboard {
+		margin-left: -15px;
+		margin-right: -15px;
+		position: relative;
+		.clearfix;
+	}
+	#dashboard-portlets1, #dashboard-portlets2, #dashboard-portlets3, #dashboard-portlets4 {
+		float: left;
+		padding-left: 15px;
+		padding-right: 15px;
+		top: 0;
+		width: 25%;
+	}
+}

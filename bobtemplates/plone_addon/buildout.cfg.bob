@@ -11,6 +11,12 @@ parts =
     i18ndude
     omelette
     robot
+{{% if package.type == 'Theme' %}}
+    npm-install
+    run-npm-install
+    grunt-task-compile
+    run-grunt-task-compile
+{{% endif %}}
 develop = .
 
 
@@ -65,12 +71,55 @@ recipe = zc.recipe.egg
 eggs = i18ndude
 
 
+{{% if package.type == 'Theme' %}}
+[npm-install]
+recipe = collective.recipe.template
+input = inline:
+    #!/bin/sh
+    # runs npm install on package root and in theme folder:
+    cd ${buildout:directory}
+    echo "run 'npm install' in package root..."
+    npm install .
+    cd ${buildout:directory}/src/{{{ package.namespace }}}/{{{ package.name}}}/theme
+    echo "run 'npm install' in '${buildout:directory}/src/{{{ package.namespace }}}/{{{ package.name}}}/theme' ..."
+    npm install .
+output = ${buildout:directory}/bin/npm-install
+mode = 775
+
+[run-npm-install]
+recipe = collective.recipe.cmd
+shell = /bin/bash
+on_install = true
+on_update = true
+cmds = ${buildout:directory}/bin/npm-install
+
+[grunt-task-compile]
+recipe = collective.recipe.template
+input = inline:
+    #!/bin/sh
+    cd ${buildout:directory}
+    echo "run 'grunt compile' in package root to compiles less into css..."
+    grunt compile
+output = ${buildout:directory}/bin/grunt-task-compile
+mode = 775
+
+[run-grunt-task-compile]
+recipe = collective.recipe.cmd
+shell = /bin/bash
+on_install = true
+on_update = true
+cmds = ${buildout:directory}/bin/grunt-task-compile
+
+{{% endif %}}
+
 [versions]
 # Don't use a released version of {{{ package.dottedname }}}
 {{{ package.dottedname }}} =
 
-setuptools = 24.3.0
-zc.buildout = 2.5.2
+setuptools =
+zc.buildout =
+#setuptools = 24.3.0
+#zc.buildout = 2.5.2
 zc.recipe.egg = 2.0.3
 flake8 = 3.0.4
 i18ndude = 4.0.1

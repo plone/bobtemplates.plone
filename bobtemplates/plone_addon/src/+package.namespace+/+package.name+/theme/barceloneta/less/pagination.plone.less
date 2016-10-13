@@ -1,0 +1,83 @@
+//*// PAGINATION //*//
+
+.listingBar {
+  display: inline-block;
+  padding: 0;
+  list-style: none;
+  margin: @plone-line-height-computed 0;
+  > li {
+    font-weight: @plone-font-weight-regular;
+    display: inline;
+    line-height: 0;
+    position: relative;
+    padding: 0;
+    font-weight: @plone-font-weight-light;
+    a {
+      position: relative;
+      float: left; // Collapse white-space
+      padding: @plone-padding-base-vertical @plone-padding-base-horizontal;
+      line-height: @plone-line-height-base;
+      text-decoration: none;
+      color: @plone-pagination-color;
+      background-color: @plone-pagination-bg;
+      border: @plone-pagination-border;
+      margin-left: -1px;
+    }
+    &:first-child {
+      > a {
+        margin-left: 0;
+        .border-left-radius(@plone-border-radius-base);
+      }
+    }
+    &:last-child {
+      > a {
+        .border-right-radius(@plone-border-radius-base);
+      }
+    }
+    a {
+      &:hover,
+      &:focus {
+        color: @plone-pagination-hover-color;
+        background-color: @plone-pagination-hover-bg;
+        border-color: @plone-pagination-hover-border;
+        .box-shadow(0 1px 2px rgba(0,0,0,.05));
+      }
+    }
+  }
+  > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      z-index: 2;
+      font-weight: @plone-font-weight-regular;
+      color: @plone-pagination-active-color;
+      background-color: @plone-pagination-active-bg;
+      border-color: @plone-pagination-active-border;
+      cursor: default;
+    }
+  }
+  > .disabled { //just in case, not used in plone
+    > a,
+    > a:hover,
+    > a:focus {
+      color: @plone-pagination-disabled-color;
+      background-color: @plone-pagination-disabled-bg;
+      border-color: @plone-pagination-disabled-border;
+      cursor: default;
+    }
+  }
+  // .previous & .next classes on the markup, not used as a base css
+}
+
+// mobile pagination only shows next and previous as default behaviour
+@media (max-width: @plone-screen-xs-min) {
+  .listingBar {
+    li {display: none;}
+    li.previous, li.next {display: inline;}
+  }
+}
+
+
+
+
+

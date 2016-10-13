@@ -1,0 +1,114 @@
+//*// EVENT //*//
+
+//*// p.a.event.browser.resources overrides
+//*// p.a.event CSS should be transferred in the near future here
+
+.vevent {
+	span.cal_month {
+    	font-size:1.1em;
+	}
+}
+
+//*//
+
+.event.summary {
+	font-weight: @plone-font-weight-regular;
+	max-width: 300px;
+	float: right;
+	background: @plone-body-bg;
+	box-shadow: 0 1px 3px rgba(0,0,0,.17);
+	padding: @plone-padding-base-horizontal @plone-padding-base-horizontal @plone-padding-base-horizontal (@plone-padding-base-horizontal*3);
+	margin-left: 5px;
+
+	strong, li > span {
+		display: block;
+	}
+}
+
+
+//*// Event listing
+.event_listing article {
+	border-top: @plone-portlet-border;
+	padding: @plone-padding-base-horizontal 0  @plone-padding-base-horizontal;
+	h2 {margin: 0; padding: @plone-padding-base-horizontal 0  @plone-padding-base-horizontal;}
+}
+.event_listing article:first-child {border-top: 0; margin-top: -@plone-padding-base-vertical;}
+.cal_date {	float:right; box-shadow: 0 1px 3px rgba(0,0,0,.17); text-align: center; width: 100px; margin: @plone-padding-base-horizontal 0 @plone-padding-base-horizontal @plone-padding-base-horizontal; border-radius: @plone-border-radius-base; overflow: hidden;}
+.cal_month { background:lighten(@plone-link-color,15%); font-weight: @plone-font-weight-regular; display:block; color:#fff; padding:@plone-padding-base-vertical @plone-padding-base-horizontal;}
+.cal_day { font-size: @plone-font-size-large*2; font-weight: @plone-font-weight-bold; display:block;}
+.cal_wkday { font-size: @plone-font-size-small; font-weight: @plone-font-weight-light; display:block; padding:0 @plone-padding-base-horizontal @plone-padding-base-vertical;}
+.event_listing .sub_nav {
+	float: right;
+}
+.template-event_listing .caltrigger {display: none;}
+.autotabs .autotoc-nav {
+	.events-month-prev, .events-week-prev, .events-day-prev {
+		position: relative;
+		border-top-left-radius: 0;
+		padding-left: 6px;
+		&:before {
+			content: "";
+			position: absolute;
+			padding: 0 5px;
+			color:  @plone-portlet-contrast-bg;
+			border-right: 5px solid;
+			border-top: 23px solid transparent;
+			border-bottom: 23px solid transparent;
+			left: -6px;
+			top: -1px;
+			padding: 0 !important;
+		}
+		&:after {
+			content: "";
+			position: absolute;
+			padding: 0 5px;
+			color: @plone-portlet-footer-bg;
+			border-right: 5px solid;
+			border-top: 23px solid transparent;
+			border-bottom: 23px solid transparent;
+			left: -5px;
+			top: -1px;
+			padding: 0 !important;
+		}
+		&:hover:after {
+			color: @plone-portlet-content-bg;
+		}
+	}
+	.events-month-next, .events-week-next, .events-day-next {
+		position: relative;
+		border-top-right-radius: 0;
+		padding-right: 6px;
+		&:before {
+			content: "";
+			position: absolute;
+			padding: 0 5px;
+			color: @plone-portlet-contrast-bg;
+			border-left: 5px solid;
+			border-top: 23px solid transparent;
+			border-bottom: 23px solid transparent;
+			right: -6px;
+			top: -1px;
+			padding: 0 !important;
+		}
+		&:after {
+			content: "";
+			position: absolute;
+			padding: 0 5px;
+			color: @plone-portlet-footer-bg;
+			border-left: 5px solid;
+			border-top: 23px solid transparent;
+			border-bottom: 23px solid transparent;
+			right: -5px;
+			top: -1px;
+			padding: 0 !important;
+		}
+		&:hover:after {
+			color:  @plone-portlet-content-bg;
+		}
+	}
+}
+
+
+
+
+

@@ -56,18 +56,22 @@ class PloneTemplateTest(BaseTemplateTest):
             result.files_created.keys(),
             [
                 self.project,
+                self.project + '/.coveragerc',
+                self.project + '/.editorconfig',
+                self.project + '/.gitattributes',
                 self.project + '/.gitignore',
                 self.project + '/.travis.yml',
-                self.project + '/CHANGES.rst',
-                self.project + '/CONTRIBUTORS.rst',
-                self.project + '/MANIFEST.in',
-                self.project + '/README.rst',
                 self.project + '/bootstrap-buildout.py',
                 self.project + '/buildout.cfg',
+                self.project + '/CHANGES.rst',
+                self.project + '/CONTRIBUTORS.rst',
                 self.project + '/docs',
+                self.project + '/docs/index.rst',
                 self.project + '/docs/LICENSE.GPL',
                 self.project + '/docs/LICENSE.rst',
-                self.project + '/docs/index.rst',
+                self.project + '/MANIFEST.in',
+                self.project + '/README.rst',
+                self.project + '/setup.cfg',
                 self.project + '/setup.py',
                 self.project + '/src',
                 self.project + '/src/collective',
@@ -90,6 +94,7 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/profiles/default',
                 self.project + '/src/collective/foo/profiles/default/browserlayer.xml',  # noqa
                 self.project + '/src/collective/foo/profiles/default/metadata.xml',  # noqa
+                self.project + '/src/collective/foo/profiles/default/registry.xml',  # noqa
                 self.project + '/src/collective/foo/profiles/uninstall',
                 self.project + '/src/collective/foo/profiles/uninstall/browserlayer.xml',  # noqa
                 self.project + '/src/collective/foo/setuphandlers.py',
@@ -100,10 +105,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/tests/robot/test_example.robot',  # noqa
                 self.project + '/src/collective/foo/tests/test_robot.py',
                 self.project + '/src/collective/foo/tests/test_setup.py',
-                self.project + '/.coveragerc',
-                self.project + '/.editorconfig',
-                self.project + '/.gitattributes',
-                self.project + '/setup.cfg',
             ]
         )
 
@@ -122,18 +123,22 @@ class PloneTemplateTest(BaseTemplateTest):
             result.files_created.keys(),
             [
                 self.project,
+                self.project + '/.coveragerc',
+                self.project + '/.editorconfig',
+                self.project + '/.gitattributes',
                 self.project + '/.gitignore',
                 self.project + '/.travis.yml',
-                self.project + '/CHANGES.rst',
-                self.project + '/CONTRIBUTORS.rst',
-                self.project + '/MANIFEST.in',
-                self.project + '/README.rst',
                 self.project + '/bootstrap-buildout.py',
                 self.project + '/buildout.cfg',
+                self.project + '/CHANGES.rst',
+                self.project + '/CONTRIBUTORS.rst',
                 self.project + '/docs',
+                self.project + '/docs/index.rst',
                 self.project + '/docs/LICENSE.GPL',
                 self.project + '/docs/LICENSE.rst',
-                self.project + '/docs/index.rst',
+                self.project + '/MANIFEST.in',
+                self.project + '/README.rst',
+                self.project + '/setup.cfg',
                 self.project + '/setup.py',
                 self.project + '/src',
                 self.project + '/src/collective',
@@ -158,6 +163,7 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/profiles/default',
                 self.project + '/src/collective/foo/bar/profiles/default/browserlayer.xml',  # noqa
                 self.project + '/src/collective/foo/bar/profiles/default/metadata.xml',  # noqa
+                self.project + '/src/collective/foo/bar/profiles/default/registry.xml',  # noqa
                 self.project + '/src/collective/foo/bar/profiles/uninstall',
                 self.project + '/src/collective/foo/bar/profiles/uninstall/browserlayer.xml',  # noqa
                 self.project + '/src/collective/foo/bar/setuphandlers.py',
@@ -168,10 +174,6 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/tests/robot/test_example.robot',  # noqa
                 self.project + '/src/collective/foo/bar/tests/test_robot.py',
                 self.project + '/src/collective/foo/bar/tests/test_setup.py',
-                self.project + '/.coveragerc',
-                self.project + '/.editorconfig',
-                self.project + '/.gitattributes',
-                self.project + '/setup.cfg',
             ]
         )
 

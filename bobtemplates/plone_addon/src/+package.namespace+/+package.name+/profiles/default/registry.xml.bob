@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <registry>
-
+{{% if package.type == 'Theme' %}}
 	<record name="plone.templates" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="templates">
 	  <field type="plone.registry.field.Text">
 	    <default></default>
@@ -25,4 +25,5 @@
 	      <element>template|+plone+static/components/tinymce-builded/js/tinymce/plugins/template</element>
 	    </value>
 	</record>
-	</registry>
+{{% endif %}}
+</registry>

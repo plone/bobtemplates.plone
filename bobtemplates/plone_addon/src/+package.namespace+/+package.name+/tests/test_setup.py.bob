@@ -45,6 +45,7 @@ class TestUninstall(unittest.TestCase):
 
     def test_browserlayer_removed(self):
         """Test that I{{{ package.browserlayer }}} is removed."""
-        from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
+        from {{{ package.dottedname }}}.interfaces import \
+            I{{{ package.browserlayer }}}
         from plone.browserlayer import utils
         self.assertNotIn(I{{{ package.browserlayer }}}, utils.registered_layers())

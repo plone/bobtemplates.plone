@@ -1,7 +1,9 @@
 [buildout]
 extends = http://dist.plone.org/release/{{{ plone.version }}}/versions.cfg
 show-picked-versions = true
-extensions = mr.developer
+extensions =
+    mr.developer
+
 parts =
     instance
     test
@@ -13,9 +15,7 @@ parts =
     robot
 {{% if package.type == 'Theme' %}}
     npm-install
-    run-npm-install
-    grunt-task-compile
-    run-grunt-task-compile
+#    grunt-compile
 {{% endif %}}
 develop = .
 
@@ -70,45 +70,16 @@ eggs = zest.releaser
 recipe = zc.recipe.egg
 eggs = i18ndude
 
-
 {{% if package.type == 'Theme' %}}
+
 [npm-install]
-recipe = collective.recipe.template
-input = inline:
-    #!/bin/sh
-    # runs npm install on package root and in theme folder:
-    cd ${buildout:directory}
-    echo "run 'npm install' in package root..."
-    npm install .
-    cd ${buildout:directory}/src/{{{ package.namespace }}}/{{{ package.name}}}/theme
-    echo "run 'npm install' in '${buildout:directory}/src/{{{ package.namespace }}}/{{{ package.name}}}/theme' ..."
-    npm install .
-output = ${buildout:directory}/bin/npm-install
-mode = 775
+recipe = plone.recipe.command
+command = cd ${buildout:directory}; npm install .; cd ${buildout:directory}/src/{{{ package.namespace }}}/{{{ package.name}}}/theme; npm install .
 
-[run-npm-install]
-recipe = collective.recipe.cmd
-shell = /bin/bash
-on_install = true
-on_update = true
-cmds = ${buildout:directory}/bin/npm-install
-
-[grunt-task-compile]
-recipe = collective.recipe.template
-input = inline:
-    #!/bin/sh
-    cd ${buildout:directory}
-    echo "run 'grunt compile' in package root to compiles less into css..."
-    grunt compile
-output = ${buildout:directory}/bin/grunt-task-compile
-mode = 775
-
-[run-grunt-task-compile]
-recipe = collective.recipe.cmd
-shell = /bin/bash
-on_install = true
-on_update = true
-cmds = ${buildout:directory}/bin/grunt-task-compile
+[grunt-compile]
+recipe = plone.recipe.command
+command = cd ${buildout:directory}; grunt compile
+update-command = cd ${buildout:directory}; grunt compile
 
 {{% endif %}}
 
@@ -122,6 +93,7 @@ zc.buildout =
 #zc.buildout = 2.5.2
 zc.recipe.egg = 2.0.3
 flake8 = 3.0.4
+flake8-isort = 2.0.1
 i18ndude = 4.0.1
 robotframework = 3.0
 robotframework-ride = 1.5.2.1

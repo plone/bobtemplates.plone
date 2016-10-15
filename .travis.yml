@@ -1,6 +1,10 @@
 language: python
 python: 2.7
 sudo: false
+addons:
+  apt:
+    packages:
+    - npm
 cache:
   pip: true
   directories:
@@ -13,6 +17,8 @@ before_install:
   - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
   - virtualenv .
   - bin/pip install --upgrade pip setuptools zc.buildout
+  - if [[ `npm -v` != 3.10.7 ]]; then npm i -g npm@3.10.7; fi
+  - npm install -g grunt-cli
 install:
   - bin/buildout -N -t 3 -c travis.cfg
 

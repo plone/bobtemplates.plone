@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <registry>
-{{% if package.type == 'Theme' %}}
+{{% if package.type == 'Theme' and plone.is_plone5 %}}
 	<record name="plone.templates" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="templates">
 	  <field type="plone.registry.field.Text">
 	    <default></default>

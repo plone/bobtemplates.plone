@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.5 (unreleased)
+1.0.5 (2016-10-16)
 ------------------
 
 - Get rid of ``travis.cfg`` configuration as its use is no longer considered best practice.

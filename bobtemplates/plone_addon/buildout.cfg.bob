@@ -15,7 +15,7 @@ parts =
     robot
 {{% if package.type == 'Theme' %}}
     npm-install
-#    grunt-compile
+    grunt-compile
 {{% endif %}}
 develop = .
 

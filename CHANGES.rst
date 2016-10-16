@@ -31,6 +31,9 @@ Changelog
 - Bump flake8 version to 3.x.
   [gforcada]
 
+- Update theme template, include complete working Barceloneta resources + grunt setup
+  [MrTango]
+
 
 1.0.4 (2016-07-23)
 ------------------

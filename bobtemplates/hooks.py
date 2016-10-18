@@ -271,12 +271,13 @@ def cleanup_package(configurator):
     nested = configurator.variables['package.nested']
 
     # construct full path '.../src/collective'
-    start_path = "{0}/src/{1}".format(
+    start_path = make_path(
         configurator.target_directory,
+        'src',
         configurator.variables['package.namespace'])
 
     # path for normal packages: '.../src/collective/myaddon'
-    base_path = "{0}/{1}".format(
+    base_path = make_path(
         start_path,
         configurator.variables['package.name'])
 
@@ -290,13 +291,13 @@ def cleanup_package(configurator):
         # a __init__.py into it.
 
         # full path for nested packages: '.../src/collective/behavior/myaddon'
-        base_path_nested = "{0}/{1}/{2}".format(
+        base_path_nested = make_path(
             start_path,
             configurator.variables['package.namespace2'],
             configurator.variables['package.name'])
 
         # directory to be created: .../src/collective/behavior
-        newpath = "{0}/{1}".format(
+        newpath = make_path(
             start_path,
             configurator.variables['package.namespace2'])
         if not os.path.exists(newpath):
@@ -305,7 +306,8 @@ def cleanup_package(configurator):
 
         # copy .../src/collective/__init__.py to
         # .../src/collective/myaddon/__init__.py
-        shutil.copy2("{0}/__init__.py".format(start_path), newpath)
+        init = make_path(start_path, '__init__.py')
+        shutil.copy2(init, newpath)
 
         # move .../src/collective/myaddon to .../src/collective/behavior
         shutil.move(base_path, base_path_nested)
@@ -318,19 +320,19 @@ def cleanup_package(configurator):
 
     if configurator.variables['package.type'] != u'Theme':
         to_delete.extend([
-            base_path + "/theme",
-            base_path + "/profiles/default/theme.xml",
-            base_path + "/profiles/uninstall/theme.xml",
-            configurator.target_directory + "/Gruntfile.js",
-            configurator.target_directory + "/package.json",
+            make_path(base_path, "theme"),
+            make_path(base_path, "profiles", "default", "theme.xml"),
+            make_path(base_path, "profiles", "uninstall", "theme.xml"),
+            make_path(configurator.target_directory, "Gruntfile.js"),
+            make_path(configurator.target_directory, "package.json"),
         ])
 
     if configurator.variables['package.type'] != u'Dexterity':
         to_delete.extend([
-            base_path + "/profiles/default/types.xml",
-            base_path + "/profiles/default/types",
-            base_path + "/tests/test_.py",
-            base_path + "/tests/robot/test_.robot",
+            make_path(base_path, "profiles", "default", "types.xml"),
+            make_path(base_path, "profiles", "default", "types"),
+            make_path(base_path, "tests", "test_.py"),
+            make_path(base_path, "tests", "robot", "test_.robot"),
         ])
 
     # remove parts
@@ -344,5 +346,10 @@ def cleanup_package(configurator):
     if configurator.variables['package.type'] == u'Theme':
         # make a copy of the HOWTO_DEVELOP.rst also in the package root
         shutil.copy2(
-            base_path + "/theme/HOWTO_DEVELOP.rst",
-            configurator.target_directory + "/HOWTO_DEVELOP.rst")
+            make_path(base_path, "theme", "HOWTO_DEVELOP.rst",),
+            make_path(configurator.target_directory, "HOWTO_DEVELOP.rst"),
+        )
+
+
+def make_path(*args):
+    return os.sep.join(args)

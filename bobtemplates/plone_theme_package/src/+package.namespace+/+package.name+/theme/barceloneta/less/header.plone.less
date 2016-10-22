@@ -1,0 +1,100 @@
+//*// HEADER //*//
+
+#portal-header {
+    margin: 0 auto 15px;
+    padding-top:15px;
+    margin-bottom: 20px;
+    #portal-logo {
+        float: left;
+    }
+    #portal-languageselector {
+        float: left;
+        clear: both;
+        display: inline-block;
+        margin-right: 29px;
+        padding-top: 5px;
+        li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+    }
+
+	#portal-anontools {
+		float: right;
+		ul {
+			padding-right: 0px;
+		}
+	}
+	//mobile search
+	#portal-searchbox {
+		padding-top: 20px;
+		clear:left;
+		width: 67%;
+		position: absolute;
+		z-index: 2;
+		margin-left:3px;
+		margin-top: 60px;
+		white-space: nowrap;
+
+        .searchSection {display: none;} //non on mobile
+        [type="text"] {
+            width: 100%;
+            display: inline-block;}
+
+        [type="submit"] {
+            display: none; //submit hidden on mobile
+        }
+        label {font-size: 86.667%}
+
+        //white space between elements inline-block
+        form > div {font-size: 0;
+            > * {font-size: @plone-font-size-base;}
+        }
+    }
+
+	//non mobile search
+	@media (min-width: @plone-grid-float-breakpoint) {
+		#portal-languageselector {
+			float: right;
+			clear: none;
+		}
+	
+		#portal-anontools {
+			float: right;
+		}
+
+        #portal-searchbox {
+            position: relative;
+            margin-top: 5px; //visual balance
+            margin-bottom: -5px; //visual balance
+            margin-left: 1em;
+            padding-top: 0;
+            clear: none;
+            float:right;
+            max-width: 50%;
+            width: 250px;
+            white-space: nowrap;
+            .searchSection {display: inherit;} //yes for non mobile
+            [type="text"] {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                width: calc(250px - 70px); //searchboxwidth - submit
+                display: inline-block;}
+            [type="submit"] {
+                display: none; //submit shown on mobile
+                width: 70px;
+                display: inline-block;
+                margin-left: -1px;
+                vertical-align: top;
+            }
+            label {font-size: 86.667%}
+
+            //white space between elements inline-block
+            form > div {font-size: 0;
+                > * {font-size: @plone-font-size-base;}
+            }
+        }
+    }
+
+    .clearfix(); //clear floats
+}

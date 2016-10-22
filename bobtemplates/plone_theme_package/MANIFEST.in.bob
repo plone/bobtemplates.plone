@@ -1,0 +1,4 @@
+graft src/{{{ package.namespace }}}
+graft docs
+include *.rst
+global-exclude *.pyc

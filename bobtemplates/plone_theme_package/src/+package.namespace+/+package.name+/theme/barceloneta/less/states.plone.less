@@ -1,0 +1,14 @@
+//*// STATES //*//
+
+//*// default states
+.state-published 				{} //inherited, plone-link
+.state-draft 					{color: @plone-default-draft-color;
+	&:hover, &:active, &:focus 		{color: darken(@plone-default-draft-color,15%)}}
+.state-pending 					{color: @plone-default-pending-color;
+	&:hover, &:active, &:focus 		{color: darken(@plone-default-pending-color,15%)}}
+.state-private 					{color: @plone-default-private-color;
+	&:hover, &:active, &:focus 		{color: darken(@plone-default-private-color,15%)}}
+.state-internal 				{color: @plone-default-internal-color;
+	&:hover, &:active, &:focus 		{color: darken(@plone-default-internal-color,15%)}}
+.state-internally_published		{color: @plone-default-internally-published-color;
+	&:hover, &:active, &:focus 		{color: darken(@plone-default-internally-published-color,15%)}}

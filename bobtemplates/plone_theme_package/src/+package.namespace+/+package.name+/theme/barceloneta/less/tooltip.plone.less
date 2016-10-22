@@ -1,0 +1,22 @@
+//*// TOOLTIP //*//
+
+.tooltips {
+	opacity: 0;
+	transition: opacity .2s ease .5s;
+	position: absolute;
+	background: @plone-gray-darker;
+	background: rgba(0,0,0,.9);
+	color: @plone-body-bg;
+	font-size: @plone-font-size-small;
+	border-radius: @plone-border-radius-base;
+	box-shadow: 0 2px 6px rgba(0,0,0,.17);
+	max-width: 200px;
+	margin-left: -100px;
+	left: 200px;
+	text-align: center;
+	padding: @plone-padding-base-vertical;
+	&.active {
+		opacity: 1;
+		transition: opacity .2s ease .5s;
+	}
+}

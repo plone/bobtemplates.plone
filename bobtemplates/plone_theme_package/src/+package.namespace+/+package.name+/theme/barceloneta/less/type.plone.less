@@ -1,0 +1,94 @@
+//*// TYPE //*//
+
+//*// Body //*//
+body { word-wrap: break-word; }
+
+//*// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-family: @plone-headings-font-family;
+  font-weight: @plone-headings-font-weight;
+  line-height: @plone-headings-line-height;
+  color: @plone-headings-color;
+}
+
+h1, h2, h3 {
+  margin-top: @plone-line-height-computed;
+  margin-bottom: (@plone-line-height-computed / 2);
+  a:hover, a:focus { text-decoration: none; border-bottom: 2px @plone-link-hover-color solid; }
+}
+h4, h5, h6 {
+  margin-top: (@plone-line-height-computed / 2);
+  margin-bottom: (@plone-line-height-computed / 2);
+}
+
+h1 { font-size: @plone-font-size-h1; }
+h2 { font-size: @plone-font-size-h2; }
+h3 { font-size: @plone-font-size-h3; }
+h4 { font-size: @plone-font-size-h4; }
+h5 { font-size: @plone-font-size-h5; }
+h6 { font-size: @plone-font-size-h6; }
+
+//*// Body text
+p { margin: 0 0 (@plone-line-height-computed / 2); }
+
+.documentDescription {
+  font-size: @plone-font-size-h4;
+  font-weight: @plone-font-weight-bold;
+  color: @plone-text-discreet;
+  margin-bottom: 10px;
+}
+
+//*// Emphasis & misc
+small { font-size: 85%; }
+cite { font-style: normal; }
+mark { background-color: @plone-state-warning-bg; padding: .2em; }
+.discreet { color: @plone-text-discreet; font-weight: @plone-font-weight-regular;}
+.documentByLine {color: @plone-text-discreet; font-weight: @plone-font-weight-regular; margin-bottom: (@plone-line-height-computed / 2); }
+
+//*// Page header
+.documentFirstHeading {
+  padding-bottom: ((@plone-line-height-computed / 2) - 1);
+  margin: 0 0 (@plone-line-height-computed / 2);
+  border-bottom: 1px solid @plone-page-header-border-color;
+}
+
+//*// Lists
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: (@plone-line-height-computed / 2);
+  ul,
+  ol {
+    margin-bottom: 0;
+  }
+}
+
+dl {
+  margin-top: 0; // Remove browser default
+  margin-bottom: @plone-line-height-computed;
+}
+  dt, dd { line-height: @plone-line-height-base; }
+  dt { font-weight: bold;}
+  dd { margin-left: 0; }
+
+//*// Misc
+abbr[title], abbr[data-original-title] /*tooltip bootstrap plugin, just in case*/ {
+  cursor: help;
+  border-bottom: 1px dotted @plone-abbr-border-color;
+}
+
+//*// Addresses
+address {
+  margin-bottom: @plone-line-height-computed;
+  font-style: normal;
+  line-height: @plone-line-height-base;
+}
+
+
+//*// Floats
+.pull-right {
+  float: right !important;
+}
+.pull-left {
+  float: left !important;
+}

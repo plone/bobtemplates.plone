@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme>
+{{% if plone.is_plone5 %}}
+  <name>barceloneta</name>
+  <enabled>true</enabled>
+{{% endif %}}
+
+{{% if not plone.is_plone5 %}}
+  <name>{{{ theme.normalized_name }}}</name>
+  <enabled>false</enabled>
+{{% endif %}}
+</theme>

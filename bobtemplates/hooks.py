@@ -6,7 +6,6 @@ from datetime import date
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.hooks import validate_choices
-
 import keyword
 import os
 import re
@@ -141,7 +140,7 @@ def post_type(configurator, question, answer):
 
 
 def pre_dexterity_type_name(configurator, question):
-    if configurator.variables['package.type'] != 'Dexterity':
+    if configurator.variables.get('package.type') != 'Dexterity':
         raise SkipQuestion
 
 
@@ -155,9 +154,6 @@ def post_dexterity_type_name(configurator, question, answer):
 
 def pre_theme_name(configurator, question):
     validate_packagename(configurator)
-
-    if configurator.variables['package.type'] != 'Theme':
-        raise SkipQuestion
 
     default = os.path.basename(
         configurator.target_directory).split('.')[-1].capitalize()
@@ -318,16 +314,7 @@ def cleanup_package(configurator):
     # find out what to delete
     to_delete = []
 
-    if configurator.variables['package.type'] != u'Theme':
-        to_delete.extend([
-            make_path(base_path, "theme"),
-            make_path(base_path, "profiles", "default", "theme.xml"),
-            make_path(base_path, "profiles", "uninstall", "theme.xml"),
-            make_path(configurator.target_directory, "Gruntfile.js"),
-            make_path(configurator.target_directory, "package.json"),
-        ])
-
-    if configurator.variables['package.type'] != u'Dexterity':
+    if configurator.variables.get('package.type') != u'Dexterity':
         to_delete.extend([
             make_path(base_path, "profiles", "default", "types.xml"),
             make_path(base_path, "profiles", "default", "types"),
@@ -343,7 +330,7 @@ def cleanup_package(configurator):
             else:
                 os.remove(path)
 
-    if configurator.variables['package.type'] == u'Theme':
+    if configurator.template_dir.split('/')[-1] == 'plone_theme_package':
         # make a copy of the HOWTO_DEVELOP.rst also in the package root
         shutil.copy2(
             make_path(base_path, "theme", "HOWTO_DEVELOP.rst",),

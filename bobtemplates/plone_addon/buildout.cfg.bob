@@ -13,10 +13,6 @@ parts =
     i18ndude
     omelette
     robot
-{{% if package.type == 'Theme' %}}
-    npm-install
-    grunt-compile
-{{% endif %}}
 develop = .
 
 
@@ -69,19 +65,6 @@ eggs = zest.releaser
 [i18ndude]
 recipe = zc.recipe.egg
 eggs = i18ndude
-
-{{% if package.type == 'Theme' %}}
-
-[npm-install]
-recipe = plone.recipe.command
-command = cd ${buildout:directory}; npm install .; cd ${buildout:directory}/src/{{{ package.namespace }}}/{{{ package.name}}}/theme; npm install .
-
-[grunt-compile]
-recipe = plone.recipe.command
-command = cd ${buildout:directory}; grunt compile
-update-command = cd ${buildout:directory}; grunt compile
-
-{{% endif %}}
 
 [versions]
 # Don't use a released version of {{{ package.dottedname }}}

@@ -1,8 +1,5 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-{{% if package.type == 'Theme' %}}
-    xmlns:plone="http://namespaces.plone.org/plone"
-{{% endif %}}
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="{{{ package.dottedname }}}">
@@ -13,33 +10,6 @@
 
   <include package=".browser" />
 
-{{% if package.type == 'Theme' %}}
-  <plone:static
-      directory="theme"
-      type="theme"
-      name="{{{ theme.normalized_name }}}"
-      />
-
-  <genericsetup:registerProfile
-      name="default"
-      title="Plone Theme: {{{ theme.name }}}"
-      directory="profiles/default"
-      description="Installs the Plone theme package {{{ package.dottedname }}}."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      post_handler=".setuphandlers.post_install"
-      />
-
-  <genericsetup:registerProfile
-      name="uninstall"
-      title="Uninstall: Plone Theme: {{{ theme.name }}}"
-      directory="profiles/uninstall"
-      description="Uninstalls the Plone theme package {{{ package.dottedname }}}."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      post_handler=".setuphandlers.uninstall"
-      />
-{{% endif %}}
-
-{{% if package.type != 'Theme' %}}
   <genericsetup:registerProfile
       name="default"
       title="{{{ package.dottedname }}}"
@@ -57,8 +27,6 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.uninstall"
       />
-
-{{% endif %}}
 
   <utility
       factory=".setuphandlers.HiddenProfiles"

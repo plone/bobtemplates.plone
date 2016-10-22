@@ -42,10 +42,6 @@ setup(
         'Products.GenericSetup>=1.8.2',
         'setuptools',
         'z3c.jbot',
-{{% if package.type == 'Theme' %}}
-        'plone.app.theming',
-        'plone.app.themingplugins',
-{{% endif %}}
 {{% if package.type == 'Dexterity' %}}
         'plone.app.dexterity',
 {{% endif %}}

@@ -87,10 +87,8 @@ update-command = cd ${buildout:directory}; grunt compile
 # Don't use a released version of {{{ package.dottedname }}}
 {{{ package.dottedname }}} =
 
-setuptools =
-zc.buildout =
-#setuptools = 24.3.0
-#zc.buildout = 2.5.2
+setuptools = 24.3.0
+zc.buildout = 2.5.3
 zc.recipe.egg = 2.0.3
 flake8 = 3.0.4
 flake8-isort = 2.0.1

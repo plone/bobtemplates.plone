@@ -4,7 +4,8 @@ Changelog
 1.0.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add requirements.txt and update README.txt to use it
+  [MrTango]
 
 
 1.0.5 (2016-10-16)

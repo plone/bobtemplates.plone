@@ -339,4 +339,5 @@ def cleanup_package(configurator):
 
 
 def make_path(*args):
+    """ generate path string  """
     return os.sep.join(args)

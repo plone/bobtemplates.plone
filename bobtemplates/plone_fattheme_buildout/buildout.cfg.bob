@@ -15,7 +15,7 @@ eggs =
     Plone
     Pillow
 
-resources = ${buildout:directory}/resources
+resources = ${buildout:directory}/themes
 
 
 [npm-install]

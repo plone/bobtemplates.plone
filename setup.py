@@ -40,6 +40,7 @@ setup(
     install_requires=[
         'setuptools',
         'mr.bob',
+        'pyreadline',
     ],
     extras_require={
         'test': [

@@ -126,9 +126,9 @@ Or to create a new fattheme buildout::
 
     mrbob -O my.thing bobtemplates:plone_fattheme_buildout
     cd my.thing/
-    pip install -r requirements.txt 
+    pip install -r requirements.txt
     buildout bootstrap
-    bin/buildout 
+    bin/buildout
 
 And launch the buildout using the command::
 

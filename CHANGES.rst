@@ -16,6 +16,8 @@ Changelog
 
 - Add requirements.txt and update README.txt to use it
   [MrTango]
+- Added a fat_theme_buildout which can be used for developing themes
+  [pigeonflight]
 
 - Make cleanup hook windows friendly.
   [gforcada]

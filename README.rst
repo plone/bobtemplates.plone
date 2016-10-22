@@ -96,7 +96,7 @@ Use in a buildout
 This creates a mrbob-executable in your bin-directory.
 Call it from the ``src``-directory of your Plone project like this.::
 
-    $ ../bin/mrbob -O collective.foo bobtemplates:plone_addon
+    ../bin/mrbob -O collective.foo bobtemplates:plone_addon
 
 Or to create a new fattheme buildout::
 
@@ -116,20 +116,20 @@ Installation in a virtualenv
 
 You can also install ``bobtemplates.plone`` in a virtualenv.::
 
-    $ pip install bobtemplates.plone
+    pip install bobtemplates.plone
 
 With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.::
 
-    $ pip install mr.bob
+    pip install mr.bob
 
 Now you can use it like this::
 
-    $ mrbob -O collective.foo bobtemplates:plone_addon
+    mrbob -O collective.foo bobtemplates:plone_addon
 
 This will create a new folder collective.foo.
 Inside the folder you have usually a buildout setup, which you can initialize as follow::
 
-    $ pip install -r requirements.txt
+    pip install -r requirements.txt
 
 if you don't see any requirements.txt, add this file with the following content before you run the pip command above::
 
@@ -138,7 +138,7 @@ if you don't see any requirements.txt, add this file with the following content 
 
 Now run::
 
-    $ buildout bootstrap
+    buildout bootstrap
 
 Your buildout should be ready to use now.
 

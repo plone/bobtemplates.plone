@@ -50,6 +50,9 @@ script:
   - bin/test
   - bin/test-plone_addon
 
+after_script:
+  - sh -e /etc/init.d/xvfb stop
+
 after_success:
   - bin/createcoverage
   - pip install -q coveralls

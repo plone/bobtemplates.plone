@@ -7,6 +7,8 @@ Changelog
 - Add requirements.txt and update README.txt to use it
   [MrTango]
 
+- Fix testing.
+  [gforcada]
 
 1.0.5 (2016-10-16)
 ------------------

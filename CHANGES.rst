@@ -10,6 +10,9 @@ Changelog
 - Make cleanup hook windows friendly.
   [gforcada]
 
+- Move LICENSE.rst out of docs folder into top level.
+  [gforcada]
+
 1.0.5 (2016-10-16)
 ------------------
 

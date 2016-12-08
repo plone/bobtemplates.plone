@@ -15,3 +15,4 @@ This package is based on `bobtemplates.niteoweb <https://github.com/niteoweb/bob
 - Sven Strack [svx]
 - Héctor Velarde [hvelarde]
 - Aurore Mariscal [AuroreMariscal]
+- Víctor Fernández de Alba [sneridagh]

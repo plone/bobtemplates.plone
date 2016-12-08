@@ -13,6 +13,9 @@ Changelog
 - Move LICENSE.rst out of docs folder into top level.
   [gforcada]
 
+- Get rid of the last two code violations on generated package
+  [sneridagh]
+
 1.0.5 (2016-10-16)
 ------------------
 

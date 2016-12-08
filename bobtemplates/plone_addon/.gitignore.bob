@@ -17,6 +17,7 @@ parts/
 src/*
 test.plone_addon/
 var/
+node_modules
 # files
 .installed.cfg
 .mr.developer.cfg

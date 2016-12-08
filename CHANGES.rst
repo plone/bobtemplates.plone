@@ -13,6 +13,10 @@ Changelog
 - Move LICENSE.rst out of docs folder into top level.
   [gforcada]
 
+- Fix violations on generated code. Add new documentation about the strictness
+  of plone.recipe.codeanalysis. Add .isort.cfg default config.
+  [sneridagh]
+
 1.0.5 (2016-10-16)
 ------------------
 

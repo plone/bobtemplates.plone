@@ -26,7 +26,7 @@ class TestSetup(unittest.TestCase):
         from {{{ package.dottedname }}}.interfaces import (
             I{{{ package.browserlayer }}})
         from plone.browserlayer import utils
-        self.assertIn(I{{{ package.browserlayer }}}, utils.registered_layers())
+        self.assertIn(I{{{ package.browserlayer }}}, utils.registered_layers())  #noqa
 
 
 class TestUninstall(unittest.TestCase):
@@ -48,4 +48,4 @@ class TestUninstall(unittest.TestCase):
         from {{{ package.dottedname }}}.interfaces import \
             I{{{ package.browserlayer }}}
         from plone.browserlayer import utils
-        self.assertNotIn(I{{{ package.browserlayer }}}, utils.registered_layers())
+        self.assertNotIn(I{{{ package.browserlayer }}}, utils.registered_layers())  # noqa

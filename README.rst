@@ -134,6 +134,28 @@ Your buildout should be ready to use now.
 See `the documentation of mr.bob <http://mrbob.readthedocs.org/en/latest/>`_  for further information.
 
 
+Integration with plone.recipe.codeanalysis
+------------------------------------------
+
+This package is integrated by default with ``plone.recipe.codeanalysis`` that enforces the use of good known practices and the Plone code style guide.
+
+By default, the recipe setup a git precommit hook that performs the checks on the current package code. If it fins some violation the commit is not performed and the violations are shown.
+
+In order to fix all the violations, please refer to the plone.recipe.codeanalysis documentation: https://github.com/plone/plone.recipe.codeanalysis
+
+and https://github.com/plone/jenkins.plone.org/blob/master/docs/source/run-qa-on-package.rst
+
+The import sorting issues can be sorted out by installing the ``isort`` utility:
+
+.. code-block:: shell
+
+    pip install isort
+
+    isort src/**/*.py
+
+You can also install other utilities to help you to fix and avoid violations, like ``autopep8``.
+
+
 Contribute
 ----------
 

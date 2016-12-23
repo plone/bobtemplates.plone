@@ -4,6 +4,10 @@ Changelog
 1.0.6 (unreleased)
 ------------------
 
+- Change default values for code analysis' ``return-status-codes`` directive:
+  it is now ``False`` on development and ``True`` on CI.
+  [hvelarde]
+
 - Add requirements.txt and update README.txt to use it
   [MrTango]
 

@@ -121,8 +121,8 @@ Inside the folder you have usually a buildout setup, which you can initialize as
 
 if you don't see any requirements.txt, add this file with the following content before you run the pip command above::
 
-    setuptools = 24.3.0
-    zc.buildout = 2.5.3
+    setuptools == 24.3.0
+    zc.buildout == 2.5.3
 
 Now run::
 

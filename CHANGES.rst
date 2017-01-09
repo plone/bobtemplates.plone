@@ -11,12 +11,17 @@ Changelog
   [MrTango]
 
 - Make cleanup hook windows friendly.
-  [gforcada]
+  [gforcadgia]
 
 - Move LICENSE.rst out of docs folder into top level.
   [gforcada]
 
 - Get rid of the last two code violations on generated package
+  [sneridagh]
+
+- Comment the toolbar rule by default in backend.xml and add a comment on how
+  to add it properly if backend.xml is used. Declaring the toolbar rule twice
+  causes the toolbar JS stop working properly
   [sneridagh]
 
 1.0.5 (2016-10-16)

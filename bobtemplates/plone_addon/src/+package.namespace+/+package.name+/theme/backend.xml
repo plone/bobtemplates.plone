@@ -26,7 +26,7 @@
 
   <!-- Toolbar -->
   <!-- Commented out by default, if you are using backend.xml you should only
-  add the toolbar rules once (in main rules.xml) or here. Using it twice cause
+  add the toolbar rules once in main rules.xml or here. Using it twice cause
   that the toolbar pattern stop working properly. Uncomment if you already have
   commented the ones in rules.xml -->
   <!--

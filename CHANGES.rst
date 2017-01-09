@@ -11,7 +11,7 @@ Changelog
   [MrTango]
 
 - Make cleanup hook windows friendly.
-  [gforcadgia]
+  [gforcada]
 
 - Move LICENSE.rst out of docs folder into top level.
   [gforcada]

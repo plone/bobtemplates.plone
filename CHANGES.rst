@@ -4,6 +4,9 @@ Changelog
 1.0.6 (unreleased)
 ------------------
 
+- Imrove wording
+  [svx]
+
 - Add requirements.txt and update README.txt to use it
   [MrTango]
 

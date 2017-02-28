@@ -4,6 +4,10 @@ Changelog
 1.0.6 (unreleased)
 ------------------
 
+- Change default values for code analysis' ``return-status-codes`` directive:
+  it is now ``False`` on development and ``True`` on CI.
+  [hvelarde]
+
 - Pin flake8 to latest (3.3.0) to allow use of latest pycodestyle (2.3.1)
   [fulv]
   

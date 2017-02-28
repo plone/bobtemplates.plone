@@ -1,10 +1,6 @@
 language: python
 python: 2.7
 sudo: false
-addons:
-  apt:
-    packages:
-    - npm
 cache:
   pip: true
   directories:
@@ -45,7 +41,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 
 script:
-  - bin/check-readme
+#  - bin/check-readme
   - bin/code-analysis
   - bin/test
   - bin/test-plone_addon

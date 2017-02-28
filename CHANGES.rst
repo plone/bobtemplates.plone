@@ -8,6 +8,12 @@ Changelog
   it is now ``False`` on development and ``True`` on CI.
   [hvelarde]
 
+- Pin flake8 to latest (3.3.0) to allow use of latest pycodestyle (2.3.1)
+  [fulv]
+  
+- Imrove wording
+  [svx]
+
 - Add requirements.txt and update README.txt to use it
   [MrTango]
 
@@ -18,6 +24,11 @@ Changelog
   [gforcada]
 
 - Get rid of the last two code violations on generated package
+  [sneridagh]
+
+- Comment the toolbar rule by default in backend.xml and add a comment on how
+  to add it properly if backend.xml is used. Declaring the toolbar rule twice
+  causes the toolbar JS stop working properly
   [sneridagh]
 
 1.0.5 (2016-10-16)

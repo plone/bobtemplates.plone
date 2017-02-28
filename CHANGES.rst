@@ -4,6 +4,9 @@ Changelog
 1.0.6 (unreleased)
 ------------------
 
+- Pin flake8 to latest (3.3.0) to allow use of latest pycodestyle (2.3.1)
+  [fulv]
+  
 - Imrove wording
   [svx]
 

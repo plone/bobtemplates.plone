@@ -98,49 +98,29 @@ Call it from the ``src``-directory of your Plone project like this.::
 
     ../bin/mrbob -O collective.foo bobtemplates:plone_addon
 
-Or to create a new fattheme buildout::
+Or to create a new theme package::
 
-    mrbob -O my.thing bobtemplates:plone_fattheme_buildout
-    cd my.thing/
+    mrbob -O plonetheme.tango bobtemplates:plone_theme
+    cd plonetheme.tango/
     pip install -r requirements.txt
     buildout bootstrap
     bin/buildout
 
-And launch the buildout using the command::
+Or to create a new fattheme::
 
-    bin/instance fg
-
-Or to create a new fattheme buildout::
-
-    mrbob -O my.thing bobtemplates:plone_fattheme_buildout
-    cd my.thing/
+    mrbob -O myfattheme bobtemplates:plone_fattheme
+    cd myfattheme/
     pip install -r requirements.txt
     buildout bootstrap
     bin/buildout
 
-And launch the buildout using the command::
-
-    bin/instance fg
-
 Or to create a new fattheme buildout::
 
-    mrbob -O my.thing bobtemplates:plone_fattheme_buildout
-    cd my.thing/
+    mrbob -O myfatbuildout bobtemplates:plone_fattheme_buildout
+    cd myfatbuildout/
     pip install -r requirements.txt
     buildout bootstrap
     bin/buildout
-
-And launch the buildout using the command::
-
-    bin/instance fg
-
-Or to create a new fattheme buildout::
-
-    mrbob -O my.thing bobtemplates:plone_fattheme_buildout
-    cd my.thing/
-    pip install -r requirements.txt 
-    buildout bootstrap
-    bin/buildout 
 
 And launch the buildout using the command::
 

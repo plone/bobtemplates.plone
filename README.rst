@@ -100,16 +100,8 @@ Call it from the ``src``-directory of your Plone project like this.::
 
 Or to create a new theme package::
 
-    mrbob -O plonetheme.tango bobtemplates:plone_theme
+    mrbob -O plonetheme.tango bobtemplates:plone_theme_package
     cd plonetheme.tango/
-    pip install -r requirements.txt
-    buildout bootstrap
-    bin/buildout
-
-Or to create a new fattheme::
-
-    mrbob -O myfattheme bobtemplates:plone_fattheme
-    cd myfattheme/
     pip install -r requirements.txt
     buildout bootstrap
     bin/buildout

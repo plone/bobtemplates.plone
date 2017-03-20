@@ -36,7 +36,7 @@ class BaseTemplateTest(unittest.TestCase):
 
 
 class PloneTemplateTest(BaseTemplateTest):
-    """Tests for the `plone_addon` template."""
+    """Tests for the templates."""
     template = ''
     project = ''
     answers_file = ''
@@ -176,6 +176,209 @@ class PloneTemplateTest(BaseTemplateTest):
                 self.project + '/src/collective/foo/bar/tests/robot/test_example.robot',  # noqa
                 self.project + '/src/collective/foo/bar/tests/test_robot.py',
                 self.project + '/src/collective/foo/bar/tests/test_setup.py',
+            ]
+        )
+
+    def test_plone_theme_package_template(self):
+        """Test the `plone_theme_package` template.
+
+        Generate a project from a template, test which files were created
+        and run all tests in the generated package.
+        """
+        self.template = 'plone_theme_package'
+        self.project = 'collective.foo'
+        self.answers_file = 'nosetests_answers_plone_theme_package.ini'
+        self.maxDiff = None
+        prefix = self.project
+        result = self.create_template()
+        # from pprint import pprint as pp
+        # pp(result.files_created.keys())
+        self.assertItemsEqual(
+            result.files_created.keys(),
+            [
+                prefix + '',  # noqa
+                prefix + '/.coveragerc',  # noqa
+                prefix + '/.editorconfig',  # noqa
+                prefix + '/.gitattributes',  # noqa
+                prefix + '/.gitignore',  # noqa
+                prefix + '/.travis.yml',  # noqa
+                prefix + '/bootstrap-buildout.py',  # noqa
+                prefix + '/buildout.cfg',  # noqa
+                prefix + '/CHANGES.rst',  # noqa
+                prefix + '/CONTRIBUTORS.rst',  # noqa
+                prefix + '/docs',  # noqa
+                prefix + '/docs/index.rst',  # noqa
+                prefix + '/docs/LICENSE.GPL',  # noqa
+                prefix + '/docs/LICENSE.rst',  # noqa
+                prefix + '/Gruntfile.js',  # noqa
+                prefix + '/HOWTO_DEVELOP.rst',  # noqa
+                prefix + '/LICENSE.GPL',  # noqa
+                prefix + '/LICENSE.rst',  # noqa
+                prefix + '/MANIFEST.in',  # noqa
+                prefix + '/package.json',  # noqa
+                prefix + '/README.rst',  # noqa
+                prefix + '/requirements.txt',  # noqa
+                prefix + '/setup.cfg',  # noqa
+                prefix + '/setup.py',  # noqa
+                prefix + '/src',  # noqa
+                prefix + '/src/collective',  # noqa
+                prefix + '/src/collective/__init__.py',  # noqa
+                prefix + '/src/collective/foo',  # noqa
+                prefix + '/src/collective/foo/__init__.py',  # noqa
+                prefix + '/src/collective/foo/browser',  # noqa
+                prefix + '/src/collective/foo/browser/__init__.py',  # noqa
+                prefix + '/src/collective/foo/browser/configure.zcml',  # noqa
+                prefix + '/src/collective/foo/browser/overrides',  # noqa
+                prefix + '/src/collective/foo/browser/overrides/.gitkeep',  # noqa
+                prefix + '/src/collective/foo/browser/static',  # noqa
+                prefix + '/src/collective/foo/browser/static/.gitkeep',  # noqa
+                prefix + '/src/collective/foo/configure.zcml',  # noqa
+                prefix + '/src/collective/foo/interfaces.py',  # noqa
+                prefix + '/src/collective/foo/locales',  # noqa
+                prefix + '/src/collective/foo/locales/collective.foo.pot',  # noqa
+                prefix + '/src/collective/foo/locales/update.sh',  # noqa
+                prefix + '/src/collective/foo/profiles',  # noqa
+                prefix + '/src/collective/foo/profiles/default',  # noqa
+                prefix + '/src/collective/foo/profiles/default/browserlayer.xml',  # noqa
+                prefix + '/src/collective/foo/profiles/default/metadata.xml',  # noqa
+                prefix + '/src/collective/foo/profiles/default/registry.xml',  # noqa
+                prefix + '/src/collective/foo/profiles/default/theme.xml',  # noqa
+                prefix + '/src/collective/foo/profiles/uninstall',  # noqa
+                prefix + '/src/collective/foo/profiles/uninstall/browserlayer.xml',  # noqa
+                prefix + '/src/collective/foo/profiles/uninstall/theme.xml',  # noqa
+                prefix + '/src/collective/foo/setuphandlers.py',  # noqa
+                prefix + '/src/collective/foo/testing.py',  # noqa
+                prefix + '/src/collective/foo/tests',  # noqa
+                prefix + '/src/collective/foo/tests/__init__.py',  # noqa
+                prefix + '/src/collective/foo/tests/robot',  # noqa
+                prefix + '/src/collective/foo/tests/robot/test_example.robot',  # noqa
+                prefix + '/src/collective/foo/tests/test_robot.py',  # noqa
+                prefix + '/src/collective/foo/tests/test_setup.py',  # noqa
+                prefix + '/src/collective/foo/theme',  # noqa
+                prefix + '/src/collective/foo/theme/backend.xml',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta-apple-touch-icon-114x114-precomposed.png',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta-apple-touch-icon-144x144-precomposed.png',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta-apple-touch-icon-57x57-precomposed.png',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta-apple-touch-icon-72x72-precomposed.png',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta-apple-touch-icon-precomposed.png',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta-apple-touch-icon.png',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta-favicon.ico',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/accessibility.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/alerts.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/barceloneta-compiled.css',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/barceloneta-compiled.css.map',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/barceloneta.css',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/barceloneta.plone.export.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/barceloneta.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/barceloneta.plone.local.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/behaviors.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/breadcrumbs.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/buttons.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/code.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/contents.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/controlpanels.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/deco.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/discussion.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/dropzone.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/event.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/fonts.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/footer.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/forms.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/formtabbing.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/grid.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/header.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/image.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/loginform.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/main.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/mixin.borderradius.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/mixin.buttons.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/mixin.clearfix.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/mixin.forms.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/mixin.grid.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/mixin.gridframework.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/mixin.images.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/mixin.prefixes.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/mixin.tabfocus.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/modal.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/normalize.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/pagination.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/pickadate.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/plone-toolbarlogo.svg',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/portlets.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/print.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/scaffolding.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/search.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/sitemap.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/sitenav.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/sortable.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/states.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/tables.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/tablesorter.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/tags.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/thumbs.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/toc.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/tooltip.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/tree.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/type.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/variables.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/barceloneta/less/views.plone.less',  # noqa
+                prefix + '/src/collective/foo/theme/HOWTO_DEVELOP.rst',  # noqa
+                prefix + '/src/collective/foo/theme/index.html',  # noqa
+                prefix + '/src/collective/foo/theme/less',  # noqa
+                prefix + '/src/collective/foo/theme/less/custom.less',  # noqa
+                prefix + '/src/collective/foo/theme/less/plone.toolbar.vars.less',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/LICENSE.txt',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Light.eot',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Light.svg',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Light.ttf',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Light.woff',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-LightItalic.eot',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-LightItalic.svg',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-LightItalic.ttf',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-LightItalic.woff',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Medium.eot',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Medium.svg',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Medium.ttf',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Medium.woff',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-MediumItalic.eot',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-MediumItalic.svg',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-MediumItalic.ttf',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-MediumItalic.woff',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Regular.eot',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Regular.svg',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Regular.ttf',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Regular.woff',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Thin.eot',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Thin.svg',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Thin.ttf',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-Thin.woff',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-ThinItalic.eot',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-ThinItalic.svg',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-ThinItalic.ttf',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/Roboto-ThinItalic.woff',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/RobotoCondensed-Light.eot',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/RobotoCondensed-Light.svg',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/RobotoCondensed-Light.ttf',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/RobotoCondensed-Light.woff',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/RobotoCondensed-LightItalic.eot',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/RobotoCondensed-LightItalic.svg',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/RobotoCondensed-LightItalic.ttf',  # noqa
+                prefix + '/src/collective/foo/theme/less/roboto/RobotoCondensed-LightItalic.woff',  # noqa
+                prefix + '/src/collective/foo/theme/less/theme.less',  # noqa
+                prefix + '/src/collective/foo/theme/less/theme.local.less',  # noqa
+                prefix + '/src/collective/foo/theme/manifest.cfg',  # noqa
+                prefix + '/src/collective/foo/theme/package.json',  # noqa
+                prefix + '/src/collective/foo/theme/preview.png',  # noqa
+                prefix + '/src/collective/foo/theme/rules.xml',  # noqa
+                prefix + '/src/collective/foo/theme/template-overrides',  # noqa
+                prefix + '/src/collective/foo/theme/template-overrides/.gitkeep',  # noqa
+                prefix + '/src/collective/foo/theme/tinymce-templates',  # noqa
+                prefix + '/src/collective/foo/theme/tinymce-templates/image-grid-2x2.html',  # noqa
+                prefix + '/src/collective/foo/theme/views',  # noqa
+                prefix + '/src/collective/foo/theme/views/slider-images.pt.example',  # noqa
             ]
         )
 

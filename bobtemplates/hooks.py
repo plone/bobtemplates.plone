@@ -161,20 +161,16 @@ def pre_theme_name(configurator, question):
         question.default = default
 
 
-def validate_themename(configurator):
-    fail = False
-
-    allowed = set(string.ascii_letters + string.digits + '.-_')
-    if not set(configurator.varibles['theme.name']).issubset(allowed):
-        fail = True
-
-    if fail:
-        msg = "Error: '{0}' is not a valid themename.\n".format(
-            configurator.variables["theme.name"])
+def post_theme_name(configurator, question, answer):
+    regex = r'^\w+[a-zA-Z0-9 \.\-_]*\w$'
+    if not re.match(regex, answer):
+        msg = "Error: '{0}' is not a valid themename.\n".format(answer)
         msg += "Please use a valid name (like 'Tango' or 'my-tango.com')!\n"
-        msg += "No '.' at beginning or end of the name and "
-        msg += "only letters, digits and '.-_' are allowed."
-        sys.exit(msg)
+        msg += "At beginning or end only letters|diggits are allowed.\n"
+        msg += "Inside the name also '.-_' are allowed.\n"
+        msg += "No umlauts!"
+        raise ValidationError(msg)
+    return answer
 
 
 def prepare_render(configurator):
@@ -250,9 +246,13 @@ def prepare_render(configurator):
         configurator.variables['package.dexterity_type_name_lower'] = ''
 
     if configurator.variables.get('theme.name'):
+        def normalize_string(value):
+            value = "".join(value.split('_'))
+            value = "".join(value.split())
+            return value
         configurator.variables[
-            "theme.normalized_name"] = configurator.variables.get(
-                'theme.name').replace(" ", "-").strip('.').lower()
+            "theme.normalized_name"] = normalize_string(
+                configurator.variables.get('theme.name')).lower()
     else:
         configurator.variables["theme.normalized_name"] = ""
 

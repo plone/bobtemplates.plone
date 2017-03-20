@@ -180,8 +180,6 @@ def prepare_render(configurator):
     """
     # get package-name and package-type from user-input
 
-    from pprint import pprint as pp
-    pp(configurator.__dict__)
     package_dir = os.path.basename(configurator.target_directory)
     nested = bool(len(package_dir.split('.')) == 3)
     configurator.variables['package.nested'] = nested

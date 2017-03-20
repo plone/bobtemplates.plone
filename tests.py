@@ -6,6 +6,7 @@ import shutil
 
 from bobtemplates import hooks
 from mrbob.bobexceptions import ValidationError
+from mrbob.configurator import Question
 from scripttest import TestFileEnvironment
 
 
@@ -443,6 +444,23 @@ class HooksTest(unittest.TestCase):
         self.assertEqual(hookit(u'Supertype'), u'Supertype')
         self.assertEqual(hookit(u'second_coming'), u'second_coming')
         self.assertEqual(hookit(u'the_2nd_coming'), u'the_2nd_coming')
+
+    def test_pre_theme_name(self):
+        """
+        """
+
+        def hookit(configurator, question):
+            return hooks.pre_theme_name(configurator, question)
+
+        question = Question(
+            name='theme.name', question='Theme name', default='Example')
+        self.configurator.questions = [question]
+        self.configurator.target_directory = '/tmp/bob/plonetheme.mytango'
+        hookit(self.configurator, question)
+        self.assertTrue('default' in self.configurator.questions[0].__dict__)
+        self.assertEqual(
+            'Mytango',
+            self.configurator.questions[0].default)
 
     def test_post_theme_name(self):
         """ validation of entered theme name

@@ -164,11 +164,11 @@ def pre_theme_name(configurator, question):
 def post_theme_name(configurator, question, answer):
     regex = r'^\w+[a-zA-Z0-9 \.\-_]*\w$'
     if not re.match(regex, answer):
-        msg = "Error: '{0}' is not a valid themename.\n".format(answer)
-        msg += "Please use a valid name (like 'Tango' or 'my-tango.com')!\n"
-        msg += "At beginning or end only letters|diggits are allowed.\n"
-        msg += "Inside the name also '.-_' are allowed.\n"
-        msg += "No umlauts!"
+        msg = u"Error: '{0}' is not a valid themename.\n".format(answer)
+        msg += u"Please use a valid name (like 'Tango' or 'my-tango.com')!\n"
+        msg += u"At beginning or end only letters|diggits are allowed.\n"
+        msg += u"Inside the name also '.-_' are allowed.\n"
+        msg += u"No umlauts!"
         raise ValidationError(msg)
     return answer
 
@@ -179,6 +179,9 @@ def prepare_render(configurator):
     This is especially important for allowing nested and normal packages.
     """
     # get package-name and package-type from user-input
+
+    from pprint import pprint as pp
+    pp(configurator.__dict__)
     package_dir = os.path.basename(configurator.target_directory)
     nested = bool(len(package_dir.split('.')) == 3)
     configurator.variables['package.nested'] = nested
@@ -247,8 +250,8 @@ def prepare_render(configurator):
 
     if configurator.variables.get('theme.name'):
         def normalize_string(value):
-            value = "".join(value.split('_'))
-            value = "".join(value.split())
+            value = "-".join(value.split('_'))
+            value = "-".join(value.split())
             return value
         configurator.variables[
             "theme.normalized_name"] = normalize_string(

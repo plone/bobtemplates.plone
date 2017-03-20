@@ -383,7 +383,38 @@ class PloneTemplateTest(BaseTemplateTest):
         )
 
 
+class DummyConfigurator(object):
+    def __init__(self,
+                 defaults=None,
+                 bobconfig=None,
+                 templateconfig=None,
+                 variables=None,
+                 quiet=False,
+                 target_directory=None):
+        self.defaults = defaults or {}
+        self.bobconfig = bobconfig or {}
+        self.variables = variables or {}
+        self.quiet = quiet
+        self.templateconfig = templateconfig or {}
+        self.target_directory = target_directory
+
+
 class HooksTest(unittest.TestCase):
+
+    def setUp(self):
+        target_directory = '/tmp/bobtemplates/plonetheme.tango'
+        variables = {
+            'author.email': 'info@example.com',
+            'author.github.user': u'ExampleUser',
+            'author.name': 'Example Name',
+            'package.description': u'An add-on for Plone',
+            'plone.is_plone5': True,
+            'plone.minor_version': u'5.0',
+            'plone.version': u'5.0.6',
+            'year': 2017
+        }
+        self.configurator = DummyConfigurator(
+            target_directory=target_directory, variables=variables)
 
     def test_to_boolean(self):
         # Initial simple test to show coverage in hooks.py.
@@ -412,3 +443,68 @@ class HooksTest(unittest.TestCase):
         self.assertEqual(hookit(u'Supertype'), u'Supertype')
         self.assertEqual(hookit(u'second_coming'), u'second_coming')
         self.assertEqual(hookit(u'the_2nd_coming'), u'the_2nd_coming')
+
+    def test_post_theme_name(self):
+        """ validation of entered theme name
+        """
+        def hookit(value):
+            return hooks.post_theme_name(None, None, value)
+
+        with self.assertRaises(ValidationError):
+            hookit('foo bar !')
+        with self.assertRaises(ValidationError):
+            hookit(u'Glühwein')
+        with self.assertRaises(ValidationError):
+            hookit(u'.my-theme')
+        with self.assertRaises(ValidationError):
+            hookit(u'my-theme.')
+        with self.assertRaises(ValidationError):
+            hookit(u'my-theme; lala')
+        with self.assertRaises(ValidationError):
+            hookit(u'my theme-')
+
+        self.assertEqual(hookit(u'My Theme'), u'My Theme')
+        self.assertEqual(hookit(u'my-website.org'), u'my-website.org')
+        self.assertEqual(
+            hookit(u'Theme for example.com'), u'Theme for example.com')
+        self.assertEqual(hookit(u'My_Theme'), u'My_Theme')
+        self.assertEqual(
+            hookit(u'My Theme - blue 666'), u'My Theme - blue 666')
+
+    def test_prepare_render(self):
+        """
+        """
+        def hookit(configurator):
+            hooks.prepare_render(configurator)
+
+        self.configurator.variables['theme.name'] = u'My Theme'
+        hookit(self.configurator)
+        self.assertTrue('package.nested' in self.configurator.variables)
+        self.assertTrue('package.namespace' in self.configurator.variables)
+        self.assertTrue('package.dottedname' in self.configurator.variables)
+        self.assertTrue('package.uppercasename' in self.configurator.variables)
+        self.assertTrue('theme.normalized_name' in self.configurator.variables)
+        self.assertEqual(
+            self.configurator.variables['theme.name'],
+            'My Theme')
+        self.assertEqual(
+            self.configurator.variables['theme.normalized_name'],
+            'my-theme')
+
+        self.configurator.variables['theme.name'] = u'Blue    example.com'
+        hookit(self.configurator)
+        self.assertEqual(
+            self.configurator.variables['theme.name'],
+            'Blue    example.com')
+        self.assertEqual(
+            self.configurator.variables['theme.normalized_name'],
+            'blue-example.com')
+
+        self.configurator.variables['theme.name'] = u'Blue_Sky example.com'
+        hookit(self.configurator)
+        self.assertEqual(
+            self.configurator.variables['theme.name'],
+            'Blue_Sky example.com')
+        self.assertEqual(
+            self.configurator.variables['theme.normalized_name'],
+            'blue-sky-example.com')

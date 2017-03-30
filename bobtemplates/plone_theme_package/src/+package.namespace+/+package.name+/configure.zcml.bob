@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="{{{ package.dottedname }}}">
@@ -10,20 +11,26 @@
 
   <include package=".browser" />
 
+  <plone:static
+      directory="theme"
+      type="theme"
+      name="{{{ theme.normalized_name }}}"
+      />
+
   <genericsetup:registerProfile
       name="default"
-      title="{{{ package.dottedname }}}"
+      title="Plone Theme: {{{ theme.name }}}"
       directory="profiles/default"
-      description="Installs the {{{ package.dottedname }}} add-on."
+      description="Installs the Plone theme package {{{ package.dottedname }}}."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.post_install"
       />
 
   <genericsetup:registerProfile
       name="uninstall"
-      title="{{{ package.dottedname }}} (uninstall)"
+      title="Uninstall: Plone Theme: {{{ theme.name }}}"
       directory="profiles/uninstall"
-      description="Uninstalls the {{{ package.dottedname }}} add-on."
+      description="Uninstalls the Plone theme package {{{ package.dottedname }}}."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.uninstall"
       />

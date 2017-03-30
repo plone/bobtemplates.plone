@@ -24,15 +24,15 @@
     all your backend pages such as site setup and edit.
     -->
 
-  <!-- Toolbar -->
-  <!-- Commented out by default, if you are using backend.xml you should only
-  add the toolbar rules once in main rules.xml or here. Using it twice cause
-  that the toolbar pattern stop working properly. Uncomment if you already have
-  commented the ones in rules.xml -->
-  <!--
-  <before css:theme-children="body" css:content-children="#edit-bar" css:if-not-content=".ajax_load" css:if-content=".userrole-authenticated" />
-  <replace css:theme="#anonymous-actions" css:content-children="#portal-personaltools-wrapper" css:if-not-content=".ajax_load" css:if-content=".userrole-anonymous" />
-  -->
+    <!-- Toolbar -->
+    <!-- Commented out by default, if you are using backend.xml you should only
+    add the toolbar rules once in main rules.xml or here. Using it twice cause
+    that the toolbar pattern stop working properly. Uncomment if you already have
+    commented the ones in rules.xml -->
+    <!--
+    <before css:theme-children="body" css:content-children="#edit-bar" css:if-not-content=".ajax_load" css:if-content=".userrole-authenticated" />
+    <replace css:theme="#anonymous-actions" css:content-children="#portal-personaltools-wrapper" css:if-not-content=".ajax_load" css:if-content=".userrole-anonymous" />
+    -->
 
   <!-- We don't want overlays -->
   <drop attributes="class" css:content="#edit-bar a.pat-plone-modal" />

@@ -41,10 +41,9 @@ setup(
         'plone.api',
         'Products.GenericSetup>=1.8.2',
         'setuptools',
-        'z3c.jbot',
-{{% if package.type == 'Dexterity' %}}
-        'plone.app.dexterity',
-{{% endif %}}
+        'plone.app.theming',
+        'collective.themesitesetup',
+        'rapido.plone'
     ],
     extras_require={
         'test': [

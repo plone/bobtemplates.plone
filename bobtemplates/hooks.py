@@ -6,7 +6,6 @@ from datetime import date
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.hooks import validate_choices
-
 import keyword
 import os
 import re
@@ -141,7 +140,7 @@ def post_type(configurator, question, answer):
 
 
 def pre_dexterity_type_name(configurator, question):
-    if configurator.variables['package.type'] != 'Dexterity':
+    if configurator.variables.get('package.type') != 'Dexterity':
         raise SkipQuestion
 
 
@@ -156,29 +155,22 @@ def post_dexterity_type_name(configurator, question, answer):
 def pre_theme_name(configurator, question):
     validate_packagename(configurator)
 
-    if configurator.variables['package.type'] != 'Theme':
-        raise SkipQuestion
-
     default = os.path.basename(
         configurator.target_directory).split('.')[-1].capitalize()
     if default:
         question.default = default
 
 
-def validate_themename(configurator):
-    fail = False
-
-    allowed = set(string.ascii_letters + string.digits + '.-_')
-    if not set(configurator.varibles['theme.name']).issubset(allowed):
-        fail = True
-
-    if fail:
-        msg = "Error: '{0}' is not a valid themename.\n".format(
-            configurator.variables["theme.name"])
-        msg += "Please use a valid name (like 'Tango' or 'my-tango.com')!\n"
-        msg += "No '.' at beginning or end of the name and "
-        msg += "only letters, digits and '.-_' are allowed."
-        sys.exit(msg)
+def post_theme_name(configurator, question, answer):
+    regex = r'^\w+[a-zA-Z0-9 \.\-_]*\w$'
+    if not re.match(regex, answer):
+        msg = u"Error: '{0}' is not a valid themename.\n".format(answer)
+        msg += u"Please use a valid name (like 'Tango' or 'my-tango.com')!\n"
+        msg += u"At beginning or end only letters|diggits are allowed.\n"
+        msg += u"Inside the name also '.-_' are allowed.\n"
+        msg += u"No umlauts!"
+        raise ValidationError(msg)
+    return answer
 
 
 def prepare_render(configurator):
@@ -187,6 +179,7 @@ def prepare_render(configurator):
     This is especially important for allowing nested and normal packages.
     """
     # get package-name and package-type from user-input
+
     package_dir = os.path.basename(configurator.target_directory)
     nested = bool(len(package_dir.split('.')) == 3)
     configurator.variables['package.nested'] = nested
@@ -254,9 +247,13 @@ def prepare_render(configurator):
         configurator.variables['package.dexterity_type_name_lower'] = ''
 
     if configurator.variables.get('theme.name'):
+        def normalize_string(value):
+            value = "-".join(value.split('_'))
+            value = "-".join(value.split())
+            return value
         configurator.variables[
-            "theme.normalized_name"] = configurator.variables.get(
-                'theme.name').replace(" ", "-").strip('.').lower()
+            "theme.normalized_name"] = normalize_string(
+                configurator.variables.get('theme.name')).lower()
     else:
         configurator.variables["theme.normalized_name"] = ""
 
@@ -318,16 +315,7 @@ def cleanup_package(configurator):
     # find out what to delete
     to_delete = []
 
-    if configurator.variables['package.type'] != u'Theme':
-        to_delete.extend([
-            make_path(base_path, "theme"),
-            make_path(base_path, "profiles", "default", "theme.xml"),
-            make_path(base_path, "profiles", "uninstall", "theme.xml"),
-            make_path(configurator.target_directory, "Gruntfile.js"),
-            make_path(configurator.target_directory, "package.json"),
-        ])
-
-    if configurator.variables['package.type'] != u'Dexterity':
+    if configurator.variables.get('package.type') != u'Dexterity':
         to_delete.extend([
             make_path(base_path, "profiles", "default", "types.xml"),
             make_path(base_path, "profiles", "default", "types"),
@@ -343,7 +331,7 @@ def cleanup_package(configurator):
             else:
                 os.remove(path)
 
-    if configurator.variables['package.type'] == u'Theme':
+    if configurator.template_dir.split('/')[-1] == 'plone_theme_package':
         # make a copy of the HOWTO_DEVELOP.rst also in the package root
         shutil.copy2(
             make_path(base_path, "theme", "HOWTO_DEVELOP.rst",),
@@ -352,4 +340,5 @@ def cleanup_package(configurator):
 
 
 def make_path(*args):
+    """ generate path string  """
     return os.sep.join(args)

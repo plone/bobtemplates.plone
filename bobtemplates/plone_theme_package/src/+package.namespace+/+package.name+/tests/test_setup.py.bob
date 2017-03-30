@@ -1,0 +1,51 @@
+# -*- coding: utf-8 -*-
+"""Setup tests for this package."""
+from plone import api
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+
+import unittest
+
+
+class TestSetup(unittest.TestCase):
+    """Test that {{{ package.dottedname }}} is properly installed."""
+
+    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+
+    def setUp(self):
+        """Custom shared utility setup for tests."""
+        self.portal = self.layer['portal']
+        self.installer = api.portal.get_tool('portal_quickinstaller')
+
+    def test_product_installed(self):
+        """Test if {{{ package.dottedname }}} is installed."""
+        self.assertTrue(self.installer.isProductInstalled(
+            '{{{ package.dottedname }}}'))
+
+    def test_browserlayer(self):
+        """Test that I{{{ package.browserlayer }}} is registered."""
+        from {{{ package.dottedname }}}.interfaces import (
+            I{{{ package.browserlayer }}})
+        from plone.browserlayer import utils
+        self.assertIn(I{{{ package.browserlayer }}}, utils.registered_layers())
+
+
+class TestUninstall(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.installer.uninstallProducts(['{{{ package.dottedname }}}'])
+
+    def test_product_uninstalled(self):
+        """Test if {{{ package.dottedname }}} is cleanly uninstalled."""
+        self.assertFalse(self.installer.isProductInstalled(
+            '{{{ package.dottedname }}}'))
+
+    def test_browserlayer_removed(self):
+        """Test that I{{{ package.browserlayer }}} is removed."""
+        from {{{ package.dottedname }}}.interfaces import \
+            I{{{ package.browserlayer }}}
+        from plone.browserlayer import utils
+        self.assertNotIn(I{{{ package.browserlayer }}}, utils.registered_layers())

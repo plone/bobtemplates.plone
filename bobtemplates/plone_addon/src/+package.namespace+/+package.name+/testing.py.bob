@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone import api
 {{% if plone.is_plone5 %}}
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 {{% endif %}}

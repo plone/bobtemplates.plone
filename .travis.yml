@@ -42,11 +42,8 @@ before_script:
 
 script:
 #  - bin/check-readme
-  - cat bin/code-analysis
   - bin/code-analysis
-  - cat bin/test
   - bin/test
-  - cat bin/test-plone_addon
   - bin/test-plone_addon
 
 after_script:

@@ -18,7 +18,6 @@ ${buildout:directory}/${:addon_name}/bin/test --all
 testresult=$?
 
 # run code analysis
-cat ${buildout:directory}/${:addon_name}/bin/code-analysis
 ${buildout:directory}/${:addon_name}/bin/code-analysis
 
 # remove addon

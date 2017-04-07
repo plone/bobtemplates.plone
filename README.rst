@@ -2,7 +2,7 @@
 .. image:: https://secure.travis-ci.org/plone/bobtemplates.plone.png?branch=master
     :target: http://travis-ci.org/plone/bobtemplates.plone
 
-.. image:: https://coveralls.io/repos/plone/bobtemplates.plone/badge.svg?branch=master&service=github
+.. image:: https://coveralls.io/repos/github/plone/bobtemplates.plone/badge.svg?branch=master
     :target: https://coveralls.io/github/plone/bobtemplates.plone?branch=master
     :alt: Coveralls
 

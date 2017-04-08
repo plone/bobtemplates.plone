@@ -1,8 +1,14 @@
 Changelog
 =========
 
-1.0.6 (unreleased)
+2.0 (unreleased)
 ------------------
+
+- Seperate theme template from addon template, we now have plone_addon and plone_theme_package
+  [MrTango]
+
+- Added a fat_theme_buildout which can be used for developing themes
+  [pigeonflight]
 
 - Change default values for code analysis' ``return-status-codes`` directive:
   it is now ``False`` on development and ``True`` on CI.
@@ -10,7 +16,7 @@ Changelog
 
 - Pin flake8 to latest (3.3.0) to allow use of latest pycodestyle (2.3.1)
   [fulv]
-  
+
 - Imrove wording
   [svx]
 
@@ -30,6 +36,7 @@ Changelog
   to add it properly if backend.xml is used. Declaring the toolbar rule twice
   causes the toolbar JS stop working properly
   [sneridagh]
+
 
 1.0.5 (2016-10-16)
 ------------------

@@ -2,8 +2,6 @@
 <metadata>
   <version>1000</version>
   <dependencies>
-{{% if package.type == 'Dexterity' %}}
-    <dependency>profile-plone.app.dexterity:default</dependency>
-{{% endif %}}
+    <dependency>profile-plone.app.theming:default</dependency>
   </dependencies>
 </metadata>

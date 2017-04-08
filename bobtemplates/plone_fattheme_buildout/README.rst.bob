@@ -1,0 +1,36 @@
+This package is for personal fat theme development.
+Ideas are borrowed from http://datakurre.pandala.org/2016/10/on-building-fat-themes-for-plone.html
+
+It is meant to work in conjunction with fat themes which
+should be added to the ``themes`` folder.
+
+::
+
+   npm run setup_packages
+
+On Ubuntu, Debian or OS X use 'sudo'::
+
+   sudo npm run setup_packages
+
+
+::
+
+   pip install -r requirements.txt
+   buildout bootstrap
+   bin/buildout
+
+
+::
+
+   pip install -r requirements.txt
+   buildout bootstrap
+   bin/buildout
+
+   sudo npm run setup_packages
+
+
+::
+  
+   pip install -r requirements.txt
+   buildout bootstrap
+   bin/buildout

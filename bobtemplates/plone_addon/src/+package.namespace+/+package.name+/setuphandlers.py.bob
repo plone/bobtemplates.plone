@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from zope.interface import implementer
 from Products.CMFPlone.interfaces import INonInstallable
+from zope.interface import implementer
 
 
 @implementer(INonInstallable)
@@ -16,7 +16,6 @@ class HiddenProfiles(object):
 def post_install(context):
     """Post install script"""
     # Do something at the end of the installation of this package.
-    foo = 'bar'
 
 
 def uninstall(context):

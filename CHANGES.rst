@@ -10,6 +10,9 @@ Changelog
 - Added a fat_theme_buildout which can be used for developing themes
   [pigeonflight]
 
+- Update pins in the generated buildout.cfg
+  [ale-rt]
+
 - Change default values for code analysis' ``return-status-codes`` directive:
   it is now ``False`` on development and ``True`` on CI.
   [hvelarde]

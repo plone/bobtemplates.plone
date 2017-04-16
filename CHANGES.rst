@@ -206,6 +206,9 @@ Changelog
   this change does not contain breaking changes.
   [do3cc]
 
+- Added support for Dexterity content types with spaces in their names
+  [pigeonflight]
+
 - Fix #84 Make travis cache the egg directory of the generated package.
   [jensens]
 

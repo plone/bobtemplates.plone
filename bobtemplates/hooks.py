@@ -209,13 +209,14 @@ def prepare_render(configurator):
         'package.dottedname'
     ].replace('.', '_').upper()
 
+    browserlayer = "BrowserLayer"
+
+    # package.browserlayer = 'BrowserLayer'
+    configurator.variables['package.browserlayer'] = browserlayer
+
     camelcasename = dottedname.replace('.', ' ').title()\
         .replace(' ', '')\
         .replace('_', '')
-    browserlayer = "{0}Layer".format(camelcasename)
-
-    # package.browserlayer = 'CollectiveFooSomethingLayer'
-    configurator.variables['package.browserlayer'] = browserlayer
 
     # package.longname = 'collectivefoosomething'
     configurator.variables['package.longname'] = camelcasename.lower()

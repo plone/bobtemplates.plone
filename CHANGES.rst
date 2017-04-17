@@ -167,6 +167,9 @@ Changelog
 - Update ``.gitignores`` in repository to exclude ``lib64``, ``pip-selfcheck.json`` and all ``.*`` except necessary.
   Update ``.gitignore.bob`` in templates with these changes too.
   Add ``.gitattributes`` in repository for union-merge CHANGES.rst files.
+- Change the browser layer from the camel case'd package name to
+  ``IBrowserLayer``. This is easier to remember and faster to write. The 
+  interface is prefixed by the package namespace anyways.
   [thet]
 
 - Update docs and README

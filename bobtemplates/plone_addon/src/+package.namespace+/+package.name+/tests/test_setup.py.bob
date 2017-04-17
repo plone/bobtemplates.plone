@@ -23,8 +23,7 @@ class TestSetup(unittest.TestCase):
 
     def test_browserlayer(self):
         """Test that I{{{ package.browserlayer }}} is registered."""
-        from {{{ package.dottedname }}}.interfaces import (
-            I{{{ package.browserlayer }}})
+        from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
         from plone.browserlayer import utils
         self.assertIn(
             I{{{ package.browserlayer }}},

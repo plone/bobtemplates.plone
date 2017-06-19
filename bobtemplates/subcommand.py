@@ -8,6 +8,7 @@ import re
 from lxml import etree
 from mrbob.bobexceptions import MrBobError, ValidationError
 
+
 log = logging.getLogger("bobtemplates.plone")
 
 

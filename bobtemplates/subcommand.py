@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from mrbob.bobexceptions import ValidationError
 from mrbob.bobexceptions import MrBobError
 from lxml import etree

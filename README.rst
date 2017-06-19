@@ -98,9 +98,15 @@ Call it from the ``src``-directory of your Plone project like this.::
 
     ../bin/mrbob -O collective.foo bobtemplates:plone_addon
 
+Or to create a new Dexterity Content Type inside an existing package:
+
+Go to your package directory: `collective.foo/src/collective/foo` and run::
+
+    <path to your mrbob buildout>/bin/mrbob bobtemplates:dx_content_type
+
 Or to create a new theme package::
 
-    mrbob -O plonetheme.tango bobtemplates:plone_theme_package
+    ../bin/mrbob -O plonetheme.tango bobtemplates:plone_theme_package
     cd plonetheme.tango/
     pip install -r requirements.txt
     buildout bootstrap
@@ -108,7 +114,7 @@ Or to create a new theme package::
 
 Or to create a new fattheme buildout::
 
-    mrbob -O myfatbuildout bobtemplates:plone_fattheme_buildout
+    ../bin/mrbob -O myfatbuildout bobtemplates:plone_fattheme_buildout
     cd myfatbuildout/
     pip install -r requirements.txt
     buildout bootstrap

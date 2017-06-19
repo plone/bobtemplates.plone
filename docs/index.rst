@@ -16,6 +16,14 @@ You can also create a package with nested namespace
 
     mrbob -O collective.foo.myaddon bobtemplates:plone_addon
 
+To add a Dextirity Content Type to an existing package run the following command inside the package folder `collective.foo/src/collective/foo`:
+
+.. code-block:: shell
+
+    mrbob bobtemplates:dx_content_type
+
+It will create the python files and also the FTI files in profiles.
+
 
 Options
 -------

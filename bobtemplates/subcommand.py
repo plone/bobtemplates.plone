@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
+from mrbob.bobexceptions import ValidationError
+from mrbob.bobexceptions import MrBobError
 import keyword
 import logging
 import os
 import re
 
 from lxml import etree
-from mrbob.bobexceptions import MrBobError, ValidationError
 
 
 log = logging.getLogger("bobtemplates.plone")

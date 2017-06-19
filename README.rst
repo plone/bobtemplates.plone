@@ -117,6 +117,14 @@ Or to create a new theme package::
     buildout bootstrap
     bin/buildout
 
+    <path to your mrbob buildout>/bin/mrbob bobtemplates:dx_content_type
+
+    ../bin/mrbob -O myfatbuildout bobtemplates:plone_fattheme_buildout
+    cd myfatbuildout/
+    pip install -r requirements.txt
+    buildout bootstrap
+    bin/buildout
+
 And launch the buildout using the command::
 
     bin/instance fg

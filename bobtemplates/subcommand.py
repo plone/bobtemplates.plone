@@ -1,4 +1,5 @@
 from mrbob.bobexceptions import ValidationError
+from mrbob.bobexceptions import MrBobError
 from lxml import etree
 import keyword
 import logging
@@ -10,17 +11,19 @@ log = logging.getLogger("bobtemplates.plone")
 
 def _get_package_root_folder():
     file_name = 'setup.py'
+    root_folder = None
     cur_dir = os.getcwd()
     while True:
         files = os.listdir(cur_dir)
         parent_dir = os.path.dirname(cur_dir)
         if file_name in files:
+            root_folder = cur_dir
             break
         else:
             if cur_dir == parent_dir:
                 break
             cur_dir = parent_dir
-    return cur_dir
+    return root_folder
 
 
 def check_dexterity_type_name(configurator, question, answer):
@@ -31,11 +34,27 @@ def check_dexterity_type_name(configurator, question, answer):
     return answer
 
 
+def check_root_folder(configurator, question):
+    """ Check if we are in a package.
+        Should be called in first question pre hook.
+    """
+    root_folder = _get_package_root_folder()
+    if not root_folder:
+        raise ValidationError(
+            "\n\nNo setup.py found in path!\n"
+            "Please run this subcommand inside an existing package,\n"
+            "in the package dir, where the actual code is!\n"
+            "In the package collective.dx it's in collective.dx/collective/dx"
+            "\n")
+
+
 def prepare_render(configurator):
     """ Some variables to make templating easier.
     """
     # TODO: find out package.dottedname from parent package:
     root_folder = _get_package_root_folder()
+    if not root_folder:
+        raise MrBobError("No setup.py found in path!\n")
     configurator.variables['package.dottedname'] = root_folder.split('/')[-1]
     type_name = configurator.variables['dexterity_type_name']
     configurator.variables[

@@ -4,6 +4,8 @@ Changelog
 2.0 (unreleased)
 ------------------
 
+- Fixed i18n attributes for View/Edit actions in dexterity type xml.  [maurits]
+
 - Seperate theme template from addon template, we now have plone_addon and plone_theme_package
   [MrTango]
 

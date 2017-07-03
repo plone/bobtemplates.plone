@@ -1,3 +1,9 @@
+[run]
+branch = True
+source = bobtemplates
+
+omit =
+
+
 [report]
-include =
-  bobtemplates/*
+precision = 3

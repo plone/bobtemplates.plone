@@ -19,6 +19,12 @@ var/
 # files
 lib64
 pip-selfcheck.json
+.cache/
+.python-version
+coverage.xml
+reports/
+.tox/
+
 # excludes
 !.coveragerc
 !.editorconfig

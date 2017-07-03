@@ -42,6 +42,8 @@ Changelog
   causes the toolbar JS stop working properly
   [sneridagh]
 
+- Adopt tox a test invocation tool.
+  [loechel]
 
 1.0.5 (2016-10-16)
 ------------------

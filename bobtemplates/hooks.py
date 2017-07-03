@@ -6,6 +6,7 @@ from datetime import date
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.hooks import validate_choices
+
 import keyword
 import os
 import re

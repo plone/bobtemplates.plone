@@ -11,12 +11,9 @@ before_install:
   - echo "[buildout]" > $HOME/.buildout/default.cfg
   - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
   - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
-  - virtualenv .
-  - bin/pip install --upgrade pip setuptools zc.buildout
+  - pip install --upgrade pip setuptools zc.buildout
   - if [[ `npm -v` != 3.10.7 ]]; then npm i -g npm@3.10.7; fi
   - npm install -g grunt-cli
-install:
-  - bin/buildout -N -t 3 -c travis.cfg
 
 env:
   matrix:
@@ -34,7 +31,7 @@ install:
   - sed -ie "s/^package.type.*/package.type = $PACKAGE_TYPE/g" test_answers.ini
   - if [[ "$PLONE_VERSION" == "" && "$PACKAGE_TYPE" == "" ]]; then sed -ie "s/^plone.version.*//g" test_answers.ini; sed -ie "s/^package.type.*//g" test_answers.ini; fi
   - if [ "$PACKAGE_TYPE" == "Dexterity" ]; then echo "package.dexterity_type_name = MyDexterityTestType" >> test_answers.ini; fi
-  - bin/buildout -c travis.cfg
+  - buildout -c travis.cfg
 
 before_script:
   - export DISPLAY=:99.0

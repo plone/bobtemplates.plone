@@ -4,8 +4,12 @@ Changelog
 2.0 (unreleased)
 ------------------
 
+- Removed bootstrap-buildout.py and added DEVELOP.rst
+  [agitator]
+
 - Update barceloneta less files to 1.7.3 for plone_theme_package
   [agitator]
+
 - Fixed i18n attributes for View/Edit actions in dexterity type xml.  [maurits]
 
 - Seperate theme template from addon template, we now have plone_addon and plone_theme_package

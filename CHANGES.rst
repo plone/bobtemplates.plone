@@ -4,6 +4,9 @@ Changelog
 2.0 (unreleased)
 ------------------
 
+- Update barceloneta less files to 1.7.3 for plone_theme_package
+  [agitator]
+
 - Seperate theme template from addon template, we now have plone_addon and plone_theme_package
   [MrTango]
 

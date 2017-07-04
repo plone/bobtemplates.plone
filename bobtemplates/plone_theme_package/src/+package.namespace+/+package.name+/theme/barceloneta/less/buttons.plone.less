@@ -177,3 +177,24 @@
     }
   }
 }
+
+// Dropdown arrow/caret
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top:   @plone-caret-width-base dashed;
+  border-right: @plone-caret-width-base solid transparent;
+  border-left:  @plone-caret-width-base solid transparent;
+}
+// Reposition the caret
+.btn .caret {
+  margin-left: 0;
+}
+// Carets in other button sizes
+.btn-lg .caret {
+  border-width: @plone-caret-width-large @plone-caret-width-large 0;
+  border-bottom-width: 0;
+}

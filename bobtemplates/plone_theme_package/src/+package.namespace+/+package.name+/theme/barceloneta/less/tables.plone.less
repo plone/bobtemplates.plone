@@ -50,6 +50,25 @@ th { text-align: left; color: @plone-gray-dark;}
   }
 }
 
+//*// invisible grid table plone class
+.invisible-grid {
+  width: 100%;
+  margin-bottom: @plone-line-height-computed;
+  border: 0;
+  background: transparent;
+  // Cells
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        border: 0;
+      }
+    }
+  }
+}
+
 // Zebra-striping
 .listing {
   > tbody > tr:nth-child(odd) {
@@ -148,7 +167,9 @@ table {
   > thead > tr {
     > th,
     > td {
-      border-bottom-width: @plone-table-border-color;
+      // This used to be a mismatched property value.
+      // I think this is the intention but am not to sure.
+      border-bottom: 1px solid @plone-table-border-color;
     }
   }
 }

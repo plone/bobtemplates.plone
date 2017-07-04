@@ -27,7 +27,10 @@ legend {
 
 label {
   display: inline-block;
-  max-width: 100%; // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
+  // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
+  // and 95% to fit labels with fieldhelp in the same line as leading checkbox.
+  max-width: 95%;
+  vertical-align: top;
   margin-bottom: @plone-padding-base-vertical;
   font-weight: bold;
 }
@@ -88,7 +91,7 @@ output {
   color: @plone-input-color;
 }
 
-/*.form-control,*/ input[type="text"], input[type="password"], textarea, select {
+/*.form-control,*/ input[type="text"], input[type="number"], input[type="email"], input[type="password"], textarea, select {
   display: block;
   width: 100%;
   height: @plone-input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
@@ -132,6 +135,11 @@ textarea {
     min-height: 12em;
     font-family: @plone-font-family-monospace;  // when typing without richtext editor
   }
+}
+// Reset width for `select` elements
+select {
+  width: unset;
+  display: inline-block;
 }
 
 // Search inputs in iOS
@@ -193,15 +201,15 @@ input[type="checkbox"] {
     font-weight: @plone-font-weight-regular;
     &:before {
       background-color: @plone-alert-error-bullet; content:"×";
-      font-size:@plone-font-size-base; 
-      font-weight: @plone-font-weight-regular; 
+      font-size:@plone-font-size-base;
+      font-weight: @plone-font-weight-regular;
       margin-left: -30px;
       margin-right: 5px;
-      display: inline-block; 
+      display: inline-block;
       border-radius: 20px;
       text-align:center;
-      color:rgba(255, 255, 255, 0.9); 
-      width:16px; 
+      color:rgba(255, 255, 255, 0.9);
+      width:16px;
       height:16px;
       line-height: 16px; //IE fix
       text-shadow: 0 -1px rgba(0,0,0,.5);
@@ -255,7 +263,7 @@ label .required {
 }
 
 //*// Input + Submit groups (manual because we still have no standard for this)
-.searchField.portlet-search-gadget, 
+.searchField.portlet-search-gadget,
 #sharing-user-group-search,
 #select-rules  {width: 100%; display: inline-block;}
 
@@ -285,8 +293,8 @@ margin-right: 12px;
     text-align: center;
   }
   td button{
-    float: left;
-    margin-left: 2rem;
+    display: block;
+    margin: auto;
   }
 }
 

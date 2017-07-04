@@ -20,3 +20,19 @@
 .tileImage { padding-right: 5px; float:left; }
 .tileImageNoFloat { margin-bottom: 5px; }
 .tileFooter { clear: both; margin-top: 5px; }
+
+// clear floats:
+.entries::before,
+#content article.entry::after,
+#relatedItemBox ul li::after, 
+#searchresults ul li::after  {
+  content: " ";
+  display: block;
+  clear: both;
+  height:2px;  //allow minimal vertical space for thumbs
+  visibility: hidden;
+}
+//structure pattern, fix thumb positioning in foldercontents
+.icon-group-right .image-icon {
+  float:none;
+}

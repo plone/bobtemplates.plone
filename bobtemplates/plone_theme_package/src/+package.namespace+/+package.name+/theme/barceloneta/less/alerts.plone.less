@@ -7,6 +7,7 @@
 	> strong, > dt { color: fade(@text-color, 67%);}
 }
 
+.alert.status,
 .portalMessage {
 	padding: @plone-alert-padding;
 	padding-left: @plone-alert-padding*3;
@@ -44,6 +45,25 @@
 	}
 	> dt, > dd { display: inline;}
 	> dd {margin: 0;}
+
+    &.alert-none {
+        box-shadow: none;
+    }
+    &.alert-success,
+    &.info {
+	    .portalMessage-variant(@plone-alert-info-bg; @plone-alert-info-border; @plone-alert-info-text);
+        & > strong:before, & > dt:before {background-color: @plone-alert-info-bullet; content:"i";}
+    }
+    &.alert-warning,
+    &.warning {
+	    .portalMessage-variant(@plone-alert-warning-bg; @plone-alert-warning-border; @plone-alert-warning-text);
+        & > strong:before, & > dt:before {background-color: @plone-alert-warning-bullet; content:"!";}
+    }
+    &.alert-error,
+    &.error {
+	    .portalMessage-variant(@plone-alert-error-bg; @plone-alert-error-border; @plone-alert-error-text);
+        & > strong:before, & > dt:before {background-color: @plone-alert-error-bullet; content:"×";}
+    }
 }
 .portlet .portletContent > .portalMessage {
 	padding: @plone-alert-padding;
@@ -51,22 +71,9 @@
 	margin:15px;
 }
 
-.portalMessage.info {
-	.portalMessage-variant(@plone-alert-info-bg; @plone-alert-info-border; @plone-alert-info-text);
-	& > strong:before, & > dt:before {background-color: @plone-alert-info-bullet; content:"i";}
-}
-
-.portalMessage.warning {
-	.portalMessage-variant(@plone-alert-warning-bg; @plone-alert-warning-border; @plone-alert-warning-text);
-	& > strong:before, & > dt:before {background-color: @plone-alert-warning-bullet; content:"!";}
-}
-
-.portalMessage.error {
-	.portalMessage-variant(@plone-alert-error-bg; @plone-alert-error-border; @plone-alert-error-text);
-	& > strong:before, & > dt:before {background-color: @plone-alert-error-bullet; content:"×";}
-}
 
 /* special octogonal shape for error
+.alert.status.alert-error,
 .portalMessage.error {
 	& > strong:before, & > dt:before {
 		border-radius: 8px; //soften border

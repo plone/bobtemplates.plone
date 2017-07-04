@@ -4,7 +4,12 @@
 .portletNavigationTree {
     // nav.portletContent > ul > li a {border:none; padding:0px;}
     &.portletSiteSetup {
-        nav.portletContent > ul > li a {border:none; padding:0px;}
+        nav.portletContent > ul > li a {border:none; padding:0px;color: #4D4D4D;
+            &:hover {
+                text-decoration: none;
+            }   
+        }
+       
         a {
             // padding-left: 30px; //adjust icons of products
             border: none;
@@ -27,6 +32,7 @@
             &:hover {
                 background: rgba(255,255,255,.67);
                 border-radius: 5px;
+                box-shadow: inset 1px 1px 3px #bbbbbb;
                 span {
                     color: #333;
                 }
@@ -66,4 +72,16 @@
 .template-usergroup-groupprefs,
 .template-usergroup-userprefs {
     form { overflow: scroll; }
+}
+
+.template-actions-controlpanel #content-core {
+    .addAction {
+        height: 2em;
+    }
+    section.portlet {
+        clear: both;
+    }
+    ol.configlets li {
+        margin: 1.2em;
+    }
 }

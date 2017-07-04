@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-import unittest
-import os
-import tempfile
-import shutil
-
 from bobtemplates import hooks
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Question
 from scripttest import TestFileEnvironment
+
+import os
+import shutil
+import tempfile
+import unittest
 
 
 class BaseTemplateTest(unittest.TestCase):

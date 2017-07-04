@@ -3,21 +3,22 @@
 from setuptools import find_packages
 from setuptools import setup
 
+import os
+
 version = '1.0.6.dev0'
 
 
-long_description = '\n\n'.join([
-    open('README.rst').read(),
-    open('CONTRIBUTORS.rst').read(),
-    open('CHANGES.rst').read(),
-])
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 
 setup(
     name='bobtemplates.plone',
     version=version,
     description="Templates for Plone projects.",
-    long_description=long_description,
+    long_description=(read('README.rst') + '\n' +
+                      read('docs', 'CONTRIBUTORS.rst') +
+                      read('docs', 'CHANGES.rst')),
     classifiers=[
         "Environment :: Console",
         "Intended Audience :: Developers",
@@ -34,7 +35,8 @@ setup(
     author_email='plone-developers@lists.sourceforge.net',
     url='https://github.com/plone/bobtemplates.plone',
     license='GPL version 2',
-    packages=find_packages(exclude=['ez_setup']),
+    packages=find_packages('src', exclude=['ez_setup']),
+    package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,
     install_requires=[

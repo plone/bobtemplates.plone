@@ -331,13 +331,6 @@ def cleanup_package(configurator):
             else:
                 os.remove(path)
 
-    if configurator.template_dir.split('/')[-1] == 'plone_theme_package':
-        # make a copy of the HOWTO_DEVELOP.rst also in the package root
-        shutil.copy2(
-            make_path(base_path, "theme", "HOWTO_DEVELOP.rst",),
-            make_path(configurator.target_directory, "HOWTO_DEVELOP.rst"),
-        )
-
 
 def make_path(*args):
     """ generate path string  """

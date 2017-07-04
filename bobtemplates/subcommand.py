@@ -50,14 +50,38 @@ def check_root_folder(configurator, question):
             "\n")
 
 
+def prepare_renderer_dx_content_type(configurator):
+    configurator.variables['template_id'] = 'dx_content_type'
+    prepare_render(configurator)
+
+
+def prepare_renderer_plone_theme(configurator):
+    configurator.variables['template_id'] = 'plone_theme'
+    prepare_render(configurator)
+
+
 def prepare_render(configurator):
     """ Some variables to make templating easier.
     """
-    # TODO: find out package.dottedname from parent package:
+    configurator.variables['template_id'] = configurator.variables[
+        'template_id'] or 'plone_addon'
+
     root_folder = _get_package_root_folder()
     if not root_folder:
         raise MrBobError("No setup.py found in path!\n")
+
     configurator.variables['package.dottedname'] = root_folder.split('/')[-1]
+    configurator.variables['package.namespace'] = configurator.variables[
+        'package.dottedname'].split('.')[0]
+    configurator.variables['package.name'] = configurator.variables[
+        'package.dottedname'].split('.')[-1]
+    target_directory = root_folder
+    if configurator.variables['template_id'] == 'dx_content_type':
+        target_directory += u'/src/' + configurator.variables[
+            'package.namespace'] + u'/' + configurator.variables[
+            'package.name']
+    configurator.target_directory = target_directory
+
     type_name = configurator.variables['dexterity_type_name']
     configurator.variables[
         'dexterity_type_name_klass'] = type_name.title().replace(' ', '')
@@ -70,11 +94,15 @@ def _update_types_xml(configurator):
     """
     types_file_name = u'types.xml'
     types_file_dir = u'profiles/default'
-    types_file_path = types_file_dir + '/' + types_file_name
+    import pdb; pdb.set_trace()  # noqa
+    types_file_path = configurator.target_directory + '/' + types_file_dir +\
+        '/' + types_file_name
+    types_example_file_path = configurator.target_directory + '/' +\
+        types_file_dir + '/types.xml.example'
     file_list = os.listdir(
         os.path.dirname(types_file_path))
     if types_file_name not in file_list:
-        os.rename(types_file_dir + '/types.xml.example', types_file_path)
+        os.rename(types_example_file_path, types_file_path)
 
     with open(types_file_path, 'r') as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)

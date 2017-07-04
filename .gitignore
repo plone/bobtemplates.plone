@@ -24,6 +24,7 @@ pip-selfcheck.json
 coverage.xml
 reports/
 .tox/
+.Python
 
 # excludes
 !.coveragerc

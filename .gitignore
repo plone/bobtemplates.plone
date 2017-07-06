@@ -1,4 +1,4 @@
-.coverage
+.coverage*
 .installed.cfg
 *.egg-info
 *.mo

@@ -211,3 +211,64 @@ def test_post_theme_name():
     hooks.post_theme_name(configurator, None, 'collective.theme')
     with pytest.raises(ValidationError):
         hooks.post_theme_name(configurator, None, 'collective.$SPAM')
+
+
+def test_prepare_render():
+    configurator = Configurator(
+        template='src/bobtemplates/plone_addon',
+        target_directory='collective.foo.bar',
+        variables={
+            'package.dexterity_type_name': 'Task'
+        })
+    hooks.prepare_render(configurator)
+
+    configurator = Configurator(
+        template='src/bobtemplates/plone_theme_package',
+        target_directory='collective.theme',
+        variables={
+            'theme.name': 'Test Theme'
+        })
+    hooks.prepare_render(configurator)
+
+
+def test_cleanup_package():
+    configurator = Configurator(
+        template='src/bobtemplates/plone_addon',
+        target_directory='collective.foo.bar',
+        variables={
+            'package.nested': True,
+            'package.namespace': 'collective',
+            'package.namespace2': 'foo',
+            'package.name': 'bar',
+            'year': 1970,
+            'description': 'Test',
+            'author.name': 'The Plone Collective',
+            'author.email': 'collective@plone.org',
+            'author.github.user': 'collective',
+            'author.irc': 'irc.freenode.org#plone',
+            'plone.version': '5.0.1'
+        })
+    # configurator.render()
+    # hooks.cleanup_package(configurator)
+    assert configurator
+
+    configurator = Configurator(
+        template='src/bobtemplates/plone_theme_package',
+        target_directory='collective.theme',
+        variables={
+            'package.nested': False,
+            'package.namespace': 'collective',
+            'package.namespace2': '',
+            'package.name': 'theme',
+            'package.type': 'theme',
+            'year': 1970,
+            'description': 'Test',
+            'author.name': 'The Plone Collective',
+            'author.email': 'collective@plone.org',
+            'author.github.user': 'collective',
+            'author.irc': 'irc.freenode.org#plone',
+            'plone.version': '5.0.1'
+        })
+    # configurator.render()
+    # hooks.cleanup_package(configurator)
+    assert configurator

@@ -17,6 +17,7 @@ test.plone_addon/
 var/
 reports/
 .tox/
+collective*/
 # files
 lib64
 pip-selfcheck.json

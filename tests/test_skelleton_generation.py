@@ -12,6 +12,7 @@ def generate_plone_addon_template(path,
                                   ):
     template = """[variables]
 package.type = Basic
+theme.name = Test Theme
 package.dexterity_type_name =
 package.namespace = {root_namespace}
 package.namespace2 = {nested_namespace}
@@ -53,6 +54,34 @@ def test_plone_addon_generation(tmpdir):
     assert result == 0
     generated_files = glob.glob(tmpdir.strpath + '/collective.foo/*')
     length = len(tmpdir.strpath + '/collective.foo/')
+    generated_files = [f[length:] for f in generated_files]
+    required_files = base_files + addon_files
+    assert required_files <= generated_files
+
+
+def test_plone_addon_nested_generation(tmpdir):
+    generate_plone_addon_template(tmpdir.strpath, 'collective', '', 'foo')
+    result = subprocess.call(
+        ['mrbob', '-O', 'collective.foo.bar', 'bobtemplates:plone_addon',
+         '--config', 'answers.ini'], cwd=tmpdir.strpath
+    )
+    assert result == 0
+    generated_files = glob.glob(tmpdir.strpath + '/collective.foo.bar/*')
+    length = len(tmpdir.strpath + '/collective.foo.bar/')
+    generated_files = [f[length:] for f in generated_files]
+    required_files = base_files + addon_files
+    assert required_files <= generated_files
+
+
+def test_plone_theme_generation(tmpdir):
+    generate_plone_addon_template(tmpdir.strpath, 'collective', '', 'foo')
+    result = subprocess.call(
+        ['mrbob', '-O', 'collective.theme', 'bobtemplates:plone_theme_package',
+         '--config', 'answers.ini'], cwd=tmpdir.strpath
+    )
+    assert result == 0
+    generated_files = glob.glob(tmpdir.strpath + '/collective.theme/*')
+    length = len(tmpdir.strpath + '/collective.theme/')
     generated_files = [f[length:] for f in generated_files]
     required_files = base_files + addon_files
     assert required_files <= generated_files

@@ -3,12 +3,9 @@ from bobtemplates import hooks
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
+from mrbob.configurator import Question
 
-import glob
-import os
-import os.path
 import pytest
-import subprocess
 
 
 def test_to_boolean():
@@ -137,6 +134,18 @@ def test_post_ask():
     hooks.post_ask(configurator)
 
 
+def test_post_type():
+    configurator = Configurator(
+        template='src/bobtemplates/plone_addon',
+        target_directory='collective.foo')
+    question = Question(
+        'package',
+        'type',
+    )
+    hooks.post_type(configurator, question, '')
+    hooks.post_type(configurator, question, 'Dexterity')
+
+
 def test_pre_dexterity_type_name():
     configurator = Configurator(
         template='src/bobtemplates/plone_addon',
@@ -180,3 +189,25 @@ def test_post_dexterity_type_name():
     assert hookit(u'Supertype') == u'Supertype'
     assert hookit(u'second_coming') == u'second_coming'
     assert hookit(u'the_2nd_coming') == u'the_2nd_coming'
+
+
+def test_pre_theme_name():
+    configurator = Configurator(
+        template='src/bobtemplates/plone_theme_package',
+        target_directory='collective.foo')
+    question = Question(
+        'package',
+        'type',
+    )
+    hooks.pre_theme_name(configurator, question)
+    hooks.pre_theme_name(configurator, question)
+
+
+def test_post_theme_name():
+    configurator = Configurator(
+        template='src/bobtemplates/plone_theme_package',
+        target_directory='collective.foo')
+
+    hooks.post_theme_name(configurator, None, 'collective.theme')
+    with pytest.raises(ValidationError):
+        hooks.post_theme_name(configurator, None, 'collective.$SPAM')

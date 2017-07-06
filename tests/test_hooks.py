@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from bobtemplates import hooks
-from mrbob.bobexceptions import TemplateConfigurationError
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
@@ -8,7 +7,9 @@ import glob
 import os
 import os.path
 import pytest
+import shutil
 import subprocess
+import tempfile
 import unittest
 
 
@@ -36,13 +37,6 @@ plone.version = 5-latest
            nested_namespace=nested_namespace,
            name=name)
     with open(os.path.join(path, 'answers.ini'), 'w') as f:
-        f.write(template)
-
-
-def generate_mrbob_ini(path):
-    template = """[Questions]
-""".format()
-    with open(os.path.join(path, '.mrbob.ini'), 'w') as f:
         f.write(template)
 
 
@@ -75,14 +69,22 @@ def test_plone_addon_generation(tmpdir):
 
 def test_to_boolean():
     # Initial simple test to show coverage in hooks.py.
+
+    # Positive Return Checks
+    assert hooks.to_boolean(None, None, True)
     assert hooks.to_boolean(None, None, 'y')
     assert hooks.to_boolean(None, None, 'yes')
     assert hooks.to_boolean(None, None, 'true')
     assert hooks.to_boolean(None, None, '1')
+
+    # Negative Return Checks
+    assert hooks.to_boolean(None, None, False) is False
     assert hooks.to_boolean(None, None, 'n') is False
     assert hooks.to_boolean(None, None, 'no') is False
     assert hooks.to_boolean(None, None, 'false') is False
     assert hooks.to_boolean(None, None, '0') is False
+
+    # Error Check
     with pytest.raises(ValidationError, msg='Value must be a boolean (y/n)'):
         assert hooks.to_boolean(None, None, 'spam')
 
@@ -115,15 +117,14 @@ def test_post_dexterity_type_name():
 # @pytest.mark.usefixtures("tmpdir")
 class PloneAddTest(unittest.TestCase):
 
-    @pytest.fixture(autouse=True)
-    def initdir(self, tmpdir):
-        tmpdir.chdir()
-
     def setUp(self):
-        generate_plone_addon_template('.', 'collective', '', 'foo')
+
+        self.tempdir = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, self.tempdir)
+        generate_plone_addon_template(self.tempdir, 'collective', '', 'foo')
         result = subprocess.call(
             ['mrbob', '-O', 'collective.foo', 'bobtemplates:plone_addon',
-             '--config', 'answers.ini']
+             '--config', 'answers.ini'], cwd=self.tempdir
         )
         assert result == 0
 
@@ -131,16 +132,67 @@ class PloneAddTest(unittest.TestCase):
         with pytest.raises(AttributeError):
             hooks.validate_packagename(None)
 
-        with pytest.raises(TemplateConfigurationError,
-                           msg=""):
-            configurator = Configurator(
-                template='collective.foo',
-                target_directory='.')
-
-        generate_mrbob_ini('./collective.foo/')
         configurator = Configurator(
-            template='collective.foo',
-            target_directory='.')
+            template='src/bobtemplates/plone_addon',
+            target_directory='collective.foo')
+        hooks.validate_packagename(configurator)
 
         with pytest.raises(SystemExit):
+            configurator = Configurator(
+                template='src/bobtemplates/plone_addon',
+                target_directory='foo')
             hooks.validate_packagename(configurator)
+
+        with pytest.raises(SystemExit):
+            configurator = Configurator(
+                template='src/bobtemplates/plone_addon',
+                target_directory='collective.foo.bar.spam')
+            hooks.validate_packagename(configurator)
+
+        with pytest.raises(SystemExit):
+            configurator = Configurator(
+                template='src/bobtemplates/plone_addon',
+                target_directory='.collective.foo')
+            hooks.validate_packagename(configurator)
+
+        with pytest.raises(SystemExit):
+            configurator = Configurator(
+                template='src/bobtemplates/plone_addon',
+                target_directory='collective.foo.')
+            hooks.validate_packagename(configurator)
+
+        with pytest.raises(SystemExit):
+            configurator = Configurator(
+                template='src/bobtemplates/plone_addon',
+                target_directory='collective.$PAM')
+            hooks.validate_packagename(configurator)
+
+    def test_pre_username(self):
+        with pytest.raises(AttributeError):
+            hooks.pre_username(None, None)
+
+        configurator = Configurator(
+            template='src/bobtemplates/plone_addon',
+            target_directory='collective.foo')
+        hooks.pre_username(configurator, None)
+
+    def test_pre_email(self):
+        configurator = Configurator(
+            template='src/bobtemplates/plone_addon',
+            target_directory='collective.foo')
+        hooks.pre_email(configurator, None)
+
+    def test_post_plone_version(self):
+        configurator = Configurator(
+            template='src/bobtemplates/plone_addon',
+            target_directory='collective.foo',
+            variables=None)
+        hooks.post_plone_version(configurator, None, '5.1')
+
+        configurator = Configurator(
+            template='src/bobtemplates/plone_addon',
+            target_directory='collective.foo',
+            variables={
+                'plone_version': '5'
+            })
+        hooks.post_plone_version(configurator, None, '4.3')

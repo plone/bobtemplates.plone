@@ -26,6 +26,15 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Development Status :: 5 - Production/Stable",
+        "Framework :: Plone",
+        "Framework :: Plone :: 4.3",
+        "Framework :: Plone :: 5.0",
+        "Framework :: Plone :: 5.1",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
         "Topic :: Software Development :: Code Generators",
         "Topic :: Utilities",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
@@ -45,13 +54,6 @@ setup(
         #    'pyreadline',
     ],
     extras_require={
-        'test': [
-            'nose',
-            'nose-selecttests',
-            'scripttest',
-            'six',
-            'unittest2',
-        ]
     },
     entry_points={},
 )

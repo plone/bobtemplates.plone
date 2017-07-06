@@ -5,35 +5,32 @@ from mrbob.configurator import Question
 from scripttest import TestFileEnvironment
 
 import os
-import shutil
-import tempfile
+import pytest
 import unittest
 
 
+@pytest.mark.usefixtures("tmpdir")
 class BaseTemplateTest(unittest.TestCase):
 
-    def setUp(self):
-        self.tempdir = tempfile.mkdtemp()
-        self.addCleanup(shutil.rmtree, self.tempdir)
+    def setUp(self, tmpdir):
+        self.tempdir = tmpdir.mkdir('test-output')
 
         # docs http://pythonpaste.org/scripttest/
         self.env = TestFileEnvironment(
-            os.path.join(self.tempdir, 'test-output'),
-            ignore_hidden=False,
+            self.tempdir, ignore_hidden=False,
         )
 
     def create_template(self):
         """Run mr.bob to create your template."""
         options = {
-            'dir': os.path.join(os.path.dirname(__file__)),
             'template': self.template,
             'project': self.project,
             'answers_file': self.answers_file,
         }
         return self.env.run(
-            '%(dir)s/bin/mrbob -O %(project)s --config '
-            '%(dir)s/%(answers_file)s %(dir)s/bobtemplates/%(template)s'
-            % options)
+            'mrbob -O {project!s} bobtemplates:{template!s} '
+            '--config {template!s}-{project!s}.ini'
+            .format(options), cwd=os.path.join(self.tempdir, 'test-output'))
 
 
 class PloneTemplateTest(BaseTemplateTest):
@@ -50,7 +47,6 @@ class PloneTemplateTest(BaseTemplateTest):
         """
         self.template = 'plone_addon'
         self.project = 'collective.foo'
-        self.answers_file = 'nosetests_answers.ini'
         self.maxDiff = None
         result = self.create_template()
         self.assertItemsEqual(
@@ -118,7 +114,6 @@ class PloneTemplateTest(BaseTemplateTest):
         """
         self.template = 'plone_addon'
         self.project = 'collective.foo.bar'
-        self.answers_file = 'nosetests_answers_nested.ini'
         self.maxDiff = None
         result = self.create_template()
         self.assertItemsEqual(

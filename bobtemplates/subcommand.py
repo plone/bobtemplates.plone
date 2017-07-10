@@ -52,6 +52,11 @@ def check_root_folder(configurator, question):
             "\n")
 
 
+def dottedname_to_path(dottedname):
+    path = "/".join(dottedname.split('.'))
+    return path
+
+
 def prepare_renderer_dx_content_type(configurator):
     configurator.variables['template_id'] = 'dx_content_type'
     prepare_render(configurator)
@@ -77,11 +82,13 @@ def prepare_render(configurator):
         'package.dottedname'].split('.')[0]
     configurator.variables['package.name'] = configurator.variables[
         'package.dottedname'].split('.')[-1]
+
+    # set target directory:
     target_directory = root_folder
     if configurator.variables['template_id'] == 'dx_content_type':
-        target_directory += u'/src/' + configurator.variables[
-            'package.namespace'] + u'/' + configurator.variables[
-            'package.name']
+        package_subpath = dottedname_to_path(
+            configurator.variables['package.dottedname'])
+        target_directory += u'/src/' + package_subpath
     configurator.target_directory = target_directory
 
     type_name = configurator.variables['dexterity_type_name']
@@ -96,7 +103,6 @@ def _update_types_xml(configurator):
     """
     types_file_name = u'types.xml'
     types_file_dir = u'profiles/default'
-    import pdb; pdb.set_trace()  # noqa
     types_file_path = configurator.target_directory + '/' + types_file_dir +\
         '/' + types_file_name
     types_example_file_path = configurator.target_directory + '/' +\

@@ -1,5 +1,6 @@
 //*// FORM TABBING //*//
-.pat-autotoc.autotabs, .autotabs {
+.pat-autotoc.autotabs,
+.autotabs {
 	background: @plone-portlet-content-bg;
 	padding: @plone-padding-base-vertical @plone-padding-base-horizontal;
 	border: @plone-portlet-border;
@@ -57,11 +58,11 @@
 }
 
 // be able to provide form tabs with ul li structure
-.autotabs ul{
+.autotabs ul.autotoc-nav {
 	list-style: none;
 	padding-left: 0;
 	margin-bottom:0;
-	li{
+	li {
 		list-style: none;
 	  display: inline-block;
 	}

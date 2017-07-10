@@ -1,3 +1,6 @@
+Theme development
+-----------------
+
 In order to develop the theme you need to install grunt-cli global::
 
     $ sudo npm install -g grunt-cli

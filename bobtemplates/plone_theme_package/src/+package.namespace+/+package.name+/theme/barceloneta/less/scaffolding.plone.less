@@ -19,6 +19,7 @@ html {
 body {
   font-family: @plone-font-family-base;
   font-size: @plone-font-size-base;
+  font-weight: @plone-font-weight-medium;
   line-height: @plone-line-height-base;
   color: @plone-text-color;
   background-color: @plone-body-bg;
@@ -92,6 +93,12 @@ hr {
   overflow: hidden;
   clip: rect(0,0,0,0);
   border: 0;
+  color: #fff;
+  background-color: #000;
+}
+.sr-only a, .hiddenStructure a {
+  color: #fff;
+  background-color: #000;
 }
 
 // Use in conjunction with .sr-only to only display content when it's focused.

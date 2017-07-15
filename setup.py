@@ -44,8 +44,9 @@ setup(
     author_email='plone-developers@lists.sourceforge.net',
     url='https://github.com/plone/bobtemplates.plone',
     license='GPL version 2',
-    packages=find_packages('src', exclude=['ez_setup']),
-    package_dir={'': 'src'},
+    # packages=find_packages('src', exclude=['ez_setup']),
+    # package_dir={'': 'src'},
+    packages=find_packages(exclude=['ez_setup']),
     include_package_data=True,
     zip_safe=False,
     install_requires=[

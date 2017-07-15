@@ -35,37 +35,37 @@ def test_validate_packagename():
         hooks.validate_packagename(None)
 
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo')
     hooks.validate_packagename(configurator)
 
     with pytest.raises(SystemExit):
         configurator = Configurator(
-            template='src/bobtemplates/plone_addon',
+            template='bobtemplates/plone_addon',
             target_directory='foo')
         hooks.validate_packagename(configurator)
 
     with pytest.raises(SystemExit):
         configurator = Configurator(
-            template='src/bobtemplates/plone_addon',
+            template='bobtemplates/plone_addon',
             target_directory='collective.foo.bar.spam')
         hooks.validate_packagename(configurator)
 
     with pytest.raises(SystemExit):
         configurator = Configurator(
-            template='src/bobtemplates/plone_addon',
+            template='bobtemplates/plone_addon',
             target_directory='.collective.foo')
         hooks.validate_packagename(configurator)
 
     with pytest.raises(SystemExit):
         configurator = Configurator(
-            template='src/bobtemplates/plone_addon',
+            template='bobtemplates/plone_addon',
             target_directory='collective.foo.')
         hooks.validate_packagename(configurator)
 
     with pytest.raises(SystemExit):
         configurator = Configurator(
-            template='src/bobtemplates/plone_addon',
+            template='bobtemplates/plone_addon',
             target_directory='collective.$PAM')
         hooks.validate_packagename(configurator)
 
@@ -75,41 +75,41 @@ def test_pre_username():
         hooks.pre_username(None, None)
 
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo')
     hooks.pre_username(configurator, None)
 
 
 def test_pre_email():
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo')
     hooks.pre_email(configurator, None)
 
 
 def test_post_plone_version():
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo')
     hooks.post_plone_version(configurator, None, '4.3')
 
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo')
     hooks.post_plone_version(configurator, None, '4-latest')
 
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo')
     hooks.post_plone_version(configurator, None, '5.1')
 
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo')
     hooks.post_plone_version(configurator, None, '5-latest')
 
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo',
         variables={
             'plone.is_plone5': True,
@@ -120,7 +120,7 @@ def test_post_plone_version():
 
 def test_post_ask():
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo',
         variables={
             'plone.is_plone5': True,
@@ -129,14 +129,14 @@ def test_post_ask():
     hooks.post_ask(configurator)
 
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo')
     hooks.post_ask(configurator)
 
 
 def test_post_type():
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo')
     question = Question(
         'package',
@@ -148,7 +148,7 @@ def test_post_type():
 
 def test_pre_dexterity_type_name():
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo',
         variables={
             'package.type': 'Dexterity'
@@ -157,7 +157,7 @@ def test_pre_dexterity_type_name():
     hooks.pre_dexterity_type_name(configurator, None)
 
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo',
         variables={
             'package.type': 'ArcheTpye'
@@ -193,7 +193,7 @@ def test_post_dexterity_type_name():
 
 def test_pre_theme_name():
     configurator = Configurator(
-        template='src/bobtemplates/plone_theme_package',
+        template='bobtemplates/plone_theme_package',
         target_directory='collective.foo')
     question = Question(
         'package',
@@ -205,7 +205,7 @@ def test_pre_theme_name():
 
 def test_post_theme_name():
     configurator = Configurator(
-        template='src/bobtemplates/plone_theme_package',
+        template='bobtemplates/plone_theme_package',
         target_directory='collective.foo')
 
     hooks.post_theme_name(configurator, None, 'collective.theme')
@@ -215,7 +215,7 @@ def test_post_theme_name():
 
 def test_prepare_render():
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo.bar',
         variables={
             'package.dexterity_type_name': 'Task'
@@ -223,7 +223,7 @@ def test_prepare_render():
     hooks.prepare_render(configurator)
 
     configurator = Configurator(
-        template='src/bobtemplates/plone_theme_package',
+        template='bobtemplates/plone_theme_package',
         target_directory='collective.theme',
         variables={
             'theme.name': 'Test Theme'
@@ -233,7 +233,7 @@ def test_prepare_render():
 
 def test_cleanup_package():
     configurator = Configurator(
-        template='src/bobtemplates/plone_addon',
+        template='bobtemplates/plone_addon',
         target_directory='collective.foo.bar',
         variables={
             'package.nested': True,
@@ -253,7 +253,7 @@ def test_cleanup_package():
     assert configurator
 
     configurator = Configurator(
-        template='src/bobtemplates/plone_theme_package',
+        template='bobtemplates/plone_theme_package',
         target_directory='collective.theme',
         variables={
             'package.nested': False,

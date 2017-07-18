@@ -31,38 +31,45 @@ def test_to_boolean():
 
 
 def test_validate_packagename():
+    # step 1: test None
     with pytest.raises(AttributeError):
         hooks.validate_packagename(None)
 
+    # step 2: test base namespace (level 2)
     configurator = Configurator(
         template='bobtemplates/plone_addon',
         target_directory='collective.foo')
     hooks.validate_packagename(configurator)
 
+    # step 3: test without namespace (level 1)
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates/plone_addon',
             target_directory='foo')
         hooks.validate_packagename(configurator)
 
+    # step 4: test deep nested namespace (level 4)
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates/plone_addon',
             target_directory='collective.foo.bar.spam')
         hooks.validate_packagename(configurator)
 
+    # step 5: test leading dot
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates/plone_addon',
             target_directory='.collective.foo')
         hooks.validate_packagename(configurator)
 
+    # step 6: test ending dot
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates/plone_addon',
             target_directory='collective.foo.')
         hooks.validate_packagename(configurator)
 
+    # step 7: test invalid char
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates/plone_addon',
@@ -71,9 +78,11 @@ def test_validate_packagename():
 
 
 def test_pre_username():
+    # step 1: test None
     with pytest.raises(AttributeError):
         hooks.pre_username(None, None)
 
+    # step 2: test base namespace
     configurator = Configurator(
         template='bobtemplates/plone_addon',
         target_directory='collective.foo')

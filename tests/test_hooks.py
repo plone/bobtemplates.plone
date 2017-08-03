@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from bobtemplates import hooks
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
@@ -38,42 +39,48 @@ def test_validate_packagename():
     # step 2: test base namespace (level 2)
     configurator = Configurator(
         template='bobtemplates/plone_addon',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
     hooks.validate_packagename(configurator)
 
     # step 3: test without namespace (level 1)
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates/plone_addon',
-            target_directory='foo')
+            target_directory='foo',
+        )
         hooks.validate_packagename(configurator)
 
     # step 4: test deep nested namespace (level 4)
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates/plone_addon',
-            target_directory='collective.foo.bar.spam')
+            target_directory='collective.foo.bar.spam',
+        )
         hooks.validate_packagename(configurator)
 
     # step 5: test leading dot
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates/plone_addon',
-            target_directory='.collective.foo')
+            target_directory='.collective.foo',
+        )
         hooks.validate_packagename(configurator)
 
     # step 6: test ending dot
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates/plone_addon',
-            target_directory='collective.foo.')
+            target_directory='collective.foo.',
+        )
         hooks.validate_packagename(configurator)
 
     # step 7: test invalid char
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates/plone_addon',
-            target_directory='collective.$PAM')
+            target_directory='collective.$PAM',
+        )
         hooks.validate_packagename(configurator)
 
 
@@ -85,36 +92,42 @@ def test_pre_username():
     # step 2: test base namespace
     configurator = Configurator(
         template='bobtemplates/plone_addon',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
     hooks.pre_username(configurator, None)
 
 
 def test_pre_email():
     configurator = Configurator(
         template='bobtemplates/plone_addon',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
     hooks.pre_email(configurator, None)
 
 
 def test_post_plone_version():
     configurator = Configurator(
         template='bobtemplates/plone_addon',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
     hooks.post_plone_version(configurator, None, '4.3')
 
     configurator = Configurator(
         template='bobtemplates/plone_addon',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
     hooks.post_plone_version(configurator, None, '4-latest')
 
     configurator = Configurator(
         template='bobtemplates/plone_addon',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
     hooks.post_plone_version(configurator, None, '5.1')
 
     configurator = Configurator(
         template='bobtemplates/plone_addon',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
     hooks.post_plone_version(configurator, None, '5-latest')
 
     configurator = Configurator(
@@ -122,8 +135,9 @@ def test_post_plone_version():
         target_directory='collective.foo',
         variables={
             'plone.is_plone5': True,
-            'plone.minor_version': '5.0'
-        })
+            'plone.minor_version': '5.0',
+        },
+    )
     hooks.post_plone_version(configurator, None, '5.0.1')
 
 
@@ -133,20 +147,23 @@ def test_post_ask():
         target_directory='collective.foo',
         variables={
             'plone.is_plone5': True,
-            'plone.version': '5.0.1'
-        })
+            'plone.version': '5.0.1',
+        },
+    )
     hooks.post_ask(configurator)
 
     configurator = Configurator(
         template='bobtemplates/plone_addon',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
     hooks.post_ask(configurator)
 
 
 def test_post_type():
     configurator = Configurator(
         template='bobtemplates/plone_addon',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
     question = Question(
         'package',
         'type',
@@ -160,8 +177,9 @@ def test_pre_dexterity_type_name():
         template='bobtemplates/plone_addon',
         target_directory='collective.foo',
         variables={
-            'package.type': 'Dexterity'
-        })
+            'package.type': 'Dexterity',
+        },
+    )
 
     hooks.pre_dexterity_type_name(configurator, None)
 
@@ -169,8 +187,9 @@ def test_pre_dexterity_type_name():
         template='bobtemplates/plone_addon',
         target_directory='collective.foo',
         variables={
-            'package.type': 'ArcheTpye'
-        })
+            'package.type': 'ArcheTpye',
+        },
+    )
     with pytest.raises(SkipQuestion):
         hooks.pre_dexterity_type_name(configurator, None)
 
@@ -203,7 +222,8 @@ def test_post_dexterity_type_name():
 def test_pre_theme_name():
     configurator = Configurator(
         template='bobtemplates/plone_theme_package',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
     question = Question(
         'package',
         'type',
@@ -215,7 +235,8 @@ def test_pre_theme_name():
 def test_post_theme_name():
     configurator = Configurator(
         template='bobtemplates/plone_theme_package',
-        target_directory='collective.foo')
+        target_directory='collective.foo',
+    )
 
     hooks.post_theme_name(configurator, None, 'collective.theme')
     with pytest.raises(ValidationError):
@@ -227,16 +248,18 @@ def test_prepare_render():
         template='bobtemplates/plone_addon',
         target_directory='collective.foo.bar',
         variables={
-            'package.dexterity_type_name': 'Task'
-        })
+            'package.dexterity_type_name': 'Task',
+        },
+    )
     hooks.prepare_render(configurator)
 
     configurator = Configurator(
         template='bobtemplates/plone_theme_package',
         target_directory='collective.theme',
         variables={
-            'theme.name': 'Test Theme'
-        })
+            'theme.name': 'Test Theme',
+        },
+    )
     hooks.prepare_render(configurator)
 
 
@@ -255,8 +278,9 @@ def test_cleanup_package():
             'author.email': 'collective@plone.org',
             'author.github.user': 'collective',
             'author.irc': 'irc.freenode.org#plone',
-            'plone.version': '5.0.1'
-        })
+            'plone.version': '5.0.1',
+        },
+    )
     # configurator.render()
     # hooks.cleanup_package(configurator)
     assert configurator
@@ -276,8 +300,9 @@ def test_cleanup_package():
             'author.email': 'collective@plone.org',
             'author.github.user': 'collective',
             'author.irc': 'irc.freenode.org#plone',
-            'plone.version': '5.0.1'
-        })
+            'plone.version': '5.0.1',
+        },
+    )
     # configurator.render()
     # hooks.cleanup_package(configurator)
     assert configurator

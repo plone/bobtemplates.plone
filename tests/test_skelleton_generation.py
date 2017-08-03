@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 import glob
 import os
@@ -5,11 +6,12 @@ import os.path
 import subprocess
 
 
-def generate_plone_addon_template(path,
-                                  root_namespace,
-                                  nested_namespace,
-                                  name
-                                  ):
+def generate_plone_addon_template(
+    path,
+    root_namespace,
+    nested_namespace,
+    name,
+):
     template = """[variables]
 package.type = Basic
 theme.name = Test Theme
@@ -26,9 +28,11 @@ author.github.user = collective
 author.irc = irc.freenode.org#plone
 
 plone.version = 5-latest
-""".format(root_namespace=root_namespace,
-           nested_namespace=nested_namespace,
-           name=name)
+""".format(
+        root_namespace=root_namespace,
+        nested_namespace=nested_namespace,
+        name=name,
+    )
     with open(os.path.join(path, 'answers.ini'), 'w') as f:
         f.write(template)
 
@@ -41,15 +45,20 @@ base_files = [
 
 
 addon_files = [
-    'src/__init__.py'
+    'src/__init__.py',
 ]
 
 
 def test_plone_addon_generation(tmpdir):
     generate_plone_addon_template(tmpdir.strpath, 'collective', '', 'foo')
     result = subprocess.call(
-        ['mrbob', '-O', 'collective.foo', 'bobtemplates:plone_addon',
-         '--config', 'answers.ini'], cwd=tmpdir.strpath
+        [
+            'mrbob',
+            '-O', 'collective.foo',
+            'bobtemplates:plone_addon',
+            '--config', 'answers.ini',
+        ],
+        cwd=tmpdir.strpath,
     )
     assert result == 0
     generated_files = glob.glob(tmpdir.strpath + '/collective.foo/*')
@@ -62,8 +71,13 @@ def test_plone_addon_generation(tmpdir):
 def test_plone_addon_nested_generation(tmpdir):
     generate_plone_addon_template(tmpdir.strpath, 'collective', '', 'foo')
     result = subprocess.call(
-        ['mrbob', '-O', 'collective.foo.bar', 'bobtemplates:plone_addon',
-         '--config', 'answers.ini'], cwd=tmpdir.strpath
+        [
+            'mrbob',
+            '-O', 'collective.foo.bar',
+            'bobtemplates:plone_addon',
+            '--config', 'answers.ini',
+        ],
+        cwd=tmpdir.strpath,
     )
     assert result == 0
     generated_files = glob.glob(tmpdir.strpath + '/collective.foo.bar/*')
@@ -76,8 +90,13 @@ def test_plone_addon_nested_generation(tmpdir):
 def test_plone_theme_generation(tmpdir):
     generate_plone_addon_template(tmpdir.strpath, 'collective', '', 'foo')
     result = subprocess.call(
-        ['mrbob', '-O', 'collective.theme', 'bobtemplates:plone_theme_package',
-         '--config', 'answers.ini'], cwd=tmpdir.strpath
+        [
+            'mrbob',
+            '-O', 'collective.theme',
+            'bobtemplates:plone_theme_package',
+            '--config', 'answers.ini',
+        ],
+        cwd=tmpdir.strpath,
     )
     assert result == 0
     generated_files = glob.glob(tmpdir.strpath + '/collective.theme/*')

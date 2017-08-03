@@ -5,7 +5,8 @@ from setuptools import setup
 
 import os
 
-version = '1.0.6.dev0'
+
+version = '2.0.0.dev0'
 
 
 def read(*rnames):
@@ -15,29 +16,29 @@ def read(*rnames):
 setup(
     name='bobtemplates.plone',
     version=version,
-    description="Templates for Plone projects.",
+    description='Templates for Plone projects.',
     long_description=(read('README.rst') + '\n' +
                       read('docs', 'CONTRIBUTORS.rst') +
                       read('docs', 'CHANGES.rst')),
     classifiers=[
-        "Environment :: Console",
-        "Intended Audience :: Developers",
-        "Natural Language :: English",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        "Development Status :: 5 - Production/Stable",
-        "Framework :: Plone",
-        "Framework :: Plone :: 4.3",
-        "Framework :: Plone :: 5.0",
-        "Framework :: Plone :: 5.1",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
-        "Topic :: Software Development :: Code Generators",
-        "Topic :: Utilities",
-        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Development Status :: 5 - Production/Stable',
+        'Framework :: Plone',
+        'Framework :: Plone :: 4.3',
+        'Framework :: Plone :: 5.0',
+        'Framework :: Plone :: 5.1',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Topic :: Software Development :: Code Generators',
+        'Topic :: Utilities',
+        'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
     ],
     keywords='web plone zope skeleton project',
     author='Plone Foundation',

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0 (unreleased)
+2.0.0 (unreleased)
 ------------------
 
 - Fixed i18n attributes for View/Edit actions in dexterity type xml.  [maurits]

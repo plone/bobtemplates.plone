@@ -95,12 +95,8 @@ Python Package Managers
     $ source <path_venv>/bin/activate
 
     # Install bobtemplates.plone
-
-    # via pip - prefered way
     $ pip install bobtemplates.plone
 
-    # via easy_install - old way if pip is not avaliable
-    $ easy_install bobtemplates.plone
 
 Via a buildout
 ^^^^^^^^^^^^^^
@@ -152,8 +148,20 @@ We do use `tox <http://tox.readthedocs.io/en/latest/>`_ as test invocation tool.
 This package itself did not provide any buildout or other Plone typical method.
 It uses pytest as test framework.
 
+
+Development
+^^^^^^^^^^^
+
+If you want to contribute, please check out this repository, apply your changes and make a pull request.
+It would be good if you run test, especially the code convention tests before submitting a pull request, see following sections.
+
+You do not need to install any additional elements or run a buildout.
+Tox will take care for everything additional.
+
 Running tests
 ^^^^^^^^^^^^^
+
+You need tox installed somewhere and available in your path, nothing else is neccessary.
 
 To invoke test run:
 
@@ -173,6 +181,15 @@ For ensuring to not push any errors that contradicts the Plone coding convention
 
     # or just code convention tests:
     tox -e isort,flake8
+
+Cutting a release
+^^^^^^^^^^^^^^^^^
+
+To cut a release we use zest.releaser which could be installed via a separate virtualenv or as a shortcut for normal bugfix-releases run:
+
+.. code-block:: console
+
+    $ tox -e release
 
 Support
 -------

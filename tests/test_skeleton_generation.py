@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from collections import namedtuple
+
 import glob
 import os
 import os.path
+import pytest
 import subprocess
 
 
@@ -11,7 +14,7 @@ def generate_plone_addon_template(
     root_namespace='collective',
     nested_namespace='',
     name='foo',
-    version='5.1-latest'
+    version='5.1-latest',
 ):
     template = """[variables]
 package.type = Basic
@@ -39,6 +42,23 @@ plone.version = {version}
         f.write(template)
 
 
+VERSIONS = [
+    '4.3-latest',
+    '5.0-latest',
+    '5.1-latest',
+]
+
+TestCase = namedtuple(
+    'TestCase',
+    [
+        'template',
+        'package_name',
+        'root_namespace',
+        'nested_namespace',
+        'name',
+    ],
+)
+
 base_files = [
     '.editorconfig',
     'setup.py',
@@ -51,77 +71,88 @@ addon_files = [
 ]
 
 
-def test_plone_addon_generation(tmpdir):
+@pytest.mark.parametrize('version', VERSIONS)
+@pytest.mark.parametrize(
+    'skeleton',
+    [
+        TestCase(
+            template='plone_addon',
+            package_name='collective.foo',
+            root_namespace='collective',
+            nested_namespace='',
+            name='foo',
+        ),
+        TestCase(
+            template='plone_addon',
+            package_name='collective.foo.bar',
+            root_namespace='collective',
+            nested_namespace='foo',
+            name='bar',
+        ),
+        TestCase(
+            template='plone_theme_package',
+            package_name='collective.theme',
+            root_namespace='collective',
+            nested_namespace='',
+            name='theme',
+        ),
+        TestCase(
+            template='plone_fattheme_package',
+            package_name='collective.fattheme',
+            root_namespace='collective',
+            nested_namespace='',
+            name='fattheme',
+        ),
+    ],
+)
+def test_plone_skeleton_generation(tmpdir, version, skeleton):
     generate_plone_addon_template(
         tmpdir.strpath,
-        root_namespace='collective',
-        nested_namespace='',
-        name='foo',
-        version='5.1-latest',
+        root_namespace=skeleton.root_namespace,
+        nested_namespace=skeleton.nested_namespace,
+        name=skeleton.name,
+        version=version,
     )
     result = subprocess.call(
         [
             'mrbob',
-            '-O', 'collective.foo',
-            'bobtemplates:plone_addon',
+            '-O', skeleton.package_name,
+            'bobtemplates:' + skeleton.template,
             '--config', 'answers.ini',
         ],
         cwd=tmpdir.strpath,
     )
     assert result == 0
-    generated_files = glob.glob(tmpdir.strpath + '/collective.foo/*')
-    length = len(tmpdir.strpath + '/collective.foo/')
+    generated_files = glob.glob(
+        tmpdir.strpath + '/' + skeleton.package_name + '/*',
+    )
+    length = len(tmpdir.strpath + '/' + skeleton.package_name + '/')
     generated_files = [f[length:] for f in generated_files]
     required_files = base_files + addon_files
     assert required_files <= generated_files
-    test_result = subprocess.Popen(
-        [
-            'exit 0',  # replace with test command invocation.
-        ],
-        cwd=os.path.abspath(os.path.join(tmpdir.strpath, 'collective.foo'))
+    wd = os.path.abspath(os.path.join(tmpdir.strpath, skeleton.package_name))
+    bootstrap_result = subprocess.call(
+        ['python', 'bootstrap-buildout.py', ],
+        cwd=wd,
     )
-    assert test_result == 0  # Tests passed without error.
-
-
-def test_plone_addon_nested_generation(tmpdir):
-    generate_plone_addon_template(
-        tmpdir.strpath,
-        root_namespace='collective',
-        nested_namespace='foo',
-        name='bar',
-        version='5.1-latest',
+    assert bootstrap_result == 0
+    annotate_result = subprocess.call(
+        ['bin/buildout', 'annotate', ],
+        cwd=wd,
     )
-    result = subprocess.call(
-        [
-            'mrbob',
-            '-O', 'collective.foo.bar',
-            'bobtemplates:plone_addon',
-            '--config', 'answers.ini',
-        ],
-        cwd=tmpdir.strpath,
+    assert annotate_result == 0
+    buildout_result = subprocess.call(
+        ['bin/buildout', ],
+        cwd=wd,
     )
-    assert result == 0
-    generated_files = glob.glob(tmpdir.strpath + '/collective.foo.bar/*')
-    length = len(tmpdir.strpath + '/collective.foo.bar/')
-    generated_files = [f[length:] for f in generated_files]
-    required_files = base_files + addon_files
-    assert required_files <= generated_files
-
-
-def test_plone_theme_generation(tmpdir):
-    generate_plone_addon_template(tmpdir.strpath, 'collective', '', 'foo')
-    result = subprocess.call(
-        [
-            'mrbob',
-            '-O', 'collective.theme',
-            'bobtemplates:plone_theme_package',
-            '--config', 'answers.ini',
-        ],
-        cwd=tmpdir.strpath,
+    assert buildout_result == 0
+    test_result = subprocess.call(
+        ['bin/test', ],
+        cwd=wd,
     )
-    assert result == 0
-    generated_files = glob.glob(tmpdir.strpath + '/collective.theme/*')
-    length = len(tmpdir.strpath + '/collective.theme/')
-    generated_files = [f[length:] for f in generated_files]
-    required_files = base_files + addon_files
-    assert required_files <= generated_files
+    assert test_result == 0
+    test__code_convention_result = subprocess.call(
+        ['bin/code-analysis', ],
+        cwd=wd,
+    )
+    assert test__code_convention_result == 0

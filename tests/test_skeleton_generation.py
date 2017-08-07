@@ -42,12 +42,6 @@ plone.version = {version}
         f.write(template)
 
 
-VERSIONS = [
-    '4.3-latest',
-    '5.0-latest',
-    '5.1-latest',
-]
-
 TestCase = namedtuple(
     'TestCase',
     [
@@ -71,7 +65,14 @@ addon_files = [
 ]
 
 
-@pytest.mark.parametrize('version', VERSIONS)
+@pytest.mark.parametrize(
+    'version',
+    [
+        '4.3-latest',
+        '5.0-latest',
+        '5.1-latest',
+    ],
+)
 @pytest.mark.parametrize(
     'skeleton',
     [

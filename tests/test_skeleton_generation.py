@@ -8,9 +8,10 @@ import subprocess
 
 def generate_plone_addon_template(
     path,
-    root_namespace,
-    nested_namespace,
-    name,
+    root_namespace='collective',
+    nested_namespace='',
+    name='foo',
+    version='5.1-latest'
 ):
     template = """[variables]
 package.type = Basic
@@ -27,11 +28,12 @@ author.email = collective@plone.org
 author.github.user = collective
 author.irc = irc.freenode.org#plone
 
-plone.version = 5-latest
+plone.version = {version}
 """.format(
         root_namespace=root_namespace,
         nested_namespace=nested_namespace,
         name=name,
+        version=version,
     )
     with open(os.path.join(path, 'answers.ini'), 'w') as f:
         f.write(template)
@@ -50,7 +52,13 @@ addon_files = [
 
 
 def test_plone_addon_generation(tmpdir):
-    generate_plone_addon_template(tmpdir.strpath, 'collective', '', 'foo')
+    generate_plone_addon_template(
+        tmpdir.strpath,
+        root_namespace='collective',
+        nested_namespace='',
+        name='foo',
+        version='5.1-latest',
+    )
     result = subprocess.call(
         [
             'mrbob',
@@ -66,10 +74,23 @@ def test_plone_addon_generation(tmpdir):
     generated_files = [f[length:] for f in generated_files]
     required_files = base_files + addon_files
     assert required_files <= generated_files
+    test_result = subprocess.Popen(
+        [
+            'exit 0',  # replace with test command invocation.
+        ],
+        cwd=os.path.abspath(os.path.join(tmpdir.strpath, 'collective.foo'))
+    )
+    assert test_result == 0  # Tests passed without error.
 
 
 def test_plone_addon_nested_generation(tmpdir):
-    generate_plone_addon_template(tmpdir.strpath, 'collective', '', 'foo')
+    generate_plone_addon_template(
+        tmpdir.strpath,
+        root_namespace='collective',
+        nested_namespace='foo',
+        name='bar',
+        version='5.1-latest',
+    )
     result = subprocess.call(
         [
             'mrbob',

@@ -133,7 +133,11 @@ def test_plone_skeleton_generation(tmpdir, version, skeleton):
     assert required_files <= generated_files
     wd = os.path.abspath(os.path.join(tmpdir.strpath, skeleton.package_name))
     bootstrap_result = subprocess.call(
-        ['python', 'bootstrap-buildout.py', ],
+        [
+            'python', 'bootstrap-buildout.py', 
+            '--buildout-version', '2.8.0', 
+            '--setuptools-version', '33.1.1', 
+        ],
         cwd=wd,
     )
     assert bootstrap_result == 0

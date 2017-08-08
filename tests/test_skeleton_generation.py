@@ -7,6 +7,7 @@ import os
 import os.path
 import pytest
 import subprocess
+import sys
 
 
 def generate_plone_addon_template(
@@ -65,6 +66,10 @@ addon_files = [
 ]
 
 
+@pytest.mark.skipif(
+    sys.version_info >= (3, 0),
+    reason='Plone 4.3 / 5.0 / 5.1 currently only supports Python 2.7',
+)
 @pytest.mark.parametrize(
     'version',
     [
@@ -106,7 +111,7 @@ addon_files = [
         ),
     ],
 )
-def test_plone_skeleton_generation(tmpdir, version, skeleton):
+def test_plone_skeleton_generation(tmpdir, capsys, version, skeleton):
     generate_plone_addon_template(
         tmpdir.strpath,
         root_namespace=skeleton.root_namespace,
@@ -132,32 +137,34 @@ def test_plone_skeleton_generation(tmpdir, version, skeleton):
     required_files = base_files + addon_files
     assert required_files <= generated_files
     wd = os.path.abspath(os.path.join(tmpdir.strpath, skeleton.package_name))
-    bootstrap_result = subprocess.call(
-        [
-            'python', 'bootstrap-buildout.py', 
-            '--buildout-version', '2.8.0', 
-            '--setuptools-version', '33.1.1', 
-        ],
-        cwd=wd,
-    )
-    assert bootstrap_result == 0
-    annotate_result = subprocess.call(
-        ['bin/buildout', 'annotate', ],
-        cwd=wd,
-    )
-    assert annotate_result == 0
-    buildout_result = subprocess.call(
-        ['bin/buildout', ],
-        cwd=wd,
-    )
-    assert buildout_result == 0
-    test_result = subprocess.call(
-        ['bin/test', ],
-        cwd=wd,
-    )
-    assert test_result == 0
-    test__code_convention_result = subprocess.call(
-        ['bin/code-analysis', ],
-        cwd=wd,
-    )
-    assert test__code_convention_result == 0
+
+    with capsys.disabled():
+        bootstrap_result = subprocess.call(
+            [
+                'python', 'bootstrap-buildout.py',
+                '--buildout-version', '2.8.0',
+                '--setuptools-version', '33.1.1',
+            ],
+            cwd=wd,
+        )
+        assert bootstrap_result == 0
+        annotate_result = subprocess.call(
+            ['bin/buildout', 'annotate', ],
+            cwd=wd,
+        )
+        assert annotate_result == 0
+        buildout_result = subprocess.call(
+            ['bin/buildout', ],
+            cwd=wd,
+        )
+        assert buildout_result == 0
+        test_result = subprocess.call(
+            ['bin/test', ],
+            cwd=wd,
+        )
+        assert test_result == 0
+        test__code_convention_result = subprocess.call(
+            ['bin/code-analysis', ],
+            cwd=wd,
+        )
+        assert test__code_convention_result == 0

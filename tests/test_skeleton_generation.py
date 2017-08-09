@@ -44,8 +44,8 @@ plone.version = {version}
         f.write(template)
 
 
-TestCase = namedtuple(
-    'TestCase',
+SkeletonCase = namedtuple(
+    'SkeletonCase',
     [
         'template',
         'package_name',
@@ -83,28 +83,28 @@ addon_files = [
 @pytest.mark.parametrize(
     'skeleton',
     [
-        TestCase(
+        SkeletonCase(
             template='plone_addon',
             package_name='collective.foo',
             root_namespace='collective',
             nested_namespace='',
             name='foo',
         ),
-        TestCase(
+        SkeletonCase(
             template='plone_addon',
             package_name='collective.foo.bar',
             root_namespace='collective',
             nested_namespace='foo',
             name='bar',
         ),
-        TestCase(
+        SkeletonCase(
             template='plone_theme_package',
             package_name='collective.theme',
             root_namespace='collective',
             nested_namespace='',
             name='theme',
         ),
-        TestCase(
+        SkeletonCase(
             template='plone_fattheme_buildout',
             package_name='collective.fattheme',
             root_namespace='collective',

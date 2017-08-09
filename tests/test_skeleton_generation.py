@@ -5,6 +5,7 @@ from collections import namedtuple
 import glob
 import os
 import os.path
+import platform
 import pytest
 import subprocess
 import sys
@@ -67,8 +68,9 @@ addon_files = [
 
 
 @pytest.mark.skipif(
-    sys.version_info >= (3, 0),
-    reason='Plone 4.3 / 5.0 / 5.1 currently only supports Python 2.7',
+    sys.version_info >= (3, 0) or
+    platform.python_implementation() != 'CPython',
+    reason='Plone 4.3/5.0/5.1 currently only supports Python 2.7 on CPython.',
 )
 @pytest.mark.parametrize(
     'version',

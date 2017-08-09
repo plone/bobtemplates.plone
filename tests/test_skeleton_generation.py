@@ -103,7 +103,7 @@ addon_files = [
             name='theme',
         ),
         TestCase(
-            template='plone_fattheme_package',
+            template='plone_fattheme_buildout',
             package_name='collective.fattheme',
             root_namespace='collective',
             nested_namespace='',

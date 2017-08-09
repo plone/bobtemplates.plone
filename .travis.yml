@@ -15,29 +15,53 @@ before_install:
     - echo "extends-cache = $HOME/buildout-cache/extends" >> $HOME/.buildout/default.cfg
     - echo "abi-tag-eggs = true" >> $HOME/.buildout/default.cfg
 
-
 matrix:
     include:
         - python: "2.7"
-          env: TOXENV=py27
-        - python: "3.4"
-          env: TOXENV=py34
-        - python: "3.5"
-          env: TOXENV=py35
+          env: TOXENV=flake8,isort
         - python: "3.6"
-          env: TOXENV=py36
-        - python: "pypy"
-          env: TOXENV=pypy
+          env: TOXENV=flake8,isort
         - python: "2.7"
-          env: TOXENV=flake8,isort
+          env: TOXENV=py27-packagetests
+        - python: "3.4"
+          env: TOXENV=py34-packagetests
+        - python: "3.5"
+          env: TOXENV=py35-packagetests
         - python: "3.6"
-          env: TOXENV=flake8,isort
+          env: TOXENV=py36-packagetests
+        - python: "pypy"
+          env: TOXENV=pypy-packagetests
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_addon
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_addon
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_addon
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_addon PACKAGENAME=collective.foo.bar
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_addon PACKAGENAME=collective.foo.bar
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_addon PACKAGENAME=collective.foo.bar
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_theme_package
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_theme_package
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_theme_package
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_fattheme_buildout
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_fattheme_buildout
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_fattheme_buildout
 
 install:
     - travis_retry pip install -U setuptools==33.1.1 tox coveralls coverage
 
 before_script:
   - export DISPLAY=:99.0
+  - export VERBOSE=true
   - sh -e /etc/init.d/xvfb start
 
 script:

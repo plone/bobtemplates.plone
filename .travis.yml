@@ -49,12 +49,12 @@ matrix:
           env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_theme_package
         - python: "2.7"
           env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_theme_package
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_fattheme_buildout
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_fattheme_buildout
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_fattheme_buildout
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_fattheme_buildout
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_fattheme_buildout
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_fattheme_buildout
 
 install:
     - travis_retry pip install -U setuptools==33.1.1 tox coveralls coverage

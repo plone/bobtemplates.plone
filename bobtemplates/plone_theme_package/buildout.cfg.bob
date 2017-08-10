@@ -27,6 +27,7 @@ eggs =
     Pillow
     {{{ package.dottedname }}} [test]
 
+resources = ${buildout:directory}/resources
 
 [code-analysis]
 recipe = plone.recipe.codeanalysis[recommended]

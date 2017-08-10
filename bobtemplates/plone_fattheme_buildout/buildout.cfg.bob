@@ -1,11 +1,22 @@
 [buildout]
 extends = http://dist.plone.org/release/{{{ plone.version }}}/versions.cfg
 show-picked-versions = true
+extensions =
+    mr.developer
 
 parts =
     instance
+    test
+    code-analysis
+    createcoverage
+    releaser
+    i18ndude
+    omelette
+    robot
     npm-install
     grunt-compile
+develop = .
+
 
 [instance]
 recipe = plone.recipe.zope2instance
@@ -14,8 +25,49 @@ http-address = 8080
 eggs =
     Plone
     Pillow
+    {{{ package.dottedname }}} [test]
 
 resources = ${buildout:directory}/resources
+
+[code-analysis]
+recipe = plone.recipe.codeanalysis[recommended]
+directory = ${buildout:directory}/src/{{{ package.namespace }}}
+flake8-exclude = bootstrap.py,bootstrap-buildout.py,docs,*.egg.,omelette
+flake8-max-complexity = 15
+return-status-codes = True
+
+
+[createcoverage]
+recipe = zc.recipe.egg
+eggs = createcoverage
+
+
+[omelette]
+recipe = collective.recipe.omelette
+eggs = ${instance:eggs}
+
+
+[test]
+recipe = zc.recipe.testrunner
+eggs = ${instance:eggs}
+defaults = ['-s', '{{{ package.dottedname }}}', '--auto-color', '--auto-progress']
+
+
+[robot]
+recipe = zc.recipe.egg
+eggs =
+    ${test:eggs}
+    plone.app.robotframework[debug,ride,reload]
+
+
+[releaser]
+recipe = zc.recipe.egg
+eggs = zest.releaser
+
+
+[i18ndude]
+recipe = zc.recipe.egg
+eggs = i18ndude
 
 
 [npm-install]
@@ -26,6 +78,7 @@ command = cd ${buildout:directory}; npm install .; cd ${buildout:directory}/src/
 recipe = plone.recipe.command
 command = cd ${buildout:directory}; grunt compile
 update-command = cd ${buildout:directory}; grunt compile
+
 
 [versions]
 # Don't use a released version of {{{ package.dottedname }}}

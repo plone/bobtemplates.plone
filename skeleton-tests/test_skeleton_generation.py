@@ -4,10 +4,7 @@ import contextlib
 import glob
 import os
 import os.path
-import platform
-import pytest
 import subprocess
-import sys
 
 
 @contextlib.contextmanager
@@ -60,11 +57,6 @@ addon_files = [
 ]
 
 
-@pytest.mark.skipif(
-    sys.version_info >= (3, 0) or
-    platform.python_implementation() != 'CPython',
-    reason='Plone 4.3/5.0/5.1 currently only supports Python 2.7 on CPython.',
-)
 def test_plone_skeleton_generation(tmpdir, capsys):
     verbose = bool(os.environ.get('VERBOSE'))
     version = os.environ.get('VERSION', '5.1-latest')

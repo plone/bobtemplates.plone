@@ -57,7 +57,7 @@ matrix:
 #          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_fattheme_buildout
 
 install:
-    - travis_retry pip install -U setuptools==33.1.1 tox coveralls coverage
+    - travis_retry pip install -U tox coveralls coverage
 
 before_script:
   - export DISPLAY=:99.0

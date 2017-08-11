@@ -95,7 +95,7 @@ def test_plone_skeleton_generation(tmpdir, capsys):
     assert required_files <= generated_files
     wd = os.path.abspath(os.path.join(tmpdir.strpath, package_name))
 
-    with capsys.disabled() if verbose else dummy_contextmanager:
+    with capsys.disabled() if verbose else dummy_contextmanager():
         bootstrap_result = subprocess.call(
             [
                 'python', 'bootstrap-buildout.py',

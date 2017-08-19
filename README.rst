@@ -22,6 +22,11 @@
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: License
 
+.. image:: https://badges.gitter.im/plone/bobtemplates.plone.svg
+    :target: https://gitter.im/plone/bobtemplates.plone?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
+    :alt: Gitter channel
+
+
 bobtemplates.plone
 ==================
 

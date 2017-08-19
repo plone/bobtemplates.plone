@@ -2,10 +2,12 @@
 # -*- coding: utf-8 -*-
 """Render bobtemplates.plone hooks.
 """
+
 from datetime import date
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.hooks import validate_choices
+
 import keyword
 import os
 import re
@@ -70,10 +72,12 @@ def validate_packagename(configurator):
         fail = True
 
     if fail:
-        msg = "Error: '{0}' is not a valid packagename.\n".format(package_dir)
-        msg += "Please use a valid name (like collective.myaddon or "
-        msg += "plone.app.myaddon)"
-        sys.exit(msg)
+        sys.exit(
+            'Error: \'{0}\' is not a valid packagename.\n'
+            'Please use a valid name '
+            '(like collective.myaddon '
+            'or plone.app.myaddon)'.format(package_dir),
+        )
 
 
 def pre_username(configurator, question):
@@ -114,7 +118,8 @@ def _set_plone_version_variables(configurator, version):
         # (according to https://plone.org/support/version-support-policy)
         # this is used for the trove classifier in setup.py of the product
         configurator.variables['plone.minor_version'] = '.'.join(
-            version.split('.')[:2])
+            version.split('.')[:2],
+        )
 
 
 def post_ask(configurator):
@@ -146,9 +151,9 @@ def pre_dexterity_type_name(configurator, question):
 
 def post_dexterity_type_name(configurator, question, answer):
     if keyword.iskeyword(answer):
-        raise ValidationError('%s is a reserved keyword' % answer)
+        raise ValidationError(u'{0} is a reserved keyword'.format(answer))
     if not re.match('[_A-Za-z][_a-zA-Z0-9_]*$', answer):
-        raise ValidationError('%s is not a valid identifier' % answer)
+        raise ValidationError(u'{0} is not a valid identifier'.format(answer))
     return answer
 
 
@@ -156,7 +161,8 @@ def pre_theme_name(configurator, question):
     validate_packagename(configurator)
 
     default = os.path.basename(
-        configurator.target_directory).split('.')[-1].capitalize()
+        configurator.target_directory,
+    ).split('.')[-1].capitalize()
     if default:
         question.default = default
 
@@ -164,12 +170,13 @@ def pre_theme_name(configurator, question):
 def post_theme_name(configurator, question, answer):
     regex = r'^\w+[a-zA-Z0-9 \.\-_]*\w$'
     if not re.match(regex, answer):
-        msg = u"Error: '{0}' is not a valid themename.\n".format(answer)
-        msg += u"Please use a valid name (like 'Tango' or 'my-tango.com')!\n"
-        msg += u"At beginning or end only letters|diggits are allowed.\n"
-        msg += u"Inside the name also '.-_' are allowed.\n"
-        msg += u"No umlauts!"
-        raise ValidationError(msg)
+        raise ValidationError(
+            u"""Error: \'{0}\' is not a valid themename.
+Please use a valid name (like \'Tango\' or \'my-tango.com\')!
+At beginning or end only letters|diggits are allowed.
+Inside the name also \'.-_\' are allowed.
+No umlauts!""".format(answer),
+        )
     return answer
 
 
@@ -192,14 +199,16 @@ def prepare_render(configurator):
     configurator.variables['package.name'] = package_dir.split('.')[-1]
 
     if nested:
-        dottedname = "{0}.{1}.{2}".format(
+        dottedname = '{0}.{1}.{2}'.format(
             configurator.variables['package.namespace'],
             configurator.variables['package.namespace2'],
-            configurator.variables['package.name'])
+            configurator.variables['package.name'],
+        )
     else:
-        dottedname = "{0}.{1}".format(
+        dottedname = '{0}.{1}'.format(
             configurator.variables['package.namespace'],
-            configurator.variables['package.name'])
+            configurator.variables['package.name'],
+        )
 
     # package.dottedname = 'collective.foo.something'
     configurator.variables['package.dottedname'] = dottedname
@@ -212,7 +221,7 @@ def prepare_render(configurator):
     camelcasename = dottedname.replace('.', ' ').title()\
         .replace(' ', '')\
         .replace('_', '')
-    browserlayer = "{0}Layer".format(camelcasename)
+    browserlayer = '{0}Layer'.format(camelcasename)
 
     # package.browserlayer = 'CollectiveFooSomethingLayer'
     configurator.variables['package.browserlayer'] = browserlayer
@@ -221,18 +230,18 @@ def prepare_render(configurator):
     configurator.variables['package.longname'] = camelcasename.lower()
 
     # jenkins.directories = 'collective/foo/something'
-    configurator.variables[
-        'jenkins.directories'
-    ] = dottedname.replace('.', '/')
+    configurator.variables['jenkins.directories'] = dottedname.replace('.', '/')  # NOQA: E501
 
     # namespace_packages = "['collective', 'collective.foo']"
     if nested:
         namespace_packages = "'{0}', '{0}.{1}'".format(
             configurator.variables['package.namespace'],
-            configurator.variables['package.namespace2'])
+            configurator.variables['package.namespace2'],
+        )
     else:
         namespace_packages = "'{0}'".format(
-            configurator.variables['package.namespace'])
+            configurator.variables['package.namespace'],
+        )
     configurator.variables['package.namespace_packages'] = namespace_packages
 
     if configurator.variables.get('package.dexterity_type_name'):
@@ -248,14 +257,14 @@ def prepare_render(configurator):
 
     if configurator.variables.get('theme.name'):
         def normalize_string(value):
-            value = "-".join(value.split('_'))
-            value = "-".join(value.split())
+            value = '-'.join(value.split('_'))
+            value = '-'.join(value.split())
             return value
-        configurator.variables[
-            "theme.normalized_name"] = normalize_string(
-                configurator.variables.get('theme.name')).lower()
+        configurator.variables['theme.normalized_name'] = normalize_string(
+            configurator.variables.get('theme.name'),
+        ).lower()
     else:
-        configurator.variables["theme.normalized_name"] = ""
+        configurator.variables['theme.normalized_name'] = ''
 
 
 def cleanup_package(configurator):
@@ -271,12 +280,14 @@ def cleanup_package(configurator):
     start_path = make_path(
         configurator.target_directory,
         'src',
-        configurator.variables['package.namespace'])
+        configurator.variables['package.namespace'],
+    )
 
     # path for normal packages: '.../src/collective/myaddon'
     base_path = make_path(
         start_path,
-        configurator.variables['package.name'])
+        configurator.variables['package.name'],
+    )
 
     if nested:
         # Event though the target-dir was 'collective.behavior.myaddon' mrbob
@@ -291,12 +302,14 @@ def cleanup_package(configurator):
         base_path_nested = make_path(
             start_path,
             configurator.variables['package.namespace2'],
-            configurator.variables['package.name'])
+            configurator.variables['package.name'],
+        )
 
         # directory to be created: .../src/collective/behavior
         newpath = make_path(
             start_path,
-            configurator.variables['package.namespace2'])
+            configurator.variables['package.namespace2'],
+        )
         if not os.path.exists(newpath):
             # create new directory .../src/collective/behavior
             os.makedirs(newpath)
@@ -317,10 +330,10 @@ def cleanup_package(configurator):
 
     if configurator.variables.get('package.type') != u'Dexterity':
         to_delete.extend([
-            make_path(base_path, "profiles", "default", "types.xml"),
-            make_path(base_path, "profiles", "default", "types"),
-            make_path(base_path, "tests", "test_.py"),
-            make_path(base_path, "tests", "robot", "test_.robot"),
+            make_path(base_path, 'profiles', 'default', 'types.xml'),
+            make_path(base_path, 'profiles', 'default', 'types'),
+            make_path(base_path, 'tests', 'test_.py'),
+            make_path(base_path, 'tests', 'robot', 'test_.robot'),
         ])
 
     # remove parts
@@ -334,11 +347,11 @@ def cleanup_package(configurator):
     if configurator.template_dir.split('/')[-1] == 'plone_theme_package':
         # make a copy of the HOWTO_DEVELOP.rst also in the package root
         shutil.copy2(
-            make_path(base_path, "theme", "HOWTO_DEVELOP.rst",),
-            make_path(configurator.target_directory, "HOWTO_DEVELOP.rst"),
+            make_path(base_path, 'theme', 'HOWTO_DEVELOP.rst',),
+            make_path(configurator.target_directory, 'HOWTO_DEVELOP.rst'),
         )
 
 
 def make_path(*args):
-    """ generate path string  """
+    """generate path string."""
     return os.sep.join(args)

@@ -1,58 +1,78 @@
 language: python
-python: 2.7
 sudo: false
+
 cache:
   pip: true
   directories:
     - $HOME/buildout-cache
-before_install:
-  - mkdir -p $HOME/buildout-cache/{eggs,downloads}
-  - mkdir $HOME/.buildout
-  - echo "[buildout]" > $HOME/.buildout/default.cfg
-  - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
-  - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
-  - pip install --upgrade pip setuptools zc.buildout
-  - if [[ `npm -v` != 3.10.7 ]]; then npm i -g npm@3.10.7; fi
-  - npm install -g grunt-cli
 
-env:
-  matrix:
-    - PLONE_VERSION=       PACKAGE_TYPE=
-    - PLONE_VERSION=4.3.11 PACKAGE_TYPE=Basic
-    - PLONE_VERSION=4.3.11 PACKAGE_TYPE=Dexterity
-    - PLONE_VERSION=4.3.11 PACKAGE_TYPE=Theme
-    - PLONE_VERSION=5.0.6  PACKAGE_TYPE=Basic
-    - PLONE_VERSION=5.0.6  PACKAGE_TYPE=Dexterity
-    - PLONE_VERSION=5.0.6  PACKAGE_TYPE=Theme
+before_install:
+    - mkdir -p $HOME/buildout-cache/{downloads,eggs,extends}
+    - mkdir $HOME/.buildout
+    - echo "[buildout]" > $HOME/.buildout/default.cfg
+    - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
+    - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
+    - echo "extends-cache = $HOME/buildout-cache/extends" >> $HOME/.buildout/default.cfg
+    - echo "abi-tag-eggs = true" >> $HOME/.buildout/default.cfg
+
+matrix:
+    include:
+        - python: "2.7"
+          env: TOXENV=flake8,isort
+        - python: "3.6"
+          env: TOXENV=flake8,isort
+        - python: "2.7"
+          env: TOXENV=py27-packagetests
+        - python: "3.4"
+          env: TOXENV=py34-packagetests
+        - python: "3.5"
+          env: TOXENV=py35-packagetests
+        - python: "3.6"
+          env: TOXENV=py36-packagetests
+        - python: "pypy"
+          env: TOXENV=pypy-packagetests
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_addon
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_addon
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_addon
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_addon PACKAGENAME=collective.foo.bar
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_addon PACKAGENAME=collective.foo.bar
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_addon PACKAGENAME=collective.foo.bar
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_theme_package
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_theme_package
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_theme_package
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_fattheme_buildout
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_fattheme_buildout
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_fattheme_buildout
 
 install:
-  - pip install docutils
-  - sed -ie "s/^plone.version.*/plone.version = $PLONE_VERSION/g" test_answers.ini
-  - sed -ie "s/^package.type.*/package.type = $PACKAGE_TYPE/g" test_answers.ini
-  - if [[ "$PLONE_VERSION" == "" && "$PACKAGE_TYPE" == "" ]]; then sed -ie "s/^plone.version.*//g" test_answers.ini; sed -ie "s/^package.type.*//g" test_answers.ini; fi
-  - if [ "$PACKAGE_TYPE" == "Dexterity" ]; then echo "package.dexterity_type_name = MyDexterityTestType" >> test_answers.ini; fi
-  - buildout -c travis.cfg
+    - travis_retry pip install -U tox coveralls coverage
 
 before_script:
   - export DISPLAY=:99.0
+  - export VERBOSE=true
   - sh -e /etc/init.d/xvfb start
 
 script:
-#  - bin/check-readme
-  - bin/code-analysis
-  - bin/test
-  - bin/test-plone_addon
+    - travis_retry tox
+
+after_success:
+    - coverage combine
+    - coveralls
 
 after_script:
   - sh -e /etc/init.d/xvfb stop
-
-after_success:
-  - bin/createcoverage
-  - pip install -q coveralls
-  - coveralls
-
-after_failure:
-  - cat test_answers.ini
 
 notifications:
   email:

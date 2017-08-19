@@ -83,10 +83,30 @@ It is also available online at http://docs.plone.org/develop/addons/bobtemplates
 Installation
 ------------
 
-Use in a buildout
-^^^^^^^^^^^^^^^^^
+Python Package Managers
+^^^^^^^^^^^^^^^^^^^^^^^
 
-::
+.. code-block:: console
+
+    # use a virtual environment for installation
+
+    # For Python 2 and before Python 3.4 use:
+    $ virtualenv <path_venv>
+
+    # For Python 3.4 and above use:
+    $ python -m venv <path_venv>
+
+    # Activate your virtual environment
+    $ source <path_venv>/bin/activate
+
+    # Install bobtemplates.plone
+    $ pip install bobtemplates.plone
+
+
+Via a buildout
+^^^^^^^^^^^^^^
+
+.. code-block:: ini
 
     [buildout]
     parts += mrbob
@@ -97,67 +117,27 @@ Use in a buildout
         mr.bob
         bobtemplates.plone
 
+Usage
+-----
 
-This creates a mrbob-executable in your bin-directory.
-Call it from the ``src``-directory of your Plone project like this.::
+Both installation ways creates a mrbob-executable in your bin-directory.
+Call it from the ``src``-directory of your Plone project like this:
 
-    ../bin/mrbob -O collective.foo bobtemplates:plone_addon
+.. code-block:: console
 
-Or to create a new theme package::
+    $ ../bin/mrbob -O collective.foo bobtemplates:plone_addon
 
-    mrbob -O plonetheme.tango bobtemplates:plone_theme_package
-    cd plonetheme.tango/
-    pip install -r requirements.txt
-    buildout bootstrap
-    bin/buildout
+Or to create a new theme package:
 
-Or to create a new fattheme buildout::
+.. code-block:: console
 
-    mrbob -O myfatbuildout bobtemplates:plone_fattheme_buildout
-    cd myfatbuildout/
-    pip install -r requirements.txt
-    buildout bootstrap
-    bin/buildout
+    $ mrbob -O plonetheme.bar bobtemplates:plone_theme_package
 
-And launch the buildout using the command::
+Or to create a new fattheme buildout:
 
-    bin/instance fg
+.. code-block:: console
 
-
-Installation in a virtualenv
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can also install ``bobtemplates.plone`` in a virtualenv.::
-
-    pip install bobtemplates.plone
-
-With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.::
-
-    pip install mr.bob
-
-Now you can use it like this::
-
-    mrbob -O collective.foo bobtemplates:plone_addon
-
-This will create a new folder collective.foo.
-Inside the folder you have usually a buildout setup, which you can initialize as follow::
-
-    pip install -r requirements.txt
-
-if you don't see any requirements.txt, add this file with the following content before you run the pip command above::
-
-    setuptools == 24.3.0
-    zc.buildout == 2.5.3
-
-Now run::
-
-    buildout bootstrap
-
-Your buildout should be ready to use now.
-
-
-See `the documentation of mr.bob <http://mrbob.readthedocs.org/en/latest/>`_  for further information.
-
+    $ mrbob -O myfatbuildout bobtemplates:plone_fattheme_buildout
 
 Contribute
 ----------
@@ -166,6 +146,55 @@ Contribute
 - Source Code: https://github.com/plone/bobtemplates.plone
 - Documentation: http://docs.plone.org/develop/addons/bobtemplates.plone/bobtemplates.plone/README.html
 
+This package should follow best practices, or even define them, therefore it might feels uncommon for normal Plone development to contribute.
+bobtemplates.plone is changed to be as pythonic as possible, also in its way to contribute and test.
+
+We do use `tox <http://tox.readthedocs.io/en/latest/>`_ as test invocation tool.
+This package itself did not provide any buildout or other Plone typical method.
+It uses pytest as test framework.
+
+
+Development
+^^^^^^^^^^^
+
+If you want to contribute, please check out this repository, apply your changes and make a pull request.
+It would be good if you run test, especially the code convention tests before submitting a pull request, see following sections.
+
+You do not need to install any additional elements or run a buildout.
+Tox will take care for everything additional.
+
+Running tests
+^^^^^^^^^^^^^
+
+You need tox installed somewhere and available in your path, nothing else is neccessary.
+
+To invoke test run:
+
+.. code-block:: console
+
+    $ tox
+
+Pre-Commit Hook - Ensuring / Enforcing Code Conventions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For ensuring to not push any errors that contradicts the Plone coding conventions please set a git pre-commit hook by adding one of the following commands to ``.git/hooks/pre-commit``:
+
+.. code-block:: shell
+
+    # full tests before a commit
+    tox
+
+    # or just code convention tests:
+    tox -e isort,flake8
+
+Cutting a release
+^^^^^^^^^^^^^^^^^
+
+To cut a release we use zest.releaser which could be installed via a separate virtualenv or as a shortcut for normal bugfix-releases run:
+
+.. code-block:: console
+
+    $ tox -e release
 
 Support
 -------

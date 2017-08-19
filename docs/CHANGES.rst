@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0 (unreleased)
+2.0.0 (unreleased)
 ------------------
 
 - Set the zope_i18n_compile_mo_files environment variable.  [maurits]
@@ -44,6 +44,8 @@ Changelog
   causes the toolbar JS stop working properly
   [sneridagh]
 
+- Adopt tox a test invocation tool.
+  [loechel]
 
 1.0.5 (2016-10-16)
 ------------------

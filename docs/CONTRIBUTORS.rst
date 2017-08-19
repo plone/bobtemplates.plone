@@ -16,3 +16,4 @@ This package is based on `bobtemplates.niteoweb <https://github.com/niteoweb/bob
 - Héctor Velarde [hvelarde]
 - Aurore Mariscal [AuroreMariscal]
 - Víctor Fernández de Alba [sneridagh]
+- Alexander Loechel [loechel]

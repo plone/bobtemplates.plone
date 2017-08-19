@@ -5,16 +5,16 @@ Introduction
 
 To create a package like ``collective.myaddon``
 
-.. code-block:: shell
+.. code-block:: console
 
-    pip install bobtemplates.plone
-    mrbob -O collective.myaddon bobtemplates:plone_addon
+    $ pip install bobtemplates.plone
+    $ mrbob -O collective.myaddon bobtemplates:plone_addon
 
 You can also create a package with nested namespace
 
-.. code-block:: shell
+.. code-block:: console
 
-    mrbob -O collective.foo.myaddon bobtemplates:plone_addon
+    $ mrbob -O collective.foo.myaddon bobtemplates:plone_addon
 
 
 Options
@@ -73,60 +73,4 @@ Theme
     Adds a simple bootstrap-based Diazo theme in the folder ``theme/`` and registers it in ``profiles/default/theme.xml``
 
 
-Compatibility
--------------
-
-Add-ons created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
-They should also work with older versions but that was not tested.
-It should work on Linux, Mac and Windows.
-
-
-Installation
-------------
-
-Use in a buildout
-^^^^^^^^^^^^^^^^^
-
-::
-
-    [buildout]
-    parts += mrbob
-
-    [mrbob]
-    recipe = zc.recipe.egg
-    eggs =
-        mr.bob
-        bobtemplates.plone
-
-
-This creates a mrbob-executable in your bin-directory.
-Call it from the ``src``-directory of your Plone project like this.
-
-.. code-block:: shell
-
-    ../bin/mrbob -O collective.foo bobtemplates:plone_addon
-
-
-Installation in a virtualenv
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can also install ``bobtemplates.plone`` in a virtualenv.
-
-.. code-block:: shell
-
-    pip install bobtemplates.plone
-
-With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
-
-.. code-block:: shell
-
-    pip install mr.bob
-
-Now you can use it like this
-
-.. code-block:: shell
-
-    mrbob -O collective.foo bobtemplates:plone_addon
-
 See `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ documentation for further information.
-

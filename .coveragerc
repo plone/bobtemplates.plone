@@ -1,3 +1,12 @@
+[run]
+branch = True
+source = bobtemplates
+
+omit =
+
+
 [report]
-include =
-  bobtemplates/*
+precision = 2
+
+[html]
+directory = reports/coverage

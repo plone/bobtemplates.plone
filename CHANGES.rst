@@ -1,12 +1,14 @@
 Changelog
 =========
 
-2.0 (unreleased)
+2.0 (28.08.2017)
 ------------------
 
-- Set the zope_i18n_compile_mo_files environment variable.  [maurits]
+- Set the zope_i18n_compile_mo_files environment variable.
+  [maurits]
 
-- Fixed i18n attributes for View/Edit actions in dexterity type xml.  [maurits]
+- Fixed i18n attributes for View/Edit actions in dexterity type xml.
+  [maurits]
 
 - Seperate theme template from addon template, we now have plone_addon and plone_theme_package
   [MrTango]

@@ -1,0 +1,27 @@
+[buildout]
+extends =
+    https://raw.github.com/collective/buildout.plonetest/master/test-{{{buildout_plone_version}}}.cfg
+    https://raw.github.com/collective/buildout.plonetest/master/qa.cfg
+    https://raw.github.com/plone/plone.app.robotframework/master/versions.cfg
+
+versions = versions
+
+parts += test
+
+
+eggs +=
+
+
+develop =
+
+
+[test]
+recipe = zc.recipe.testrunner
+defaults = ['--auto-color', '--auto-progress']
+eggs =
+    Plone
+    ${buildout:eggs}
+
+[versions]
+zc.buildout =
+setuptools =

@@ -10,11 +10,8 @@ Changelog
 - Fixed i18n attributes for View/Edit actions in dexterity type xml.
   [maurits]
 
-- Seperate theme template from addon template, we now have plone_addon and plone_theme_package
+- Separate theme template from addon template, we now have plone_addon and plone_theme_package
   [MrTango]
-
-- Added a fat_theme_buildout which can be used for developing themes
-  [pigeonflight]
 
 - Update pins in the generated buildout.cfg
   [ale-rt]

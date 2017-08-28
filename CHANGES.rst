@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.0 (28.08.2017)
-------------------
+2.0 (2017-08-28)
+----------------
 
 - Set the zope_i18n_compile_mo_files environment variable.
   [maurits]

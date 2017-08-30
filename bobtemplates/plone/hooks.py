@@ -3,12 +3,8 @@
 """Render bobtemplates.plone hooks.
 """
 from datetime import date
-from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
-from mrbob.hooks import validate_choices
-import keyword
 import os
-import re
 import shutil
 import string
 import subprocess
@@ -129,35 +125,12 @@ def post_ask(configurator):
     _set_plone_version_variables(configurator, version)
 
 
-def post_type(configurator, question, answer):
-    """Skip questions depending on the type answer.
-    """
-    value = validate_choices(configurator, question, answer)
-    if value != u'Dexterity':
-        configurator.variables['package.dexterity_type_name'] = ''
-        configurator.variables['package.dexterity_type_name_lower'] = ''
-    return value
-
-
-def pre_dexterity_type_name(configurator, question):
-    if configurator.variables.get('package.type') != 'Dexterity':
-        raise SkipQuestion
-
-
-def post_dexterity_type_name(configurator, question, answer):
-    if keyword.iskeyword(answer):
-        raise ValidationError('%s is a reserved keyword' % answer)
-    if not re.match('[_A-Za-z][_a-zA-Z0-9_]*$', answer):
-        raise ValidationError('%s is not a valid identifier' % answer)
-    return answer
-
-
 def prepare_render(configurator):
     """Some variables to make templating easier.
 
     This is especially important for allowing nested and normal packages.
     """
-    # get package-name and package-type from user-input
+    # get package-name from user-input
 
     package_dir = os.path.basename(configurator.target_directory)
     nested = bool(len(package_dir.split('.')) == 3)
@@ -213,17 +186,6 @@ def prepare_render(configurator):
         namespace_packages = "'{0}'".format(
             configurator.variables['package.namespace'])
     configurator.variables['package.namespace_packages'] = namespace_packages
-
-    if configurator.variables.get('package.dexterity_type_name'):
-        configurator.variables[
-            'package.dexterity_type_name_lower'
-        ] = configurator.variables['package.dexterity_type_name'].lower()
-    else:
-        # We have to make sure those variables are always set because we are
-        # going to create files that contain those variables. Even if we
-        # remove those files afterwards. This is just how mr.bob rolls.
-        configurator.variables['package.dexterity_type_name'] = ''
-        configurator.variables['package.dexterity_type_name_lower'] = ''
 
     if configurator.variables.get('theme.name'):
         def normalize_string(value):
@@ -293,14 +255,6 @@ def cleanup_package(configurator):
 
     # find out what to delete
     to_delete = []
-
-    if configurator.variables.get('package.type') != u'Dexterity':
-        to_delete.extend([
-            make_path(base_path, "profiles", "default", "types.xml"),
-            make_path(base_path, "profiles", "default", "types"),
-            make_path(base_path, "tests", "test_.py"),
-            make_path(base_path, "tests", "robot", "test_.robot"),
-        ])
 
     # remove parts
     for path in to_delete:

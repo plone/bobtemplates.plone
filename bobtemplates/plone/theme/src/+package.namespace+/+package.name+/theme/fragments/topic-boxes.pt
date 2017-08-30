@@ -1,0 +1,44 @@
+<section class="wrapper style1">
+    <div class="container">
+        <div class="row">
+            <section class="6u 12u(narrower)">
+                <div class="box post">
+                    <a href="#" class="image left"><img src="++theme++derico/images/pic01.jpg" alt=""></a>
+                    <div class="inner">
+                        <h3>Python</h3>
+                        <p>Wir lieben <a href="https://python.org">Python</a> und entwickeln Web-Anwendungen mit <a href="http://plone.org">Plone</a>, <a href="http://zope.org">Zope</a>, <a href="https://trypyramid.com/">Pyramid</a> & <a href="https://www.djangoproject.com/">Django</a>. Dabei verfügen wir über mehr als 10 Jahre Erfahrung auf diesem Gebiet.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="6u 12u(narrower)">
+                <div class="box post">
+                    <a href="#" class="image left"><img src="++theme++derico/images/pic02.jpg" alt=""></a>
+                    <div class="inner">
+                        <h3>Javascript</h3>
+                        <p>Javascript stellt für uns mit seinen Frontend-Frameworks wie <a href="http://aurelia.io/">Aurelia</a>, <a href="https://facebook.github.io/react/">React</a> oder <a href="https://angularjs.org/">Angular</a> eine wichtige Basis für moderne Web-Anwendungen dar.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="row">
+            <section class="6u 12u(narrower)">
+                <div class="box post">
+                    <a href="#" class="image left"><img src="++theme++derico/images/pic03.jpg" alt=""></a>
+                    <div class="inner">
+                        <h3>Agil</h3>
+                        <p>Wir wissen aus Erfahrung, dass Anforderungen wärend eines Projektes variieren können. Um die Wünsche unser Kunden bestmöglichst zu erfüllen, arbeiten wir daher gerne nach agilen methoden.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="6u 12u(narrower)">
+                <div class="box post">
+                    <a href="#" class="image left"><img src="++theme++derico/images/pic04.jpg" alt=""></a>
+                    <div class="inner">
+                        <h3>Training</h3>
+                        <p>Wir geben unsere Erfahrungen und unser Wissen gerne weiter. Deshalb veranstalten wir Workshops und Trainings mit Kunden oder in der Community.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,4 @@
-from bobtemplates.plone.subcommand import base_prepare_renderer
-from bobtemplates.plone.subcommand import dottedname_to_path
-from bobtemplates.plone.subcommand import logger
+from bobtemplates.plone.base import base_prepare_renderer
 from mrbob.bobexceptions import ValidationError
 from lxml import etree
 import keyword
@@ -48,7 +46,6 @@ def _update_types_xml(configurator):
 
 
 def prepare_renderer(configurator):
-    logger.info("Using dx_content_type template:")
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'dx_content_type'
     type_name = configurator.variables['dexterity_type_name']
@@ -56,9 +53,7 @@ def prepare_renderer(configurator):
         'dexterity_type_name_klass'] = type_name.title().replace(' ', '')
     configurator.variables[
         'dexterity_type_name_normalized'] = type_name.replace(' ', '_').lower()
-    package_subpath = dottedname_to_path(
-        configurator.variables['package.dottedname'])
-    configurator.target_directory += u'/src/' + package_subpath
+    configurator.target_directory = configurator.variables['package_folder']
 
 
 def post_renderer(configurator):

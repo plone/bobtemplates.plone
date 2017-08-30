@@ -71,8 +71,8 @@ eggs = i18ndude
 {{{ package.dottedname }}} =
 
 # development dependencies (tools and pre commit hook)
-setuptools = 24.3.0
-zc.buildout = 2.5.3
+setuptools = 33.1.1
+zc.buildout = 2.8.0
 PyYAML = 3.12
 argh = 0.26.2
 args = 0.1.0

@@ -3,7 +3,7 @@ from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.dexterity.interfaces import IDexterityFTI
-from {{{ package.dottedname }}}.interfaces import I{{{ package.dexterity_type_name }}}
+from {{{ package.dottedname }}}.content.{{{dexterity_type_name_normalized}}} import I{{{ dexterity_type_name_klass }}}
 from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
 from zope.component import createObject
 from zope.component import queryUtility
@@ -11,7 +11,7 @@ from zope.component import queryUtility
 import unittest
 
 
-class {{{ package.dexterity_type_name }}}IntegrationTest(unittest.TestCase):
+class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
 
     layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
 
@@ -22,24 +22,24 @@ class {{{ package.dexterity_type_name }}}IntegrationTest(unittest.TestCase):
         self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_schema(self):
-        fti = queryUtility(IDexterityFTI, name='{{{ package.dexterity_type_name }}}')
+        fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name_normalized }}}')
         schema = fti.lookupSchema()
-        self.assertEqual(I{{{ package.dexterity_type_name }}}, schema)
+        self.assertEqual(I{{{ dexterity_type_name_klass }}}, schema)
 
     def test_fti(self):
-        fti = queryUtility(IDexterityFTI, name='{{{ package.dexterity_type_name }}}')
+        fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name_normalized }}}')
         self.assertTrue(fti)
 
     def test_factory(self):
-        fti = queryUtility(IDexterityFTI, name='{{{ package.dexterity_type_name }}}')
+        fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name_normalized }}}')
         factory = fti.factory
         obj = createObject(factory)
-        self.assertTrue(I{{{ package.dexterity_type_name }}}.providedBy(obj))
+        self.assertTrue(I{{{ dexterity_type_name_klass }}}.providedBy(obj))
 
     def test_adding(self):
         obj = api.content.create(
             container=self.portal,
-            type='{{{ package.dexterity_type_name }}}',
-            id='{{{ package.dexterity_type_name }}}',
+            type='{{{ dexterity_type_name_normalized }}}',
+            id='{{{ dexterity_type_name_normalized }}}',
         )
-        self.assertTrue(I{{{ package.dexterity_type_name }}}.providedBy(obj))
+        self.assertTrue(I{{{ dexterity_type_name_klass }}}.providedBy(obj))

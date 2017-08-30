@@ -1,0 +1,27 @@
+<section class="wrapper style1">
+    <div class="container">
+        <div class="row 200%">
+            <section class="4u 12u(narrower)">
+                <div class="box highlight">
+                    <i class="icon major fa-building"></i>
+                    <h3>Nachhaltigkeit</h3>
+                    <p>Wir lieben freie Software und gestalten mit unseren Kunden flexible, sichere und nachhaltige Lösungen.</p>
+                </div>
+            </section>
+            <section class="4u 12u(narrower)">
+                <div class="box highlight">
+                    <i class="icon major fa-heartbeat"></i>
+                    <h3>Nahe am Geschehen</h3>
+                    <p>Wir leben freie Software und investieren viel in deren Erfolg. Wir entwickeln am Kernprodukt und Erweiterungen, schreiben Dokumentation, geben Schulungen und halten Vorträge.</p>
+                </div>
+            </section>
+            <section class="4u 12u(narrower)">
+                <div class="box highlight">
+                    <i class="icon major fa-users"></i>
+                    <h3>Aktive Community-Arbeit</h3>
+                    <p>Wirken unter anderem folgenden Organisationen mit: der <i><a href="http://plone.com">Plone Foundation</a></i>, dem <i><a href="http://pysv.org">Python Softwareverband e.V.</a></i> und dem <i><a href="http://cms-garden.org">CMS-Garden e.V.</a></i>.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>

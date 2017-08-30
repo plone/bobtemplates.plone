@@ -16,6 +16,7 @@ parts/
 src/*
 test.plone_addon/
 var/
+tmp/
 # files
 lib64
 pip-selfcheck.json

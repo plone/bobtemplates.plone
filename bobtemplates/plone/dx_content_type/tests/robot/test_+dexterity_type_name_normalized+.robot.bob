@@ -4,7 +4,7 @@
 #
 # Run this robot test stand-alone:
 #
-#  $ bin/test -s {{{ package.dottedname }}} -t test_{{{ package.dexterity_type_name_lower }}}.robot --all
+#  $ bin/test -s {{{ package.dottedname }}} -t test_{{{ dexterity_type_name_normalized }}}.robot --all
 #
 # Run this robot test with robot server (which is faster):
 #
@@ -14,7 +14,7 @@
 #
 # 2) Run robot tests:
 #
-# $ bin/robot src/plonetraining/testing/tests/robot/test_{{{ package.dexterity_type_name_lower }}}.robot
+# $ bin/robot src/plonetraining/testing/tests/robot/test_{{{ dexterity_type_name_normalized }}}.robot
 #
 # See the http://docs.plone.org for further details (search for robot
 # framework).
@@ -34,18 +34,18 @@ Test Teardown  Close all browsers
 
 *** Test Cases ***************************************************************
 
-Scenario: As a site administrator I can add a {{{ package.dexterity_type_name }}}
+Scenario: As a site administrator I can add a {{{ dexterity_type_name_normalized }}}
   Given a logged-in site administrator
-    and an add {{{ package.dexterity_type_name_lower }}} form
-   When I type 'My {{{ package.dexterity_type_name }}}' into the title field
+    and an add {{{ dexterity_type_name_normalized }}} form
+   When I type 'My {{{ dexterity_type_name }}}' into the title field
     and I submit the form
-   Then a {{{ package.dexterity_type_name_lower }}} with the title 'My {{{ package.dexterity_type_name }}}' has been created
+   Then a {{{ dexterity_type_name_normalized }}} with the title 'My {{{ dexterity_type_name }}}' has been created
 
-Scenario: As a site administrator I can view a {{{ package.dexterity_type_name }}}
+Scenario: As a site administrator I can view a {{{ dexterity_type_name_normalized }}}
   Given a logged-in site administrator
-    and a {{{ package.dexterity_type_name_lower }}} 'My {{{ package.dexterity_type_name }}}'
-   When I go to the {{{ package.dexterity_type_name_lower }}} view
-   Then I can see the {{{ package.dexterity_type_name_lower }}} title 'My {{{ package.dexterity_type_name }}}'
+    and a {{{ dexterity_type_name_normalized }}} 'My {{{ dexterity_type_name }}}'
+   When I go to the {{{ dexterity_type_name_normalized }}} view
+   Then I can see the {{{ dexterity_type_name_normalized }}} title 'My {{{ dexterity_type_name }}}'
 
 
 *** Keywords *****************************************************************
@@ -55,34 +55,35 @@ Scenario: As a site administrator I can view a {{{ package.dexterity_type_name }
 a logged-in site administrator
   Enable autologin as  Site Administrator
 
-an add {{{ package.dexterity_type_name_lower }}} form
-  Go To  ${PLONE_URL}/++add++{{{ package.dexterity_type_name }}}
+an add {{{ dexterity_type_name_normalized }}} form
+  Go To  ${PLONE_URL}/++add++{{{ dexterity_type_name_normalized }}}
 
-a {{{ package.dexterity_type_name_lower }}} 'My {{{ package.dexterity_type_name }}}'
-  Create content  type={{{ package.dexterity_type_name }}}  id=my-{{{ package.dexterity_type_name_lower }}}  title=My {{{ package.dexterity_type_name }}}
+a {{{ dexterity_type_name_normalized }}} 'My {{{ dexterity_type_name }}}'
+  Create content  type={{{ dexterity_type_name_normalized }}}  id=my-{{{ dexterity_type_name_normalized }}}  title=My {{{ dexterity_type_name }}}
 
 
 # --- WHEN -------------------------------------------------------------------
 
 I type '${title}' into the title field
+  debug
   Input Text  name=form.widgets.title  ${title}
 
 I submit the form
   Click Button  Save
 
-I go to the {{{ package.dexterity_type_name_lower }}} view
-  Go To  ${PLONE_URL}/my-{{{ package.dexterity_type_name_lower }}}
+I go to the {{{ dexterity_type_name_normalized }}} view
+  Go To  ${PLONE_URL}/my-{{{ dexterity_type_name_normalized }}}
   Wait until page contains  Site Map
 
 
 # --- THEN -------------------------------------------------------------------
 
-a {{{ package.dexterity_type_name_lower }}} with the title '${title}' has been created
+a {{{ dexterity_type_name_normalized }}} with the title '${title}' has been created
   Wait until page contains  Site Map
   Page should contain  ${title}
   Page should contain  Item created
 
-I can see the {{{ package.dexterity_type_name_lower }}} title '${title}'
+I can see the {{{ dexterity_type_name_normalized }}} title '${title}'
   Wait until page contains  Site Map
   Page should contain  ${title}
 

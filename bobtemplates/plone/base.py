@@ -32,7 +32,7 @@ def check_root_folder(configurator, question):
     if not root_folder:
         raise ValidationError(
             "\n\nNo setup.py found in path!\n"
-            "Please run this subcommand inside an existing package,\n"
+            "Please run this subtemplate inside an existing package,\n"
             "in the package dir, where the actual code is!\n"
             "In the package collective.dx it's in collective.dx/collective/dx"
             "\n")
@@ -55,6 +55,15 @@ def base_prepare_renderer(configurator):
         'package.dottedname'].split('.')[0]
     configurator.variables['package.name'] = configurator.variables[
         'package.dottedname'].split('.')[-1]
+    # package.uppercasename = 'COLLECTIVE_FOO_SOMETHING'
+    configurator.variables['package.uppercasename'] = configurator.variables[
+        'package.dottedname'
+    ].replace('.', '_').upper()
+
+    package_subpath = dottedname_to_path(
+        configurator.variables['package.dottedname'])
+    configurator.variables['package_folder'] = configurator.variables[
+        'package.root_folder'] + u'/src/' + package_subpath
     configurator.target_directory = configurator.variables[
         'package.root_folder']
     return configurator

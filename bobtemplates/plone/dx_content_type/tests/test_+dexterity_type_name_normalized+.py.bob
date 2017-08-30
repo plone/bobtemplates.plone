@@ -1,0 +1,45 @@
+# -*- coding: utf-8 -*-
+from plone import api
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.dexterity.interfaces import IDexterityFTI
+from {{{ package.dottedname }}}.content.{{{dexterity_type_name_normalized}}} import I{{{ dexterity_type_name_klass }}}
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+from zope.component import createObject
+from zope.component import queryUtility
+
+import unittest
+
+
+class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+
+    def setUp(self):
+        """Custom shared utility setup for tests."""
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.installer = api.portal.get_tool('portal_quickinstaller')
+
+    def test_schema(self):
+        fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name_normalized }}}')
+        schema = fti.lookupSchema()
+        self.assertEqual(I{{{ dexterity_type_name_klass }}}, schema)
+
+    def test_fti(self):
+        fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name_normalized }}}')
+        self.assertTrue(fti)
+
+    def test_factory(self):
+        fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name_normalized }}}')
+        factory = fti.factory
+        obj = createObject(factory)
+        self.assertTrue(I{{{ dexterity_type_name_klass }}}.providedBy(obj))
+
+    def test_adding(self):
+        obj = api.content.create(
+            container=self.portal,
+            type='{{{ dexterity_type_name_normalized }}}',
+            id='{{{ dexterity_type_name_normalized }}}',
+        )
+        self.assertTrue(I{{{ dexterity_type_name_klass }}}.providedBy(obj))

@@ -35,12 +35,13 @@ setup(
     url='https://github.com/plone/bobtemplates.plone',
     license='GPL version 2',
     packages=find_packages(exclude=['ez_setup']),
+    namespace_packages=['bobtemplates'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
         'setuptools',
         'mr.bob',
-        #    'pyreadline',
+        'lxml',
     ],
     extras_require={
         'test': [

@@ -1,0 +1,77 @@
+//*// PICK A DATE //*//
+
+.picker--time {
+  min-width: 256px;
+  max-width: 320px;
+}
+#content .picker--opened .picker__holder {
+  opacity: 1;
+}
+.picker__holder {
+  width: 180px;
+  margin: -1px 0 0 0;
+  border:1px solid @plone-input-border;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: 300px;
+  border-radius: 0 0 @plone-border-radius-base  @plone-border-radius-base;
+  box-shadow: 0 1px 2px rgba(0,0,0,.17);
+}
+
+.picker__wrap {
+  margin: 0; /* overrides -1px used to get rid of unecessary scrollbar */
+}
+.picker__list-item:hover {
+  background: @plone-table-bg-hover;
+  color: @plone-gray-dark;
+}
+.picker__list-item--highlighted:hover, .picker--focused .picker__list-item--highlighted {
+  background: @plone-link-color;
+  color: #fff;
+}
+li.picker__list-item {
+  padding: @plone-padding-base-vertical @plone-padding-base-horizontal;
+  cursor: pointer;
+  color: @plone-gray;
+}
+ul.picker__list {
+  background: #fff;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.picker__table {
+  width: 100%;
+  text-align: center;
+}
+.picker__table th {text-align: center;}
+
+.picker__header {text-align: center; position: relative;}
+.picker__nav--next, .picker__nav--prev {
+  position: absolute;
+  top: 0.5em;
+}
+
+.picker__select--month, .picker__select--year {
+  width:35%;
+  display: inline-block;
+  margin: 0 6px;
+  font-size: 1em;
+}
+
+.picker__day {
+  font-weight: 400;
+}
+.picker__day--infocus:hover, .picker__day--outfocus:hover {
+  cursor: pointer;
+  background: @plone-table-bg-hover;
+}
+.picker__day--highlighted:hover, .picker__day--highlighted {
+  background: @plone-link-color;
+  color: #fff;
+  font-weight: 600;
+}
+.picker__day--outfocus {
+  color: @plone-gray-lighter;
+}

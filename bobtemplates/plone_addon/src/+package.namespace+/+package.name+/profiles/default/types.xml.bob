@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<object name="portal_types" meta_type="Plone Types Tool">
-  <object name="{{{ package.dexterity_type_name }}}" meta_type="Dexterity FTI"/>
-</object>

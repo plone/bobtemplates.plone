@@ -1,9 +1,20 @@
 .coverage
-.installed.cfg
 *.egg-info
+*.log
 *.mo
-*.pyc
-# dirs
+*.py?
+*.swp
+*.sublime-workspace
+*.sublime-project
+.mr.developer.cfg
+lib64
+log.html
+output.xml
+pip-selfcheck.json
+report.html
+.installed.cfg
+
+#dirs
 bin/
 buildout-cache/
 develop-eggs/
@@ -14,16 +25,6 @@ lib/
 local/
 parts/
 src/*
-test.plone_addon/
-var/
-tmp/
-# files
-lib64
-pip-selfcheck.json
-/.cache/*
-/.tox/*
-/coverage.xml
-/reports/*
 
 # excludes
 !.coveragerc
@@ -32,4 +33,3 @@ pip-selfcheck.json
 !.gitignore
 !.gitkeep
 !.travis.yml
-!bobtemplates

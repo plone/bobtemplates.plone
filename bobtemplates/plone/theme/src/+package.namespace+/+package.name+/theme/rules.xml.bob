@@ -75,7 +75,7 @@
     <!-- Insert the Plone toolbar -->
     <before
       theme-children="/html/body"
-      css:content-children="#edit-bar"
+      css:content-children="#edit-zone"
       css:if-not-content=".ajax_load"
       css:if-content=".userrole-authenticated"
       />

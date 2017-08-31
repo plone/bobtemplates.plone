@@ -26,7 +26,7 @@
     :target: https://gitter.im/plone/bobtemplates.plone?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
     :alt: Gitter channel
 
-
+==================
 bobtemplates.plone
 ==================
 
@@ -34,35 +34,24 @@ bobtemplates.plone
 
 
 Features
---------
+========
 
 Package created with ``bobtemplates.plone`` use the current best-practices when creating an add-on.
 
-Buildout
-    The package is contained in a buildout that allows you to build Plone with the new package installed for testing-purposes.
+Provided templates
+------------------
 
-Tests
-    The package comes with a test setup and some `tests <http://docs.plone.org/external/plone.app.testing/docs/source/index.html>`_ for installing the package. It also contains a `robot-test <http://docs.plone.org/external/plone.app.robotframework/docs/source/index.html>`_ that tests logging in. The buildout also contains a config to allow testing the package on `travis <http://travis-ci.org/>`_ that sends `notifications <http://about.travis-ci.org/docs/user/notifications>`_ by email to the package author.
+- plone_addon
+- theme_package
+- buildout
 
-Profile
-    The package contains a `Generic Setup Profile <http://docs.plone.org/develop/addons/components/genericsetup.html>`_ that installs a browserlayer. For Plone 5 it also contains a uninstall-profile.
+Provided subtemplates
+---------------------
 
-Locales
-    The package registers a directory for locales.
+These template are meant to be used inside a package which was created by the plone_addon template.
 
-Template-Overrides
-    The package registers the folder ``browser/overrides`` as a directory where you can drop template-overrides using `z3c.jbot <https://pypi.python.org/pypi/z3c.jbot>`_.
-
-Setuphandler
-    The package contains a `setuphandlers.py <http://docs.plone.org/develop/addons/components/genericsetup.html?highlight=setuphandler#custom-installer-code-setuphandlers-py>`_ where you can add code that is executed on installing the package. For Plone 5 there is also a method in `setuphandler.py` that is run on uninstalling.
-
-The package-types `Dexterity` and `Theme` add the following to `Basic`:
-
-Dexterity
-    Adds a simple content-type (you get asked about its name) in ``profiles/default/types/`` with a python-schema in ``interfaces.py``.
-
-Theme
-    Adds the Default Plone 5 theme Barceloneta in the folder ``theme/`` and registers it in ``profiles/default/theme.xml``
+- theme
+- content_type
 
 
 Compatibility
@@ -74,17 +63,17 @@ It should work on Linux, Mac and Windows.
 
 
 Documentation
--------------
+=============
 
 Full documentation for end users can be found in the "docs" folder.
 
-It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone/bobtemplates.plone/README.html
+It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone/bobtemplates.plone/docs/
 
 Installation
-------------
+============
 
 Use in a buildout
-^^^^^^^^^^^^^^^^^
+-----------------
 
 ::
 
@@ -99,73 +88,44 @@ Use in a buildout
 
 
 This creates a mrbob-executable in your bin-directory.
-Call it from the ``src``-directory of your Plone project like this.::
+Call it from the ``src``-directory of your Plone project like this.
+::
 
-    ../bin/mrbob -O collective.foo bobtemplates:plone_addon
-
-Or to create a new Dexterity Content Type inside an existing package:
-
-Go to your package directory: `collective.foo/src/collective/foo` and run::
-
-    <path to your mrbob buildout>/bin/mrbob bobtemplates:dx_content_type
-
-Or to create a new theme package::
-
-    ../bin/mrbob -O plonetheme.tango bobtemplates:plone_theme_package
-    cd plonetheme.tango/
-    pip install -r requirements.txt
-    buildout bootstrap
-    bin/buildout
-
-And launch the buildout using the command::
-
-    bin/instance fg
+    ../bin/mrbob -O collective.foo bobtemplates.plone:plone_addon
 
 
 Installation in a virtualenv
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
-You can also install ``bobtemplates.plone`` in a virtualenv.::
+You can also install ``bobtemplates.plone`` in a virtualenv.
+::
 
     pip install bobtemplates.plone
 
-With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.::
+With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
+::
 
     pip install mr.bob
 
 Now you can use it like this::
 
-    mrbob -O collective.foo bobtemplates:plone_addon
+    mrbob -O collective.foo bobtemplates.plone:plone_addon
 
-This will create a new folder collective.foo.
-Inside the folder you have usually a buildout setup, which you can initialize as follow::
-
-    pip install -r requirements.txt
-
-if you don't see any requirements.txt, add this file with the following content before you run the pip command above::
-
-    setuptools == 24.3.0
-    zc.buildout == 2.5.3
-
-Now run::
-
-    buildout bootstrap
-
-Your buildout should be ready to use now.
 
 
 See `the documentation of mr.bob <http://mrbob.readthedocs.org/en/latest/>`_  for further information.
 
 
 Contribute
-----------
+==========
 
 - Issue Tracker: https://github.com/plone/bobtemplates.plone/issues
 - Source Code: https://github.com/plone/bobtemplates.plone
-- Documentation: http://docs.plone.org/develop/addons/bobtemplates.plone/bobtemplates.plone/README.html
+- Documentation: http://docs.plone.org/develop/addons/bobtemplates.plone/bobtemplates.plone/docs/
 
 
 Support
--------
+=======
 
 If you are having issues, please let us know.
+We have a Gitter channel here: `plone/bobtemplates.plone <https://gitter.im/plone/bobtemplates.plone>`_

@@ -5,7 +5,7 @@ Introduction
     :maxdepth: 1
     :hidden:
 
-    plone_addon
+    addon
     buildout
     theme_package
     theme
@@ -19,13 +19,13 @@ To create a package like ``collective.myaddon``
 .. code-block:: shell
 
     pip install bobtemplates.plone
-    mrbob -O collective.myaddon bobtemplates.plone:plone_addon
+    mrbob -O collective.myaddon bobtemplates.plone:addon
 
 You can also create a package with nested namespace
 
 .. code-block:: shell
 
-    mrbob -O collective.foo.myaddon bobtemplates.plone:plone_addon
+    mrbob -O collective.foo.myaddon bobtemplates.plone:addon
 
 
 Features
@@ -36,18 +36,17 @@ Package created with ``bobtemplates.plone`` use the current best-practices when 
 Provided templates
 ------------------
 
-- plone_addon
-- theme_package
-- buildout
+- :doc:`addon </addon>`
+- :doc:`theme_package </theme_package>`
+- :doc:`buildout </buildout>`
 
 Provided subtemplates
 ---------------------
 
-These template are meant to be used inside a package which was created by the plone_addon template.
+These template are meant to be used inside a package which was created by the addon template.
 
 - :doc:`theme </theme>`
 - :doc:`content_type </content_type>`
--
 
 
 
@@ -82,7 +81,7 @@ Call it from the ``src``-directory of your Plone project like this.
 
 .. code-block:: shell
 
-    ../bin/mrbob -O collective.foo bobtemplates:plone_addon
+    ../bin/mrbob -O collective.foo bobtemplates:addon
 
 
 Installation in a virtualenv
@@ -104,7 +103,7 @@ Now you can use it like this
 
 .. code-block:: shell
 
-    mrbob -O collective.foo bobtemplates:plone_addon
+    mrbob -O collective.foo bobtemplates:addon
 
 See `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ documentation for further information.
 

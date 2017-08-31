@@ -41,14 +41,14 @@ Package created with ``bobtemplates.plone`` use the current best-practices when 
 Provided templates
 ------------------
 
-- plone_addon
+- addon
 - theme_package
 - buildout
 
 Provided subtemplates
 ---------------------
 
-These template are meant to be used inside a package which was created by the plone_addon template.
+These template are meant to be used inside a package which was created by the addon template.
 
 - theme
 - content_type
@@ -91,7 +91,7 @@ This creates a mrbob-executable in your bin-directory.
 Call it from the ``src``-directory of your Plone project like this.
 ::
 
-    ../bin/mrbob -O collective.foo bobtemplates.plone:plone_addon
+    ../bin/mrbob -O collective.foo bobtemplates.plone:addon
 
 
 Installation in a virtualenv
@@ -109,7 +109,7 @@ With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a depend
 
 Now you can use it like this::
 
-    mrbob -O collective.foo bobtemplates.plone:plone_addon
+    mrbob -O collective.foo bobtemplates.plone:addon
 
 
 

@@ -37,4 +37,6 @@
       factory=".setuphandlers.HiddenProfiles"
       name="{{{ package.dottedname }}}-hiddenprofiles" />
 
+  <!-- -*- extra stuff goes here -*- -->
+
 </configure>

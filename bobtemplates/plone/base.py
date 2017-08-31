@@ -7,6 +7,32 @@ import os
 logger = logging.getLogger("bobtemplates.plone")
 
 
+def is_string_in_file(configurator, file_path, match_str):
+    with open(file_path, 'r+') as xml_file:
+        contents = xml_file.readlines()
+    for index, line in enumerate(contents):
+        if match_str in line:
+            return True
+    return False
+
+
+def update_file(configurator, file_path, match_str, insert_str):
+    """ Insert insert_str into given file, by match_str.
+    """
+    with open(file_path, 'r+') as xml_file:
+        contents = xml_file.readlines()
+        if match_str in contents[-1]:  # Handle last line, prev. IndexError
+            contents.append(insert_str)
+        else:
+            for index, line in enumerate(contents):
+                if (match_str in line and
+                        insert_str not in contents[index + 1]):
+                    contents.insert(index + 1, insert_str)
+                    break
+        xml_file.seek(0)
+        xml_file.writelines(contents)
+
+
 def _get_package_root_folder():
     file_name = 'setup.py'
     root_folder = None

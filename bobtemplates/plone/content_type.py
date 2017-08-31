@@ -47,7 +47,7 @@ def _update_types_xml(configurator):
 
 def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
-    configurator.variables['template_id'] = 'dx_content_type'
+    configurator.variables['template_id'] = 'content_type'
     type_name = configurator.variables['dexterity_type_name']
     configurator.variables[
         'dexterity_type_name_klass'] = type_name.title().replace(' ', '')

@@ -44,9 +44,11 @@
         />
 
       <!-- Add theme stylesheets here, to have them at the bottom of all stylesheets -->
-      <!--<link rel="stylesheet" href="++theme++{{{ theme.normalized_name }}}/assets/css/main.css" />-->
+      <!--
       <after theme-children="/html/head">
+        <link rel="stylesheet" href="++theme++{{{ theme.normalized_name }}}/assets/css/main.css" />
       </after>
+      -->
 
       <!-- Pull in Plone javascript for loged-in users -->
       <after
@@ -59,9 +61,12 @@
         Add theme javascripts here, to have them at the bottom of all javascripts.
         You could also add them to the bottom of the body tag, if you want.
       -->
-      <!--<script src="++theme++{{{ theme.normalized_name }}}/assets/js/main.js"></script>-->
+      <!--
       <after theme-children="/html/head">
+        <script src="++theme++{{{ theme.normalized_name }}}/assets/js/main.js"></script>
       </after>
+      -->
+
     </rules>
 
     <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->

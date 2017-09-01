@@ -14,7 +14,7 @@ module.exports = function (grunt) {
                     strictMath: false,
                     sourceMap: true,
                     outputSourceFiles: true,
-                    sourceMapFileInline: true,
+                    sourceMapFileInline: false,
                     sourceMapURL: '++theme++{{{ theme.normalized_name }}}/less/theme-compiled.less.map',
                     sourceMapFilename: 'less/theme-compiled.less.map',
                     modifyVars: {

@@ -5,6 +5,7 @@ Introduction
     :maxdepth: 1
     :hidden:
 
+    intro
     addon
     buildout
     theme_package

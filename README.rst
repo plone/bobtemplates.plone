@@ -163,3 +163,8 @@ Support
 -------
 
 If you are having issues, please let us know.
+
+
+.. image:: https://badges.gitter.im/plone/bobtemplates.plone.svg
+   :alt: Join the chat at https://gitter.im/plone/bobtemplates.plone
+   :target: https://gitter.im/plone/bobtemplates.plone?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge

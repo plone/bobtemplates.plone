@@ -3,7 +3,6 @@ Introduction
 
 ..  toctree::
     :maxdepth: 1
-    :hidden:
 
     intro
     addon
@@ -11,6 +10,7 @@ Introduction
     theme_package
     theme
     content_type
+    develop
 
 
 ``bobtemplates.plone`` provides a `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ template to generate packages for Plone projects.
@@ -32,7 +32,7 @@ You can also create a package with nested namespace
 Features
 ========
 
-Package created with ``bobtemplates.plone`` use the current best-practices when creating an add-on.
+Packages created with ``bobtemplates.plone`` use the current best-practices when creating an add-on and does all of boilerplate for you.
 
 Provided templates
 ------------------

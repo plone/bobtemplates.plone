@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Render bobtemplates.plone hooks.
+""" Render bobtemplates.plone hooks.
+
+    DEPRECATED, dont't use this and don't add new stuff here please!
 """
 from datetime import date
 from mrbob.bobexceptions import ValidationError

@@ -8,6 +8,9 @@ logger = logging.getLogger("bobtemplates.plone")
 
 
 def is_string_in_file(configurator, file_path, match_str):
+    """ Simple check if a given string is in a file.
+        You can use this before adding new lines with update_file.
+    """
     with open(file_path, 'r+') as xml_file:
         contents = xml_file.readlines()
     for index, line in enumerate(contents):

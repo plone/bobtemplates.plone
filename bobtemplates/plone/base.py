@@ -3,6 +3,7 @@ from mrbob.bobexceptions import ValidationError
 from mrbob.bobexceptions import MrBobError
 import logging
 import os
+import sys
 
 logger = logging.getLogger("bobtemplates.plone")
 
@@ -96,3 +97,23 @@ def base_prepare_renderer(configurator):
     configurator.target_directory = configurator.variables[
         'package.root_folder']
     return configurator
+
+
+def subtemplate_warning(configurator, question):
+    """ Show a warning to the user before using subtemplates!
+    """
+    print("""
+    ### WARNING ###
+
+    This is a subtemplate, it might override existing files without warnings!
+    Please use a version control system like GIT with a clean state,
+    to track changes, before using this subtemplate!
+
+    """)
+
+
+def subtemplate_warning_post_question(configurator, question, answer):
+    if answer.lower() != "yes":
+        print("Abort!")
+        sys.exit(0)
+    return answer

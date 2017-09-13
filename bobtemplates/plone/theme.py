@@ -1,12 +1,23 @@
 # -*- coding: utf-8 -*-
 
 from mrbob.bobexceptions import ValidationError
+from bobtemplates.plone.hooks import validate_packagename
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import logger
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import is_string_in_file
 from lxml import etree
+import os
 import re
+
+
+def pre_theme_name(configurator, question):
+    validate_packagename(configurator)
+
+    default = os.path.basename(
+        configurator.target_directory).split('.')[-1].capitalize()
+    if default:
+        question.default = default
 
 
 def post_theme_name(configurator, question, answer):

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import update_file
 from mrbob.bobexceptions import ValidationError

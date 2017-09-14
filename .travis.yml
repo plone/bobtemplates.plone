@@ -18,19 +18,19 @@ before_install:
 matrix:
     include:
         - python: "2.7"
-          env: TOXENV=flake8,isort
+          env: TOXENV=lint-py2,isort
         - python: "3.6"
-          env: TOXENV=flake8,isort
-        - python: "2.7"
-          env: TOXENV=py27-packagetests
-        - python: "3.4"
-          env: TOXENV=py34-packagetests
-        - python: "3.5"
-          env: TOXENV=py35-packagetests
-        - python: "3.6"
-          env: TOXENV=py36-packagetests
-        - python: "pypy"
-          env: TOXENV=pypy-packagetests
+          env: TOXENV=lint-py3,isort
+#        - python: "2.7"
+#          env: TOXENV=py27-packagetests
+#        - python: "3.4"
+#          env: TOXENV=py34-packagetests
+#        - python: "3.5"
+#          env: TOXENV=py35-packagetests
+#        - python: "3.6"
+#          env: TOXENV=py36-packagetests
+#        - python: "pypy"
+#          env: TOXENV=pypy-packagetests
         - python: "2.7"
           env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_addon
         - python: "2.7"

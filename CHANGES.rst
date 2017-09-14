@@ -4,14 +4,17 @@ Changelog
 2.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
 - Removed bootstrap-buildout.py and added DEVELOP.rst
   [agitator]
 
 - Update barceloneta less files to 1.7.3 for plone_theme_package
   [agitator]
 
-- Fixed i18n attributes for View/Edit actions in dexterity type xml.  [maurits]
+- Fixed i18n attributes for View/Edit actions in dexterity type xml.
+  [maurits]
+
+- Testing of generated skeletons integerated.
+  [loechel]
 
 
 2.0 (2017-08-28)

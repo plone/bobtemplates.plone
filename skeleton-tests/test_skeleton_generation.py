@@ -80,7 +80,7 @@ def test_plone_skeleton_generation(tmpdir, capsys):
         [
             'mrbob',
             '-O', package_name,
-            'bobtemplates:' + template,
+            'bobtemplates.plone:' + template,
             '--config', 'answers.ini',
         ],
         cwd=tmpdir.strpath,
@@ -96,15 +96,34 @@ def test_plone_skeleton_generation(tmpdir, capsys):
     wd = os.path.abspath(os.path.join(tmpdir.strpath, package_name))
 
     with capsys.disabled() if verbose else dummy_contextmanager():
-        bootstrap_result = subprocess.call(
+        setup_virtualenv_result = subprocess.call(
             [
-                'python', 'bootstrap-buildout.py',
-                '--buildout-version', '2.8.0',
-                '--setuptools-version', '33.1.1',
+                'virtualenv',
+                '.'
             ],
             cwd=wd,
         )
-        assert bootstrap_result == 0
+        assert setup_virtualenv_result == 0
+        install_buildout_result = subprocess.call(
+            [
+                './bin/pip',
+                'install',
+                '-U',
+                'setuptools==33.1.1',
+                'zc.buildout==2.8.0',
+            ],
+            cwd=wd,
+        )
+        assert install_buildout_result == 0
+        # bootstrap_result = subprocess.call(
+        #     [
+        #         'python', 'buildout.py',
+        #         '--buildout-version', '2.8.0',
+        #         '--setuptools-version', '33.1.1',
+        #     ],
+        #     cwd=wd,
+        # )
+        # assert bootstrap_result == 0
         annotate_result = subprocess.call(
             ['bin/buildout', 'annotate', ],
             cwd=wd,

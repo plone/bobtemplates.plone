@@ -18,9 +18,9 @@ before_install:
 matrix:
     include:
         - python: "2.7"
-          env: TOXENV=lint-py2,isort
+          env: TOXENV=lint-py2
         - python: "3.6"
-          env: TOXENV=lint-py3,isort
+          env: TOXENV=lint-py3
 #        - python: "2.7"
 #          env: TOXENV=py27-packagetests
 #        - python: "3.4"

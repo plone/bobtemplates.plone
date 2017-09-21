@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
-<object
-    i18n:domain="plone"
-    meta_type="Dexterity FTI"
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     name="{{{ dexterity_type_name_normalized }}}"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+    meta_type="Dexterity FTI"
+    i18n:domain="plone">
 
   <!-- Basic properties -->
   <property

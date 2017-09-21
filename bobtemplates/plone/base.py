@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-from mrbob.bobexceptions import ValidationError
 from mrbob.bobexceptions import MrBobError
+from mrbob.bobexceptions import ValidationError
+
 import logging
 import os
 import sys
+
 
 logger = logging.getLogger("bobtemplates.plone")
 

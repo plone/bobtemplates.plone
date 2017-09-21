@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from mrbob.bobexceptions import ValidationError
-from bobtemplates.plone.hooks import validate_packagename
 from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import is_string_in_file
 from bobtemplates.plone.base import logger
 from bobtemplates.plone.base import update_file
-from bobtemplates.plone.base import is_string_in_file
+from bobtemplates.plone.hooks import validate_packagename
 from lxml import etree
+from mrbob.bobexceptions import ValidationError
+
 import os
 import re
 

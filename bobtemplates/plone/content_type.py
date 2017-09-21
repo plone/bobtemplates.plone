@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+
 from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import is_string_in_file
 from bobtemplates.plone.base import update_file
-from mrbob.bobexceptions import ValidationError
 from lxml import etree
+from mrbob.bobexceptions import ValidationError
+
 import keyword
-import re
 import os
+import re
 
 
 def check_dexterity_type_name(configurator, question, answer):
@@ -111,6 +114,20 @@ def _update_permissions_zcml(configurator):
         configurator.variables['dexterity_type_name_klass']
     )
     update_file(configurator, file_path, match_str, insert_str)
+
+
+def _update_setup_py(configurator):
+    file_name = u'setup.py'
+    file_path = configurator.variables['package.root_folder'] + '/' + file_name
+    match_str = "-*- Extra requirements: -*-"
+    insert_strings = [
+        'plone.app.dexterity',
+    ]
+    for insert_str in insert_strings:
+        insert_str = "        '{0}',\n".format(insert_str)
+        if is_string_in_file(configurator, file_path, insert_str):
+            continue
+        update_file(configurator, file_path, match_str, insert_str)
 
 
 def prepare_renderer(configurator):

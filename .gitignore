@@ -25,6 +25,8 @@ pip-selfcheck.json
 .python-version
 coverage.xml
 .Python
+tmp/
+docs/_build
 
 # excludes / This Files should go into version control
 !.coveragerc

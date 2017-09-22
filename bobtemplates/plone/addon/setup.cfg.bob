@@ -15,3 +15,5 @@ lines_after_imports = 2
 line_length = 200
 not_skip = __init__.py
 
+[tool:bobtemplates.plone]
+version = {{{ plone.version }}}

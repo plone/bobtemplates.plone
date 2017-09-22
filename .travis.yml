@@ -36,7 +36,7 @@ matrix:
         - python: "2.7"
           env: TOXENV=py27-skeletontests-Plone-5.0-template-addon
         - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.1-template-_addon
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-addon
         - python: "2.7"
           env: TOXENV=py27-skeletontests-Plone-4.3-template-addon_content_type
         - python: "2.7"

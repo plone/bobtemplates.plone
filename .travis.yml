@@ -38,23 +38,23 @@ matrix:
         - python: "2.7"
           env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_addon
         - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_addon PACKAGENAME=collective.foo.bar
+          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_addon_content_type
         - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_addon PACKAGENAME=collective.foo.bar
+          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_addon_content_type
         - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_addon PACKAGENAME=collective.foo.bar
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_addon_content_type
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_addon_theme
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_addon_theme
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_addon_theme
         - python: "2.7"
           env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_theme_package
         - python: "2.7"
           env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_theme_package
         - python: "2.7"
           env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_theme_package
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-Plone-4.3-template-plone_fattheme_buildout
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-Plone-5.0-template-plone_fattheme_buildout
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-Plone-5.1-template-plone_fattheme_buildout
 
 install:
     - travis_retry pip install -U tox coveralls coverage

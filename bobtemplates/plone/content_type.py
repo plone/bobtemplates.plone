@@ -147,3 +147,4 @@ def post_renderer(configurator):
     _update_types_xml(configurator)
     _update_permissions_zcml(configurator)
     _update_rolemap_xml(configurator)
+    _update_setup_py(configurator)

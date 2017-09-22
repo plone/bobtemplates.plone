@@ -28,7 +28,10 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
-        import {{{ package.dottedname }}}
+{{% if not plone.is_plone5 %}}
+        import plone.app.dexterity
+        self.loadZCML(package=plone.app.dexterity)
+{{% endif %}}
         self.loadZCML(package={{{ package.dottedname }}})
 
     def setUpPloneSite(self, portal):

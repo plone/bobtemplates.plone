@@ -28,6 +28,7 @@ coverage.xml
 .Python
 tmp/
 docs/_build
+build/
 
 # excludes / This Files should go into version control
 !.editorconfig

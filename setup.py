@@ -23,7 +23,7 @@ tests_require = [
 setup(
     name='bobtemplates.plone',
     version=version,
-    description="Templates for Plone projects.",
+    description='Templates for Plone projects.',
     long_description=long_description,
     classifiers=[
         'Environment :: Console',

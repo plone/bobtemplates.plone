@@ -14,21 +14,27 @@ long_description = '\n\n'.join([
 ])
 
 
+tests_require = [
+    'pytest',
+    'pytest-mock',
+]
+
+
 setup(
     name='bobtemplates.plone',
     version=version,
     description="Templates for Plone projects.",
     long_description=long_description,
     classifiers=[
-        "Environment :: Console",
-        "Intended Audience :: Developers",
-        "Natural Language :: English",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        "Development Status :: 5 - Production/Stable",
-        "Topic :: Software Development :: Code Generators",
-        "Topic :: Utilities",
-        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Development Status :: 5 - Production/Stable',
+        'Topic :: Software Development :: Code Generators',
+        'Topic :: Utilities',
+        'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
     ],
     keywords='web plone zope skeleton project',
     author='Plone Foundation',
@@ -44,14 +50,12 @@ setup(
         'mr.bob',
         'lxml',
     ],
+    setup_requires=[
+        'pytest-runner',
+    ],
+    tests_require=tests_require,
     extras_require={
-        'test': [
-            'nose',
-            'nose-selecttests',
-            'scripttest',
-            'six',
-            'unittest2',
-        ]
+        'test': tests_require,
     },
     entry_points={},
 )

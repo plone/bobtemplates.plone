@@ -1,0 +1,29 @@
+# AppVeyor CI settings (Windows Machine CI Tests)
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python27"
+      TOXENV: "lint-py27,docs"
+    - PYTHON: "C:\\Python36"
+      TOXENV: "lint-py36,docs"
+    - PYTHON: "C:\\Python27"
+      TOXENV: "py27"
+    - PYTHON: "C:\\Python34"
+      TOXENV: "py34"
+    - PYTHON: "C:\\Python35"
+      TOXENV: "py35"
+    - PYTHON: "C:\\Python36"
+      TOXENV: "py36"
+
+cache:
+  - '%LOCALAPPDATA%\pip\Cache'
+
+version: '{branch}.{build}'
+
+install:
+  - "python.exe -m pip install tox"
+
+build: off
+
+test_script:
+  - "tox.exe"

@@ -36,8 +36,23 @@ def test_prepare_renderer():
     configurator = Configurator(
         template='bobtemplates.plone:theme_package',
         target_directory='collective.foo',
+        variables={
+            'theme.name': 'test.theme',
+        }
     )
     theme.prepare_renderer(configurator)
 
     assert configurator.variables['template_id'] == 'theme'
-    assert configurator.variables['theme.normailzed_name'] == 'collectivefoo'
+    assert configurator.variables['theme.normalized_name'] == 'test.theme'
+
+
+# def test_post_renderer():
+#     configurator = Configurator(
+#         template='bobtemplates.plone:theme_package',
+#         target_directory='collective.foo',
+#         variables={
+#             'theme.name': 'test.theme',
+#             'package_folder': 'src/collective/foo',
+#         }
+#     )
+#     theme.post_renderer(configurator)

@@ -9,7 +9,7 @@ import sys
 
 
 try:
-    import ConfigParser
+    from ConfigParser import ConfigParser
 except ImportError:
     from configparser import ConfigParser
 
@@ -25,7 +25,7 @@ class SetupCfg(object):
 def read_setup_cfg(configurator):
     setup_cfg = SetupCfg()
 
-    config = ConfigParser.ConfigParser()
+    config = ConfigParser()
     path = configurator.target_directory + '/setup.cfg'
     config.read(path)
     if not config.sections():

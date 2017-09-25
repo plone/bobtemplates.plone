@@ -13,9 +13,9 @@ import re
 
 def check_dexterity_type_name(configurator, question, answer):
     if keyword.iskeyword(answer):
-        raise ValidationError('{key} is a reserved Python keyword'.format(key=answer))  # NOQA: E501
+        raise ValidationError(u'{key} is a reserved Python keyword'.format(key=answer))  # NOQA: E501
     if not re.match('[_a-zA-Z ]*$', answer):
-        raise ValidationError('{key} is not a valid identifier'.format(key=answer))  # NOQA: E501
+        raise ValidationError(u'{key} is not a valid identifier'.format(key=answer))  # NOQA: E501
     return answer
 
 

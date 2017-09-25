@@ -30,3 +30,14 @@ def test_post_theme_name():
     theme.post_theme_name(configurator, None, 'collective.theme')
     with pytest.raises(ValidationError):
         theme.post_theme_name(configurator, None, 'collective.$SPAM')
+
+
+def test_prepare_renderer():
+    configurator = Configurator(
+        template='bobtemplates.plone:theme_package',
+        target_directory='collective.foo',
+    )
+    theme.prepare_renderer(configurator)
+
+    assert configurator.variables['template_id'] == 'theme'
+    assert configurator.variables['theme.normailzed_name'] == 'collectivefoo'

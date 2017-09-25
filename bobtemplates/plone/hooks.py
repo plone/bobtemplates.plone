@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-""" Render bobtemplates.plone hooks.
+"""Render bobtemplates.plone hooks.
 
-    DEPRECATED, dont't use this and don't add new stuff here please!
+DEPRECATED, dont't use this and don't add new stuff here please!
+
 """
 from bobtemplates.plone.base import _set_plone_version_variables
 from mrbob.bobexceptions import ValidationError
@@ -15,9 +16,8 @@ import sys
 
 
 def to_boolean(configurator, question, answer):
-    """
-    If you want to convert an answer to Python boolean, you can
-    use this function as :ref:`post-question-hook`:
+    """If you want to convert an answer to Python boolean, you can use this
+    function as :ref:`post-question-hook`:
 
     .. code-block:: ini
 
@@ -27,6 +27,7 @@ def to_boolean(configurator, question, answer):
 
     Following variables can be converted to a boolean:
     **y, n, yes, no, true, false, 1, 0**
+
     """
     if isinstance(answer, bool):
         return answer
@@ -40,8 +41,7 @@ def to_boolean(configurator, question, answer):
 
 
 def get_git_info(value):
-    """Try to get information from the git-config.
-    """
+    """Try to get information from the git-config."""
     gitargs = ['git', 'config', '--get']
     try:
         result = subprocess.check_output(gitargs + [value]).strip()
@@ -51,9 +51,8 @@ def get_git_info(value):
 
 
 def validate_packagename(configurator):
-    """Find out if the name target-dir entered when invoking the command
-    can be a valid python-package.
-    """
+    """Find out if the name target-dir entered when invoking the command can be
+    a valid python-package."""
     package_dir = os.path.basename(configurator.target_directory)
     fail = False
 
@@ -76,8 +75,7 @@ def validate_packagename(configurator):
 
 
 def pre_username(configurator, question):
-    """Get email from git and validate package name.
-    """
+    """Get email from git and validate package name."""
     # validate_packagename should be run before asking the first question.
     validate_packagename(configurator)
 
@@ -87,16 +85,14 @@ def pre_username(configurator, question):
 
 
 def pre_email(configurator, question):
-    """Get email from git.
-    """
+    """Get email from git."""
     default = get_git_info('user.email')
     if default:
         question.default = default
 
 
 def post_plone_version(configurator, question, answer):
-    """Find out if it is supposed to be Plone 5.
-    """
+    """Find out if it is supposed to be Plone 5."""
     _set_plone_version_variables(configurator, answer)
     return answer
 
@@ -104,7 +100,9 @@ def post_plone_version(configurator, question, answer):
 def prepare_render(configurator):
     """Some variables to make templating easier.
 
-    This is especially important for allowing nested and normal packages.
+    This is especially important for allowing nested and normal
+    packages.
+
     """
     # get package-name from user-input
 
@@ -179,7 +177,9 @@ def cleanup_package(configurator):
     """Cleanup and make nested if needed.
 
     Transform into a nested package if that was the selected option.
-    Remove parts that are not needed depending on the chosen configuration.
+    Remove parts that are not needed depending on the chosen
+    configuration.
+
     """
 
     nested = configurator.variables['package.nested']
@@ -242,5 +242,5 @@ def cleanup_package(configurator):
 
 
 def make_path(*args):
-    """ generate path string  """
+    """generate path string."""
     return os.sep.join(args)

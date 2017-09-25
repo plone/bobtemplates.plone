@@ -48,8 +48,8 @@ def prepare_renderer(configurator):
 
 
 def _update_metadata_xml(configurator):
-    """ Add plone.app.theming dependency metadata.xml in Generic Setup profiles.
-    """
+    """Add plone.app.theming dependency metadata.xml in Generic Setup
+    profiles."""
     metadata_file_name = u'metadata.xml'
     metadata_file_dir = u'profiles/default'
     metadata_file_path = configurator.variables['package_folder'] + '/' + \
@@ -122,8 +122,7 @@ def _update_setup_py(configurator):
 
 
 def post_renderer(configurator):
-    """
-    """
+    """"""
     _update_configure_zcml(configurator)
     _update_setup_py(configurator)
     _update_metadata_xml(configurator)

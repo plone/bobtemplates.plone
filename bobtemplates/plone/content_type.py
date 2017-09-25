@@ -20,8 +20,7 @@ def check_dexterity_type_name(configurator, question, answer):
 
 
 def _update_types_xml(configurator):
-    """ Add the new type to types.xml in Generic Setup profiles.
-    """
+    """Add the new type to types.xml in Generic Setup profiles."""
     types_file_name = u'types.xml'
     types_file_dir = u'profiles/default'
     types_file_path = configurator.target_directory + '/' + types_file_dir +\
@@ -142,8 +141,7 @@ def prepare_renderer(configurator):
 
 
 def post_renderer(configurator):
-    """
-    """
+    """"""
     _update_types_xml(configurator)
     _update_permissions_zcml(configurator)
     _update_rolemap_xml(configurator)

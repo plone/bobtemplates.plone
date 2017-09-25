@@ -6,5 +6,4 @@ def prepare_renderer(configurator):
 
 
 def post_renderer(configurator):
-    """
-    """
+    """"""

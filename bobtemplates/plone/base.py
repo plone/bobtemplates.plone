@@ -58,8 +58,10 @@ def _set_plone_version_variables(configurator, version):
 
 
 def is_string_in_file(configurator, file_path, match_str):
-    """ Simple check if a given string is in a file.
-        You can use this before adding new lines with update_file.
+    """Simple check if a given string is in a file.
+
+    You can use this before adding new lines with update_file.
+
     """
     with open(file_path, 'r+') as xml_file:
         contents = xml_file.readlines()
@@ -70,8 +72,7 @@ def is_string_in_file(configurator, file_path, match_str):
 
 
 def update_file(configurator, file_path, match_str, insert_str):
-    """ Insert insert_str into given file, by match_str.
-    """
+    """Insert insert_str into given file, by match_str."""
     with open(file_path, 'r+') as xml_file:
         contents = xml_file.readlines()
         if match_str in contents[-1]:  # Handle last line, prev. IndexError
@@ -104,8 +105,10 @@ def _get_package_root_folder():
 
 
 def check_root_folder(configurator, question):
-    """ Check if we are in a package.
-        Should be called in first question pre hook.
+    """Check if we are in a package.
+
+    Should be called in first question pre hook.
+
     """
     root_folder = _get_package_root_folder()
     if not root_folder:
@@ -123,8 +126,7 @@ def dottedname_to_path(dottedname):
 
 
 def base_prepare_renderer(configurator):
-    """ generic rendering before template specific rendering
-    """
+    """generic rendering before template specific rendering."""
     configurator.variables['package.root_folder'] = _get_package_root_folder()
     if not configurator.variables['package.root_folder']:
         raise MrBobError("No setup.py found in path!\n")
@@ -149,8 +151,7 @@ def base_prepare_renderer(configurator):
 
 
 def subtemplate_warning(configurator, question):
-    """ Show a warning to the user before using subtemplates!
-    """
+    """Show a warning to the user before using subtemplates!"""
     print("""
     ### WARNING ###
 

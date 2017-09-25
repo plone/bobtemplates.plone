@@ -38,7 +38,7 @@ def test_prepare_renderer():
         target_directory='collective.foo',
         variables={
             'theme.name': 'test.theme',
-        }
+        },
     )
     theme.prepare_renderer(configurator)
 

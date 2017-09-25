@@ -21,7 +21,7 @@ def test_set_global_vars():
         variables={
             'year': 1970,
             'plone-version': '5.0-latest',
-        }
+        },
     )
     base.set_global_vars(configurator)
 
@@ -30,7 +30,7 @@ def test_set_global_vars():
         target_directory='collective.foo',
         variables={
             'year': 1970,
-        }
+        },
     )
     base.set_global_vars(configurator)
 

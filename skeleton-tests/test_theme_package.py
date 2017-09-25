@@ -18,7 +18,7 @@ base_files = [
 
 addon_files = [
     'src/__init__.py',
-    'src/plonetheme/blacksea/theme/manifest.cfg'
+    'src/plonetheme/blacksea/theme/manifest.cfg',
 ]
 
 
@@ -36,8 +36,8 @@ plone.version = {version}
     )
     generate_answers_ini(tmpdir.strpath, template)
 
-    config.template = "theme_package"
-    config.package_name = "plonetheme.blacksea"
+    config.template = 'theme_package'
+    config.package_name = 'plonetheme.blacksea'
 
     result = subprocess.call(
         [
@@ -62,16 +62,19 @@ plone.version = {version}
     base_path = tmpdir.strpath + '/' + config.package_name
 
     assert file_exists(
-        base_path, '/src/plonetheme/blacksea/theme/manifest.cfg')
+        base_path,
+        '/src/plonetheme/blacksea/theme/manifest.cfg',
+    )
 
     wd = os.path.abspath(
-        os.path.join(tmpdir.strpath, config.package_name))
+        os.path.join(tmpdir.strpath, config.package_name),
+    )
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
         setup_virtualenv_result = subprocess.call(
             [
                 'virtualenv',
-                '.'
+                '.',
             ],
             cwd=wd,
         )

@@ -23,8 +23,8 @@ plone.version = {version}
     generate_answers_ini(tmpdir.strpath, template)
 
     # generate template addon:
-    config.template = "addon"
-    config.package_name = "plonetheme.blacksea"
+    config.template = 'addon'
+    config.package_name = 'plonetheme.blacksea'
     result = subprocess.call(
         [
             'mrbob',
@@ -38,7 +38,8 @@ plone.version = {version}
     assert result == 0
 
     wd = os.path.abspath(
-        os.path.join(tmpdir.strpath, config.package_name))
+        os.path.join(tmpdir.strpath, config.package_name),
+    )
 
     # generate subtemplate content_type:
     template = """[variables]
@@ -47,7 +48,7 @@ theme.name = Plone theme Blacksea
 """
     generate_answers_ini(wd, template)
 
-    config.template = "theme"
+    config.template = 'theme'
     result = subprocess.call(
         [
             'mrbob',
@@ -65,7 +66,7 @@ theme.name = Plone theme Blacksea
         setup_virtualenv_result = subprocess.call(
             [
                 'virtualenv',
-                '.'
+                '.',
             ],
             cwd=wd,
         )

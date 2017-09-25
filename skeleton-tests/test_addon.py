@@ -36,8 +36,8 @@ plone.version = {version}
     )
     generate_answers_ini(tmpdir.strpath, template)
 
-    config.template = "addon"
-    config.package_name = "collective.todo"
+    config.template = 'addon'
+    config.package_name = 'collective.todo'
 
     result = subprocess.call(
         [
@@ -64,13 +64,14 @@ plone.version = {version}
     assert file_exists(base_path, '/src/collective/todo/configure.zcml')
 
     wd = os.path.abspath(
-        os.path.join(tmpdir.strpath, config.package_name))
+        os.path.join(tmpdir.strpath, config.package_name),
+    )
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
         setup_virtualenv_result = subprocess.call(
             [
                 'virtualenv',
-                '.'
+                '.',
             ],
             cwd=wd,
         )

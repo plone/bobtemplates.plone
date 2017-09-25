@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from bobtemplates.plone import hooks
-from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
-from mrbob.configurator import Question
 
 import pytest
 

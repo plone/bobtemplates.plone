@@ -5,24 +5,6 @@
 <!-- Allow only Link and Folder types in the navigation -->
 <!--
   <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
-    <field type="plone.registry.field.Tuple">
-      <default>
-        <element>Image</element>
-        <element>File</element>
-        <element>Link</element>
-        <element>News Item</element>
-        <element>Folder</element>
-        <element>Document</element>
-        <element>Event</element>
-      </default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">The content types that should be shown in the navigation and site map.</description>
-      <missing_value/>
-      <required>False</required>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Displayed content types</title>
-      <value_type type="plone.registry.field.Choice">
-        <vocabulary>plone.app.vocabularies.ReallyUserFriendlyTypes</vocabulary>
-      </value_type>
-    </field>
     <value>
       <element>Link</element>
       <element>Folder</element>
@@ -33,12 +15,6 @@
 <!-- Deactivate the generation of nonfolderish tabs in global navigation -->
 <!--
   <record name="plone.nonfolderish_tabs" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="nonfolderish_tabs">
-    <field type="plone.registry.field.Bool">
-      <default>True</default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">By default, any content item in the root of the portal will appear as a tab. If you turn this option off, only folders will be shown. This only has an effect if 'automatically generate tabs' is enabled.</description>
-      <required>False</required>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Generate tabs for items other than folders.</title>
-    </field>
     <value>False</value>
   </record>
 -->
@@ -46,12 +22,6 @@
 <!-- Hide items from navigation which are normaly excluded from navigation -->
 <!--
   <record name="plone.show_excluded_items" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="show_excluded_items">
-    <field type="plone.registry.field.Bool">
-      <default>True</default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">If an item has been excluded from navigation should it be shown in navigation when viewing content contained within it or within a subfolder.</description>
-      <required>False</required>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Show items normally excluded from navigation if viewing their children.</title>
-    </field>
     <value>False</value>
   </record>
 -->
@@ -59,31 +29,17 @@
 <!-- Configure the Plone email settings -->
 <!--
   <record name="plone.email_from_address" interface="Products.CMFPlone.interfaces.controlpanel.IMailSchema" field="email_from_address">
-    <field type="plone.registry.field.ASCIILine">
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Plone generates e-mail using this address as the e-mail return address. It is also used as the destination address for the site-wide contact form and the 'Send test e-mail' feature.</description>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Site 'From' address</title>
-    </field>
-    <value>md@derico.de</value>
+    <value>info@example.com</value>
   </record>
 
   <record name="plone.email_from_name" interface="Products.CMFPlone.interfaces.controlpanel.IMailSchema" field="email_from_name">
-    <field type="plone.registry.field.TextLine">
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Plone generates e-mail using this name as the e-mail sender.</description>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Site 'From' name</title>
-    </field>
-    <value>derico.de</value>
+    <value>My Plone site</value>
   </record>
 -->
 
 <!-- Enable sitemap.xml.gz generation -->
 <!--
   <record name="plone.enable_sitemap" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="enable_sitemap">
-    <field type="plone.registry.field.Bool">
-      <default>False</default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Exposes your content as a file according to the &lt;a href='http://sitemaps.org'&gt;sitemaps.org&lt;/a&gt; standard. You can submit this to compliant search engines like Google, Yahoo and Microsoft. It allows these search engines to more intelligently crawl your site.</description>
-      <required>False</required>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Expose sitemap.xml.gz</title>
-    </field>
     <value>True</value>
   </record>
 -->
@@ -91,12 +47,6 @@
 <!-- Enable Dublin Core metatdata generation -->
 <!--
   <record name="plone.exposeDCMetaTags" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="exposeDCMetaTags">
-    <field type="plone.registry.field.Bool">
-      <default>False</default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Exposes the Dublin Core properties as metatags.</description>
-      <required>False</required>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Expose Dublin Core metadata</title>
-    </field>
     <value>True</value>
   </record>
 -->
@@ -104,11 +54,6 @@
 <!-- Disable open external links in new windows -->
 <!--
   <record name="plone.external_links_open_new_window" interface="Products.CMFPlone.interfaces.controlpanel.ILinkSchema" field="external_links_open_new_window">
-    <field type="plone.registry.field.Bool">
-      <default>False</default>
-      <required>False</required>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Open external links in new a window</title>
-    </field>
     <value>False</value>
   </record>
 -->
@@ -116,12 +61,6 @@
 <!-- Disable marking special links -->
 <!--
   <record name="plone.mark_special_links" interface="Products.CMFPlone.interfaces.controlpanel.ILinkSchema" field="mark_special_links">
-    <field type="plone.registry.field.Bool">
-      <default>True</default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Marks external or special protocol links with class.</description>
-      <required>False</required>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Mark special links</title>
-    </field>
     <value>False</value>
   </record>
 -->
@@ -129,11 +68,6 @@
 <!-- Set website title -->
 <!--
   <record name="plone.site_title" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="site_title">
-    <field type="plone.registry.field.TextLine">
-      <default>Plone site</default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">This shows up in the title bar of browsers and in syndication feeds.</description>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Site title</title>
-    </field>
     <value>My great Plone site</value>
   </record>
 
@@ -142,15 +76,6 @@
 <!-- Set Plone toolbar position to top -->
 <!--
   <record name="plone.toolbar_position" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="toolbar_position">
-    <field type="plone.registry.field.Choice">
-      <default>side</default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">It can be on the side (vertical mode) or on the top (horizontal mode)</description>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Toolbar position</title>
-      <values>
-        <element>side</element>
-        <element>top</element>
-      </values>
-    </field>
     <value>top</value>
   </record>
 -->

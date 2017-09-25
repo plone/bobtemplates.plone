@@ -1,13 +1,60 @@
 # -*- coding: utf-8 -*-
+from datetime import date
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import ValidationError
 
+import ConfigParser
 import logging
 import os
 import sys
 
 
 logger = logging.getLogger("bobtemplates.plone")
+
+
+class SetupCfg(object):
+    def __init__(self):
+        self.version = None
+
+
+def read_setup_cfg(configurator):
+    setup_cfg = SetupCfg()
+
+    config = ConfigParser.ConfigParser()
+    path = configurator.target_directory + '/setup.cfg'
+    config.read(path)
+    if not config.sections():
+        return
+    setup_cfg.version = config.get("tool:bobtemplates.plone", "version")
+    return setup_cfg
+
+
+def set_global_vars(configurator):
+    setup_cfg = read_setup_cfg(configurator)
+    configurator.variables['year'] = date.today().year
+    version = configurator.variables.get('plone.version')
+    if not version and setup_cfg:
+        print(">>> reding Plone version from setup.cfg...")
+        version = setup_cfg.version
+    _set_plone_version_variables(configurator, version)
+
+
+def _set_plone_version_variables(configurator, version):
+    version = configurator.variables.get('plone.version', version)
+    if not version:
+        return
+    if 'plone.is_plone5' not in configurator.variables:
+        # Find out if it is supposed to be Plone 5.
+        if version.startswith('5'):
+            configurator.variables['plone.is_plone5'] = True
+        else:
+            configurator.variables['plone.is_plone5'] = False
+    if 'plone.minor_version' not in configurator.variables:
+        # extract minor version (4.3)
+        # (according to https://plone.org/support/version-support-policy)
+        # this is used for the trove classifier in setup.py of the product
+        configurator.variables['plone.minor_version'] = '.'.join(
+            version.split('.')[:2])
 
 
 def is_string_in_file(configurator, file_path, match_str):

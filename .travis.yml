@@ -21,16 +21,16 @@ matrix:
           env: TOXENV=lint-py27,docs
         - python: "3.6"
           env: TOXENV=lint-py36,docs
-#        - python: "2.7"
-#          env: TOXENV=py27-packagetests
-#        - python: "3.4"
-#          env: TOXENV=py34-packagetests
-#        - python: "3.5"
-#          env: TOXENV=py35-packagetests
-#        - python: "3.6"
-#          env: TOXENV=py36-packagetests
-#        - python: "pypy"
-#          env: TOXENV=pypy-packagetests
+        - python: "2.7"
+          env: TOXENV=py27-packagetests
+        - python: "3.4"
+          env: TOXENV=py34-packagetests
+        - python: "3.5"
+          env: TOXENV=py35-packagetests
+        - python: "3.6"
+          env: TOXENV=py36-packagetests
+        - python: "pypy"
+          env: TOXENV=pypy-packagetests
         - python: "2.7"
           env: TOXENV=py27-skeletontests-Plone-4.3-template-addon
         - python: "2.7"

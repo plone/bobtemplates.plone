@@ -3,10 +3,14 @@ from datetime import date
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import ValidationError
 
-import ConfigParser
 import logging
 import os
 import sys
+
+try:
+    import ConfigParser
+except ImportError:
+    from configparser import ConfigParser
 
 
 logger = logging.getLogger('bobtemplates.plone')

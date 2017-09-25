@@ -68,9 +68,11 @@ def validate_packagename(configurator):
         fail = True
 
     if fail:
-        msg = "Error: '{0}' is not a valid packagename.\n".format(package_dir)
-        msg += "Please use a valid name (like collective.myaddon or "
-        msg += "plone.app.myaddon)"
+        msg = (
+            "Error: '{0}' is not a valid packagename.\n"
+            'Please use a valid name (like collective.myaddon or '
+            'plone.app.myaddon)'.format(package_dir)
+        )
         sys.exit(msg)
 
 
@@ -118,27 +120,28 @@ def prepare_render(configurator):
     configurator.variables['package.name'] = package_dir.split('.')[-1]
 
     if nested:
-        dottedname = "{0}.{1}.{2}".format(
+        dottedname = '{0}.{1}.{2}'.format(
             configurator.variables['package.namespace'],
             configurator.variables['package.namespace2'],
-            configurator.variables['package.name'])
+            configurator.variables['package.name'],
+        )
     else:
-        dottedname = "{0}.{1}".format(
+        dottedname = '{0}.{1}'.format(
             configurator.variables['package.namespace'],
-            configurator.variables['package.name'])
+            configurator.variables['package.name'],
+        )
 
     # package.dottedname = 'collective.foo.something'
     configurator.variables['package.dottedname'] = dottedname
 
     # package.uppercasename = 'COLLECTIVE_FOO_SOMETHING'
-    configurator.variables['package.uppercasename'] = configurator.variables[
-        'package.dottedname'
-    ].replace('.', '_').upper()
+    configurator.variables['package.uppercasename'] = \
+        configurator.variables['package.dottedname'].replace('.', '_').upper()
 
     camelcasename = dottedname.replace('.', ' ').title()\
         .replace(' ', '')\
         .replace('_', '')
-    browserlayer = "{0}Layer".format(camelcasename)
+    browserlayer = '{0}Layer'.format(camelcasename)
 
     # package.browserlayer = 'CollectiveFooSomethingLayer'
     configurator.variables['package.browserlayer'] = browserlayer
@@ -147,30 +150,30 @@ def prepare_render(configurator):
     configurator.variables['package.longname'] = camelcasename.lower()
 
     # jenkins.directories = 'collective/foo/something'
-    configurator.variables[
-        'jenkins.directories'
-    ] = dottedname.replace('.', '/')
+    configurator.variables['jenkins.directories'] = dottedname.replace('.', '/')  # NOQA: E501
 
     # namespace_packages = "['collective', 'collective.foo']"
     if nested:
         namespace_packages = "'{0}', '{0}.{1}'".format(
             configurator.variables['package.namespace'],
-            configurator.variables['package.namespace2'])
+            configurator.variables['package.namespace2'],
+        )
     else:
         namespace_packages = "'{0}'".format(
-            configurator.variables['package.namespace'])
+            configurator.variables['package.namespace'],
+        )
     configurator.variables['package.namespace_packages'] = namespace_packages
 
     if configurator.variables.get('theme.name'):
         def normalize_string(value):
-            value = "-".join(value.split('_'))
-            value = "-".join(value.split())
+            value = '-'.join(value.split('_'))
+            value = '-'.join(value.split())
             return value
-        configurator.variables[
-            "theme.normalized_name"] = normalize_string(
-                configurator.variables.get('theme.name')).lower()
+        configurator.variables['theme.normalized_name'] = normalize_string(
+            configurator.variables.get('theme.name'),
+        ).lower()
     else:
-        configurator.variables["theme.normalized_name"] = ""
+        configurator.variables['theme.normalized_name'] = ''
 
 
 def cleanup_package(configurator):
@@ -188,12 +191,14 @@ def cleanup_package(configurator):
     start_path = make_path(
         configurator.target_directory,
         'src',
-        configurator.variables['package.namespace'])
+        configurator.variables['package.namespace'],
+    )
 
     # path for normal packages: '.../src/collective/myaddon'
     base_path = make_path(
         start_path,
-        configurator.variables['package.name'])
+        configurator.variables['package.name'],
+    )
 
     if nested:
         # Event though the target-dir was 'collective.behavior.myaddon' mrbob
@@ -208,12 +213,14 @@ def cleanup_package(configurator):
         base_path_nested = make_path(
             start_path,
             configurator.variables['package.namespace2'],
-            configurator.variables['package.name'])
+            configurator.variables['package.name'],
+        )
 
         # directory to be created: .../src/collective/behavior
         newpath = make_path(
             start_path,
-            configurator.variables['package.namespace2'])
+            configurator.variables['package.namespace2'],
+        )
         if not os.path.exists(newpath):
             # create new directory .../src/collective/behavior
             os.makedirs(newpath)

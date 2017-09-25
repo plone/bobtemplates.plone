@@ -9,7 +9,7 @@ import os
 import sys
 
 
-logger = logging.getLogger("bobtemplates.plone")
+logger = logging.getLogger('bobtemplates.plone')
 
 
 class SetupCfg(object):
@@ -25,7 +25,7 @@ def read_setup_cfg(configurator):
     config.read(path)
     if not config.sections():
         return
-    setup_cfg.version = config.get("tool:bobtemplates.plone", "version")
+    setup_cfg.version = config.get('tool:bobtemplates.plone', 'version')
     return setup_cfg
 
 
@@ -34,7 +34,7 @@ def set_global_vars(configurator):
     configurator.variables['year'] = date.today().year
     version = configurator.variables.get('plone.version')
     if not version and setup_cfg:
-        print(">>> reding Plone version from setup.cfg...")
+        print('>>> reding Plone version from setup.cfg...')
         version = setup_cfg.version
     _set_plone_version_variables(configurator, version)
 
@@ -53,8 +53,8 @@ def _set_plone_version_variables(configurator, version):
         # extract minor version (4.3)
         # (according to https://plone.org/support/version-support-policy)
         # this is used for the trove classifier in setup.py of the product
-        configurator.variables['plone.minor_version'] = '.'.join(
-            version.split('.')[:2])
+        configurator.variables['plone.minor_version'] = \
+            '.'.join(version.split('.')[:2])
 
 
 def is_string_in_file(configurator, file_path, match_str):
@@ -79,8 +79,10 @@ def update_file(configurator, file_path, match_str, insert_str):
             contents.append(insert_str)
         else:
             for index, line in enumerate(contents):
-                if (match_str in line and
-                        insert_str not in contents[index + 1]):
+                if (
+                    match_str in line and
+                    insert_str not in contents[index + 1]
+                ):
                     contents.insert(index + 1, insert_str)
                     break
         xml_file.seek(0)
@@ -113,15 +115,15 @@ def check_root_folder(configurator, question):
     root_folder = _get_package_root_folder()
     if not root_folder:
         raise ValidationError(
-            "\n\nNo setup.py found in path!\n"
-            "Please run this subtemplate inside an existing package,\n"
-            "in the package dir, where the actual code is!\n"
+            '\n\nNo setup.py found in path!\n'
+            'Please run this subtemplate inside an existing package,\n'
+            'in the package dir, where the actual code is!\n'
             "In the package collective.dx it's in collective.dx/collective/dx"
-            "\n")
+            '\n')
 
 
 def dottedname_to_path(dottedname):
-    path = "/".join(dottedname.split('.'))
+    path = '/'.join(dottedname.split('.'))
     return path
 
 
@@ -129,24 +131,25 @@ def base_prepare_renderer(configurator):
     """generic rendering before template specific rendering."""
     configurator.variables['package.root_folder'] = _get_package_root_folder()
     if not configurator.variables['package.root_folder']:
-        raise MrBobError("No setup.py found in path!\n")
-    configurator.variables['package.dottedname'] = configurator.variables[
-        'package.root_folder'].split('/')[-1]
-    configurator.variables['package.namespace'] = configurator.variables[
-        'package.dottedname'].split('.')[0]
-    configurator.variables['package.name'] = configurator.variables[
-        'package.dottedname'].split('.')[-1]
+        raise MrBobError('No setup.py found in path!\n')
+    configurator.variables['package.dottedname'] = \
+        configurator.variables['package.root_folder'].split('/')[-1]
+    configurator.variables['package.namespace'] = \
+        configurator.variables['package.dottedname'].split('.')[0]
+    configurator.variables['package.name'] = \
+        configurator.variables['package.dottedname'].split('.')[-1]
     # package.uppercasename = 'COLLECTIVE_FOO_SOMETHING'
-    configurator.variables['package.uppercasename'] = configurator.variables[
-        'package.dottedname'
-    ].replace('.', '_').upper()
+    configurator.variables['package.uppercasename'] = \
+        configurator.variables['package.dottedname'].replace('.', '_').upper()
 
     package_subpath = dottedname_to_path(
-        configurator.variables['package.dottedname'])
-    configurator.variables['package_folder'] = configurator.variables[
-        'package.root_folder'] + u'/src/' + package_subpath
-    configurator.target_directory = configurator.variables[
-        'package.root_folder']
+        configurator.variables['package.dottedname'],
+    )
+    configurator.variables['package_folder'] = \
+        configurator.variables['package.root_folder'] + \
+        u'/src/' + package_subpath
+    configurator.target_directory = \
+        configurator.variables['package.root_folder']
     return configurator
 
 
@@ -163,7 +166,7 @@ def subtemplate_warning(configurator, question):
 
 
 def subtemplate_warning_post_question(configurator, question, answer):
-    if answer.lower() != "yes":
-        print("Abort!")
+    if answer.lower() != 'yes':
+        print('Abort!')
         sys.exit(0)
     return answer

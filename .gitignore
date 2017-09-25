@@ -17,6 +17,7 @@ test.plone_addon/
 var/
 reports/
 .tox/
+.eggs/
 collective*/
 # files
 lib64
@@ -29,7 +30,6 @@ tmp/
 docs/_build
 
 # excludes / This Files should go into version control
-!.coveragerc
 !.editorconfig
 !.gitattributes
 !.gitignore

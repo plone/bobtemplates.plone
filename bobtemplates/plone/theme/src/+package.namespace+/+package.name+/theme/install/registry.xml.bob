@@ -15,12 +15,6 @@
 <!-- Deactivate the generation of nonfolderish tabs in global navigation -->
 <!--
   <record name="plone.nonfolderish_tabs" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="nonfolderish_tabs">
-    <field type="plone.registry.field.Bool">
-      <default>True</default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">By default, any content item in the root of the portal will appear as a tab. If you turn this option off, only folders will be shown. This only has an effect if 'automatically generate tabs' is enabled.</description>
-      <required>False</required>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Generate tabs for items other than folders.</title>
-    </field>
     <value>False</value>
   </record>
 -->

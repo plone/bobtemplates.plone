@@ -2,3 +2,5 @@ include *.cfg *.rst *.in
 graft bobtemplates
 graft docs
 global-exclude *pyc
+global-exclude tmp
+global-exclude .tox

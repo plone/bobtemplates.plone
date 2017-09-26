@@ -44,8 +44,31 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
-dexterity_type_name = Todo Task
+dexterity_type_name = Todos
 dexterity_type_base_class = Container
+dexterity_type_create_class = True
+subtemplate_warning = Yes
+dexterity_type_desc = A Todos container for Plone
+dexterity_type_supermodel = True
+"""
+    generate_answers_ini(wd, template)
+
+    config.template = 'content_type'
+    result = subprocess.call(
+        [
+            'mrbob',
+            'bobtemplates.plone:' + config.template,
+            '--config', 'answers.ini',
+            '--non-interactive',
+        ],
+        cwd=wd,
+    )
+    assert result == 0
+
+    # generate 2. subtemplate content_type with Item instead of Container:
+    template = """[variables]
+dexterity_type_name = Todo Task
+dexterity_type_base_class = Item
 dexterity_type_create_class = True
 subtemplate_warning = Yes
 dexterity_type_desc = A ToDo Task content type for Plone

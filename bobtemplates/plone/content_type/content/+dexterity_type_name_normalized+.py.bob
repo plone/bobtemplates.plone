@@ -3,7 +3,11 @@
 from plone.app.textfield import RichText
 from plone.autoform import directives
 {{% endif %}}
+{{% if dexterity_type_base_class == 'Container' %}}
 from plone.dexterity.content import Container
+{{% else %}}
+from plone.dexterity.content import Item
+{{% endif %}}
 {{% if not dexterity_type_supermodel %}}
 from plone.namedfile import field as namedfile
 {{% endif %}}

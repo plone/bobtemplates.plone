@@ -4,7 +4,7 @@
 set -e
 
 # use mr.bob
-${buildout:directory}/bin/mrbob -O ${:addon_name} -n bobtemplates:plone_addon --config test_answers.ini
+${buildout:directory}/bin/mrbob -O ${:addon_name} -n bobtemplates.plone:addon --config test_answers.ini
 
 # buildout addon
 cd ${buildout:directory}/${:addon_name}

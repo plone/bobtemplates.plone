@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xhtml="http://www.w3.org/1999/xhtml"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+       xmlns:xi="http://www.w3.org/2001/XInclude">
+
+
+  <rules css:if-content="body.viewpermission-view, body.viewpermission-none">
+    <!--<theme href="home.html" css:if-content=".section-front-page" />-->
+    <theme href="article.html" />
+    <notheme css:if-not-content="#visual-portal-wrapper" />
+
+    <rules css:if-content="#portal-top">
+      <!-- Attributes -->
+      <copy attributes="*" css:theme="html" css:content="html" />
+
+      <!-- Base tag -->
+      <before css:theme="title" css:content="base" />
+
+      <!-- Title -->
+      <replace css:theme="title" css:content="title" />
+
+      <!-- Replace Plone Viewport with custom Viewport -->
+      <replace content="/html/head/meta[@name='viewport']">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </replace>
+
+      <!-- Pull in Plone Meta -->
+      <after css:theme-children="head" css:content="head meta" />
+
+      <!-- Don't use Plone icons, use the theme's -->
+      <drop css:content="head link[rel='apple-touch-icon']" />
+      <drop css:content="head link[rel='shortcut icon']" />
+
+      <!-- drop the theme stylesheets -->
+      <drop theme="/html/head/link[rel='stylesheet']" />
+
+      <!-- Pull in CSS Plone stylesheets for loged-in users -->
+      <after
+        css:theme-children="head"
+        css:content="head link"
+        css:if-not-content="html > body.userrole-anonymous"
+        />
+
+      <!-- Add theme stylesheets here, to have them at the bottom of all stylesheets -->
+      <!--
+      <after theme-children="/html/head">
+        <link rel="stylesheet" href="++theme++{{{ theme.normalized_name }}}/assets/css/main.css" />
+      </after>
+      -->
+
+      <!-- Pull in Plone javascript for loged-in users -->
+      <after
+        theme-children="/html/head"
+        content="/html/head/script"
+        css:if-not-content="html > body.userrole-anonymous"
+        />
+
+      <!--
+        Add theme javascripts here, to have them at the bottom of all javascripts.
+        You could also add them to the bottom of the body tag, if you want.
+      -->
+      <!--
+      <after theme-children="/html/head">
+        <script src="++theme++{{{ theme.normalized_name }}}/assets/js/main.js"></script>
+      </after>
+      -->
+
+    </rules>
+
+    <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
+    <copy attributes="*" css:content="body" css:theme="body" />
+
+    <!-- Insert the Plone toolbar -->
+    <before
+      theme-children="/html/body"
+      css:content-children="#edit-zone"
+      css:if-not-content=".ajax_load"
+      css:if-content=".userrole-authenticated"
+      />
+
+    <!-- Copy anonymous actions like the login link -->
+    <before
+      theme="/html/body"
+      css:content-children="#portal-personaltools-wrapper"
+      css:if-not-content=".ajax_load"
+      css:if-content=".userrole-anonymous"
+      />
+
+
+    <!-- ### REMOVE THIS RULE AFTER ACTIVATING YOUR OWN RULES BELOW ### -->
+    <!-- Copy over the whole body content of Plone -->
+    <replace theme-children="/html/body" content-children="/html/body" />
+
+
+    <!-- ### ACTIVATE OR ADD YOUR OWN RULES BELOW ACCORDING TO YOUR THEME ### -->
+
+    <!-- Copy the Plone logo including the surounding link -->
+    <!-- <replace
+      css:content='#portal-logo'
+      css:theme="#logo"
+      /> -->
+
+    <!-- Copy global nav (portal tabs) -->
+    <!-- <replace css:theme="#nav > ul" css:content="#portal-globalnav" /> -->
+
+    <!-- Copy breadcrumb bar -->
+    <!-- <replace css:content="#viewlet-above-content" css:theme="#above-content" /> -->
+
+    <!-- Copy Alert message -->
+    <!-- <replace css:theme-children="#global_statusmessage" css:content-children="#global_statusmessage" /> -->
+
+    <!-- Copy Plone navigation portlet -->
+    <!-- <replace
+      css:content="#portal-column-one .portlet.portletNavigationTree"
+      css:theme-children='#sidebar'
+      /> -->
+
+    <!-- Copy all portal-column-one portlets but not portletNavigationTree into the sidebar -->
+    <!-- <after
+      css:content="#portal-column-one .portletWrapper > *:not(.portletNavigationTree)"
+      css:theme-children='#sidebar'
+      /> -->
+
+    <!-- Copy all portal-column-two portlets into the same sidebar-->
+    <!-- <after
+      css:content="#portal-column-two .portletWrapper > *"
+      css:theme-children='#sidebar'
+      /> -->
+
+    <!-- Copy Document Content -->
+    <!-- <replace
+      css:content-children="#content"
+      css:theme-children="#content"
+      /> -->
+
+    <!-- Drop icons in footer -->
+    <!-- <drop css:theme="#footer .icons" /> -->
+
+  </rules>
+
+
+
+  <!-- Include barceloneta's backend.xml for backend theming. -->
+  <rules css:if-not-content="body.viewpermission-view, body.viewpermission-none">
+    <xi:include href="++theme++barceloneta/backend.xml"><xi:fallback /></xi:include>
+  </rules>
+
+
+</rules>

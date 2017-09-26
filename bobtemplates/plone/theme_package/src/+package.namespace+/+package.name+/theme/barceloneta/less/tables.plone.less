@@ -1,0 +1,195 @@
+//*// TABLES //*//
+
+//*// Tables
+table { max-width: 100%; background-color: @plone-table-bg; border-radius: @plone-border-radius-base; font-weight: @plone-font-weight-regular; color: @plone-gray;}
+th { text-align: left; color: @plone-gray-dark;}
+
+//*// listing table plone class
+.listing {
+  width: 100%;
+  margin-bottom: @plone-line-height-computed;
+  // Cells
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        padding: @plone-table-cell-padding;
+        line-height: @plone-line-height-base;
+        vertical-align: top;
+        border-top: 0 solid @plone-table-border-color;
+        border-collapse: collapse;
+      }
+    }
+  }
+  // Bottom align for column headings
+  > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 1px solid @plone-table-border-color;
+  }
+  // Remove top border from thead by default
+  > caption + thead,
+  > colgroup + thead,
+  > thead:first-child {
+    > tr:first-child {
+      > th,
+      > td {
+        border-top: 0;
+      }
+    }
+  }
+  // Account for multiple tbody instances
+  > tbody + tbody {
+    border-top: 2px solid @plone-table-border-color;
+  }
+
+  // Nesting
+  .listing {
+    background-color: @plone-body-bg;
+  }
+}
+
+//*// invisible grid table plone class
+.invisible-grid {
+  width: 100%;
+  margin-bottom: @plone-line-height-computed;
+  border: 0;
+  background: transparent;
+  // Cells
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        border: 0;
+      }
+    }
+  }
+}
+
+// Zebra-striping
+.listing {
+  > tbody > tr:nth-child(odd) {
+    > td,
+    > th {
+      background-color: @plone-table-bg-accent;
+    }
+  }
+}
+
+//we need to add a class on div parent element of the table to ensure all possible options for responsive tables.
+//as default has-table uses it to scroll horizontally table
+.plone-has-table {
+  @media screen and (max-width: @plone-screen-xs-max) {
+    width: 100%;
+    margin-bottom: (@plone-line-height-computed * 0.75);
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid @plone-table-border-color;
+    border-radius: @plone-border-radius-base;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    // scroll marker, it appears when we have active the mobile class
+    &::after {content:"⟷"; position:fixed; color:@plone-gray-lighter; margin-top:-3px}
+    // Tighten up spacing
+    > .listing {
+      margin-bottom: 0;
+
+      // Ensure the content doesn't wrap
+      > thead,
+      > tbody,
+      > tfoot {
+        > tr {
+          > th,
+          > td {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Most of this is pulled out of twitter bootstrap styles
+// https://raw.githubusercontent.com/twbs/bootstrap/master/less/tables.less
+
+
+table {
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid @plone-table-border-color;
+  // Cells
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        vertical-align: top;
+        border-top: 1px solid @plone-table-border-color;
+      }
+    }
+  }
+  // Bottom align for column headings
+  > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid @plone-table-border-color;
+  }
+  // Remove top border from thead by default
+  > caption + thead,
+  > colgroup + thead,
+  > thead:first-child {
+    > tr:first-child {
+      > th,
+      > td {
+        border-top: 0;
+      }
+    }
+  }
+  // Account for multiple tbody instances
+  > tbody + tbody {
+    border-top: 2px solid @plone-table-border-color;
+  }
+
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        border: 1px solid @plone-table-border-color;
+      }
+    }
+  }
+  > thead > tr {
+    > th,
+    > td {
+      // This used to be a mismatched property value.
+      // I think this is the intention but am not to sure.
+      border-bottom: 1px solid @plone-table-border-color;
+    }
+  }
+}
+
+// Table cell sizing
+//
+// Reset default table behavior
+
+table col[class*="col-"] {
+  position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
+  float: none;
+  display: table-column;
+}
+table {
+  td,
+  th {
+    &[class*="col-"] {
+      position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
+      float: none;
+      display: table-cell;
+    }
+  }
+}

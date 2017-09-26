@@ -1,0 +1,15 @@
+//*// MIXIN FONT FACE //*//
+
+.font-face(@font-path; @file-name; @font-family; @font-weight; @font-style; @svg-id; @local, ~'';) {
+  @font-face {
+    font-family: @font-family;
+    src: url('@{font-path}@{file-name}.eot');
+    src: @local
+       url('@{font-path}@{file-name}.eot?#iefix') format('embedded-opentype'),
+       url('@{font-path}@{file-name}.woff') format('woff'),
+       url('@{font-path}@{file-name}.ttf') format('truetype'),
+       url('@{font-path}@{file-name}.svg#@{svg-id}') format('svg');
+    font-weight: @font-weight;
+    font-style: @font-style;
+  }
+}

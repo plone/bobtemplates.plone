@@ -1,0 +1,28 @@
+//*// SITEMAP //*//
+
+#portal-sitemap {
+	list-style: none;
+	padding-left:0;
+	> li {
+		font-size: @plone-font-size-large;
+		border-top: @plone-portlet-border;
+		padding: @plone-padding-base-vertical 0;
+	}
+	ul {
+		list-style: none;
+		position: relative;
+		font-size: @plone-font-size-base;
+		padding-left:20px;
+	    & li {
+			position: relative;
+		}
+	    & li::before {
+			content: "•";
+			display: inline;
+			font-size: @plone-font-size-h3+1;
+			color: lighten(@plone-portlet-list-bullet, 15%);
+			top: 5px;
+			position: relative;
+		}
+	}
+}

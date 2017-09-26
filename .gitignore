@@ -1,8 +1,8 @@
-.coverage
+.coverage*
 .installed.cfg
 *.egg-info
 *.mo
-*.pyc
+*.py[cod]
 # dirs
 bin/
 buildout-cache/
@@ -13,17 +13,26 @@ include/
 lib/
 local/
 parts/
-src/*
 test.plone_addon/
 var/
+reports/
+.tox/
+.eggs/
+collective*/
 # files
 lib64
 pip-selfcheck.json
-# excludes
-!.coveragerc
+.cache/
+.python-version
+coverage.xml
+.Python
+tmp/
+docs/_build
+build/
+
+# excludes / This Files should go into version control
 !.editorconfig
 !.gitattributes
 !.gitignore
 !.gitkeep
 !.travis.yml
-!bobtemplates

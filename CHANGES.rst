@@ -5,6 +5,17 @@ Changelog
 ------------------
 
 - Nothing changed yet.
+- Removed bootstrap-buildout.py and added DEVELOP.rst
+  [agitator]
+
+- Update barceloneta less files to 1.7.3 for plone_theme_package
+  [agitator]
+
+- Fixed i18n attributes for View/Edit actions in dexterity type xml.
+  [maurits]
+
+- Testing of generated skeletons integerated.
+  [loechel]
 
 
 2.0 (2017-08-28)
@@ -17,6 +28,17 @@ Changelog
   [maurits]
 
 - Separate theme template from addon template, we now have plone_addon and plone_theme_package
+- Update barceloneta less files to 1.7.3 for plone_theme_package
+  [agitator]
+- Removed bootstrap-buildout.py and added DEVELOP.rst
+  [agitator]
+
+- Update barceloneta less files to 1.7.3 for plone_theme_package
+  [agitator]
+
+- Fixed i18n attributes for View/Edit actions in dexterity type xml.  [maurits]
+
+- Seperate theme template from addon template, we now have plone_addon and plone_theme_package
   [MrTango]
 
 - Update pins in the generated buildout.cfg

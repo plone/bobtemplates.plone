@@ -1,0 +1,35 @@
+<span tal:condition="nothing">
+<!--
+Bootstrap carousel template only view, to be called on a folder with images and included by Diazo into your layout.
+see: https://github.com/collective/plonetheme.tango/blob/master/src/plonetheme/tango/theme/rules.xml#L41
+
+To activate the view, remove the ".example" extension from the file!
+-->
+</span>
+
+<div id="carousel-example-generic" class="carousel slide">
+	<!-- Indicators -->
+	<ol class="carousel-indicators hidden-xs">
+	    <li tal:repeat="item context/keys"
+	    	data-target="#carousel-example-generic"
+	    	data-slide-to="${python:repeat.item.index}"
+	    	class="${python: repeat.item.start and 'active' or ''}"></li>
+	</ol>
+
+	<!-- Wrapper for slides -->
+	<div class="carousel-inner">
+	    <div tal:repeat="item context/values"
+	    	class="item ${python: repeat.item.start and 'active' or ''}">
+	    	<img tal:define="scales item/@@images"
+	    		tal:replace="structure python: scales.tag('image', scale='large', css_class='img-responsive img-full')" />
+	    </div>
+	</div>
+
+	<!-- Controls -->
+	<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+	    <span class="icon-prev"></span>
+	</a>
+	<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+	    <span class="icon-next"></span>
+	</a>
+</div>

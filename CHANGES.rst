@@ -23,8 +23,8 @@ Changelog
   [loechel]
 
 
-2.0 (2017-08-28)
-----------------
+3.0.0a1 (2017-09-26)
+--------------------
 
 - Set the zope_i18n_compile_mo_files environment variable.
   [maurits]

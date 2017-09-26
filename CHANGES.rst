@@ -1,20 +1,25 @@
 Changelog
 =========
 
-2.0.1 (unreleased)
-------------------
+3.0.0a1
+-------
 
-- Nothing changed yet.
-- Removed bootstrap-buildout.py and added DEVELOP.rst
-  [agitator]
+- Refacturing to support subtemplates
+  [MrTango]
 
-- Update barceloneta less files to 1.7.3 for plone_theme_package
+- Add theme and content_type subtemplates
+  [MrTango]
+
+- Add missing plone namespace, to avoid conflicts with other bobtemplate packages
+  [MrTango]
+
+- Removed bootstrap-buildout.py, Update barceloneta less files for theme_package
   [agitator]
 
 - Fixed i18n attributes for View/Edit actions in dexterity type xml.
   [maurits]
 
-- Testing of generated skeletons integerated.
+- Testing of generated skeletons integerated with tox and pytest.
   [loechel]
 
 

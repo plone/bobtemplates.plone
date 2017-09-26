@@ -8,5 +8,5 @@ With this template you can create a basic Plone package.
 
     mrbob -O collective.todos bobtemplates.plone:addon
 
-This will create a Python package for you which you can extedn manually or by using other subtemplates like ``theme`` or ``content_type`` from bobtemplates.plone.
+This will create a Python package for you which you can extend manually or by using other subtemplates like ``theme`` or ``content_type`` from bobtemplates.plone.
 

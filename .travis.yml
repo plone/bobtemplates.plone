@@ -49,12 +49,12 @@ matrix:
           env: TOXENV=py27-skeletontests-Plone-5.0-template-addon_theme
         - python: "2.7"
           env: TOXENV=py27-skeletontests-Plone-5.1-template-addon_theme
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-Plone-4.3-template-theme_package
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-Plone-5.0-template-theme_package
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-Plone-5.1-template-theme_package
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-4.3-template-theme_package
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.0-template-theme_package
+        - python: "2.7"
+          env: TOXENV=py27-skeletontests-Plone-5.1-template-theme_package
 
 install:
     - travis_retry pip install -U tox coveralls coverage

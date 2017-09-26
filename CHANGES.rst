@@ -23,6 +23,12 @@ Changelog
   [loechel]
 
 
+3.0.0a2 (unreleased)
+--------------------
+
+- Nothing changed yet.
+
+
 3.0.0a1 (2017-09-26)
 --------------------
 

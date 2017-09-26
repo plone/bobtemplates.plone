@@ -19,6 +19,45 @@ def check_dexterity_type_name(configurator, question, answer):
     return answer
 
 
+def _update_metadata_xml(configurator):
+    """Add plone.app.dexterity dependency metadata.xml in Generic Setup
+    profiles."""
+    metadata_file_name = u'metadata.xml'
+    metadata_file_dir = u'profiles/default'
+    metadata_file_path = configurator.variables['package_folder'] + '/' + \
+        metadata_file_dir + '/' + metadata_file_name
+
+    with open(metadata_file_path, 'r') as xml_file:
+        parser = etree.XMLParser(remove_blank_text=True)
+        tree = etree.parse(xml_file, parser)
+        dependencies = tree.xpath('/metadata/dependencies')[0]
+        dep = 'profile-plone.app.dexterity:default'
+        dep_exists = False
+        for e in dependencies.iter('dependency'):
+            dep_name = e.text
+            if dep_name == dep:
+                dep_exists = True
+
+        if dep_exists:
+            print(
+                '{dep} already in metadata.xml, skip adding!'.format(
+                    dep=dep,
+                ),
+            )
+            return
+        dep_element = etree.Element('dependency')
+        dep_element.text = dep
+        dependencies.append(dep_element)
+
+    with open(metadata_file_path, 'w') as xml_file:
+        tree.write(
+            xml_file,
+            pretty_print=True,
+            xml_declaration=True,
+            encoding='utf-8',
+        )
+
+
 def _update_types_xml(configurator):
     """Add the new type to types.xml in Generic Setup profiles."""
     types_file_name = u'types.xml'
@@ -148,4 +187,5 @@ def post_renderer(configurator):
     _update_types_xml(configurator)
     _update_permissions_zcml(configurator)
     _update_rolemap_xml(configurator)
+    _update_metadata_xml(configurator)
     _update_setup_py(configurator)

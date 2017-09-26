@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.0.0a1
--------
+3.0.0a1 (2017-09-26)
+--------------------
 
 - Refacturing to support subtemplates
   [MrTango]
@@ -19,18 +19,12 @@ Changelog
 - Fixed i18n attributes for View/Edit actions in dexterity type xml.
   [maurits]
 
-- Testing of generated skeletons integerated with tox and pytest.
+- Testing of generated skeletons integrated with tox and pytest.
   [loechel]
 
 
-3.0.0a2 (unreleased)
---------------------
-
-- Nothing changed yet.
-
-
-3.0.0a1 (2017-09-26)
---------------------
+2.0.0 (2017-08-28)
+------------------
 
 - Set the zope_i18n_compile_mo_files environment variable.
   [maurits]

@@ -76,7 +76,7 @@
 				color: @plone-portlet-list-small-text;
 			}
 			li:hover {background: @plone-portlet-list-hover-bg;
-				a:before {color: @plone-portlet-list-bullet;}
+				a::before {color: @plone-portlet-list-bullet;}
 			}
 		}
 	}
@@ -89,7 +89,7 @@
 		.cal_has_events {
 			position: relative;
 			a:hover {background: @plone-portlet-event-bullet; text-decoration: none; box-shadow: 0 0 0 5px @plone-portlet-event-bullet;}
-			a:after {
+			a::after {
 				content: "•";
 				position: absolute;
 				margin-left: 50%;
@@ -98,15 +98,15 @@
 				color: lighten(@plone-portlet-list-bullet, 15%);
 				margin-top: 9px;
 			}
-			a:hover:after {color: @plone-portlet-list-bullet;}
+			a:hover::after {color: @plone-portlet-list-bullet;}
 
 		}
 		.cal_next_month, .cal_prev_month {
 			color: #000;
 			&.cal_has_events > a {color: lighten(@plone-portlet-list-bullet, 15%);}
-			&.cal_has_events > a:after {color: lighten(@plone-portlet-list-bullet, 25%);}
+			&.cal_has_events > a::after {color: lighten(@plone-portlet-list-bullet, 25%);}
 			&.cal_has_events > a:hover {color: darken(@plone-link-color,15%);}
-			&.cal_has_events > a:hover:after {color: @plone-portlet-list-bullet;}
+			&.cal_has_events > a:hover::after {color: @plone-portlet-list-bullet;}
 		}
 		.today > * {background: @plone-portlet-contrast-bg; font-weight: 500; box-shadow: 0 0 0 5px @plone-portlet-contrast-bg; color: #000;} //using shadow to expand background is because then table is only 20px per cell and not 30px
 		tbody tr:first-child td > * {margin-top: 10px;}
@@ -131,14 +131,15 @@
 	.portletContent {
 		border-top: 0;
 		> ul > li > a {display: block; background: darken(@plone-portlet-header-bg, 2%);
-			&:before {content: ""; }
+			&::before {content: ""; }
 			&:hover {background: @plone-portlet-footer-bg;}
-			&:hover:after {content:"⟩"; position: absolute; right: 10px; font-size: @plone-font-size-large; margin-top: -3px; color: @plone-gray-light;}
+			&:hover::after {content:"⟩"; position: absolute; right: 10px; font-size: @plone-font-size-large; margin-top: -3px; color: @plone-gray-light;}
 		}
 		> ul > li > ul a {padding-left:40px;}
+		> ul > li > a > img.image-icon {max-height: @plone-line-height-computed;};
 		> ul ul {padding-left: 0;}
 		.navTreeCurrentNode > a {background: @plone-portlet-footer-bg; color: @plone-gray;
-			&:after {content:"⟩"; position: absolute; right: 10px; font-size: @plone-font-size-large; margin-top: -3px; color: @plone-gray-light;}
+			&::after {content:"⟩"; position: absolute; right: 10px; font-size: @plone-font-size-large; margin-top: -3px; color: @plone-gray-light;}
 		}
 	}
 }

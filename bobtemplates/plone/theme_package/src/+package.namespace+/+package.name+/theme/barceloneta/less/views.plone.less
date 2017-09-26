@@ -9,7 +9,7 @@
 	padding-left: 20px;
 	//need to add a list portlets-like bullet
 	li {margin: 10px 0;}
-	> li:before {
+	> li::before {
 			content:"•"; position: absolute; font-size: @plone-font-size-large+1; margin-top: -9px; left: 0;
 			color: lighten(@plone-portlet-list-bullet, 15%);
 	}

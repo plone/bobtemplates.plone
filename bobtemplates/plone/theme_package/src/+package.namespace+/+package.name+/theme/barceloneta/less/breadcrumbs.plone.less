@@ -25,7 +25,7 @@
       line-height: 0; // match ol & span height
       position: relative;
       padding: 0 @plone-breadcrumb-padding-horizontal*2 0 0;
-      + li:after {
+      + li::after {
         content: "";
         position: absolute;
         padding: 0 5px;
@@ -37,7 +37,7 @@
         top: -15px;
         padding: 0 !important;
       }
-      + li:before {
+      + li::before {
         content: "";
         position: absolute;
         padding: 0 5px;

@@ -199,7 +199,7 @@ input[type="checkbox"] {
   div.error {
     padding-left: 30px;
     font-weight: @plone-font-weight-regular;
-    &:before {
+    &::before {
       background-color: @plone-alert-error-bullet; content:"×";
       font-size:@plone-font-size-base;
       font-weight: @plone-font-weight-regular;
@@ -251,7 +251,7 @@ input[type="checkbox"] {
 
 //*// Required
 label .required {
-  &:after{
+  &::after{
     color: @plone-toolbar-private-color;
     content:"•";
     font-size: 200%;

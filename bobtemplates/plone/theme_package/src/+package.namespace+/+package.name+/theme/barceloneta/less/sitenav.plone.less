@@ -132,12 +132,12 @@
   */
 
   // Menu (That option with a word, witch is language-dependant, is to ensure a higher tap ratio on the menu)
-  .icon-bar:after {
+  .icon-bar::after {
   	content:"Menu";
   	position: relative;
   	color: white;
   }
-  .icon-bar + .icon-bar:after {content: "";}
+  .icon-bar + .icon-bar::after {content: "";}
   //end menu icon-bar
 
   @media (min-width: @plone-grid-float-breakpoint) {

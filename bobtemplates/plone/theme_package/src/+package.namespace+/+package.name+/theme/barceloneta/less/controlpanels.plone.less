@@ -1,5 +1,5 @@
 //*// Site Setup
-.portlet.portletSiteSetup .portletContent > ul > li a:before {content:"";}
+.portlet.portletSiteSetup .portletContent > ul > li a::before {content:"";}
 .portlet.portletSiteSetup .portletContent > ul li:hover {background: #edecec;}
 .portletNavigationTree {
     // nav.portletContent > ul > li a {border:none; padding:0px;}
@@ -26,7 +26,7 @@
         }
         ul {background: #edecec; padding-bottom: 20px;}
         li {vertical-align: top;}
-        ul > li > a:hover:after {content:""}
+        ul > li > a:hover::after {content:""}
         .inner-configlet {
             margin-top: 10px; padding-bottom: 10px;
             &:hover {
@@ -49,7 +49,7 @@
         a {
             text-align: inherit;
             padding-left: 40px;
-            &:before {
+            &::before {
                 content:"•"; position: absolute; font-size: @plone-font-size-h3+1; margin-top: -9px; left: 15px;
                 color: lighten(@plone-portlet-list-bullet, 15%);
             }

@@ -25,7 +25,7 @@ addon_files = [
 def test_theme_package(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
-theme.name = "Black Sea theme"
+theme.name = Black Sea theme
 author.name = The Plone Collective
 author.email = collective@plone.org
 author.github.user = collective

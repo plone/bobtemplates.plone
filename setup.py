@@ -14,12 +14,6 @@ long_description = '\n\n'.join([
 ])
 
 
-tests_require = [
-    'pytest',
-    'pytest-mock',
-]
-
-
 setup(
     name='bobtemplates.plone',
     version=version,
@@ -55,12 +49,8 @@ setup(
         'mr.bob',
         'lxml',
     ],
-    setup_requires=[
-        'pytest-runner',
-    ],
-    tests_require=tests_require,
-    extras_require={
-        'test': tests_require,
-    },
+    setup_requires=[],
+    tests_require=[],
+    extras_require={},
     entry_points={},
 )

@@ -1,34 +1,18 @@
-.coverage*
-.installed.cfg
+
 *.egg-info
 *.mo
 *.py[cod]
 # dirs
-bin/
-buildout-cache/
-develop-eggs/
-eggs/
-htmlcov/
-include/
-lib/
-local/
-parts/
-test.plone_addon/
-var/
-reports/
 .tox/
-.eggs/
-collective*/
+_build
+__pycache__
+.cache
 # files
-lib64
 pip-selfcheck.json
-.cache/
 .python-version
-coverage.xml
 .Python
-tmp/
-docs/_build
-build/
+.coverage*
+coverage.xml
 
 # excludes / This Files should go into version control
 !.editorconfig

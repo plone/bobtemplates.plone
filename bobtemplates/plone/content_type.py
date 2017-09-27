@@ -31,23 +31,32 @@ def _update_metadata_xml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         dependencies = tree.xpath('/metadata/dependencies')[0]
-        dep = 'profile-plone.app.dexterity:default'
-        dep_exists = False
-        for e in dependencies.iter('dependency'):
-            dep_name = e.text
-            if dep_name == dep:
-                dep_exists = True
+        deps = [
+            'profile-plone.app.dexterity:default',
+        ]
+        if not configurator.variables['plone.is_plone5']:
+            deps.append('profile-plone.app.relationfield:default')
+        changed = False
+        for dep in deps:
+            dep_exists = False
+            for e in dependencies.iter('dependency'):
+                dep_name = e.text
+                if dep_name in dep:
+                    dep_exists = True
+            if dep_exists:
+                print(
+                    '{dep} already in metadata.xml, skip adding!'.format(
+                        dep=dep,
+                    ),
+                )
+                continue
+            dep_element = etree.Element('dependency')
+            dep_element.text = dep
+            dependencies.append(dep_element)
+            changed = True
 
-        if dep_exists:
-            print(
-                '{dep} already in metadata.xml, skip adding!'.format(
-                    dep=dep,
-                ),
-            )
-            return
-        dep_element = etree.Element('dependency')
-        dep_element.text = dep
-        dependencies.append(dep_element)
+    if not changed:
+        return
 
     with open(metadata_file_path, 'w') as xml_file:
         tree.write(

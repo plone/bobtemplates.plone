@@ -43,6 +43,12 @@ setup(
         'Products.GenericSetup>=1.8.2',
         'setuptools',
         'z3c.jbot',
+{{% if not plone.is_plone5 %}}
+        'plone.app.dexterity==2.1.1',
+        'plone.app.referenceablebehavior',
+        'plone.app.relationfield',
+        'plone.app.lockingbehavior',
+{{% endif %}}
     ],
     extras_require={
         'test': [

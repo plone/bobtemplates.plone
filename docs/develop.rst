@@ -50,15 +50,58 @@ The post_renderer method is a good place to update configuration files like we d
 Testing
 =======
 
-All templates and subtemplates should have tests for the structure they provide. These test will give the developers a good starting point. So that they only need to write test for there own code. Also these tests will be called on travis to make sure all by bobtemplates.plone created structures are working and tested. To run these test we run all templates in every combination and run the tests inside the created packages.
+All templates and subtemplates should have tests for the structure they provide. These test will give the developers a good starting point. So that they only need to write test for there own code. Also these tests will be called by tox and on travis to make sure all by bobtemplates.plone created structures are working and tested. To run these test we run all templates in every combination and run the tests inside the created packages.
 
-This could be for example the ``addon`` alone. Or for a package with Dexterity content types, first the ``addon`` template and then inside the created package the ``content_type`` subtemplate. The test are running after all templates for a case are applied.
+This could be for example the ``addon`` alone. Or for a package with Dexterity content types, first the ``addon`` template and then inside the created package the ``content_type`` subtemplate. The tests are running after all templates for a case are applied.
 
-By the time or writing this, we have the following cases (combinations), which we are testing:
+To run all tests locally, just run ``rox`` without any parameter. You can also run individual tests for e specific environment. To get a list of all environments run ``tox -l``.
 
-- buildout
+.. code-block:: sh
+
+   $ tox -l
+   py27-packagetests
+   py34-packagetests
+   py35-packagetests
+   py36-packagetests
+   pypy-packagetests
+   py27-skeletontests-Plone-4.3-template-addon
+   py27-skeletontests-Plone-5.0-template-addon
+   py27-skeletontests-Plone-5.1-template-addon
+   py27-skeletontests-Plone-4.3-template-addon_content_type
+   py27-skeletontests-Plone-5.0-template-addon_content_type
+   py27-skeletontests-Plone-5.1-template-addon_content_type
+   py27-skeletontests-Plone-4.3-template-addon_theme
+   py27-skeletontests-Plone-5.0-template-addon_theme
+   py27-skeletontests-Plone-5.1-template-addon_theme
+   py27-skeletontests-Plone-4.3-template-theme_package
+   py27-skeletontests-Plone-5.0-template-theme_package
+   py27-skeletontests-Plone-5.1-template-theme_package
+   lint-py27
+   lint-py36
+   docs
+   coverage-report
+
+You can run just one of them:
+
+.. code-block:: sh
+
+   tox -e py27-skeletontests-Plone-5.1-template-addon
+
+or call all of the same tempalte but for different Plone versions:
+
+.. code-block:: sh
+
+   tox -e py27-skeletontests-Plone-4.3-template-addon_content_type,py27-skeletontests-Plone-5.0-template-addon_content_type,py27-skeletontests-Plone-5.1-template-addon_content_type
+
+**Note** that there is not empty space between the list elements!
+
+By the time or writing this, we have the following test cases (combinations), which we are testing:
+
 - addon
-- addon + theme
-- addon + content_type
-- addon + theme + content_type
+- addon_content_type
+- addon_theme
 - theme_package
+
+The test are defined in the directory ``skeleton-tests`` and are called by ``tox`` as defined in tox.ini.
+
+If you add new test cases (files), make sure that they are in the tox.ini and also called by travis!

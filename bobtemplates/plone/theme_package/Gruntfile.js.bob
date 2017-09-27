@@ -53,7 +53,8 @@ module.exports = function (grunt) {
                 bsFiles: {
                     src : [
                       'less/*.less',
-                      'barceloneta/less/*.less'
+                      'barceloneta/less/*.less',
+                      '*.html'
                     ]
                 },
                 options: {
@@ -70,6 +71,8 @@ module.exports = function (grunt) {
                     src : [
                       'less/*.less',
                       'barceloneta/less/*.less'
+                      '*.html',
+                      '*.xml'
                     ]
                 },
                 options: {

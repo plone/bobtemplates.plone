@@ -76,4 +76,8 @@ after_script:
 
 notifications:
   email:
-    - travis-reports@plone.com
+    recipients:
+      - travis-reports@plone.com
+      - {author}
+    on_success: change
+    on_failure: change

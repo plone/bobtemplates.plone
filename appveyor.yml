@@ -51,3 +51,10 @@ build: off
 
 test_script:
   - "tox.exe"
+
+notifications:
+  - provider: Email
+    to:
+      - travis-reports@plone.com
+      - '{{commitAuthorEmail}}'
+    on_build_status_changed: true

@@ -3,6 +3,7 @@
 *.mo
 *.py[cod]
 # dirs
+bin/
 .tox/
 _build
 __pycache__

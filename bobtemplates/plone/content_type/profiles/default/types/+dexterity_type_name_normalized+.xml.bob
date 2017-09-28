@@ -50,7 +50,6 @@
     <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
     <element value="plone.app.dexterity.behaviors.id.IShortName"/>
     <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
-    <!--<element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>-->
 {{% if plone.is_plone5 %}}
     <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
     <!--<element value="plone.app.lockingbehavior.behaviors.ILocking" />-->
@@ -58,9 +57,11 @@
     <element value="plone.app.lockingbehavior.behaviors.ILocking" />
     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
 {{% endif %}}
+    <!--<element value="plone.app.dexterity.behaviors.metadata.IBasic"/>-->
     <!--<element value="plone.app.relationfield.behavior.IRelatedItems"/>-->
     <!--<element value="plone.app.versioningbehavior.behaviors.IVersionable" />-->
     <!--<element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>-->
+    <!--<element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>-->
 {{% if not dexterity_type_create_class %}}
     <element value="{{{ package.dottedname }}}.content.{{{ dexterity_type_name_normalized }}}.I{{{ dexterity_type_name_klass }}}"/>
 {{%  endif %}}

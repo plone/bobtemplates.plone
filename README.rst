@@ -75,7 +75,7 @@ Installation
 Use in a buildout
 -----------------
 
-::
+.. code-block:: ini
 
     [buildout]
     parts += mrbob
@@ -89,7 +89,8 @@ Use in a buildout
 
 This creates a mrbob-executable in your bin-directory.
 Call it from the ``src``-directory of your Plone project like this.
-::
+
+.. code-block:: console
 
     ../bin/mrbob -O collective.foo bobtemplates.plone:addon
 
@@ -98,16 +99,21 @@ Installation in a virtualenv
 ----------------------------
 
 You can also install ``bobtemplates.plone`` in a virtualenv.
-::
+
+.. code-block:: console
 
     pip install bobtemplates.plone
 
-With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
-::
+With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency.
+If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
+
+.. code-block:: console
 
     pip install mr.bob
 
-Now you can use it like this::
+Now you can use it like this
+
+.. code-block:: console
 
     mrbob -O collective.foo bobtemplates.plone:addon
 

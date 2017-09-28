@@ -52,14 +52,14 @@ plone.version = {version}
     assert result == 0
 
     generated_files = glob.glob(
-        tmpdir.strpath + '/' + config.package_name + '/*',
+        os.path.join(tmpdir.strpath, config.package_name, '*'),
     )
     length = len(tmpdir.strpath + '/' + config.package_name + '/')
     generated_files = [f[length:] for f in generated_files]
     required_files = base_files + addon_files
     assert required_files <= generated_files
 
-    base_path = tmpdir.strpath + '/' + config.package_name
+    base_path = os.path.join(tmpdir.strpath, config.package_name)
 
     assert file_exists(base_path, '/src/collective/todo/configure.zcml')
 

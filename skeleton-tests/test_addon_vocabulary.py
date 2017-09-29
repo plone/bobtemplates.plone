@@ -8,9 +8,10 @@ import os.path
 import subprocess
 
 
-def test_addon_theme(tmpdir, capsys, config):
+def test_vocabulary(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
+package.example = True
 
 author.name = The Plone Collective
 author.email = collective@plone.org
@@ -24,7 +25,7 @@ plone.version = {version}
 
     # generate template addon:
     config.template = 'addon'
-    config.package_name = 'plonetheme.blacksea'
+    config.package_name = 'collective.todo'
     result = subprocess.call(
         [
             'mrbob',
@@ -43,12 +44,12 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
+vocabulary_name = AvailableTodos
 subtemplate_warning = Yes
-theme.name = Plone theme Blacksea
 """
     generate_answers_ini(wd, template)
 
-    config.template = 'theme'
+    config.template = 'vocabulary'
     result = subprocess.call(
         [
             'mrbob',
@@ -60,7 +61,9 @@ theme.name = Plone theme Blacksea
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/plonetheme/blacksea/theme/manifest.cfg')
+    assert file_exists(wd, '/src/collective/todo/vocabularies/configure.zcml')
+    assert file_exists(
+        wd, '/src/collective/todo/vocabularies/available_todos.py')  # NOQA: S101,E501
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
         setup_virtualenv_result = subprocess.call(

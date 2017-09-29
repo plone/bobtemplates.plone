@@ -4,16 +4,21 @@
 *.py[cod]
 # dirs
 bin/
+tmp/
+build/
+lib/
 .tox/
 _build
 __pycache__
 .cache
+.vagrant
 # files
 pip-selfcheck.json
 .python-version
 .Python
 .coverage*
 coverage.xml
+Vagrantfile
 
 # excludes / This Files should go into version control
 !.editorconfig

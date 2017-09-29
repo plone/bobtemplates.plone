@@ -45,6 +45,7 @@ Provided templates
 - theme_package
 - buildout
 
+
 Provided subtemplates
 ---------------------
 
@@ -52,6 +53,7 @@ These template are meant to be used inside a package which was created by the ad
 
 - theme
 - content_type
+- vocabulary
 
 
 Compatibility

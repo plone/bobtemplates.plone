@@ -10,6 +10,7 @@ Introduction
     theme_package
     theme
     content_type
+    vocabulary
     develop
 
 
@@ -48,6 +49,7 @@ These template are meant to be used inside a package which was created by the ad
 
 - :doc:`theme </theme>`
 - :doc:`content_type </content_type>`
+- :doc:`vocabulary </vocabulary>`
 
 
 

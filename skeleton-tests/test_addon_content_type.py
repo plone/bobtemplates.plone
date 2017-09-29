@@ -8,7 +8,7 @@ import os.path
 import subprocess
 
 
-def test_addon(tmpdir, capsys, config):
+def test_addon_content_type(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True

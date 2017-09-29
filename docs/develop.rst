@@ -2,6 +2,19 @@
 Developing bobtemplates.plone templates
 =======================================
 
+Setup dev environment
+=====================
+
+In the package folder create a virtualenv and install the package:
+
+.. code-block:: sh
+
+    virtualenv --clear .
+    ./bin/python setup.py develop
+
+Intro
+=====
+
 We can have standalone templates and subtemplates for bobtemplates.plone. By convention we will use a python module for every template and use some generic functions from the base module. All templates are living inside the bobtemplates/plone folder, in there own folder. All module files are placed inside the bobtemplates/plone folder and are referenced from hook commands in the ``.mrbob.ini`` file in the templates folders.
 
 Standalone templates
@@ -73,6 +86,9 @@ To run all tests locally, just run ``rox`` without any parameter. You can also r
    py27-skeletontests-Plone-4.3-template-addon_theme
    py27-skeletontests-Plone-5.0-template-addon_theme
    py27-skeletontests-Plone-5.1-template-addon_theme
+   py27-skeletontests-Plone-4.3-template-addon_vocabulary
+   py27-skeletontests-Plone-5.0-template-addon_vocabulary
+   py27-skeletontests-Plone-5.1-template-addon_vocabulary
    py27-skeletontests-Plone-4.3-template-theme_package
    py27-skeletontests-Plone-5.0-template-theme_package
    py27-skeletontests-Plone-5.1-template-theme_package
@@ -100,6 +116,7 @@ By the time or writing this, we have the following test cases (combinations), wh
 - addon
 - addon_content_type
 - addon_theme
+- addon_vocabulary
 - theme_package
 
 The test are defined in the directory ``skeleton-tests`` and are called by ``tox`` as defined in tox.ini.

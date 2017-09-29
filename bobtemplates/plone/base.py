@@ -2,7 +2,6 @@
 from datetime import date
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import ValidationError
-
 import logging
 import os
 import sys
@@ -84,6 +83,7 @@ def update_file(configurator, file_path, match_str, insert_str):
         contents = xml_file.readlines()
         if match_str in contents[-1]:  # Handle last line, prev. IndexError
             contents.append(insert_str)
+            changed = True
         else:
             for index, line in enumerate(contents):
                 if (
@@ -91,15 +91,15 @@ def update_file(configurator, file_path, match_str, insert_str):
                     insert_str not in contents[index + 1]
                 ):
                     contents.insert(index + 1, insert_str)
+                    changed = True
                     break
-        changed = True
         xml_file.seek(0)
         xml_file.writelines(contents)
 
     if not changed:
-        print('WARNING: We couldn\'t find the match_str, ',  # NOQA: S100
-              'skip inserting:\n {0}!'.format(insert_str),
-        )
+        print("WARNING: We couldn\'t find the match_str, "
+              "skip inserting into vocabularies/configure.zcml:\n")
+        print(insert_str)
 
 
 def _get_package_root_folder():

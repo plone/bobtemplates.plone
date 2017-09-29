@@ -6,6 +6,10 @@ Changelog
 - Cleanup Package - remove unnecessary files from past versions
   [loechel]
 
+- Add vocabulary subtemplate
+  [MrTango]
+
+
 3.0.0a1 (2017-09-26)
 --------------------
 

@@ -2,6 +2,7 @@
 from datetime import date
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import ValidationError
+
 import logging
 import os
 import sys

@@ -78,6 +78,8 @@ def is_string_in_file(configurator, file_path, match_str):
 
 def update_file(configurator, file_path, match_str, insert_str):
     """Insert insert_str into given file, by match_str."""
+    changed = False
+
     with open(file_path, 'r+') as xml_file:
         contents = xml_file.readlines()
         if match_str in contents[-1]:  # Handle last line, prev. IndexError
@@ -90,8 +92,14 @@ def update_file(configurator, file_path, match_str, insert_str):
                 ):
                     contents.insert(index + 1, insert_str)
                     break
+        changed = True
         xml_file.seek(0)
         xml_file.writelines(contents)
+
+    if not changed:
+        print('WARNING: We couldn\'t find the match_str, ',  # NOQA: S100
+              'skip inserting:\n {0}!'.format(insert_str),
+        )
 
 
 def _get_package_root_folder():

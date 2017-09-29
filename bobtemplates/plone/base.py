@@ -98,8 +98,10 @@ def update_file(configurator, file_path, match_str, insert_str):
         xml_file.writelines(contents)
 
     if not changed:
-        print("WARNING: We couldn\'t find the match_str, "
-              "skip inserting into vocabularies/configure.zcml:\n")
+        print(
+            "WARNING: We couldn't find the match_str, "  # NOQA
+            "skip inserting into vocabularies/configure.zcml:\n"  # NOQA
+        )
         print(insert_str)
 
 

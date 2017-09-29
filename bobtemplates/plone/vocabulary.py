@@ -63,7 +63,9 @@ def _update_vocabularies_configure_zcml(configurator):
             configurator.variables['vocabulary_name_klass'],
         )
         xpath_selector = ".//{0}utility[@name='{1}']".format(
-            nsprefix, vocab_name)  # NOQA: S101
+            nsprefix,
+            vocab_name,
+        )
         if len(tree_root.findall(xpath_selector)):
             print('{0} already in configure.zcml, skip adding!'.format(vocab_name))  # NOQA: E501
             return

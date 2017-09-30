@@ -24,7 +24,6 @@ class SetupCfg(object):
 
 def read_setup_cfg(configurator):
     setup_cfg = SetupCfg()
-
     config = ConfigParser()
     path = configurator.target_directory + '/setup.cfg'
     config.read(path)
@@ -39,7 +38,7 @@ def set_global_vars(configurator):
     configurator.variables['year'] = date.today().year
     version = configurator.variables.get('plone.version')
     if not version and setup_cfg:
-        print('>>> reding Plone version from setup.cfg...')
+        print('>>> reading Plone version from setup.cfg...')
         version = setup_cfg.version
     _set_plone_version_variables(configurator, version)
 
@@ -100,14 +99,15 @@ def update_file(configurator, file_path, match_str, insert_str):
     if not changed:
         print(
             "WARNING: We couldn't find the match_str, "  # NOQA
-            "skip inserting into vocabularies/configure.zcml:\n"  # NOQA
+            "skip inserting into {0}:\n".format(file_path)  # NOQA
         )
         print(insert_str)
 
 
-def _get_package_root_folder():
+def _get_package_root_folder(configurator):
     file_name = 'setup.py'
     root_folder = None
+    os.chdir(configurator.target_directory)
     cur_dir = os.getcwd()
     while True:
         files = os.listdir(cur_dir)
@@ -145,7 +145,9 @@ def dottedname_to_path(dottedname):
 
 def base_prepare_renderer(configurator):
     """generic rendering before template specific rendering."""
-    configurator.variables['package.root_folder'] = _get_package_root_folder()
+    configurator.variables['package.root_folder'] = _get_package_root_folder(
+        configurator,
+    )
     if not configurator.variables['package.root_folder']:
         raise MrBobError('No setup.py found in path!\n')
     configurator.variables['package.dottedname'] = \

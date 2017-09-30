@@ -58,7 +58,7 @@ def _update_metadata_xml(configurator):
     if not changed:
         return
 
-    with open(metadata_file_path, 'w') as xml_file:
+    with open(metadata_file_path, 'wb') as xml_file:
         tree.write(
             xml_file,
             pretty_print=True,
@@ -91,7 +91,7 @@ def _update_types_xml(configurator):
             etree.Element('object', name=type_name, meta_type='Dexterity FTI'),
         )
 
-    with open(types_file_path, 'w') as xml_file:
+    with open(types_file_path, 'wb') as xml_file:
         tree.write(
             xml_file,
             pretty_print=True,

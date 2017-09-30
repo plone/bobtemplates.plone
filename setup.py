@@ -48,6 +48,7 @@ setup(
         'setuptools',
         'mr.bob',
         'lxml',
+        'stringcase',
     ],
     setup_requires=[],
     tests_require=[],

@@ -3,6 +3,7 @@
 from bobtemplates.plone import base
 from mrbob.configurator import Configurator
 
+import os
 import pytest
 
 
@@ -40,6 +41,22 @@ def test_subtemplate_warning(capsys):
     out, err = capsys.readouterr()
     assert '### WARNING ###' in out
     assert err == ''
+
+
+def test_is_string_in_file(tmpdir):
+    match_str = '-*- extra stuff goes here -*-'
+    path = tmpdir.strpath + '/configure.zcml'
+    template = """Some text
+
+    {0}
+""".format(
+        match_str,
+    )
+    with open(os.path.join(path), 'w') as f:
+        f.write(template)
+
+    assert base.is_string_in_file(None, path, match_str) is True
+    assert base.is_string_in_file(None, path, 'hello') is False
 
 
 def test_subtemplate_warning_post_question():

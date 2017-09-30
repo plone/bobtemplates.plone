@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.0a2 (unreleased)
+3.0.0a2 (2017-10-01)
 
 - Cleanup Package - remove unnecessary files from past versions
   [loechel]

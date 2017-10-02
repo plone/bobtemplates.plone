@@ -67,7 +67,7 @@ All templates and subtemplates should have tests for the structure they provide.
 
 This could be for example the ``addon`` alone. Or for a package with Dexterity content types, first the ``addon`` template and then inside the created package the ``content_type`` subtemplate. The tests are running after all templates for a case are applied.
 
-To run all tests locally, just run ``rox`` without any parameter. You can also run individual tests for e specific environment. To get a list of all environments run ``tox -l``.
+To run all tests locally, just run ``tox`` without any parameter. You can also run individual tests for a specific environment. To get a list of all environments run ``tox -l``.
 
 .. code-block:: sh
 

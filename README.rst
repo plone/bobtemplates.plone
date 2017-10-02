@@ -49,7 +49,7 @@ Provided templates
 Provided subtemplates
 ---------------------
 
-These template are meant to be used inside a package which was created by the addon template.
+These templates are meant to be used inside a package which was created by the addon template.
 
 - theme
 - content_type
@@ -94,7 +94,7 @@ Call it from the ``src``-directory of your Plone project like this.
 
 .. code-block:: console
 
-    ../bin/mrbob -O collective.foo bobtemplates.plone:addon
+    ../bin/mrbob bobtemplates.plone:addon -O collective.foo
 
 
 Installation in a virtualenv
@@ -117,7 +117,7 @@ Now you can use it like this
 
 .. code-block:: console
 
-    mrbob -O collective.foo bobtemplates.plone:addon
+    mrbob bobtemplates.plone:addon -O collective.foo
 
 
 

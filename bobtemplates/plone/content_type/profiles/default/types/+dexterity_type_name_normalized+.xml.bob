@@ -2,7 +2,7 @@
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     name="{{{ dexterity_type_name_normalized }}}"
     meta_type="Dexterity FTI"
-    i18n:domain="plone">
+    i18n:domain="{{{ package.dottedname }}}">
 
   <!-- Basic properties -->
   <property

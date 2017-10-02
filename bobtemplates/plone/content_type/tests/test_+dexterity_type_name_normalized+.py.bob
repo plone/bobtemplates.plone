@@ -23,7 +23,6 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.installer = api.portal.get_tool('portal_quickinstaller')
 
     def test_schema(self):
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name_normalized }}}')

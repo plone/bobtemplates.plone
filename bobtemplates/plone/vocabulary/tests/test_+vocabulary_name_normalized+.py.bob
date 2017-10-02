@@ -18,7 +18,6 @@ class {{{ vocabulary_name_klass }}}IntegrationTest(unittest.TestCase):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.installer = api.portal.get_tool('portal_quickinstaller')
         self.n1 = api.content.create(
             type='News Item', title='N1', container=self.portal)
         self.n2 = api.content.create(

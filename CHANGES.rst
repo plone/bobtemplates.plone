@@ -4,10 +4,12 @@ Changelog
 3.0.0a3 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix travis-setup for created packages wihtout bootstrap.py (Fixes #222)
+  [pbauer]
 
 
 3.0.0a2 (2017-10-01)
+--------------------
 
 - Cleanup Package - remove unnecessary files from past versions
   [loechel]

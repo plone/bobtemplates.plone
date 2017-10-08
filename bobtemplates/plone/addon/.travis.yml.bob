@@ -1,15 +1,24 @@
 language: python
 sudo: false
 cache:
+  pip: true
   directories:
-  - eggs
-  - downloads
+  - $HOME/buildout-cache
 python:
   - 2.7
 matrix:
   fast_finish: true
 install:
-  - python bootstrap-buildout.py
+  - mkdir -p $HOME/buildout-cache/{eggs,downloads}
+  - mkdir $HOME/.buildout
+  - echo "[buildout]" > $HOME/.buildout/default.cfg
+  - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
+  - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
+  - python --version
+  - virtualenv --version
+  - pip install --upgrade virtualenv
+  - virtualenv --clear .
+  - bin/pip install --upgrade -r requirements.txt
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True
 before_script:

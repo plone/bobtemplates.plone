@@ -39,7 +39,8 @@
 
   <utility
       factory=".setuphandlers.HiddenProfiles"
-      name="{{{ package.dottedname }}}-hiddenprofiles" />
+      name="{{{ package.dottedname }}}-hiddenprofiles"
+      />
 
   <!-- -*- extra stuff goes here -*- -->
 

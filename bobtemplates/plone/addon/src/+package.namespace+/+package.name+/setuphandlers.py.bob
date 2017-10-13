@@ -7,7 +7,7 @@ from zope.interface import implementer
 class HiddenProfiles(object):
 
     def getNonInstallableProfiles(self):
-        """Hide uninstall profile from site-creation and quickinstaller"""
+        """Hide uninstall profile from site-creation and quickinstaller."""
         return [
             '{{{ package.dottedname }}}:uninstall',
         ]

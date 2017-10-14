@@ -5,7 +5,7 @@ Changelog
 --------------------
 
 - Fix #222 default travis setup is broken.
-  [jensens]
+  [jensens, pbauer]
 
 
 3.0.0a2 (2017-10-01)

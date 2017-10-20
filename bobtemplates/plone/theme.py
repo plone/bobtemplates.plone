@@ -78,7 +78,7 @@ def _update_metadata_xml(configurator):
         dep_element.text = dep
         dependencies.append(dep_element)
 
-    with open(metadata_file_path, 'w') as xml_file:
+    with open(metadata_file_path, 'wb') as xml_file:
         tree.write(
             xml_file,
             pretty_print=True,

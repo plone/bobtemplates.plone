@@ -17,3 +17,4 @@ not_skip = __init__.py
 
 [tool:bobtemplates.plone]
 version = {{{ plone.version }}}
+template = 'addon'

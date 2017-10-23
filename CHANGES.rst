@@ -4,6 +4,9 @@ Changelog
 3.0.0a3 (unreleased)
 --------------------
 
+- Create uppercased content-types.
+  [erral]
+
 - Fix #222 default travis setup is broken.
   [jensens, pbauer]
 

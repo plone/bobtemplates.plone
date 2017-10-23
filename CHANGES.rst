@@ -4,6 +4,9 @@ Changelog
 3.0.0a3 (unreleased)
 --------------------
 
+- Fix missing parameter in _get_package_root_folder call
+  [erral]
+
 - Fix #222 default travis setup is broken.
   [jensens, pbauer]
 

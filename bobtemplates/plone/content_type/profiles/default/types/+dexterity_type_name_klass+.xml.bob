@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="{{{ dexterity_type_name_normalized }}}"
+    name="{{{ dexterity_type_name_klass }}}"
     meta_type="Dexterity FTI"
     i18n:domain="{{{ package.dottedname }}}">
 
@@ -13,7 +13,7 @@
       name="description">{{{ dexterity_type_desc }}}</property>
 
   <property name="allow_discussion">False</property>
-  <property name="factory">{{{ dexterity_type_name_normalized }}}</property>
+  <property name="factory">{{{ dexterity_type_name_klass }}}</property>
 {{% if plone.is_plone5 %}}
   <property name="icon_expr"></property>
 {{% else %}}
@@ -68,7 +68,7 @@
   </property>
 
   <!-- View information -->
-  <property name="add_view_expr">string:${folder_url}/++add++{{{ dexterity_type_name_normalized }}}</property>
+  <property name="add_view_expr">string:${folder_url}/++add++{{{ dexterity_type_name_klass }}}</property>
   <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>

@@ -128,7 +128,7 @@ def check_root_folder(configurator, question):
     Should be called in first question pre hook.
 
     """
-    root_folder = _get_package_root_folder()
+    root_folder = _get_package_root_folder(configurator)
     if not root_folder:
         raise ValidationError(
             '\n\nNo setup.py found in path!\n'

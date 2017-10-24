@@ -8,6 +8,9 @@ tmp/
 build/
 lib/
 .tox/
+develop-eggs/
+include/
+local/
 _build
 __pycache__
 .cache

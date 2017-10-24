@@ -8,9 +8,9 @@ First create a Plone Addon Package:
 
 .. code-block:: sh
 
-    mrbob -O plonetheme.blacksea bobtemplates.plone:plone_addon
+    mrbob -O plonetheme.blacksea bobtemplates.plone:addon
 
-then change into the created folder ``collective.blacksea`` and your theme:
+then change into the created folder ``plonetheme.blacksea`` and your theme:
 
 .. code-block:: sh
 

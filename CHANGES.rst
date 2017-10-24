@@ -7,6 +7,15 @@ Changelog
 - Fix #222 default travis setup is broken.
   [jensens, pbauer]
 
+- Add template registration for mr.bob/plonecli for all provided templates
+  [MrTango]
+
+- Fix content_type and theme sub templates
+  [MrTango]
+
+- fix in themes.rst changed plone_addon to addon
+  [pigeonflight]
+
 
 3.0.0a2 (2017-10-01)
 --------------------

@@ -4,10 +4,12 @@ Changelog
 3.0.0a3 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix #222 default travis setup is broken.
+  [jensens, pbauer]
 
 
 3.0.0a2 (2017-10-01)
+--------------------
 
 - Cleanup Package - remove unnecessary files from past versions
   [loechel]

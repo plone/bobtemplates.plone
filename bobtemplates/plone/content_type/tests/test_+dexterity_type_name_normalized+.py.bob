@@ -28,7 +28,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name_klass }}}')
         schema = fti.lookupSchema()
 {{% if dexterity_type_supermodel %}}
-        schema_name = "plone_0_{{{ dexterity_type_name_normalized }}}"
+        schema_name = "plone_0_{{{ dexterity_type_name_klass }}}"
         self.assertEqual(schema_name, schema.getName())
 {{% else %}}
         self.assertEqual(I{{{ dexterity_type_name_klass }}}, schema)

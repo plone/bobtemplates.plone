@@ -6,10 +6,6 @@
     :target: https://coveralls.io/github/plone/bobtemplates.plone?branch=master
     :alt: Coveralls
 
-.. image:: https://img.shields.io/pypi/dm/bobtemplates.plone.svg
-    :target: https://pypi.python.org/pypi/bobtemplates.plone/
-    :alt: Downloads
-
 .. image:: https://img.shields.io/pypi/v/bobtemplates.plone.svg
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: Latest Version
@@ -103,7 +99,7 @@ Installation in a virtualenv
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can also install ``bobtemplates.plone`` in a virtualenv.::
-    
+
     $ pip install bobtemplates.plone
 
 With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.::

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.0a3 (unreleased)
+3.0.0a3 (2017-10-30)
 --------------------
 
 - Fix #222 default travis setup is broken.

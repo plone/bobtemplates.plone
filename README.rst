@@ -30,7 +30,9 @@
 bobtemplates.plone
 ==================
 
-``bobtemplates.plone`` provides a `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ template to generate packages for Plone projects.
+``bobtemplates.plone`` provides `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ templates to generate packages for Plone projects.
+
+    **Note:** bobtemplates.plone supports `plonecli <https://pypi.python.org/pypi/plonecli>`_, which is the recommended way of creating Plone packages.
 
 
 Features
@@ -67,7 +69,9 @@ It should work on Linux, Mac and Windows.
 Documentation
 =============
 
-Full documentation for end users can be found in the "docs" folder.
+Full documentation for end users and developers can be found in the "docs" folder.
+
+    For easy usage see: `plonecli <https://pypi.python.org/pypi/plonecli>`_
 
 It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone/bobtemplates.plone/docs/
 

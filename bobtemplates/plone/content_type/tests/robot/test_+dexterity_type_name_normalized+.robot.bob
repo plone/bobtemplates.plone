@@ -56,10 +56,10 @@ a logged-in site administrator
   Enable autologin as  Site Administrator
 
 an add {{{ dexterity_type_name_normalized }}} form
-  Go To  ${PLONE_URL}/++add++{{{ dexterity_type_name_normalized }}}
+  Go To  ${PLONE_URL}/++add++{{{ dexterity_type_name_klass }}}
 
 a {{{ dexterity_type_name_normalized }}} 'My {{{ dexterity_type_name }}}'
-  Create content  type={{{ dexterity_type_name_normalized }}}  id=my-{{{ dexterity_type_name_normalized }}}  title=My {{{ dexterity_type_name }}}
+  Create content  type={{{ dexterity_type_name_klass }}}  id=my-{{{ dexterity_type_name_normalized }}}  title=My {{{ dexterity_type_name }}}
 
 
 # --- WHEN -------------------------------------------------------------------

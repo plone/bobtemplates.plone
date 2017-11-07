@@ -4,7 +4,9 @@ Changelog
 3.0.0a4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fixes #235: Different roles in tests for install and uninstall.
+  Now both is executed as role ``Manager``.
+  [jensens]
 
 
 3.0.0a3 (2017-10-30)

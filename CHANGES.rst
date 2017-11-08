@@ -4,7 +4,8 @@ Changelog
 3.0.0a4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix coveralls for packages created with addon and theme_package by converting the pickle output of createcoverage in .coverage to json.
+  [pbauer]
 
 
 3.0.0a3 (2017-10-30)

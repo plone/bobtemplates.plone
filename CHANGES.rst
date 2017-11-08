@@ -5,7 +5,8 @@ Changelog
 --------------------
 
 - Fixes #235: Different roles in tests for install and uninstall.
-  Now both is executed as role ``Manager``.
+  Use Manager role in uninstall test.
+  Then both install and uninstall are executed with role Manager.
   [jensens]
 
 

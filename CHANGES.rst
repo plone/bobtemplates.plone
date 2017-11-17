@@ -7,6 +7,11 @@ Changelog
 - Fix coveralls for packages created with addon and theme_package by converting the pickle output of createcoverage in .coverage to json.
   [pbauer]
 
+- Fixes #235: Different roles in tests for install and uninstall.
+  Use Manager role in uninstall test.
+  Then both install and uninstall are executed with role Manager.
+  [jensens]
+
 
 3.0.0a3 (2017-10-30)
 --------------------

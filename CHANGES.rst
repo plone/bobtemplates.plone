@@ -4,7 +4,10 @@ Changelog
 3.0.0a4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fixes #235: Different roles in tests for install and uninstall.
+  Use Manager role in uninstall test.
+  Then both install and uninstall are executed with role Manager.
+  [jensens]
 
 
 3.0.0a3 (2017-10-30)

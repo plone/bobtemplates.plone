@@ -6,10 +6,6 @@
     :target: https://coveralls.io/github/plone/bobtemplates.plone?branch=master
     :alt: Coveralls
 
-.. image:: https://img.shields.io/pypi/dm/bobtemplates.plone.svg
-    :target: https://pypi.python.org/pypi/bobtemplates.plone/
-    :alt: Downloads
-
 .. image:: https://img.shields.io/pypi/v/bobtemplates.plone.svg
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: Latest Version

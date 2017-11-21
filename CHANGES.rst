@@ -12,6 +12,9 @@ Changelog
   Then both install and uninstall are executed with role Manager.
   [jensens]
 
+- fix linting problems and error in theme_package tests
+  [MrTango]
+
 
 3.0.0a3 (2017-10-30)
 --------------------

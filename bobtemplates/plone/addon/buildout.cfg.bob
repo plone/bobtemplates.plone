@@ -80,7 +80,7 @@ plone.app.dexterity = 2.1.1
 {{% endif %}}
 
 # development dependencies (tools and pre commit hook)
-setuptools = 33.1.1
+setuptools =
 zc.buildout =
 mr.developer = 1.38
 PyYAML = 3.12

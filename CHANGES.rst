@@ -15,6 +15,9 @@ Changelog
 - fix linting problems and error in theme_package tests
   [MrTango]
 
+- Update setuptools and zc.buildout versions.
+  [tmassman]
+
 
 3.0.0a3 (2017-10-30)
 --------------------

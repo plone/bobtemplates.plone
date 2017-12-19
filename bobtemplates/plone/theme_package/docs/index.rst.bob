@@ -1,5 +1,5 @@
-====================
+{{% for i in package.dottedname %}}={{% endfor %}}
 {{{ package.dottedname }}}
-====================
+{{% for i in package.dottedname %}}={{% endfor %}}
 
 User documentation

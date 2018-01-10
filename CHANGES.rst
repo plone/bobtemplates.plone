@@ -160,6 +160,9 @@ Changelog
   Fixes `issue 208 <https://github.com/plone/bobtemplates.plone/issues/208>`_.
   [maurits]
 
+- Fixed the pypi index to explicitly reference https://pypi.python.org/simple/ to prevent buildout from defaulting to the old and unsupported http:// url.
+  [pigeonflight]
+  
 - Fix coveralls for packages created with addon and theme_package by converting the pickle output of createcoverage in .coverage to json.
   [pbauer]
 

@@ -3,20 +3,9 @@
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import update_file
 from lxml import etree
-from mrbob.bobexceptions import ValidationError
 
-import keyword
 import os
-import re
 import stringcase
-
-
-def check_vocabulary_name(configurator, question, answer):
-    if keyword.iskeyword(answer):
-        raise ValidationError(u'{key} is a reserved Python keyword'.format(key=answer))  # NOQA: E501
-    if not re.match('[_a-zA-Z]*$', answer):
-        raise ValidationError(u'{key} is not a valid identifier'.format(key=answer))  # NOQA: E501
-    return answer
 
 
 def _update_package_configure_zcml(configurator):
@@ -73,7 +62,7 @@ def _update_vocabularies_configure_zcml(configurator):
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
     <utility
-        component=".{0}.{1}VocabularyFactory"
+        component=".{0}.{1}Factory"
         name="{2}.{1}"
     />
 

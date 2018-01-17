@@ -30,7 +30,9 @@ def _update_package_configure_zcml(configurator):
         tree_root = tree.getroot()
         permid = '.vocabularies'
         xpath_selector = ".//{0}include[@package='{1}']".format(
-            nsprefix, permid,)  # NOQA: S100
+            nsprefix,
+            permid,
+        )
         if len(tree_root.findall(xpath_selector)):
             print('{0} already in configure.zcml, skip adding!'.format(permid))
             return

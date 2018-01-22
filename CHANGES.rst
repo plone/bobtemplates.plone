@@ -18,8 +18,6 @@ Changelog
 - Update setuptools and zc.buildout versions.
   [tmassman]
 
-- Imporve docs template for valid reST generation
-  [svx]
 
 3.0.0a3 (2017-10-30)
 --------------------

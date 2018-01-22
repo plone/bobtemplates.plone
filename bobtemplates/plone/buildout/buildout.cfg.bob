@@ -4,6 +4,14 @@ extends =
     https://raw.github.com/collective/buildout.plonetest/master/qa.cfg
     https://raw.github.com/plone/plone.app.robotframework/master/versions.cfg
 
+extensions =
+    buildout.sanitycheck
+    mr.developer
+
+# mr.developer settings:
+auto-checkout = *
+always-checkout = true
+
 versions = versions
 extensions = mr.developer
 

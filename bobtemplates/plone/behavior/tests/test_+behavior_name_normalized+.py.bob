@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+from plone import api
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+from {{{ package.dottedname }}} import _
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
+from zope.schema.interfaces import IVocabularyTokenized
+
+import unittest
+
+
+class {{{ behavior_name_klass }}}IntegrationTest(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+
+    def setUp(self):
+        """Custom shared utility setup for tests."""
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+
+    def test_behavior(self):
+        vocab_name = "{{{ package.dottedname }}}.{{{ behavior_name_klass }}}"
+        # test the behavior
+        assertTrue(False)

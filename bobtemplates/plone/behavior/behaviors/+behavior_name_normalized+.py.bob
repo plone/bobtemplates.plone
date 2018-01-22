@@ -1,0 +1,36 @@
+# -*- coding: utf-8 -*-
+
+from zope.interface import implementer
+from zope.interface import provider
+from plone.supermodel import model
+from plone import autoform
+from plone import schema
+from {{{package.dottedname}}} import _
+
+
+@provider(autoform.interfaces.IFormFieldProvider)
+class I{{{behavior_name_klass}}}(model.Schema):
+    """
+    """
+
+    # project = schema.Choice(
+    #     title=_(u"Project"),
+    #     required=False,
+    #     vocabulary='{{{package.dottedname}}}.vocabularies.projects'
+    # )
+
+
+@implementer(I{{{behavior_name_klass}}})
+class {{{behavior_name_klass}}}(object):
+    def __init__(self, context):
+        self.context = context
+
+    # @property
+    # def project(self):
+    #     if hasattr(self.context, 'project'):
+    #         return self.context.project
+    #     return None
+
+    # @project.setter
+    # def project(self, value):
+    #     self.context.project = value

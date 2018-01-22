@@ -13,7 +13,6 @@ base_files = [
     '.editorconfig',
     'setup.py',
     'setup.cfg',
-    'bobtemplate.cfg',
 ]
 
 

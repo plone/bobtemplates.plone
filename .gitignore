@@ -29,5 +29,3 @@ Vagrantfile
 !.gitignore
 !.gitkeep
 !.travis.yml
-
-/dist/

@@ -1,3 +1,0 @@
-[main]
-version = {{{ plone.version }}}
-template = buildout

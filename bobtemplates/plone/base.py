@@ -45,7 +45,6 @@ def read_bobtemplates_ini(configurator):
 
 def set_global_vars(configurator):
     bob_config = read_bobtemplates_ini(configurator)
-    import pdb; pdb.set_trace()  # noqa
     configurator.variables['year'] = date.today().year
     version = configurator.variables.get('plone.version')
     if not version and bob_config:

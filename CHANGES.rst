@@ -18,6 +18,8 @@ Changelog
 - Update setuptools and zc.buildout versions.
   [tmassman]
 
+- Improve docs by fixing some reST, typos and grammar
+  [svx]
 
 3.0.0a3 (2017-10-30)
 --------------------

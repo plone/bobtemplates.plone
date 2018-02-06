@@ -4,6 +4,11 @@ Changelog
 3.0.0a4 (unreleased)
 --------------------
 
+- Use default Travis notifications.
+  Until now only the creator of the package would get a notification, instead of the committer.
+  Fixes `issue 208 <https://github.com/plone/bobtemplates.plone/issues/208>`_.
+  [maurits]
+
 - Fix coveralls for packages created with addon and theme_package by converting the pickle output of createcoverage in .coverage to json.
   [pbauer]
 

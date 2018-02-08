@@ -4,6 +4,9 @@ Changelog
 3.0.0a4 (unreleased)
 --------------------
 
+- Quote version strings in YAML. See: https://github.com/travis-ci/docs-travis-ci-com/issues/1540
+  [thet]
+
 - Use default Travis notifications.
   Until now only the creator of the package would get a notification, instead of the committer.
   Fixes `issue 208 <https://github.com/plone/bobtemplates.plone/issues/208>`_.

@@ -69,7 +69,7 @@ Full documentation for end users and developers can be found in the "docs" folde
 
     For easy usage see: `plonecli <https://pypi.python.org/pypi/plonecli>`_
 
-It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone/bobtemplates.plone/docs/
+It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone/docs/
 
 Installation
 ============

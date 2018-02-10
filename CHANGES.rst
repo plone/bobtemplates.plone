@@ -26,6 +26,9 @@ Changelog
 - Improve docs by fixing some reST, typos and grammar
   [svx]
 
+- Update link to docs.plone.org in README
+  [svx]
+
 3.0.0a3 (2017-10-30)
 --------------------
 

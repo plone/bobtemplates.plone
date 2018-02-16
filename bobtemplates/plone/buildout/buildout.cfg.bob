@@ -5,6 +5,7 @@ extends =
     https://raw.github.com/plone/plone.app.robotframework/master/versions.cfg
 
 versions = versions
+extensions = mr.developer
 
 parts += test
 
@@ -15,13 +16,22 @@ eggs +=
 develop =
 
 
+auto-checkout = *
+# always-checkout = true
+
+
+[sources]
+# my.package = git git@github.com:collective/collective.easyform.git
+
+
+[versions]
+zc.buildout =
+setuptools =
+
+
 [test]
 recipe = zc.recipe.testrunner
 defaults = ['--auto-color', '--auto-progress']
 eggs =
     Plone
     ${buildout:eggs}
-
-[versions]
-zc.buildout =
-setuptools =

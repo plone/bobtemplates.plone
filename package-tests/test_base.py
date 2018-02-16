@@ -1,10 +1,29 @@
 # -*- coding: utf-8 -*-
 
 from bobtemplates.plone import base
+from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
 import os
 import pytest
+
+
+def test_check_klass_name():
+    """Test validation of entered class names
+    """
+    def hookit(value):
+        return base.check_klass_name(None, None, value)
+
+    with pytest.raises(ValidationError):
+        hookit('import')
+    with pytest.raises(ValidationError):
+        hookit(u'süpertype')
+    with pytest.raises(ValidationError):
+        hookit(u'2ndComing')
+    with pytest.raises(ValidationError):
+        hookit(u'*sterisk')
+    assert hookit(u'Supertype') == u'Supertype'
+    assert hookit(u'second_coming') == u'second_coming'
 
 
 def test_read_bobtemplate_ini(tmpdir):

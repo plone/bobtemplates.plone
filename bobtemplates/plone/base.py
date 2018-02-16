@@ -27,7 +27,7 @@ class BobConfig(object):
 def check_klass_name(configurator, question, answer):
     if keyword.iskeyword(answer):
         raise ValidationError(u'{key} is a reserved Python keyword'.format(key=answer))  # NOQA: E501
-    if not re.match('[_a-zA-Z0-9]*$', answer):
+    if not re.match('[a-zA-Z_][a-zA-Z0-9_]*$', answer):
         raise ValidationError(u'{key} is not a valid class identifier'.format(key=answer))  # NOQA: E501
     return answer
 
@@ -45,7 +45,6 @@ def read_bobtemplates_ini(configurator):
 
 def set_global_vars(configurator):
     bob_config = read_bobtemplates_ini(configurator)
-    import pdb; pdb.set_trace()  # noqa
     configurator.variables['year'] = date.today().year
     version = configurator.variables.get('plone.version')
     if not version and bob_config:

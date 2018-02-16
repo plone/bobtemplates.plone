@@ -7,39 +7,36 @@ import os
 import pytest
 
 
-def test_read_setup_cfg(tmpdir):
+def test_read_bobtemplate_ini(tmpdir):
     configurator = Configurator(
         template='bobtemplates.plone:addon',
         target_directory='collective.todo',
     )
-    base.read_setup_cfg(configurator)
+    base.read_bobtemplates_ini(configurator)
 
-    template = """[check-manifest]
-check=True
-
-[tool:bobtemplates.plone]
+    template = """[main]
 version=5.1
 """
     target_dir = tmpdir.strpath + '/collective.foo'
     os.mkdir(target_dir)
-    with open(os.path.join(target_dir + '/setup.cfg'), 'w') as f:
+    with open(os.path.join(target_dir + '/bobtemplate.cfg'), 'w') as f:
         f.write(template)
 
     configurator = Configurator(
         template='bobtemplates.plone:addon',
         target_directory=target_dir,
     )
-    base.read_setup_cfg(configurator)
+    base.read_bobtemplates_ini(configurator)
 
 
 def test_set_global_vars(tmpdir):
     template = """
-[tool:bobtemplates.plone]
+[main]
 version=5.1
 """
     target_dir = tmpdir.strpath + '/collective.foo'
     os.mkdir(target_dir)
-    with open(os.path.join(target_dir + '/setup.cfg'), 'w') as f:
+    with open(os.path.join(target_dir + '/bobtemplate.cfg'), 'w') as f:
         f.write(template)
     configurator = Configurator(
         template='bobtemplates.plone:addon',

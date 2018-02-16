@@ -30,6 +30,7 @@ Changelog
   [svx]
 
 - Update link to docs.plone.org in README
+- Imporve docs template for valid reST generation
   [svx]
 
 3.0.0a3 (2017-10-30)

@@ -6,6 +6,7 @@ from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import get_file_path
 from bobtemplates.plone.base import get_example_file_path
 from bobtemplates.plone.base import write_xml_tree_to_file
+from bobtemplates.plone.base import get_xml_tree
 from lxml import etree
 
 import os
@@ -39,9 +40,7 @@ class {0}View(BrowserView):
 def _update_configure_zcml(configurator):
     file_name = u'configure.zcml'
     dir_name = u'browser'
-
     file_path = get_file_path(configurator, dir_name, file_name) 
-    example_file_path = get_example_file_path(configurator, dir_name, file_name) 
 
     with open(file_path, 'r') as xml_file:
         tree = get_xml_tree(xml_file)
@@ -70,8 +69,7 @@ def prepare_renderer(configurator):
     view_name = configurator.variables['view_name']
     configurator.variables['view_name_klass'] = get_klass_name(view_name) 
     configurator.variables['view_name_normalized'] = \
-    get_normalized_name(view_name)
-    return configurator
+        get_normalized_name(view_name)
 
 def post_renderer(configurator):
     _update_views_py(configurator)

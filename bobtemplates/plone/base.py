@@ -75,6 +75,17 @@ def is_string_in_file(configurator, file_path, match_str):
     return False
 
 
+def write_xml_tree_to_file(tree, file_path):
+    with open(file_path, 'wb') as xml_file:
+        tree.write(
+            xml_file,
+            pretty_print=True,
+            xml_declaration=True,
+            encoding='utf-8',
+        )
+    return
+
+
 def update_file(configurator, file_path, match_str, insert_str):
     """Insert insert_str into given file, by match_str."""
     changed = False
@@ -104,6 +115,13 @@ def update_file(configurator, file_path, match_str, insert_str):
         print(insert_str)
 
 
+def create_file_if_not_exists(file_path, example_file_path):
+    file_list = os.listdir(os.path.dirname(file_path))
+    file_name = os.path.basename(file_path)
+    if file_name not in file_list:
+        os.rename(example_file_path, file_path)
+    return
+
 def _get_package_root_folder(configurator):
     file_name = 'setup.py'
     root_folder = None
@@ -120,6 +138,20 @@ def _get_package_root_folder(configurator):
                 break
             cur_dir = parent_dir
     return root_folder
+
+
+def get_file_path(configurator, dir_name, file_name):
+    file_path = os.path.join(
+        os.path.join(configurator.target_directory, dir_name),
+        file_name
+        )
+    return file_path
+
+
+def get_example_file_path(configurator, dir_name, file_name):
+    example_file_name = file_name + '.example'
+    example_file_path = get_file_path(configurator, dir_name, example_file_name)
+    return example_file_path
 
 
 def check_root_folder(configurator, question):
@@ -141,6 +173,16 @@ def check_root_folder(configurator, question):
 def dottedname_to_path(dottedname):
     path = '/'.join(dottedname.split('.'))
     return path
+
+
+def get_klass_name(name):
+    klass_name = name.title().replace(' ','')
+    return klass_name
+
+
+def get_normalized_name(name):
+    normalized_name = name.replace(' ', '_').lower()
+    return normalized_name
 
 
 def base_prepare_renderer(configurator):
@@ -188,3 +230,10 @@ def subtemplate_warning_post_question(configurator, question, answer):
         print('Abort!')
         sys.exit(0)
     return answer
+
+def prepare_renderer_for_subtemplate(configurator, subtemplate):
+    configurator = base_prepare_renderer(configurator)
+    configurator.variables['template_id'] = subtemplate
+    configurator.target_directory = configurator.variables['package_folder']
+    return configurator
+

@@ -48,7 +48,7 @@ def _update_configure_zcml(configurator):
         configure_tag = tree.getroot()
 
         attributes = {
-            'name' : configurator.variables['view_name'] ,
+            'name' : configurator.variables['view_name_normalized'] ,
             'for' : '*',
             'class' : \
             '.views.' + configurator.variables['view_name_klass'] + 'View',

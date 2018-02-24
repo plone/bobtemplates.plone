@@ -8,7 +8,7 @@ First create a Plone Addon Package:
 
 .. code-block:: sh
 
-    mrbob -O collective.todos bobtemplates.plone:plone_addon
+    mrbob -O collective.todos bobtemplates.plone:addon
 
 then change into the created folder ``collective.todos`` and create your first Content Type:
 

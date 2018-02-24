@@ -47,8 +47,11 @@ def _update_configure_zcml(configurator):
     attributes = {
         'name': configurator.variables['viewlet_name_normalized'],
         'for': '*',
+        'manager': "plone.app.layout.viewlets.interfaces.I" + \
+            configurator.variables['manager_name_klass'],
         'class': \
             '.viewlets.' + configurator.variables['viewlet_name_klass'] + 'Viewlet',
+        'layer': "zope.interface.Interface",
         'template': 'templates/' + \
             configurator.variables['viewlet_name_normalized'] + '.pt',
         'permission': 'zope2.View'
@@ -66,6 +69,8 @@ def prepare_renderer(configurator):
     configurator.variables['viewlet_name_klass'] = get_klass_name(name)
     configurator.variables['viewlet_name_normalized'] = \
         get_normalized_name(name)
+    configurator.variables['manager_name_klass'] = \
+        get_klass_name(configurator.variables['manager'])
     return
 
 

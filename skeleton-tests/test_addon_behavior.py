@@ -39,7 +39,10 @@ plone.version = {version}
     assert result == 0
 
     wd = os.path.abspath(
-        os.path.join(tmpdir.strpath, config.package_name),
+        os.path.join(
+            tmpdir.strpath,
+            config.package_name,
+        ),
     )
 
     # generate subtemplate content_type:
@@ -86,22 +89,25 @@ subtemplate_warning = Yes
         )
         assert install_buildout_result == 0
         annotate_result = subprocess.call(
-            ['bin/buildout', 'annotate', ],
+            [
+                'bin/buildout',
+                'annotate',
+            ],
             cwd=wd,
         )
         assert annotate_result == 0
         buildout_result = subprocess.call(
-            ['bin/buildout', ],
+            ['bin/buildout'],
             cwd=wd,
         )
         assert buildout_result == 0
         test_result = subprocess.call(
-            ['bin/test', ],
+            ['bin/test'],
             cwd=wd,
         )
         assert test_result == 0
         test__code_convention_result = subprocess.call(
-            ['bin/code-analysis', ],
+            ['bin/code-analysis'],
             cwd=wd,
         )
         assert test__code_convention_result == 0

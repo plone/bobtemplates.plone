@@ -1,45 +1,61 @@
 # -*- coding: utf-8 -*-
 
 from bobtemplates.plone import base
+from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
 import os
 import pytest
 
 
-def test_read_setup_cfg(tmpdir):
+def test_check_klass_name():
+    """Test validation of entered class names
+    """
+    def hookit(value):
+        return base.check_klass_name(None, None, value)
+
+    with pytest.raises(ValidationError):
+        hookit('import')
+    with pytest.raises(ValidationError):
+        hookit(u'süpertype')
+    with pytest.raises(ValidationError):
+        hookit(u'2ndComing')
+    with pytest.raises(ValidationError):
+        hookit(u'*sterisk')
+    assert hookit(u'Supertype') == u'Supertype'
+    assert hookit(u'second_coming') == u'second_coming'
+
+
+def test_read_bobtemplate_ini(tmpdir):
     configurator = Configurator(
         template='bobtemplates.plone:addon',
         target_directory='collective.todo',
     )
-    base.read_setup_cfg(configurator)
+    base.read_bobtemplates_ini(configurator)
 
-    template = """[check-manifest]
-check=True
-
-[tool:bobtemplates.plone]
+    template = """[main]
 version=5.1
 """
     target_dir = tmpdir.strpath + '/collective.foo'
     os.mkdir(target_dir)
-    with open(os.path.join(target_dir + '/setup.cfg'), 'w') as f:
+    with open(os.path.join(target_dir + '/bobtemplate.cfg'), 'w') as f:
         f.write(template)
 
     configurator = Configurator(
         template='bobtemplates.plone:addon',
         target_directory=target_dir,
     )
-    base.read_setup_cfg(configurator)
+    base.read_bobtemplates_ini(configurator)
 
 
 def test_set_global_vars(tmpdir):
     template = """
-[tool:bobtemplates.plone]
+[main]
 version=5.1
 """
     target_dir = tmpdir.strpath + '/collective.foo'
     os.mkdir(target_dir)
-    with open(os.path.join(target_dir + '/setup.cfg'), 'w') as f:
+    with open(os.path.join(target_dir + '/bobtemplate.cfg'), 'w') as f:
         f.write(template)
     configurator = Configurator(
         template='bobtemplates.plone:addon',

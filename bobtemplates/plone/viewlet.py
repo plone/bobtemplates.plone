@@ -26,11 +26,13 @@ def _update_viewlets_py(configurator):
     match_str = '-*- Extra viewlets go here -*-'
     insert_str = """
 class {0}Viewlet(ViewletBase):
+    \"\"\" {1} \"\"\"
     pass
     """
     
     insert_str = insert_str.format(
-        configurator.variables['viewlets_klass_name']
+        configurator.variables['viewlets_klass_name'],
+        configurator.variables['title']
     )
 
     update_file(configurator, file_path, insert_str, match_str) 
@@ -47,7 +49,8 @@ def _update_configure_zcml(configurator):
         'for': '*',
         'class': \
             '.viewlets.' + configurator.variables['viewlet_name_klass'] + 'Viewlet',
-        'template': 'templates/' + configurator.variables['viewlet_name'],
+        'template': 'templates/' + \
+            configurator.variables['viewlet_name_normalized'] + '.pt',
         'permission': 'zope2.View'
     }
 

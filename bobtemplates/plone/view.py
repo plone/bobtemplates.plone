@@ -49,7 +49,8 @@ def _update_configure_zcml(configurator):
         'for': '*',
         'class': \
             '.views.' + configurator.variables['view_name_klass'] + 'View',
-        'template': 'templates/' + configurator.variables['view_name'] + '.pt',
+        'template': 'templates/' + \
+            configurator.variables['view_name_normalized'] + '.pt',
         'permission': 'zope2.View'
     }
 

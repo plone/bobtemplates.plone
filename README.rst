@@ -74,6 +74,40 @@ It is also available online at http://docs.plone.org/develop/addons/bobtemplates
 Installation
 ============
 
+You can install bobtemplates.plone as every other normal Python package with pip inside a virtuelenv or better with pipenv.
+
+
+Installion with pipenv
+----------------------
+
+.. code-block:: console
+
+    pipenv install bobtemplates.plone>=3.0.0a3
+
+
+Installation with pip in a virtualenv
+-------------------------------------
+
+You can also install ``bobtemplates.plone`` with pip in a virtualenv.
+If you don't have an active virtualenv, you can create one inside your project directory.
+
+.. code-block:: bash
+
+    virtualenv .
+
+Then either activate the virtualenv:
+
+.. code-block:: bash
+
+    source ./bin/activate
+
+or just use the binaries directly inside the bin folder as below:
+
+.. code-block:: console
+
+    ./bin/pip install bobtemplates.plone>=3.0.0a3
+
+
 Use in a buildout
 -----------------
 
@@ -86,40 +120,29 @@ Use in a buildout
     recipe = zc.recipe.egg
     eggs =
         mr.bob
-        bobtemplates.plone
-
+        bobtemplates.plone>=3.0.0a3
 
 This creates a mrbob-executable in your bin-directory.
-Call it from the ``src``-directory of your Plone project like this.
+
+
+Usage
+-----
+
+As bobtemplates.plone is a template for mrbob, we use mrbob to run the templates.
+
+If you are using buildout or a unactivated virtualenv, you can use mrbob like this:
 
 .. code-block:: console
 
-    ../bin/mrbob bobtemplates.plone:addon -O collective.foo
+    ./bin/mrbob bobtemplates.plone:addon -O src/collective.foo
 
-
-Installation in a virtualenv
-----------------------------
-
-You can also install ``bobtemplates.plone`` in a virtualenv.
+If you are using pipenv or an activated virtualenv, you can use mrbob like this:
 
 .. code-block:: console
 
-    pip install bobtemplates.plone
+    mrbob bobtemplates.plone:addon -O src/collective.foo
 
-With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency.
-If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
-
-.. code-block:: console
-
-    pip install mr.bob
-
-Now you can use it like this
-
-.. code-block:: console
-
-    mrbob bobtemplates.plone:addon -O collective.foo
-
-
+This will create your Plone package inside the ``src`` directory.
 
 See `the documentation of mr.bob <http://mrbob.readthedocs.org/en/latest/>`_  for further information.
 

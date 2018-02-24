@@ -1,5 +1,0 @@
-<configure xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    i18n_domain="{{{ package.dottedname }}}">
-
-</configure>

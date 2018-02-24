@@ -115,12 +115,26 @@ def update_file(configurator, file_path, match_str, insert_str):
         print(insert_str)
 
 
+def add_xml_tag_to_root(file_path, tag, atrributes):
+    with open(file_path, 'r') as xml_file:
+        tree = get_xml_tree(xml_file)
+        configure_tag = tree.getroot()
+
+        _ = etree.SubElement(configure_tag,
+                             tag,
+                             attrib=attributes)
+
+    write_xml_tree_to_file(tree, file_path)
+    return
+
+
 def create_file_if_not_exists(file_path, example_file_path):
     file_list = os.listdir(os.path.dirname(file_path))
     file_name = os.path.basename(file_path)
     if file_name not in file_list:
         os.rename(example_file_path, file_path)
     return
+
 
 def _get_package_root_folder(configurator):
     file_name = 'setup.py'

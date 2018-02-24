@@ -7,6 +7,8 @@ from bobtemplates.plone.base import get_file_path
 from bobtemplates.plone.base import get_example_file_path
 from bobtemplates.plone.base import write_xml_tree_to_file
 from bobtemplates.plone.base import get_xml_tree
+from bobtemplates.plone.base import add_xml_tag_to_root
+from bobtemplates.plone.base import get_browser_namespace
 from lxml import etree
 
 import os
@@ -42,24 +44,17 @@ def _update_configure_zcml(configurator):
     dir_name = u'browser'
     file_path = get_file_path(configurator, dir_name, file_name) 
 
-    with open(file_path, 'r') as xml_file:
-        tree = get_xml_tree(xml_file)
-        configure_tag = tree.getroot()
-
-        attributes = {
-            'name' : configurator.variables['view_name_normalized'] ,
-            'for' : '*',
-            'class' : \
+    attributes = {
+        'name': configurator.variables['view_name_normalized'] ,
+        'for': '*',
+        'class': \
             '.views.' + configurator.variables['view_name_klass'] + 'View',
-            'template' : 'templates/' + configurator.variables['view_name'],
-            'permission' : 'zope2.View'
-        }
+        'template': 'templates/' + configurator.variables['view_name'] + '.pt',
+        'permission': 'zope2.View'
+    }
 
-        _ = etree.SubElement(configure_tag,
-                             '{http://namespaces.zope.org/browser}page',
-                             attrib=attributes)
-
-    write_xml_tree_to_file(tree, file_path)
+    tag = get_browser_namespace() + 'page'
+    add_xml_tag_to_root(file_path, tag, attributes)
     return
 
 

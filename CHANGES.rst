@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.0a4 (unreleased)
+3.0.0a4 (2018-02-25)
 --------------------
 
 - Quote version strings in YAML. See: https://github.com/travis-ci/docs-travis-ci-com/issues/1540
@@ -30,8 +30,11 @@ Changelog
   [svx]
 
 - Update link to docs.plone.org in README
+  [svx]
+
 - Imporve docs template for valid reST generation
   [svx]
+
 - use bobtemplate.cfg to store meta data for sub-templates #245
   [MrTango]
 

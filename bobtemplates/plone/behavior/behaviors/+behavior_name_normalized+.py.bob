@@ -16,7 +16,7 @@ class I{{{behavior_name_klass}}}(model.Schema):
     # project = schema.Choice(
     #     title=_(u"Project"),
     #     required=False,
-    #     vocabulary='{{{package.dottedname}}}.vocabularies.projects'
+    #     vocabulary='{{{package.dottedname}}}.Projects'
     # )
 
 

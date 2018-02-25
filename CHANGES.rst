@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.0a4 (2018-02-25)
+3.0.0b1 (2018-02-25)
 --------------------
 
 - Quote version strings in YAML. See: https://github.com/travis-ci/docs-travis-ci-com/issues/1540

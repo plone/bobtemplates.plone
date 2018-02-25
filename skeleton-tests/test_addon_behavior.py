@@ -47,7 +47,7 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
-vocabulary_name = AvailableTodos
+behavior_name = AttachmentType
 subtemplate_warning = Yes
 """
     generate_answers_ini(wd, template)
@@ -64,9 +64,9 @@ subtemplate_warning = Yes
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/todo/vocabularies/configure.zcml')
+    assert file_exists(wd, '/src/collective/todo/behaviors/configure.zcml')
     assert file_exists(
-        wd, '/src/collective/todo/vocabularies/available_todos.py')  # NOQA: S101,E501
+        wd, '/src/collective/todo/behaviors/attachment_type.py')  # NOQA: S101,E501
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
         setup_virtualenv_result = subprocess.call(

@@ -22,5 +22,6 @@ class {{{ behavior_name_klass }}}IntegrationTest(unittest.TestCase):
 
     def test_behavior(self):
         vocab_name = "{{{ package.dottedname }}}.{{{ behavior_name_klass }}}"
+        # XXX: add test here!
         # test the behavior
-        assertTrue(False)
+        # self.assertTrue(False)

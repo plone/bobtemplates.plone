@@ -4,7 +4,8 @@ Changelog
 3.0.0b2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- fixed FTI configuration, removed the plone_lock_info condition
+  [MrTango]
 
 
 3.0.0b1 (2018-02-25)

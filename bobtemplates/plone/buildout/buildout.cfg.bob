@@ -9,7 +9,7 @@ versions = versions
 parts += test
 
 
-eggs +=
+eggs += 
 
 
 develop =

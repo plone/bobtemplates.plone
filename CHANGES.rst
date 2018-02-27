@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.0b2 (unreleased)
+3.0.0b2 (2018-02-27)
 --------------------
 
 - fixed FTI configuration, removed the plone_lock_info condition

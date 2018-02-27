@@ -52,6 +52,7 @@ These templates are meant to be used inside a package which was created by the a
 - theme
 - content_type
 - vocabulary
+- behavior
 
 
 Compatibility

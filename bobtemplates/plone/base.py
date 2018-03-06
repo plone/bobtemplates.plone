@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import date
+from lxml import etree
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import ValidationError
 
@@ -115,14 +116,18 @@ def update_file(configurator, file_path, match_str, insert_str):
         print(insert_str)
 
 
-def add_xml_tag_to_root(file_path, tag, atrributes):
+def get_xml_tree(xml_file):
+    parser = etree.getXMLParser(remove_blank_text=True)
+    tree = etree.parse(xml_file, parser)
+    return tree
+
+
+def add_xml_tag_to_root(file_path, tag, attributes):
     with open(file_path, 'r') as xml_file:
         tree = get_xml_tree(xml_file)
         configure_tag = tree.getroot()
 
-        _ = etree.SubElement(configure_tag,
-                             tag,
-                             attrib=attributes)
+        etree.SubElement(configure_tag, tag, attrib=attributes)
 
     write_xml_tree_to_file(tree, file_path)
     return
@@ -158,13 +163,14 @@ def get_file_path(configurator, dir_name, file_name):
     file_path = os.path.join(
         os.path.join(configurator.target_directory, dir_name),
         file_name
-        )
+    )
     return file_path
 
 
 def get_example_file_path(configurator, dir_name, file_name):
     example_file_name = file_name + '.example'
-    example_file_path = get_file_path(configurator, dir_name, example_file_name)
+    example_file_path = get_file_path(configurator, dir_name,
+                                      example_file_name)
     return example_file_path
 
 
@@ -190,7 +196,7 @@ def dottedname_to_path(dottedname):
 
 
 def get_klass_name(name):
-    klass_name = name.title().replace(' ','')
+    klass_name = name.title().replace(' ', '')
     return klass_name
 
 
@@ -244,6 +250,7 @@ def subtemplate_warning_post_question(configurator, question, answer):
         print('Abort!')
         sys.exit(0)
     return answer
+
 
 def prepare_renderer_for_subtemplate(configurator, subtemplate):
     configurator = base_prepare_renderer(configurator)

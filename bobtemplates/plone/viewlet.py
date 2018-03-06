@@ -5,19 +5,14 @@ from bobtemplates.plone.base import get_example_file_path
 from bobtemplates.plone.base import get_file_path
 from bobtemplates.plone.base import get_klass_name
 from bobtemplates.plone.base import get_normalized_name
-from bobtemplates.plone.base import get_xml_tree
 from bobtemplates.plone.base import prepare_renderer_for_subtemplate
 from bobtemplates.plone.base import update_file
-from bobtemplates.plone.base import write_xml_tree_to_file
-from lxml import etree
-
-import os
 
 
 def _update_viewlets_py(configurator):
     file_name = u'viewlets.py'
     dir_name = u'browser'
-    
+
     file_path = get_file_path(configurator, dir_name, file_name)
     example_file_path = get_example_file_path(configurator, dir_name,
                                               file_name)
@@ -29,31 +24,31 @@ class {0}Viewlet(ViewletBase):
     \"\"\" {1} \"\"\"
     pass
     """
-    
+
     insert_str = insert_str.format(
         configurator.variables['viewlets_klass_name'],
         configurator.variables['title']
     )
 
-    update_file(configurator, file_path, insert_str, match_str) 
+    update_file(configurator, file_path, insert_str, match_str)
     return
 
 
 def _update_configure_zcml(configurator):
     file_name = u'configure.zcml'
     dir_name = u'browser'
-    file_path = get_file_path(configurator, dir_name, file_name) 
+    file_path = get_file_path(configurator, dir_name, file_name)
 
     attributes = {
         'name': configurator.variables['viewlet_name_normalized'],
         'for': '*',
-        'manager': "plone.app.layout.viewlets.interfaces.I" + \
-            configurator.variables['manager_name_klass'],
-        'class': \
-            '.viewlets.' + configurator.variables['viewlet_name_klass'] + 'Viewlet',
+        'manager': "plone.app.layout.viewlets.interfaces.I" +
+                   configurator.variables['manager_name_klass'],
+        'class': '.viewlets.' + configurator.variables['viewlet_name_klass'] +
+                 'Viewlet',
         'layer': "zope.interface.Interface",
-        'template': 'templates/' + \
-            configurator.variables['viewlet_name_normalized'] + '.pt',
+        'template': 'templates/' +
+                    configurator.variables['viewlet_name_normalized'] + '.pt',
         'permission': 'zope2.View'
     }
 

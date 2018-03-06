@@ -250,4 +250,3 @@ def prepare_renderer_for_subtemplate(configurator, subtemplate):
     configurator.variables['template_id'] = subtemplate
     configurator.target_directory = configurator.variables['package_folder']
     return configurator
-

@@ -1,14 +1,14 @@
-from bobtemplates.plone.base import prepare_renderer_for_subtemplate
+from bobtemplates.plone.base import add_xml_tag_to_root
+from bobtemplates.plone.base import create_file_if_not_exists
+from bobtemplates.plone.base import get_browser_namespace
+from bobtemplates.plone.base import get_example_file_path
+from bobtemplates.plone.base import get_file_path
 from bobtemplates.plone.base import get_klass_name
 from bobtemplates.plone.base import get_normalized_name
-from bobtemplates.plone.base import create_file_if_not_exists
-from bobtemplates.plone.base import update_file
-from bobtemplates.plone.base import get_file_path
-from bobtemplates.plone.base import get_example_file_path
-from bobtemplates.plone.base import write_xml_tree_to_file
 from bobtemplates.plone.base import get_xml_tree
-from bobtemplates.plone.base import add_xml_tag_to_root
-from bobtemplates.plone.base import get_browser_namespace
+from bobtemplates.plone.base import prepare_renderer_for_subtemplate
+from bobtemplates.plone.base import update_file
+from bobtemplates.plone.base import write_xml_tree_to_file
 from lxml import etree
 
 import os
@@ -78,4 +78,3 @@ def post_renderer(configurator):
     _update_configure_zcml(configurator)
     _update_viewlets_py(configurator)
     return
-

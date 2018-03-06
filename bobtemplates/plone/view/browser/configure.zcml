@@ -1,0 +1,28 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plonetheme.tango">
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="plonetheme.tango.interfaces.IPlonethemeTangoLayer"
+      />
+
+  <!-- Publish static files -->
+  <plone:static
+      name="plonetheme.tango"
+      type="plone"
+      directory="static"
+      />
+      
+  <browser:page
+  for="*"
+  name="test"
+  permission="zope2.Public"
+  template="templates/myview.pt"
+  />
+
+</configure>

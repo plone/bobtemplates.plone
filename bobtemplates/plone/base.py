@@ -162,15 +162,16 @@ def _get_package_root_folder(configurator):
 def get_file_path(configurator, dir_name, file_name):
     file_path = os.path.join(
         os.path.join(configurator.target_directory, dir_name),
-        file_name
+        file_name,
     )
     return file_path
 
 
 def get_example_file_path(configurator, dir_name, file_name):
     example_file_name = file_name + '.example'
-    example_file_path = get_file_path(configurator, dir_name,
-                                      example_file_name)
+    example_file_path = get_file_path(
+        configurator, dir_name, example_file_name,
+    )
     return example_file_path
 
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from bobtemplates.plone.base import add_xml_tag_to_root
 from bobtemplates.plone.base import create_file_if_not_exists
 from bobtemplates.plone.base import get_browser_namespace
@@ -14,8 +15,9 @@ def _update_viewlets_py(configurator):
     dir_name = u'browser'
 
     file_path = get_file_path(configurator, dir_name, file_name)
-    example_file_path = get_example_file_path(configurator, dir_name,
-                                              file_name)
+    example_file_path = get_example_file_path(
+        configurator, dir_name, file_name,
+    )
     create_file_if_not_exists(file_path, example_file_path)
 
     match_str = '-*- Extra viewlets go here -*-'
@@ -27,7 +29,7 @@ class {0}Viewlet(ViewletBase):
 
     insert_str = insert_str.format(
         configurator.variables['viewlets_klass_name'],
-        configurator.variables['title']
+        configurator.variables['title'],
     )
 
     update_file(configurator, file_path, insert_str, match_str)
@@ -42,14 +44,14 @@ def _update_configure_zcml(configurator):
     attributes = {
         'name': configurator.variables['viewlet_name_normalized'],
         'for': '*',
-        'manager': "plone.app.layout.viewlets.interfaces.I" +
+        'manager': 'plone.app.layout.viewlets.interfaces.I' +
                    configurator.variables['manager_name_klass'],
         'class': '.viewlets.' + configurator.variables['viewlet_name_klass'] +
                  'Viewlet',
-        'layer': "zope.interface.Interface",
+        'layer': 'zope.interface.Interface',
         'template': 'templates/' +
                     configurator.variables['viewlet_name_normalized'] + '.pt',
-        'permission': 'zope2.View'
+        'permission': 'zope2.View',
     }
 
     tag = get_browser_namespace() + 'viewlet'
@@ -58,8 +60,9 @@ def _update_configure_zcml(configurator):
 
 
 def prepare_renderer(configurator):
-    configurator = prepare_renderer_for_subtemplate(configurator,
-                                                    subtemplate='viewlet')
+    configurator = prepare_renderer_for_subtemplate(
+        configurator, subtemplate='viewlet',
+    )
     name = configurator.variables['viewlet_name']
     configurator.variables['viewlet_name_klass'] = get_klass_name(name)
     configurator.variables['viewlet_name_normalized'] = \

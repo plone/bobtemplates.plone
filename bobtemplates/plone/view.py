@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from bobtemplates.plone.base import add_xml_tag_to_root
 from bobtemplates.plone.base import create_file_if_not_exists
 from bobtemplates.plone.base import get_browser_namespace
@@ -15,7 +16,7 @@ def _update_views_py(configurator):
 
     views_file_path = get_file_path(configurator, views_dir, views_file_name)
     views_example_file_path = get_example_file_path(
-        configurator, views_dir, views_file_name
+        configurator, views_dir, views_file_name,
     )
     create_file_if_not_exists(views_file_path, views_example_file_path)
 
@@ -30,7 +31,7 @@ class {0}View(BrowserView):
     insert_str = insert_str.format(
         configurator.variables['view_name_klass'],
         configurator.variables['description'],
-        configurator.variables['title']
+        configurator.variables['title'],
     )
 
     update_file(configurator, views_file_path, insert_str, match_str)
@@ -49,7 +50,7 @@ def _update_configure_zcml(configurator):
             '.views.' + configurator.variables['view_name_klass'] + 'View',
         'template': 'templates/' +
             configurator.variables['view_name_normalized'] + '.pt',
-        'permission': 'zope2.View'
+        'permission': 'zope2.View',
     }
 
     tag = get_browser_namespace() + 'page'
@@ -58,8 +59,10 @@ def _update_configure_zcml(configurator):
 
 
 def prepare_renderer(configurator):
-    configurator = prepare_renderer_for_subtemplate(configurator,
-                                                    subtemplate='view')
+    configurator = prepare_renderer_for_subtemplate(
+        configurator,
+        subtemplate='view',
+    )
     view_name = configurator.variables['view_name']
     configurator.variables['view_name_klass'] = get_klass_name(view_name)
     configurator.variables['view_name_normalized'] = \

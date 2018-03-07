@@ -1,5 +1,5 @@
-from Products.Five.browser import BrowserView
 from operator import itemgetter
+from Products.Five.browser import BrowserView
 
 
 class DemoView(BrowserView):
@@ -36,5 +36,3 @@ class DemoView(BrowserView):
             )
             results.append(talk)
         return sorted(results, key=itemgetter('title'))
-
- 

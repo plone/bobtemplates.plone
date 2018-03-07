@@ -75,7 +75,7 @@ It is also available online at http://docs.plone.org/develop/addons/bobtemplates
 Installation
 ============
 
-You can install bobtemplates.plone as every other normal Python package with pip inside a virtuelenv or better with pipenv.
+You can install bobtemplates.plone as every other normal Python package with `pip <https://pypi.python.org/pypi/pip>`_ inside a `virtuelenv <https://pypi.python.org/pypi/virtualenv>`_ or better with `pipenv <https://pypi.python.org/pypi/pipenv>`_.
 
 
 Installion with pipenv
@@ -129,15 +129,27 @@ This creates a mrbob-executable in your bin-directory.
 Usage
 -----
 
-As bobtemplates.plone is a template for mrbob, we use mrbob to run the templates.
+As bobtemplates.plone is a template for `mr.bob <https://pypi.python.org/pypi/mr.bob>`_, we use mrbob to run the templates.
 
-If you are using buildout or a unactivated virtualenv, you can use mrbob like this:
+If you are using `buildout <https://pypi.python.org/pypi/zc.buildout>`_  or an unactivated `virtualenv <https://pypi.python.org/pypi/virtualenv>`_, you can use mrbob like this:
 
 .. code-block:: console
 
     ./bin/mrbob bobtemplates.plone:addon -O src/collective.foo
 
 If you are using pipenv or an activated virtualenv, you can use mrbob like this:
+
+Activate pipenv shell:
+
+.. code-block:: console
+
+    pipenv shell
+
+or activate your virtualenv:
+
+.. code-block:: console
+
+    source bin/activate
 
 .. code-block:: console
 

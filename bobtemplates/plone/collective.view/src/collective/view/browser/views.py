@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 from Products.Five.browser import BrowserView
 from operator import itemgetter
 
 
 class DemoView(BrowserView):
-    """A demo listing"""
+    
 
     def the_title(self):
         return u'A list of talks:'
@@ -37,3 +36,5 @@ class DemoView(BrowserView):
             )
             results.append(talk)
         return sorted(results, key=itemgetter('title'))
+
+ 

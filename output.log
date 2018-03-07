@@ -1,0 +1,78 @@
+py27-packagetests create: /home/ubuntu/bobtemplates.plone/.tox/py27-packagetests
+py27-packagetests installdeps: -cconstraints.txt, pdbpp, pytest, pytest-cov, pytest-remove-stale-bytecode, pytest-mock, pytest-html
+ERROR: invocation failed (exit code 2), logfile: /home/ubuntu/bobtemplates.plone/.tox/py27-packagetests/log/py27-packagetests-1.log
+ERROR: actionid: py27-packagetests
+msg: getenv
+cmdargs: ['/home/ubuntu/bobtemplates.plone/.tox/py27-packagetests/bin/pip', 'install', '-cconstraints.txt', 'pdbpp', 'pytest', 'pytest-cov', 'pytest-remove-stale-bytecode', 'pytest-mock', 'pytest-html']
+
+
+Usage:   
+  pip install [options] <requirement specifier> ...
+  pip install [options] -r <requirements file> ...
+  pip install [options] [-e] <vcs project url> ...
+  pip install [options] [-e] <local project path> ...
+  pip install [options] <archive url/path> ...
+
+no such option: -c
+
+ERROR: could not install deps [-cconstraints.txt, pdbpp, pytest, pytest-cov, pytest-remove-stale-bytecode, pytest-mock, pytest-html]; v = InvocationError('/home/ubuntu/bobtemplates.plone/.tox/py27-packagetests/bin/pip install -cconstraints.txt pdbpp pytest pytest-cov pytest-remove-stale-bytecode pytest-mock pytest-html (see /home/ubuntu/bobtemplates.plone/.tox/py27-packagetests/log/py27-packagetests-1.log)', 2)
+py34-packagetests create: /home/ubuntu/bobtemplates.plone/.tox/py34-packagetests
+py34-packagetests installdeps: -cconstraints.txt, pdbpp, pytest, pytest-cov, pytest-remove-stale-bytecode, pytest-mock, pytest-html
+ERROR: invocation failed (exit code 2), logfile: /home/ubuntu/bobtemplates.plone/.tox/py34-packagetests/log/py34-packagetests-1.log
+ERROR: actionid: py34-packagetests
+msg: getenv
+cmdargs: ['/home/ubuntu/bobtemplates.plone/.tox/py34-packagetests/bin/pip', 'install', '-cconstraints.txt', 'pdbpp', 'pytest', 'pytest-cov', 'pytest-remove-stale-bytecode', 'pytest-mock', 'pytest-html']
+
+
+Usage:   
+  pip install [options] <requirement specifier> ...
+  pip install [options] -r <requirements file> ...
+  pip install [options] [-e] <vcs project url> ...
+  pip install [options] [-e] <local project path> ...
+  pip install [options] <archive url/path> ...
+
+no such option: -c
+
+ERROR: could not install deps [-cconstraints.txt, pdbpp, pytest, pytest-cov, pytest-remove-stale-bytecode, pytest-mock, pytest-html]; v = InvocationError('/home/ubuntu/bobtemplates.plone/.tox/py34-packagetests/bin/pip install -cconstraints.txt pdbpp pytest pytest-cov pytest-remove-stale-bytecode pytest-mock pytest-html (see /home/ubuntu/bobtemplates.plone/.tox/py34-packagetests/log/py34-packagetests-1.log)', 2)
+py35-packagetests create: /home/ubuntu/bobtemplates.plone/.tox/py35-packagetests
+py35-packagetests installdeps: -cconstraints.txt, pdbpp, pytest, pytest-cov, pytest-remove-stale-bytecode, pytest-mock, pytest-html
+ERROR: invocation failed (exit code 2), logfile: /home/ubuntu/bobtemplates.plone/.tox/py35-packagetests/log/py35-packagetests-1.log
+ERROR: actionid: py35-packagetests
+msg: getenv
+cmdargs: ['/home/ubuntu/bobtemplates.plone/.tox/py35-packagetests/bin/pip', 'install', '-cconstraints.txt', 'pdbpp', 'pytest', 'pytest-cov', 'pytest-remove-stale-bytecode', 'pytest-mock', 'pytest-html']
+
+
+Usage:   
+  pip install [options] <requirement specifier> ...
+  pip install [options] -r <requirements file> ...
+  pip install [options] [-e] <vcs project url> ...
+  pip install [options] [-e] <local project path> ...
+  pip install [options] <archive url/path> ...
+
+no such option: -c
+
+ERROR: could not install deps [-cconstraints.txt, pdbpp, pytest, pytest-cov, pytest-remove-stale-bytecode, pytest-mock, pytest-html]; v = InvocationError('/home/ubuntu/bobtemplates.plone/.tox/py35-packagetests/bin/pip install -cconstraints.txt pdbpp pytest pytest-cov pytest-remove-stale-bytecode pytest-mock pytest-html (see /home/ubuntu/bobtemplates.plone/.tox/py35-packagetests/log/py35-packagetests-1.log)', 2)
+py36-packagetests create: /home/ubuntu/bobtemplates.plone/.tox/py36-packagetests
+ERROR: InterpreterNotFound: python3.6
+pypy-packagetests create: /home/ubuntu/bobtemplates.plone/.tox/pypy-packagetests
+ERROR: InterpreterNotFound: pypy
+py27-skeletontests-Plone-4.3-template-addon create: /home/ubuntu/bobtemplates.plone/.tox/py27-skeletontests-Plone-4.3-template-addon
+py27-skeletontests-Plone-4.3-template-addon installdeps: -cconstraints.txt, pdbpp, pytest, pytest-cov, pytest-remove-stale-bytecode, pytest-mock, pytest-html
+ERROR: invocation failed (exit code 2), logfile: /home/ubuntu/bobtemplates.plone/.tox/py27-skeletontests-Plone-4.3-template-addon/log/py27-skeletontests-Plone-4.3-template-addon-1.log
+ERROR: actionid: py27-skeletontests-Plone-4.3-template-addon
+msg: getenv
+cmdargs: ['/home/ubuntu/bobtemplates.plone/.tox/py27-skeletontests-Plone-4.3-template-addon/bin/pip', 'install', '-cconstraints.txt', 'pdbpp', 'pytest', 'pytest-cov', 'pytest-remove-stale-bytecode', 'pytest-mock', 'pytest-html']
+
+
+Usage:   
+  pip install [options] <requirement specifier> ...
+  pip install [options] -r <requirements file> ...
+  pip install [options] [-e] <vcs project url> ...
+  pip install [options] [-e] <local project path> ...
+  pip install [options] <archive url/path> ...
+
+no such option: -c
+
+ERROR: could not install deps [-cconstraints.txt, pdbpp, pytest, pytest-cov, pytest-remove-stale-bytecode, pytest-mock, pytest-html]; v = InvocationError('/home/ubuntu/bobtemplates.plone/.tox/py27-skeletontests-Plone-4.3-template-addon/bin/pip install -cconstraints.txt pdbpp pytest pytest-cov pytest-remove-stale-bytecode pytest-mock pytest-html (see /home/ubuntu/bobtemplates.plone/.tox/py27-skeletontests-Plone-4.3-template-addon/log/py27-skeletontests-Plone-4.3-template-addon-1.log)', 2)
+py27-skeletontests-Plone-5.0-template-addon create: /home/ubuntu/bobtemplates.plone/.tox/py27-skeletontests-Plone-5.0-template-addon
+ERROR: KEYBOARDINTERRUPT

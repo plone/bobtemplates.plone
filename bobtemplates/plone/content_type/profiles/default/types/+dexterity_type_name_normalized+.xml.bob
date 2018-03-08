@@ -49,7 +49,10 @@
     <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
     <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
     <element value="plone.app.dexterity.behaviors.id.IShortName"/>
-    <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
+    <element value="plone.app.dexterity.behaviors.metadata.IOwnership"/>
+    <element value="plone.app.dexterity.behaviors.metadata.IPublication"/>
+    <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
+    <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
 {{% if plone.is_plone5 %}}
     <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
     <!--<element value="plone.app.lockingbehavior.behaviors.ILocking" />-->
@@ -57,7 +60,6 @@
     <element value="plone.app.lockingbehavior.behaviors.ILocking" />
     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
 {{% endif %}}
-    <!--<element value="plone.app.dexterity.behaviors.metadata.IBasic"/>-->
     <!--<element value="plone.app.relationfield.behavior.IRelatedItems"/>-->
     <!--<element value="plone.app.versioningbehavior.behaviors.IVersionable" />-->
     <!--<element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>-->

@@ -4,7 +4,8 @@ Changelog
 3.0.0b3 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Update link to document in README.
+  [kakshay21]
 
 
 3.0.0b2 (2018-02-27)

@@ -10,7 +10,7 @@ class DemoView(BrowserView):
 
     def talks(self):
         results = []
-        data = [{'title':'Dexter'},{'title':'Plone'}]
+        data = [{'title': 'Dexter'}, {'title': 'Plone'}]
         for item in data:
             try:
                 url = item['url']

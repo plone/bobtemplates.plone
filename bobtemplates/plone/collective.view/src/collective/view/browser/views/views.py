@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from operator import itemgetter
 from Products.Five.browser import BrowserView
 
 

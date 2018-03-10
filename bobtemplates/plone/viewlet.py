@@ -8,7 +8,6 @@ from bobtemplates.plone.base import get_klass_name
 from bobtemplates.plone.base import get_normalized_name
 from bobtemplates.plone.base import prepare_renderer_for_subtemplate
 from bobtemplates.plone.base import update_file
-
 from collections import OrderedDict
 
 

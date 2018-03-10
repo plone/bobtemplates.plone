@@ -8,8 +8,9 @@ from bobtemplates.plone.base import get_klass_name
 from bobtemplates.plone.base import get_normalized_name
 from bobtemplates.plone.base import prepare_renderer_for_subtemplate
 from bobtemplates.plone.base import update_file
-
 from collections import OrderedDict
+
+
 def _update_views_py(configurator):
     views_file_name = u'views.py'
     views_dir = u'browser'

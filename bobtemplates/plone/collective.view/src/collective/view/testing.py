@@ -29,7 +29,7 @@ COLLECTIVE_VIEW_FIXTURE = CollectiveViewLayer()
 
 COLLECTIVE_VIEW_INTEGRATION_TESTING = IntegrationTesting(
     bases=(COLLECTIVE_VIEW_FIXTURE,),
-    name='CollectiveViewLayer:IntegrationTesting'
+    name='CollectiveViewLayer:IntegrationTesting',
 )
 
 

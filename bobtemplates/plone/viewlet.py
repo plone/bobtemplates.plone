@@ -30,7 +30,7 @@ class {0}Viewlet(ViewletBase):
     """
 
     insert_str = insert_str.format(
-        configurator.variables['viewlets_klass_name'],
+        configurator.variables['viewlet_name_klass'],
         configurator.variables['title'],
     )
 

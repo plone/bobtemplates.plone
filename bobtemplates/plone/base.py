@@ -126,7 +126,7 @@ def add_xml_tag_to_root(file_path, tag, attributes):
     from collections import OrderedDict
     if not isinstance(attributes, OrderedDict):
         raise AssertionError(
-            'attributes must be an OrderedDict!\nFound: {}'.format(
+            'attributes must be an OrderedDict!\nFound: {0}'.format(
                 type(attributes),
             ),
         )

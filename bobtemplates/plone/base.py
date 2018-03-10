@@ -117,12 +117,20 @@ def update_file(configurator, file_path, match_str, insert_str):
 
 
 def get_xml_tree(xml_file):
-    parser = etree.getXMLParser(remove_blank_text=True)
+    parser = etree.XMLParser(remove_blank_text=True)
     tree = etree.parse(xml_file, parser)
     return tree
 
 
 def add_xml_tag_to_root(file_path, tag, attributes):
+    from collections import OrderedDict
+    if not isinstance(attributes, OrderedDict):
+        raise AssertionError(
+            'attributes must be an OrderedDict!\nFound: {0}'.format(
+                type(attributes),
+            ),
+        )
+
     with open(file_path, 'r') as xml_file:
         tree = get_xml_tree(xml_file)
         configure_tag = tree.getroot()
@@ -131,6 +139,10 @@ def add_xml_tag_to_root(file_path, tag, attributes):
 
     write_xml_tree_to_file(tree, file_path)
     return
+
+
+def get_browser_namespace():
+    return '{http://namespaces.zope.org/browser}'
 
 
 def create_file_if_not_exists(file_path, example_file_path):

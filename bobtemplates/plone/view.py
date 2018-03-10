@@ -8,6 +8,7 @@ from bobtemplates.plone.base import get_klass_name
 from bobtemplates.plone.base import get_normalized_name
 from bobtemplates.plone.base import prepare_renderer_for_subtemplate
 from bobtemplates.plone.base import update_file
+from collections import OrderedDict
 
 
 def _update_views_py(configurator):
@@ -43,15 +44,15 @@ def _update_configure_zcml(configurator):
     dir_name = u'browser'
     file_path = get_file_path(configurator, dir_name, file_name)
 
-    attributes = {
-        'name': configurator.variables['view_name_normalized'],
-        'for': '*',
-        'class':
-            '.views.' + configurator.variables['view_name_klass'] + 'View',
-        'template': 'templates/' +
-            configurator.variables['view_name_normalized'] + '.pt',
-        'permission': 'zope2.View',
-    }
+    attributes = OrderedDict([
+        ('name', configurator.variables['view_name_normalized']),
+        ('for', '*'),
+        ('class',
+            '.views.' + configurator.variables['view_name_klass'] + 'View'),
+        ('template', 'templates/' +
+            configurator.variables['view_name_normalized'] + '.pt'),
+        ('permission', 'zope2.View'),
+    ])
 
     tag = get_browser_namespace() + 'page'
     add_xml_tag_to_root(file_path, tag, attributes)

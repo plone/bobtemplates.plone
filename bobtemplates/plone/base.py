@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import date
+from lxml import etree
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import ValidationError
 
@@ -63,9 +64,7 @@ def _set_plone_version_variables(configurator, version):
 
 def is_string_in_file(configurator, file_path, match_str):
     """Simple check if a given string is in a file.
-
     You can use this before adding new lines with update_file.
-
     """
     with open(file_path, 'r+') as xml_file:
         contents = xml_file.readlines()
@@ -73,6 +72,17 @@ def is_string_in_file(configurator, file_path, match_str):
         if match_str in line:
             return True
     return False
+
+
+def write_xml_tree_to_file(tree, file_path):
+    with open(file_path, 'wb') as xml_file:
+        tree.write(
+            xml_file,
+            pretty_print=True,
+            xml_declaration=True,
+            encoding='utf-8',
+        )
+    return
 
 
 def update_file(configurator, file_path, match_str, insert_str):
@@ -104,6 +114,43 @@ def update_file(configurator, file_path, match_str, insert_str):
         print(insert_str)
 
 
+def get_xml_tree(xml_file):
+    parser = etree.XMLParser(remove_blank_text=True)
+    tree = etree.parse(xml_file, parser)
+    return tree
+
+
+def add_xml_tag_to_root(file_path, tag, attributes):
+    from collections import OrderedDict
+    if not isinstance(attributes, OrderedDict):
+        raise AssertionError(
+            'attributes must be an OrderedDict!\nFound: {0}'.format(
+                type(attributes),
+            ),
+        )
+
+    with open(file_path, 'r') as xml_file:
+        tree = get_xml_tree(xml_file)
+        configure_tag = tree.getroot()
+
+        etree.SubElement(configure_tag, tag, attrib=attributes)
+
+    write_xml_tree_to_file(tree, file_path)
+    return
+
+
+def get_browser_namespace():
+    return '{http://namespaces.zope.org/browser}'
+
+
+def create_file_if_not_exists(file_path, example_file_path):
+    file_list = os.listdir(os.path.dirname(file_path))
+    file_name = os.path.basename(file_path)
+    if file_name not in file_list:
+        os.rename(example_file_path, file_path)
+    return
+
+
 def _get_package_root_folder(configurator):
     file_name = 'setup.py'
     root_folder = None
@@ -122,11 +169,25 @@ def _get_package_root_folder(configurator):
     return root_folder
 
 
+def get_file_path(configurator, dir_name, file_name):
+    file_path = os.path.join(
+        os.path.join(configurator.target_directory, dir_name),
+        file_name,
+    )
+    return file_path
+
+
+def get_example_file_path(configurator, dir_name, file_name):
+    example_file_name = file_name + '.example'
+    example_file_path = get_file_path(
+        configurator, dir_name, example_file_name,
+    )
+    return example_file_path
+
+
 def check_root_folder(configurator, question):
     """Check if we are in a package.
-
     Should be called in first question pre hook.
-
     """
     root_folder = _get_package_root_folder(configurator)
     if not root_folder:
@@ -141,6 +202,16 @@ def check_root_folder(configurator, question):
 def dottedname_to_path(dottedname):
     path = '/'.join(dottedname.split('.'))
     return path
+
+
+def get_klass_name(name):
+    klass_name = name.title().replace(' ', '')
+    return klass_name
+
+
+def get_normalized_name(name):
+    normalized_name = name.replace(' ', '_').lower()
+    return normalized_name
 
 
 def base_prepare_renderer(configurator):
@@ -175,11 +246,9 @@ def subtemplate_warning(configurator, question):
     """Show a warning to the user before using subtemplates!"""
     print("""
     ### WARNING ###
-
     This is a subtemplate, it might override existing files without warnings!
     Please use a version control system like GIT with a clean state,
     to track changes, before using this subtemplate!
-
     """)
 
 
@@ -188,3 +257,10 @@ def subtemplate_warning_post_question(configurator, question, answer):
         print('Abort!')
         sys.exit(0)
     return answer
+
+
+def prepare_renderer_for_subtemplate(configurator, subtemplate):
+    configurator = base_prepare_renderer(configurator)
+    configurator.variables['template_id'] = subtemplate
+    configurator.target_directory = configurator.variables['package_folder']
+    return configurator

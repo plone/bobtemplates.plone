@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 from bobtemplates.plone import base
 from bobtemplates.plone import view
 from mrbob.configurator import Configurator

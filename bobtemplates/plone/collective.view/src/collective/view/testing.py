@@ -35,7 +35,7 @@ COLLECTIVE_VIEW_INTEGRATION_TESTING = IntegrationTesting(
 
 COLLECTIVE_VIEW_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(COLLECTIVE_VIEW_FIXTURE,),
-    name='CollectiveViewLayer:FunctionalTesting'
+    name='CollectiveViewLayer:FunctionalTesting',
 )
 
 
@@ -43,7 +43,7 @@ COLLECTIVE_VIEW_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
         COLLECTIVE_VIEW_FIXTURE,
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
-        z2.ZSERVER_FIXTURE
+        z2.ZSERVER_FIXTURE,
     ),
-    name='CollectiveViewLayer:AcceptanceTesting'
+    name='CollectiveViewLayer:AcceptanceTesting',
 )

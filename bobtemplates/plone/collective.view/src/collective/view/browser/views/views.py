@@ -15,7 +15,7 @@ class DemoView(BrowserView):
             try:
                 url = item['url']
             except KeyError:
-                url = 'https://www.google.com/search?q=%s' % item['title']
+                url = 'google.com'
             talk = dict(
                 title=item['title'],
                 subjects=', '.join(item['subjects']),

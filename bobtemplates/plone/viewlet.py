@@ -9,6 +9,8 @@ from bobtemplates.plone.base import get_normalized_name
 from bobtemplates.plone.base import prepare_renderer_for_subtemplate
 from bobtemplates.plone.base import update_file
 
+from collections import OrderedDict
+
 
 def _update_viewlets_py(configurator):
     file_name = u'viewlets.py'
@@ -41,18 +43,18 @@ def _update_configure_zcml(configurator):
     dir_name = u'browser'
     file_path = get_file_path(configurator, dir_name, file_name)
 
-    attributes = {
-        'name': configurator.variables['viewlet_name_normalized'],
-        'for': '*',
-        'manager': 'plone.app.layout.viewlets.interfaces.I' +
-                   configurator.variables['manager_name_klass'],
-        'class': '.viewlets.' + configurator.variables['viewlet_name_klass'] +
-                 'Viewlet',
-        'layer': 'zope.interface.Interface',
-        'template': 'templates/' +
-                    configurator.variables['viewlet_name_normalized'] + '.pt',
-        'permission': 'zope2.View',
-    }
+    attributes = OrderedDict([
+        ('name', configurator.variables['viewlet_name_normalized']),
+        ('for', '*'),
+        ('manager', 'plone.app.layout.viewlets.interfaces.I' +
+         configurator.variables['manager_name_klass']),
+        ('class', '.viewlets.' + configurator.variables['viewlet_name_klass'] +
+         'Viewlet'),
+        ('layer', 'zope.interface.Interface'),
+        ('template', 'templates/' +
+         configurator.variables['viewlet_name_normalized'] + '.pt'),
+        ('permission', 'zope2.View'),
+    ])
 
     tag = get_browser_namespace() + 'viewlet'
     add_xml_tag_to_root(file_path, tag, attributes)

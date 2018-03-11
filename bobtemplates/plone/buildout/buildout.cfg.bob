@@ -6,13 +6,10 @@ extends =
 
 versions = versions
 
-parts =
-    test
-    coverage
-    report
+parts += test
 
 
-eggs += 
+eggs +=
 
 
 develop =
@@ -24,23 +21,6 @@ defaults = ['--auto-color', '--auto-progress']
 eggs =
     Plone
     ${buildout:eggs}
-    
-
-[coverage]
-recipe = zc.recipe.egg
-eggs = coverage
-initialization =
-    include = '--source=${buildout:directory}/src'
-    sys.argv = sys.argv[:] + ['run', include, 'bin/test', '--all']
-
-
-[report]
-recipe = zc.recipe.egg
-eggs = coverage
-scripts = coverage=report
-initialization =
-    sys.argv = sys.argv[:] + ['html', '-i']
-
 
 [versions]
 zc.buildout =

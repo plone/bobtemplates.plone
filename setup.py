@@ -52,7 +52,11 @@ setup(
     ],
     setup_requires=[],
     tests_require=[],
-    extras_require={},
+    extras_require={
+        'test': [
+            'plone.app.testing',
+        ]
+    },
     entry_points={
         'mrbob_templates': [
             'plone_addon = bobtemplates.plone.bobregistry:plone_addon',

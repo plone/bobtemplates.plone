@@ -51,3 +51,11 @@ def plone_vocabulary():
     reg.plonecli_alias = 'vocabulary'
     reg.depend_on = 'plone_addon'
     return reg
+
+
+def plone_behavior():
+    reg = RegEntry()
+    reg.template = 'bobtemplates.plone:behavior'
+    reg.plonecli_alias = 'behavior'
+    reg.depend_on = 'plone_addon'
+    return reg

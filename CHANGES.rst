@@ -4,7 +4,8 @@ Changelog
 3.0.0b3 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add behavior sub-template entrypoint, to make it available in plonecli
+  [MrTango]
 
 
 3.0.0b2 (2018-02-27)

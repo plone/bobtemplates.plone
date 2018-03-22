@@ -6,6 +6,8 @@ Changelog
 
 - Add behavior sub-template entrypoint, to make it available in plonecli
   [MrTango]
+- Update link to document in README.
+  [kakshay21]
 
 
 3.0.0b2 (2018-02-27)

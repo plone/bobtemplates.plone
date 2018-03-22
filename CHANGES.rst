@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.0b3 (unreleased)
+3.0.0b3 (2018-03-22)
 --------------------
 
 - Add behavior sub-template entrypoint, to make it available in plonecli

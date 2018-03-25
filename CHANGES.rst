@@ -1,8 +1,38 @@
 Changelog
 =========
 
-3.0.0a4 (unreleased)
+3.0.0b4 (unreleased)
 --------------------
+
+- Nothing changed yet.
+
+
+3.0.0b3 (2018-03-22)
+--------------------
+
+- Add behavior sub-template entrypoint, to make it available in plonecli
+  [MrTango]
+- Update link to document in README.
+  [kakshay21]
+
+
+3.0.0b2 (2018-02-27)
+--------------------
+
+- fixed FTI configuration, removed the plone_lock_info condition
+  [MrTango]
+
+
+3.0.0b1 (2018-02-25)
+--------------------
+
+- Quote version strings in YAML. See: https://github.com/travis-ci/docs-travis-ci-com/issues/1540
+  [thet]
+
+- Use default Travis notifications.
+  Until now only the creator of the package would get a notification, instead of the committer.
+  Fixes `issue 208 <https://github.com/plone/bobtemplates.plone/issues/208>`_.
+  [maurits]
 
 - Fix coveralls for packages created with addon and theme_package by converting the pickle output of createcoverage in .coverage to json.
   [pbauer]
@@ -20,6 +50,25 @@ Changelog
 
 - Improve docs by fixing some reST, typos and grammar
   [svx]
+
+- Update link to docs.plone.org in README
+  [svx]
+
+- Imporve docs template for valid reST generation
+  [svx]
+
+- use bobtemplate.cfg to store meta data for sub-templates #245
+  [MrTango]
+
+- fix naming of vocabularies
+  [MrTango]
+
+- fix buildout template and add some docs about the used buildout.plonetest configuration
+  [MrTango]
+
+- add behavior sub-template to create Plone behaviors
+  [MrTango]
+
 
 3.0.0a3 (2017-10-30)
 --------------------

@@ -4,25 +4,11 @@ from base import dummy_contextmanager
 from base import file_exists
 from base import generate_answers_ini
 
-import glob
 import os.path
 import subprocess
 
 
-base_files = [
-    '.editorconfig',
-    'setup.py',
-    'setup.cfg',
-    'bobtemplate.cfg',
-]
-
-
-addon_files = [
-    'src/__init__.py',
-]
-
-
-def test_addon(tmpdir, capsys, config):
+def test_behavior(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True
@@ -37,9 +23,9 @@ plone.version = {version}
     )
     generate_answers_ini(tmpdir.strpath, template)
 
+    # generate template addon:
     config.template = 'addon'
     config.package_name = 'collective.todo'
-
     result = subprocess.call(
         [
             'mrbob',
@@ -52,21 +38,35 @@ plone.version = {version}
     )
     assert result == 0
 
-    generated_files = glob.glob(
-        tmpdir.strpath + '/' + config.package_name + '/*',
-    )
-    length = len(tmpdir.strpath + '/' + config.package_name + '/')
-    generated_files = [f[length:] for f in generated_files]
-    required_files = base_files + addon_files
-    assert required_files <= generated_files
-
-    base_path = tmpdir.strpath + '/' + config.package_name
-
-    assert file_exists(base_path, '/src/collective/todo/configure.zcml')
-
     wd = os.path.abspath(
-        os.path.join(tmpdir.strpath, config.package_name),
+        os.path.join(
+            tmpdir.strpath,
+            config.package_name,
+        ),
     )
+
+    # generate subtemplate content_type:
+    template = """[variables]
+behavior_name = AttachmentType
+subtemplate_warning = Yes
+"""
+    generate_answers_ini(wd, template)
+
+    config.template = 'behavior'
+    result = subprocess.call(
+        [
+            'mrbob',
+            'bobtemplates.plone:' + config.template,
+            '--config', 'answers.ini',
+            '--non-interactive',
+        ],
+        cwd=wd,
+    )
+    assert result == 0
+
+    assert file_exists(wd, '/src/collective/todo/behaviors/configure.zcml')
+    assert file_exists(
+        wd, '/src/collective/todo/behaviors/attachment_type.py')  # NOQA: S101,E501
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
         setup_virtualenv_result = subprocess.call(
@@ -89,7 +89,10 @@ plone.version = {version}
         )
         assert install_buildout_result == 0
         annotate_result = subprocess.call(
-            ['bin/buildout', 'annotate'],
+            [
+                'bin/buildout',
+                'annotate',
+            ],
             cwd=wd,
         )
         assert annotate_result == 0

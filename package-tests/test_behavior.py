@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from bobtemplates.plone import vocabulary
+from bobtemplates.plone import behavior
 from mrbob.configurator import Configurator
 
 
 def test_prepare_renderer():
     configurator = Configurator(
-        template='bobtemplates.plone:vocabulary',
+        template='bobtemplates.plone:behavior',
         target_directory='.',
         variables={
-            'vocabulary_name': 'ExampleVocabulary',
+            'behavior_name': 'AttachmentType',
         },
     )
-    vocabulary.prepare_renderer(configurator)
+    behavior.prepare_renderer(configurator)

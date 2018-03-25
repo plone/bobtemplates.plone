@@ -30,7 +30,7 @@ class I{{{ dexterity_type_name_klass }}}(model.Schema):
     """ Marker interface for {{{ dexterity_type_name_klass }}}
     """
 {{% else %}}
-    """ Marker interfce and Dexterity Python Schema for {{{ dexterity_type_name_klass }}}
+    """ Marker interface and Dexterity Python Schema for {{{ dexterity_type_name_klass }}}
     """
 
     # directives.widget(level=RadioFieldWidget)

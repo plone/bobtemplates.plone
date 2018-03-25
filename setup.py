@@ -4,7 +4,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '3.0.0a4.dev0'
+version = '3.0.0b4.dev0'
 
 
 long_description = '\n\n'.join([
@@ -61,6 +61,7 @@ setup(
             'plone_content_type = bobtemplates.plone.bobregistry:plone_content_type',  # NOQA E501
             'plone_theme = bobtemplates.plone.bobregistry:plone_theme',
             'plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary',  # NOQA E501
+            'plone_behavior = bobtemplates.plone.bobregistry:plone_behavior',  # NOQA E501
         ],
     },
 )

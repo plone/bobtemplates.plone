@@ -22,7 +22,7 @@ def test_suite():
         suite.addTests([
             layered(
                 robottestsuite,
-                layer={{{package.uppercasename}}}_ACCEPTANCE_TESTING
+                layer={{{package.uppercasename}}}_ACCEPTANCE_TESTING,
             ),
         ])
     return suite

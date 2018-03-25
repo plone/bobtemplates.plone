@@ -11,7 +11,7 @@ from zope.schema.interfaces import IVocabularyTokenized
 import unittest
 
 
-class {{{ vocabulary_name_klass }}}IntegrationTest(unittest.TestCase):
+class {{{ behavior_name_klass }}}IntegrationTest(unittest.TestCase):
 
     layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
 
@@ -20,14 +20,8 @@ class {{{ vocabulary_name_klass }}}IntegrationTest(unittest.TestCase):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
-    def test_vocabulary(self):
-        vocab_name = "{{{ package.dottedname }}}.{{{ vocabulary_name_klass }}}"
-        factory = getUtility(IVocabularyFactory, vocab_name)
-        self.assertTrue(IVocabularyFactory.providedBy(factory))
-
-        vocabulary = factory(self.portal)
-        self.assertTrue(IVocabularyTokenized.providedBy(vocabulary))
-        self.assertEqual(
-            vocabulary.getTerm('sony-a7r-iii').title,
-            _(u'Sony Aplha 7R III'),
-        )
+    def test_behavior(self):
+        vocab_name = "{{{ package.dottedname }}}.{{{ behavior_name_klass }}}"
+        # XXX: add test here!
+        # test the behavior
+        # self.assertTrue(False)

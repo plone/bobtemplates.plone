@@ -6,7 +6,7 @@ cache:
   - eggs
   - downloads
 python:
-  - 2.7
+  - "2.7"
 matrix:
   fast_finish: true
 install:
@@ -27,6 +27,3 @@ after_success:
   - bin/python -m coverage.pickle2json
   - pip install coveralls
   - coveralls
-notifications:
-  email:
-    - {{{ author.email }}}

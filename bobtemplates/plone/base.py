@@ -4,8 +4,10 @@ from lxml import etree
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import ValidationError
 
+import keyword
 import logging
 import os
+import re
 import sys
 
 
@@ -18,29 +20,37 @@ except ImportError:
 logger = logging.getLogger('bobtemplates.plone')
 
 
-class SetupCfg(object):
+class BobConfig(object):
     def __init__(self):
         self.version = None
 
 
-def read_setup_cfg(configurator):
-    setup_cfg = SetupCfg()
+def check_klass_name(configurator, question, answer):
+    if keyword.iskeyword(answer):
+        raise ValidationError(u'{key} is a reserved Python keyword'.format(key=answer))  # NOQA: E501
+    if not re.match('[a-zA-Z_][a-zA-Z0-9_]*$', answer):
+        raise ValidationError(u'{key} is not a valid class identifier'.format(key=answer))  # NOQA: E501
+    return answer
+
+
+def read_bobtemplates_ini(configurator):
+    bob_config = BobConfig()
     config = ConfigParser()
-    path = configurator.target_directory + '/setup.cfg'
+    path = configurator.target_directory + '/bobtemplate.cfg'
     config.read(path)
     if not config.sections():
         return
-    setup_cfg.version = config.get('tool:bobtemplates.plone', 'version')
-    return setup_cfg
+    bob_config.version = config.get('main', 'version')
+    return bob_config
 
 
 def set_global_vars(configurator):
-    setup_cfg = read_setup_cfg(configurator)
+    bob_config = read_bobtemplates_ini(configurator)
     configurator.variables['year'] = date.today().year
     version = configurator.variables.get('plone.version')
-    if not version and setup_cfg:
-        print('>>> reading Plone version from setup.cfg...')
-        version = setup_cfg.version
+    if not version and bob_config:
+        print('>>> reading Plone version from bobtemplate.cfg')
+        version = bob_config.version
     _set_plone_version_variables(configurator, version)
 
 

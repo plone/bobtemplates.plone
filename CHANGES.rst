@@ -4,7 +4,8 @@ Changelog
 3.0.0b4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Use more specific names for generated test files, like test_vocab_todo_tasks.py instead of test_todo_tasks.py
+  [MrTango]
 
 
 3.0.0b3 (2018-03-22)

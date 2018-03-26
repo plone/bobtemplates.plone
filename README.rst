@@ -129,7 +129,7 @@ This creates a mrbob-executable in your bin-directory.
 Usage
 -----
 
-As bobtemplates.plone is a template for `mr.bob <https://pypi.python.org/pypi/mr.bob>`_, we use mrbob to run the templates.
+As bobtemplates.plone is a template for mr.bob_, we use mrbob to run the templates.
 
 If you are using `buildout <https://pypi.python.org/pypi/zc.buildout>`_  or an unactivated `virtualenv <https://pypi.python.org/pypi/virtualenv>`_, you can use mrbob like this:
 
@@ -157,7 +157,7 @@ or activate your virtualenv:
 
 This will create your Plone package inside the ``src`` directory.
 
-See `the documentation of mr.bob <http://mrbob.readthedocs.org/en/latest/>`_  for further information.
+See the documentation of mr.bob_ for further information.
 
 
 Contribute

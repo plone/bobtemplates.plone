@@ -22,7 +22,12 @@
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
-  <property name="allowed_content_types"/>
+  <property name="allowed_content_types">
+  <!--
+    <element value="Document" />
+    <element value="File" />
+  -->
+  </property>
   <property name="filter_content_types">True</property>
   <property name="global_allow">True</property>
 

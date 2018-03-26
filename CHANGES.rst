@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.0b4 (unreleased)
+3.0.0b4 (2018-03-26)
 --------------------
 
 - Use more specific names for generated test files, like test_vocab_todo_tasks.py instead of test_todo_tasks.py

@@ -63,7 +63,13 @@ subtemplate_warning = Yes
 
     assert file_exists(wd, '/src/collective/todo/vocabularies/configure.zcml')
     assert file_exists(
-        wd, '/src/collective/todo/vocabularies/available_todos.py')  # NOQA: S101,E501
+        wd,
+        '/src/collective/todo/tests/test_vocab_available_todos.py',
+    )
+    assert file_exists(
+        wd,
+        '/src/collective/todo/vocabularies/available_todos.py',
+    )
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
         setup_virtualenv_result = subprocess.call(

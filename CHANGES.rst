@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.0b5 (unreleased)
+3.0.0b5 (2018-03-27)
 --------------------
 
 - enable lockingbehavior by default and reenable locking condition for edit button, fixes #257

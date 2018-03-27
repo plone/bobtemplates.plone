@@ -4,7 +4,11 @@ Changelog
 3.0.0b5 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- enable lockingbehavior by default and reenable locking condition for edit button, fixes #257
+  [MrTango]
+
+- only require plone.app.dexterity<=2.1.1 and not excact that version for Plone 4
+  [MrTango]
 
 
 3.0.0b4 (2018-03-26)

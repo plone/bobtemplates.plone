@@ -83,7 +83,7 @@ Installion with pipenv
 
 .. code-block:: console
 
-    pipenv install bobtemplates.plone>=3.0.0b4
+    pipenv install bobtemplates.plone>=3.0.0b5
 
 
 Installation with pip in a virtualenv
@@ -106,7 +106,7 @@ or just use the binaries directly inside the bin folder as below:
 
 .. code-block:: console
 
-    ./bin/pip install bobtemplates.plone>=3.0.0b4
+    ./bin/pip install bobtemplates.plone>=3.0.0b5
 
 
 Use in a buildout
@@ -121,7 +121,7 @@ Use in a buildout
     recipe = zc.recipe.egg
     eggs =
         mr.bob
-        bobtemplates.plone>=3.0.0b4
+        bobtemplates.plone>=3.0.0b5
 
 This creates a mrbob-executable in your bin-directory.
 

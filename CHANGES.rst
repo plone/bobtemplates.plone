@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.0.1 (unreleased)
+3.0.1 (2018-03-29)
 ------------------
 
 - Use set return-status-codes=True for tox, fixes #261

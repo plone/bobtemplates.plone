@@ -25,7 +25,7 @@ plone.version = {version}
 
     # generate template addon:
     config.template = 'addon'
-    config.package_name = 'collective.todo'
+    config.package_name = 'collective.task'
     result = subprocess.call(
         [
             'mrbob',
@@ -44,11 +44,11 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
-dexterity_type_name = Todos
+dexterity_type_name = tasks
 dexterity_type_base_class = Container
 dexterity_type_create_class = True
 subtemplate_warning = Yes
-dexterity_type_desc = A Todos container for Plone
+dexterity_type_desc = A tasks container for Plone
 dexterity_type_supermodel = True
 """
     generate_answers_ini(wd, template)
@@ -67,11 +67,11 @@ dexterity_type_supermodel = True
 
     # generate 2. subtemplate content_type with Item instead of Container:
     template = """[variables]
-dexterity_type_name = Todo Task
+dexterity_type_name = task Task
 dexterity_type_base_class = Item
 dexterity_type_create_class = True
 subtemplate_warning = Yes
-dexterity_type_desc = A ToDo Task content type for Plone
+dexterity_type_desc = A task Task content type for Plone
 dexterity_type_supermodel = True
 """
     generate_answers_ini(wd, template)
@@ -88,7 +88,7 @@ dexterity_type_supermodel = True
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/todo/configure.zcml')
+    assert file_exists(wd, '/src/collective/task/configure.zcml')
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
         setup_virtualenv_result = subprocess.call(
@@ -111,12 +111,21 @@ dexterity_type_supermodel = True
         )
         assert install_buildout_result == 0
         annotate_result = subprocess.call(
-            ['bin/buildout', 'annotate'],
+            [
+                'bin/buildout',
+                '-c',
+                'ci.cfg',
+                'annotate',
+            ],
             cwd=wd,
         )
         assert annotate_result == 0
         buildout_result = subprocess.call(
-            ['bin/buildout'],
+            [
+                'bin/buildout',
+                '-c',
+                'ci.cfg',
+            ],
             cwd=wd,
         )
         assert buildout_result == 0

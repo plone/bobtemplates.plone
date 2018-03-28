@@ -83,12 +83,21 @@ theme.name = Plone theme Blacksea
         )
         assert install_buildout_result == 0
         annotate_result = subprocess.call(
-            ['bin/buildout', 'annotate'],
+            [
+                'bin/buildout',
+                '-c',
+                'ci.cfg',
+                'annotate',
+            ],
             cwd=wd,
         )
         assert annotate_result == 0
         buildout_result = subprocess.call(
-            ['bin/buildout'],
+            [
+                'bin/buildout',
+                '-c',
+                'ci.cfg',
+            ],
             cwd=wd,
         )
         assert buildout_result == 0

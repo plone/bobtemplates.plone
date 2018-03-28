@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.0.0 (unreleased)
---------------------
+3.0.0 (2018-03-28)
+------------------
 
 - make final release of version 3
 

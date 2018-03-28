@@ -1,10 +1,10 @@
 Changelog
 =========
 
-3.0.0b6 (unreleased)
+3.0.0 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- make final release of version 3
 
 
 3.0.0b5 (2018-03-27)

@@ -113,8 +113,7 @@ dexterity_type_supermodel = True
         annotate_result = subprocess.call(
             [
                 'bin/buildout',
-                '-c',
-                'ci.cfg',
+                'code-analysis:return-status-codes=True',
                 'annotate',
             ],
             cwd=wd,
@@ -123,8 +122,7 @@ dexterity_type_supermodel = True
         buildout_result = subprocess.call(
             [
                 'bin/buildout',
-                '-c',
-                'ci.cfg',
+                'code-analysis:return-status-codes=True',
             ],
             cwd=wd,
         )

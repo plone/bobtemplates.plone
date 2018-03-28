@@ -85,8 +85,7 @@ theme.name = Plone theme Blacksea
         annotate_result = subprocess.call(
             [
                 'bin/buildout',
-                '-c',
-                'ci.cfg',
+                'code-analysis:return-status-codes=True',
                 'annotate',
             ],
             cwd=wd,
@@ -95,8 +94,7 @@ theme.name = Plone theme Blacksea
         buildout_result = subprocess.call(
             [
                 'bin/buildout',
-                '-c',
-                'ci.cfg',
+                'code-analysis:return-status-codes=True',
             ],
             cwd=wd,
         )

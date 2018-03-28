@@ -91,8 +91,7 @@ plone.version = {version}
         annotate_result = subprocess.call(
             [
                 'bin/buildout',
-                '-c',
-                'ci.cfg',
+                'code-analysis:return-status-codes=True',
                 'annotate',
             ],
             cwd=wd,
@@ -101,8 +100,7 @@ plone.version = {version}
         buildout_result = subprocess.call(
             [
                 'bin/buildout',
-                '-c',
-                'ci.cfg',
+                'code-analysis:return-status-codes=True',
             ],
             cwd=wd,
         )

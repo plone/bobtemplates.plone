@@ -1,5 +1,0 @@
-[buildout]
-extends = buildout.cfg
-
-[code-analysis]
-return-status-codes = True

@@ -4,7 +4,14 @@ Changelog
 3.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use set return-status-codes=True for tox, fixes #261
+  [MrTango]
+
+- set filter_content_types to False by default, fixes #256
+  [MrTango]
+
+- add ILeadImage behavior to FTI list of inactive behaviors, fixes #255
+  [MrTango]
 
 
 3.0.0 (2018-03-28)

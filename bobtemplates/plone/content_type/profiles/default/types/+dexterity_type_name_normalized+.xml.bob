@@ -28,7 +28,7 @@
     <element value="File" />
   -->
   </property>
-  <property name="filter_content_types">True</property>
+  <property name="filter_content_types">False</property>
   <property name="global_allow">True</property>
 
   <!-- Schema, class and security -->

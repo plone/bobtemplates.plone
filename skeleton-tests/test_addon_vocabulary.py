@@ -25,7 +25,7 @@ plone.version = {version}
 
     # generate template addon:
     config.template = 'addon'
-    config.package_name = 'collective.todo'
+    config.package_name = 'collective.task'
     result = subprocess.call(
         [
             'mrbob',
@@ -44,7 +44,7 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
-vocabulary_name = AvailableTodos
+vocabulary_name = AvailableTasks
 subtemplate_warning = Yes
 """
     generate_answers_ini(wd, template)
@@ -61,14 +61,14 @@ subtemplate_warning = Yes
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/todo/vocabularies/configure.zcml')
+    assert file_exists(wd, '/src/collective/task/vocabularies/configure.zcml')
     assert file_exists(
         wd,
-        '/src/collective/todo/tests/test_vocab_available_todos.py',
+        '/src/collective/task/tests/test_vocab_available_tasks.py',
     )
     assert file_exists(
         wd,
-        '/src/collective/todo/vocabularies/available_todos.py',
+        '/src/collective/task/vocabularies/available_tasks.py',
     )
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():

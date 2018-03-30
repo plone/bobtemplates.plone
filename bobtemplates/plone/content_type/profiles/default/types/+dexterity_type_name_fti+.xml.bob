@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="{{{ dexterity_type_name_normalized }}}"
+    name="{{{ dexterity_type_name }}}"
     meta_type="Dexterity FTI"
     i18n:domain="{{{ package.dottedname }}}">
 
@@ -13,7 +13,7 @@
       name="description">{{{ dexterity_type_desc }}}</property>
 
   <property name="allow_discussion">False</property>
-  <property name="factory">{{{ dexterity_type_name_normalized }}}</property>
+  <property name="factory">{{{ dexterity_type_name }}}</property>
 {{% if plone.is_plone5 %}}
   <property name="icon_expr"></property>
 {{% else %}}
@@ -22,14 +22,14 @@
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
+  <property name="global_allow">{{{ dexterity_type_global_allow }}}</property>
+  <property name="filter_content_types">{{{ dexterity_type_filter_content_types | default(False, true) }}}</property>
   <property name="allowed_content_types">
   <!--
     <element value="Document" />
     <element value="File" />
   -->
   </property>
-  <property name="filter_content_types">False</property>
-  <property name="global_allow">True</property>
 
   <!-- Schema, class and security -->
   <property name="add_permission">{{{ package.dottedname }}}.Add{{{ dexterity_type_name_klass }}}</property>

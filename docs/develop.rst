@@ -140,8 +140,10 @@ By the time or writing this, we have the following test cases (combinations), wh
 - addon_content_type
 - addon_theme
 - addon_vocabulary
+- addon_behavior
 - theme_package
 
 The test are defined in the directory ``skeleton-tests`` and are called by ``tox`` as defined in tox.ini.
 
 If you add new test cases (files), make sure that they are in the tox.ini and also called by travis!
+

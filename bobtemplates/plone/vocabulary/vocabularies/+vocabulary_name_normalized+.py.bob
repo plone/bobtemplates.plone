@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from plone import api
+from {{{ package.dottedname }}} import _
+# from plone import api
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-from {{{ package.dottedname }}} import _
 
 
 class VocabItem(object):

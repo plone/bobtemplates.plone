@@ -5,7 +5,8 @@ from plone.autoform import directives
 {{% endif %}}
 {{% if dexterity_type_base_class == 'Container' %}}
 from plone.dexterity.content import Container
-{{% else %}}
+{{% endif %}}
+{{% if dexterity_type_base_class == 'Item' %}}
 from plone.dexterity.content import Item
 {{% endif %}}
 {{% if not dexterity_type_supermodel %}}

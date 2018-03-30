@@ -13,6 +13,8 @@
   -->
   <!--<includeDependencies package="." />-->
 
+  <!-- -*- extra package includes go here -*- -->
+
   <include package=".browser" />
 
   <include file="permissions.zcml" />

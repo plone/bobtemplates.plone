@@ -146,11 +146,15 @@ def get_browser_namespace():
 
 
 def create_file_if_not_exists(file_path, example_file_path):
+    file_created = False
+
     file_list = os.listdir(os.path.dirname(file_path))
     file_name = os.path.basename(file_path)
+
     if file_name not in file_list:
+        file_created = True
         os.rename(example_file_path, file_path)
-    return
+    return file_created
 
 
 def _get_package_root_folder(configurator):
@@ -171,18 +175,23 @@ def _get_package_root_folder(configurator):
     return root_folder
 
 
-def get_file_path(configurator, dir_name, file_name):
+def get_file_path(configurator, file_name, dir_name=None):
+    if dir_name:
+        dir_path = os.path.join(configurator.target_directory, dir_name)
+    else:
+        dir_path = configurator.target_directory
+
     file_path = os.path.join(
-        os.path.join(configurator.target_directory, dir_name),
+        dir_path,
         file_name,
     )
     return file_path
 
 
-def get_example_file_path(configurator, dir_name, file_name):
+def get_example_file_path(configurator, file_name, dir_name=None):
     example_file_name = file_name + '.example'
     example_file_path = get_file_path(
-        configurator, dir_name, example_file_name,
+        configurator, example_file_name, dir_name,
     )
     return example_file_path
 

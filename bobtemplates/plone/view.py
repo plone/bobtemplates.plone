@@ -8,38 +8,31 @@ from bobtemplates.plone.base import prepare_renderer_for_subtemplate
 from bobtemplates.plone.base import update_file
 
 
-def _update_views_py(configurator):
-    views_file_name = u'views.py'
-    views_dir = u'browser'
+def _update_configure_zcml(configurator):
+    file_name = u'configure.zcml'
+    file_path = get_file_path(configurator, file_name)
 
-    views_file_path = get_file_path(configurator, views_dir, views_file_name)
-    views_example_file_path = get_example_file_path(
-        configurator, views_dir, views_file_name,
-    )
-    create_file_if_not_exists(views_file_path, views_example_file_path)
-
-    match_str = '-*- Extra views go here -*-'
+    match_str = '-*- extra package includes go here -*-'
     insert_str = """
-class {0}View(BrowserView):
-    \"\"\" {1} \"\"\"
-
-    def the_title():
-        return u'{2}'
+    <include package=".views" />
     """
-    insert_str = insert_str.format(
-        configurator.variables['view_name_klass'],
-        configurator.variables['description'],
-        configurator.variables['title'],
-    )
 
-    update_file(configurator, views_file_path, insert_str, match_str)
+    update_file(configurator, file_path, insert_str, match_str)
     return
 
 
-def _update_configure_zcml(configurator):
+def _update_views_configure_zcml(configurator):
     file_name = u'configure.zcml'
-    dir_name = u'browser'
-    file_path = get_file_path(configurator, dir_name, file_name)
+    dir_name = u'views'
+
+    file_path = get_file_path(configurator, file_name, dir_name)
+    example_file_path = get_example_file_path(
+        configurator, file_name, dir_name,
+    )
+    file_created = create_file_if_not_exists(file_path, example_file_path)
+
+    if file_created:
+        _update_configure_zcml(configurator)
 
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
@@ -75,5 +68,4 @@ def prepare_renderer(configurator):
 
 
 def post_renderer(configurator):
-    _update_views_py(configurator)
-    _update_configure_zcml(configurator)
+    _update_views_configure_zcml(configurator)

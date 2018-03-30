@@ -1,6 +1,0 @@
-# -*- coding: utf-8 -*-
-from Products.Five.browser import BrowserView
-# -*- Extra imports go here -*-
-
-
-# -*- Extra views go here -*-

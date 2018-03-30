@@ -7,27 +7,8 @@ from bobtemplates.plone.base import get_klass_name
 from bobtemplates.plone.base import get_normalized_name
 from bobtemplates.plone.base import get_xml_tree
 from bobtemplates.plone.base import prepare_renderer_for_subtemplate
+from bobtemplates.plone.base import update_configure_zcml_include_package
 from bobtemplates.plone.base import update_file
-
-
-def _update_configure_zcml(configurator):
-    file_name = u'configure.zcml'
-    file_path = get_file_path(configurator, file_name)
-
-    tree = get_xml_tree(file_path)
-    tree_root = tree.getroot()
-    xpath_str = "./include[@package='.views']"
-    if len(tree_root.xpath(xpath_str)):
-        """ The package is already included in the root configure.zcml """
-        return
-
-    match_str = '-*- extra package includes go here -*-'
-    insert_str = """
-    <include package=".views" />
-    """
-
-    update_file(configurator, file_path, insert_str, match_str)
-    return
 
 
 def _update_views_configure_zcml(configurator):
@@ -41,7 +22,10 @@ def _update_views_configure_zcml(configurator):
     file_created = create_file_if_not_exists(file_path, example_file_path)
 
     if file_created:
-        _update_configure_zcml(configurator)
+        update_configure_zcml_include_package(
+            configurator,
+            package='views',
+        )
 
     else:
         namespaces = {'browser': get_browser_namespace()}

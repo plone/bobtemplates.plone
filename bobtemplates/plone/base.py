@@ -116,6 +116,27 @@ def update_file(configurator, file_path, match_str, insert_str):
         print(insert_str)
 
 
+def update_configure_zcml_include_package(configurator, package):
+    file_name = u'configure.zcml'
+    file_path = get_file_path(configurator, file_name)
+
+    tree = get_xml_tree(file_path)
+    tree_root = tree.getroot()
+    xpath_str = "./include[@package='.{0}']".format(package)
+    if len(tree_root.xpath(xpath_str)):
+        """ The package is already included in the root configure.zcml """
+        return
+
+    match_str = '-*- extra package includes go here -*-'
+    insert_str = """
+    <include package=".{0}" />
+    """
+    insert_str = insert_str.format(package)
+
+    update_file(configurator, file_path, insert_str, match_str)
+    return
+
+
 def get_xml_tree(xml_file):
     parser = etree.XMLParser(remove_blank_text=True)
     tree = etree.parse(xml_file, parser)

@@ -8,36 +8,31 @@ from bobtemplates.plone.base import prepare_renderer_for_subtemplate
 from bobtemplates.plone.base import update_file
 
 
-def _update_viewlets_py(configurator):
-    file_name = u'viewlets.py'
-    dir_name = u'browser'
+def _update_configure_zcml(configurator):
+    file_name = u'configure.zcml'
+    file_path = get_file_path(configurator, file_name)
 
-    file_path = get_file_path(configurator, dir_name, file_name)
-    example_file_path = get_example_file_path(
-        configurator, dir_name, file_name,
-    )
-    create_file_if_not_exists(file_path, example_file_path)
-
-    match_str = '-*- Extra viewlets go here -*-'
+    match_str = '-*- extra package includes go here -*-'
     insert_str = """
-class {0}Viewlet(ViewletBase):
-    \"\"\" {1} \"\"\"
-    pass
+    <include package=".viewlets" />
     """
-
-    insert_str = insert_str.format(
-        configurator.variables['viewlet_name_klass'],
-        configurator.variables['title'],
-    )
 
     update_file(configurator, file_path, insert_str, match_str)
     return
 
 
-def _update_configure_zcml(configurator):
+def _update_viewlets_configure_zcml(configurator):
     file_name = u'configure.zcml'
-    dir_name = u'browser'
-    file_path = get_file_path(configurator, dir_name, file_name)
+    dir_name = u'viewlets'
+
+    file_path = get_file_path(configurator, file_name, dir_name)
+    example_file_path = get_example_file_path(
+        configurator, file_name, dir_name,
+    )
+    file_created = create_file_if_not_exists(file_path, example_file_path)
+
+    if file_created:
+        _update_configure_zcml(configurator)
 
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
@@ -79,6 +74,5 @@ def prepare_renderer(configurator):
 
 
 def post_renderer(configurator):
-    _update_configure_zcml(configurator)
-    _update_viewlets_py(configurator)
+    _update_viewlets_configure_zcml(configurator)
     return

@@ -2,5 +2,6 @@
 from plone.app.layout.viewlets import ViewletBase
 # -*- Extra imports go here -*-
 
-
-# -*- Extra viewlets go here -*-
+class {{{ view_name_klass }}}Viewlet(ViewletBase):
+    """ {{{ title }}} """
+    pass

@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-from bobtemplates.plone.base import add_xml_tag_to_root
 from bobtemplates.plone.base import create_file_if_not_exists
-from bobtemplates.plone.base import get_browser_namespace
 from bobtemplates.plone.base import get_example_file_path
 from bobtemplates.plone.base import get_file_path
 from bobtemplates.plone.base import get_klass_name
 from bobtemplates.plone.base import get_normalized_name
 from bobtemplates.plone.base import prepare_renderer_for_subtemplate
 from bobtemplates.plone.base import update_file
-from collections import OrderedDict
 
 
 def _update_viewlets_py(configurator):
@@ -42,21 +39,29 @@ def _update_configure_zcml(configurator):
     dir_name = u'browser'
     file_path = get_file_path(configurator, dir_name, file_name)
 
-    attributes = OrderedDict([
-        ('name', configurator.variables['viewlet_name_normalized']),
-        ('for', '*'),
-        ('manager', 'plone.app.layout.viewlets.interfaces.I' +
-         configurator.variables['manager_name_klass']),
-        ('class', '.viewlets.' + configurator.variables['viewlet_name_klass'] +
-         'Viewlet'),
-        ('layer', 'zope.interface.Interface'),
-        ('template', 'templates/' +
-         configurator.variables['viewlet_name_normalized'] + '.pt'),
-        ('permission', 'zope2.View'),
-    ])
+    match_str = '-*- extra stuff goes here -*-'
+    insert_str = """
+    <browser:viewlet
+        name="{normalized_name}"
+        for="{content_type}"
+        manager="plone.app.layout.viewlets.interfaces.I{manager}"
+        class=".viewlets.{klass_name}Viewlet"
+        layer={layer}
+        temlpate="templates/{normalized_name}.pt"
+        permission="{permission}"
+        />
 
-    tag = get_browser_namespace() + 'viewlet'
-    add_xml_tag_to_root(file_path, tag, attributes)
+        """
+    insert_str = insert_str.format(
+        normalized_name=configurator.variables['view_name_normalized'],
+        content_type='*',
+        manager=configurator.variables['manager_name_klass'],
+        klass_name=configurator.variables['view_name_klass'],
+        layer='zope.interface.Interface',
+        permission='zope2.View',
+    )
+
+    update_file(configurator, file_path, match_str, insert_str)
     return
 
 

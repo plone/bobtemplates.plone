@@ -1,0 +1,10 @@
+# -*- coding: utf-8 -*-
+from Products.Five.browser import BrowserView
+# -*- Extra imports go here -*-
+
+class {{{ view_name_klass  }}}View(BrowserView):
+    """ {{{ description  }}} """
+
+    def the_title():
+        return u'{{{ title  }}}'
+

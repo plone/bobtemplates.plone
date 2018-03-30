@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import date
+from lxml import etree
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import ValidationError
 
@@ -85,6 +86,17 @@ def is_string_in_file(configurator, file_path, match_str):
     return False
 
 
+def write_xml_tree_to_file(tree, file_path):
+    with open(file_path, 'wb') as xml_file:
+        tree.write(
+            xml_file,
+            pretty_print=True,
+            xml_declaration=True,
+            encoding='utf-8',
+        )
+    return
+
+
 def update_file(configurator, file_path, match_str, insert_str):
     """Insert insert_str into given file, by match_str."""
     changed = False
@@ -114,6 +126,68 @@ def update_file(configurator, file_path, match_str, insert_str):
         print(insert_str)
 
 
+def update_configure_zcml_include_package(configurator, package):
+    file_name = u'configure.zcml'
+    file_path = get_file_path(configurator, file_name)
+
+    tree = get_xml_tree(file_path)
+    tree_root = tree.getroot()
+    xpath_str = "./include[@package='.{0}']".format(package)
+    if len(tree_root.xpath(xpath_str)):
+        """ The package is already included in the root configure.zcml """
+        return
+
+    match_str = '-*- extra package includes go here -*-'
+    insert_str = """
+    <include package=".{0}" />
+    """
+    insert_str = insert_str.format(package)
+
+    update_file(configurator, file_path, insert_str, match_str)
+    return
+
+
+def get_xml_tree(xml_file):
+    parser = etree.XMLParser(remove_blank_text=True)
+    tree = etree.parse(xml_file, parser)
+    return tree
+
+
+def add_xml_tag_to_root(file_path, tag, attributes):
+    from collections import OrderedDict
+    if not isinstance(attributes, OrderedDict):
+        raise AssertionError(
+            'attributes must be an OrderedDict!\nFound: {0}'.format(
+                type(attributes),
+            ),
+        )
+
+    with open(file_path, 'r') as xml_file:
+        tree = get_xml_tree(xml_file)
+        configure_tag = tree.getroot()
+
+        etree.SubElement(configure_tag, tag, attrib=attributes)
+
+    write_xml_tree_to_file(tree, file_path)
+    return
+
+
+def get_browser_namespace():
+    return 'http://namespaces.zope.org/browser'
+
+
+def create_file_if_not_exists(file_path, example_file_path):
+    file_created = False
+
+    file_list = os.listdir(os.path.dirname(file_path))
+    file_name = os.path.basename(file_path)
+
+    if file_name not in file_list:
+        file_created = True
+        os.rename(example_file_path, file_path)
+    return file_created
+
+
 def _get_package_root_folder(configurator):
     file_name = 'setup.py'
     root_folder = None
@@ -130,6 +204,27 @@ def _get_package_root_folder(configurator):
                 break
             cur_dir = parent_dir
     return root_folder
+
+
+def get_file_path(configurator, file_name, dir_name=None):
+    if dir_name:
+        dir_path = os.path.join(configurator.target_directory, dir_name)
+    else:
+        dir_path = configurator.target_directory
+
+    file_path = os.path.join(
+        dir_path,
+        file_name,
+    )
+    return file_path
+
+
+def get_example_file_path(configurator, file_name, dir_name=None):
+    example_file_name = file_name + '.example'
+    example_file_path = get_file_path(
+        configurator, example_file_name, dir_name,
+    )
+    return example_file_path
 
 
 def check_root_folder(configurator, question):
@@ -151,6 +246,16 @@ def check_root_folder(configurator, question):
 def dottedname_to_path(dottedname):
     path = '/'.join(dottedname.split('.'))
     return path
+
+
+def get_klass_name(name):
+    klass_name = name.title().replace(' ', '')
+    return klass_name
+
+
+def get_normalized_name(name):
+    normalized_name = name.replace(' ', '_').lower()
+    return normalized_name
 
 
 def base_prepare_renderer(configurator):
@@ -198,3 +303,10 @@ def subtemplate_warning_post_question(configurator, question, answer):
         print('Abort!')
         sys.exit(0)
     return answer
+
+
+def prepare_renderer_for_subtemplate(configurator, subtemplate):
+    configurator = base_prepare_renderer(configurator)
+    configurator.variables['template_id'] = subtemplate
+    configurator.target_directory = configurator.variables['package_folder']
+    return configurator

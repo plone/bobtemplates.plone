@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 from bobtemplates.plone import base
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
@@ -125,3 +126,69 @@ def test_subtemplate_warning_post_question():
     assert base.subtemplate_warning_post_question(None, None, 'YES') == 'YES'
     with pytest.raises(SystemExit):
         base.subtemplate_warning_post_question(None, None, 'No')
+
+
+def test_get_klass_name():
+    from bobtemplates.plone import base
+    name = 'hello Plone developer'
+    klass_name = base.get_klass_name(name)
+
+    assert klass_name == 'HelloPloneDeveloper'
+    return
+
+
+def test_get_normalized_name():
+    from bobtemplates.plone import base
+    name = 'hello Plone developer'
+    normalized_name = base.get_normalized_name(name)
+
+    assert normalized_name == 'hello_plone_developer'
+    return
+
+
+def test_add_xml_tag_to_root(tmpdir):
+    from bobtemplates.plone import base
+    import os
+
+    filepath = os.path.join(tmpdir.strpath, 'test.xml')
+    file_content = """<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.todo">
+</configure>"""
+
+    with open(filepath, 'w') as f:
+        f.write(file_content)
+
+    tag = 'user'
+
+    from collections import OrderedDict
+
+    attributes = OrderedDict([
+        ('name', 'john_doe'),
+        ('age', '25'),
+        ('city', 'LA'),
+    ])
+
+    base.add_xml_tag_to_root(filepath, tag, attributes)
+
+    desired_content = """<?xml version='1.0' encoding='UTF-8'?>
+<configure \
+xmlns="http://namespaces.zope.org/zope" \
+xmlns:browser="http://namespaces.zope.org/browser" \
+xmlns:plone="http://namespaces.plone.org/plone" \
+i18n_domain="collective.todo">
+<user \
+name="john_doe" \
+age="25" \
+city="LA"\
+/>\
+</configure>
+"""
+
+    with open(filepath, 'r') as f:
+        content = f.read()
+
+    assert content == desired_content
+    return

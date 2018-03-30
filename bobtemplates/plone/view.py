@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from bobtemplates.plone.base import create_file_if_not_exists
+from bobtemplates.plone.base import get_browser_namespace
 from bobtemplates.plone.base import get_example_file_path
 from bobtemplates.plone.base import get_file_path
 from bobtemplates.plone.base import get_klass_name
 from bobtemplates.plone.base import get_normalized_name
+from bobtemplates.plone.base import get_xml_tree
 from bobtemplates.plone.base import prepare_renderer_for_subtemplate
 from bobtemplates.plone.base import update_file
 
@@ -11,6 +13,13 @@ from bobtemplates.plone.base import update_file
 def _update_configure_zcml(configurator):
     file_name = u'configure.zcml'
     file_path = get_file_path(configurator, file_name)
+
+    tree = get_xml_tree(file_path)
+    tree_root = tree.getroot()
+    xpath_str = "./include[@package='.views']"
+    if len(tree_root.xpath(xpath_str)):
+        """ The package is already included in the root configure.zcml """
+        return
 
     match_str = '-*- extra package includes go here -*-'
     insert_str = """
@@ -33,6 +42,23 @@ def _update_views_configure_zcml(configurator):
 
     if file_created:
         _update_configure_zcml(configurator)
+
+    else:
+        namespaces = {'browser': get_browser_namespace()}
+        tree = get_xml_tree(file_path)
+        tree_root = tree.getroot()
+
+        xpath_str = "./browser:page[@name='{0}']".format(
+            configurator.variables['view_name_normalized'],
+        )
+
+        if len(tree_root.xpath(xpath_str, namespaces=namespaces)):
+            print(
+                '{name} already in configure.zcml, skip adding!'.format(
+                    name=configurator.variables['view_name_normalized'],
+                ),
+            )
+            return
 
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """

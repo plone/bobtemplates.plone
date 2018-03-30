@@ -142,7 +142,7 @@ def add_xml_tag_to_root(file_path, tag, attributes):
 
 
 def get_browser_namespace():
-    return '{http://namespaces.zope.org/browser}'
+    return 'http://namespaces.zope.org/browser'
 
 
 def create_file_if_not_exists(file_path, example_file_path):

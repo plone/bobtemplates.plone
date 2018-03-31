@@ -1,3 +1,0 @@
-===============collective.view
-===============
-User documentation

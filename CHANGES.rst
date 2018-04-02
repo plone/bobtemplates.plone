@@ -1,11 +1,15 @@
 Changelog
 =========
 
-3.0.2 (unreleased)
+3.1.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Add global_allow and filter_content_types questions
+  [MrTango]
+- don't use lower case version for CT name
+  [MrTango]
+- add behavior tests
+  [MrTango]
 
 3.0.1 (2018-03-29)
 ------------------

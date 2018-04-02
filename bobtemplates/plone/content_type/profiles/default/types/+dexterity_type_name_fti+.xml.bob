@@ -75,7 +75,7 @@
   </property>
 
   <!-- View information -->
-  <property name="add_view_expr">string:${folder_url}/++add++{{{ dexterity_type_name_normalized }}}</property>
+  <property name="add_view_expr">string:${folder_url}/++add++{{{ dexterity_type_name }}}</property>
   <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>

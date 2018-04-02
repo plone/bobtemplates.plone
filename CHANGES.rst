@@ -4,7 +4,14 @@ Changelog
 3.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix add_view_expr in content_type template
+  [MrTango]
+
+- Fix robot test selector in content_type template
+  [MrTango]
+
+- Bump default Plone buildout version to 5.1
+  [MrTango]
 
 
 3.1.0 (2018-04-02)

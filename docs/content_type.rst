@@ -1,8 +1,8 @@
 =================================
 Creating a Dexterity Content Type
 =================================
-
-With this ``subtemplate``, you can add a Dexterity Content Type to a Plone package.
+`Title <http://link>`_
+With this ``subtemplate``, you can add a `Dexterity <https://docs.plone.org/develop/plone/content/dexterity.html#dexterity>`_ Content Type to a Plone package.
 
 First create a Plone Addon Package:
 

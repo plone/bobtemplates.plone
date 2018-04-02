@@ -1,17 +1,22 @@
 # -*- coding: utf-8 -*-
 
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.interfaces import IDexterityContent
+# from plone import schema
+from plone.supermodel import model
+from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import provider
-from plone.supermodel import model
-from plone import autoform
-from plone import schema
-from {{{package.dottedname}}} import _
 
 
-@provider(autoform.interfaces.IFormFieldProvider)
+@provider(IFormFieldProvider)
 class I{{{behavior_name_klass}}}(model.Schema):
     """
     """
+
+    def do_something():
+        """
+        """
 
     # project = schema.Choice(
     #     title=_(u"Project"),
@@ -21,9 +26,15 @@ class I{{{behavior_name_klass}}}(model.Schema):
 
 
 @implementer(I{{{behavior_name_klass}}})
+@adapter(IDexterityContent)
 class {{{behavior_name_klass}}}(object):
     def __init__(self, context):
         self.context = context
+
+    def do_something(self):
+        """
+        """
+        return u'something'
 
     # @property
     # def project(self):

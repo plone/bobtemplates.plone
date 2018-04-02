@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-from plone import api
+from {{{package.dottedname}}}.behaviors.{{{behavior_name_normalized}}} import I{{{ behavior_name_klass }}}
+from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
-from {{{ package.dottedname }}} import _
+from plone.behavior.interfaces import IBehavior
 from zope.component import getUtility
-from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.interfaces import IVocabularyTokenized
 
 import unittest
 
@@ -21,7 +19,8 @@ class {{{ behavior_name_klass }}}IntegrationTest(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
     def test_behavior(self):
-        vocab_name = "{{{ package.dottedname }}}.{{{ behavior_name_klass }}}"
-        # XXX: add test here!
-        # test the behavior
-        # self.assertTrue(False)
+        behavior = getUtility(IBehavior, '{{{ behavior_name_normalized }}}')
+        self.assertEqual(
+            behavior.marker,
+            IAttachmentType,
+        )

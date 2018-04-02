@@ -11,6 +11,7 @@ Introduction
     theme
     content_type
     vocabulary
+    behavior
     develop
 
 

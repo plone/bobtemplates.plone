@@ -63,11 +63,13 @@ def _update_behaviors_configure_zcml(configurator):
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
     <plone:behavior
+        name="{normalized_name}"
         title="{title}"
         description="{description}"
         provides=".{normalized_name}.I{klass_name}"
         factory=".{normalized_name}.{klass_name}"
-    />
+        marker=".{normalized_name}.I{klass_name}"
+        />
 
         """.format(
         title=configurator.variables['behavior_name_klass'],

@@ -44,12 +44,14 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
-dexterity_type_name = tasks
+dexterity_type_name = Tasks Container
 dexterity_type_base_class = Container
-dexterity_type_create_class = True
+dexterity_type_create_class = Yes
+dexterity_type_global_allow = Yes
+dexterity_type_filter_content_types = No
 subtemplate_warning = Yes
 dexterity_type_desc = A tasks container for Plone
-dexterity_type_supermodel = True
+dexterity_type_supermodel = Yes
 """
     generate_answers_ini(wd, template)
 
@@ -67,12 +69,63 @@ dexterity_type_supermodel = True
 
     # generate 2. subtemplate content_type with Item instead of Container:
     template = """[variables]
-dexterity_type_name = task Task
+dexterity_type_name = Task Item
 dexterity_type_base_class = Item
-dexterity_type_create_class = True
+dexterity_type_create_class = Yes
+dexterity_type_global_allow = Yes
 subtemplate_warning = Yes
 dexterity_type_desc = A task Task content type for Plone
-dexterity_type_supermodel = True
+dexterity_type_supermodel = Yes
+"""
+    generate_answers_ini(wd, template)
+
+    config.template = 'content_type'
+    result = subprocess.call(
+        [
+            'mrbob',
+            'bobtemplates.plone:' + config.template,
+            '--config', 'answers.ini',
+            '--non-interactive',
+        ],
+        cwd=wd,
+    )
+    assert result == 0
+
+    # generate subtemplate content_type with generic class:
+    template = """[variables]
+dexterity_type_name = Generic Tasks Container
+dexterity_type_base_class = Container
+dexterity_type_create_class = No
+dexterity_type_global_allow = Yes
+dexterity_type_filter_content_types = No
+subtemplate_warning = Yes
+dexterity_type_desc = A tasks container for Plone
+dexterity_type_supermodel = Yes
+"""
+    generate_answers_ini(wd, template)
+
+    config.template = 'content_type'
+    result = subprocess.call(
+        [
+            'mrbob',
+            'bobtemplates.plone:' + config.template,
+            '--config', 'answers.ini',
+            '--non-interactive',
+        ],
+        cwd=wd,
+    )
+    assert result == 0
+
+    # generate subtemplate content_type with generic class:
+    template = """[variables]
+dexterity_type_name = Task Item Python Schema
+dexterity_type_base_class = Item
+dexterity_type_create_class = Yes
+dexterity_type_global_allow = Yes
+dexterity_type_filter_content_types = No
+subtemplate_warning = Yes
+dexterity_type_desc = A tasks container for Plone
+dexterity_type_supermodel = No
 """
     generate_answers_ini(wd, template)
 

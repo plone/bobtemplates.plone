@@ -65,7 +65,7 @@ a {{{ dexterity_type_name }}} 'My {{{ dexterity_type_name }}}'
 # --- WHEN -------------------------------------------------------------------
 
 I type '${title}' into the title field
-  Input Text  name=form.widgets.IDublinCore.title  ${title}
+  Input Text  name=form-widgets-IBasic-title  ${title}
 
 I submit the form
   Click Button  Save

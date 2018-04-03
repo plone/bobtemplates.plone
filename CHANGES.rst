@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.1.1 (unreleased)
+3.1.1 (2018-04-03)
 ------------------
 
 - Fix add_view_expr in content_type template

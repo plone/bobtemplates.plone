@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 from datetime import date
 from mrbob.bobexceptions import MrBobError
+from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
+from colorama import Fore, Style
 
 import keyword
 import logging
 import os
 import re
+import subprocess
 import sys
 
 
@@ -16,13 +19,56 @@ except ImportError:
     from configparser import ConfigParser
 
 
-logger = logging.getLogger('bobtemplates.plone')
+def echo_warning(msg):
+    print(Fore.RED + msg + Style.RESET_ALL)
 
 
 class BobConfig(object):
     def __init__(self):
         self.version = None
 
+
+def git_commit(configurator, msg):
+    result = subprocess.check_output(
+        [
+            'git',
+            'add',
+            '.',
+        ],
+        cwd=configurator.target_directory,
+    )
+    if result:
+        echo_warning(u'git add failed, abort!')
+        sys.exit(0)
+
+    result = subprocess.check_output(
+        [
+            'git',
+            'commit',
+            '-m',
+            '"{0}"'.format(msg),
+        ],
+        cwd=configurator.target_directory,
+    )
+
+
+def git_clean_state_check(configurator, question):
+    result = subprocess.check_output(
+        [
+            'git',
+            'status',
+            '--porcelain',
+        ],
+        cwd=configurator.target_directory,
+    )
+    if not result:
+        raise SkipQuestion(u'Git state is clean, so we skip this question.')
+    else:
+        echo_warning(
+            u'git status result:\n----------------------------\n{0}'.format(
+                result
+            )
+        )
 
 def check_klass_name(configurator, question, answer):
     if keyword.iskeyword(answer):
@@ -194,7 +240,7 @@ def subtemplate_warning(configurator, question):
 
 
 def subtemplate_warning_post_question(configurator, question, answer):
-    if answer.lower() != 'yes':
+    if answer.lower() != 'yes do it':
         print('Abort!')
         sys.exit(0)
     return answer

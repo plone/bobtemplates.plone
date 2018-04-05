@@ -3,6 +3,7 @@
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import is_string_in_file
 from bobtemplates.plone.base import update_file
+from bobtemplates.plone.base import git_commit
 from lxml import etree
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
@@ -209,3 +210,6 @@ def post_renderer(configurator):
     _update_rolemap_xml(configurator)
     _update_metadata_xml(configurator)
     _update_setup_py(configurator)
+    git_commit(configurator, "Add content_type: {0}".format(
+        configurator.variables['dexterity_type_name'])
+    )

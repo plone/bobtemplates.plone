@@ -56,5 +56,5 @@ class TestUninstall(unittest.TestCase):
             I{{{ package.browserlayer }}}
         from plone.browserlayer import utils
         self.assertNotIn(
-           I{{{ package.browserlayer }}},
-           utils.registered_layers())
+            I{{{ package.browserlayer }}},
+            utils.registered_layers())

@@ -2,7 +2,8 @@
     xmlns="http://namespaces.plone.org/supermodel/schema"
     xmlns:security="http://namespaces.plone.org/supermodel/security"
     xmlns:form="http://namespaces.plone.org/supermodel/form"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="{{{ package.dottedname }}}">
     <schema>
     </schema>
 </model>

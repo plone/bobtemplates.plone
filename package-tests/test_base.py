@@ -122,6 +122,10 @@ def test_update_file(tmpdir):
 
 
 def test_subtemplate_warning_post_question():
-    assert base.subtemplate_warning_post_question(None, None, 'YES') == 'YES'
+    assert base.subtemplate_warning_post_question(
+        None,
+        None,
+        'YES DO IT',
+    ) == 'YES DO IT'
     with pytest.raises(SystemExit):
         base.subtemplate_warning_post_question(None, None, 'No')

@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+from colorama import Fore
+from colorama import Style
 from datetime import date
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
-from colorama import Fore, Style
+from six.moves import input
 
 import keyword
-import logging
 import os
 import re
 import subprocess
@@ -19,8 +20,18 @@ except ImportError:
     from configparser import ConfigParser
 
 
-def echo_warning(msg):
-    print(Fore.RED + msg + Style.RESET_ALL)
+def echo(msg, msg_type=None):
+    msg = str(msg)
+    if msg_type == 'warning':
+        colored_msg = Fore.YELLOW + msg + Style.RESET_ALL
+    if msg_type == 'error':
+        colored_msg = Fore.RED + msg + Style.RESET_ALL
+    if msg_type == 'info':
+        colored_msg = Fore.GREEN + Style.DIM + msg + \
+            Style.RESET_ALL
+    if not msg_type:
+        colored_msg = msg + Style.RESET_ALL
+    print(colored_msg)
 
 
 class BobConfig(object):
@@ -29,46 +40,84 @@ class BobConfig(object):
 
 
 def git_commit(configurator, msg):
-    result = subprocess.check_output(
-        [
-            'git',
-            'add',
-            '.',
-        ],
-        cwd=configurator.target_directory,
-    )
-    if result:
-        echo_warning(u'git add failed, abort!')
-        sys.exit(0)
+    non_interactive = configurator.bobconfig.get('non_interactive')
+    params1 = [
+        'git',
+        'add',
+        '.',
+    ]
+    params2 = [
+        'git',
+        'commit',
+        '-m',
+        '"{0}"'.format(msg),
+    ]
+    run_git_commit = True
+    if not non_interactive:
+        echo(
+            'Should we run?:\n{0}\n{1}'.format(
+                ' '.join(params1),
+                ' '.join(params2),
+            ),
+            'info',
+        )
+        run_git_commit = (input('[Yes]/No: ') or 'Yes').lower() == 'yes'
 
-    result = subprocess.check_output(
-        [
-            'git',
-            'commit',
-            '-m',
-            '"{0}"'.format(msg),
-        ],
-        cwd=configurator.target_directory,
-    )
+    if not run_git_commit:
+        echo('Skip git commit!', 'warning')
+        return
+
+    echo('RUN: {0}'.format(' '.join(params1)), 'info')
+    try:
+        result1 = subprocess.check_output(
+            params1,
+            cwd=configurator.target_directory,
+        )
+    except subprocess.CalledProcessError as e:
+        echo(e.output, 'warning')
+    else:
+        if result1:
+            echo(result1, 'info')
+
+    echo('RUN: {0}'.format(' '.join(params2)), 'info')
+    try:
+        result2 = subprocess.check_output(
+            params2,
+            cwd=configurator.target_directory,
+        )
+    except subprocess.CalledProcessError as e:
+        echo(e.output, 'warning')
+    else:
+        echo(result2, 'info')
 
 
 def git_clean_state_check(configurator, question):
-    result = subprocess.check_output(
-        [
-            'git',
-            'status',
-            '--porcelain',
-        ],
-        cwd=configurator.target_directory,
-    )
-    if not result:
-        raise SkipQuestion(u'Git state is clean, so we skip this question.')
-    else:
-        echo_warning(
-            u'git status result:\n----------------------------\n{0}'.format(
-                result
-            )
+    params = [
+        'git',
+        'status',
+        '--porcelain',
+    ]
+    echo('\nRUN: {0}'.format(' '.join(params)), 'info')
+    try:
+        result = subprocess.check_output(
+            params,
+            cwd=configurator.target_directory,
         )
+    except subprocess.CalledProcessError as e:
+        echo(e.output, 'error')
+    else:
+        if not result:
+            echo(u'Git state is clean.\n', 'info')
+            raise SkipQuestion(
+                u'Git state is clean, so we skip this question.',
+            )
+        echo(
+            u'git status result:\n----------------------------\n{0}'.format(
+                result,
+            ),
+            'warning',
+        )
+
 
 def check_klass_name(configurator, question, answer):
     if keyword.iskeyword(answer):

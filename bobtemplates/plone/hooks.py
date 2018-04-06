@@ -82,14 +82,14 @@ def pre_username(configurator, question):
     validate_packagename(configurator)
 
     default = get_git_info('user.name')
-    if default:
+    if default and question:
         question.default = default
 
 
 def pre_email(configurator, question):
     """Get email from git."""
     default = get_git_info('user.email')
-    if default:
+    if default and question:
         question.default = default
 
 

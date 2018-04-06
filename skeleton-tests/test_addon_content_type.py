@@ -42,6 +42,22 @@ plone.version = {version}
         os.path.join(tmpdir.strpath, config.package_name),
     )
 
+    params = [
+        'git',
+        'init',
+    ]
+    print('RUN: {0} in {1}'.format(' '.join(params), wd))
+    try:
+        result = subprocess.check_output(
+            params,
+            cwd=wd,
+        )
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+    else:
+        if result:
+            print(result)
+
     # generate subtemplate content_type:
     template = """[variables]
 dexterity_type_name = Tasks Container
@@ -49,7 +65,7 @@ dexterity_type_base_class = Container
 dexterity_type_create_class = Yes
 dexterity_type_global_allow = Yes
 dexterity_type_filter_content_types = No
-subtemplate_warning = Yes
+subtemplate_warning = No
 dexterity_type_desc = A tasks container for Plone
 dexterity_type_supermodel = Yes
 """

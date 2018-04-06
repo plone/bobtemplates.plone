@@ -90,14 +90,31 @@ def test_pre_username():
     # step 2: test base namespace
     configurator = Configurator(
         template='bobtemplates.plone:addon',
+        bobconfig={
+            'non_interactive': True,
+        },
         target_directory='collective.foo',
     )
     hooks.pre_username(configurator, None)
+
+    # step 3: test invalid name
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        bobconfig={
+            'non_interactive': True,
+        },
+        target_directory='collective foo',
+    )
+    with pytest.raises(SystemExit):
+        hooks.pre_username(configurator, None)
 
 
 def test_pre_email():
     configurator = Configurator(
         template='bobtemplates.plone:addon',
+        bobconfig={
+            'non_interactive': True,
+        },
         target_directory='collective.foo',
     )
     hooks.pre_email(configurator, None)

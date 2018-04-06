@@ -7,6 +7,7 @@ from mrbob.configurator import Configurator
 
 import os
 import pytest
+import subprocess
 
 
 def test_post_dexterity_type_name():
@@ -36,6 +37,9 @@ def test_prepare_renderer():
     configurator = Configurator(
         template='bobtemplates.plone:content_type',
         target_directory='collective.foo.bar',
+        bobconfig={
+            'non_interactive': True,
+        },
         variables={
             'dexterity_type_name': 'Task',
         },
@@ -116,11 +120,30 @@ version=5.1
     configurator = Configurator(
         template='bobtemplates.plone:addon',
         target_directory=package_path,
+        bobconfig={
+            'non_interactive': True,
+        },
         variables={
             'dexterity_type_name': 'Task',
             'plone.version': '5.1',
         },
     )
+
+    params = [
+        'git',
+        'init',
+    ]
+    print('RUN: {0} in {1}'.format(' '.join(params), package_path))
+    try:
+        result = subprocess.check_output(
+            params,
+            cwd=package_path,
+        )
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+    else:
+        if result:
+            print(result)
 
     os.chdir(package_path)
     base.set_global_vars(configurator)

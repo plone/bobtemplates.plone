@@ -123,12 +123,4 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
 {{% else %}}
         self.assertTrue(IDexterityContainer.providedBy(obj))
 {{% endif %}}
-{{% if dexterity_type_global_allow %}}
-        self.assertTrue(I{{{ dexterity_type_name_klass }}}.providedBy(obj).global_allow)
-{{% endif %}}
-{{% if not dexterity_type_filter_types %}}
-        self.assertTrue(IDexterityContainer.providedBy(obj))
-        self.assertTrue(IArchetypesContainer.providedBy(obj))
-        self.assertTrue(IPlonimoContainer.providedBy(obj))
-{{% endif %}} 
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-{{% if dexterity_type_create_class %}}
+{{% if dexterity_type_create_class or not dexterity_type_supermodel %}}
 from {{{ package.dottedname }}}.content.{{{ dexterity_type_name_normalized }}} import I{{{ dexterity_type_name_klass }}}  # NOQA E501
 {{% endif %}}
 from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa

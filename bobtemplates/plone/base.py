@@ -62,6 +62,8 @@ def git_init(configurator):
 
 def git_commit(configurator, msg):
     non_interactive = configurator.bobconfig.get('non_interactive')
+    working_dir = configurator.variables.get(
+        'package.root_folder') or configurator.target_directory
     params1 = [
         'git',
         'add',
@@ -76,9 +78,10 @@ def git_commit(configurator, msg):
     run_git_commit = True
     if not non_interactive:
         echo(
-            'Should we run?:\n{0}\n{1}'.format(
+            'Should we run?:\n{0}\n{1}\nin: {2}'.format(
                 ' '.join(params1),
                 ' '.join(params2),
+                working_dir,
             ),
             'info',
         )
@@ -92,7 +95,7 @@ def git_commit(configurator, msg):
     try:
         result1 = subprocess.check_output(
             params1,
-            cwd=configurator.target_directory,
+            cwd=working_dir,
         )
     except subprocess.CalledProcessError as e:
         echo(e.output, 'warning')
@@ -104,7 +107,7 @@ def git_commit(configurator, msg):
     try:
         result2 = subprocess.check_output(
             params2,
-            cwd=configurator.target_directory,
+            cwd=working_dir,
         )
     except subprocess.CalledProcessError as e:
         echo(e.output, 'warning')

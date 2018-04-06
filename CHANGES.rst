@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.1.2 (unreleased)
+3.1.2 (2018-04-06)
 ------------------
 
 - Set i18n:domain in supermodel xml files to the package domain

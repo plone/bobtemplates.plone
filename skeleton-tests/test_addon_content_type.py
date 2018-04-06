@@ -12,6 +12,7 @@ def test_addon_content_type(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True
+package.git = y
 
 author.name = The Plone Collective
 author.email = collective@plone.org
@@ -41,22 +42,6 @@ plone.version = {version}
     wd = os.path.abspath(
         os.path.join(tmpdir.strpath, config.package_name),
     )
-
-    params = [
-        'git',
-        'init',
-    ]
-    print('RUN: {0} in {1}'.format(' '.join(params), wd))
-    try:
-        result = subprocess.check_output(
-            params,
-            cwd=wd,
-        )
-    except subprocess.CalledProcessError as e:
-        print(e.output)
-    else:
-        if result:
-            print(result)
 
     # generate subtemplate content_type:
     template = """[variables]

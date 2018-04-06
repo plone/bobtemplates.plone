@@ -42,22 +42,6 @@ plone.version = {version}
         os.path.join(tmpdir.strpath, config.package_name),
     )
 
-    params = [
-        'git',
-        'init',
-    ]
-    print('RUN: {0} in {1}'.format(' '.join(params), wd))
-    try:
-        result = subprocess.check_output(
-            params,
-            cwd=wd,
-        )
-    except subprocess.CalledProcessError as e:
-        print(e.output)
-    else:
-        if result:
-            print(result)
-
     # generate subtemplate content_type:
     template = """[variables]
 vocabulary_name = AvailableTasks

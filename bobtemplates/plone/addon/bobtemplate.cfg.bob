@@ -1,3 +1,4 @@
 [main]
 version = {{{ plone.version }}}
 template = plone_addon
+git = {{{ package.git }}}

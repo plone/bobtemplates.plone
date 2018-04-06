@@ -37,6 +37,27 @@ def echo(msg, msg_type=None):
 class BobConfig(object):
     def __init__(self):
         self.version = None
+        self.git = None
+        self.template = None
+
+
+def git_init(configurator):
+    params = [
+        'git',
+        'init',
+    ]
+
+    echo('RUN: {0}'.format(' '.join(params)), 'info')
+    try:
+        result = subprocess.check_output(
+            params,
+            cwd=configurator.target_directory,
+        )
+    except subprocess.CalledProcessError as e:
+        echo(e.output, 'warning')
+    else:
+        if result:
+            echo(result, 'info')
 
 
 def git_commit(configurator, msg):
@@ -135,6 +156,8 @@ def read_bobtemplates_ini(configurator):
     if not config.sections():
         return
     bob_config.version = config.get('main', 'version')
+    bob_config.template = config.get('main', 'template')
+    bob_config.git = config.get('main', 'git')
     return bob_config
 
 
@@ -289,7 +312,7 @@ def subtemplate_warning(configurator, question):
 
 
 def subtemplate_warning_post_question(configurator, question, answer):
-    if answer.lower() != 'yes do it':
+    if answer.lower() != 'y':
         print('Abort!')
         sys.exit(0)
     return answer

@@ -156,8 +156,10 @@ def read_bobtemplates_ini(configurator):
     if not config.sections():
         return
     bob_config.version = config.get('main', 'version')
-    bob_config.template = config.get('main', 'template')
-    bob_config.git = config.get('main', 'git')
+    if config.has_option('main', 'git'):
+        bob_config.git = config.get('main', 'git')
+    else:
+        bob_config.git = None
     return bob_config
 
 

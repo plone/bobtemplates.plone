@@ -47,12 +47,12 @@ plone.version = {version}
     template = """[variables]
 dexterity_type_name = Tasks Container
 dexterity_type_base_class = Container
-dexterity_type_create_class = Yes
-dexterity_type_global_allow = Yes
-dexterity_type_filter_content_types = No
-subtemplate_warning = No
+dexterity_type_create_class = y
+dexterity_type_global_allow = y
+dexterity_type_filter_content_types = n
+subtemplate_warning = n
 dexterity_type_desc = A tasks container for Plone
-dexterity_type_supermodel = Yes
+dexterity_type_supermodel = y
 """
     generate_answers_ini(wd, template)
 
@@ -72,11 +72,11 @@ dexterity_type_supermodel = Yes
     template = """[variables]
 dexterity_type_name = Task Item
 dexterity_type_base_class = Item
-dexterity_type_create_class = Yes
-dexterity_type_global_allow = Yes
-subtemplate_warning = Yes
+dexterity_type_create_class = y
+dexterity_type_global_allow = y
+subtemplate_warning = y
 dexterity_type_desc = A task Task content type for Plone
-dexterity_type_supermodel = Yes
+dexterity_type_supermodel = y
 """
     generate_answers_ini(wd, template)
 
@@ -96,12 +96,12 @@ dexterity_type_supermodel = Yes
     template = """[variables]
 dexterity_type_name = Generic Tasks Container
 dexterity_type_base_class = Container
-dexterity_type_create_class = No
-dexterity_type_global_allow = Yes
-dexterity_type_filter_content_types = No
-subtemplate_warning = Yes
+dexterity_type_create_class = n
+dexterity_type_global_allow = y
+dexterity_type_filter_content_types = n
+subtemplate_warning = y
 dexterity_type_desc = A tasks container for Plone
-dexterity_type_supermodel = Yes
+dexterity_type_supermodel = y
 """
     generate_answers_ini(wd, template)
 
@@ -121,12 +121,12 @@ dexterity_type_supermodel = Yes
     template = """[variables]
 dexterity_type_name = Task Item Python Schema
 dexterity_type_base_class = Item
-dexterity_type_create_class = Yes
-dexterity_type_global_allow = Yes
-dexterity_type_filter_content_types = No
-subtemplate_warning = Yes
+dexterity_type_create_class = y
+dexterity_type_global_allow = y
+dexterity_type_filter_content_types = n
+subtemplate_warning = y
 dexterity_type_desc = A tasks container for Plone
-dexterity_type_supermodel = No
+dexterity_type_supermodel = n
 """
     generate_answers_ini(wd, template)
 

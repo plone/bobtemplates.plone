@@ -125,7 +125,7 @@ def test_subtemplate_warning_post_question():
     assert base.subtemplate_warning_post_question(
         None,
         None,
-        'YES DO IT',
-    ) == 'YES DO IT'
+        'y',
+    ) == 'y'
     with pytest.raises(SystemExit):
-        base.subtemplate_warning_post_question(None, None, 'No')
+        base.subtemplate_warning_post_question(None, None, 'n')

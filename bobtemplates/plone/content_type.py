@@ -190,10 +190,12 @@ def _update_setup_py(configurator):
 
 
 def pre_ask(configurator):
-    configurator = base_prepare_renderer(configurator)
+    """
+    """
 
 
 def prepare_renderer(configurator):
+    configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'content_type'
     type_name = configurator.variables['dexterity_type_name']
     configurator.variables[

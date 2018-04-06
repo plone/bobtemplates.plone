@@ -129,22 +129,6 @@ version=5.1
         },
     )
 
-    params = [
-        'git',
-        'init',
-    ]
-    print('RUN: {0} in {1}'.format(' '.join(params), package_path))
-    try:
-        result = subprocess.check_output(
-            params,
-            cwd=package_path,
-        )
-    except subprocess.CalledProcessError as e:
-        print(e.output)
-    else:
-        if result:
-            print(result)
-
     os.chdir(package_path)
     base.set_global_vars(configurator)
     content_type.prepare_renderer(configurator)

@@ -2,6 +2,7 @@
 
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import git_init
+from bobtemplates.plone.base import make_path
 
 import os
 import shutil
@@ -138,11 +139,6 @@ def _cleanup_package(configurator):
                 shutil.rmtree(path)
             else:
                 os.remove(path)
-
-
-def make_path(*args):
-    """generate path string."""
-    return os.sep.join(args)
 
 
 def pre_ask(configurator):

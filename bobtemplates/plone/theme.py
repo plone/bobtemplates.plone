@@ -5,7 +5,7 @@ from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import is_string_in_file
 from bobtemplates.plone.base import update_file
-from bobtemplates.plone.hooks import validate_packagename
+from bobtemplates.plone.base import validate_packagename
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 

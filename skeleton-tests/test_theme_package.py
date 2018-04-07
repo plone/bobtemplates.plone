@@ -29,6 +29,7 @@ theme.name = Black Sea theme
 author.name = The Plone Collective
 author.email = collective@plone.org
 author.github.user = collective
+subtemplate_warning=False
 
 plone.version = {version}
 """.format(

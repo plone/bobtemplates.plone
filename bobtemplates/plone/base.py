@@ -10,6 +10,7 @@ from six.moves import input
 import keyword
 import os
 import re
+import string
 import subprocess
 import sys
 
@@ -173,10 +174,10 @@ def set_global_vars(configurator):
     if not version and bob_config:
         print('>>> reading Plone version from bobtemplate.cfg')
         version = bob_config.version
-    _set_plone_version_variables(configurator, version)
+    set_plone_version_variables(configurator, version)
 
 
-def _set_plone_version_variables(configurator, version):
+def set_plone_version_variables(configurator, version):
     version = configurator.variables.get('plone.version', version)
     if not version:
         return
@@ -194,6 +195,65 @@ def _set_plone_version_variables(configurator, version):
             '.'.join(version.split('.')[:2])
 
 
+def get_git_info(value):
+    """Try to get information from the git-config."""
+    gitargs = ['git', 'config', '--get']
+    try:
+        result = subprocess.check_output(gitargs + [value]).strip()
+        return result
+    except (OSError, subprocess.CalledProcessError):
+        pass
+
+
+def validate_packagename(configurator):
+    """Find out if the name target-dir entered when invoking the command can be
+    a valid python-package."""
+    package_dir = os.path.basename(configurator.target_directory)
+    fail = False
+
+    allowed = set(string.ascii_letters + string.digits + '.-_')
+    if not set(package_dir).issubset(allowed):
+        fail = True
+
+    if package_dir.startswith('.') or package_dir.endswith('.'):
+        fail = True
+
+    parts = len(package_dir.split('.'))
+    if parts < 2 or parts > 3:
+        fail = True
+
+    if fail:
+        msg = (
+            "Error: '{0}' is not a valid packagename.\n"
+            'Please use a valid name (like collective.myaddon or '
+            'plone.app.myaddon)'.format(package_dir)
+        )
+        sys.exit(msg)
+
+
+def post_plone_version(configurator, question, answer):
+    """Find out if it is supposed to be Plone 5."""
+    set_plone_version_variables(configurator, answer)
+    return answer
+
+
+def pre_username(configurator, question):
+    """Get email from git and validate package name."""
+    # validate_packagename should be run before asking the first question.
+    validate_packagename(configurator)
+
+    default = get_git_info('user.name')
+    if default and question:
+        question.default = default
+
+
+def pre_email(configurator, question):
+    """Get email from git."""
+    default = get_git_info('user.email')
+    if default and question:
+        question.default = default
+
+
 def is_string_in_file(configurator, file_path, match_str):
     """Simple check if a given string is in a file.
 
@@ -206,6 +266,11 @@ def is_string_in_file(configurator, file_path, match_str):
         if match_str in line:
             return True
     return False
+
+
+def make_path(*args):
+    """generate path string."""
+    return os.sep.join(args)
 
 
 def update_file(configurator, file_path, match_str, insert_str):

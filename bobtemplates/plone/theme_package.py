@@ -1,113 +1,17 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Render bobtemplates.plone hooks.
 
-DEPRECATED, dont't use this and don't add new stuff here please!
-
-"""
-from bobtemplates.plone.base import _set_plone_version_variables
-from mrbob.bobexceptions import ValidationError
+from bobtemplates.plone.base import git_commit
+from bobtemplates.plone.base import git_init
+from bobtemplates.plone.base import make_path
 
 import os
 import shutil
-import string
-import subprocess
-import sys
 
 
-def to_boolean(configurator, question, answer):
-    """If you want to convert an answer to Python boolean, you can use this
-    function as :ref:`post-question-hook`:
-
-    .. code-block:: ini
-
-        [questions]
-        idiot.question = Are you young?
-        idiot.post_ask_question = mrbob.hooks:to_boolean
-
-    Following variables can be converted to a boolean:
-    **y, n, yes, no, true, false, 1, 0**
-
-    """
-    if isinstance(answer, bool):
-        return answer
-    value = answer.lower()
-    if value in ['y', 'yes', 'true', '1']:
-        return True
-    elif value in ['n', 'no', 'false', '0']:
-        return False
-    else:
-        raise ValidationError('Value must be a boolean (y/n)')
-
-
-def get_git_info(value):
-    """Try to get information from the git-config."""
-    gitargs = ['git', 'config', '--get']
-    try:
-        result = subprocess.check_output(gitargs + [value]).strip()
-        return result
-    except (OSError, subprocess.CalledProcessError):
-        pass
-
-
-def validate_packagename(configurator):
-    """Find out if the name target-dir entered when invoking the command can be
-    a valid python-package."""
-    package_dir = os.path.basename(configurator.target_directory)
-    fail = False
-
-    allowed = set(string.ascii_letters + string.digits + '.-_')
-    if not set(package_dir).issubset(allowed):
-        fail = True
-
-    if package_dir.startswith('.') or package_dir.endswith('.'):
-        fail = True
-
-    parts = len(package_dir.split('.'))
-    if parts < 2 or parts > 3:
-        fail = True
-
-    if fail:
-        msg = (
-            "Error: '{0}' is not a valid packagename.\n"
-            'Please use a valid name (like collective.myaddon or '
-            'plone.app.myaddon)'.format(package_dir)
-        )
-        sys.exit(msg)
-
-
-def pre_username(configurator, question):
-    """Get email from git and validate package name."""
-    # validate_packagename should be run before asking the first question.
-    validate_packagename(configurator)
-
-    default = get_git_info('user.name')
-    if default and question:
-        question.default = default
-
-
-def pre_email(configurator, question):
-    """Get email from git."""
-    default = get_git_info('user.email')
-    if default and question:
-        question.default = default
-
-
-def post_plone_version(configurator, question, answer):
-    """Find out if it is supposed to be Plone 5."""
-    _set_plone_version_variables(configurator, answer)
-    return answer
-
-
-def prepare_render(configurator):
+def pre_render(configurator):
     """Some variables to make templating easier.
-
-    This is especially important for allowing nested and normal
-    packages.
-
     """
     # get package-name from user-input
-
     package_dir = os.path.basename(configurator.target_directory)
     nested = bool(len(package_dir.split('.')) == 3)
     configurator.variables['package.nested'] = nested
@@ -176,7 +80,7 @@ def prepare_render(configurator):
         configurator.variables['theme.normalized_name'] = ''
 
 
-def cleanup_package(configurator):
+def _cleanup_package(configurator):
     """Cleanup and make nested if needed.
 
     Transform into a nested package if that was the selected option.
@@ -248,6 +152,18 @@ def cleanup_package(configurator):
                 os.remove(path)
 
 
-def make_path(*args):
-    """generate path string."""
-    return os.sep.join(args)
+def pre_ask(configurator):
+    """
+    """
+
+
+def post_render(configurator):
+    _cleanup_package(configurator)
+    if configurator.variables['package.git']:
+        git_init(configurator)
+        git_commit(
+            configurator,
+            'Create theme_package: {0}'.format(
+                configurator.variables['package.dottedname'],
+            ),
+        )

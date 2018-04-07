@@ -153,6 +153,7 @@ dexterity_type_supermodel=False
             cwd=wd,
         )
         assert setup_virtualenv_result == 0
+
         install_buildout_result = subprocess.call(
             [
                 './bin/pip',
@@ -164,6 +165,7 @@ dexterity_type_supermodel=False
             cwd=wd,
         )
         assert install_buildout_result == 0
+
         annotate_result = subprocess.call(
             [
                 'bin/buildout',
@@ -173,6 +175,7 @@ dexterity_type_supermodel=False
             cwd=wd,
         )
         assert annotate_result == 0
+
         buildout_result = subprocess.call(
             [
                 'bin/buildout',
@@ -181,11 +184,13 @@ dexterity_type_supermodel=False
             cwd=wd,
         )
         assert buildout_result == 0
+
         test_result = subprocess.call(
             ['bin/test'],
             cwd=wd,
         )
         assert test_result == 0
+
         test__code_convention_result = subprocess.call(
             ['bin/code-analysis'],
             cwd=wd,

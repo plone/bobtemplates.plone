@@ -129,3 +129,130 @@ def test_subtemplate_warning_post_question():
     ) == 'y'
     with pytest.raises(SystemExit):
         base.subtemplate_warning_post_question(None, None, 'n')
+
+
+def test_validate_packagename():
+    # step 1: test None
+    with pytest.raises(AttributeError):
+        base.validate_packagename(None)
+
+    # step 2: test base namespace (level 2)
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory='collective.foo',
+    )
+    base.validate_packagename(configurator)
+
+    # step 3: test without namespace (level 1)
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template='bobtemplates.plone:addon',
+            target_directory='foo',
+        )
+        base.validate_packagename(configurator)
+
+    # step 4: test deep nested namespace (level 4)
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template='bobtemplates.plone:addon',
+            target_directory='collective.foo.bar.spam',
+        )
+        base.validate_packagename(configurator)
+
+    # step 5: test leading dot
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template='bobtemplates.plone:addon',
+            target_directory='.collective.foo',
+        )
+        base.validate_packagename(configurator)
+
+    # step 6: test ending dot
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template='bobtemplates.plone:addon',
+            target_directory='collective.foo.',
+        )
+        base.validate_packagename(configurator)
+
+    # step 7: test invalid char
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template='bobtemplates.plone:addon',
+            target_directory='collective.$PAM',
+        )
+        base.validate_packagename(configurator)
+
+
+def test_pre_username():
+    # step 1: test None
+    with pytest.raises(AttributeError):
+        base.pre_username(None, None)
+
+    # step 2: test base namespace
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        bobconfig={
+            'non_interactive': True,
+        },
+        target_directory='collective.foo',
+    )
+    base.pre_username(configurator, None)
+
+    # step 3: test invalid name
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        bobconfig={
+            'non_interactive': True,
+        },
+        target_directory='collective foo',
+    )
+    with pytest.raises(SystemExit):
+        base.pre_username(configurator, None)
+
+
+def test_pre_email():
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        bobconfig={
+            'non_interactive': True,
+        },
+        target_directory='collective.foo',
+    )
+    base.pre_email(configurator, None)
+
+
+def test_post_plone_version():
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory='collective.foo',
+    )
+    base.post_plone_version(configurator, None, '4.3')
+
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory='collective.foo',
+    )
+    base.post_plone_version(configurator, None, '4-latest')
+
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory='collective.foo',
+    )
+    base.post_plone_version(configurator, None, '5.1')
+
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory='collective.foo',
+    )
+    base.post_plone_version(configurator, None, '5-latest')
+
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory='collective.foo',
+        variables={
+            'plone.is_plone5': True,
+            'plone.minor_version': '5.0',
+        },
+    )
+    base.post_plone_version(configurator, None, '5.0.1')

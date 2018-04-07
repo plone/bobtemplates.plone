@@ -7,7 +7,6 @@ from mrbob.configurator import Configurator
 
 import os
 import pytest
-import subprocess
 
 
 def test_post_dexterity_type_name():

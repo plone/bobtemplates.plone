@@ -1,0 +1,6 @@
+# -*- coding: utf-8 -*-
+from plone.app.layout.viewlets import ViewletBase
+# -*- Extra imports go here -*-
+
+
+# -*- Extra viewlets go here -*-

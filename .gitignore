@@ -1,4 +1,4 @@
-
+*.swp
 *.egg-info
 *.mo
 *.py[cod]

@@ -4,17 +4,11 @@ from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import is_string_in_file
 from bobtemplates.plone.base import update_file
 from lxml import etree
-from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 
 import keyword
 import os
 import re
-
-
-def is_container(configurator, question):
-    if configurator.variables['dexterity_type_base_class'] != 'Container':
-        raise SkipQuestion(u'Is not a Container, so we skip filter question.')
 
 
 def check_dexterity_type_name(configurator, question, answer):
@@ -89,7 +83,7 @@ def _update_types_xml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         types = tree.xpath("/object[@name='portal_types']")[0]
-        type_name = configurator.variables['dexterity_type_name']
+        type_name = configurator.variables['dexterity_type_name_normalized']
         if len(types.xpath("./object[@name='{name}']".format(name=type_name))):
             print('{name} already in types.xml, skip adding!'.format(name=type_name))  # NOQA: E501
             return
@@ -190,13 +184,8 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'content_type'
     type_name = configurator.variables['dexterity_type_name']
-    configurator.variables[
-        'dexterity_type_name_klass'] = type_name.title().replace(' ', '')
-    configurator.variables[
-        'dexterity_type_name_fti'] = type_name.replace(' ', '_')
-    configurator.variables[
-        'dexterity_type_name_normalized'] = configurator.variables[
-            'dexterity_type_name_fti'].lower()
+    configurator.variables['dexterity_type_name_klass'] = type_name.title().replace(' ', '')  # NOQA: E501
+    configurator.variables['dexterity_type_name_normalized'] = type_name.replace(' ', '_').lower()  # NOQA: E501
     configurator.target_directory = configurator.variables['package_folder']
 
 

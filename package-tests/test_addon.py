@@ -29,10 +29,10 @@ def test_cleanup_package():
             'author.name': 'The Plone Collective',
             'author.email': 'collective@plone.org',
             'author.github.user': 'collective',
-            'author.irc': 'irc.freenode.org#plone',
-            'plone.version': '5.0.1',
+            'plone.version': '5.1',
+            'plone.is_plone5': True,
         },
     )
-    # configurator.render()
-    # hooks.cleanup_package(configurator)
     assert configurator
+    configurator.render()
+    #addon._cleanup_package(configurator)

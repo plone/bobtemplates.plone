@@ -103,7 +103,7 @@ def test_post_renderer(tmpdir):
         f.write(template)
 
     template = """
-[tool:bobtemplates.plone]
+[main]
 version=5.1
 """
     with open(os.path.join(target_path + '/bobtemplate.cfg'), 'w') as f:

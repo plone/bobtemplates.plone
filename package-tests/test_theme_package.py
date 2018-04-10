@@ -15,10 +15,11 @@ def test_pre_render():
     theme_package.pre_render(configurator)
 
 
-def test_cleanup_package():
+def test_cleanup_package(tmpdir):
+    target_path = tmpdir.strpath + '/collective.theme'
     configurator = Configurator(
         template='bobtemplates.plone:theme_package',
-        target_directory='collective.theme',
+        target_directory=target_path,
         variables={
             'package.nested': False,
             'package.namespace': 'collective',

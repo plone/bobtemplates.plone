@@ -3,9 +3,15 @@
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import git_init
 from bobtemplates.plone.base import make_path
+from mrbob.bobexceptions import SkipQuestion
 
 import os
 import shutil
+
+
+def git_support_enabled(configurator, question):
+    if configurator.variables.get('package.git.disabled'):
+        raise SkipQuestion(u'GIT support is disabled!.')
 
 
 def pre_render(configurator):
@@ -148,11 +154,11 @@ def pre_ask(configurator):
 
 def post_render(configurator):
     _cleanup_package(configurator)
-    if configurator.variables['package.git']:
+    if configurator.variables['package.git.init']:
         git_init(configurator)
-        git_commit(
-            configurator,
-            'Create addon: {0}'.format(
-                configurator.variables['package.dottedname'],
-            ),
-        )
+    git_commit(
+        configurator,
+        'Create addon: {0}'.format(
+            configurator.variables['package.dottedname'],
+        ),
+    )

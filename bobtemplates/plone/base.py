@@ -38,16 +38,27 @@ def echo(msg, msg_type=None):
 class BobConfig(object):
     def __init__(self):
         self.version = None
-        self.git = None
+        self.git_init = None
         self.template = None
 
 
+def git_support(configurator):
+    """ check if GIT support is disabled/enabled
+    """
+    git_support = True
+    if configurator.variables.get('package.git.disabled'):
+        git_support = False
+    return git_support
+
+
 def git_init(configurator):
+    if not git_support(configurator):
+        echo('GIT support disabled!')
+        return
     params = [
         'git',
         'init',
     ]
-
     echo('RUN: {0}'.format(' '.join(params)), 'info')
     try:
         result = subprocess.check_output(
@@ -62,6 +73,9 @@ def git_init(configurator):
 
 
 def git_commit(configurator, msg):
+    if not git_support(configurator):
+        echo('GIT support disabled!')
+        return
     non_interactive = configurator.bobconfig.get('non_interactive')
     working_dir = configurator.variables.get(
         'package.root_folder') or configurator.target_directory
@@ -76,8 +90,11 @@ def git_commit(configurator, msg):
         '-m',
         '"{0}"'.format(msg),
     ]
+    git_autocommit = None
     run_git_commit = True
-    if not non_interactive:
+    if configurator.variables.get('package.git.autocommit'):
+        git_autocommit = True
+    if not non_interactive and not git_autocommit:
         echo(
             'Should we run?:\n{0}\n{1}\nin: {2}'.format(
                 ' '.join(params1),
@@ -86,9 +103,9 @@ def git_commit(configurator, msg):
             ),
             'info',
         )
-        run_git_commit = (input('[Yes]/No: ') or 'Yes').lower() == 'yes'
+        run_git_commit = (input('[y]/n: ') or 'y').lower() == 'y'
 
-    if not run_git_commit:
+    if not run_git_commit and not git_autocommit:
         echo('Skip git commit!', 'warning')
         return
 
@@ -117,6 +134,9 @@ def git_commit(configurator, msg):
 
 
 def git_clean_state_check(configurator, question):
+    if not git_support(configurator):
+        echo('GIT support disabled!')
+        return
     params = [
         'git',
         'status',
@@ -160,10 +180,9 @@ def read_bobtemplates_ini(configurator):
     if not config.sections():
         return
     bob_config.version = config.get('main', 'version')
-    if config.has_option('main', 'git'):
-        bob_config.git = config.get('main', 'git')
-    else:
-        bob_config.git = None
+    bob_config.git_init = None
+    if config.has_option('main', 'git_init'):
+        bob_config.git_init = config.get('main', 'git_init')
     return bob_config
 
 

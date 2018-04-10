@@ -1,6 +1,0 @@
-[report]
-include =
-    src/collective/*
-omit =
-    */test*
-    */upgrades/*

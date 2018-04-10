@@ -12,7 +12,7 @@ def test_behavior(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True
-package.git = y
+package.git.init = True
 
 author.name = The Plone Collective
 author.email = collective@plone.org

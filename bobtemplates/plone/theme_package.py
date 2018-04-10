@@ -159,11 +159,11 @@ def pre_ask(configurator):
 
 def post_render(configurator):
     _cleanup_package(configurator)
-    if configurator.variables['package.git']:
+    if configurator.variables['package.git.init']:
         git_init(configurator)
-        git_commit(
-            configurator,
-            'Create theme_package: {0}'.format(
-                configurator.variables['package.dottedname'],
-            ),
-        )
+    git_commit(
+        configurator,
+        'Create theme_package: {0}'.format(
+            configurator.variables['package.dottedname'],
+        ),
+    )

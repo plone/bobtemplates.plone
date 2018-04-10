@@ -38,13 +38,16 @@ def test_cleanup_package(tmpdir):
     configurator = Configurator(
         template='bobtemplates.plone:addon',
         target_directory=target_path,
+        bobconfig={
+            'non_interactive': True,
+        },
         variables={
             'package.nested': True,
             'package.namespace': 'collective',
             'package.namespace2': 'foo',
             'package.name': 'bar',
             'year': 1970,
-            'package.git': False,
+            'package.git.init': True,
             'package.description': 'Test',
             'author.name': 'The Plone Collective',
             'author.email': 'collective@plone.org',

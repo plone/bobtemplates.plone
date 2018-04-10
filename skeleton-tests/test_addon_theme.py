@@ -16,7 +16,7 @@ author.name = The Plone Collective
 author.email = collective@plone.org
 author.github.user = collective
 subtemplate_warning=False
-package.git = True
+package.git.init = True
 
 plone.version = {version}
 """.format(

@@ -12,7 +12,7 @@ def test_addon_content_type(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True
-package.git = True
+package.git.init = True
 
 author.name = The Plone Collective
 author.email = collective@plone.org

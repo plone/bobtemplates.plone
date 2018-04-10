@@ -3,15 +3,9 @@
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import git_init
 from bobtemplates.plone.base import make_path
-from mrbob.bobexceptions import SkipQuestion
 
 import os
 import shutil
-
-
-def git_support_enabled(configurator, question):
-    if configurator.variables.get('package.git.disabled'):
-        raise SkipQuestion(u'GIT support is disabled!.')
 
 
 def pre_render(configurator):

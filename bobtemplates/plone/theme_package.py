@@ -159,7 +159,7 @@ def pre_ask(configurator):
 
 def post_render(configurator):
     _cleanup_package(configurator)
-    if configurator.variables['package.git.init']:
+    if configurator.variables.get('package.git.init'):
         git_init(configurator)
     git_commit(
         configurator,

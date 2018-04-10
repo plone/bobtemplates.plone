@@ -21,6 +21,11 @@ except ImportError:
     from configparser import ConfigParser
 
 
+def git_support_enabled(configurator, question):
+    if configurator.variables.get('package.git.disabled'):
+        raise SkipQuestion(u'GIT support is disabled!.')
+
+
 def echo(msg, msg_type=None):
     msg = str(msg)
     if msg_type == 'warning':

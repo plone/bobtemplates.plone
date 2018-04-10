@@ -34,18 +34,18 @@ Test Teardown  Close all browsers
 
 *** Test Cases ***************************************************************
 
-Scenario: As a site administrator I can add a {{{ dexterity_type_name_normalized }}}
+Scenario: As a site administrator I can add a {{{ dexterity_type_name }}}
   Given a logged-in site administrator
-    and an add {{{ dexterity_type_name_normalized }}} form
+    and an add {{{ dexterity_type_name }}} form
    When I type 'My {{{ dexterity_type_name }}}' into the title field
     and I submit the form
-   Then a {{{ dexterity_type_name_normalized }}} with the title 'My {{{ dexterity_type_name }}}' has been created
+   Then a {{{ dexterity_type_name }}} with the title 'My {{{ dexterity_type_name }}}' has been created
 
-Scenario: As a site administrator I can view a {{{ dexterity_type_name_normalized }}}
+Scenario: As a site administrator I can view a {{{ dexterity_type_name }}}
   Given a logged-in site administrator
-    and a {{{ dexterity_type_name_normalized }}} 'My {{{ dexterity_type_name }}}'
-   When I go to the {{{ dexterity_type_name_normalized }}} view
-   Then I can see the {{{ dexterity_type_name_normalized }}} title 'My {{{ dexterity_type_name }}}'
+    and a {{{ dexterity_type_name }}} 'My {{{ dexterity_type_name }}}'
+   When I go to the {{{ dexterity_type_name }}} view
+   Then I can see the {{{ dexterity_type_name }}} title 'My {{{ dexterity_type_name }}}'
 
 
 *** Keywords *****************************************************************
@@ -55,34 +55,34 @@ Scenario: As a site administrator I can view a {{{ dexterity_type_name_normalize
 a logged-in site administrator
   Enable autologin as  Site Administrator
 
-an add {{{ dexterity_type_name_normalized }}} form
-  Go To  ${PLONE_URL}/++add++{{{ dexterity_type_name_normalized }}}
+an add {{{ dexterity_type_name }}} form
+  Go To  ${PLONE_URL}/++add++{{{ dexterity_type_name }}}
 
-a {{{ dexterity_type_name_normalized }}} 'My {{{ dexterity_type_name }}}'
-  Create content  type={{{ dexterity_type_name_normalized }}}  id=my-{{{ dexterity_type_name_normalized }}}  title=My {{{ dexterity_type_name }}}
+a {{{ dexterity_type_name }}} 'My {{{ dexterity_type_name }}}'
+  Create content  type={{{ dexterity_type_name }}}  id=my-{{{ dexterity_type_name_normalized }}}  title=My {{{ dexterity_type_name }}}
 
 
 # --- WHEN -------------------------------------------------------------------
 
 I type '${title}' into the title field
-  Input Text  name=form.widgets.IDublinCore.title  ${title}
+  Input Text  name=form-widgets-IBasic-title  ${title}
 
 I submit the form
   Click Button  Save
 
-I go to the {{{ dexterity_type_name_normalized }}} view
+I go to the {{{ dexterity_type_name }}} view
   Go To  ${PLONE_URL}/my-{{{ dexterity_type_name_normalized }}}
   Wait until page contains  Site Map
 
 
 # --- THEN -------------------------------------------------------------------
 
-a {{{ dexterity_type_name_normalized }}} with the title '${title}' has been created
+a {{{ dexterity_type_name }}} with the title '${title}' has been created
   Wait until page contains  Site Map
   Page should contain  ${title}
   Page should contain  Item created
 
-I can see the {{{ dexterity_type_name_normalized }}} title '${title}'
+I can see the {{{ dexterity_type_name }}} title '${title}'
   Wait until page contains  Site Map
   Page should contain  ${title}
 

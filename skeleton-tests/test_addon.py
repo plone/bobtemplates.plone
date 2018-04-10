@@ -38,7 +38,7 @@ plone.version = {version}
     generate_answers_ini(tmpdir.strpath, template)
 
     config.template = 'addon'
-    config.package_name = 'collective.todo'
+    config.package_name = 'collective.task'
 
     result = subprocess.call(
         [
@@ -62,7 +62,7 @@ plone.version = {version}
 
     base_path = tmpdir.strpath + '/' + config.package_name
 
-    assert file_exists(base_path, '/src/collective/todo/configure.zcml')
+    assert file_exists(base_path, '/src/collective/task/configure.zcml')
 
     wd = os.path.abspath(
         os.path.join(tmpdir.strpath, config.package_name),
@@ -89,12 +89,19 @@ plone.version = {version}
         )
         assert install_buildout_result == 0
         annotate_result = subprocess.call(
-            ['bin/buildout', 'annotate'],
+            [
+                'bin/buildout',
+                'code-analysis:return-status-codes=True',
+                'annotate',
+            ],
             cwd=wd,
         )
         assert annotate_result == 0
         buildout_result = subprocess.call(
-            ['bin/buildout'],
+            [
+                'bin/buildout',
+                'code-analysis:return-status-codes=True',
+            ],
             cwd=wd,
         )
         assert buildout_result == 0

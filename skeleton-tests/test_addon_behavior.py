@@ -25,7 +25,7 @@ plone.version = {version}
 
     # generate template addon:
     config.template = 'addon'
-    config.package_name = 'collective.todo'
+    config.package_name = 'collective.task'
     result = subprocess.call(
         [
             'mrbob',
@@ -64,9 +64,9 @@ subtemplate_warning = Yes
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/todo/behaviors/configure.zcml')
+    assert file_exists(wd, '/src/collective/task/behaviors/configure.zcml')
     assert file_exists(
-        wd, '/src/collective/todo/behaviors/attachment_type.py')  # NOQA: S101,E501
+        wd, '/src/collective/task/behaviors/attachment_type.py')  # NOQA: S101,E501
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
         setup_virtualenv_result = subprocess.call(
@@ -91,13 +91,17 @@ subtemplate_warning = Yes
         annotate_result = subprocess.call(
             [
                 'bin/buildout',
+                'code-analysis:return-status-codes=True',
                 'annotate',
             ],
             cwd=wd,
         )
         assert annotate_result == 0
         buildout_result = subprocess.call(
-            ['bin/buildout'],
+            [
+                'bin/buildout',
+                'code-analysis:return-status-codes=True',
+            ],
             cwd=wd,
         )
         assert buildout_result == 0

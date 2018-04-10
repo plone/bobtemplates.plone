@@ -21,7 +21,8 @@ setup(
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",
-        "Framework :: Plone :: {{{ plone.minor_version }}}",
+        "Framework :: Plone :: 5.0",
+        "Framework :: Plone :: 5.1",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
         "Operating System :: OS Independent",
@@ -44,7 +45,7 @@ setup(
         'setuptools',
         'z3c.jbot',
 {{% if not plone.is_plone5 %}}
-        'plone.app.dexterity==2.1.1',
+        'plone.app.dexterity<=2.1.1',
         'plone.app.referenceablebehavior',
         'plone.app.relationfield',
         'plone.app.lockingbehavior',

@@ -31,5 +31,6 @@ Vagrantfile
 !.travis.yml
 
 /dist/
-/.pytest_cache/v/cache/lastfailed
-/.vscode/settings.json
+/.vscode/
+/.pytest_cache/
+/tmpdist

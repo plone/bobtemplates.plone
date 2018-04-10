@@ -1,10 +1,76 @@
 Changelog
 =========
 
-3.0.0b4 (unreleased)
---------------------
+3.2.0 (unreleased)
+------------------
 
 - Nothing changed yet.
+
+
+3.1.2 (2018-04-06)
+------------------
+
+- Set i18n:domain in supermodel xml files to the package domain
+  [MrTango]
+
+
+3.1.1 (2018-04-03)
+------------------
+
+- Fix add_view_expr in content_type template
+  [MrTango]
+
+- Fix robot test selector in content_type template
+  [MrTango]
+
+- Bump default Plone buildout version to 5.1
+  [MrTango]
+
+
+3.1.0 (2018-04-02)
+------------------
+
+- Add global_allow and filter_content_types questions
+  [MrTango]
+- don't use lower case version for CT name
+  [MrTango]
+- add behavior tests
+  [MrTango]
+
+3.0.1 (2018-03-29)
+------------------
+
+- Use set return-status-codes=True for tox, fixes #261
+  [MrTango]
+
+- set filter_content_types to False by default, fixes #256
+  [MrTango]
+
+- add ILeadImage behavior to FTI list of inactive behaviors, fixes #255
+  [MrTango]
+
+
+3.0.0 (2018-03-28)
+------------------
+
+- make final release of version 3
+
+
+3.0.0b5 (2018-03-27)
+--------------------
+
+- enable lockingbehavior by default and reenable locking condition for edit button, fixes #257
+  [MrTango]
+
+- only require plone.app.dexterity<=2.1.1 and not excact that version for Plone 4
+  [MrTango]
+
+
+3.0.0b4 (2018-03-26)
+--------------------
+
+- Use more specific names for generated test files, like test_vocab_todo_tasks.py instead of test_todo_tasks.py
+  [MrTango]
 
 
 3.0.0b3 (2018-03-22)

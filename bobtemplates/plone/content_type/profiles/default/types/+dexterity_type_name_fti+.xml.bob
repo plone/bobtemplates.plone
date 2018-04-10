@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="{{{ dexterity_type_name_normalized }}}"
+    name="{{{ dexterity_type_name }}}"
     meta_type="Dexterity FTI"
     i18n:domain="{{{ package.dottedname }}}">
 
@@ -13,7 +13,7 @@
       name="description">{{{ dexterity_type_desc }}}</property>
 
   <property name="allow_discussion">False</property>
-  <property name="factory">{{{ dexterity_type_name_normalized }}}</property>
+  <property name="factory">{{{ dexterity_type_name }}}</property>
 {{% if plone.is_plone5 %}}
   <property name="icon_expr"></property>
 {{% else %}}
@@ -22,9 +22,14 @@
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
-  <property name="allowed_content_types"/>
-  <property name="filter_content_types">True</property>
-  <property name="global_allow">True</property>
+  <property name="global_allow">{{{ dexterity_type_global_allow }}}</property>
+  <property name="filter_content_types">{{{ dexterity_type_filter_content_types | default(False, true) }}}</property>
+  <property name="allowed_content_types">
+  <!--
+    <element value="Document" />
+    <element value="File" />
+  -->
+  </property>
 
   <!-- Schema, class and security -->
   <property name="add_permission">{{{ package.dottedname }}}.Add{{{ dexterity_type_name_klass }}}</property>
@@ -55,11 +60,11 @@
     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
 {{% if plone.is_plone5 %}}
     <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
-    <!--<element value="plone.app.lockingbehavior.behaviors.ILocking" />-->
-{{% else %}}
     <element value="plone.app.lockingbehavior.behaviors.ILocking" />
+{{% else %}}
     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
 {{% endif %}}
+    <!--<element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>-->
     <!--<element value="plone.app.relationfield.behavior.IRelatedItems"/>-->
     <!--<element value="plone.app.versioningbehavior.behaviors.IVersionable" />-->
     <!--<element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>-->
@@ -70,7 +75,7 @@
   </property>
 
   <!-- View information -->
-  <property name="add_view_expr">string:${folder_url}/++add++{{{ dexterity_type_name_normalized }}}</property>
+  <property name="add_view_expr">string:${folder_url}/++add++{{{ dexterity_type_name }}}</property>
   <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>
@@ -110,7 +115,7 @@
   <action
       action_id="edit"
       category="object"
-      condition_expr=""
+      condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user|python:True"
       i18n:attributes="title"
       title="Edit"
       url_expr="string:${object_url}/edit"

@@ -6,8 +6,8 @@ from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 from mrbob.configurator import Question
 
-import pytest
 import os
+import pytest
 
 
 def test_pre_theme_name():

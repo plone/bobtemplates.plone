@@ -1,0 +1,10 @@
+from five import grok
+from zope.interface import IMessage
+
+
+class MessageViewlet(grok.Viewlet):
+    """Display the message subject
+    """
+
+    def update(self):
+        self.message = IMessage(self.context)

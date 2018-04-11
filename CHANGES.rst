@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.2.0b2 (unreleased)
+3.2.0b2 (2018-04-11)
 --------------------
 
 - Fix reading default config parameters and improve git-support docs

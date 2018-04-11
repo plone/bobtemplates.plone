@@ -2,10 +2,10 @@
 from colorama import Fore
 from colorama import Style
 from datetime import date
+from mrbob import hooks
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
-from mrbob import hooks
 from six.moves import input
 
 import keyword

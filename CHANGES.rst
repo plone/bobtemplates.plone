@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.2.0b1 (unreleased)
-------------------
+3.2.0b1 (2018-04-11)
+--------------------
 
 - Add GIT support with clean state check and auto commit/init
   [MrTango]

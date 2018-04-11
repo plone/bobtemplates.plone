@@ -4,7 +4,10 @@ Changelog
 3.2.0b1 (unreleased)
 ------------------
 
-- Add git_clean_state_check and git auto commit feature
+- Add GIT support with clean state check and auto commit/init
+  [MrTango]
+
+- Refacture template structure and increase package test covarage
   [MrTango]
 
 

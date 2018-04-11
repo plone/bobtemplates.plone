@@ -5,6 +5,7 @@ Introduction
     :maxdepth: 1
 
     intro
+    git-support
     addon
     buildout
     theme_package

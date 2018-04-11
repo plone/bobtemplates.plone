@@ -12,6 +12,7 @@ def test_addon_content_type(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True
+package.git.init = True
 
 author.name = The Plone Collective
 author.email = collective@plone.org
@@ -44,14 +45,14 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
-dexterity_type_name = Tasks Container
-dexterity_type_base_class = Container
-dexterity_type_create_class = Yes
-dexterity_type_global_allow = Yes
-dexterity_type_filter_content_types = No
-subtemplate_warning = Yes
-dexterity_type_desc = A tasks container for Plone
-dexterity_type_supermodel = Yes
+dexterity_type_name=Tasks Container
+dexterity_type_base_class=Container
+dexterity_type_create_class=True
+dexterity_type_global_allow=True
+dexterity_type_filter_content_types=True
+subtemplate_warning=False
+dexterity_type_desc=A tasks container for Plone
+dexterity_type_supermodel=True
 """
     generate_answers_ini(wd, template)
 
@@ -69,13 +70,13 @@ dexterity_type_supermodel = Yes
 
     # generate 2. subtemplate content_type with Item instead of Container:
     template = """[variables]
-dexterity_type_name = Task Item
-dexterity_type_base_class = Item
-dexterity_type_create_class = Yes
-dexterity_type_global_allow = Yes
-subtemplate_warning = Yes
-dexterity_type_desc = A task Task content type for Plone
-dexterity_type_supermodel = Yes
+dexterity_type_name=Task Item
+dexterity_type_base_class=Item
+dexterity_type_create_class=True
+dexterity_type_global_allow=True
+subtemplate_warning=True
+dexterity_type_desc=A task Task content type for Plone
+dexterity_type_supermodel=True
 """
     generate_answers_ini(wd, template)
 
@@ -93,14 +94,14 @@ dexterity_type_supermodel = Yes
 
     # generate subtemplate content_type with generic class:
     template = """[variables]
-dexterity_type_name = Generic Tasks Container
-dexterity_type_base_class = Container
-dexterity_type_create_class = No
-dexterity_type_global_allow = Yes
-dexterity_type_filter_content_types = No
-subtemplate_warning = Yes
-dexterity_type_desc = A tasks container for Plone
-dexterity_type_supermodel = Yes
+dexterity_type_name=Generic Tasks Container
+dexterity_type_base_class=Container
+dexterity_type_create_class=False
+dexterity_type_global_allow=True
+dexterity_type_filter_content_types=False
+subtemplate_warning=True
+dexterity_type_desc=A tasks container for Plone
+dexterity_type_supermodel=True
 """
     generate_answers_ini(wd, template)
 
@@ -118,14 +119,14 @@ dexterity_type_supermodel = Yes
 
     # generate subtemplate content_type with generic class:
     template = """[variables]
-dexterity_type_name = Task Item Python Schema
-dexterity_type_base_class = Item
-dexterity_type_create_class = Yes
-dexterity_type_global_allow = Yes
-dexterity_type_filter_content_types = No
-subtemplate_warning = Yes
-dexterity_type_desc = A tasks container for Plone
-dexterity_type_supermodel = No
+dexterity_type_name=Task Item Python Schema
+dexterity_type_base_class=Item
+dexterity_type_create_class=True
+dexterity_type_global_allow=True
+dexterity_type_filter_content_types=False
+subtemplate_warning=True
+dexterity_type_desc=A tasks container for Plone
+dexterity_type_supermodel=False
 """
     generate_answers_ini(wd, template)
 
@@ -152,6 +153,7 @@ dexterity_type_supermodel = No
             cwd=wd,
         )
         assert setup_virtualenv_result == 0
+
         install_buildout_result = subprocess.call(
             [
                 './bin/pip',
@@ -163,6 +165,7 @@ dexterity_type_supermodel = No
             cwd=wd,
         )
         assert install_buildout_result == 0
+
         annotate_result = subprocess.call(
             [
                 'bin/buildout',
@@ -172,6 +175,7 @@ dexterity_type_supermodel = No
             cwd=wd,
         )
         assert annotate_result == 0
+
         buildout_result = subprocess.call(
             [
                 'bin/buildout',
@@ -180,11 +184,13 @@ dexterity_type_supermodel = No
             cwd=wd,
         )
         assert buildout_result == 0
+
         test_result = subprocess.call(
             ['bin/test'],
             cwd=wd,
         )
         assert test_result == 0
+
         test__code_convention_result = subprocess.call(
             ['bin/code-analysis'],
             cwd=wd,

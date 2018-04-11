@@ -15,6 +15,8 @@ package.description = Dummy package
 author.name = The Plone Collective
 author.email = collective@plone.org
 author.github.user = collective
+subtemplate_warning=False
+package.git.init = True
 
 plone.version = {version}
 """.format(
@@ -43,8 +45,8 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
-subtemplate_warning = Yes
 theme.name = Plone theme Blacksea
+subtemplate_warning=False
 """
     generate_answers_ini(wd, template)
 

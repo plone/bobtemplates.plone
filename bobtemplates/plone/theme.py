@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import echo
+from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import is_string_in_file
-from bobtemplates.plone.base import logger
 from bobtemplates.plone.base import update_file
-from bobtemplates.plone.hooks import validate_packagename
+from bobtemplates.plone.base import validate_packagename
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
@@ -35,7 +36,7 @@ def post_theme_name(configurator, question, answer):
 
 
 def prepare_renderer(configurator):
-    logger.info('Using plone_theme template:')
+    echo('Using plone_theme template:', 'info')
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'theme'
 
@@ -138,3 +139,9 @@ def post_renderer(configurator):
     _update_configure_zcml(configurator)
     _update_setup_py(configurator)
     _update_metadata_xml(configurator)
+    git_commit(
+        configurator,
+        'Add theme: {0}'.format(
+            configurator.variables['theme.name'],
+        ),
+    )

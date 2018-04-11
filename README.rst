@@ -34,7 +34,7 @@ bobtemplates.plone
 Features
 ========
 
-Package created with ``bobtemplates.plone`` use the current best-practices when creating an add-on.
+Package created with ``bobtemplates.plone`` use the current best-practices when creating an add-on. It also support's GIT by default, to keep track of changes one is doing with the bobtemplates.
 
 Provided templates
 ------------------
@@ -66,7 +66,7 @@ It should work on Linux, Mac and Windows.
 Documentation
 =============
 
-Full documentation for end users and developers can be found in the "docs" folder.
+Full documentation for end users and template developers can be found in the "docs" folder.
 
     For easy usage see: `plonecli <https://pypi.python.org/pypi/plonecli>`_
 
@@ -158,6 +158,27 @@ or activate your virtualenv:
 This will create your Plone package inside the ``src`` directory.
 
 See the documentation of mr.bob_ for further information.
+
+Configuration
+=============
+
+You can set all `mr.bob configuration <http://mrbob.readthedocs.io/en/latest/userguide.html#configuration>`_ parameters in your ~/.mrbob file.
+
+Here is an example:
+
+.. code-block:: bash
+
+    [mr.bob]
+    verbose = False
+
+    [variables]
+    author.name = Maik Derstappen
+    author.email = md@derico.de
+    author.github.user = MrTango
+    plone.version = 5.1-latest
+    package.git.init = True
+    package.git.autocommit = True
+    package.git.disabled = False
 
 
 Contribute

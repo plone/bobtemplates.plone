@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from lxml import etree
 
@@ -96,3 +97,9 @@ def post_renderer(configurator):
     """
     _update_package_configure_zcml(configurator)
     _update_behaviors_configure_zcml(configurator)
+    git_commit(
+        configurator,
+        'Add behavior: {0}'.format(
+            configurator.variables['behavior_name'],
+        ),
+    )

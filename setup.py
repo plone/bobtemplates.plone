@@ -49,6 +49,7 @@ setup(
         'mr.bob',
         'lxml',
         'stringcase',
+        'colorama',
     ],
     setup_requires=[],
     tests_require=[],

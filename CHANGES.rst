@@ -1,10 +1,11 @@
 Changelog
 =========
 
-3.2.0 (unreleased)
+3.2.0b1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add git_clean_state_check and git auto commit feature
+  [MrTango]
 
 
 3.1.2 (2018-04-06)

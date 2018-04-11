@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import is_string_in_file
 from bobtemplates.plone.base import update_file
 from lxml import etree
@@ -188,6 +189,11 @@ def _update_setup_py(configurator):
         update_file(configurator, file_path, match_str, insert_str)
 
 
+def pre_ask(configurator):
+    """
+    """
+
+
 def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'content_type'
@@ -209,3 +215,9 @@ def post_renderer(configurator):
     _update_rolemap_xml(configurator)
     _update_metadata_xml(configurator)
     _update_setup_py(configurator)
+    git_commit(
+        configurator,
+        'Add content_type: {0}'.format(
+            configurator.variables['dexterity_type_name'],
+        ),
+    )

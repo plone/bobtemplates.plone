@@ -86,6 +86,7 @@ update-command = cd ${buildout:directory}; grunt compile
 # development dependencies (tools and pre commit hook)
 setuptools =
 zc.buildout =
+mr.developer = >=1.38
 PyYAML = 3.12
 argh = 0.26.2
 args = 0.1.0

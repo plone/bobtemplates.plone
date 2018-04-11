@@ -16,6 +16,7 @@ package.example = True
 author.name = The Plone Collective
 author.email = collective@plone.org
 author.github.user = collective
+package.git.init = True
 
 plone.version = {version}
 """.format(

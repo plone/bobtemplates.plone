@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
+from colorama import Fore
+from colorama import Style
 from datetime import date
 from mrbob.bobexceptions import MrBobError
+from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
+from six.moves import input
 
 import keyword
-import logging
 import os
 import re
+import string
+import subprocess
 import sys
 
 
@@ -16,12 +21,152 @@ except ImportError:
     from configparser import ConfigParser
 
 
-logger = logging.getLogger('bobtemplates.plone')
+def git_support_enabled(configurator, question):
+    if configurator.variables.get('package.git.disabled'):
+        raise SkipQuestion(u'GIT support is disabled!.')
+
+
+def echo(msg, msg_type=None):
+    msg = str(msg)
+    if msg_type == 'warning':
+        colored_msg = Fore.YELLOW + msg + Style.RESET_ALL
+    if msg_type == 'error':
+        colored_msg = Fore.RED + msg + Style.RESET_ALL
+    if msg_type == 'info':
+        colored_msg = Fore.GREEN + Style.DIM + msg + \
+            Style.RESET_ALL
+    if not msg_type:
+        colored_msg = msg + Style.RESET_ALL
+    print(colored_msg)
 
 
 class BobConfig(object):
     def __init__(self):
         self.version = None
+        self.git_init = None
+        self.template = None
+
+
+def git_support(configurator):
+    """ check if GIT support is disabled/enabled
+    """
+    git_support = True
+    if configurator.variables.get('package.git.disabled'):
+        git_support = False
+    return git_support
+
+
+def git_init(configurator):
+    if not git_support(configurator):
+        echo('GIT support disabled!')
+        return
+    params = [
+        'git',
+        'init',
+    ]
+    echo('RUN: {0}'.format(' '.join(params)), 'info')
+    try:
+        result = subprocess.check_output(
+            params,
+            cwd=configurator.target_directory,
+        )
+    except subprocess.CalledProcessError as e:
+        echo(e.output, 'warning')
+    else:
+        if result:
+            echo(result, 'info')
+
+
+def git_commit(configurator, msg):
+    if not git_support(configurator):
+        echo('GIT support disabled!')
+        return
+    non_interactive = configurator.bobconfig.get('non_interactive')
+    working_dir = configurator.variables.get(
+        'package.root_folder') or configurator.target_directory
+    params1 = [
+        'git',
+        'add',
+        '.',
+    ]
+    params2 = [
+        'git',
+        'commit',
+        '-m',
+        '"{0}"'.format(msg),
+    ]
+    git_autocommit = None
+    run_git_commit = True
+    if configurator.variables.get('package.git.autocommit'):
+        git_autocommit = True
+    if not non_interactive and not git_autocommit:
+        echo(
+            'Should we run?:\n{0}\n{1}\nin: {2}'.format(
+                ' '.join(params1),
+                ' '.join(params2),
+                working_dir,
+            ),
+            'info',
+        )
+        run_git_commit = (input('[y]/n: ') or 'y').lower() == 'y'
+
+    if not run_git_commit and not git_autocommit:
+        echo('Skip git commit!', 'warning')
+        return
+
+    echo('RUN: {0}'.format(' '.join(params1)), 'info')
+    try:
+        result1 = subprocess.check_output(
+            params1,
+            cwd=working_dir,
+        )
+    except subprocess.CalledProcessError as e:
+        echo(e.output, 'warning')
+    else:
+        if result1:
+            echo(result1, 'info')
+
+    echo('RUN: {0}'.format(' '.join(params2)), 'info')
+    try:
+        result2 = subprocess.check_output(
+            params2,
+            cwd=working_dir,
+        )
+    except subprocess.CalledProcessError as e:
+        echo(e.output, 'warning')
+    else:
+        echo(result2, 'info')
+
+
+def git_clean_state_check(configurator, question):
+    if not git_support(configurator):
+        echo('GIT support disabled!')
+        return
+    params = [
+        'git',
+        'status',
+        '--porcelain',
+    ]
+    echo('\nRUN: {0}'.format(' '.join(params)), 'info')
+    try:
+        result = subprocess.check_output(
+            params,
+            cwd=configurator.target_directory,
+        )
+    except subprocess.CalledProcessError as e:
+        echo(e.output, 'error')
+    else:
+        if not result:
+            echo(u'Git state is clean.\n', 'info')
+            raise SkipQuestion(
+                u'Git state is clean, so we skip this question.',
+            )
+        echo(
+            u'git status result:\n----------------------------\n{0}'.format(
+                result,
+            ),
+            'warning',
+        )
 
 
 def check_klass_name(configurator, question, answer):
@@ -40,6 +185,9 @@ def read_bobtemplates_ini(configurator):
     if not config.sections():
         return
     bob_config.version = config.get('main', 'version')
+    bob_config.git_init = None
+    if config.has_option('main', 'git_init'):
+        bob_config.git_init = config.get('main', 'git_init')
     return bob_config
 
 
@@ -50,10 +198,10 @@ def set_global_vars(configurator):
     if not version and bob_config:
         print('>>> reading Plone version from bobtemplate.cfg')
         version = bob_config.version
-    _set_plone_version_variables(configurator, version)
+    set_plone_version_variables(configurator, version)
 
 
-def _set_plone_version_variables(configurator, version):
+def set_plone_version_variables(configurator, version):
     version = configurator.variables.get('plone.version', version)
     if not version:
         return
@@ -71,6 +219,65 @@ def _set_plone_version_variables(configurator, version):
             '.'.join(version.split('.')[:2])
 
 
+def get_git_info(value):
+    """Try to get information from the git-config."""
+    gitargs = ['git', 'config', '--get']
+    try:
+        result = subprocess.check_output(gitargs + [value]).strip()
+        return result
+    except (OSError, subprocess.CalledProcessError):
+        pass
+
+
+def validate_packagename(configurator):
+    """Find out if the name target-dir entered when invoking the command can be
+    a valid python-package."""
+    package_dir = os.path.basename(configurator.target_directory)
+    fail = False
+
+    allowed = set(string.ascii_letters + string.digits + '.-_')
+    if not set(package_dir).issubset(allowed):
+        fail = True
+
+    if package_dir.startswith('.') or package_dir.endswith('.'):
+        fail = True
+
+    parts = len(package_dir.split('.'))
+    if parts < 2 or parts > 3:
+        fail = True
+
+    if fail:
+        msg = (
+            "Error: '{0}' is not a valid packagename.\n"
+            'Please use a valid name (like collective.myaddon or '
+            'plone.app.myaddon)'.format(package_dir)
+        )
+        sys.exit(msg)
+
+
+def post_plone_version(configurator, question, answer):
+    """Find out if it is supposed to be Plone 5."""
+    set_plone_version_variables(configurator, answer)
+    return answer
+
+
+def pre_username(configurator, question):
+    """Get email from git and validate package name."""
+    # validate_packagename should be run before asking the first question.
+    validate_packagename(configurator)
+
+    default = get_git_info('user.name')
+    if default and question:
+        question.default = default
+
+
+def pre_email(configurator, question):
+    """Get email from git."""
+    default = get_git_info('user.email')
+    if default and question:
+        question.default = default
+
+
 def is_string_in_file(configurator, file_path, match_str):
     """Simple check if a given string is in a file.
 
@@ -83,6 +290,11 @@ def is_string_in_file(configurator, file_path, match_str):
         if match_str in line:
             return True
     return False
+
+
+def make_path(*args):
+    """generate path string."""
+    return os.sep.join(args)
 
 
 def update_file(configurator, file_path, match_str, insert_str):
@@ -194,7 +406,7 @@ def subtemplate_warning(configurator, question):
 
 
 def subtemplate_warning_post_question(configurator, question, answer):
-    if answer.lower() != 'yes':
+    if answer.lower() != 'y':
         print('Abort!')
         sys.exit(0)
     return answer

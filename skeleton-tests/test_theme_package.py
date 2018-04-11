@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from base import dummy_contextmanager
-from base import file_exists
-from base import generate_answers_ini
-
+import base
 import glob
 import os.path
 import subprocess
@@ -29,12 +26,14 @@ theme.name = Black Sea theme
 author.name = The Plone Collective
 author.email = collective@plone.org
 author.github.user = collective
+subtemplate_warning=False
+package.git.init = True
 
 plone.version = {version}
 """.format(
         version=config.version,
     )
-    generate_answers_ini(tmpdir.strpath, template)
+    base.generate_answers_ini(tmpdir.strpath, template)
 
     config.template = 'theme_package'
     config.package_name = 'plonetheme.blacksea'
@@ -61,7 +60,7 @@ plone.version = {version}
 
     base_path = tmpdir.strpath + '/' + config.package_name
 
-    assert file_exists(
+    assert base.file_exists(
         base_path,
         '/src/plonetheme/blacksea/theme/manifest.cfg',
     )
@@ -70,7 +69,7 @@ plone.version = {version}
         os.path.join(tmpdir.strpath, config.package_name),
     )
 
-    with capsys.disabled() if config.verbose else dummy_contextmanager():
+    with capsys.disabled() if config.verbose else base.dummy_contextmanager():
         setup_virtualenv_result = subprocess.call(
             [
                 'virtualenv',

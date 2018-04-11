@@ -36,6 +36,9 @@ def test_prepare_renderer():
     configurator = Configurator(
         template='bobtemplates.plone:content_type',
         target_directory='collective.foo.bar',
+        bobconfig={
+            'non_interactive': True,
+        },
         variables={
             'dexterity_type_name': 'Task',
         },
@@ -100,7 +103,7 @@ def test_post_renderer(tmpdir):
         f.write(template)
 
     template = """
-[tool:bobtemplates.plone]
+[main]
 version=5.1
 """
     with open(os.path.join(target_path + '/bobtemplate.cfg'), 'w') as f:
@@ -116,6 +119,9 @@ version=5.1
     configurator = Configurator(
         template='bobtemplates.plone:addon',
         target_directory=package_path,
+        bobconfig={
+            'non_interactive': True,
+        },
         variables={
             'dexterity_type_name': 'Task',
             'plone.version': '5.1',

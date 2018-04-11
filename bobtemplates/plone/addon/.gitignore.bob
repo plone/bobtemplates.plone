@@ -25,6 +25,7 @@ log.html
 output.xml
 pip-selfcheck.json
 report.html
+.vscode/
 # excludes
 !.coveragerc
 !.editorconfig

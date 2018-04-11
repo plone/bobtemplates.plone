@@ -26,6 +26,7 @@ def test_addon(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True
+package.git.init = True
 
 author.name = The Plone Collective
 author.email = collective@plone.org

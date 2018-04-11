@@ -8,6 +8,8 @@ parts =
     instance
     test
     code-analysis
+    coverage
+    test-coverage
     createcoverage
     releaser
     i18ndude
@@ -36,11 +38,6 @@ flake8-max-complexity = 15
 return-status-codes = False
 
 
-[createcoverage]
-recipe = zc.recipe.egg
-eggs = createcoverage
-
-
 [omelette]
 recipe = collective.recipe.omelette
 eggs = ${instance:eggs}
@@ -49,7 +46,33 @@ eggs = ${instance:eggs}
 [test]
 recipe = zc.recipe.testrunner
 eggs = ${instance:eggs}
+initialization =
+    os.environ['TZ'] = 'UTC'
 defaults = ['-s', '{{{ package.dottedname }}}', '--auto-color', '--auto-progress']
+
+
+[coverage]
+recipe = zc.recipe.egg
+eggs = coverage
+
+
+[test-coverage]
+recipe = collective.recipe.template
+input = inline:
+    #!/bin/bash
+    export TZ=UTC
+    ${buildout:directory}/bin/coverage run bin/test $*
+    ${buildout:directory}/bin/coverage html
+    ${buildout:directory}/bin/coverage report -m --fail-under=90
+    # Fail (exit status 1) if coverage returns exit status 2 (this happens
+    # when test coverage is below 100%.
+output = ${buildout:directory}/bin/test-coverage
+mode = 755
+
+
+[createcoverage]
+recipe = zc.recipe.egg
+eggs = createcoverage
 
 
 [robot]
@@ -82,7 +105,7 @@ plone.app.dexterity = 2.1.1
 # development dependencies (tools and pre commit hook)
 setuptools =
 zc.buildout =
-mr.developer = 1.38
+mr.developer = >=1.38
 PyYAML = 3.12
 argh = 0.26.2
 args = 0.1.0
@@ -107,6 +130,7 @@ flake8-print = 2.0.2
 flake8-quotes = 0.9.0
 flake8-string-format = 0.2.3
 flake8-todo = 0.7
+i18ndude = 4.0.1
 isort = 4.2.5
 mccabe = 0.6.1
 pathtools = 0.1.2
@@ -116,8 +140,14 @@ plone.testing = 5.0.0
 pycodestyle = 2.3.1
 pyflakes = 1.5.0
 requests-toolbelt = 0.7.1
+robotframework = 3.0
+robotframework-ride = 1.5.2.1
+robotframework-selenium2library = 1.7.4
+robotsuite = 1.7.0
+selenium = 2.53.6
 testfixtures = 4.13.4
 twine = 1.8.1
 watchdog = 0.8.3
 z3c.jbot = 0.7.2
+zc.recipe.egg = 2.0.3
 zest.releaser = 6.9

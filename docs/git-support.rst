@@ -40,7 +40,7 @@ Fix settings
 
 If you always work the same, you can set these answers in your .mrbob file and you will not be ask all the time.
 
-.. code-block::
+::
 
     package.git.init: True
     package.git.autocommit: True
@@ -51,7 +51,7 @@ Disable git init
 
 In case you are don't want an extra git repository for every package you create, but use a parent project based repository, you can disable the git init, by setting ``package.git.init`` to ``False``.
 
-.. code-block::
+::
 
    package.git.init = False
 
@@ -60,6 +60,6 @@ Disable git support completely
 
 To disable the GIT support completely, set ``package.git.disable`` to ``True``. But it's hightly recommended to let it active, because sub-templates can silendly override files. **So be warned!**
 
-.. code-block::
+::
 
    package.git.disabled = True

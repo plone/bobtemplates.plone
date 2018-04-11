@@ -148,8 +148,7 @@ def pre_ask(configurator):
 
 def post_render(configurator):
     _cleanup_package(configurator)
-    if configurator.variables['package.git.init']:
-        git_init(configurator)
+    git_init(configurator)
     git_commit(
         configurator,
         'Create addon: {0}'.format(

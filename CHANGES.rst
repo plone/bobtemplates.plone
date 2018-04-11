@@ -4,7 +4,8 @@ Changelog
 3.2.0b2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix reading default config parameters and improve git-support docs
+  [MrTango]
 
 
 3.2.0b1 (2018-04-11)

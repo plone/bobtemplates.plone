@@ -5,6 +5,7 @@ from datetime import date
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
+from mrbob import hooks
 from six.moves import input
 
 import keyword
@@ -22,8 +23,10 @@ except ImportError:
 
 
 def git_support_enabled(configurator, question):
-    if configurator.variables.get('package.git.disabled'):
-        raise SkipQuestion(u'GIT support is disabled!.')
+    disabled = configurator.variables.get('package.git.disabled', u'False')
+    if hooks.to_boolean(None, None, disabled):
+        echo('GIT support disabled!')
+        raise SkipQuestion(u'GIT support is disabled, skip question!.')
 
 
 def echo(msg, msg_type=None):
@@ -51,14 +54,19 @@ def git_support(configurator):
     """ check if GIT support is disabled/enabled
     """
     git_support = True
-    if configurator.variables.get('package.git.disabled'):
+    disabled = configurator.variables.get('package.git.disabled', u'False')
+    if hooks.to_boolean(None, None, disabled):
+        echo('GIT support disabled!')
         git_support = False
     return git_support
 
 
 def git_init(configurator):
     if not git_support(configurator):
-        echo('GIT support disabled!')
+        return
+    git_init_flag = configurator.variables.get('package.git.init', u'False')
+    if not hooks.to_boolean(None, None, str(git_init_flag)):
+        echo('git init is disabled!')
         return
     params = [
         'git',
@@ -79,7 +87,6 @@ def git_init(configurator):
 
 def git_commit(configurator, msg):
     if not git_support(configurator):
-        echo('GIT support disabled!')
         return
     non_interactive = configurator.bobconfig.get('non_interactive')
     working_dir = configurator.variables.get(
@@ -97,7 +104,10 @@ def git_commit(configurator, msg):
     ]
     git_autocommit = None
     run_git_commit = True
-    if configurator.variables.get('package.git.autocommit'):
+    autocommit_flag = configurator.variables.get(
+        'package.git.autocommit', u'False',
+    )
+    if hooks.to_boolean(None, None, autocommit_flag):
         git_autocommit = True
     if not non_interactive and not git_autocommit:
         echo(
@@ -140,7 +150,6 @@ def git_commit(configurator, msg):
 
 def git_clean_state_check(configurator, question):
     if not git_support(configurator):
-        echo('GIT support disabled!')
         return
     params = [
         'git',

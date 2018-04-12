@@ -13,6 +13,7 @@ Introduction
     content_type
     vocabulary
     behavior
+    upgrade-packages
     develop
 
 

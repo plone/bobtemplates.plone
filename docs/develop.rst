@@ -12,6 +12,7 @@ In the package folder create a virtualenv and install the package:
    virtualenv --clear .
    ./bin/python setup.py develop
 
+
 Intro
 =====
 
@@ -21,12 +22,14 @@ By convention we will use a python module for every template and use some generi
 All templates are living inside the bobtemplates/plone folder, in there own folder.
 All module files are placed inside the bobtemplates/plone folder and are referenced from hook commands in the ``.mrbob.ini`` file in the templates folders.
 
+
 Standalone templates
 =====================
 
 Standalone templates are normal templates for mrbob which are meant to live standalone and are not depending on any other template.
 
 Examples are the ``buildout`` and ``addon`` templates. For details see the documentation of the mrbob package.
+
 
 Subtemplates
 ============

@@ -48,7 +48,7 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
-behavior_name = AttachmentType
+behavior_name = Project
 subtemplate_warning = Yes
 """
     generate_answers_ini(wd, template)
@@ -67,7 +67,7 @@ subtemplate_warning = Yes
 
     assert file_exists(wd, '/src/collective/task/behaviors/configure.zcml')
     assert file_exists(
-        wd, '/src/collective/task/behaviors/attachment_type.py')  # NOQA: S101,E501
+        wd, '/src/collective/task/behaviors/project.py')  # NOQA: S101,E501
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
         setup_virtualenv_result = subprocess.call(

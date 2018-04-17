@@ -37,7 +37,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
-    def test_schema(self):
+    def test_ct_{{{ dexterity_type_name_normalized }}}_schema(self):
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name }}}')
         schema = fti.lookupSchema()
 {{% if dexterity_type_supermodel %}}
@@ -47,11 +47,11 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         self.assertEqual(I{{{ dexterity_type_name_klass }}}, schema)
 {{% endif %}}
 
-    def test_fti(self):
+    def test_ct_{{{ dexterity_type_name_normalized }}}_fti(self):
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name }}}')
         self.assertTrue(fti)
 
-    def test_factory(self):
+    def test_ct_{{{ dexterity_type_name_normalized }}}_factory(self):
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name }}}')
         factory = fti.factory
         obj = createObject(factory)
@@ -77,7 +77,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         self.assertTrue(IDexterityItem.providedBy(obj))
 {{% endif %}}
 
-    def test_adding(self):
+    def test_ct_{{{ dexterity_type_name_normalized }}}_adding(self):
         setRoles(self.portal, TEST_USER_ID, ['Contributor'])
         obj = api.content.create(
             container=self.portal,

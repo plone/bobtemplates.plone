@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from {{{package.dottedname}}} import _
+from plone import schema
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexterityContent
-# from plone import schema
 from plone.supermodel import model
 from zope.component import adapter
 from zope.interface import implementer
@@ -14,15 +15,11 @@ class I{{{behavior_name_klass}}}(model.Schema):
     """
     """
 
-    def do_something():
-        """
-        """
-
-    # project = schema.Choice(
-    #     title=_(u"Project"),
-    #     required=False,
-    #     vocabulary='{{{package.dottedname}}}.Projects'
-    # )
+    project = schema.TextLine(
+        title=_(u'Project'),
+        description=_(u'Give in a project name'),
+        required=False,
+    )
 
 
 @implementer(I{{{behavior_name_klass}}})
@@ -31,17 +28,12 @@ class {{{behavior_name_klass}}}(object):
     def __init__(self, context):
         self.context = context
 
-    def do_something(self):
-        """
-        """
-        return u'something'
+    @property
+    def project(self):
+        if hasattr(self.context, 'project'):
+            return self.context.project
+        return None
 
-    # @property
-    # def project(self):
-    #     if hasattr(self.context, 'project'):
-    #         return self.context.project
-    #     return None
-
-    # @project.setter
-    # def project(self, value):
-    #     self.context.project = value
+    @project.setter
+    def project(self, value):
+        self.context.project = value

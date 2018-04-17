@@ -19,7 +19,7 @@ class {{{ vocabulary_name_klass }}}IntegrationTest(unittest.TestCase):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
-    def test_vocabulary(self):
+    def test_vocab_{{{ vocabulary_name_normalized }}}(self):
         vocab_name = '{{{ package.dottedname }}}.{{{ vocabulary_name_klass }}}'
         factory = getUtility(IVocabularyFactory, vocab_name)
         self.assertTrue(IVocabularyFactory.providedBy(factory))

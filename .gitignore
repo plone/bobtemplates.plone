@@ -11,7 +11,7 @@ lib/
 develop-eggs/
 include/
 local/
-_build
+_build/
 __pycache__
 .cache
 .vagrant

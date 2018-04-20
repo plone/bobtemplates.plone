@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.2.0b3 (unreleased)
+3.2.0b3 (2018-04-20)
 --------------------
 
 - Add new field in behavior, improve test naming and tests

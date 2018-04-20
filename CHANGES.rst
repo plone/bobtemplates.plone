@@ -4,7 +4,14 @@ Changelog
 3.2.0b3 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add new field in behavior, improve test naming and tests
+  [MrTango]
+
+- Add a chapter howto upgrade existing packages to be compatible with plonecli and new bobtemplates.plone templates
+  [MrTango]
+
+- improve test naming of content_Type and vocabulary templates
+  [MrTango]
 
 
 3.2.0b2 (2018-04-11)

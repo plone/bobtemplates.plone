@@ -103,9 +103,14 @@ def post_renderer(configurator):
         configurator.variables['package.dottedname'],
         configurator.variables['vocabulary_name_normalized'],
     )
-    echo('------------------------\nSucessfully added: {0} template.\n'.format(
-        configurator.variables['template_id'],
-    ))
-    echo('You can lookup your vocabulary by the name: {0}\n'.format(
-        registered_vocabulary,
-    ), 'info')
+    echo(
+        '------------------------\nSucessfully added: {0} template.\n'.format(
+            configurator.variables['template_id'],
+        ),
+    )
+    echo(
+        'You can lookup your vocabulary by the name: {0}\n'.format(
+            registered_vocabulary,
+        ),
+        'info',
+    )

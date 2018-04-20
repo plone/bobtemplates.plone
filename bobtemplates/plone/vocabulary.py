@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from lxml import etree
@@ -98,3 +99,13 @@ def post_renderer(configurator):
             configurator.variables['vocabulary_name'],
         ),
     )
+    registered_vocabulary = '{0}.{1}'.format(
+        configurator.variables['package.dottedname'],
+        configurator.variables['vocabulary_name_normalized'],
+    )
+    echo('------------------------\nSucessfully added: {0} template.\n'.format(
+        configurator.variables['template_id'],
+    ))
+    echo('You can lookup your vocabulary by the name: {0}\n'.format(
+        registered_vocabulary,
+    ), 'info')

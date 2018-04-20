@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from lxml import etree
@@ -64,7 +65,7 @@ def _update_behaviors_configure_zcml(configurator):
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
     <plone:behavior
-        name="{normalized_name}"
+        name="{package_dottedname}.{normalized_name}"
         title="{title}"
         description="{description}"
         provides=".{normalized_name}.I{klass_name}"
@@ -77,6 +78,7 @@ def _update_behaviors_configure_zcml(configurator):
         description=configurator.variables['behavior_description'],
         normalized_name=configurator.variables['behavior_name_normalized'],
         klass_name=configurator.variables['behavior_name_klass'],
+        package_dottedname=configurator.variables['package.dottedname'],
     )
     update_file(configurator, file_path, match_str, insert_str)
 
@@ -102,4 +104,28 @@ def post_renderer(configurator):
         'Add behavior: {0}'.format(
             configurator.variables['behavior_name'],
         ),
+    )
+    behavior_name = '{0}.behaviors.{1}.{2}'.format(
+        configurator.variables['package.dottedname'],
+        configurator.variables['behavior_name_normalized'],
+        configurator.variables['behavior_name_klass'],
+    )
+    behavior_name_short = '{0}.{1}'.format(
+        configurator.variables['package.dottedname'],
+        configurator.variables['behavior_name_normalized'],
+    )
+    echo(
+        '===================================================\n'
+        '=> Sucessfully added: {0} template.  \o/ \n\n'.format(
+            configurator.variables['template_id'],
+        ),
+        'info',
+    )
+    echo(
+        'You can lookup your behavior by the name:\n "{0}"\n'
+        'or by the shorter version:\n "{1}"\n'.format(
+            behavior_name,
+            behavior_name_short,
+        ),
+        'info',
     )

@@ -19,7 +19,13 @@ class {{{ behavior_name_klass }}}IntegrationTest(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
     def test_behavior_{{{behavior_name_normalized}}}(self):
-        behavior = getUtility(IBehavior, '{{{ behavior_name_normalized }}}')
+        behavior = getUtility(IBehavior, '{{{ package.dottedname }}}.{{{ behavior_name_normalized }}}')
+        self.assertEqual(
+            behavior.marker,
+            I{{{ behavior_name_klass }}},
+        )
+        behavior_name = '{{{ package.dottedname }}}.behaviors.{{{ behavior_name_normalized }}}.I{{{ behavior_name_klass }}}'
+        behavior = getUtility(IBehavior, behavior_name)
         self.assertEqual(
             behavior.marker,
             I{{{ behavior_name_klass }}},

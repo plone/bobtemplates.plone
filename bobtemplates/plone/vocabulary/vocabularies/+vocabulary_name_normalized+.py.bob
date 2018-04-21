@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from {{{ package.dottedname }}} import _
 # from plone import api
+from {{{package.dottedname}}} import _
+from plone.dexterity.interfaces import IDexterityContent
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
@@ -26,6 +28,12 @@ class {{{ vocabulary_name_klass }}}(object):
             VocabItem(u'sony-a7r-iii', _(u'Sony Aplha 7R III')),
             VocabItem(u'canon-5d-iv', _(u'Canon 5D IV')),
         ]
+
+        # Fix context if you are using the vocabulary in DataGridField.
+        # See https://github.com/collective/collective.z3cform.datagridfield/issues/31:  # NOQA: 501
+        if not IDexterityContent.providedBy(context):
+            req = getRequest()
+            context = req.PARENTS[0]
 
         # create a list of SimpleTerm items:
         terms = []

@@ -4,10 +4,10 @@ from bobtemplates.plone import buildout
 from mrbob.configurator import Configurator
 
 
-def test_prepare_renderer():
+def test_prepare_renderer(tmpdir):
     configurator = Configurator(
         template='bobtemplates.plone:buildout',
-        target_directory='collective.foo',
+        target_directory=tmpdir.strpath + 'collective.foo',
     )
     buildout.prepare_renderer(configurator)
     assert configurator.variables['template_id'] == 'buildout'

@@ -6,10 +6,10 @@ from mrbob.configurator import Configurator
 import os
 
 
-def test_pre_render():
+def test_pre_render(tmpdir):
     configurator = Configurator(
         template='bobtemplates.plone:addon',
-        target_directory='collective.foo.bar',
+        target_directory=tmpdir.strpath + 'collective.foo.bar',
         variables={
             'package.dexterity_type_name': 'Task',
         },

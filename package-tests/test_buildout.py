@@ -3,11 +3,13 @@
 from bobtemplates.plone import buildout
 from mrbob.configurator import Configurator
 
+import os.path
 
-def test_prepare_renderer(tmpdir):
+
+def test_prepare_renderer(buildpath):
     configurator = Configurator(
         template='bobtemplates.plone:buildout',
-        target_directory=tmpdir.strpath + 'collective.foo',
+        target_directory=os.path.join(buildpath, 'test.buildout'),
     )
     buildout.prepare_renderer(configurator)
     assert configurator.variables['template_id'] == 'buildout'

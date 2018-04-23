@@ -3,11 +3,13 @@
 from bobtemplates.plone import theme_package
 from mrbob.configurator import Configurator
 
+import os.path
 
-def test_pre_render():
+
+def test_pre_render(buildpath):
     configurator = Configurator(
         template='bobtemplates.plone:theme_package',
-        target_directory='collective.theme',
+        target_directory=os.path.join(buildpath, 'collective.theme'),
         variables={
             'theme.name': 'Test Theme',
         },
@@ -15,11 +17,10 @@ def test_pre_render():
     theme_package.pre_render(configurator)
 
 
-def test_cleanup_package(tmpdir):
-    target_path = tmpdir.strpath + '/collective.theme'
+def test_cleanup_package(buildpath):
     configurator = Configurator(
         template='bobtemplates.plone:theme_package',
-        target_directory=target_path,
+        target_directory=os.path.join(buildpath, 'collective.theme'),
         variables={
             'package.nested': False,
             'package.namespace': 'collective',

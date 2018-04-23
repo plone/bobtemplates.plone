@@ -7,8 +7,8 @@ environment:
     - PYTHON: "C:\\Python36"
       TOXENV: "lint-py36,docs"
 # Package Tests
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-packagetests"
+    - PYTHON: "C:\\Python27"
+      TOXENV: "py27-packagetests"
 #    - PYTHON: "C:\\Python34"
 #      TOXENV: "py34-packagetests"
 #    - PYTHON: "C:\\Python35"

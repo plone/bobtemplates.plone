@@ -26,19 +26,20 @@ def test_check_klass_name():
     assert hookit(u'second_coming') == u'second_coming'
 
 
-def test_read_bobtemplate_ini(tmpdir):
+def test_read_bobtemplate_ini(buildpath):
     configurator = Configurator(
         template='bobtemplates.plone:addon',
-        target_directory='collective.todo',
+        target_directory=os.path.join(buildpath, 'collective.todo'),
     )
     base.read_bobtemplates_ini(configurator)
 
     template = """[main]
 version=5.1
 """
-    target_dir = tmpdir.strpath + '/collective.foo'
-    os.mkdir(target_dir)
-    with open(os.path.join(target_dir + '/bobtemplate.cfg'), 'w') as f:
+    target_dir = os.path.join(buildpath, 'collective.todo')
+    if not os.path.exists(target_dir):
+        os.mkdir(target_dir)
+    with open(os.path.join(target_dir + 'bobtemplate.cfg'), 'w') as f:
         f.write(template)
 
     configurator = Configurator(
@@ -48,14 +49,15 @@ version=5.1
     base.read_bobtemplates_ini(configurator)
 
 
-def test_set_global_vars(tmpdir):
+def test_set_global_vars(buildpath):
     template = """
 [main]
 version=5.1
 """
-    target_dir = tmpdir.strpath + '/collective.foo'
-    os.mkdir(target_dir)
-    with open(os.path.join(target_dir + '/bobtemplate.cfg'), 'w') as f:
+    target_dir = os.path.join(buildpath, 'collective.foo')
+    if not os.path.exists(target_dir):
+        os.mkdir(target_dir)
+    with open(os.path.join(target_dir + 'bobtemplate.cfg'), 'w') as f:
         f.write(template)
     configurator = Configurator(
         template='bobtemplates.plone:addon',
@@ -89,9 +91,9 @@ def test_subtemplate_warning(capsys):
     assert err == ''
 
 
-def test_is_string_in_file(tmpdir):
+def test_is_string_in_file(buildpath):
     match_str = '-*- extra stuff goes here -*-'
-    path = tmpdir.strpath + '/configure.zcml'
+    path = os.path.join(buildpath, 'configure.zcml')
     template = """Some text
 
     {0}
@@ -105,9 +107,9 @@ def test_is_string_in_file(tmpdir):
     assert base.is_string_in_file(None, path, 'hello') is False
 
 
-def test_update_file(tmpdir):
+def test_update_file(buildpath):
     match_str = '-*- extra stuff goes here -*-'
-    path = tmpdir.strpath + '/configure.zcml'
+    path = os.path.join(buildpath, 'configure.zcml')
     template = """Some text
 
     {0}
@@ -131,7 +133,7 @@ def test_subtemplate_warning_post_question():
         base.subtemplate_warning_post_question(None, None, 'n')
 
 
-def test_validate_packagename():
+def test_validate_packagename(buildpath):
     # step 1: test None
     with pytest.raises(AttributeError):
         base.validate_packagename(None)
@@ -139,7 +141,7 @@ def test_validate_packagename():
     # step 2: test base namespace (level 2)
     configurator = Configurator(
         template='bobtemplates.plone:addon',
-        target_directory='collective.foo',
+        target_directory=os.path.join(buildpath, 'collective.foo'),
     )
     base.validate_packagename(configurator)
 
@@ -147,7 +149,7 @@ def test_validate_packagename():
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates.plone:addon',
-            target_directory='foo',
+            target_directory=os.path.join(buildpath, 'foo'),
         )
         base.validate_packagename(configurator)
 
@@ -155,7 +157,10 @@ def test_validate_packagename():
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates.plone:addon',
-            target_directory='collective.foo.bar.spam',
+            target_directory=os.path.join(
+                buildpath,
+                'collective.foo.bar.spam',
+            ),
         )
         base.validate_packagename(configurator)
 
@@ -163,7 +168,7 @@ def test_validate_packagename():
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates.plone:addon',
-            target_directory='.collective.foo',
+            target_directory=os.path.join(buildpath, '.collective.foo'),
         )
         base.validate_packagename(configurator)
 
@@ -171,7 +176,7 @@ def test_validate_packagename():
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates.plone:addon',
-            target_directory='collective.foo.',
+            target_directory=os.path.join(buildpath, 'collective.foo.'),
         )
         base.validate_packagename(configurator)
 
@@ -179,12 +184,12 @@ def test_validate_packagename():
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates.plone:addon',
-            target_directory='collective.$PAM',
+            target_directory=os.path.join(buildpath, 'collective.$PAM'),
         )
         base.validate_packagename(configurator)
 
 
-def test_pre_username():
+def test_pre_username(buildpath):
     # step 1: test None
     with pytest.raises(AttributeError):
         base.pre_username(None, None)
@@ -195,7 +200,7 @@ def test_pre_username():
         bobconfig={
             'non_interactive': True,
         },
-        target_directory='collective.foo',
+        target_directory=os.path.join(buildpath, 'collective.foo'),
     )
     base.pre_username(configurator, None)
 
@@ -205,51 +210,51 @@ def test_pre_username():
         bobconfig={
             'non_interactive': True,
         },
-        target_directory='collective foo',
+        target_directory=os.path.join(buildpath, 'collective foo'),
     )
     with pytest.raises(SystemExit):
         base.pre_username(configurator, None)
 
 
-def test_pre_email():
+def test_pre_email(buildpath):
     configurator = Configurator(
         template='bobtemplates.plone:addon',
         bobconfig={
             'non_interactive': True,
         },
-        target_directory='collective.foo',
+        target_directory=os.path.join(buildpath, 'collective.foo'),
     )
     base.pre_email(configurator, None)
 
 
-def test_post_plone_version():
+def test_post_plone_version(buildpath):
     configurator = Configurator(
         template='bobtemplates.plone:addon',
-        target_directory='collective.foo',
+        target_directory=os.path.join(buildpath, 'collective.foo'),
     )
     base.post_plone_version(configurator, None, '4.3')
 
     configurator = Configurator(
         template='bobtemplates.plone:addon',
-        target_directory='collective.foo',
+        target_directory=os.path.join(buildpath, 'collective.foo'),
     )
     base.post_plone_version(configurator, None, '4-latest')
 
     configurator = Configurator(
         template='bobtemplates.plone:addon',
-        target_directory='collective.foo',
+        target_directory=os.path.join(buildpath, 'collective.foo'),
     )
     base.post_plone_version(configurator, None, '5.1')
 
     configurator = Configurator(
         template='bobtemplates.plone:addon',
-        target_directory='collective.foo',
+        target_directory=os.path.join(buildpath, 'collective.foo'),
     )
     base.post_plone_version(configurator, None, '5-latest')
 
     configurator = Configurator(
         template='bobtemplates.plone:addon',
-        target_directory='collective.foo',
+        target_directory=os.path.join(buildpath, 'collective.foo'),
         variables={
             'plone.is_plone5': True,
             'plone.minor_version': '5.0',

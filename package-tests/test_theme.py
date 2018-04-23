@@ -10,10 +10,10 @@ import os
 import pytest
 
 
-def test_pre_theme_name():
+def test_pre_theme_name(buildpath):
     configurator = Configurator(
         template='bobtemplates.plone:theme',
-        target_directory='collective.foo',
+        target_directory=os.path.join(buildpath, 'collective.foo'),
     )
     question = Question(
         'package',
@@ -23,8 +23,8 @@ def test_pre_theme_name():
     theme.pre_theme_name(configurator, question)
 
 
-def test_post_theme_name(tmpdir):
-    target_path = tmpdir.strpath + '/collective.theme'
+def test_post_theme_name(buildpath):
+    target_path = os.path.join(buildpath, 'collective.theme')
     configurator = Configurator(
         template='bobtemplates.plone:theme',
         target_directory=target_path,
@@ -35,10 +35,10 @@ def test_post_theme_name(tmpdir):
         theme.post_theme_name(configurator, None, 'collective.$SPAM')
 
 
-def test_prepare_renderer():
+def test_prepare_renderer(buildpath):
     configurator = Configurator(
         template='bobtemplates.plone:theme_package',
-        target_directory='collective.foo',
+        target_directory=os.path.join(buildpath, 'collective.foo'),
         variables={
             'theme.name': 'test.theme',
         },
@@ -49,13 +49,12 @@ def test_prepare_renderer():
     assert configurator.variables['theme.normalized_name'] == 'test.theme'
 
 
-def test_post_renderer(tmpdir):
-    target_path = tmpdir.strpath + '/collective.theme'
-    package_path = target_path + '/src/collective/theme'
-    profiles_path = package_path + '/profiles/default'
-    os.makedirs(target_path)
-    os.makedirs(package_path)
-    os.makedirs(profiles_path)
+def test_post_renderer(buildpath):
+    target_path = os.path.join(buildpath, 'collective.theme')
+    package_path = os.path.join(target_path, 'src', 'collective', 'theme')
+    profiles_path = os.path.join(package_path, 'profiles', 'default')
+    if not os.path.exists(profiles_path):
+        os.makedirs(profiles_path)
 
     template = """<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
@@ -65,21 +64,21 @@ def test_post_renderer(tmpdir):
   </dependencies>
 </metadata>
 """
-    with open(os.path.join(profiles_path + '/metadata.xml'), 'w') as f:
+    with open(os.path.join(profiles_path, 'metadata.xml'), 'w') as f:
         f.write(template)
 
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + '/bobtemplate.cfg'), 'w') as f:
+    with open(os.path.join(target_path, 'bobtemplate.cfg'), 'w') as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + '/setup.py'), 'w') as f:
+    with open(os.path.join(target_path, 'setup.py'), 'w') as f:
         f.write(template)
 
     template = """
@@ -93,7 +92,7 @@ version=5.1
 
     </configure>
 """
-    with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path, 'configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
         template='bobtemplates.plone:theme',

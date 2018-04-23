@@ -32,10 +32,10 @@ def test_post_dexterity_type_name():
 #    assert hookit(u'the_2nd_coming') == u'the_2nd_coming'
 
 
-def test_prepare_renderer():
+def test_prepare_renderer(buildpath):
     configurator = Configurator(
         template='bobtemplates.plone:content_type',
-        target_directory='collective.foo.bar',
+        target_directory=os.path.join(buildpath, 'collective.foo.bar'),
         bobconfig={
             'non_interactive': True,
         },
@@ -46,13 +46,12 @@ def test_prepare_renderer():
     content_type.prepare_renderer(configurator)
 
 
-def test_post_renderer(tmpdir):
-    target_path = tmpdir.strpath + '/collective.todo'
-    package_path = target_path + '/src/collective/todo'
-    profiles_path = package_path + '/profiles/default'
-    os.makedirs(target_path)
-    os.makedirs(package_path)
-    os.makedirs(profiles_path + '/types')
+def test_post_renderer(buildpath):
+    target_path = os.path.join(buildpath, 'collective.todo')
+    package_path = os.path.join(target_path, 'src', 'collective', 'todo')
+    profiles_path = os.path.join(package_path, 'profiles', 'default')
+    if not os.path.exists(profiles_path):
+        os.makedirs(os.path.join(profiles_path, 'types'))
 
     template = """<?xml version="1.0" encoding="UTF-8"?>
 <metadata>

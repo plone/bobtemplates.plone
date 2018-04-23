@@ -5,12 +5,13 @@ from bobtemplates.plone import behavior
 from mrbob.configurator import Configurator
 
 import os
+import os.path
 
 
-def test_prepare_renderer():
+def test_prepare_renderer(buildpath):
     configurator = Configurator(
         template='bobtemplates.plone:behavior',
-        target_directory='.',
+        target_directory=buildpath,
         variables={
             'behavior_name': 'AttachmentType',
         },
@@ -19,13 +20,12 @@ def test_prepare_renderer():
     behavior.prepare_renderer(configurator)
 
 
-def test_post_renderer(tmpdir):
-    target_path = tmpdir.strpath + '/collective.todo'
-    package_path = target_path + '/src/collective/todo'
-    profiles_path = package_path + '/profiles/default'
-    os.makedirs(target_path)
-    os.makedirs(package_path)
-    os.makedirs(profiles_path)
+def test_post_renderer(buildpath):
+    target_path = os.path.join(buildpath, 'collective.todo')
+    package_path = os.path.join(target_path, 'src', 'collective', 'todo')
+    profiles_path = os.path.join(package_path, 'profiles', 'default')
+    if not os.path.exists(profiles_path):
+        os.makedirs(profiles_path)
 
     template = """<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
@@ -35,21 +35,21 @@ def test_post_renderer(tmpdir):
   </dependencies>
 </metadata>
 """
-    with open(os.path.join(profiles_path + '/metadata.xml'), 'w') as f:
+    with open(os.path.join(profiles_path, 'metadata.xml'), 'w') as f:
         f.write(template)
 
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + '/bobtemplate.cfg'), 'w') as f:
+    with open(os.path.join(target_path, 'bobtemplate.cfg'), 'w') as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + '/setup.py'), 'w') as f:
+    with open(os.path.join(target_path, 'setup.py'), 'w') as f:
         f.write(template)
 
     template = """
@@ -63,7 +63,7 @@ version=5.1
 
     </configure>
 """
-    with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path, 'configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
         template='bobtemplates.plone:behavior',

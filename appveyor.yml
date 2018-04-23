@@ -4,16 +4,16 @@ environment:
   matrix:
     - PYTHON: "C:\\Python27"
       TOXENV: "lint-py27,docs"
-#    - PYTHON: "C:\\Python36"
-#      TOXENV: "lint-py36,docs"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-packagetests"
-#    - PYTHON: "C:\\Python34"
-#      TOXENV: "py34-packagetests"
-#    - PYTHON: "C:\\Python35"
-#      TOXENV: "py35-packagetests"
-#    - PYTHON: "C:\\Python36"
-#      TOXENV: "py36-packagetests"
+    - PYTHON: "C:\\Python36"
+      TOXENV: "lint-py36,docs"
+    - PYTHON: "C:\\Python27"
+      TOXENV: "py27-packagetests"
+    - PYTHON: "C:\\Python34"
+      TOXENV: "py34-packagetests"
+    - PYTHON: "C:\\Python35"
+      TOXENV: "py35-packagetests"
+    - PYTHON: "C:\\Python36"
+      TOXENV: "py36-packagetests"
 #    - PYTHON: "C:\\Python27"
 #      TOXENV: "py27-skeletontests-Plone-4.3-template-addon"
 #    - PYTHON: "C:\\Python27"
@@ -57,4 +57,6 @@ notifications:
     to:
       - travis-reports@plone.com
       - '{{commitAuthorEmail}}'
+    on_build_success: false
+    on_build_failure: true
     on_build_status_changed: true

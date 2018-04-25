@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.2.0 (unreleased)
---------------------
+3.2.0 (2018-04-25)
+------------------
 
 - improve messages after using vocabulary/behavior sub-templates with names of the vocabulary or behavior
   [MrTango]

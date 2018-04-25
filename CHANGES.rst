@@ -4,7 +4,14 @@ Changelog
 3.2.0 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- improve messages after using vocabulary/behavior sub-templates with names of the vocabulary or behavior
+  [MrTango]
+
+- fix behavior name registration
+  [MrTango]
+
+- Add gitlab CI config to addon template
+  [MrTango]
 
 
 3.2.0b3 (2018-04-20)

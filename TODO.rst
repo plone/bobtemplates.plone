@@ -5,12 +5,12 @@ Sub-templates
 -------------
 
 - controlpanel
-- view
+- view (BrowserView and DX DefaultView)
 - viewlet
 - portlet
-- tile
-- global utility (almost the same as vocabulary)
-- local utility (persistent utility)
+- mosaic tile
+- global utility (almost the same as vocabulary)???
+- local utility (persistent utility)???
 - souper.plone ???
 
 Standalone-templates

@@ -12,6 +12,9 @@ Sub-templates
 - global utility (almost the same as vocabulary)???
 - local utility (persistent utility)???
 - souper.plone ???
+- indexer
+- z3c.form default values
+- display widget templates
 
 Standalone-templates
 --------------------

@@ -17,16 +17,17 @@ Intro
 =====
 
 We can have standalone templates and subtemplates for bobtemplates.plone.
-By convention we will use a python module for every template and use some generic functions from the base module.
+By convention we will have a python module and a template folder for every template and use some generic functions from the base module.
 
-All templates are living inside the bobtemplates/plone folder, in there own folder.
-All module files are placed inside the bobtemplates/plone folder and are referenced from hook commands in the ``.mrbob.ini`` file in the templates folders.
+All templates are living inside the bobtemplates/plone folder, in there own template folder.
+All module files are placed inside the bobtemplates/plone folder and are referenced from hook commands in the ``.mrbob.ini`` file in the template folders.
+They get called by different mrbob hooks, like pre_render, post_render or pre_question hook and so on.
 
 
 Standalone templates
 =====================
 
-Standalone templates are normal templates for mrbob which are meant to live standalone and are not depending on any other template.
+Standalone templates are normal templates for mrbob, which are meant to live standalone and are not depending on any other template.
 
 Examples are the ``buildout`` and ``addon`` templates. For details see the documentation of the mrbob package.
 
@@ -34,19 +35,26 @@ Examples are the ``buildout`` and ``addon`` templates. For details see the docum
 Subtemplates
 ============
 
-Subtemplates are templates which are living inside an existing standalone template structure like the ``addon`` template.
+Subtemplates are templates which are living inside an existing package created by a standalone template like the ``addon`` template.
 These templates extend the existing standalone template structure by new features like a ``theme`` or a ``content_type``.
 
-Subtemplates are searching first for the setup.py of the package and configure all needed parameters with this information.
+Subtemplates are searching first for the setup.py and a bobtemplate.cfg file inside the package and configure all needed parameters with this information.
+See also :doc:`upgrade-packages` to see how to upgrade an existing package to be compatible with sub-templates.
+Every subtemplate should define a pre_renderer and a post_renderer hook in their ``.mrbob.ini`` which points to a method in there sub-template module.
 
-Every subtemplate should define a prepare_renderer and a post_renderer hook method in their module.
+.. code-block:: ini
+
+   [template]
+   pre_render = bobtemplates.plone.<YOURTEMPLATE_MODULE>:pre_renderer
+   post_render = bobtemplates.plone.<YOURTEMPLATE_MODULE>:post_renderer
+
 
 .. code-block:: python
 
    from bobtemplates.plone.base import base_prepare_renderer
 
 
-   def prepare_renderer(configurator):
+   def pre_renderer(configurator):
        configurator = base_prepare_renderer(configurator)
        configurator.variables['template_id'] = 'content_type'
 
@@ -55,24 +63,53 @@ Every subtemplate should define a prepare_renderer and a post_renderer hook meth
        """
        """
 
-As you can see, by convention we define a template_id here. We also call the base_prepare_renderer method from the base module first to setup some variables.
-If you need you can override or extend the variables, like we do in the ``content_type`` module with the ``target_folder``.
+
+As you can see, by convention we define a template_id here. We also call the base_prepare_renderer method from the base module first to setup some generic variables. The ``pre_renderer`` hook is a good place to set template specific variables. If you need you can override or extend the variables, like we do in the ``content_type`` module with the ``target_folder``.
 
 .. code-block:: python
 
    configurator.target_directory = configurator.variables['package_folder']
 
-These prepare and post render methods are referenced in the ``.mrbob.ini`` file as follow:
 
-.. code-block:: ini
+The ``post_renderer`` method is a good place to update configuration files, like we do for example in the ``theme`` and ``content_type`` subtemplates.
 
-   [template]
-   pre_render = bobtemplates.plone.<YOURTEMPLATE_MODULE>:prepare_renderer
-   post_render = bobtemplates.plone.<YOURTEMPLATE_MODULE>:post_renderer
+You can also print some useful advice for the developer here, as we do in the ``vocabulary`` sub-template for example.
 
-The post_renderer method is a good place to update configuration files like we do in the ``theme`` and ``content_type`` subtemplates.
 
-You can also print some useful advice for the developer here.
+Template Registration
+=====================
+
+Even though you can use bobtemplates without regitration, we shoudl register the template, to allow plonecli and future mrbob version to query for it. The registration is done by adding en Python entry point into the setup.py of bobtemplates.plone or your own custom bobtemplates package and by adding a short method to the bobregistry.py file.
+
+Let's look first on the entry point:
+
+.. code-block:: python
+
+    entry_points={
+        'mrbob_templates': [
+            'plone_addon = bobtemplates.plone.bobregistry:plone_addon',
+            'plone_content_type = bobtemplates.plone.bobregistry:plone_content_type',
+            'plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary',
+        ],
+
+This registers every template globally for mrbob and tools like plonecli. The first part is the global template name and the second part points to a method in the bobregistry module. This method gives back some details for the template.
+
+.. code-block:: python
+
+    def plone_vocabulary():
+        reg = RegEntry()
+        reg.template = 'bobtemplates.plone:vocabulary'
+        reg.plonecli_alias = 'vocabulary'
+        reg.depend_on = 'plone_addon'
+        return reg
+
+The method defines the follwing things:
+
+- ``template``: the mrbob template to use
+- ``plonecli_alias``: a short name alias which will be used by plonecli
+- ``depend_on``: an optional global parent template
+
+We use here global unique template names which have the ``plone_`` prefix. Thats because other bobtemplate packages might register templates two and we want avoit naming clashes.
 
 
 Testing

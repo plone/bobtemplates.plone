@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="{{{ package.dottedname }}}">
+<body>
+
+<metal:content-core fill-slot="content-core">
+
+<metal:title define-slot="content-title">
+  <h1 class="documentFirstHeading" tal:content="context/Title|nothing">Title</h1>
+</metal:title>
+
+</metal:content-core>
+
+</body>
+</html>

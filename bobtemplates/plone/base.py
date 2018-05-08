@@ -289,9 +289,7 @@ def pre_email(configurator, question):
 
 def is_string_in_file(configurator, file_path, match_str):
     """Simple check if a given string is in a file.
-
     You can use this before adding new lines with update_file.
-
     """
     with open(file_path, 'r+') as xml_file:
         contents = xml_file.readlines()
@@ -355,9 +353,7 @@ def _get_package_root_folder(configurator):
 
 def check_root_folder(configurator, question):
     """Check if we are in a package.
-
     Should be called in first question pre hook.
-
     """
     root_folder = _get_package_root_folder(configurator)
     if not root_folder:
@@ -406,11 +402,9 @@ def subtemplate_warning(configurator, question):
     """Show a warning to the user before using subtemplates!"""
     print("""
     ### WARNING ###
-
     This is a subtemplate, it might override existing files without warnings!
     Please use a version control system like GIT with a clean state,
     to track changes, before using this subtemplate!
-
     """)
 
 

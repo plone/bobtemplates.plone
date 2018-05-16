@@ -6,7 +6,6 @@ from base import generate_answers_ini
 
 import glob
 import os.path
-import pytest
 import subprocess
 
 

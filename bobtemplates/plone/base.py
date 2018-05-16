@@ -394,9 +394,11 @@ def base_prepare_renderer(configurator):
     package_subpath = dottedname_to_path(
         configurator.variables['package.dottedname'],
     )
+    configurator.variables['package_folder_rel_path'] = \
+        u'/src/' + package_subpath
     configurator.variables['package_folder'] = \
         configurator.variables['package.root_folder'] + \
-        u'/src/' + package_subpath
+        configurator.variables['package_folder_rel_path']
     configurator.target_directory = \
         configurator.variables['package.root_folder']
     return configurator

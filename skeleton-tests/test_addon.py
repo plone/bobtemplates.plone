@@ -6,6 +6,7 @@ from base import generate_answers_ini
 
 import glob
 import os.path
+import pytest
 import subprocess
 
 
@@ -106,11 +107,16 @@ plone.version = {version}
             cwd=wd,
         )
         assert buildout_result == 0
-        test_result = subprocess.call(
-            ['bin/test'],
-            cwd=wd,
-        )
-        assert test_result == 0
+        try:
+            test_result = subprocess.check_output(
+                ['bin/test', '-v'],
+                cwd=wd,
+            )
+            print(test_result)
+        except subprocess.CalledProcessError as execinfo:
+            print(execinfo.output)
+            assert 'failed' in execinfo
+
         test__code_convention_result = subprocess.call(
             ['bin/code-analysis'],
             cwd=wd,

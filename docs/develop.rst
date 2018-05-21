@@ -117,7 +117,7 @@ Testing
 
 All templates and subtemplates should have tests for the structure they provide.
 
-These test will give the developers a good starting point. So that they only need to write test for there own code.
+These tests will give the developers a good starting point. So that they only need to write test for there own code.
 Also these tests will be called by tox and on travis to make sure all by bobtemplates.plone created structures are working and tested.
 
 To run these test we run all templates in every combination and run the tests inside the created packages.

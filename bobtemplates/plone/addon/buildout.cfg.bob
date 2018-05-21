@@ -105,6 +105,7 @@ plone.app.dexterity = 2.1.1
 # development dependencies (tools and pre commit hook)
 setuptools =
 zc.buildout =
+plone.api = >=1.8.4
 mr.developer = >=1.38
 PyYAML = 3.12
 argh = 0.26.2

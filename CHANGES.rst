@@ -4,7 +4,8 @@ Changelog
 3.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- add package_folder_rel_path variable and fix robot test header
+  [MrTango]
 
 
 3.2.0 (2018-04-25)

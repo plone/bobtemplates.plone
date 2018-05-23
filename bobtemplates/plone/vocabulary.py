@@ -101,7 +101,7 @@ def post_renderer(configurator):
     )
     registered_vocabulary = '{0}.{1}'.format(
         configurator.variables['package.dottedname'],
-        configurator.variables['vocabulary_name_normalized'],
+        configurator.variables['vocabulary_name_klass'],
     )
     echo(
         '------------------------\nSucessfully added: {0} template.\n'.format(

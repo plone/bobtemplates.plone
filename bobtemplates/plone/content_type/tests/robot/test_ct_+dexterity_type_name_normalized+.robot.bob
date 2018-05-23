@@ -10,11 +10,11 @@
 #
 # 1) Start robot server:
 #
-# $ bin/robot-server --reload-path src {{{ package.dottedname }}}.testing.{{{package.uppercasename}}}_ACCEPTANCE_TESTING
+# $ bin/robot-server --reload-path src {{{ package.dottedname }}}.testing.{{{ package.uppercasename }}}_ACCEPTANCE_TESTING
 #
 # 2) Run robot tests:
 #
-# $ bin/robot src/plonetraining/testing/tests/robot/test_{{{ dexterity_type_name_normalized }}}.robot
+# $ bin/robot {{{ package_folder_rel_path }}}/tests/robot/test_{{{ dexterity_type_name_normalized }}}.robot
 #
 # See the http://docs.plone.org for further details (search for robot
 # framework).

@@ -2,6 +2,7 @@
 
 from bobtemplates.plone import base
 from bobtemplates.plone import content_type
+from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
@@ -30,6 +31,35 @@ def test_post_dexterity_type_name():
     assert hookit(u'Supertype') == u'Supertype'
     assert hookit(u'second_coming') == u'second_coming'
 #    assert hookit(u'the_2nd_coming') == u'the_2nd_coming'
+
+
+def test_is_container_false():
+    configurator = Configurator(
+        template='bobtemplates.plone:content_type',
+        target_directory='collective.foo.bar',
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'dexterity_type_base_class': 'Item',
+        },
+    )
+    with pytest.raises(SkipQuestion):
+        content_type.is_container(configurator, None)
+
+
+def test_is_container_true():
+    configurator = Configurator(
+        template='bobtemplates.plone:content_type',
+        target_directory='collective.foo.bar',
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'dexterity_type_base_class': 'Container',
+        },
+    )
+    content_type.is_container(configurator, None)
 
 
 def test_prepare_renderer():

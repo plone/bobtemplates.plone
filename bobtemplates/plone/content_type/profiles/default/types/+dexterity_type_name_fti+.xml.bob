@@ -23,6 +23,7 @@
 
   <!-- Hierarchy control -->
   <property name="global_allow">{{{ dexterity_type_global_allow }}}</property>
+{{% if  dexterity_type_base_class == 'Container' %}}
   <property name="filter_content_types">{{{ dexterity_type_filter_content_types | default(False, true) }}}</property>
   <property name="allowed_content_types">
   <!--
@@ -30,7 +31,7 @@
     <element value="File" />
   -->
   </property>
-
+{{% endif %}}
   <!-- Schema, class and security -->
   <property name="add_permission">{{{ package.dottedname }}}.Add{{{ dexterity_type_name_klass }}}</property>
 {{% if dexterity_type_create_class %}}

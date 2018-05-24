@@ -4,6 +4,12 @@ Changelog
 3.2.1 (unreleased)
 ------------------
 
+- add parent content_type when global_allow is false
+  [kakshay21]
+
+- Hide filter options in FTI settings when dexterity_type_base_class is 'Item'
+  [kakshay21]
+
 - add package_folder_rel_path variable and fix robot test header
   [MrTango]
 

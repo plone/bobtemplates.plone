@@ -36,7 +36,11 @@ Test Teardown  Close all browsers
 
 Scenario: As a site administrator I can add a {{{ dexterity_type_name }}}
   Given a logged-in site administrator
+{{% if not dexterity_type_global_allow %}}
+    and an add {{{ dexterity_parent_container_type_name }}} form
+{{% else %}}
     and an add {{{ dexterity_type_name }}} form
+{{% endif %}}
    When I type 'My {{{ dexterity_type_name }}}' into the title field
     and I submit the form
    Then a {{{ dexterity_type_name }}} with the title 'My {{{ dexterity_type_name }}}' has been created
@@ -55,17 +59,26 @@ Scenario: As a site administrator I can view a {{{ dexterity_type_name }}}
 a logged-in site administrator
   Enable autologin as  Site Administrator
 
+{{% if not dexterity_type_global_allow %}}
+an add {{{ dexterity_parent_container_type_name }}} form
+  Go To  ${PLONE_URL}/++add++{{{ dexterity_parent_container_type_name }}}
+{{% else %}}
 an add {{{ dexterity_type_name }}} form
   Go To  ${PLONE_URL}/++add++{{{ dexterity_type_name }}}
+{{% endif %}}
 
+{{% if not dexterity_type_global_allow %}}
+a {{{ dexterity_type_name }}} 'My {{{ dexterity_type_name }}}'
+  Create content  type={{{ dexterity_parent_container_type_name }}}  id=my-{{{ dexterity_type_name_normalized }}}  title=My {{{ dexterity_type_name }}}
+{{% else %}}
 a {{{ dexterity_type_name }}} 'My {{{ dexterity_type_name }}}'
   Create content  type={{{ dexterity_type_name }}}  id=my-{{{ dexterity_type_name_normalized }}}  title=My {{{ dexterity_type_name }}}
-
+{{% endif %}}
 
 # --- WHEN -------------------------------------------------------------------
 
 I type '${title}' into the title field
-  Input Text  name=form-widgets-IBasic-title  ${title}
+  Input Text  name=form.widgets.IBasic.title  ${title}
 
 I submit the form
   Click Button  Save

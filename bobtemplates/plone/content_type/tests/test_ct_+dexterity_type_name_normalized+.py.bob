@@ -36,6 +36,16 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
+{{% if dexterity_parent_container_type_name %}}
+        portal_types = self.portal.portal_types
+        parent_id = portal_types.constructContent(
+            '{{{ dexterity_parent_container_type_name }}}',
+            self.portal,
+            'parent_id',
+            title='Parent container',
+        )
+        self.parent = self.portal[parent_id]
+{{% endif %}}
 
     def test_ct_{{{ dexterity_type_name_normalized }}}_schema(self):
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name }}}')
@@ -79,11 +89,20 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
 
     def test_ct_{{{ dexterity_type_name_normalized }}}_adding(self):
         setRoles(self.portal, TEST_USER_ID, ['Contributor'])
+{{% if dexterity_parent_container_type_name %}}
+        obj = api.content.create(
+            container=self.parent,
+            type='{{{ dexterity_type_name }}}',
+            id='{{{ dexterity_type_name_normalized }}}',
+        )
+{{% else %}}
         obj = api.content.create(
             container=self.portal,
             type='{{{ dexterity_type_name }}}',
             id='{{{ dexterity_type_name_normalized }}}',
         )
+{{% endif %}}
+
 {{% if dexterity_type_create_class %}}
         self.assertTrue(
             I{{{ dexterity_type_name_klass }}}.providedBy(obj),

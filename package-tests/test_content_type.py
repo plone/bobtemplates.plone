@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""Test dexterity content type generation."""
+
 from bobtemplates.plone import base
 from bobtemplates.plone import content_type
 from mrbob.bobexceptions import SkipQuestion
@@ -11,8 +13,7 @@ import pytest
 
 
 def test_post_dexterity_type_name():
-    """Test validation of entered dexterity type names
-    """
+    """Test validation of entered dexterity type names."""
     def hookit(value):
         return content_type.check_dexterity_type_name(None, None, value)
 
@@ -63,6 +64,7 @@ def test_is_container_true():
 
 
 def test_prepare_renderer():
+    """Test prepare renderer."""
     configurator = Configurator(
         template='bobtemplates.plone:content_type',
         target_directory='collective.foo.bar',
@@ -76,7 +78,171 @@ def test_prepare_renderer():
     content_type.prepare_renderer(configurator)
 
 
+def test_check_global_allow_true():
+    """Test global_allow set to True."""
+    configurator = Configurator(
+        template='bobtemplates.plone:content_type',
+        target_directory='collective.foo.bar',
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'dexterity_type_global_allow': 'y',
+        },
+    )
+    with pytest.raises(SkipQuestion):
+        content_type.check_global_allow(configurator, None)
+
+
+def test_check_global_allow_false():
+    """Test global_allow set to False."""
+    configurator = Configurator(
+        template='bobtemplates.plone:content_type',
+        target_directory='collective.foo.bar',
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'dexterity_type_global_allow': 'f',
+            'dexterity_parent_container_type_name': 'Folder',
+        },
+    )
+    with pytest.raises(SkipQuestion):
+        content_type.check_global_allow(configurator, None)
+
+
+def test_update_ct_types_fti_xml(tmpdir):
+    """Test xml changes when changes are already in place."""
+    target_path = tmpdir.strpath + '/collective.sample'
+    package_path = target_path + '/src/collective/sample'
+    profiles_path = package_path + '/profiles/default/types'
+    os.makedirs(target_path)
+    os.makedirs(package_path)
+    os.makedirs(profiles_path)
+    template = """<?xml version="1.0"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    name="parent"
+    meta_type="Dexterity FTI"
+    i18n:domain="collective.sample">
+  <property name="global_allow">True</property>
+  <property name="filter_content_types">True</property>
+  <property name="allowed_content_types">
+    <element value="child" />
+  </property>
+</object>
+"""
+    with open(os.path.join(profiles_path + '/parent.xml'), 'w') as f:
+        f.write(template)
+    configurator = Configurator(
+        template='bobtemplates.plone:content_type',
+        target_directory='collective.sample',
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'dexterity_type_name': 'child',
+            'dexterity_type_global_allow': 'f',
+            'dexterity_parent_container_type_name': 'parent',
+        },
+    )
+    configurator.variables['package_folder'] = package_path
+    content_type._update_ct_types_fti_xml(configurator)
+
+    with open(os.path.join(profiles_path + '/parent.xml'), 'r') as f:
+        content = f.read()
+        if content != template:
+            pytest.raises(ValidationError)
+
+
+def test_update_rolemap_xml(tmpdir):
+    """Test rolemap.xml changes when changes are already in place."""
+    target_path = tmpdir.strpath + '/collective.sample'
+    package_path = target_path + '/src/collective/sample'
+    profiles_path = package_path + '/profiles/default'
+    os.makedirs(target_path)
+    os.makedirs(package_path)
+    os.makedirs(profiles_path)
+    template = """<?xml version="1.0"?>
+<rolemap>
+  <permissions>
+  <!-- -*- extra stuff goes here -*- -->
+
+    <permission name="collective.sample: Add Parent" acquire="True">
+      <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Owner"/>
+      <role name="Contributor"/>
+    </permission>
+  </permissions>
+</rolemap>
+"""
+    with open(os.path.join(profiles_path + '/rolemap.xml'), 'w') as f:
+        f.write(template)
+    configurator = Configurator(
+        template='bobtemplates.plone:content_type',
+        target_directory='collective.sample',
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'dexterity_type_name': 'parent',
+        },
+    )
+    configurator.variables['package_folder'] = package_path
+    configurator.variables['package.dottedname'] = 'bobtemplates.plone'
+    configurator.variables['dexterity_type_name_klass'] = 'Parent'
+    content_type._update_rolemap_xml(configurator)
+
+    with open(os.path.join(profiles_path + '/rolemap.xml'), 'r') as f:
+        content = f.read()
+        if content != template:
+            pytest.raises(ValidationError)
+
+
+def test_update_permissions_zcml(tmpdir):
+    """Test zcml changes when changes are already in place."""
+    target_path = tmpdir.strpath + '/collective.sample'
+    package_path = target_path + '/src/collective/sample'
+    os.makedirs(target_path)
+    os.makedirs(package_path)
+    template = """<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  i18n_domain="plone">
+  <configure zcml:condition="installed AccessControl.security">
+  <!-- -*- extra stuff goes here -*- -->
+    <permission
+        id="collective.sample.AddParent"
+        title="collective.sample: Add Parent"
+    />
+  </configure>
+</configure>
+"""
+    with open(os.path.join(package_path + '/permissions.zcml'), 'w') as f:
+        f.write(template)
+    configurator = Configurator(
+        template='bobtemplates.plone:content_type',
+        target_directory='collective.sample',
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'dexterity_type_name': 'parent',
+        },
+    )
+    configurator.variables['package_folder'] = package_path
+    configurator.variables['package.dottedname'] = 'bobtemplates.plone'
+    configurator.variables['dexterity_type_name_klass'] = 'Parent'
+    content_type._update_permissions_zcml(configurator)
+
+    with open(os.path.join(package_path + '/permissions.zcml'), 'r') as f:
+        content = f.read()
+        if content != template:
+            pytest.raises(ValidationError)
+
+
 def test_post_renderer(tmpdir):
+    """Test post rendering."""
     target_path = tmpdir.strpath + '/collective.todo'
     package_path = target_path + '/src/collective/todo'
     profiles_path = package_path + '/profiles/default'

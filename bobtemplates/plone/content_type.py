@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""Generate content type."""
 
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
@@ -14,11 +15,13 @@ import re
 
 
 def is_container(configurator, question):
+    """Test if base class is a container."""
     if configurator.variables['dexterity_type_base_class'] != 'Container':
         raise SkipQuestion(u'Is not a Container, so we skip filter question.')
 
 
 def check_dexterity_type_name(configurator, question, answer):
+    """Test if type name is valid."""
     if keyword.iskeyword(answer):
         raise ValidationError(u'{key} is a reserved Python keyword'.format(key=answer))  # NOQA: E501
     if not re.match('[_a-zA-Z ]*$', answer):
@@ -26,9 +29,14 @@ def check_dexterity_type_name(configurator, question, answer):
     return answer
 
 
+def check_global_allow(configurator, answer):
+    """Skip parent container name if global_allow is true."""
+    if configurator.variables.get('dexterity_type_global_allow', False):
+        raise SkipQuestion(u'global_allow is true, so we skip parent container name question.')  # NOQA: E501
+
+
 def _update_metadata_xml(configurator):
-    """Add plone.app.dexterity dependency metadata.xml in Generic Setup
-    profiles."""
+    """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""  # NOQA: E501
     metadata_file_name = u'metadata.xml'
     metadata_file_dir = u'profiles/default'
     metadata_file_path = configurator.variables['package_folder'] + '/' + \
@@ -143,6 +151,38 @@ def _update_rolemap_xml(configurator):
     update_file(configurator, file_path, match_str, insert_str)
 
 
+def _update_ct_types_fti_xml(configurator):
+    parent_ct_name = configurator.variables.get('dexterity_parent_container_type_name')   # NOQA: E501
+    if parent_ct_name:
+        file_name = u'{0}.xml'.format(
+            parent_ct_name,
+        )
+        file_path = '{0}/profiles/default/types/{1}'.format(
+            configurator.variables['package_folder'],
+            file_name,
+        )
+
+        with open(file_path, 'r') as xml_file:
+            parser = etree.XMLParser(remove_blank_text=True)
+            tree = etree.parse(xml_file, parser)
+            type_name = configurator.variables['dexterity_type_name']
+            if len(tree.xpath(".//element[@value='{name}']".format(name=type_name))):    # NOQA: E501
+                print(
+                    '{name} already in {filename}, skip adding!'.format(
+                        name=type_name,
+                        filename=file_name,
+                    ),
+                )
+                return
+
+        match_str = """<property name="allowed_content_types">"""
+        insert_str = """    <element value="{0}" />
+        """.format(
+            configurator.variables['dexterity_type_name'],
+        )
+        update_file(configurator, file_path, match_str, insert_str)
+
+
 def _update_permissions_zcml(configurator):
     file_name = u'permissions.zcml'
     file_path = configurator.variables['package_folder'] + '/' + file_name
@@ -190,11 +230,11 @@ def _update_setup_py(configurator):
 
 
 def pre_ask(configurator):
-    """
-    """
+    """Empty pre ask."""
 
 
 def prepare_renderer(configurator):
+    """Prepare rendering."""
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'content_type'
     type_name = configurator.variables['dexterity_type_name']
@@ -209,8 +249,9 @@ def prepare_renderer(configurator):
 
 
 def post_renderer(configurator):
-    """"""
+    """Post rendering."""
     _update_types_xml(configurator)
+    _update_ct_types_fti_xml(configurator)
     _update_permissions_zcml(configurator)
     _update_rolemap_xml(configurator)
     _update_metadata_xml(configurator)

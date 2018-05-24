@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.3.0 (unreleased)
+3.3.0 (2018-05-24)
 ------------------
 
 - Ask for parent content_type when global_allow is set to false

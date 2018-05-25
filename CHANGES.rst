@@ -4,7 +4,8 @@ Changelog
 3.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add conditional tests in content_type
+  [kakshay21]
 
 
 3.3.0 (2018-05-24)

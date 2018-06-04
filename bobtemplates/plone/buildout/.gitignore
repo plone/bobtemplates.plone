@@ -7,12 +7,14 @@
 *.sublime-workspace
 *.sublime-project
 .mr.developer.cfg
+.installed.cfg
 lib64
+Gruntfile.js
 log.html
 output.xml
+package.json
 pip-selfcheck.json
 report.html
-.installed.cfg
 
 #dirs
 bin/
@@ -23,6 +25,7 @@ htmlcov/
 include/
 lib/
 local/
+node_modules/
 parts/
 src/*
 

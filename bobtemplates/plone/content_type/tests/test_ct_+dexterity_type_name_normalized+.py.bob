@@ -4,7 +4,7 @@ from {{{ package.dottedname }}}.content.{{{ dexterity_type_name_normalized }}} i
 {{% endif %}}
 from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
 from plone import api
-{{% if dexterity_type_filter_content_types | lower == 'true' and dexterity_type_base_class | lower == 'container' %}}
+{{% if dexterity_type_filter_content_types | to_boolean and dexterity_type_base_class | lower == 'container' %}}
 from plone.api.exc import InvalidParameterError
 {{% endif %}}
 from plone.app.testing import setRoles
@@ -127,7 +127,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         self.assertTrue(IDexterityItem.providedBy(obj))
 {{% endif %}}
 
-{{% if dexterity_type_global_allow | lower == 'true' %}}
+{{% if dexterity_type_global_allow | to_boolean %}}
     def test_ct_{{{ dexterity_type_name_normalized }}}_globally_addable(self):
         setRoles(self.portal, TEST_USER_ID, ['Contributor'])
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name }}}')
@@ -144,7 +144,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
             u'{0} is globally addable!'.format(fti.id)
         )
 {{% endif %}}
-{{% if dexterity_type_filter_content_types | lower == 'true' and dexterity_type_base_class | lower == 'container' %}}
+{{% if dexterity_type_filter_content_types | to_boolean and dexterity_type_base_class | lower == 'container' %}}
 
     def test_ct_{{{ dexterity_type_name_normalized }}}_filter_content_type_true(self):
         setRoles(self.portal, TEST_USER_ID, ['Contributor'])
@@ -163,7 +163,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
                 type='Document',
                 title='My Content',
             )
-{{% elif dexterity_type_filter_content_types | lower == 'false' and dexterity_type_base_class | lower == 'container' %}}
+{{% elif not dexterity_type_filter_content_types | to_boolean and dexterity_type_base_class | lower == 'container' %}}
 
     def test_ct_{{{ dexterity_type_name_normalized }}}_filter_content_type_false(self):
         setRoles(self.portal, TEST_USER_ID, ['Contributor'])

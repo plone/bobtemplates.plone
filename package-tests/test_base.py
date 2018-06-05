@@ -3,9 +3,16 @@
 from bobtemplates.plone import base
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
-
 import os
 import pytest
+
+
+def test_to_boolean():
+    response_positive = ["Yes", "1", "y", "Y", "True"]
+    resoponse_negative = ["No", "0", "n", "N", "False"]
+    for i in range(len(response_positive)):
+        assert base.to_boolean(response_positive[i]) is True
+        assert base.to_boolean(resoponse_negative[i]) is False
 
 
 def test_check_klass_name():

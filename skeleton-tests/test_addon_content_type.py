@@ -193,6 +193,56 @@ dexterity_type_supermodel=True
     )
     assert result == 0
 
+    # generate subtemplate content_type:
+    template = """[variables]
+dexterity_type_name=News Container
+dexterity_type_base_class=Container
+dexterity_type_create_class=True
+dexterity_type_global_allow=y
+dexterity_type_filter_content_types=n
+subtemplate_warning=False
+dexterity_type_desc=A tasks container for Plone
+dexterity_type_supermodel=True
+"""
+    generate_answers_ini(wd, template)
+
+    config.template = 'content_type'
+    result = subprocess.call(
+        [
+            'mrbob',
+            'bobtemplates.plone:' + config.template,
+            '--config', 'answers.ini',
+            '--non-interactive',
+        ],
+        cwd=wd,
+    )
+    assert result == 0
+
+    # generate subtemplate content_type:
+    template = """[variables]
+dexterity_type_name=Another Container
+dexterity_type_base_class=Container
+dexterity_type_create_class=True
+dexterity_type_global_allow=1
+dexterity_type_filter_content_types=y
+subtemplate_warning=False
+dexterity_type_desc=A tasks container for Plone
+dexterity_type_supermodel=True
+"""
+    generate_answers_ini(wd, template)
+
+    config.template = 'content_type'
+    result = subprocess.call(
+        [
+            'mrbob',
+            'bobtemplates.plone:' + config.template,
+            '--config', 'answers.ini',
+            '--non-interactive',
+        ],
+        cwd=wd,
+    )
+    assert result == 0
+
     assert file_exists(wd, '/src/collective/task/configure.zcml')
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():

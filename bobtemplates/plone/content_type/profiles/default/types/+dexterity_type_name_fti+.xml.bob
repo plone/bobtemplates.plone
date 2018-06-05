@@ -22,9 +22,9 @@
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
-  <property name="global_allow">{{{ dexterity_type_global_allow }}}</property>
+  <property name="global_allow">{{{ dexterity_type_global_allow | to_boolean }}}</property>
 {{% if  dexterity_type_base_class == 'Container' %}}
-  <property name="filter_content_types">{{{ dexterity_type_filter_content_types | default(False, true) }}}</property>
+  <property name="filter_content_types">{{{ dexterity_type_filter_content_types | to_boolean }}}</property>
   <property name="allowed_content_types">
   <!--
     <element value="Document" />

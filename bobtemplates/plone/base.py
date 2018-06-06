@@ -6,6 +6,7 @@ from mrbob import hooks
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
+from mrbob.rendering import jinja2_env
 from six.moves import input
 
 import keyword
@@ -20,6 +21,14 @@ try:
     from ConfigParser import ConfigParser
 except ImportError:
     from configparser import ConfigParser
+
+
+def to_boolean(value):
+    if value:
+        return hooks.to_boolean(None, None, value)
+
+
+jinja2_env.filters['to_boolean'] = to_boolean
 
 
 def git_support_enabled(configurator, question):

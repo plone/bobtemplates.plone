@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Adding plone-compile-resources script in the buildout and extending .gitignore file
+- Add conditional tests in content_type
   [kakshay21]
 
 

@@ -91,6 +91,12 @@ eggs = zest.releaser
 recipe = zc.recipe.egg
 eggs = i18ndude
 
+
+[translate]
+recipe = plone.recipe.command
+command = cd ${buildout:directory}/src/{{{ package.namespace }}}/{{{ package.name}}}/locales/; export PATH=$PATH:${buildout:directory}/bin; i18ndude rebuild-pot --pot {{{ package.dottedname }}}.pot --create {{{ package.dottedname }}} ../; i18ndude sync --pot {{{ package.dottedname }}}.pot */LC_MESSAGES/{{{ package.dottedname }}}.po;
+
+
 [versions]
 # Don't use a released version of {{{ package.dottedname }}}
 {{{ package.dottedname }}} =

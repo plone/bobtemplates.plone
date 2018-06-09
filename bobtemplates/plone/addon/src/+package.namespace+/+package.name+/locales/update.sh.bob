@@ -6,7 +6,8 @@
 # locales/[language]/LC_MESSAGES/{{{ package.dottedname }}}.po
 # (e.g. locales/de/LC_MESSAGES/{{{ package.dottedname }}}.po)
 
+I18NDUDE=../../../../bin/i18ndude
 domain={{{ package.dottedname }}}
 
-i18ndude rebuild-pot --pot $domain.pot --create $domain ../
-i18ndude sync --pot $domain.pot */LC_MESSAGES/$domain.po
+$I18NDUDE rebuild-pot --pot $domain.pot --create $domain ../
+$I18NDUDE sync --pot $domain.pot */LC_MESSAGES/$domain.po

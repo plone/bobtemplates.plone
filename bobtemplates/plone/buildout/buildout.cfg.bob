@@ -17,7 +17,6 @@ extensions = mr.developer
 
 parts = 
     test
-    plone-helper-scripts
 
 
 eggs +=
@@ -45,13 +44,3 @@ defaults = ['--auto-color', '--auto-progress']
 eggs =
     Plone
     ${buildout:eggs}
-
-[plone-helper-scripts]
-recipe = zc.recipe.egg
-eggs =
-   Products.CMFPlone
-   ${instance:eggs}
-interpreter = zopepy
-scripts =
-   zopepy
-   plone-compile-resources

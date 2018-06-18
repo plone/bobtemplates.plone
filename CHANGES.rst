@@ -4,6 +4,9 @@ Changelog
 3.3.1 (unreleased)
 ------------------
 
+- Add view subtemplate
+  [kakshay21]
+
 - Add update_locale script in bin/ folder to update locales
   [kakshay21]
 
@@ -168,7 +171,7 @@ Changelog
 
 - Fixed the pypi index to explicitly reference https://pypi.python.org/simple/ to prevent buildout from defaulting to the old and unsupported http:// url.
   [pigeonflight]
-  
+
 - Fix coveralls for packages created with addon and theme_package by converting the pickle output of createcoverage in .coverage to json.
   [pbauer]
 

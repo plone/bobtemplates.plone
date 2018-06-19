@@ -13,6 +13,7 @@ htmlcov/
 include/
 lib/
 local/
+node_modules/
 parts/
 src/*
 test.plone_addon/
@@ -20,9 +21,11 @@ var/
 # files
 .installed.cfg
 .mr.developer.cfg
+Gruntfile.js
 lib64
 log.html
 output.xml
+package.json
 pip-selfcheck.json
 report.html
 .vscode/

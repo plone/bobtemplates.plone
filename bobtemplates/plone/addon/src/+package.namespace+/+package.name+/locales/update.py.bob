@@ -1,0 +1,33 @@
+import subprocess
+
+
+domain = '{{{ package.dottedname }}}'
+i18ndude = '../../../../bin/i18ndude'
+
+
+def _rebuild():
+    subprocess.call(
+        [
+            i18ndude,
+            'rebuild-pot',
+            '--pot',
+            '{0}.pot'.format(domain),
+            '--create',
+            '{0}'.format(domain),
+            '../',
+        ]
+    )
+
+def _sync():
+    subprocess.call(
+        [
+            i18ndude,
+            'sync',
+            '--pot',
+            '{0}.pot */LC_MESSAGES/{1}.po'.format(domain, domain),
+        ]
+    )
+
+def update_locale():
+    _sync()
+    _rebuild()

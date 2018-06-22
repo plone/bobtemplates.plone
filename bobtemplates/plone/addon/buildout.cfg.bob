@@ -15,6 +15,7 @@ parts =
     i18ndude
     omelette
     robot
+    plone-helper-scripts
 develop = .
 
 
@@ -33,8 +34,6 @@ eggs =
 [code-analysis]
 recipe = plone.recipe.codeanalysis[recommended]
 directory = ${buildout:directory}/src/{{{ package.namespace }}}
-flake8-exclude = bootstrap.py,bootstrap-buildout.py,docs,*.egg.,omelette
-flake8-max-complexity = 15
 return-status-codes = False
 
 
@@ -91,11 +90,15 @@ eggs = zest.releaser
 recipe = zc.recipe.egg
 eggs = i18ndude
 
-
-[translate]
-recipe = plone.recipe.command
-command = cd ${buildout:directory}/src/{{{ package.namespace }}}/{{{ package.name}}}/locales/; export PATH=$PATH:${buildout:directory}/bin; i18ndude rebuild-pot --pot {{{ package.dottedname }}}.pot --create {{{ package.dottedname }}} ../; i18ndude sync --pot {{{ package.dottedname }}}.pot */LC_MESSAGES/{{{ package.dottedname }}}.po;
-
+[plone-helper-scripts]
+recipe = zc.recipe.egg
+eggs =
+   Products.CMFPlone
+   ${instance:eggs}
+interpreter = zopepy
+scripts =
+   zopepy
+   plone-compile-resources
 
 [versions]
 # Don't use a released version of {{{ package.dottedname }}}

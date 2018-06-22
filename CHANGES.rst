@@ -4,7 +4,9 @@ Changelog
 3.3.1 (unreleased)
 ------------------
 
-- Adding plone-compile-resources script in the buildout and extending .gitignore file
+- Adding plone-compile-resources script in addon and extending .gitignore file
+  [kakshay21]
+
 - Add conditional tests in content_type
   [kakshay21]
 

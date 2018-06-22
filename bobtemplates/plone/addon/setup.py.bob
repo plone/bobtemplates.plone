@@ -68,5 +68,7 @@ setup(
     entry_points="""
     [z3c.autoinclude.plugin]
     target = plone
+    [console_scripts]
+    update_locale = {{{ package.dottedname }}}.locales.update:update_locale
     """,
 )

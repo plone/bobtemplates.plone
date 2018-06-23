@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import subprocess
 
 
@@ -6,26 +7,25 @@ i18ndude = '../../../../bin/i18ndude'
 
 
 def _rebuild():
+    cmd = '{0} rebuild-pot --pot {1}.pot --create {2} ../'.format(
+        i18ndude,
+        domain,
+        domain,
+    )
     subprocess.call(
-        [
-            i18ndude,
-            'rebuild-pot',
-            '--pot',
-            '{0}.pot'.format(domain),
-            '--create',
-            '{0}'.format(domain),
-            '../',
-        ]
+        cmd,
+        shell=True,
     )
 
 def _sync():
+    cmd = '{0} sync --pot {1}.pot */LC_MESSAGES/{2}.po'.format(
+        i18ndude,
+        domain,
+        domain,
+    )
     subprocess.call(
-        [
-            i18ndude,
-            'sync',
-            '--pot',
-            '{0}.pot */LC_MESSAGES/{1}.po'.format(domain, domain),
-        ]
+        cmd,
+        shell=True,
     )
 
 def update_locale():

@@ -4,7 +4,10 @@ Changelog
 3.3.1 (unreleased)
 ------------------
 
-- Adding plone-compile-resources script in addon and extending .gitignore file
+- Add update_locale script in bin/ folder to update locales
+  [kakshay21]
+
+- Add plone-compile-resources script in addon and extending .gitignore file
   [kakshay21]
 
 - Add conditional tests in content_type

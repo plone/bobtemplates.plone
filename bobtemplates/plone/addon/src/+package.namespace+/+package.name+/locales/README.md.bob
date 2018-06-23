@@ -1,0 +1,16 @@
+# Guide for translating into your language
+
+For every language you want to translate into you need a
+locales/[language]/LC_MESSAGES/{{{ package.dottedname }}}.po
+(e.g. locales/de/LC_MESSAGES/{{{ package.dottedname }}}.po)
+
+For German
+```
+mkdir -p de/LC_MESSAGES
+touch de/LC_MESSAGES/{{{ package.dottedname }}}.po
+```
+
+For updating locales
+```
+update_locale
+```

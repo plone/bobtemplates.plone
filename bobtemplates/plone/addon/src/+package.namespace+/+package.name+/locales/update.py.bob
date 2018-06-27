@@ -4,7 +4,6 @@ import subprocess
 
 
 domain = '{{{ package.dottedname }}}'
-i18ndude = '../../../../bin/i18ndude'
 target_path = 'src/{{{ package.namespace }}}/{{{ package.name }}}/'
 locale_path = target_path + 'locales/'
 i18ndude = './bin/i18ndude'

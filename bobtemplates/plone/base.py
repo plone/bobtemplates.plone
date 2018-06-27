@@ -24,10 +24,13 @@ except ImportError:
 
 
 def to_boolean(value):
-    if value:
-        return hooks.to_boolean(None, None, value)
+    if not value:
+        return
+    return hooks.to_boolean(None, None, value)
 
 
+# this is a custom filter which we can use in jinja template.
+# see https://github.com/plone/bobtemplates.plone/issues/292
 jinja2_env.filters['to_boolean'] = to_boolean
 
 

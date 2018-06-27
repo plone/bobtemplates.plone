@@ -4,6 +4,9 @@ Changelog
 3.3.1 (unreleased)
 ------------------
 
+- Add a custom to_boolean jinja filter
+  [kakshay21]
+
 - Adding plone-compile-resources script in addon and extending .gitignore file
   [kakshay21]
 

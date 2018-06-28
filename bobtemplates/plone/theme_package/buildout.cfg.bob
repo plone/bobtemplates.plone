@@ -4,6 +4,8 @@ show-picked-versions = true
 extensions =
     mr.developer
 
+index = https://pypi.python.org/simple/
+
 parts =
     instance
     test

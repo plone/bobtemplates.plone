@@ -4,11 +4,10 @@ Changelog
 3.3.1 (unreleased)
 ------------------
 
-- Add a custom to_boolean jinja filter
+- Add update_locale script in bin/ folder to update locales
   [kakshay21]
 
-- Adding plone-compile-resources script in addon and extending .gitignore file
-- Add update_locale script in bin/ folder to update locales
+- Add a custom to_boolean jinja filter
   [kakshay21]
 
 - Add plone-compile-resources script in addon and extending .gitignore file

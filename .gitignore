@@ -22,6 +22,7 @@ pip-selfcheck.json
 .coverage*
 coverage.xml
 Vagrantfile
+.DS_Store
 
 # excludes / This Files should go into version control
 !.editorconfig

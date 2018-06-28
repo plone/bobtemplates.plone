@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import os
 import subprocess
-
+import pkg_resources
 
 domain = '{{{ package.dottedname }}}'
+os.chdir(pkg_resources.resource_filename(domain, ''))
+os.chdir('../../../')
 target_path = 'src/{{{ package.namespace }}}/{{{ package.name }}}/'
 locale_path = target_path + 'locales/'
 i18ndude = './bin/i18ndude'

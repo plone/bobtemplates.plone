@@ -1,5 +1,5 @@
-Guide for translating into your language
-----------------------------------------
+Adding and updating locales
+---------------------------
 
 For every language you want to translate into you need a
 locales/[language]/LC_MESSAGES/collective.task.po
@@ -35,4 +35,3 @@ On Windows
 ----------
 
 see https://mlocati.github.io/articles/gettext-iconv-windows.html
-

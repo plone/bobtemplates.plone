@@ -106,6 +106,13 @@ plone.version = {version}
             cwd=wd,
         )
         assert buildout_result == 0
+        locale_result = subprocess.call(
+            [
+                './bin/update_locale',
+            ],
+            cwd=wd,
+        )
+        assert locale_result == 0
         try:
             test_result = subprocess.check_output(
                 ['bin/test', '-v'],

@@ -1,0 +1,9 @@
+<div class="weather">
+    <h3>Weather Report</h3>
+    ${view/weather_report}
+    <br>
+    Pressure: ${view/get_pressure}
+    <br>
+    Humidity: ${view/get_humidity}
+    <br>
+</div>

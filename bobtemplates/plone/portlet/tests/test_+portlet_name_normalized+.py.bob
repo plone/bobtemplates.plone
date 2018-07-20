@@ -1,0 +1,36 @@
+# -*- coding: utf-8 -*-
+from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.portlets.interfaces import IPortletType
+from zope.component import getUtility
+
+import unittest
+
+
+class PortletIntegrationTest(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.app = self.layer['app']
+        self.request = self.app.REQUEST
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+
+    def test_{{{portlet_name_normalized}}}_is_registered(self):
+        portlet = getUtility(
+            IPortletType,
+            name='{{{portlet_configuration_name}}}',
+        )
+        self.assertEqual(portlet.addview, '{{{portlet_configuration_name}}}')
+
+
+class PortletFunctionalTest(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])

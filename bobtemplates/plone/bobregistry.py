@@ -53,6 +53,14 @@ def plone_view():
     return reg
 
 
+def plone_portlet():
+    reg = RegEntry()
+    reg.template = 'bobtemplates.plone:portlet'
+    reg.plonecli_alias = 'portlet'
+    reg.depend_on = 'plone_addon'
+    return reg
+
+
 def plone_viewlet():
     reg = RegEntry()
     reg.template = 'bobtemplates.plone:viewlet'

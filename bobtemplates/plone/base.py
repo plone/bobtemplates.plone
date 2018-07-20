@@ -9,6 +9,7 @@ from mrbob.bobexceptions import ValidationError
 from mrbob.rendering import jinja2_env
 from six.moves import input
 
+import codecs
 import keyword
 import os
 import re
@@ -42,12 +43,11 @@ jinja2_env.filters['to_boolean'] = to_boolean
 def git_support_enabled(configurator, question):
     disabled = configurator.variables.get('package.git.disabled', u'False')
     if hooks.to_boolean(None, None, disabled):
-        echo('GIT support disabled!')
+        echo(u'GIT support disabled!')
         raise SkipQuestion(u'GIT support is disabled, skip question!.')
 
 
 def echo(msg, msg_type=None):
-    msg = str(msg)
     if msg_type == 'warning':
         colored_msg = Fore.YELLOW + msg + Style.RESET_ALL
     if msg_type == 'error':
@@ -73,7 +73,7 @@ def git_support(configurator):
     git_support = True
     disabled = configurator.variables.get('package.git.disabled', u'False')
     if hooks.to_boolean(None, None, disabled):
-        echo('GIT support disabled!')
+        echo(u'GIT support disabled!')
         git_support = False
     return git_support
 
@@ -83,13 +83,13 @@ def git_init(configurator):
         return
     git_init_flag = configurator.variables.get('package.git.init', u'False')
     if not hooks.to_boolean(None, None, str(git_init_flag)):
-        echo('git init is disabled!')
+        echo(u'git init is disabled!')
         return
     params = [
         'git',
         'init',
     ]
-    echo('RUN: {0}'.format(' '.join(params)), 'info')
+    echo(u'RUN: {0}'.format(' '.join(params)), 'info')
     try:
         result = subprocess.check_output(
             params,
@@ -117,7 +117,7 @@ def git_commit(configurator, msg):
         'git',
         'commit',
         '-m',
-        '"{0}"'.format(msg),
+        u'"{0}"'.format(msg),
     ]
     git_autocommit = None
     run_git_commit = True
@@ -128,7 +128,7 @@ def git_commit(configurator, msg):
         git_autocommit = True
     if not non_interactive and not git_autocommit:
         echo(
-            'Should we run?:\n{0}\n{1}\nin: {2}'.format(
+            u'Should we run?:\n{0}\n{1}\nin: {2}'.format(
                 ' '.join(params1),
                 ' '.join(params2),
                 working_dir,
@@ -138,10 +138,10 @@ def git_commit(configurator, msg):
         run_git_commit = (input('[y]/n: ') or 'y').lower() == 'y'
 
     if not run_git_commit and not git_autocommit:
-        echo('Skip git commit!', 'warning')
+        echo(u'Skip git commit!', 'warning')
         return
 
-    echo('RUN: {0}'.format(' '.join(params1)), 'info')
+    echo(u'RUN: {0}'.format(' '.join(params1)), 'info')
     try:
         result1 = subprocess.check_output(
             params1,
@@ -153,7 +153,7 @@ def git_commit(configurator, msg):
         if result1:
             echo(result1, 'info')
 
-    echo('RUN: {0}'.format(' '.join(params2)), 'info')
+    echo(u'RUN: {0}'.format(' '.join(params2)), 'info')
     try:
         result2 = subprocess.check_output(
             params2,
@@ -173,7 +173,7 @@ def git_clean_state_check(configurator, question):
         'status',
         '--porcelain',
     ]
-    echo('\nRUN: {0}'.format(' '.join(params)), 'info')
+    echo(u'\nRUN: {0}'.format(' '.join(params)), 'info')
     try:
         result = subprocess.check_output(
             params,
@@ -274,9 +274,9 @@ def validate_packagename(configurator):
 
     if fail:
         msg = (
-            "Error: '{0}' is not a valid packagename.\n"
-            'Please use a valid name (like collective.myaddon or '
-            'plone.app.myaddon)'.format(package_dir)
+            u"Error: '{0}' is not a valid packagename.\n"
+            u'Please use a valid name (like collective.myaddon or '
+            u'plone.app.myaddon)'.format(package_dir)
         )
         sys.exit(msg)
 
@@ -327,7 +327,7 @@ def update_file(configurator, file_path, match_str, insert_str):
     """Insert insert_str into given file, by match_str."""
     changed = False
 
-    with open(file_path, 'r+') as xml_file:
+    with codecs.open(file_path, 'r+', encoding='utf-8') as xml_file:
         contents = xml_file.readlines()
         if match_str in contents[-1]:  # Handle last line, prev. IndexError
             contents.append(insert_str)
@@ -346,8 +346,8 @@ def update_file(configurator, file_path, match_str, insert_str):
 
     if not changed:
         print(
-            "WARNING: We couldn't find the match_str, "  # NOQA
-            "skip inserting into {0}:\n".format(file_path)  # NOQA
+            u"WARNING: We couldn't find the match_str, "  # NOQA
+            u"skip inserting into {0}:\n".format(file_path)  # NOQA
         )
         print(insert_str)
 
@@ -379,11 +379,11 @@ def check_root_folder(configurator, question):
     root_folder = _get_package_root_folder(configurator)
     if not root_folder:
         raise ValidationError(
-            '\n\nNo setup.py found in path!\n'
-            'Please run this subtemplate inside an existing package,\n'
-            'in the package dir, where the actual code is!\n'
-            "In the package collective.dx it's in collective.dx/collective/dx"
-            '\n')
+            u'\n\nNo setup.py found in path!\n'
+            u'Please run this subtemplate inside an existing package,\n'
+            u'in the package dir, where the actual code is!\n'
+            u"In the package collective.dx it's in collective.dx/collective/dx"
+            u'\n')
 
 
 def dottedname_to_path(dottedname):
@@ -397,7 +397,7 @@ def base_prepare_renderer(configurator):
         configurator,
     )
     if not configurator.variables['package.root_folder']:
-        raise MrBobError('No setup.py found in path!\n')
+        raise MrBobError(u'No setup.py found in path!\n')
     configurator.variables['package.dottedname'] = \
         configurator.variables['package.root_folder'].split('/')[-1]
     configurator.variables['package.namespace'] = \
@@ -423,7 +423,7 @@ def base_prepare_renderer(configurator):
 
 def subtemplate_warning(configurator, question):
     """Show a warning to the user before using subtemplates!"""
-    print("""
+    print(u"""
     ### WARNING ###
 
     This is a subtemplate, it might override existing files without warnings!

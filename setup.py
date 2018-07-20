@@ -50,6 +50,7 @@ setup(
         'lxml',
         'case-conversion',
         'colorama',
+        'python-slugify',
     ],
     setup_requires=[],
     tests_require=[],
@@ -62,6 +63,7 @@ setup(
             'plone_content_type = bobtemplates.plone.bobregistry:plone_content_type',  # NOQA E501
             'plone_view = bobtemplates.plone.bobregistry:plone_view',
             'plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet',
+            'plone_portlet = bobtemplates.plone.bobregistry:plone_portlet',
             'plone_theme = bobtemplates.plone.bobregistry:plone_theme',
             'plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary',  # NOQA E501
             'plone_behavior = bobtemplates.plone.bobregistry:plone_behavior',  # NOQA E501

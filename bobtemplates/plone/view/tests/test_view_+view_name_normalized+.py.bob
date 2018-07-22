@@ -1,0 +1,59 @@
+# -*- coding: utf-8 -*-
+from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING
+from plone import api
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from zope.component import getMultiAdapter
+from zope.component.interfaces import ComponentLookupError
+
+import unittest
+
+
+class ViewsIntegrationTest(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        api.content.create(self.portal, 'Folder', 'other-folder')
+        api.content.create(self.portal, 'Collection', 'my-collection')
+
+    def test_{{{view_name_normalized}}}_is_registered(self):
+        view = getMultiAdapter(
+            (self.portal['other-folder'], self.portal.REQUEST),
+            name='{{{ view_name }}}'
+        )
+        self.assertTrue(view(), '{{{ view_name }}} is not found')
+{{% if view_python_class and view_template %}}
+        self.assertTrue(
+            'Sample View' in view(),
+            'Sample View is not found in {{{ view_name }}}'
+        )
+        self.assertTrue(
+            'Sample View' in view(),
+            'A small message is not found in {{{ view_name }}}'
+        )
+{{% else %}}
+        self.assertTrue(
+            'Sample View' in view(),
+            'Sample View is not found in {{{ view_name }}}'
+        )
+{{% endif %}}
+
+    def test_{{{view_name_normalized}}}_in_my_collection(self):
+        with self.assertRaises(ComponentLookupError):
+            getMultiAdapter(
+                (self.portal['my-collection'], self.portal.REQUEST),
+                name='{{{ view_name }}}'
+            )
+
+
+class ViewsFunctionalTest(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])

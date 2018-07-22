@@ -45,6 +45,14 @@ def plone_content_type():
     return reg
 
 
+def plone_view():
+    reg = RegEntry()
+    reg.template = 'bobtemplates.plone:view'
+    reg.plonecli_alias = 'view'
+    reg.depend_on = 'plone_addon'
+    return reg
+
+
 def plone_vocabulary():
     reg = RegEntry()
     reg.template = 'bobtemplates.plone:vocabulary'

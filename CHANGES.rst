@@ -4,6 +4,9 @@ Changelog
 3.3.1 (unreleased)
 ------------------
 
+- Add view subtemplate
+  [kakshay21]
+
 - Add update_locale script in bin/ folder to update locales
   [kakshay21]
 

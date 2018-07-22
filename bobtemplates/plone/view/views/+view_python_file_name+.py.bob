@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+
+{{% if view_template %}}
+from {{{ package.dottedname }}} import _
+{{% endif %}}
+from Products.Five.browser import BrowserView
+{{% if view_template %}}
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+{{% endif %}}
+
+
+class {{{ view_python_class_name }}}(BrowserView):
+{{% if view_template %}}
+    template = ViewPageTemplateFile('{{{ view_template_name }}}.pt')
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        self.msg = _(u'A small message')
+        return self.template()
+{{% else %}}
+    def __call__(self):
+        template = '''<li class="heading" i18n:translate="">
+          Sample View
+        </li>'''
+        return template
+{{% endif %}}

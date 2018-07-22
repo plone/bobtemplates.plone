@@ -9,6 +9,7 @@ from lxml import etree
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 
+import case_conversion as cc
 import keyword
 import os
 import re
@@ -23,9 +24,12 @@ def is_container(configurator, question):
 def check_dexterity_type_name(configurator, question, answer):
     """Test if type name is valid."""
     if keyword.iskeyword(answer):
-        raise ValidationError(u'{key} is a reserved Python keyword'.format(key=answer))  # NOQA: E501
+        raise ValidationError(u'"{key}" is a reserved Python keyword!'.format(key=answer))  # NOQA: E501
     if not re.match('[_a-zA-Z ]*$', answer):
-        raise ValidationError(u'{key} is not a valid identifier'.format(key=answer))  # NOQA: E501
+        raise ValidationError(
+            u'"{key}" is not a valid identifier!\n'
+            u'Allowed characters: _ a-z A-Z and whitespace.\n'.format(key=answer),  # NOQA: E501
+        )
     return answer
 
 
@@ -238,13 +242,14 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'content_type'
     type_name = configurator.variables['dexterity_type_name']
-    configurator.variables[
-        'dexterity_type_name_klass'] = type_name.title().replace(' ', '')
-    configurator.variables[
-        'dexterity_type_name_fti'] = type_name.replace(' ', '_')
-    configurator.variables[
-        'dexterity_type_name_normalized'] = configurator.variables[
-            'dexterity_type_name_fti'].lower()
+    dx_type_name_klass = cc.pascalcase(
+        type_name,
+    )
+    configurator.variables['dexterity_type_name_klass'] = dx_type_name_klass
+    dx_type_fti_file_name = type_name.replace(' ', '_')
+    configurator.variables['dexterity_type_fti_file_name'] = dx_type_fti_file_name  # NOQA: E501
+    dx_type_name_normalized = cc.snakecase(dx_type_fti_file_name)
+    configurator.variables['dexterity_type_name_normalized'] = dx_type_name_normalized  # NOQA: E501
     configurator.target_directory = configurator.variables['package_folder']
 
 

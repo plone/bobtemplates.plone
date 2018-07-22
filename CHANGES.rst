@@ -16,6 +16,9 @@ Changelog
 - Add conditional tests in content_type
   [kakshay21]
 
+- Improve DX CT name normalization and question info, added more tests for DX CT normalization
+  [MrTango]
+
 
 3.3.0 (2018-05-24)
 ------------------
@@ -168,7 +171,7 @@ Changelog
 
 - Fixed the pypi index to explicitly reference https://pypi.python.org/simple/ to prevent buildout from defaulting to the old and unsupported http:// url.
   [pigeonflight]
-  
+
 - Fix coveralls for packages created with addon and theme_package by converting the pickle output of createcoverage in .coverage to json.
   [pbauer]
 

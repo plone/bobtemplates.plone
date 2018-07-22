@@ -49,6 +49,7 @@ setup(
         'mr.bob',
         'lxml',
         'stringcase',
+        'case-conversion',
         'colorama',
     ],
     setup_requires=[],

@@ -29,9 +29,10 @@ def test_post_dexterity_type_name():
 #        hookit(u'Second Coming')
     with pytest.raises(ValidationError):
         hookit(u'*sterisk')
-    assert hookit(u'Supertype') == u'Supertype'
+    assert hookit(u'SuperType') == u'SuperType'
+    assert hookit(u'Super Type') == u'Super Type'
     assert hookit(u'second_coming') == u'second_coming'
-#    assert hookit(u'the_2nd_coming') == u'the_2nd_coming'
+    assert hookit(u'second coming') == u'second coming'
 
 
 def test_is_container_false():
@@ -63,7 +64,7 @@ def test_is_container_true():
     content_type.is_container(configurator, None)
 
 
-def test_prepare_renderer():
+def test_prepare_renderer(tmpdir):
     """Test prepare renderer."""
     configurator = Configurator(
         template='bobtemplates.plone:content_type',
@@ -72,10 +73,66 @@ def test_prepare_renderer():
             'non_interactive': True,
         },
         variables={
-            'dexterity_type_name': 'Task',
+            'dexterity_type_name': 'Special Task',
         },
     )
     content_type.prepare_renderer(configurator)
+    assert configurator.variables['dexterity_type_name'] == 'Special Task'
+    assert configurator.variables['dexterity_type_fti_file_name'] == 'Special_Task'  # NOQA: E501
+    assert configurator.variables['dexterity_type_name_klass'] == 'SpecialTask'
+    assert configurator.variables['dexterity_type_name_normalized'] == 'special_task'  # NOQA: E501
+    assert configurator.target_directory.endswith('/collective.todo/src/collective/todo')  # NOQA: E501
+
+    configurator = Configurator(
+        template='bobtemplates.plone:content_type',
+        target_directory='collective.foo.bar',
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'dexterity_type_name': 'SpecialTask',
+        },
+    )
+    content_type.prepare_renderer(configurator)
+    assert configurator.variables['dexterity_type_name'] == 'SpecialTask'
+    assert configurator.variables['dexterity_type_fti_file_name'] == 'SpecialTask'  # NOQA: E501
+    assert configurator.variables['dexterity_type_name_klass'] == 'SpecialTask'
+    assert configurator.variables['dexterity_type_name_normalized'] == 'special_task'  # NOQA: E501
+    assert configurator.target_directory.endswith('/collective.todo/src/collective/todo')  # NOQA: E501
+
+    configurator = Configurator(
+        template='bobtemplates.plone:content_type',
+        target_directory='collective.foo.bar',
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'dexterity_type_name': 'special task',
+        },
+    )
+    content_type.prepare_renderer(configurator)
+    assert configurator.variables['dexterity_type_name'] == 'special task'
+    assert configurator.variables['dexterity_type_fti_file_name'] == 'special_task'  # NOQA: E501
+    assert configurator.variables['dexterity_type_name_klass'] == 'SpecialTask'
+    assert configurator.variables['dexterity_type_name_normalized'] == 'special_task'  # NOQA: E501
+    assert configurator.target_directory.endswith('/collective.todo/src/collective/todo')  # NOQA: E501
+
+    configurator = Configurator(
+        template='bobtemplates.plone:content_type',
+        target_directory='collective.foo.bar',
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'dexterity_type_name': 'Special_Task',
+        },
+    )
+    content_type.prepare_renderer(configurator)
+    assert configurator.variables['dexterity_type_name'] == 'Special_Task'
+    assert configurator.variables['dexterity_type_fti_file_name'] == 'Special_Task'  # NOQA: E501
+    assert configurator.variables['dexterity_type_name_klass'] == 'SpecialTask'
+    assert configurator.variables['dexterity_type_name_normalized'] == 'special_task'  # NOQA: E501
+    assert configurator.target_directory.endswith('/collective.todo/src/collective/todo')  # NOQA: E501
 
 
 def test_check_global_allow_true():

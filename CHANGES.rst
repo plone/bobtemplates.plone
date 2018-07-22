@@ -4,6 +4,9 @@ Changelog
 3.3.1 (unreleased)
 ------------------
 
+- Add viewlet subtemplate
+  [kakshay21]
+
 - Add view subtemplate
   [kakshay21]
 

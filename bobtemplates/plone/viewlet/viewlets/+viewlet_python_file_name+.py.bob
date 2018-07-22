@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+
+from plone.app.layout.viewlets import ViewletBase
+
+
+class {{{ viewlet_python_class_name }}}(ViewletBase):
+
+{{% if viewlet_template %}}
+    def get_message(self):
+        return u'My message'
+
+    def render(self):
+        self.message = self.get_message()
+        return self.index()
+{{% else %}}
+    def render(self):
+        self.message = '''<li class="heading" i18n:translate="">
+          Simple Viewlet!
+        </li>'''
+        return self.message
+{{% endif %}}

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.4.0 (unreleased)
+3.4.0 (2018-07-23)
 ------------------
 
 - Add viewlet subtemplate

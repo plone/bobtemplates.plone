@@ -25,6 +25,9 @@ Changelog
 - Improve DX CT name normalization and question info, added more tests for DX CT normalization
   [MrTango]
 
+- Cleanup addon template, add one more test for to_boolean method
+  [MrTango]
+
 
 3.3.0 (2018-05-24)
 ------------------

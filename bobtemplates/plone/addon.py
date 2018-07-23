@@ -129,17 +129,6 @@ def _cleanup_package(configurator):
         # use the new path for deleting
         base_path = base_path_nested
 
-    # find out what to delete
-    to_delete = []
-
-    # remove parts
-    for path in to_delete:
-        if os.path.exists(path):
-            if os.path.isdir(path):
-                shutil.rmtree(path)
-            else:
-                os.remove(path)
-
 
 def pre_ask(configurator):
     """

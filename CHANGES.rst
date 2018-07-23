@@ -4,7 +4,8 @@ Changelog
 3.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix #313 and improve tests
+  [MrTango]
 
 
 3.4.0 (2018-07-23)

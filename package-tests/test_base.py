@@ -9,14 +9,11 @@ import pytest
 
 
 def test_to_boolean():
-    response_positive = ['Yes', '1', 'y', 'Y', 'True']
-    resoponse_negative = ['No', '0', 'n', 'N', 'False']
+    response_positive = ['Yes', '1', 'y', 'Y', 'True', True, 1]
+    resoponse_negative = ['No', '0', 'n', 'N', 'False', False, 0, None]
     for i in range(len(response_positive)):
         assert base.to_boolean(response_positive[i]) is True
         assert base.to_boolean(resoponse_negative[i]) is False
-        assert base.to_boolean(0) is None
-        assert base.to_boolean(False) is None
-        assert base.to_boolean('') is None
 
 
 def test_check_klass_name():

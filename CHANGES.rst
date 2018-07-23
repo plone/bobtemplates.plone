@@ -4,7 +4,8 @@ Changelog
 3.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Replace stringcase library by case_conversion
+  [kakshay21]
 
 
 3.4.0 (2018-07-23)

@@ -7,21 +7,21 @@ from bobtemplates.plone.base import update_file
 from lxml import etree
 from mrbob.bobexceptions import SkipQuestion
 
+import case_conversion as cc
 import os
-import stringcase
 
 
 def get_view_name_from_python_class(configurator, question):
     """Generate view default name from python class"""
     view_class_name = configurator.variables['viewlet_python_class_name']
-    view_generated_name = stringcase.snakecase(view_class_name).replace('_', '-')  # NOQA: E501
+    view_generated_name = cc.snakecase(view_class_name).replace('_', '-')  # NOQA: E501
     question.default = view_generated_name
 
 
 def get_template_name_default(configurator, question):
     if configurator.variables['viewlet_template']:
         viewlet_name = configurator.variables['viewlet_name']
-        template_default_name = stringcase.snakecase(viewlet_name)
+        template_default_name = cc.snakecase(viewlet_name)
         question.default = template_default_name
     else:
         question.default = 'viewlet'
@@ -145,19 +145,19 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'viewlet'
     viewlet_name = configurator.variables['viewlet_name'].strip('_')
-    normalized_viewlet_name = stringcase.snakecase(viewlet_name)
+    normalized_viewlet_name = cc.snakecase(viewlet_name)
     configurator.variables['viewlet_name_normalized'] = normalized_viewlet_name
     if not configurator.variables['viewlet_template']:
         configurator.variables['viewlet_template_name'] = normalized_viewlet_name  # NOQA: E501
     python_class_name = configurator.variables['viewlet_python_class_name'].strip('_')  # NOQA: E501
-    configurator.variables['viewlet_python_class_name'] = stringcase.pascalcase(      # NOQA: E501
+    configurator.variables['viewlet_python_class_name'] = cc.pascalcase(      # NOQA: E501
         python_class_name,
     )
-    viewlet_python_file_name = stringcase.snakecase(viewlet_name)
+    viewlet_python_file_name = cc.snakecase(viewlet_name)
     configurator.variables['viewlet_python_file_name'] = viewlet_python_file_name    # NOQA: E501
     configurator.target_directory = configurator.variables['package_folder']
     package_name = configurator.variables['package.dottedname'].replace('.', '_')  # NOQA: E501
-    browser_layer = stringcase.pascalcase(package_name)
+    browser_layer = cc.pascalcase(package_name)
     configurator.variables['browser_layer'] = 'I{0}Layer'.format(browser_layer)
 
 

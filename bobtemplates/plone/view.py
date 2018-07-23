@@ -8,15 +8,15 @@ from lxml import etree
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 
+import case_conversion as cc
 import os
-import stringcase
 
 
 def get_view_name_from_python_class(configurator, question):
     """Generate view default name from python class"""
     if configurator.variables['view_python_class']:
         view_class_name = configurator.variables['view_python_class_name']
-        view_generated_name = stringcase.snakecase(view_class_name).replace('_', '-')  # NOQA: E501
+        view_generated_name = cc.snakecase(view_class_name).replace('_', '-')  # NOQA: E501
         question.default = view_generated_name
     else:
         question.default = 'my-view'
@@ -25,7 +25,7 @@ def get_view_name_from_python_class(configurator, question):
 def get_template_name_default(configurator, question):
     if configurator.variables['view_template']:
         view_url = configurator.variables['view_name']
-        template_default_name = stringcase.snakecase(view_url)
+        template_default_name = cc.snakecase(view_url)
         question.default = template_default_name
     else:
         question.default = 'view'
@@ -168,14 +168,14 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'view'
     view_name = configurator.variables['view_name'].strip('_')
-    normalized_view_name = stringcase.snakecase(view_name)
+    normalized_view_name = cc.snakecase(view_name)
     configurator.variables['view_name_normalized'] = normalized_view_name
     if configurator.variables['view_python_class']:
         python_class_name = configurator.variables['view_python_class_name'].strip('_')  # NOQA: E501
-        configurator.variables['view_python_class_name'] = stringcase.pascalcase(     # NOQA: E501
+        configurator.variables['view_python_class_name'] = cc.pascalcase(     # NOQA: E501
             python_class_name,
         )
-        view_python_file_name = stringcase.snakecase(python_class_name)
+        view_python_file_name = cc.snakecase(python_class_name)
         configurator.variables['view_python_file_name'] = view_python_file_name
         view_name_from_input = normalized_view_name.replace('_', '-')
         view_name_from_python_class = view_python_file_name.replace('_', '-')

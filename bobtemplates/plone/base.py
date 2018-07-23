@@ -12,6 +12,7 @@ from six.moves import input
 import keyword
 import os
 import re
+import six
 import string
 import subprocess
 import sys
@@ -25,8 +26,12 @@ except ImportError:
 
 def to_boolean(value):
     if not value:
-        return
-    return hooks.to_boolean(None, None, value)
+        return False
+    if isinstance(value, six.string_types):
+        value = hooks.to_boolean(None, None, value)
+    else:
+        value = bool(value)
+    return value
 
 
 # this is a custom filter which we can use in jinja template.

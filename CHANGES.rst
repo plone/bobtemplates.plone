@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.4.1 (unreleased)
+3.4.1 (2018-07-23)
 ------------------
 
 - Fix #313 and improve tests

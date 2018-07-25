@@ -6,8 +6,8 @@ from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from lxml import etree
 
+import case_conversion as cc
 import os
-import stringcase
 
 
 def _update_package_configure_zcml(configurator):
@@ -79,9 +79,9 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'vocabulary'
     vocabulary_name = configurator.variables['vocabulary_name'].strip('_')
-    configurator.variables['vocabulary_name_klass'] = stringcase.pascalcase(
+    configurator.variables['vocabulary_name_klass'] = cc.pascalcase(
         vocabulary_name)
-    configurator.variables['vocabulary_name_normalized'] = stringcase.snakecase(  # NOQA: E501
+    configurator.variables['vocabulary_name_normalized'] = cc.snakecase(  # NOQA: E501
         vocabulary_name)
     configurator.target_directory = configurator.variables['package_folder']
 

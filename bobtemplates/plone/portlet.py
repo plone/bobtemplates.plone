@@ -142,7 +142,7 @@ def _update_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_xpath = "{0}include[@package='.portlets']".format(namespaces)
+        view_xpath = u"{0}include[@package='.portlets']".format(namespaces)
         if len(tree_root.findall(view_xpath)):
             print(
                 u'.views already in configure.zcml, skip adding!',

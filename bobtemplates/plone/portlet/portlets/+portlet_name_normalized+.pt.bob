@@ -1,9 +1,11 @@
 <div class="weather">
     <h3>Weather Report</h3>
-    ${view/weather_report}
+    <span tal:content="view/weather_report"></span>
     <br>
-    Pressure: ${view/get_pressure}
+    Pressure: 
+    <span tal:content="view/get_pressure"></span>
     <br>
-    Humidity: ${view/get_humidity}
+    Humidity: 
+    <span tal:content="view/get_humidity"></span>
     <br>
 </div>

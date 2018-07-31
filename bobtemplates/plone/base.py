@@ -48,6 +48,8 @@ def git_support_enabled(configurator, question):
 
 
 def echo(msg, msg_type=None):
+    if not isinstance(msg, six.string_types):
+        msg = str(msg)
     if msg_type == 'warning':
         colored_msg = Fore.YELLOW + msg + Style.RESET_ALL
     if msg_type == 'error':
@@ -73,7 +75,7 @@ def git_support(configurator):
     git_support = True
     disabled = configurator.variables.get('package.git.disabled', u'False')
     if hooks.to_boolean(None, None, disabled):
-        echo(u'GIT support disabled!')
+        echo('GIT support disabled!')
         git_support = False
     return git_support
 
@@ -83,7 +85,7 @@ def git_init(configurator):
         return
     git_init_flag = configurator.variables.get('package.git.init', u'False')
     if not hooks.to_boolean(None, None, str(git_init_flag)):
-        echo(u'git init is disabled!')
+        echo('git init is disabled!')
         return
     params = [
         'git',
@@ -138,7 +140,7 @@ def git_commit(configurator, msg):
         run_git_commit = (input('[y]/n: ') or 'y').lower() == 'y'
 
     if not run_git_commit and not git_autocommit:
-        echo(u'Skip git commit!', 'warning')
+        echo('Skip git commit!', 'warning')
         return
 
     echo(u'RUN: {0}'.format(' '.join(params1)), 'info')
@@ -183,9 +185,9 @@ def git_clean_state_check(configurator, question):
         echo(e.output, 'error')
     else:
         if not result:
-            echo(u'Git state is clean.\n', 'info')
+            echo('Git state is clean.\n', 'info')
             raise SkipQuestion(
-                u'Git state is clean, so we skip this question.',
+                'Git state is clean, so we skip this question.',
             )
         echo(
             u'git status result:\n----------------------------\n{0}'.format(
@@ -275,7 +277,7 @@ def validate_packagename(configurator):
     if fail:
         msg = (
             u"Error: '{0}' is not a valid packagename.\n"
-            u'Please use a valid name (like collective.myaddon or '
+            'Please use a valid name (like collective.myaddon or '
             u'plone.app.myaddon)'.format(package_dir)
         )
         sys.exit(msg)
@@ -346,7 +348,7 @@ def update_file(configurator, file_path, match_str, insert_str):
 
     if not changed:
         print(
-            u"WARNING: We couldn't find the match_str, "  # NOQA
+            "WARNING: We couldn't find the match_str, "  # NOQA
             u"skip inserting into {0}:\n".format(file_path)  # NOQA
         )
         print(insert_str)
@@ -379,11 +381,11 @@ def check_root_folder(configurator, question):
     root_folder = _get_package_root_folder(configurator)
     if not root_folder:
         raise ValidationError(
-            u'\n\nNo setup.py found in path!\n'
-            u'Please run this subtemplate inside an existing package,\n'
-            u'in the package dir, where the actual code is!\n'
-            u"In the package collective.dx it's in collective.dx/collective/dx"
-            u'\n')
+            '\n\nNo setup.py found in path!\n'
+            'Please run this subtemplate inside an existing package,\n'
+            'in the package dir, where the actual code is!\n'
+            "In the package collective.dx it's in collective.dx/collective/dx"
+            '\n')
 
 
 def dottedname_to_path(dottedname):
@@ -423,7 +425,7 @@ def base_prepare_renderer(configurator):
 
 def subtemplate_warning(configurator, question):
     """Show a warning to the user before using subtemplates!"""
-    print(u"""
+    print("""
     ### WARNING ###
 
     This is a subtemplate, it might override existing files without warnings!

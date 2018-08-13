@@ -4,16 +4,17 @@ Changelog
 3.4.2 (unreleased)
 ------------------
 
-- Replace stringcase library by case_conversion
+- Add portlet subtemplate
   [kakshay21]
 
+- Replace stringcase library by case_conversion
+  [kakshay21]
 
 3.4.1 (2018-07-23)
 ------------------
 
 - Fix #313 and improve tests
   [MrTango]
-
 
 3.4.0 (2018-07-23)
 ------------------

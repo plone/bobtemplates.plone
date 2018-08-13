@@ -9,6 +9,7 @@ from mrbob.bobexceptions import ValidationError
 from mrbob.rendering import jinja2_env
 from six.moves import input
 
+import codecs
 import keyword
 import os
 import re
@@ -42,12 +43,13 @@ jinja2_env.filters['to_boolean'] = to_boolean
 def git_support_enabled(configurator, question):
     disabled = configurator.variables.get('package.git.disabled', u'False')
     if hooks.to_boolean(None, None, disabled):
-        echo('GIT support disabled!')
+        echo(u'GIT support disabled!')
         raise SkipQuestion(u'GIT support is disabled, skip question!.')
 
 
 def echo(msg, msg_type=None):
-    msg = str(msg)
+    if not isinstance(msg, six.string_types):
+        msg = str(msg)
     if msg_type == 'warning':
         colored_msg = Fore.YELLOW + msg + Style.RESET_ALL
     if msg_type == 'error':
@@ -89,7 +91,7 @@ def git_init(configurator):
         'git',
         'init',
     ]
-    echo('RUN: {0}'.format(' '.join(params)), 'info')
+    echo(u'RUN: {0}'.format(' '.join(params)), 'info')
     try:
         result = subprocess.check_output(
             params,
@@ -117,7 +119,7 @@ def git_commit(configurator, msg):
         'git',
         'commit',
         '-m',
-        '"{0}"'.format(msg),
+        u'"{0}"'.format(msg),
     ]
     git_autocommit = None
     run_git_commit = True
@@ -128,7 +130,7 @@ def git_commit(configurator, msg):
         git_autocommit = True
     if not non_interactive and not git_autocommit:
         echo(
-            'Should we run?:\n{0}\n{1}\nin: {2}'.format(
+            u'Should we run?:\n{0}\n{1}\nin: {2}'.format(
                 ' '.join(params1),
                 ' '.join(params2),
                 working_dir,
@@ -141,7 +143,7 @@ def git_commit(configurator, msg):
         echo('Skip git commit!', 'warning')
         return
 
-    echo('RUN: {0}'.format(' '.join(params1)), 'info')
+    echo(u'RUN: {0}'.format(' '.join(params1)), 'info')
     try:
         result1 = subprocess.check_output(
             params1,
@@ -153,7 +155,7 @@ def git_commit(configurator, msg):
         if result1:
             echo(result1, 'info')
 
-    echo('RUN: {0}'.format(' '.join(params2)), 'info')
+    echo(u'RUN: {0}'.format(' '.join(params2)), 'info')
     try:
         result2 = subprocess.check_output(
             params2,
@@ -173,7 +175,7 @@ def git_clean_state_check(configurator, question):
         'status',
         '--porcelain',
     ]
-    echo('\nRUN: {0}'.format(' '.join(params)), 'info')
+    echo(u'\nRUN: {0}'.format(' '.join(params)), 'info')
     try:
         result = subprocess.check_output(
             params,
@@ -183,9 +185,9 @@ def git_clean_state_check(configurator, question):
         echo(e.output, 'error')
     else:
         if not result:
-            echo(u'Git state is clean.\n', 'info')
+            echo('Git state is clean.\n', 'info')
             raise SkipQuestion(
-                u'Git state is clean, so we skip this question.',
+                'Git state is clean, so we skip this question.',
             )
         echo(
             u'git status result:\n----------------------------\n{0}'.format(
@@ -274,9 +276,9 @@ def validate_packagename(configurator):
 
     if fail:
         msg = (
-            "Error: '{0}' is not a valid packagename.\n"
+            u"Error: '{0}' is not a valid packagename.\n"
             'Please use a valid name (like collective.myaddon or '
-            'plone.app.myaddon)'.format(package_dir)
+            u'plone.app.myaddon)'.format(package_dir)
         )
         sys.exit(msg)
 
@@ -327,7 +329,7 @@ def update_file(configurator, file_path, match_str, insert_str):
     """Insert insert_str into given file, by match_str."""
     changed = False
 
-    with open(file_path, 'r+') as xml_file:
+    with codecs.open(file_path, 'r+', encoding='utf-8') as xml_file:
         contents = xml_file.readlines()
         if match_str in contents[-1]:  # Handle last line, prev. IndexError
             contents.append(insert_str)
@@ -347,7 +349,7 @@ def update_file(configurator, file_path, match_str, insert_str):
     if not changed:
         print(
             "WARNING: We couldn't find the match_str, "  # NOQA
-            "skip inserting into {0}:\n".format(file_path)  # NOQA
+            u"skip inserting into {0}:\n".format(file_path)  # NOQA
         )
         print(insert_str)
 
@@ -397,7 +399,7 @@ def base_prepare_renderer(configurator):
         configurator,
     )
     if not configurator.variables['package.root_folder']:
-        raise MrBobError('No setup.py found in path!\n')
+        raise MrBobError(u'No setup.py found in path!\n')
     configurator.variables['package.dottedname'] = \
         configurator.variables['package.root_folder'].split('/')[-1]
     configurator.variables['package.namespace'] = \

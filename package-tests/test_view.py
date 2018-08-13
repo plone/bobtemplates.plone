@@ -452,7 +452,7 @@ def test_post_renderer(tmpdir):
 
     template = """# -*- coding: utf-8 -*-
 
-from collective.sample import _
+from collective.todo import _
 from Products.Five.browser import BrowserView
 
 
@@ -468,7 +468,7 @@ class MyView(BrowserView):
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="collective.sample"
+      i18n:domain="collective.todo"
       metal:use-macro="context/main_template/macros/master">
 <body>
     <metal:block fill-slot="content-core">
@@ -486,7 +486,7 @@ class MyView(BrowserView):
         xmlns="http://namespaces.zope.org/zope"
         xmlns:browser="http://namespaces.zope.org/browser"
         xmlns:plone="http://namespaces.plone.org/plone"
-        i18n_domain="{{{ package.dottedname }}}">
+        i18n_domain="collective.todo">
 
       -*- extra stuff goes here -*-
       <browser:page

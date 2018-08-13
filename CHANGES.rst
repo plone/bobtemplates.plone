@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.4.2 (unreleased)
+3.4.2 (2018-08-13)
 ------------------
 
 - Add portlet subtemplate

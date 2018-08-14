@@ -49,11 +49,12 @@ Provided subtemplates
 
 These templates are meant to be used inside a package which was created by the addon template.
 
-- theme
-- content_type
-- vocabulary
 - behavior
-
+- content_type
+- theme
+- view
+- viewlet
+- vocabulary
 
 Compatibility
 =============

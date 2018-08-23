@@ -4,7 +4,8 @@ Changelog
 3.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Deactivated the dublicated template file definition in view Python class
+  [MrTango]
 
 
 3.4.2 (2018-08-13)

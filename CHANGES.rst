@@ -7,6 +7,9 @@ Changelog
 - Deactivated the dublicated template file definition in view Python class
   [MrTango]
 
+- Don't override construcor in views by default
+  [MrTango]
+
 
 3.4.2 (2018-08-13)
 ------------------

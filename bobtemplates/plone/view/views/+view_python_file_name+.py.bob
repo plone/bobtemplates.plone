@@ -11,7 +11,9 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 class {{{ view_python_class_name }}}(BrowserView):
 {{% if view_template %}}
-    template = ViewPageTemplateFile('{{{ view_template_name }}}.pt')
+    # If you want to define a template here, please remove the template from
+    # the configure.zcml registration of this view.
+    # template = ViewPageTemplateFile('{{{ view_template_name }}}.pt')
 
     def __init__(self, context, request):
         self.context = context

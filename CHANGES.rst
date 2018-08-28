@@ -4,6 +4,11 @@ Changelog
 3.4.3 (unreleased)
 ------------------
 
+- Refresh backend.xml from latest plonetheme.barceloneta version so that the diazo theme resources
+  are not copied into the backend.xml but dropped beforehand. Also removes toggle nav button which 
+  was removed from barceloneta theme. fixes #317
+  [fredvd]
+
 - Deactivated the dublicated template file definition in view Python class
   [MrTango]
 

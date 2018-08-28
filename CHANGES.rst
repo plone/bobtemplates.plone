@@ -6,6 +6,10 @@ Changelog
 
 - Rename Roboto font files copies from barceloneta.theme to match CSS registrations
   [erral]
+- Refresh backend.xml from latest plonetheme.barceloneta version so that the diazo theme resources
+  are not copied into the backend.xml but dropped beforehand. Also removes toggle nav button which 
+  was removed from barceloneta theme. fixes #317
+  [fredvd]
 
 - Deactivated the dublicated template file definition in view Python class
   [MrTango]

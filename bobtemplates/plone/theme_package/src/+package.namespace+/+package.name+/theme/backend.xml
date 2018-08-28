@@ -24,16 +24,15 @@
     all your backend pages such as site setup and edit.
     -->
 
-    <!-- Toolbar -->
-    <!-- Commented out by default, if you are using backend.xml you should only
+  <!-- Toolbar -->
+  <!-- Commented out by default, if you are using backend.xml you should only
     add the toolbar rules once in main rules.xml or here. Using it twice cause
     that the toolbar pattern stop working properly. Uncomment if you already have
     commented the ones in rules.xml -->
-    <!--
-    <before css:theme-children="body" css:content-children="#edit-bar" css:if-not-content=".ajax_load" css:if-content=".userrole-authenticated" />
-    <replace css:theme="#anonymous-actions" css:content-children="#portal-personaltools-wrapper" css:if-not-content=".ajax_load" css:if-content=".userrole-anonymous" />
-    -->
-
+  <!--
+  <before css:theme-children="body" css:content-children="#edit-bar" css:if-not-content=".ajax_load" css:if-content=".userrole-authenticated" />
+  <replace css:theme="#anonymous-actions" css:content-children="#portal-personaltools-wrapper" css:if-not-content=".ajax_load" css:if-content=".userrole-anonymous" />
+  -->
   <!-- We don't want overlays -->
   <drop attributes="class" css:content="#edit-bar a.pat-plone-modal" />
 
@@ -66,6 +65,7 @@
     <copy attributes="*" css:content="body" css:theme="body" />
 
     <!-- CSS -->
+    <drop css:content="head link[data-bundle='diazo']" />
     <after css:theme-children="head" css:content="head link" />
 
     <!-- Script -->
@@ -75,6 +75,8 @@
     you already have commented out the one in rules.xml
     https://github.com/plone/plonetheme.barceloneta/issues/158 -->
     <!-- <after css:theme-children="head" css:content="head script" /> -->
+    <drop css:content="head script[data-bundle='diazo']" />
+    <after css:theme-children="head" css:content="head script" />
 
     <!-- We don't need global nav -->
     <drop css:theme="#mainnavigation-wrapper" />
@@ -97,9 +99,6 @@
         <xsl:if test="not(//aside[@id='portal-column-one']) and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-12</xsl:if>
       </xsl:variable>
       <div class="{$central}">
-        <p class="pull-right visible-xs">
-          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-        </p>
         <div class="row">
           <div class="col-xs-12 col-sm-12">
              <xsl:apply-templates css:select="#content" />
@@ -119,22 +118,22 @@
     <!-- Left column -->
     <rules css:if-content="#portal-column-one">
       <replace css:theme="#column1-container">
-          <div id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas">
-            <aside id="portal-column-one">
-              <xsl:copy-of css:select="#portal-column-one > *" />
-            </aside>
-          </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
+          <aside id="portal-column-one">
+            <xsl:copy-of css:select="#portal-column-one > *" />
+          </aside>
+        </div>
       </replace>
     </rules>
 
     <!-- Right column -->
     <rules css:if-content="#portal-column-two">
       <replace css:theme="#column2-container">
-          <div id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas" role="complementary">
-            <aside id="portal-column-two">
-              <xsl:copy-of css:select="#portal-column-two > *" />
-            </aside>
-          </div>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="complementary">
+          <aside id="portal-column-two">
+            <xsl:copy-of css:select="#portal-column-two > *" />
+          </aside>
+        </div>
       </replace>
     </rules>
 

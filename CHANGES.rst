@@ -7,7 +7,10 @@ Changelog
 - Deactivated the dublicated template file definition in view Python class
   [MrTango]
 
-- Don't override construcor in views by default
+- Don't override constructor in views by default
+  [MrTango]
+
+- Use --ignore-submodules in git_clean_state_check
   [MrTango]
 
 

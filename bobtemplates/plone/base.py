@@ -174,6 +174,7 @@ def git_clean_state_check(configurator, question):
         'git',
         'status',
         '--porcelain',
+        '--ignore-submodules',
     ]
     echo(u'\nRUN: {0}'.format(' '.join(params)), 'info')
     try:

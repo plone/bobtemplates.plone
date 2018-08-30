@@ -1,0 +1,16 @@
+//*// MIXIN TAB FOCUS //*//
+
+.tab-focus() {
+  // Default
+  outline: thin dotted;
+  // WebKit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.placeholder(@plone-color: @plone-input-color-placeholder) {
+  &::-moz-placeholder           { color: @plone-color;   // Firefox
+                                  opacity: 1; } // See https://github.com/twbs/bootstrap/pull/11526
+  &:-ms-input-placeholder       { color: @plone-color; } // Internet Explorer 10+
+  &::-webkit-input-placeholder  { color: @plone-color; } // Safari and Chrome
+}

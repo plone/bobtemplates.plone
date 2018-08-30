@@ -37,6 +37,14 @@ def plone_theme():
     return reg
 
 
+def plone_theme_barceloneta():
+    reg = RegEntry()
+    reg.template = 'bobtemplates.plone:theme_barceloneta'
+    reg.plonecli_alias = 'theme_barceloneta'
+    reg.depend_on = 'plone_addon'
+    return reg
+
+
 def plone_content_type():
     reg = RegEntry()
     reg.template = 'bobtemplates.plone:content_type'

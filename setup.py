@@ -65,6 +65,7 @@ setup(
             'plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet',
             'plone_portlet = bobtemplates.plone.bobregistry:plone_portlet',
             'plone_theme = bobtemplates.plone.bobregistry:plone_theme',
+            'plone_theme_barceloneta = bobtemplates.plone.bobregistry:plone_theme_barceloneta',  # NOQA E501
             'plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary',  # NOQA E501
             'plone_behavior = bobtemplates.plone.bobregistry:plone_behavior',  # NOQA E501
         ],

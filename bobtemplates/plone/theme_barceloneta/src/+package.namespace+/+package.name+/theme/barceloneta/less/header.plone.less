@@ -1,0 +1,81 @@
+//*// HEADER //*//
+#portal-header {
+    margin: 15px auto 20px;
+    .clearfix(); //clear floats
+}
+#portal-logo {
+    float: left;
+}
+#portal-languageselector {
+    clear: both;
+    display: inline-block;
+    float: left;
+    margin-right: 29px;
+    padding-top: 5px;
+    li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+}
+#portal-anontools {
+    float: right;
+    ul {
+        padding-right: 0;
+    }
+}
+#portal-membertools-wrapper {
+	float: right;
+    padding: @plone-padding-base-horizontal 0;
+	ul {
+        margin: 0 0 @plone-padding-base-horizontal @plone-padding-base-horizontal;
+		padding-right: 0;
+	}
+}
+
+//mobile search
+#portal-searchbox {
+    clear: left;
+    margin-left: 3px;
+    margin-top: 60px;
+    padding-top: 20px;
+    position: absolute;
+    white-space: nowrap;
+    z-index: 2;
+    .searchSection {display: none;} //non on mobile
+    [type="submit"] {display: none;} //submit hidden on mobile
+    label {font-size: 86.667%}
+}
+
+//non mobile search
+@media (min-width: @plone-grid-float-breakpoint) {
+    #portal-header {
+        margin-bottom: 15px;
+    }
+	#portal-languageselector {
+        clear: none;
+        float: right;
+	}
+    #portal-searchbox {
+        clear: none;
+        float: right;
+        margin-left: 1em;
+        margin-top: 5px; //visual balance
+        max-width: 50%;
+        padding-top: 0;
+        position: relative;
+        .searchSection {display: inherit;} //yes for non mobile
+        [type="text"] {
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+            float: left;
+            width: 20rem;
+        }
+        [type="submit"] {
+            display: inline-block;
+            margin-left: -1px;
+            vertical-align: top;
+            width: auto;
+            display: inline-block;
+        }
+    }
+}

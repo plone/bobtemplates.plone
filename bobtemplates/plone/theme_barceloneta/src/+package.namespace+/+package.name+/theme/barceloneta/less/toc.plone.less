@@ -1,0 +1,31 @@
+//*// TOC Contents list //*//
+
+//we need to add a non-shared class between autotoc and forms with autotoc to avoid using :not()
+.pat-autotoc:not(.autotabs) {
+  .autotoc-nav {
+    float:right;
+    min-width: 150px;
+    background-color: @plone-portlet-header-bg;
+    box-shadow: 0 2px 4px rgba(0,0,0,.17);
+    padding: @plone-padding-base-vertical @plone-padding-base-horizontal;
+    margin: 0 0 @plone-padding-base-horizontal @plone-padding-base-horizontal;
+    a {display: block;}
+    .active, .active:hover {color: @plone-gray; cursor: default; text-decoration: none;}
+    .autotoc-level-1 {
+      margin-left: 0;
+      font-size: @plone-font-size-large;
+    }
+    .autotoc-level-2 {
+      margin-left: @plone-padding-base-horizontal;
+      font-size: @plone-font-size-base;
+    }
+    .autotoc-level-3 {
+      margin-left: @plone-padding-base-horizontal*2;
+      font-size: @plone-font-size-small;
+    }
+  }
+}
+//changes on mobile
+@media (max-width: @plone-screen-xs-max) {
+  .pat-autotoc .autotoc-nav {float:none; margin:0 0 20px 0;}
+}

@@ -1,0 +1,182 @@
+//*// SITE NAV //*//
+
+.plone-nav {
+  margin-bottom: 0;
+  padding-left: 0; // Override default ul/ol
+  list-style: none;
+  &:extend(.clearfix all);
+  > li {
+    position: relative;
+    display: block;
+
+    > a {
+      position: relative;
+      display: block;
+      padding: @plone-sitenav-link-padding;
+      color: white;
+      font-size: ceil((@plone-font-size-base * 1.15));;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        background-color: @plone-sitenav-link-hover-bg;
+      }
+    }
+  }
+}
+
+.plone-navbar {
+  .clearfix();
+  background-color: @plone-sitenav-bg;
+  color: white;
+  position: relative;
+  min-height: @plone-sitenav-height; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
+  margin-bottom: @plone-sitenav-margin-bottom;
+  box-shadow: 0 1px 3px rgba(0,0,0,.17);
+
+  // Prevent floats from breaking the navbar
+  &:extend(.clearfix all);
+
+
+}
+
+.plone-navbar-header {
+  .clearfix(); //without extend
+
+  @media (min-width: @plone-grid-float-breakpoint) {
+    float: left;
+  }
+}
+
+.plone-navbar-collapse {
+  overflow-x: visible;
+  padding-right: @plone-sitenav-padding-horizontal;
+  padding-left:  @plone-sitenav-padding-horizontal;
+  border-top: 1px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+  &:extend(.clearfix all);
+  -webkit-overflow-scrolling: touch;
+
+  display: none;
+  &.in {
+    overflow-y: auto;
+    display: block;
+  }
+
+  @media (min-width: @plone-grid-float-breakpoint) {
+    width: auto;
+    border-top: 0;
+    box-shadow: none;
+
+    &.plone-collapse {
+      display: block !important;
+      height: auto !important;
+      padding-bottom: 0; // Override default setting
+      overflow: visible !important;
+    }
+
+    &.in {
+      overflow-y: visible;
+    }
+
+    // Undo the collapse side padding for navbars with containers to ensure
+    // alignment of right-aligned contents.
+    .navbar-fixed-top &,
+    .navbar-static-top &,
+    .navbar-fixed-bottom & {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.plone-navbar-toggle {
+  z-index: 1; //just in case
+  position: relative;
+  float: right;
+  margin-top:  6px;
+  margin-bottom: 3px;
+  padding: 6px 10px;
+
+  background-color: transparent;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid white;
+  border-radius: @plone-border-radius-base;
+
+  // We remove the `outline` here, but later compensate by attaching `:hover`
+  // styles to `:focus`.
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+  	background-color: darken(@plone-sitenav-link-hover-bg, 15%);
+  	border-color: darken(@plone-sitenav-link-hover-bg, 25%);
+  }
+
+  // Burgerbar (uncomment for a ≡ menu and comment menu just below)
+  /*
+  .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background: white;
+    margin-top: 2px;
+  }
+  .icon-bar + .icon-bar {
+    margin-top: 5px;
+  }
+  .icon-bar + .icon-bar + .icon-bar {
+    margin-bottom: 3px;
+  }
+  //end burgerbar icon-bar
+  */
+
+  // Menu (That option with a word, witch is language-dependant, is to ensure a higher tap ratio on the menu)
+  .icon-bar::after {
+  	content:"Menu";
+  	position: relative;
+  	color: white;
+  }
+  .icon-bar + .icon-bar::after {content: "";}
+  //end menu icon-bar
+
+  @media (min-width: @plone-grid-float-breakpoint) {
+    display: none;
+  }
+}
+
+.plone-navbar-nav {
+  margin: 0 -@plone-sitenav-padding-horizontal 0;
+
+  > li > a {
+    padding-top:    10px;
+    padding-bottom: 10px;
+    line-height: @plone-line-height-computed;
+  }
+  > .selected > a {
+    &,
+    &:hover,
+    &:focus {
+      color: white;
+      background-color: @plone-sitenav-link-hover-bg;
+    }
+  }
+
+
+  // Uncollapse the nav
+  @media (min-width: @plone-grid-float-breakpoint) {
+    float: left;
+
+    > li {
+      float: left;
+      > a {
+        padding-top:    @plone-sitenav-padding-vertical;
+        padding-bottom: @plone-sitenav-padding-vertical;
+      }
+    }
+
+    &.navbar-right:last-child {
+      margin-right: -@plone-sitenav-padding-horizontal;
+    }
+  }
+}

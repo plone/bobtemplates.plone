@@ -1,0 +1,71 @@
+//*// PAGINATION //*//
+
+.pagination {
+  display: inline-block;
+  padding: 0;
+  list-style: none;
+  margin: @plone-line-height-computed 0;
+  li {
+    display: block;
+    float: left; // Collapse white-space
+    position: relative;
+    padding: 0;
+    font-weight: @plone-font-weight-light;
+    > a, > span {
+      padding: @plone-padding-base-vertical @plone-padding-base-horizontal;
+      line-height: @plone-line-height-base;
+      text-decoration: none;
+      color: @plone-pagination-color;
+      background-color: @plone-pagination-bg;
+      border: @plone-pagination-border !important; // AAARG, "#content-core a" is taking precedence and messing it up! !important needed.
+      margin-left: -1px;
+    }
+    &:first-child {
+      > a {
+        margin-left: 0;
+        .border-left-radius(@plone-border-radius-base);
+      }
+    }
+    &:last-child {
+      > a {
+        .border-right-radius(@plone-border-radius-base);
+      }
+    }
+    > a {
+      &:hover,
+      &:focus {
+        color: @plone-pagination-hover-color;
+        background-color: @plone-pagination-hover-bg;
+        border: @plone-pagination-hover-border !important;
+        .box-shadow(0 1px 2px rgba(0,0,0,.05));
+      }
+    }
+    &.active > span {
+      z-index: 2;
+      font-weight: @plone-font-weight-regular;
+      color: @plone-pagination-active-color;
+      background-color: @plone-pagination-active-bg;
+      border: @plone-pagination-active-border !important;
+      cursor: default;
+    }
+    &.disabled > span { //just in case, not used in plone
+      color: @plone-pagination-disabled-color;
+      background-color: @plone-pagination-disabled-bg;
+      border: @plone-pagination-disabled-border !important;
+      cursor: default;
+    }
+  }
+}
+
+// mobile pagination only shows next and previous as default behaviour
+@media (max-width: @plone-screen-xs-min) {
+  .pagination {
+    li {display: none;}
+    li.previous, li.next {display: inline;}
+  }
+}
+
+
+
+
+

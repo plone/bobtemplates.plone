@@ -4,6 +4,9 @@ Changelog
 3.4.3 (unreleased)
 ------------------
 
+- Rename Roboto font files copies from barceloneta.theme to match CSS registrations
+  [erral]
+
 - Deactivated the dublicated template file definition in view Python class
   [MrTango]
 

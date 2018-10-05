@@ -4,6 +4,9 @@ Changelog
 3.4.3 (unreleased)
 ------------------
 
+- Add a build step to report coverage on gitlab and run tests on stages
+  [erral]
+
 - Deactivated the dublicated template file definition in view Python class
   [MrTango]
 

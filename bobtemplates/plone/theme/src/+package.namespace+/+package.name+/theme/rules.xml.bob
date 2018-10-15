@@ -6,7 +6,21 @@
        xmlns:xi="http://www.w3.org/2001/XInclude">
 
 
-  <rules css:if-content="body.viewpermission-view, body.viewpermission-none">
+  <!-- Include barceloneta's backend.xml for backend theming. -->
+  <xi:include href="++theme++barceloneta/backend.xml"><xi:fallback /></xi:include>
+  <!--
+    The backend.xml it self uses the following rules condition, to exclude the frontend
+    If you want to include anything just for the backend, you can do the same,
+    by uncommenting the BACKEND ONLY BLOCK.
+  -->
+  <!-- BACKEND ONLY BLOCK -->
+  <!--
+  <rules css:if-not-content="body.frontend#visual-portal-wrapper">
+  </rules>
+  -->
+
+  <!-- FRONTEND ONLY BLOCK -->
+  <rules css:if-content="body.frontend#visual-portal-wrapper">
     <!--<theme href="home.html" css:if-content=".section-front-page" />-->
     <theme href="article.html" />
     <notheme css:if-not-content="#visual-portal-wrapper" />
@@ -51,6 +65,15 @@
       -->
 
       <!-- Pull in Plone javascript for loged-in users -->
+      <!--
+        Make sure that the backend.xml you are using, is not pulling the content scripts again!
+        Using it twice cause the scripts being pulled twice and could lead to JS errors.
+        See https://github.com/plone/plonetheme.barceloneta/issues/158
+
+        You can pull the scripts either inside or outside of a BACKEND ONLY BLOCK
+        depending on, if you need the Plone scripts in your frontend or not.
+      -->
+      <!-- <after css:theme-children="head" css:content="head script" /> -->
       <after
         theme-children="/html/head"
         content="/html/head/script"
@@ -141,11 +164,6 @@
   </rules>
 
 
-
-  <!-- Include barceloneta's backend.xml for backend theming. -->
-  <rules css:if-not-content="body.viewpermission-view, body.viewpermission-none">
-    <xi:include href="++theme++barceloneta/backend.xml"><xi:fallback /></xi:include>
-  </rules>
 
 
 </rules>

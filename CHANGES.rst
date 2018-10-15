@@ -13,12 +13,15 @@ Changelog
 - Use --ignore-submodules in git_clean_state_check
   [MrTango]
 
-- Commented out rule in backend.xml that caused the scripts being pulled twice,
+- Commented out the HEAD SCRIPT rule in backend.xml that caused the scripts being pulled twice,
   in case that you are using it to style backend views. You should only use
   this rule once in your ruleset. Using it twice cause leads to JS errors and
   patterns initialition failures.
   This fixes: https://github.com/plone/plonetheme.barceloneta/issues/158
   [sneridagh]
+
+- Updated "theme" subtemplate backend/frontend rules and add usage hints
+  [MrTango]
 
 
 3.4.2 (2018-08-13)

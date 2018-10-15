@@ -25,6 +25,14 @@
     <!-- CSS -->
     <after css:theme-children="head" css:content="head link" />
     <!-- Script -->
+    <!--
+      Make sure that the backend.xml you are using, is not pulling the content scripts again!
+      Using it twice cause the scripts being pulled twice and could lead to JS errors.
+      See https://github.com/plone/plonetheme.barceloneta/issues/158
+
+      You can pull the scripts either inside or outside of the backend only block,
+      depending on, if you need the Plone scripts in your frontend or not.
+    -->
     <after css:theme-children="head" css:content="head script" />
   </rules>
 

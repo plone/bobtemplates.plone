@@ -69,7 +69,12 @@
     <after css:theme-children="head" css:content="head link" />
 
     <!-- Script -->
-    <after css:theme-children="head" css:content="head script" />
+    <!-- Commented out by default, if you are using backend.xml you should only
+    pull the content scripts once in main rules.xml or here. Using it twice cause
+    the scripts being pulled twice and could lead to JS errors. Uncomment only if
+    you already have commented out the one in rules.xml
+    https://github.com/plone/plonetheme.barceloneta/issues/158 -->
+    <!-- <after css:theme-children="head" css:content="head script" /> -->
 
     <!-- We don't need global nav -->
     <drop css:theme="#mainnavigation-wrapper" />

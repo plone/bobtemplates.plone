@@ -6,6 +6,14 @@ Changelog
 
 - Add a build step to report coverage on gitlab and run tests on stages
   [erral]
+  
+- Rename Roboto font files copies from barceloneta.theme to match CSS registrations
+  [erral]
+  
+- Refresh backend.xml from latest plonetheme.barceloneta version so that the diazo theme resources
+  are not copied into the backend.xml but dropped beforehand. Also removes toggle nav button which 
+  was removed from barceloneta theme. fixes #317
+  [fredvd]
 
 - Deactivated the dublicated template file definition in view Python class
   [MrTango]
@@ -14,6 +22,16 @@ Changelog
   [MrTango]
 
 - Use --ignore-submodules in git_clean_state_check
+  [MrTango]
+
+- Commented out the HEAD SCRIPT rule in backend.xml that caused the scripts being pulled twice,
+  in case that you are using it to style backend views. You should only use
+  this rule once in your ruleset. Using it twice cause leads to JS errors and
+  patterns initialition failures.
+  This fixes: https://github.com/plone/plonetheme.barceloneta/issues/158
+  [sneridagh]
+
+- Updated "theme" subtemplate backend/frontend rules and add usage hints
   [MrTango]
 
 

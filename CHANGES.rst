@@ -6,12 +6,12 @@ Changelog
 
 - Add a build step to report coverage on gitlab and run tests on stages
   [erral]
-  
+
 - Rename Roboto font files copies from barceloneta.theme to match CSS registrations
   [erral]
-  
+
 - Refresh backend.xml from latest plonetheme.barceloneta version so that the diazo theme resources
-  are not copied into the backend.xml but dropped beforehand. Also removes toggle nav button which 
+  are not copied into the backend.xml but dropped beforehand. Also removes toggle nav button which
   was removed from barceloneta theme. fixes #317
   [fredvd]
 
@@ -32,6 +32,15 @@ Changelog
   [sneridagh]
 
 - Updated "theme" subtemplate backend/frontend rules and add usage hints
+  [MrTango]
+
+- set correct classifiers for Plone 4 addons, fixes: #303
+  [MrTango]
+
+- remove boostrap-buildout.py references in config files, fixes #302
+  [MrTango]
+
+- Make adding default behaviors optional in content_type subtemplate, fixes #324
   [MrTango]
 
 

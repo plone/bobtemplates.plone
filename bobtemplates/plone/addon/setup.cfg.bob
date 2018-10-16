@@ -4,7 +4,6 @@ ignore =
     .coveragerc
     .editorconfig
     .gitattributes
-    bootstrap-buildout.py
 
 [isort]
 # for details see
@@ -16,5 +15,5 @@ line_length = 200
 not_skip = __init__.py
 
 [flake8]
-exclude = bootstrap.py,bootstrap-buildout.py,docs,*.egg.,omelette
+exclude = bootstrap.py,docs,*.egg.,omelette
 max-complexity = 15

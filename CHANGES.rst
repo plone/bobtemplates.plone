@@ -4,8 +4,12 @@ Changelog
 3.4.3 (unreleased)
 ------------------
 
+- Add a build step to report coverage on gitlab and run tests on stages
+  [erral]
+  
 - Rename Roboto font files copies from barceloneta.theme to match CSS registrations
   [erral]
+  
 - Refresh backend.xml from latest plonetheme.barceloneta version so that the diazo theme resources
   are not copied into the backend.xml but dropped beforehand. Also removes toggle nav button which 
   was removed from barceloneta theme. fixes #317

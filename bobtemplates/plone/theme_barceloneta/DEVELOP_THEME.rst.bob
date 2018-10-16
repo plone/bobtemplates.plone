@@ -5,11 +5,13 @@ In order to develop the theme you need to install grunt-cli global::
 
     $ sudo npm install -g grunt-cli
 
-You can use the helper script `npm-install`::
+And then run `npm install` both in the package root and in the theme folder:
 
-    $ ./bin/npm-install
+    $ npm install
 
-It will run npm install in package root and in the theme folder.
+    $ cd ./src/{{{ package.namespace }}}/{{{ package.name }}}/theme
+    $ npm install
+
 
 After executing these commands you can run grunt on the package root folder to watch for any less changes::
 
@@ -27,11 +29,6 @@ If you prefer to do a one time compile of the less files you can run::
 
     $ grunt compile
 
-or use the helper script from buildout::
-
-    $ ./bin/grunt-task-compile
-
-Actually on a buildout run buildout will run the npm-install and the grunt-task-compile script for you. So you only need the commands above while developing gin the filesystem.
 
 Note
 ----

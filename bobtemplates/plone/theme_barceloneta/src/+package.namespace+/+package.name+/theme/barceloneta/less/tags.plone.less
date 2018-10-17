@@ -1,0 +1,50 @@
+//*// TAGS //*//
+
+.link-category {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: @plone-font-size-small;
+  font-weight: @plone-font-weight-regular;
+  line-height: 1;
+  color: @plone-btn-standalone-color;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: @plone-border-radius-base;
+  background-color: @plone-btn-standalone-bg;
+  
+  &[href] {
+    &:hover,
+    &:focus {
+      background-color: darken(@plone-btn-standalone-bg, 10%);
+    }
+  }
+
+  a& {
+    &:hover,
+    &:focus {
+      color: @plone-link-color;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  // Empty
+  &:empty {
+    display: none;
+  }
+}
+
+// For tag categories linked to a content
+#category {
+  margin-bottom: @plone-padding-base-horizontal;
+  ul {
+  list-style: none;
+  padding: 0;
+  display: inline;
+  }
+
+  li {
+    display: inline-block;
+  }
+}

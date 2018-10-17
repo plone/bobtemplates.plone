@@ -1,0 +1,22 @@
+//*// TREE //*//
+
+.jqtree-tree {
+	list-style: none outside;
+	margin-bottom: 0;
+	padding: 0;
+	padding-left:@plone-padding-base-horizontal*1.5;
+
+	.jqtree-toggler {
+		left: -@plone-padding-base-horizontal*1.5;
+		font-size: 75%;
+		top:30%;
+		position: absolute;
+	}
+	.jqtree-element {
+		padding: @plone-padding-base-vertical;
+		&:hover {background: @plone-table-bg-hover;}
+	}
+	.jqtree-selected > .jqtree-element {
+		background: @plone-gray-lighter;
+	}
+}

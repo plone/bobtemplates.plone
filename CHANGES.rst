@@ -10,6 +10,9 @@ Changelog
 3.4.3 (2018-10-17)
 ------------------
 
+- Add a new subtemplate for addon that creates a full barceloneta-based theme
+  [erral]
+
 - Add a build step to report coverage on gitlab and run tests on stages
   [erral]
 
@@ -20,6 +23,7 @@ Changelog
   are not copied into the backend.xml but dropped beforehand. Also removes toggle nav button which
   was removed from barceloneta theme. fixes #317
   [fredvd]
+
 
 - Deactivated the dublicated template file definition in view Python class
   [MrTango]

@@ -1,0 +1,22 @@
+//*// IMAGE //*//
+
+.image-product {
+	margin: 0;
+	border-radius: @plone-border-radius-base;
+	box-shadow: 0 1px 2px rgba(0,0,0,.17);
+	overflow: hidden;
+	display: inline-block;
+	figcaption {
+		font-size: @plone-font-size-small;
+		background: @plone-portlet-footer-bg;
+		margin: @plone-padding-base-vertical @plone-padding-base-horizontal;
+	}
+}
+
+
+// User photo inherit some classes
+.portraitPhoto {
+	.image-product();
+	.pull-right();
+	border-radius: 50px;
+}

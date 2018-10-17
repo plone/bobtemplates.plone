@@ -1,0 +1,8 @@
+{
+  "//": "Put here only theme dependencies, devDependencies should stay outside of the theme folder in the package root.",
+  "name": "{{{ package.dottedname }}}",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

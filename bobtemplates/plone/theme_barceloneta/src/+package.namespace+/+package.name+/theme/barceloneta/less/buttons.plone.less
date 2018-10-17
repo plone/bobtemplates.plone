@@ -1,0 +1,200 @@
+//*// BUTTONS //*//
+
+.standalone, .context, .destructive, [type="submit"], button {
+  display: inline-block;
+  margin-bottom: 0; // For input.btn
+  font-weight: @plone-font-weight-bold;
+  text-align: center;
+  text-shadow: 0 1px rgba(0,0,0,.25);
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  white-space: nowrap;
+  .button-size(@plone-padding-base-vertical; @plone-padding-base-horizontal; @plone-font-size-base; @plone-line-height-base; @plone-border-radius-small);
+  .user-select(none);
+
+  &,
+  &:active,
+  &.active {
+    &:focus {
+      .tab-focus();
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: @plone-btn-standalone-color;
+    text-decoration: none;
+    .box-shadow(0 1px 2px rgba(0,0,0,.25));
+  }
+
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none; // Future-proof disabling of clicks
+    .opacity(.5);
+    .box-shadow(none);
+  }
+}
+
+.standalone, [type="submit"], button { //gray
+  .button-variant(@plone-btn-standalone-color; @plone-btn-standalone-bg; @plone-btn-standalone-border);
+}
+
+.context { //blue
+  .button-variant(@plone-btn-context-color; @plone-btn-context-bg; @plone-btn-context-border);
+}
+
+.destructive { //red
+  .button-variant(@plone-btn-destructive-color; @plone-btn-destructive-bg; @plone-btn-destructive-border);
+}
+
+.link-parent {
+  .standalone; margin-bottom: @plone-padding-base-horizontal;
+  &::before {content: "↩ ";top: 3px;position: relative;}
+}
+
+
+// Base styles
+// -------------------------
+.input-group {
+  position: relative; // For dropdowns
+  display: table;
+  border-collapse: separate; // prevent input groups from inheriting border styles from table cells when placed within a table
+
+  // Undo padding and float of grid classes
+  &[class*="col-"] {
+    float: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .form-control {
+    // Ensure that the input is always above the *appended* addon button for
+    // proper border colors.
+    position: relative;
+    z-index: 2;
+
+    // IE9 fubars the placeholder attribute in text inputs and the arrows on
+    // select elements in input groups. To fix it, we float the input. Details:
+    // https://github.com/twbs/bootstrap/issues/11561#issuecomment-28936855
+    float: left;
+
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+
+// Display as table-cell
+// -------------------------
+.input-group-addon,
+.input-group-btn,
+.input-group .form-control {
+  display: table-cell;
+
+  &:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+}
+// Addon and addon wrapper for buttons
+.input-group-addon,
+.input-group-btn {
+  width: 1%;
+  white-space: nowrap;
+  vertical-align: middle; // Match the inputs
+}
+
+// Reset rounded corners
+.input-group .form-control:first-child,
+.input-group-addon:first-child,
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group > .btn,
+.input-group-btn:first-child > .dropdown-toggle,
+.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+  .border-right-radius(0);
+}
+.input-group-addon:first-child {
+  border-right: 0;
+}
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group > .btn,
+.input-group-btn:last-child > .dropdown-toggle,
+.input-group-btn:first-child > .btn:not(:first-child),
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+  .border-left-radius(0);
+}
+.input-group-addon:last-child {
+  border-left: 0;
+}
+
+// Button input groups
+// -------------------------
+.input-group-btn {
+  position: relative;
+  // Jankily prevent input button groups from wrapping with `white-space` and
+  // `font-size` in combination with `inline-block` on buttons.
+  font-size: 0;
+  white-space: nowrap;
+
+  // Negative margin for spacing, position for bringing hovered/focused/actived
+  // element above the siblings.
+  > .btn {
+    position: relative;
+    + .btn {
+      margin-left: -1px;
+    }
+    // Bring the "active" button to the front
+    &:hover,
+    &:focus,
+    &:active {
+      z-index: 2;
+    }
+  }
+
+  // Negative margin to only have a 1px border between the two
+  &:first-child {
+    > .btn,
+    > .btn-group {
+      margin-right: -1px;
+    }
+  }
+  &:last-child {
+    > .btn,
+    > .btn-group {
+      margin-left: -1px;
+    }
+  }
+}
+
+// Dropdown arrow/caret
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top:   @plone-caret-width-base dashed;
+  border-right: @plone-caret-width-base solid transparent;
+  border-left:  @plone-caret-width-base solid transparent;
+}
+// Reposition the caret
+.btn .caret {
+  margin-left: 0;
+}
+// Carets in other button sizes
+.btn-lg .caret {
+  border-width: @plone-caret-width-large @plone-caret-width-large 0;
+  border-bottom-width: 0;
+}

@@ -7,6 +7,9 @@ Changelog
 - Add a new subtemplate for addon that creates a full barceloneta-based theme
   [erral]
 
+- Add a build step to report coverage on gitlab and run tests on stages
+  [erral]
+
 - Rename Roboto font files copies from barceloneta.theme to match CSS registrations
   [erral]
 
@@ -33,6 +36,15 @@ Changelog
   [sneridagh]
 
 - Updated "theme" subtemplate backend/frontend rules and add usage hints
+  [MrTango]
+
+- set correct classifiers for Plone 4 addons, fixes: #303
+  [MrTango]
+
+- remove boostrap-buildout.py references in config files, fixes #302
+  [MrTango]
+
+- Make adding default behaviors optional in content_type subtemplate, fixes #324
   [MrTango]
 
 

@@ -51,6 +51,10 @@
 
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
+{{% if not dexterity_type_create_class %}}
+    <element value="{{{ package.dottedname }}}.content.{{{ dexterity_type_name_normalized }}}.I{{{ dexterity_type_name_klass }}}"/>
+{{%  endif %}}
+{{% if dexterity_type_activate_default_behaviors %}}
     <element value="plone.app.content.interfaces.INameFromTitle"/>
     <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
     <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
@@ -65,14 +69,28 @@
 {{% else %}}
     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
 {{% endif %}}
+{{% endif %}}
+{{% if not dexterity_type_activate_default_behaviors %}}
+    <!--<element value="plone.app.content.interfaces.INameFromTitle"/>-->
+    <!--<element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>-->
+    <!--<element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>-->
+    <!--<element value="plone.app.dexterity.behaviors.id.IShortName"/>-->
+    <!--<element value="plone.app.dexterity.behaviors.metadata.IOwnership"/>-->
+    <!--<element value="plone.app.dexterity.behaviors.metadata.IPublication"/>-->
+    <!--<element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>-->
+    <!--<element value="plone.app.dexterity.behaviors.metadata.IBasic"/>-->
+{{% if plone.is_plone5 %}}
+    <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
+    <!--<element value="plone.app.lockingbehavior.behaviors.ILocking" />-->
+{{% else %}}
+    <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
+{{% endif %}}
+{{% endif %}}
     <!--<element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>-->
     <!--<element value="plone.app.relationfield.behavior.IRelatedItems"/>-->
     <!--<element value="plone.app.versioningbehavior.behaviors.IVersionable" />-->
     <!--<element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>-->
     <!--<element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>-->
-{{% if not dexterity_type_create_class %}}
-    <element value="{{{ package.dottedname }}}.content.{{{ dexterity_type_name_normalized }}}.I{{{ dexterity_type_name_klass }}}"/>
-{{%  endif %}}
   </property>
 
   <!-- View information -->

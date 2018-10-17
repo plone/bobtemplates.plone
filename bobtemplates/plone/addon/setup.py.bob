@@ -21,8 +21,13 @@ setup(
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",
+{{% if not plone.is_plone5 %}}
+        "Framework :: Plone :: 4.3",
+{{% endif %}}
+{{% if plone.is_plone5 %}}
         "Framework :: Plone :: 5.0",
         "Framework :: Plone :: 5.1",
+{{% endif %}}
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
         "Operating System :: OS Independent",

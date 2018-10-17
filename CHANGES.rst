@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.4.3 (unreleased)
+3.4.3 (2018-10-17)
 ------------------
 
 - Add a build step to report coverage on gitlab and run tests on stages

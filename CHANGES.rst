@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.5.0 (unreleased)
+3.5.0 (2018-10-17)
 ------------------
 
 - Add a new subtemplate for addon that creates a full barceloneta-based theme

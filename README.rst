@@ -40,7 +40,7 @@ Provided templates
 ------------------
 
 - addon
-- theme_package
+- theme_package (Deprecated, use theme_barceloneta subtemplate)
 - buildout
 
 
@@ -52,6 +52,7 @@ These templates are meant to be used inside a package which was created by the a
 - behavior
 - content_type
 - theme
+- theme_barceloneta
 - view
 - viewlet
 - vocabulary

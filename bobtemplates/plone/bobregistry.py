@@ -6,6 +6,8 @@ class RegEntry(object):
         self.template = ''
         self.plonecli_alias = ''
         self.depend_on = None
+        self.deprecated = False
+        self.info = ''
 
 
 def plone_addon():
@@ -26,6 +28,9 @@ def plone_theme_package():
     reg = RegEntry()
     reg.template = 'bobtemplates.plone:theme_package'
     reg.plonecli_alias = 'theme_package'
+    reg.deprecated = True
+    reg.info = """Please use the theme_barceloneta subtemplate!
+    """
     return reg
 
 

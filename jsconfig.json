@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES6"
+    },
+    "exclude": [
+        "tmp",
+        ".pytest_cache",
+        ".tox",
+        "local",
+        "node_modules",
+        "**/node_modules/*"
+    ]
+}

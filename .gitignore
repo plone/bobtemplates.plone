@@ -35,3 +35,4 @@ Vagrantfile
 /.vscode/
 /.pytest_cache/
 /tmpdist
+/man

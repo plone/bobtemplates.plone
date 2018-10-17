@@ -43,6 +43,9 @@ Changelog
 - Make adding default behaviors optional in content_type subtemplate, fixes #324
   [MrTango]
 
+- Add deprecated flag and info to theme_package template in registry
+  [MrTango]
+
 
 3.4.2 (2018-08-13)
 ------------------

@@ -1,21 +1,21 @@
-Introduction
-============
+===================
+bobtempalates.plone
+===================
+
+.. topic:: Description
+
+    Overview of bobtemplates.plone features, compatibility and installation notes.
 
 ..  toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
-    intro
+    templates/index
     git-support
-    addon
-    buildout
-    theme_package
-    theme
-    content_type
-    vocabulary
-    behavior
     upgrade-packages
     develop
 
+Introduction
+============
 
 ``bobtemplates.plone`` provides a `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ template to generate packages for Plone projects.
 
@@ -32,6 +32,9 @@ You can also create a package with nested namespace
 
     mrbob -O collective.foo.myaddon bobtemplates.plone:addon
 
+.. note::
+
+    With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone. We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplate.plone.
 
 Features
 ========
@@ -41,35 +44,31 @@ Packages created with ``bobtemplates.plone`` use the current best-practices when
 Provided templates
 ------------------
 
-- :doc:`addon </addon>`
-- :doc:`theme_package </theme_package>`
-- :doc:`buildout </buildout>`
+..  toctree::
+    :glob:
+    :maxdepth: 2
 
-Provided subtemplates
----------------------
+    templates/*/index
 
-These template are meant to be used inside a package which was created by the addon template.
+.. note::
 
-- :doc:`theme </theme>`
-- :doc:`content_type </content_type>`
-- :doc:`vocabulary </vocabulary>`
-- :doc:`behavior </behavior>`
-
+    For the full list of supported templates/subtemplates, you can use:
+    ``plonecli -l``
 
 
 Compatibility
--------------
+=============
 
-Add-ons created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
+Addon's created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
 They should also work with older versions but that was not tested.
 It should work on Linux, Mac and Windows.
 
 
 Installation
-------------
+============
 
 Use in a buildout
-^^^^^^^^^^^^^^^^^
+-----------------
 
 ::
 
@@ -92,7 +91,7 @@ Call it from the ``src``-directory of your Plone project like this.
 
 
 Installation in a virtualenv
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 You can also install ``bobtemplates.plone`` in a virtualenv.
 

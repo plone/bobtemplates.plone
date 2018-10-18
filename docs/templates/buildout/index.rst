@@ -1,6 +1,11 @@
-=============================
-Create Plone buildout package
-=============================
+========
+buildout
+========
+
+.. topic:: Description
+
+    Creating a Plone buildout.
+
 
 With this template you can create a basic Plone buildout, which often used as a project buildout. The project buildout then can contain all project related packages directly or as separate repositories.
 

@@ -7,6 +7,13 @@
         ".pytest_cache",
         ".tox",
         "local",
+        "_build",
+        ".vscode",
+        "include",
+        "lib",
+        "local",
+        "collective.*",
+        "bobtemplates.plone.egg-info",
         "node_modules",
         "**/node_modules/*"
     ]

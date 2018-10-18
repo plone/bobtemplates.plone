@@ -1,8 +1,13 @@
-=======================================
-Creating a Plone theme inside a package
-=======================================
+=================
+theme_barceloneta
+=================
 
-With this ``subtemplate``, you can add a Plone theme to a Plone package. This theme template is useful to integrate existing themes or mockups from Designers into Plone. It doesn't come with any bacelonata resources nor does it make any assumptions how you build your static file like LESS, SCSS or JavaScript. You have to build your own setup for this. We do this because, many themes come with a different set of tools, so just use the tooling of the theme or build your own if there isn't any.
+.. topic:: Description
+
+    Adding a barceloneta theme to an existing addon package.
+
+
+With this ``subtemplate``, you can add a Plone theme to a Plone package.
 
 First create a Plone Addon Package:
 
@@ -14,7 +19,7 @@ then change into the created folder ``plonetheme.blacksea`` and your theme:
 
 .. code-block:: sh
 
-    mrbob bobtemplates.plone:theme
+    mrbob bobtemplates.plone:theme_barceloneta
 
 It will ask you about the name of your theme and will generate the structure of your theme and also register it inside the Plone package.
 

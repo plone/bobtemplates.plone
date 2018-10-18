@@ -28,7 +28,9 @@ bobtemplates.plone
 
 ``bobtemplates.plone`` provides `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ templates to generate packages for Plone projects.
 
-    **Note:** bobtemplates.plone supports `plonecli <https://pypi.python.org/pypi/plonecli>`_, which is the recommended way of creating Plone packages.
+.. note::
+
+    With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone. We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplate.plone.
 
 
 Features

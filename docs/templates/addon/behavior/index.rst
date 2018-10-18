@@ -1,6 +1,11 @@
-=================
-Adding a behavior
-=================
+========
+behavior
+========
+
+.. topic:: Description
+
+    Adding a custom Behavior to an existing addon package.
+
 
 With this ``sub-template``, you can add a `Behavior <https://docs.plone.org/develop/plone/content/behaviors.html#behaviors>`_ to a Plone package.
 

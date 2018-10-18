@@ -13,6 +13,7 @@ Introduction
     content_type
     vocabulary
     behavior
+    theme_barceloneta
     upgrade-packages
     develop
 
@@ -121,4 +122,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

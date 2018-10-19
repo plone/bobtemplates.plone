@@ -8,7 +8,6 @@ Templates provided by bobtemplates.plone
 
 ..  toctree::
     :maxdepth: 2
+    :glob:
 
-    addon/index
-    buildout/index
-    theme_package/index
+    */index

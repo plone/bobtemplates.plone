@@ -1,23 +1,23 @@
-=================
-theme_barceloneta
-=================
+==============================
+Theme Barceloneta sub-template
+==============================
 
 .. topic:: Description
 
-    Adding a barceloneta theme to an existing addon package.
+    Adding a barceloneta theme to an existing add-on package.
 
 
 With this ``subtemplate``, you can add a Plone theme to a Plone package.
 
-First create a Plone Addon Package:
+First create a Plone add-on package:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob -O plonetheme.blacksea bobtemplates.plone:addon
 
 then change into the created folder ``plonetheme.blacksea`` and your theme:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob bobtemplates.plone:theme_barceloneta
 

@@ -4,7 +4,7 @@ bobtempalates.plone
 
 .. topic:: Description
 
-    Overview of bobtemplates.plone features, compatibility and installation notes.
+    Overview of bobtemplates.plone features, compatibility and installation.
 
 ..  toctree::
     :maxdepth: 2
@@ -39,16 +39,22 @@ You can also create a package with nested namespace
 Features
 ========
 
-Packages created with ``bobtemplates.plone`` use the current best-practices when creating an add-on and does all of boilerplate for you.
+packages created with ``bobtemplates.plone`` use the current best-practices when creating an add-on and does all of boilerplate for you.
 
 Provided templates
 ------------------
 
-..  toctree::
-    :glob:
-    :maxdepth: 2
-
-    templates/*/index
+ - addon
+  - behavior
+  - content_type
+  - portlet
+  - theme
+  - theme_barceloneta
+  - view
+  - viewlet
+  - vocabulary
+ - buildout
+ - theme_package [deprecated] >> Please use the theme_barceloneta subtemplate!
 
 .. note::
 
@@ -59,7 +65,7 @@ Provided templates
 Compatibility
 =============
 
-Addon's created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
+add-on's created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
 They should also work with older versions but that was not tested.
 It should work on Linux, Mac and Windows.
 

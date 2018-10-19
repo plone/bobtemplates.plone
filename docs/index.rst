@@ -45,6 +45,7 @@ Provided templates
 ------------------
 
  - addon
+
   - behavior
   - content_type
   - portlet
@@ -53,6 +54,7 @@ Provided templates
   - view
   - viewlet
   - vocabulary
+
  - buildout
  - theme_package [deprecated] >> Please use the theme_barceloneta subtemplate!
 

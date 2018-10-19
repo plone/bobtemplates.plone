@@ -6,13 +6,13 @@ With this ``sub-template``, you can add a `Behavior <https://docs.plone.org/deve
 
 First create a Plone Addon Package:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob -O collective.todos bobtemplates.plone:addon
 
 then change into the created folder ``collective.todos`` and create your Behavior_:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob bobtemplates.plone:behavior
 

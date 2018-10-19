@@ -8,13 +8,13 @@ With this ``subtemplate``, you can add a dynamic `Vocabulary <https://docs.plone
 
 First create a Plone Addon Package:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob -O collective.todos bobtemplates.plone:addon
 
 then change into the created folder ``collective.todos`` and create your Vocabulary_:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob bobtemplates.plone:vocabulary
 

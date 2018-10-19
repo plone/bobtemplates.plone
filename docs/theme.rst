@@ -6,13 +6,13 @@ With this ``subtemplate``, you can add a Plone theme to a Plone package. This th
 
 First create a Plone Addon Package:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob -O plonetheme.blacksea bobtemplates.plone:addon
 
 then change into the created folder ``plonetheme.blacksea`` and your theme:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob bobtemplates.plone:theme
 
@@ -26,4 +26,3 @@ The only thing you might want to add to your setup.py manually are the two follo
 These packages are optional but recommended to have support for configuration and additional PageTemplate thru theme packages. If you want to deploy your theme later as a ZIP-Files, be aware that these packages should be installed on the server as well.
 
 Themes which are supporting these additional functionality are called ``Extended Themes``.
-

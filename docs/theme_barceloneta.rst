@@ -2,24 +2,29 @@
 Creating a Plone theme package based on Barceloneta inside a package
 ====================================================================
 
-With this ``template``, you can add a Barceloneta based template to a Plone package. This will add a copy of Barceloneta theme including a full Grunt setup and a copy of all Barceloneta resources.
+With this template, you can add a Barceloneta based template to a Plone package.
+This will add a copy of Barceloneta theme including a full Grunt setup and
+a copy of all Barceloneta resources.
 
-If you like it a bit more modular or you don't want add the Barceloneta Theme as a start, you might want to use the :doc:`theme subtemplate </theme>` instead!
+If you want to create a theme from scratch or
+you don't want add the Barceloneta Theme as a start,
+you might want to use the :doc:`theme subtemplate </theme>` instead!
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob -O plonetheme.blacksea bobtemplates.plone:addon
 
 then change into the created folder ``plonetheme.blacksea`` and add a new theme:
 
-.. code-block:: sh
+.. code-block:: shell
 
+    cd plonetheme.blacksea
     mrbob bobtemplates.plone:theme
 
 
 then initialize it as folowed:
 
-.. code-block:: sh
+.. code-block:: shell
 
     virtualenv .
     ./bin/pip install -r requirements.txt

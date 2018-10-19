@@ -4,7 +4,8 @@ Changelog
 3.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix updating of parent FTI file, when parent type name contains spaces, fixes #331
+  [MrTango]
 
 
 3.5.0 (2018-10-17)

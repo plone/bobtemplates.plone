@@ -12,7 +12,6 @@ from lxml import etree
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 
-import case_conversion as cc
 import keyword
 import os
 import re
@@ -126,7 +125,7 @@ def _update_parent_types_fti_xml(configurator):
     parent_ct_name = configurator.variables.get('dexterity_parent_container_type_name')   # NOQA: E501
     if not parent_ct_name:
         return
-    parent_dexterity_type_fti_file_name = get_normalized_ftiname(parent_ct_name)
+    parent_dexterity_type_fti_file_name = get_normalized_ftiname(parent_ct_name)  # NOQA: E501
     file_name = u'{0}.xml'.format(
         parent_dexterity_type_fti_file_name,
     )

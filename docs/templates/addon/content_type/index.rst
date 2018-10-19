@@ -7,7 +7,7 @@ Content Type sub-template
     Adding a Dexterity Content Type to an existing add-on package.
 
 
-With this ``subtemplate``, you can add a `Dexterity <https://docs.plone.org/develop/plone/content/dexterity.html#dexterity>`_ Content Type to a Plone package.
+With this sub-template, you can add a `Dexterity <https://docs.plone.org/develop/plone/content/dexterity.html#dexterity>`_ Content Type to a Plone package.
 
 First create a Plone add-on package:
 

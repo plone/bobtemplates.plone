@@ -7,7 +7,7 @@ Vocabulary sub-template
     Adding a vocabulary to an existing add-on package.
 
 
-With this ``subtemplate``, you can add a dynamic `Vocabulary <https://docs.plone.org/develop/addons/schema-driven-forms/customising-form-behaviour/vocabularies.html#vocabularies>`_ to a Plone package.
+With this sub-template, you can add a dynamic `Vocabulary <https://docs.plone.org/develop/addons/schema-driven-forms/customising-form-behaviour/vocabularies.html#vocabularies>`_ to a Plone package.
 
 First create a Plone add-on package:
 

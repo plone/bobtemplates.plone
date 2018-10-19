@@ -7,7 +7,7 @@ Theme Barceloneta sub-template
     Adding a barceloneta theme to an existing add-on package.
 
 
-With this ``subtemplate``, you can add a Plone theme to a Plone package.
+With this sub-template, you can add a Plone theme to a Plone package.
 
 First create a Plone add-on package:
 

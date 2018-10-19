@@ -26,7 +26,7 @@ To create a package like ``collective.myaddon``
     pip install bobtemplates.plone
     mrbob -O collective.myaddon bobtemplates.plone:addon
 
-You can also create a package with nested namespace
+You can also create a package with nested name space
 
 .. code-block:: shell
 
@@ -65,7 +65,7 @@ Provided templates
 Compatibility
 =============
 
-add-on's created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
+Add-on's created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
 They should also work with older versions but that was not tested.
 It should work on Linux, Mac and Windows.
 
@@ -96,10 +96,10 @@ Call it from the ``src``-directory of your Plone project like this.
     ../bin/mrbob -O collective.foo bobtemplates:addon
 
 
-Installation in a virtualenv
+Installation in a Virtualenv
 ----------------------------
 
-You can also install ``bobtemplates.plone`` in a virtualenv.
+You can also install ``bobtemplates.plone`` in a Virtualenv.
 
 .. code-block:: shell
 

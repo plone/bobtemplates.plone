@@ -7,7 +7,7 @@ Theme sub-template
     Adding a theme to an existing add-on package.
 
 
-With this ``subtemplate``, you can add a Plone theme to a Plone package. This theme template is useful to integrate existing themes or mockups from Designers into Plone. It doesn't come with any bacelonata resources nor does it make any assumptions how you build your static file like LESS, SCSS or JavaScript. You have to build your own setup for this. We do this because, many themes come with a different set of tools, so just use the tooling of the theme or build your own if there isn't any.
+With this sub-template, you can add a Plone theme to a Plone package. This theme template is useful to integrate existing themes or mockups from Designers into Plone. It doesn't come with any bacelonata resources nor does it make any assumptions how you build your static file like LESS, SCSS or JavaScript. You have to build your own setup for this. We do this because, many themes come with a different set of tools, so just use the tooling of the theme or build your own if there isn't any.
 
 First create a Plone add-on package:
 

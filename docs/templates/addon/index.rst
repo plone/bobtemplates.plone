@@ -4,7 +4,7 @@ Add-on template
 
 .. topic:: Description
 
-    Creating an add-on package and extending it with subtemplates.
+    Creating an add-on package and extending it with  sub-template's.
 
 ..  toctree::
     :maxdepth: 2

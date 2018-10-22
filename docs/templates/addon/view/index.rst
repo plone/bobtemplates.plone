@@ -7,7 +7,7 @@ View sub-template
     Adding a View to an existing add-on package.
 
 
-With this sub-template, you can add a `View <https://docs.plone.org/develop/plone/views/browserviews.html>`_ to a Plone package.
+With this sub-template, you can add a `View <https://docs.plone.org/develop/plone/views/browserviews.html>`_ to a Plone add-on package.
 
 First create a Plone add-on package:
 
@@ -21,7 +21,7 @@ then change into the created folder ``collective.todo`` and create your first Vi
 
     mrbob bobtemplates.plone:view
 
-It will ask you if you need Python class and template file, you can have both or atleat one to have a working view. Based on the input it will ask about class name, template name or both. By default it will suggest you to use class name as view name (the part of url) but you can also change it. You can see your newly created view by using the url that you used for view name on `IFolderish` interface.
+It will ask if you need Python class and template file, you can have both or at least one to have a working view. Based on the input it will ask about class name, template name or both. By default it will suggest you to use class name as view name (the part of url) but you can also change it. You can see your newly created view by using the url that you used for view name on ``IFolderish`` interface.
 
 
 Example

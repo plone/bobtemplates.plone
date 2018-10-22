@@ -7,7 +7,7 @@ Viewlet sub-template
     Adding a Viewlet to an existing add-on package.
 
 
-With this sub-template, you can add a `Viewlet <https://docs.plone.org/develop/plone/views/viewlets.html>`_ to a Plone package.
+With this sub-template, you can add a `Viewlet <https://docs.plone.org/develop/plone/views/viewlets.html>`_ to a Plone add-on package.
 
 First create a Plone add-on package:
 
@@ -21,7 +21,7 @@ then change into the created folder ``collective.todo`` and create your first Vi
 
     mrbob bobtemplates.plone:viewlet
 
-It will ask you if you need Python class and template file, you can have both or atleast one to have a working viewlet. Based on the input it will ask about class name, template name or both. By default it will suggest you to use class name as viewlet name but you can also change it. This will create a viewlet registered to `IAboveContentTitle` viewlet manager and on `IDocument` interface.
+It will ask if you need Python class and template file, you can have both or at least one to have a working viewlet. Based on the input it will ask about class name, template name or both. By default it will suggest you to use class name as viewlet name but you can also change it. This will create a viewlet registered to ``IAboveContentTitle`` viewlet manager and on ``IDocument`` interface.
 
 
 Example
@@ -35,8 +35,8 @@ Example
 Add a Viewlet
 ----------------------------
 
-.. code-block:: shell
-
+.. code-block::shell
+    
     $ mrbob bobtemplates.plone:viewlet
 
     Welcome to mr.bob interactive mode. Before we generate directory structure, some questions need to be answered.

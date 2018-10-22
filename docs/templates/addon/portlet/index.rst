@@ -7,7 +7,7 @@ Portlet sub-template
     Adding a Portlet to an existing add-on package.
 
 
-With this sub-template, you can add a `Portlet <https://docs.plone.org/develop/plone/functionality/portlets.html>`_ to a Plone package.
+With this sub-template, you can add a `Portlet <https://docs.plone.org/develop/plone/functionality/portlets.html>`_ to a Plone add-on package.
 
 First create a Plone add-on package:
 
@@ -49,7 +49,7 @@ Add a Portlet
     RUN: git status --porcelain --ignore-submodules
     Git state is clean.
 
-    --> Portlet name to diplay for the portlet [Weather]: My Weather Portlet
+    --> Portlet name to display for the portlet [Weather]: My Weather Portlet
 
     >>> reading Plone version from bobtemplate.cfg
 

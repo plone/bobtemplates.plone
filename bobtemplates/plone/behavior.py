@@ -116,7 +116,7 @@ def post_renderer(configurator):
     )
     echo(
         '===================================================\n'
-        '=> Sucessfully added: {0} template.  \o/ \n\n'.format(
+        '=> Sucessfully added: {0} template.  \\o/ \n\n'.format(
             configurator.variables['template_id'],
         ),
         'info',

@@ -168,7 +168,7 @@ def test_check_global_allow_false():
         content_type.check_global_allow(configurator, None)
 
 
-def test_update_ct_types_fti_xml(tmpdir):
+def test_update_parent_types_fti_xml(tmpdir):
     """Test xml changes when changes are already in place."""
     target_path = tmpdir.strpath + '/collective.sample'
     package_path = target_path + '/src/collective/sample'
@@ -178,7 +178,7 @@ def test_update_ct_types_fti_xml(tmpdir):
     os.makedirs(profiles_path)
     template = """<?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="parent"
+    name="My Parent"
     meta_type="Dexterity FTI"
     i18n:domain="collective.sample">
   <property name="global_allow">True</property>
@@ -188,7 +188,7 @@ def test_update_ct_types_fti_xml(tmpdir):
   </property>
 </object>
 """
-    with open(os.path.join(profiles_path + '/parent.xml'), 'w') as f:
+    with open(os.path.join(profiles_path + '/My_Parent.xml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
         template='bobtemplates.plone:content_type',
@@ -199,13 +199,13 @@ def test_update_ct_types_fti_xml(tmpdir):
         variables={
             'dexterity_type_name': 'child',
             'dexterity_type_global_allow': 'f',
-            'dexterity_parent_container_type_name': 'parent',
+            'dexterity_parent_container_type_name': 'My Parent',
         },
     )
     configurator.variables['package_folder'] = package_path
-    content_type._update_ct_types_fti_xml(configurator)
+    content_type._update_parent_types_fti_xml(configurator)
 
-    with open(os.path.join(profiles_path + '/parent.xml'), 'r') as f:
+    with open(os.path.join(profiles_path + '/My_Parent.xml'), 'r') as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)

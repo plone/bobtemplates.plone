@@ -4,7 +4,8 @@ Changelog
 3.5.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Refactor and fix docs
+  [MrTango]
 
 
 3.5.0 (2018-10-17)

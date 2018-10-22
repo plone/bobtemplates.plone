@@ -6,7 +6,7 @@ Since 3.2.x bobtemplates.plone has integrated GIT support and can check for clea
 
 For your convenience, you can set some defaults in your mrbob user configuration
 
-.. code-block:: sh
+.. code-block:: shell
 
     cat ~/.mrbob
 

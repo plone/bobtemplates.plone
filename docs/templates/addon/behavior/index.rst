@@ -1,18 +1,23 @@
-=================
-Adding a behavior
-=================
+=====================
+Behavior sub-template
+=====================
+
+.. topic:: Description
+
+    Adding a custom Behavior to an existing add-on package.
+
 
 With this ``sub-template``, you can add a `Behavior <https://docs.plone.org/develop/plone/content/behaviors.html#behaviors>`_ to a Plone package.
 
-First create a Plone Addon Package:
+First create a Plone add-on package:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob -O collective.todos bobtemplates.plone:addon
 
 then change into the created folder ``collective.todos`` and create your Behavior_:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob bobtemplates.plone:behavior
 

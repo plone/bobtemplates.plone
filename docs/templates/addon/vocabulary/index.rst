@@ -1,20 +1,23 @@
-===================
-Adding a vocabulary
-===================
+=======================
+Vocabulary sub-template
+=======================
+
+.. topic:: Description
+
+    Adding a vocabulary to an existing add-on package.
 
 
+With this sub-template, you can add a dynamic `Vocabulary <https://docs.plone.org/develop/addons/schema-driven-forms/customising-form-behaviour/vocabularies.html#vocabularies>`_ to a Plone package.
 
-With this ``subtemplate``, you can add a dynamic `Vocabulary <https://docs.plone.org/develop/addons/schema-driven-forms/customising-form-behaviour/vocabularies.html#vocabularies>`_ to a Plone package.
+First create a Plone add-on package:
 
-First create a Plone Addon Package:
-
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob -O collective.todos bobtemplates.plone:addon
 
 then change into the created folder ``collective.todos`` and create your Vocabulary_:
 
-.. code-block:: sh
+.. code-block:: shell
 
     mrbob bobtemplates.plone:vocabulary
 

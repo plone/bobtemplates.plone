@@ -1,21 +1,21 @@
-Introduction
-============
+===================
+bobtempalates.plone
+===================
+
+.. topic:: Description
+
+    Overview of bobtemplates.plone features, compatibility and installation.
 
 ..  toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
-    intro
+    templates/index
     git-support
-    addon
-    buildout
-    theme_package
-    theme
-    content_type
-    vocabulary
-    behavior
     upgrade-packages
     develop
 
+Introduction
+============
 
 ``bobtemplates.plone`` provides a `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ template to generate packages for Plone projects.
 
@@ -26,50 +26,57 @@ To create a package like ``collective.myaddon``
     pip install bobtemplates.plone
     mrbob -O collective.myaddon bobtemplates.plone:addon
 
-You can also create a package with nested namespace
+You can also create a package with nested name space
 
 .. code-block:: shell
 
     mrbob -O collective.foo.myaddon bobtemplates.plone:addon
 
+.. note::
+
+    With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone. We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplate.plone.
 
 Features
 ========
 
-Packages created with ``bobtemplates.plone`` use the current best-practices when creating an add-on and does all of boilerplate for you.
+packages created with ``bobtemplates.plone`` use the current best-practices when creating an add-on and does all of boilerplate for you.
 
 Provided templates
 ------------------
 
-- :doc:`addon </addon>`
-- :doc:`theme_package </theme_package>`
-- :doc:`buildout </buildout>`
+ - addon
 
-Provided subtemplates
----------------------
+  - behavior
+  - content_type
+  - portlet
+  - theme
+  - theme_barceloneta
+  - view
+  - viewlet
+  - vocabulary
 
-These template are meant to be used inside a package which was created by the addon template.
+ - buildout
+ - theme_package [deprecated] >> Please use the theme_barceloneta subtemplate!
 
-- :doc:`theme </theme>`
-- :doc:`content_type </content_type>`
-- :doc:`vocabulary </vocabulary>`
-- :doc:`behavior </behavior>`
+.. note::
 
+    For the full list of supported templates/subtemplates, you can use:
+    ``plonecli -l``
 
 
 Compatibility
--------------
+=============
 
-Add-ons created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
+Add-on's created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
 They should also work with older versions but that was not tested.
 It should work on Linux, Mac and Windows.
 
 
 Installation
-------------
+============
 
 Use in a buildout
-^^^^^^^^^^^^^^^^^
+-----------------
 
 ::
 
@@ -91,10 +98,10 @@ Call it from the ``src``-directory of your Plone project like this.
     ../bin/mrbob -O collective.foo bobtemplates:addon
 
 
-Installation in a virtualenv
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Installation in a Virtualenv
+----------------------------
 
-You can also install ``bobtemplates.plone`` in a virtualenv.
+You can also install ``bobtemplates.plone`` in a Virtualenv.
 
 .. code-block:: shell
 

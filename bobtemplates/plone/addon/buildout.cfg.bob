@@ -113,7 +113,7 @@ scripts =
 plone.app.dexterity = 2.1.1
 {{% endif %}}
 
-# development dependencies (tools and pre commit hook)
+# development dependencies
 setuptools =
 zc.buildout =
 plone.api = >=1.8.4

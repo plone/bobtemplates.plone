@@ -4,6 +4,9 @@ Changelog
 3.5.1 (unreleased)
 ------------------
 
+- Add docs for view, viewlet and portlet
+  [kakshay21]
+
 - Refactor and fix docs
   [MrTango]
 

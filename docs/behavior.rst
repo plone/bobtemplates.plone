@@ -1,5 +1,5 @@
 =================
-Adding a behavior
+Adding A Behavior
 =================
 
 With this ``sub-template``, you can add a `Behavior <https://docs.plone.org/develop/plone/content/behaviors.html#behaviors>`_ to a Plone package.

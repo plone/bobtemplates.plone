@@ -1,5 +1,5 @@
 ==============================
-Creating a Plone theme package
+Creating A Plone Theme Package
 ==============================
 
 With this ``template``, you can create a full theme package at once.

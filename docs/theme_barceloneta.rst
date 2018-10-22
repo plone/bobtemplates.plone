@@ -1,5 +1,5 @@
 ====================================================================
-Creating a Plone theme package based on Barceloneta inside a package
+Creating A Plone Theme Package Based On Barceloneta Inside A Package
 ====================================================================
 
 With this template, you can add a Barceloneta based template to a Plone package.

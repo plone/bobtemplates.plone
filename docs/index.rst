@@ -40,14 +40,14 @@ Features
 
 Packages created with ``bobtemplates.plone`` use the current best-practices when creating an add-on and does all of boilerplate for you.
 
-Provided templates
+Provided Templates
 ------------------
 
 - :doc:`addon </addon>`
 - :doc:`theme_package </theme_package>`
 - :doc:`buildout </buildout>`
 
-Provided subtemplates
+Provided Subtemplates
 ---------------------
 
 These template are meant to be used inside a package which was created by the addon template.
@@ -70,7 +70,7 @@ It should work on Linux, Mac and Windows.
 Installation
 ------------
 
-Use in a buildout
+Use In A Buildout
 ^^^^^^^^^^^^^^^^^
 
 ::
@@ -93,7 +93,7 @@ Call it from the ``src``-directory of your Plone project like this.
     ../bin/mrbob -O collective.foo bobtemplates:addon
 
 
-Installation in a virtualenv
+Installation In A virtualenv
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can also install ``bobtemplates.plone`` in a virtualenv.
@@ -117,7 +117,7 @@ Now you can use it like this
 See `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ documentation for further information.
 
 
-Indices and tables
+Indices And Tables
 ==================
 
 * :ref:`genindex`

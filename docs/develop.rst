@@ -1,5 +1,5 @@
 =======================================
-Developing bobtemplates.plone templates
+Developing bobtemplates.plone Templates
 =======================================
 
 Setup dev environment
@@ -186,4 +186,3 @@ By the time or writing this, we have the following test cases (combinations), wh
 The test are defined in the directory ``skeleton-tests`` and are called by ``tox`` as defined in tox.ini.
 
 If you add new test cases (files), make sure that they are in the tox.ini and also called by travis!
-

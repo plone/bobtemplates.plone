@@ -1,5 +1,5 @@
 ==========================
-Create Plone addon package
+Create Plone Addon Package
 ==========================
 
 With this template you can create a basic Plone package.

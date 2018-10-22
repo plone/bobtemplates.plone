@@ -1,5 +1,5 @@
 ===============================
-Upgrade existing Plone packages
+Upgrade Existing Plone Packages
 ===============================
 
 bobtemplate.cfg

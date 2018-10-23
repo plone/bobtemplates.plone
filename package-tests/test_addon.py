@@ -58,4 +58,3 @@ def test_cleanup_package(tmpdir):
     )
     assert configurator
     configurator.render()
-    # addon._cleanup_package(configurator)

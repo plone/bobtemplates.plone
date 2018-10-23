@@ -44,8 +44,8 @@ jinja2_env.filters['to_boolean'] = to_boolean
 def git_support_enabled(configurator, question):
     disabled = configurator.variables.get('package.git.disabled', u'False')
     if hooks.to_boolean(None, None, disabled):
-        echo(u'GIT support disabled!')
-        raise SkipQuestion(u'GIT support is disabled, skip question!.')
+        echo(u'GIT support disabled!!!')
+        raise SkipQuestion(u'GIT support is disabled, skip question!')
 
 
 def echo(msg, msg_type=None):
@@ -103,6 +103,7 @@ def git_init(configurator):
     else:
         if result:
             echo(result, 'info')
+    return True
 
 
 def git_commit(configurator, msg):

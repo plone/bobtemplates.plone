@@ -5,7 +5,12 @@ Changelog
 ------------------
 
 - Refactor and fix docs
+  [MrTango]
+
 - Fix updating of parent FTI file, when parent type name contains spaces, fixes #331
+  [MrTango]
+
+- Don't do git auto commit if git init was disabled in addon template, fixes #300
   [MrTango]
 
 

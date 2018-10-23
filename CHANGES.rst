@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.5.1 (unreleased)
+3.5.1 (2018-10-23)
 ------------------
 
 - Refactor and fix docs

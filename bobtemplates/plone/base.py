@@ -9,6 +9,7 @@ from mrbob.bobexceptions import ValidationError
 from mrbob.rendering import jinja2_env
 from six.moves import input
 
+import case_conversion as cc
 import codecs
 import keyword
 import os
@@ -441,3 +442,18 @@ def subtemplate_warning_post_question(configurator, question, answer):
         print('Abort!')
         sys.exit(0)
     return answer
+
+
+def get_normalized_dxtypename(name):
+    normalized_name = cc.snakecase(get_normalized_ftiname(name))
+    return normalized_name
+
+
+def get_normalized_classname(name):
+    normalized_name = cc.pascalcase(name)
+    return normalized_name
+
+
+def get_normalized_ftiname(name):
+    normalized_name = name.replace(' ', '_')
+    return normalized_name

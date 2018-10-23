@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - Refactor and fix docs
+- Fix updating of parent FTI file, when parent type name contains spaces, fixes #331
   [MrTango]
 
 

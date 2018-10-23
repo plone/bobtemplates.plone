@@ -2,6 +2,9 @@
 """Generate content type."""
 
 from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import get_normalized_classname
+from bobtemplates.plone.base import get_normalized_dxtypename
+from bobtemplates.plone.base import get_normalized_ftiname
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import is_string_in_file
 from bobtemplates.plone.base import update_file
@@ -9,7 +12,6 @@ from lxml import etree
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 
-import case_conversion as cc
 import keyword
 import os
 import re
@@ -119,6 +121,40 @@ def _update_types_xml(configurator):
         )
 
 
+def _update_parent_types_fti_xml(configurator):
+    parent_ct_name = configurator.variables.get('dexterity_parent_container_type_name')   # NOQA: E501
+    if not parent_ct_name:
+        return
+    parent_dexterity_type_fti_file_name = get_normalized_ftiname(parent_ct_name)  # NOQA: E501
+    file_name = u'{0}.xml'.format(
+        parent_dexterity_type_fti_file_name,
+    )
+    file_path = '{0}/profiles/default/types/{1}'.format(
+        configurator.variables['package_folder'],
+        file_name,
+    )
+
+    with open(file_path, 'r') as xml_file:
+        parser = etree.XMLParser(remove_blank_text=True)
+        tree = etree.parse(xml_file, parser)
+        type_name = configurator.variables['dexterity_type_name']
+        if len(tree.xpath(".//element[@value='{name}']".format(name=type_name))):    # NOQA: E501
+            print(
+                '{name} already in {filename}, skip adding!'.format(
+                    name=type_name,
+                    filename=file_name,
+                ),
+            )
+            return
+
+    match_str = """<property name="allowed_content_types">"""
+    insert_str = """    <element value="{0}" />
+    """.format(
+        configurator.variables['dexterity_type_name'],
+    )
+    update_file(configurator, file_path, match_str, insert_str)
+
+
 def _update_rolemap_xml(configurator):
     file_name = u'rolemap.xml'
     file_path = '{0}/profiles/default/{1}'.format(
@@ -153,38 +189,6 @@ def _update_rolemap_xml(configurator):
         configurator.variables['dexterity_type_name_klass'],
     )
     update_file(configurator, file_path, match_str, insert_str)
-
-
-def _update_ct_types_fti_xml(configurator):
-    parent_ct_name = configurator.variables.get('dexterity_parent_container_type_name')   # NOQA: E501
-    if parent_ct_name:
-        file_name = u'{0}.xml'.format(
-            parent_ct_name,
-        )
-        file_path = '{0}/profiles/default/types/{1}'.format(
-            configurator.variables['package_folder'],
-            file_name,
-        )
-
-        with open(file_path, 'r') as xml_file:
-            parser = etree.XMLParser(remove_blank_text=True)
-            tree = etree.parse(xml_file, parser)
-            type_name = configurator.variables['dexterity_type_name']
-            if len(tree.xpath(".//element[@value='{name}']".format(name=type_name))):    # NOQA: E501
-                print(
-                    '{name} already in {filename}, skip adding!'.format(
-                        name=type_name,
-                        filename=file_name,
-                    ),
-                )
-                return
-
-        match_str = """<property name="allowed_content_types">"""
-        insert_str = """    <element value="{0}" />
-        """.format(
-            configurator.variables['dexterity_type_name'],
-        )
-        update_file(configurator, file_path, match_str, insert_str)
 
 
 def _update_permissions_zcml(configurator):
@@ -242,13 +246,11 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'content_type'
     type_name = configurator.variables['dexterity_type_name']
-    dx_type_name_klass = cc.pascalcase(
-        type_name,
-    )
+    dx_type_name_klass = get_normalized_classname(type_name)
     configurator.variables['dexterity_type_name_klass'] = dx_type_name_klass
-    dx_type_fti_file_name = type_name.replace(' ', '_')
+    dx_type_fti_file_name = get_normalized_ftiname(type_name)
     configurator.variables['dexterity_type_fti_file_name'] = dx_type_fti_file_name  # NOQA: E501
-    dx_type_name_normalized = cc.snakecase(dx_type_fti_file_name)
+    dx_type_name_normalized = get_normalized_dxtypename(type_name)
     configurator.variables['dexterity_type_name_normalized'] = dx_type_name_normalized  # NOQA: E501
     configurator.target_directory = configurator.variables['package_folder']
 
@@ -256,7 +258,7 @@ def prepare_renderer(configurator):
 def post_renderer(configurator):
     """Post rendering."""
     _update_types_xml(configurator)
-    _update_ct_types_fti_xml(configurator)
+    _update_parent_types_fti_xml(configurator)
     _update_permissions_zcml(configurator)
     _update_rolemap_xml(configurator)
     _update_metadata_xml(configurator)

@@ -10,6 +10,9 @@ Changelog
 3.5.1 (2018-10-23)
 ------------------
 
+- Add docs for view, viewlet and portlet
+  [kakshay21]
+
 - Refactor and fix docs
   [MrTango]
 

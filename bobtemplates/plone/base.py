@@ -339,10 +339,7 @@ def update_file(configurator, file_path, match_str, insert_str):
             changed = True
         else:
             for index, line in enumerate(contents):
-                if (
-                    match_str in line and
-                    insert_str not in contents[index + 1]
-                ):
+                if match_str in line and insert_str not in contents[index + 1]:
                     contents.insert(index + 1, insert_str)
                     changed = True
                     break

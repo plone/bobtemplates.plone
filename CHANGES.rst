@@ -4,7 +4,8 @@ Changelog
 3.5.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove unnecessary dependency to python-slugify, fixes: #335 and #337
+  [MrTango]
 
 
 3.5.1 (2018-10-23)

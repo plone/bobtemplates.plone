@@ -1,0 +1,56 @@
+[transmogrifier]
+pipeline =
+    jsonsource
+    logger
+    pathfixer
+#    example
+    removeid
+    constructor
+    copyuid
+    deserializer
+    schemaupdater
+    workflowhistory
+    savepoint
+
+[jsonsource]
+blueprint = collective.jsonmigrator.jsonsource
+path = content-import
+
+[logger]
+blueprint = collective.transmogrifier.sections.logger
+name = Transmogrifier [importing]
+level = INFO
+key = _path
+
+[pathfixer]
+blueprint = plone.app.transmogrifier.pathfixer
+stripstring = /Plone
+
+[example]
+blueprint = {{{ package.namespace }}}.example
+
+[removeid]
+blueprint = collective.transmogrifier.sections.manipulator
+delete = id
+
+[constructor]
+blueprint = collective.transmogrifier.sections.constructor
+
+[copyuid]
+blueprint = collective.transmogrifier.sections.manipulator
+keys =
+    _uid
+destination = string:plone.uuid
+
+[deserializer]
+blueprint = transmogrify.dexterity.deserializer
+
+[schemaupdater]
+blueprint = transmogrify.dexterity.schemaupdater
+
+[workflowhistory]
+blueprint = collective.jsonmigrator.workflowhistory
+
+[savepoint]
+blueprint = collective.jsonmigrator.partialcommit
+every = 1000

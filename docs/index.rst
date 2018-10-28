@@ -48,6 +48,7 @@ Provided templates
 
   - behavior
   - content_type
+  - migration_package
   - portlet
   - theme
   - theme_barceloneta

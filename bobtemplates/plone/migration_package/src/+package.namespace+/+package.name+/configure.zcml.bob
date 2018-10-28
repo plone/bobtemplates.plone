@@ -1,0 +1,52 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="{{{ package.dottedname }}}">
+
+  <!-- Set up z3c.autoinlcude to scan dependencies and plugins of this package -->
+  <includePlugins package="." />
+  <includeDependencies package="." />
+  <include package=".import" />
+
+  <five:registerPackage package="." initialize=".initialize" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="{{{ package.dottedname }}} (default)"
+      directory="profiles/default"
+      description="Installation profile for {{{ package.dottedname }}}"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:upgradeStep
+      title="{{{ package.namespace }}}.run_pre_migration"
+      description="Run before migration"
+      source="0001"
+      destination="0002"
+      handler="{{{ package.dottedname }}}.upgrades.run_pre_migration"
+      sortkey="1"
+      profile="{{{ package.dottedname }}}:default"
+      />
+
+  <genericsetup:upgradeStep
+      title="{{{ package.namespace }}}.run_migration"
+      description="Run the migration"
+      source="0002"
+      destination="0003"
+      handler="{{{ package.dottedname }}}.upgrades.run_migration"
+      sortkey="1"
+      profile="{{{ package.dottedname }}}:default"
+      />
+
+  <genericsetup:upgradeStep
+      title="{{{ package.namespace }}}.run_post_migration"
+      description="Run after migration"
+      source="0003"
+      destination="0004"
+      handler="{{{ package.dottedname }}}.upgrades.run_post_migration"
+      sortkey="1"
+      profile="{{{ package.dottedname }}}:default"
+      />
+
+</configure>

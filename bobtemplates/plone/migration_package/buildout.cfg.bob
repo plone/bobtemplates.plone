@@ -1,0 +1,165 @@
+[buildout]
+extends = http://dist.plone.org/release/{{{ plone.version }}}/versions.cfg
+show-picked-versions = true
+extensions =
+    mr.developer
+
+index = https://pypi.python.org/simple/
+
+parts =
+    instance
+    test
+    code-analysis
+    coverage
+    test-coverage
+    createcoverage
+    releaser
+    i18ndude
+    omelette
+    robot
+    plone-helper-scripts
+develop = .
+
+
+[instance]
+recipe = plone.recipe.zope2instance
+user = admin:admin
+http-address = 8080
+environment-vars =
+    zope_i18n_compile_mo_files true
+eggs =
+    Plone
+    Pillow
+    {{{ package.dottedname }}} [test]
+
+
+[code-analysis]
+recipe = plone.recipe.codeanalysis[recommended]
+directory = ${buildout:directory}/src/{{{ package.namespace }}}
+return-status-codes = False
+
+
+[omelette]
+recipe = collective.recipe.omelette
+eggs = ${instance:eggs}
+
+
+[test]
+recipe = zc.recipe.testrunner
+eggs = ${instance:eggs}
+initialization =
+    os.environ['TZ'] = 'UTC'
+defaults = ['-s', '{{{ package.dottedname }}}', '--auto-color', '--auto-progress']
+
+
+[coverage]
+recipe = zc.recipe.egg
+eggs = coverage
+
+
+[test-coverage]
+recipe = collective.recipe.template
+input = inline:
+    #!/bin/bash
+    export TZ=UTC
+    ${buildout:directory}/bin/coverage run bin/test $*
+    ${buildout:directory}/bin/coverage html
+    ${buildout:directory}/bin/coverage report -m --fail-under=90
+    # Fail (exit status 1) if coverage returns exit status 2 (this happens
+    # when test coverage is below 100%.
+output = ${buildout:directory}/bin/test-coverage
+mode = 755
+
+
+[createcoverage]
+recipe = zc.recipe.egg
+eggs = createcoverage
+
+
+[robot]
+recipe = zc.recipe.egg
+eggs =
+    ${test:eggs}
+    plone.app.robotframework[debug,ride,reload]
+
+
+[releaser]
+recipe = zc.recipe.egg
+eggs = zest.releaser
+
+
+[i18ndude]
+recipe = zc.recipe.egg
+eggs = i18ndude
+
+[plone-helper-scripts]
+recipe = zc.recipe.egg
+eggs =
+   Products.CMFPlone
+   ${instance:eggs}
+interpreter = zopepy
+scripts =
+   zopepy
+   plone-compile-resources
+
+[versions]
+# Don't use a released version of {{{ package.dottedname }}}
+{{{ package.dottedname }}} =
+
+# override some version pinning from Plone:
+
+{{% if not plone.is_plone5 %}}
+# 2.1.1 is the last Plone 4.3 compatible version:
+plone.app.dexterity = 2.1.1
+{{% endif %}}
+
+# development dependencies
+setuptools =
+zc.buildout =
+plone.api = >=1.8.4
+mr.developer = >=1.38
+PyYAML = 3.12
+argh = 0.26.2
+args = 0.1.0
+check-manifest = 0.35
+clint = 0.5.1
+colorama = 0.3.7
+configparser = 3.5.0
+coverage = 3.7.1
+createcoverage = 1.5
+enum34 = 1.1.6
+flake8 = 3.3.0
+flake8-blind-except = 0.1.1
+flake8-coding = 1.3.0
+flake8-debugger = 1.4.0
+flake8-deprecated = 1.1
+flake8-isort = 2.1.3
+flake8-pep3101 = 1.0
+flake8-plone-api = 1.2
+flake8-plone-hasattr = 0.1
+flake8-polyfill = 1.0.1
+flake8-print = 2.0.2
+flake8-quotes = 0.9.0
+flake8-string-format = 0.2.3
+flake8-todo = 0.7
+i18ndude = 4.0.1
+isort = 4.2.5
+mccabe = 0.6.1
+pathtools = 0.1.2
+pkginfo = 1.4.1
+plone.recipe.codeanalysis = 2.2
+plone.testing = 5.0.0
+pycodestyle = 2.3.1
+pyflakes = 1.5.0
+requests-toolbelt = 0.7.1
+robotframework = 3.0
+robotframework-ride = 1.5.2.1
+robotframework-selenium2library = 1.7.4
+robotsuite = 1.7.0
+selenium = 2.53.6
+testfixtures = 4.13.4
+twine = 1.8.1
+watchdog = 0.8.3
+z3c.jbot = 0.7.2
+zc.recipe.egg = 2.0.3
+zest.releaser = 6.9

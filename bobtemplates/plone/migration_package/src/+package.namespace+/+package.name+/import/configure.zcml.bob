@@ -1,0 +1,29 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.transmogrifier">
+
+  <include package="collective.transmogrifier"/>
+  <include package="collective.transmogrifier" file="meta.zcml"/>
+
+  <transmogrifier:registerConfig
+      name="{{{ package.namespace }}}.import_content"
+      title="{{{ package.dottedname }}} (import)"
+      description="This pipeline imports content into a Plone site"
+      configuration="import_content.cfg"
+      />
+
+  <genericsetup:registerProfile
+      name="import_content"
+      title="{{{ package.dottedname }}} (import)"
+      directory="../profiles/import_content"
+      description="Content import step for {{{ package.namespace }}}"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+    <!--<utility
+        component=".blueprints.Example"
+        name="{{{ package.namespace }}}.example"/>-->
+
+</configure>

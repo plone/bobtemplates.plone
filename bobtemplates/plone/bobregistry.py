@@ -50,6 +50,14 @@ def plone_theme_barceloneta():
     return reg
 
 
+def plone_migration_package():
+    reg = RegEntry()
+    reg.template = 'bobtemplates.plone:migration_package'
+    reg.plonecli_alias = 'migration_package'
+    reg.depend_on = 'plone_addon'
+    return reg
+
+
 def plone_content_type():
     reg = RegEntry()
     reg.template = 'bobtemplates.plone:content_type'

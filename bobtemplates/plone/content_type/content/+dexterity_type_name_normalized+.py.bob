@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {{% if not dexterity_type_supermodel %}}
-from plone.app.textfield import RichText
-from plone.autoform import directives
+# from plone.app.textfield import RichText
+# from plone.autoform import directives
 {{% endif %}}
 {{% if dexterity_type_base_class == 'Container' %}}
 from plone.dexterity.content import Container
@@ -10,19 +10,21 @@ from plone.dexterity.content import Container
 from plone.dexterity.content import Item
 {{% endif %}}
 {{% if not dexterity_type_supermodel %}}
-from plone.namedfile import field as namedfile
+# from plone.namedfile import field as namedfile
 {{% endif %}}
 from plone.supermodel import model
 {{% if not dexterity_type_supermodel %}}
-from plone.supermodel.directives import fieldset
-from z3c.form.browser.radio import RadioFieldWidget
-from zope import schema
+# from plone.supermodel.directives import fieldset
+# from z3c.form.browser.radio import RadioFieldWidget
+# from zope import schema
 {{% endif %}}
 {{% if dexterity_type_create_class %}}
 from zope.interface import implementer
 {{% endif %}}
+
+
 {{% if not dexterity_type_supermodel %}}
-from {{{package.dottedname}}} import _
+# from {{{package.dottedname}}} import _
 {{% endif %}}
 
 

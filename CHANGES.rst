@@ -4,15 +4,18 @@ Changelog
 3.5.2 (unreleased)
 ------------------
 
+- Improve content_type sub-template, to reduce linting issues on created code
+  [MrTango]
+
 - Remove unnecessary dependency to python-slugify, fixes: #335 and #337
   [MrTango]
+
+- Add docs for view, viewlet and portlet
+  [kakshay21]
 
 
 3.5.1 (2018-10-23)
 ------------------
-
-- Add docs for view, viewlet and portlet
-  [kakshay21]
 
 - Refactor and fix docs
   [MrTango]

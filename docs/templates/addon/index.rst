@@ -7,7 +7,7 @@ Add-on template
     Creating an add-on package and extending it with  sub-template's.
 
 ..  toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :glob:
 
     */index

@@ -50,6 +50,7 @@ setup(
         'lxml',
         'case-conversion',
         'colorama',
+        'python-slugify',
     ],
     setup_requires=[],
     tests_require=[],

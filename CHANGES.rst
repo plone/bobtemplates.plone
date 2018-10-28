@@ -9,6 +9,7 @@ Changelog
 
 - Remove unnecessary dependency to python-slugify, fixes: #335 and #337
   [MrTango]
+- Nothing changed yet.
 
 - Add docs for view, viewlet and portlet
   [kakshay21]

@@ -24,11 +24,13 @@ from zope.component import queryUtility
 import unittest
 
 
+{{% if dexterity_type_supermodel %}}
 try:
     from plone.dexterity.schema import portalTypeToSchemaName
 except ImportError:
     # Plone < 5
     from plone.dexterity.utils import portalTypeToSchemaName
+{{% endif %}}
 
 
 class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):

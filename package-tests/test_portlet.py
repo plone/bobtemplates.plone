@@ -11,6 +11,19 @@ import os
 import pytest
 
 
+def test_pre_renderer():
+    configurator = Configurator(
+        template='bobtemplates.plone:portlet',
+        target_directory='.',
+        variables={
+            'portlet_name': 'My nice portlet, with umlauts: öÖÖÖÖ',
+        },
+    )
+    portlet.prepare_renderer(configurator)
+    expt = u'my_nice_portlet_with_umlauts_ooooo'
+    assert (configurator.variables['portlet_name_normalized'] == expt)
+
+
 def test_update_configure_zcml_with_changes(tmpdir):
     """Test configure changes when changes are already in place."""
     target_path = tmpdir.strpath + '/collective.demo'

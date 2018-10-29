@@ -18,6 +18,7 @@ import six
 import string
 import subprocess
 import sys
+import unicodedata
 
 
 try:
@@ -39,6 +40,26 @@ def to_boolean(value):
 # this is a custom filter which we can use in jinja template.
 # see https://github.com/plone/bobtemplates.plone/issues/292
 jinja2_env.filters['to_boolean'] = to_boolean
+
+
+def slugify(value):
+    """
+    Convert to ASCII and Convert spaces to hyphens.
+    Remove characters that aren't alphanumerics, underscores, or hyphens.
+    Convert to lowercase. Also strip leading and trailing whitespace.
+    """
+    value = value.decode('utf8')
+    value = unicodedata.normalize(
+        'NFKD',
+        value,
+    ).encode(
+        'ascii',
+        'ignore',
+    ).decode(
+        'ascii',
+    )
+    value = re.sub(r'[^\w\s-]', '', value).strip().lower()
+    return re.sub(r'[-\s]+', '-', value)
 
 
 def git_support_enabled(configurator, question):

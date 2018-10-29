@@ -179,10 +179,16 @@ Here is an example:
     author.name = Maik Derstappen
     author.email = md@derico.de
     author.github.user = MrTango
-    plone.version = 5.1-latest
-    package.git.init = True
-    package.git.autocommit = True
-    package.git.disabled = False
+    plone.version = 5.1.3-pending
+    #package.git.init = y
+    #package.git.autocommit = n
+    #package.git.disabled = n
+
+    [defaults]
+    dexterity_type_global_allow = n
+    dexterity_type_filter_content_types = y
+    dexterity_type_activate_default_behaviors = n
+    dexterity_type_supermodel = n
 
 
 Contribute

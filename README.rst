@@ -198,6 +198,11 @@ Contribute
 - Source Code: https://github.com/plone/bobtemplates.plone
 - Documentation: https://docs.plone.org/develop/addons/bobtemplates.plone/docs/ or https://bobtemplatesplone.readthedocs.io/en/latest/
 
+Develop
+-------
+
+To develop, checkout this repository. 
+Testing and checks or done via ``tox``, not ``buildout`` in this Package, as bobtemplates.plone is a general Python package not Zope/Plone subpackage.
 
 Support
 =======

@@ -5,7 +5,6 @@ from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from lxml import etree
-from slugify import slugify
 
 import case_conversion as cc
 import os
@@ -161,7 +160,7 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'portlet'
     portlet_name = configurator.variables['portlet_name']
-    normalized_portlet_name = cc.snakecase(slugify(portlet_name))  # NOQA: E501
+    normalized_portlet_name = '_'.join(portlet_name.lower().strip().split())
     configurator.variables['portlet_name_normalized'] = normalized_portlet_name
     portlet_config_name = cc.pascalcase(normalized_portlet_name)
     configurator.variables['portlet_configuration_name'] = u'{0}.portlets.{1}'.format(  # NOQA: E501

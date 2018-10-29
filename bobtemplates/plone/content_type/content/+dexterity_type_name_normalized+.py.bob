@@ -25,9 +25,9 @@ from zope.interface import implementer
 
 {{% if not dexterity_type_supermodel %}}
 # from {{{package.dottedname}}} import _
+
+
 {{% endif %}}
-
-
 class I{{{ dexterity_type_name_klass }}}(model.Schema):
 {{% if dexterity_type_supermodel %}}
     """ Marker interface for {{{ dexterity_type_name_klass }}}
@@ -35,6 +35,10 @@ class I{{{ dexterity_type_name_klass }}}(model.Schema):
 {{% else %}}
     """ Marker interface and Dexterity Python Schema for {{{ dexterity_type_name_klass }}}
     """
+    # If you want, you can load a xml model created TTW here
+    # and customize it in Python:
+
+    # model.load('{{{ dexterity_type_name_normalized }}}.xml')
 
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(

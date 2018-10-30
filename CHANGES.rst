@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.5.2 (unreleased)
+3.5.2 (2018-10-30)
 ------------------
 
 - Improve content_type sub-template, to reduce linting issues on created code

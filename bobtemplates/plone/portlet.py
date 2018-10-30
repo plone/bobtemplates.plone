@@ -4,8 +4,8 @@
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
+from bobtemplates.plone.utils import slugify
 from lxml import etree
-from base import slugify
 
 import case_conversion as cc
 import os

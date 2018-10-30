@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+import re
 import six
 import unicodedata
-import re
 
 
 def safe_unicode(value, encoding='utf-8'):

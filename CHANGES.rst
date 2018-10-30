@@ -4,6 +4,9 @@ Changelog
 3.5.2 (unreleased)
 ------------------
 
+- Add a template for creating a migration package
+  [cdw9]
+
 - Improve content_type sub-template, to reduce linting issues on created code
   [MrTango]
 

@@ -16,7 +16,9 @@ def test_pre_renderer():
         template='bobtemplates.plone:portlet',
         target_directory='.',
         variables={
-            'portlet_name': 'My nice portlet, with umlauts: öÖÖÖÖ',
+            'portlet_name': u'My nice portlet, with umlauts: öÖÖÖÖ'.encode(
+                'utf8',
+            ),
         },
     )
     portlet.prepare_renderer(configurator)
@@ -234,7 +236,7 @@ def test_update_portlets_xml(tmpdir):
             'non_interactive': True,
         },
         variables={
-            'portlet_name': 'My Weather',
+            'portlet_name': u'My Weather',
             'portlet_name_normalized': 'my_weather',
             'portlet_configuration_name': 'collective.sample.portlets.MyWeather',  # NOQA: E501
             'package_folder': package_path,
@@ -320,7 +322,7 @@ def test_update_portlets_xml_with_changes(tmpdir):
             'non_interactive': True,
         },
         variables={
-            'portlet_name': 'My Weather',
+            'portlet_name': u'My Weather',
             'portlet_name_normalized': 'my_weather',
             'portlet_configuration_name': 'collective.sample.portlets.MyWeather',  # NOQA: E501
             'package_folder': package_path,
@@ -537,7 +539,7 @@ class Renderer(base.Renderer):
             'non_interactive': True,
         },
         variables={
-            'portlet_name': 'My Weather',
+            'portlet_name': u'My Weather',
             'plone.version': '5.1',
         },
     )

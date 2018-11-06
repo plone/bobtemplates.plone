@@ -1,7 +1,13 @@
 Changelog
 =========
 
-3.5.2 (unreleased)
+3.5.3 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
+3.5.2 (2018-10-30)
 ------------------
 
 - Add a template for creating a migration package
@@ -10,9 +16,11 @@ Changelog
 - Improve content_type sub-template, to reduce linting issues on created code
   [MrTango]
 
-- Remove unnecessary dependency to python-slugify, fixes: #335 and #337
+- Replace python-slugify by custom slugify method, fixes #335 and #337
   [MrTango]
-- Nothing changed yet.
+
+- Added safe_unicode/safe_encode and safe_nativestring methods in utils
+  [MrTango]
 
 - Add docs for view, viewlet and portlet
   [kakshay21]

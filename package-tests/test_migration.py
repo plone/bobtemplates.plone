@@ -9,7 +9,7 @@ import os
 def test_pre_render():
     configurator = Configurator(
         template='bobtemplates.plone:migration_package',
-        target_directory='collective.foo.bar',
+        target_directory='collective.migration',
         variables={
             'package.dexterity_type_name': 'Task',
         },
@@ -18,8 +18,8 @@ def test_pre_render():
 
 
 def test_cleanup_package(tmpdir):
-    target_path = tmpdir.strpath + '/collective.foo.bar'
-    package_path = target_path + '/src/collective/foo/bar'
+    target_path = tmpdir.strpath + '/collective.migration'
+    package_path = target_path + '/src/collective/migration'
     profiles_path = package_path + '/profiles/default'
     os.makedirs(target_path)
     os.makedirs(package_path)
@@ -44,8 +44,7 @@ def test_cleanup_package(tmpdir):
         variables={
             'package.nested': True,
             'package.namespace': 'collective',
-            'package.namespace2': 'foo',
-            'package.name': 'bar',
+            'package.name': 'migration',
             'year': 1970,
             'package.git.init': True,
             'package.description': 'Test',

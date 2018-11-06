@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import logging
 from collective.transmogrifier.interfaces import ISection
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from collective.transmogrifier.utils import defaultKeys
@@ -8,7 +7,10 @@ from Products.CMFPlone.utils import safe_unicode
 from zope.interface import classProvides
 from zope.interface import implements
 
-logger = logging.getLogger("Transmogrifier")
+import logging
+
+
+logger = logging.getLogger('Transmogrifier')
 
 
 class Example(object):
@@ -38,14 +40,15 @@ class Example(object):
             # if you need to get the object (after the constructor part)
             obj = self.context.unrestrictedTraverse(
                 safe_unicode(item['_path'].lstrip('/')).encode('utf-8'),
-                None)
+                None,
+            )
             if not obj:
                 yield item
                 continue
 
             # do things here
 
-            logger.info("[processing path] {0}".format(pathkey))
+            logger.info('[processing path] %s', pathkey)
 
             # always end with yielding the item,
             # unless you don't want it imported, or want

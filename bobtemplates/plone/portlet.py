@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Generate portlet."""
 
-from bobtemplates.plone.base import slugify
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
+from bobtemplates.plone.base import slugify
 from bobtemplates.plone.base import update_file
 from lxml import etree
 

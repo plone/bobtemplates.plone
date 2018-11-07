@@ -2,42 +2,60 @@
 
 environment:
   matrix:
-    - PYTHON: "C:\\Python27"
+    - PROFILE: py27-conventions
+      PYTHON_VERSION: "2.7"
       TOXENV: "lint-py27,docs"
-#    - PYTHON: "C:\\Python36"
-#      TOXENV: "lint-py36,docs"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-packagetests"
-#    - PYTHON: "C:\\Python34"
-#      TOXENV: "py34-packagetests"
-#    - PYTHON: "C:\\Python35"
-#      TOXENV: "py35-packagetests"
-#    - PYTHON: "C:\\Python36"
-#      TOXENV: "py36-packagetests"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-4.3-template-addon"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-5.0-template-addon"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-5.1-template-addon"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-4.3-template-addon_content_type"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-5.0-template-addon_content_type"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-5.1-template-addon_content_type"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-4.3-template-addon_theme"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-5.0-template-addon_theme"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-5.1-template-addon_theme"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-4.3-template-theme_package"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-5.0-template-theme_package"
-#    - PYTHON: "C:\\Python27"
-#      TOXENV: "py27-skeletontests-Plone-5.1-template-theme_package"
+    - PROFILE: py36-conventions
+      PYTHON_VERSION: "3.6"
+      TOXENV: "lint-py36,docs"
+    - PROFILE: py27-packagetests
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-packagetests"
+    - PROFILE: py3.4-packagetests
+      PYTHON_VERSION: "3.4"
+      TOXENV: "py34-packagetests"
+    - PROFILE: py35-packagetests
+      PYTHON_VERSION: "3.5"
+      TOXENV: "py35-packagetests"
+    - PROFILE: py36-packagetests
+      PYTHON_VERSION: "3.6"
+      TOXENV: "py36-packagetests"
+    - PROFILE: py27-skeletontests-Plone-4.3-template-addon
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-4.3-template-addon"
+    - PROFILE: py27-skeletontests-Plone-5.0-template-addon
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-5.0-template-addon"
+    - PROFILE: py27-skeletontests-Plone-5.1-template-addon
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-5.1-template-addon"
+    - PROFILE: py27-skeletontests-Plone-4.3-template-addon_content_type
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-4.3-template-addon_content_type"
+    - PROFILE: py27-skeletontests-Plone-5.0-template-addon_content_type
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-5.0-template-addon_content_type"
+    - PROFILE: py27-skeletontests-Plone-5.1-template-addon_content_type
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-5.1-template-addon_content_type"
+    - PROFILE: py27-skeletontests-Plone-4.3-template-addon_theme
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-4.3-template-addon_theme"
+    - PROFILE: py27-skeletontests-Plone-5.0-template-addon_theme
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-5.0-template-addon_theme"
+    - PROFILE: py27-skeletontests-Plone-5.1-template-addon_theme
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-5.1-template-addon_theme"
+    - PROFILE: py27-skeletontests-Plone-4.3-template-theme_package
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-4.3-template-theme_package"
+    - PROFILE: py27-skeletontests-Plone-5.0-template-theme_package
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-5.0-template-theme_package"
+    - PROFILE: py27-skeletontests-Plone-5.1-template-theme_package
+      PYTHON_VERSION: "2.7"
+      TOXENV: "py27-skeletontests-Plone-5.1-template-theme_package"
 
 cache:
   - '%LOCALAPPDATA%\pip\Cache'

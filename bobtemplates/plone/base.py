@@ -243,8 +243,8 @@ def set_plone_version_variables(configurator, version):
         else:
             configurator.variables['plone.is_plone5'] = False
     if 'plone.is_plone51' not in configurator.variables:
-        # Find out if it is supposed to be Plone 5.1
-        if version.startswith('5.1'):
+        # Find out if it is supposed to be Plone 5.1 or higher
+        if version.startswith('5.1') or version.startswith('5.2'):
             configurator.variables['plone.is_plone51'] = True
         else:
             configurator.variables['plone.is_plone51'] = False

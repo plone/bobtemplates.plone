@@ -252,9 +252,9 @@ def set_plone_version_variables(configurator, version):
 
 def get_git_info(value):
     """Try to get information from the git-config."""
-    gitargs = ['git', 'config', '--get']
+    gitargs = 'git config --get'
     try:
-        result = subprocess.check_output(gitargs + [value]).strip()
+        result = subprocess.getoutput('%s %s' % (gitargs, value)).strip()
         return result
     except (OSError, subprocess.CalledProcessError):
         pass

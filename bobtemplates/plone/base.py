@@ -229,11 +229,12 @@ def set_global_vars(configurator):
     if not version and bob_config:
         print('>>> reading Plone version from bobtemplate.cfg')
         version = bob_config.version
-    set_plone_version_variables(configurator, version)
+    configurator.variables['plone.version'] = version
+    set_plone_version_variables(configurator)
 
 
-def set_plone_version_variables(configurator, version):
-    version = configurator.variables.get('plone.version', version)
+def set_plone_version_variables(configurator):
+    version = configurator.variables.get('plone.version')
     if not version:
         return
     if 'plone.is_plone5' not in configurator.variables:

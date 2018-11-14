@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from bobtemplates.plone import addon
+from bobtemplates.plone import base
 from mrbob.configurator import Configurator
 
 import os
 
 
-def test_pre_render():
+def test_pre_render(tmpdir):
     configurator = Configurator(
         template='bobtemplates.plone:addon',
-        target_directory='collective.foo.bar',
+        target_directory=tmpdir.strpath + 'collective.foo.bar',
         variables={
             'package.dexterity_type_name': 'Task',
         },
@@ -57,4 +58,5 @@ def test_cleanup_package(tmpdir):
         },
     )
     assert configurator
+    base.set_global_vars(configurator)
     configurator.render()

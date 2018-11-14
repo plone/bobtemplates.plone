@@ -261,7 +261,9 @@ def get_git_info(value):
     """Try to get information from the git-config."""
     gitargs = 'git config --get'
     try:
-        result = subprocess.getoutput('%s %s' % (gitargs, value)).strip()
+        result = subprocess.getoutput(
+            '${0} ${0}'.format((gitargs, value)),
+        ).strip()
         return result
     except (OSError, subprocess.CalledProcessError):
         pass

@@ -105,7 +105,7 @@ version=5.1
     base.set_plone_version_variables(configurator)
     assert configurator.variables.get('plone.is_plone5')
     assert not configurator.variables.get('plone.is_plone51')
-    assert not configurator.variables.get('plone.minor_version')
+    assert configurator.variables.get('plone.minor_version') == '5'
 
     configurator = Configurator(
         template='bobtemplates.plone:addon',
@@ -117,7 +117,7 @@ version=5.1
     base.set_plone_version_variables(configurator)
     assert configurator.variables.get('plone.is_plone5')
     assert configurator.variables.get('plone.is_plone51')
-    assert configurator.variables.get('plone.minor_version') == 1
+    assert configurator.variables.get('plone.minor_version') == '5.1'
 
     configurator = Configurator(
         template='bobtemplates.plone:addon',
@@ -129,7 +129,7 @@ version=5.1
     base.set_plone_version_variables(configurator)
     assert not configurator.variables.get('plone.is_plone5')
     assert not configurator.variables.get('plone.is_plone51')
-    assert configurator.variables.get('plone.minor_version') == 3
+    assert configurator.variables.get('plone.minor_version') == '4.3'
 
 
 def test_dottedname_to_path():

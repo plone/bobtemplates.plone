@@ -233,8 +233,8 @@ def set_global_vars(configurator):
     set_plone_version_variables(configurator)
 
 
-def set_plone_version_variables(configurator):
-    version = configurator.variables.get('plone.version')
+def set_plone_version_variables(configurator, answer=None):
+    version = configurator.variables.get('plone.version', answer)
     if not version:
         return
     if 'plone.is_plone5' not in configurator.variables:
@@ -259,14 +259,14 @@ def set_plone_version_variables(configurator):
 
 def get_git_info(value):
     """Try to get information from the git-config."""
-    gitargs = 'git config --get'
+    gitargs = [b'git', b'config', b'--get']
     try:
-        result = subprocess.getoutput(
-            '${0} ${0}'.format((gitargs, value)),
+        result = subprocess.check_output(
+            gitargs + [value],
         ).strip()
         return result
     except (OSError, subprocess.CalledProcessError):
-        pass
+        return 'FakeGitUserOrEmail'
 
 
 def validate_packagename(configurator):

@@ -7,7 +7,7 @@ Setup dev environment
 
 In the package folder create a virtualenv and install the package:
 
-.. code-block:: console
+.. code-block:: shell
 
    virtualenv --clear .
    ./bin/python setup.py develop
@@ -115,22 +115,22 @@ We use here global unique template names which have the ``plone_`` prefix. Thats
 Testing
 =======
 
-All templates and subtemplates should have tests for the structure they provide.
+All templates and sub-templates should have tests for the structure they provide.
 
 These tests will give the developers a good starting point. So that they only need to write test for there own code.
-Also these tests will be called by tox and on travis to make sure all by bobtemplates.plone created structures are working and tested.
+Also these tests will be called by Tox and on Travis to make sure all by bobtemplates.plone created structures are working and tested.
 
 To run these test we run all templates in every combination and run the tests inside the created packages.
 
 This could be for example the ``addon`` alone. Or for a package with Dexterity content types,
-first the ``addon`` template and then inside the created package the ``content_type`` subtemplate.
+first the ``addon`` template and then inside the created package the ``content_type`` sub-template.
 
 The tests are running after all templates for a case are applied.
 
 To run all tests locally, just run ``tox`` without any parameter.
 You can also run individual tests for a specific environment. To get a list of all environments run ``tox -l``.
 
-.. code-block:: console
+.. code-block:: shell
 
    tox -l
    py27-packagetests
@@ -160,19 +160,25 @@ You can also run individual tests for a specific environment. To get a list of a
 
 You can run just one of them:
 
-.. code-block:: console
+.. code-block:: sh
 
    tox -e py27-skeletontests-Plone-5.1-template-addon
 
 or call all of the same template but for different Plone versions:
 
-.. code-block:: console
+.. code-block:: shell
 
    tox -e py27-skeletontests-Plone-4.3-template-addon_content_type,py27-skeletontests-Plone-5.0-template-addon_content_type,py27-skeletontests-Plone-5.1-template-addon_content_type
 
 .. note::
 
    There is no empty space between the list elements!
+
+Running a specific test:
+
+.. code-block:: shell
+
+    $ tox -e py36-packagetests -- -k test_set_global_vars
 
 By the time or writing this, we have the following test cases (combinations), which we are testing:
 

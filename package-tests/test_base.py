@@ -70,7 +70,7 @@ version=5.1
         target_directory=target_dir,
         variables={
             'year': 1970,
-            'plone.version': '5.0-latest',
+            'plone.version': '5.1-latest',
         },
     )
     base.set_global_vars(configurator)
@@ -83,6 +83,53 @@ version=5.1
         },
     )
     base.set_global_vars(configurator)
+
+
+def test_set_plone_version_variables(tmpdir):
+    template = """
+[main]
+version=5.1
+"""
+    target_dir = tmpdir.strpath + '/collective.foo'
+    os.mkdir(target_dir)
+    with open(os.path.join(target_dir + '/bobtemplate.cfg'), 'w') as f:
+        f.write(template)
+
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory=target_dir,
+        variables={
+            'plone.version': '5',
+        },
+    )
+    base.set_plone_version_variables(configurator)
+    assert configurator.variables.get('plone.is_plone5')
+    assert not configurator.variables.get('plone.is_plone51')
+    assert configurator.variables.get('plone.minor_version') == '5'
+
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory=target_dir,
+        variables={
+            'plone.version': '5.1',
+        },
+    )
+    base.set_plone_version_variables(configurator)
+    assert configurator.variables.get('plone.is_plone5')
+    assert configurator.variables.get('plone.is_plone51')
+    assert configurator.variables.get('plone.minor_version') == '5.1'
+
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory=target_dir,
+        variables={
+            'plone.version': '4.3',
+        },
+    )
+    base.set_plone_version_variables(configurator)
+    assert not configurator.variables.get('plone.is_plone5')
+    assert not configurator.variables.get('plone.is_plone51')
+    assert configurator.variables.get('plone.minor_version') == '4.3'
 
 
 def test_dottedname_to_path():

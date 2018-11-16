@@ -229,11 +229,12 @@ def set_global_vars(configurator):
     if not version and bob_config:
         print('>>> reading Plone version from bobtemplate.cfg')
         version = bob_config.version
-    set_plone_version_variables(configurator, version)
+    configurator.variables['plone.version'] = version
+    set_plone_version_variables(configurator)
 
 
-def set_plone_version_variables(configurator, version):
-    version = configurator.variables.get('plone.version', version)
+def set_plone_version_variables(configurator, answer=None):
+    version = configurator.variables.get('plone.version', answer)
     if not version:
         return
     if 'plone.is_plone5' not in configurator.variables:
@@ -242,6 +243,12 @@ def set_plone_version_variables(configurator, version):
             configurator.variables['plone.is_plone5'] = True
         else:
             configurator.variables['plone.is_plone5'] = False
+    if 'plone.is_plone51' not in configurator.variables:
+        # Find out if it is supposed to be Plone 5.1 or higher
+        if version.startswith('5.1') or version.startswith('5.2'):
+            configurator.variables['plone.is_plone51'] = True
+        else:
+            configurator.variables['plone.is_plone51'] = False
     if 'plone.minor_version' not in configurator.variables:
         # extract minor version (4.3)
         # (according to https://plone.org/support/version-support-policy)
@@ -252,12 +259,14 @@ def set_plone_version_variables(configurator, version):
 
 def get_git_info(value):
     """Try to get information from the git-config."""
-    gitargs = ['git', 'config', '--get']
+    gitargs = [b'git', b'config', b'--get']
     try:
-        result = subprocess.check_output(gitargs + [value]).strip()
+        result = subprocess.check_output(
+            gitargs + [value],
+        ).strip()
         return result
     except (OSError, subprocess.CalledProcessError):
-        pass
+        return 'FakeGitUserOrEmail'
 
 
 def validate_packagename(configurator):

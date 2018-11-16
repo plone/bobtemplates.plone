@@ -4,7 +4,11 @@ Changelog
 3.5.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for Python 3.
+  [pbauer]
+
+- Replace portal_quickinstaller in tests for Plone 5.1+.
+  [pbauer]
 
 
 3.5.2 (2018-10-30)

@@ -80,7 +80,7 @@ def _update_views_configure_zcml(configurator):
      template="{3}.pt"
      permission="zope2.View"
      />
-        """.format(
+""".format(
             configurator.variables['view_name'],
             configurator.variables['view_python_file_name'],
             configurator.variables['view_python_class_name'],
@@ -95,7 +95,7 @@ def _update_views_configure_zcml(configurator):
        template="{1}.pt"
        permission="zope2.View"
        />
-       """.format(
+""".format(
             configurator.variables['view_name'],
             configurator.variables['view_template_name'],
         )
@@ -108,7 +108,7 @@ def _update_views_configure_zcml(configurator):
        class=".{1}.{2}"
        permission="zope2.View"
        />
-       """.format(
+""".format(
             configurator.variables['view_name'],
             configurator.variables['view_python_file_name'],
             configurator.variables['view_python_class_name'],

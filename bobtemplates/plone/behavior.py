@@ -31,7 +31,7 @@ def _update_package_configure_zcml(configurator):
     insert_str = """
     <include package=".behaviors" />
 
-        """
+"""
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -73,7 +73,7 @@ def _update_behaviors_configure_zcml(configurator):
         marker=".{normalized_name}.I{klass_name}"
         />
 
-        """.format(
+""".format(
         title=configurator.variables['behavior_name_klass'],
         description=configurator.variables['behavior_description'],
         normalized_name=configurator.variables['behavior_name_normalized'],

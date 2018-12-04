@@ -184,7 +184,7 @@ def _update_rolemap_xml(configurator):
       <role name="Contributor"/>
     </permission>
 
-        """.format(
+""".format(
         configurator.variables['package.dottedname'],
         configurator.variables['dexterity_type_name_klass'],
     )
@@ -216,7 +216,7 @@ def _update_permissions_zcml(configurator):
         title="{0}: Add {1}"
     />
 
-        """.format(
+""".format(
         configurator.variables['package.dottedname'],
         configurator.variables['dexterity_type_name_klass'],
     )

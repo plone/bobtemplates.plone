@@ -29,7 +29,7 @@ def _update_package_configure_zcml(configurator):
     insert_str = """
     <include package=".vocabularies" />
 
-        """
+"""
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -67,7 +67,7 @@ def _update_vocabularies_configure_zcml(configurator):
         name="{2}.{1}"
     />
 
-        """.format(
+""".format(
         configurator.variables['vocabulary_name_normalized'],
         configurator.variables['vocabulary_name_klass'],
         configurator.variables['package.dottedname'],

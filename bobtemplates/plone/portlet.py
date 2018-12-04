@@ -107,7 +107,7 @@ def _update_portlets_xml(configurator):
     <!--<for interface="plone.app.portlets.interfaces.IDashboard" />-->
 
   </portlet>
-    """.format(
+""".format(
         configurator.variables['portlet_configuration_name'],
         configurator.variables['portlet_name'],
         configurator.variables['portlet_name_normalized'],

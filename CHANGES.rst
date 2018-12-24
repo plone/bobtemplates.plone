@@ -10,6 +10,10 @@ Changelog
 - Replace portal_quickinstaller in tests for Plone 5.1+.
   [pbauer]
 
+- Avoid linty issues in zcml files in updateing method for zcml files
+  [MrTango]
+
+
 
 3.5.2 (2018-10-30)
 ------------------

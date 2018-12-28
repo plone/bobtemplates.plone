@@ -2,6 +2,7 @@
 from colorama import Fore
 from colorama import Style
 from datetime import date
+from lxml import etree
 from mrbob import hooks
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import SkipQuestion
@@ -335,6 +336,40 @@ def is_string_in_file(configurator, file_path, match_str):
 def make_path(*args):
     """generate path string."""
     return os.sep.join(args)
+
+
+def update_configure_zcml(
+    configurator,
+    path,
+    file_name=None,
+    example_file_name=None,
+    match_xpath=None,
+    match_str=None,
+    insert_str=None,
+):
+    if path[-1] != '/':
+        path += '/'
+    file_path = os.path.join(path, file_name)
+    if example_file_name:
+        example_file_path = os.path.join(path, example_file_name)
+        file_list = os.listdir(os.path.dirname(path))
+        if file_name not in file_list:
+            print('rename example zcml file')
+            os.rename(example_file_path, file_path)
+    namespaces = '{http://namespaces.zope.org/zope}'
+    with open(file_path, 'r') as xml_file:
+        parser = etree.XMLParser(remove_blank_text=True)
+        tree = etree.parse(xml_file, parser)
+        tree_root = tree.getroot()
+        match_xpath = '{0}{1}'.format(namespaces, match_xpath)
+        if len(tree_root.findall(match_xpath)):
+            print(
+                '{0} already in configure.zcml, skip adding!'.format(
+                    match_xpath,
+                ),
+            )
+            return
+    update_file(configurator, file_path, match_str, insert_str)
 
 
 def update_file(configurator, file_path, match_str, insert_str):

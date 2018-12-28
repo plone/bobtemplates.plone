@@ -467,6 +467,13 @@ def base_prepare_renderer(configurator):
     return configurator
 
 
+def remove_unwanted_files(file_paths):
+    for file_path in file_paths:
+        if not os.path.isfile(file_path):
+            continue
+        os.remove(file_path)
+
+
 def subtemplate_warning(configurator, question):
     """Show a warning to the user before using subtemplates!"""
     print("""

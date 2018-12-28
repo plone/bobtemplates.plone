@@ -67,6 +67,7 @@ setup(
             'plone_theme_barceloneta = bobtemplates.plone.bobregistry:plone_theme_barceloneta',  # NOQA E501
             'plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary',  # NOQA E501
             'plone_behavior = bobtemplates.plone.bobregistry:plone_behavior',  # NOQA E501
+            'plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service',  # NOQA E501
         ],
     },
 )

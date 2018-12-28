@@ -96,3 +96,11 @@ def plone_behavior():
     reg.plonecli_alias = 'behavior'
     reg.depend_on = 'plone_addon'
     return reg
+
+
+def plone_restapi_service():
+    reg = RegEntry()
+    reg.template = 'bobtemplates.plone:restapi_service'
+    reg.plonecli_alias = 'restapi_service'
+    reg.depend_on = 'plone_addon'
+    return reg

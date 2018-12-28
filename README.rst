@@ -53,6 +53,7 @@ These templates are meant to be used inside a package which was created by the a
 
 - behavior
 - content_type
+- restapi_service
 - theme
 - theme_barceloneta
 - view

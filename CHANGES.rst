@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.6.0b1 (unreleased)
-------------------
+3.6.0b1 (2018-12-28)
+--------------------
 
 - Add support for Python 3.
   [pbauer]

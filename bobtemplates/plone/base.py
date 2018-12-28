@@ -2,6 +2,7 @@
 from colorama import Fore
 from colorama import Style
 from datetime import date
+from lxml import etree
 from mrbob import hooks
 from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import SkipQuestion
@@ -337,6 +338,40 @@ def make_path(*args):
     return os.sep.join(args)
 
 
+def update_configure_zcml(
+    configurator,
+    path,
+    file_name=None,
+    example_file_name=None,
+    match_xpath=None,
+    match_str=None,
+    insert_str=None,
+):
+    if path[-1] != '/':
+        path += '/'
+    file_path = os.path.join(path, file_name)
+    if example_file_name:
+        example_file_path = os.path.join(path, example_file_name)
+        file_list = os.listdir(os.path.dirname(path))
+        if file_name not in file_list:
+            print('rename example zcml file')
+            os.rename(example_file_path, file_path)
+    namespaces = '{http://namespaces.zope.org/zope}'
+    with open(file_path, 'r') as xml_file:
+        parser = etree.XMLParser(remove_blank_text=True)
+        tree = etree.parse(xml_file, parser)
+        tree_root = tree.getroot()
+        match_xpath_ns = '{0}{1}'.format(namespaces, match_xpath)
+        if len(tree_root.findall(match_xpath_ns)):
+            print(
+                '{0} already in configure.zcml, skip adding!'.format(
+                    insert_str,
+                ),
+            )
+            return
+    update_file(configurator, file_path, match_str, insert_str)
+
+
 def update_file(configurator, file_path, match_str, insert_str):
     """Insert insert_str into given file, by match_str."""
     changed = False
@@ -430,6 +465,13 @@ def base_prepare_renderer(configurator):
     configurator.target_directory = \
         configurator.variables['package.root_folder']
     return configurator
+
+
+def remove_unwanted_files(file_paths):
+    for file_path in file_paths:
+        if not os.path.isfile(file_path):
+            continue
+        os.remove(file_path)
 
 
 def subtemplate_warning(configurator, question):

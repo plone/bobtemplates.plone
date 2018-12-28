@@ -361,11 +361,11 @@ def update_configure_zcml(
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        match_xpath = '{0}{1}'.format(namespaces, match_xpath)
-        if len(tree_root.findall(match_xpath)):
+        match_xpath_ns = '{0}{1}'.format(namespaces, match_xpath)
+        if len(tree_root.findall(match_xpath_ns)):
             print(
                 '{0} already in configure.zcml, skip adding!'.format(
-                    match_xpath,
+                    insert_str,
                 ),
             )
             return

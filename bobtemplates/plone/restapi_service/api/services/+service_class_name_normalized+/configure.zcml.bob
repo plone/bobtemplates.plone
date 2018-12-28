@@ -1,0 +1,15 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:plone="http://namespaces.plone.org/plone">
+
+  <adapter factory=".get.{{{ service_class_name }}}" name="{{{ service_name_normalized }}}"/>
+
+  <plone:service
+    method="GET"
+    for="zope.interface.Interface"
+    factory=".get.{{{ service_class_name }}}"
+    name="@{{{ service_name_normalized }}}"
+    permission="zope2.View"
+    />
+
+</configure>

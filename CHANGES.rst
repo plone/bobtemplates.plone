@@ -1,7 +1,7 @@
 Changelog
 =========
 
-3.5.3 (unreleased)
+3.6.0b1 (unreleased)
 ------------------
 
 - Add support for Python 3.
@@ -13,6 +13,11 @@ Changelog
 - Avoid linty issues in zcml files in updateing method for zcml files
   [MrTango]
 
+- provide generic methods remove_unwanted_files/update_configure_zcml
+  [MrTango]
+
+- Add restapi_service sub-template
+  [MrTango]
 
 
 3.5.2 (2018-10-30)

@@ -357,7 +357,7 @@ from plone.portlets.interfaces import IPortletDataProvider
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form import field
 from zope.component import getMultiAdapter
-from zope.interface import implements
+from zope.interface import implementer
 
 import json
 import urllib
@@ -373,8 +373,8 @@ class IMyWeatherPortlet(IPortletDataProvider):
     )
 
 
+@implementer(IMyWeatherPortlet)
 class Assignment(base.Assignment):
-    implements(IMyWeatherPortlet)
     schema = IMyWeatherPortlet
 
     def __init__(self, place_str='delhi,in'):

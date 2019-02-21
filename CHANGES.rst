@@ -9,7 +9,8 @@ Changelog
 3.6.0b2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Use @implementer decorator instead of implements.
+  [erral]
 
 
 3.6.0b1 (2018-12-28)

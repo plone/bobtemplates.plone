@@ -4,7 +4,7 @@
   xmlns:plone="http://namespaces.plone.org/plone">
 
   <include package="plone.app.portlets" />
-  
-  '-*- extra stuff goes here -*-'
+
+  <!-- '-*- extra stuff goes here -*-' -->
 
 </configure>

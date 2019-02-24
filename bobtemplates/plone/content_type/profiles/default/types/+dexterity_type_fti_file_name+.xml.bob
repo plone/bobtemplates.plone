@@ -134,7 +134,11 @@
   <action
       action_id="edit"
       category="object"
+{{% if dexterity_type_activate_default_behaviors %}}
       condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user|python:True"
+{{% else %}}
+      condition_expr=""
+{{% endif %}}
       i18n:attributes="title"
       title="Edit"
       url_expr="string:${object_url}/edit"

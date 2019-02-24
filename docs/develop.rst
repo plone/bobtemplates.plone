@@ -16,7 +16,7 @@ In the package folder create a virtualenv and install the package:
 Intro
 =====
 
-We can have standalone templates and subtemplates for bobtemplates.plone.
+We can have standalone templates and sub-templates for bobtemplates.plone.
 By convention we will have a python module and a template folder for every template and use some generic functions from the base module.
 
 All templates are living inside the ``bobtemplates/plone`` folder, in their own template folder.
@@ -32,15 +32,15 @@ Standalone templates are normal templates for mrbob, which are meant to live sta
 Examples are the ``buildout`` and ``addon`` templates. For details see the documentation of the mrbob package.
 
 
-Subtemplates
+Sub-templates
 ============
 
-Subtemplates are templates which are living inside an existing package created by a standalone template like the ``addon`` template.
+Sub-templates are templates which are living inside an existing package created by a standalone template like the ``addon`` template.
 These templates extend the existing standalone template structure by new features like a ``theme`` or a ``content_type``.
 
-Subtemplates are searching first for the ``setup.py`` and a ``bobtemplate.cfg`` file inside the package and configure all needed parameters with this information.
+Sub-templates are searching first for the ``setup.py`` and a ``bobtemplate.cfg`` file inside the package and configure all needed parameters with this information.
 See also :doc:`upgrade-packages` to see how to upgrade an existing package to be compatible with sub-templates.
-Every subtemplate should define a ``pre_renderer`` and a ``post_renderer`` hook in their ``.mrbob.ini`` which points to a method in their sub-templates module.
+Every sub-template should define a ``pre_renderer`` and a ``post_renderer`` hook in their ``.mrbob.ini`` which points to a method in their sub-templates module.
 
 .. code-block:: ini
 
@@ -71,7 +71,7 @@ As you can see, by convention we define a template_id here. We also call the bas
    configurator.target_directory = configurator.variables['package_folder']
 
 
-The ``post_renderer`` method is a good place to update configuration files, like we do for example in the ``theme`` and ``content_type`` subtemplates.
+The ``post_renderer`` method is a good place to update configuration files, like we do for example in the ``theme`` and ``content_type`` sub-templates.
 
 You can also print some useful advice for the developer here, as we do in the ``vocabulary`` sub-template for example.
 
@@ -79,8 +79,10 @@ You can also print some useful advice for the developer here, as we do in the ``
 Template Registration
 =====================
 
-Even though you can use bobtemplates without registration, we should register the template to allow plonecli and future mrbob versions to query for it.
-The registration is done either by adding a Python entry point into the ``setup.py`` of ``bobtemplates.plone`` or by adding your own custom ``bobtemplates`` package with a short method to the ``bobregistry.py`` file.
+Even though you can use bobtemplates without registration, you should register the template to allow plonecli and future mrbob versions to query for it.
+The registration is done by adding a Python entry point into the ``setup.py`` of ``bobtemplates.plone`` and by adding a short method to the ``bobregistry.py`` file.
+You can of course create your own custom package, analog to bobtemplates.plone and register your templates plonecli the same way.
+
 Let's look first on the entry point:
 
 .. code-block:: python
@@ -103,7 +105,7 @@ This registers every template globally for mrbob and tools like plonecli. The fi
         reg.depend_on = 'plone_addon'
         return reg
 
-The method defines the follwing things:
+The method defines the following things:
 
 - ``template``: the mrbob template to use
 - ``plonecli_alias``: a short name alias which will be used by plonecli

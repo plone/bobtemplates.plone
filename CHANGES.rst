@@ -1,16 +1,17 @@
-(2019-01-15)
-
-Correct the sentence formation.
-[Akshjain99]
-
 Changelog
 =========
 
-3.6.0b2 (unreleased)
+3.6.0 (unreleased)
 --------------------
 
 - Use @implementer decorator instead of implements.
   [erral]
+
+- Fix FTI settings if default behaviors not active, #352
+  [MrTango]
+
+- Correct the sentence formation.
+  [Akshjain99]
 
 
 3.6.0b1 (2018-12-28)

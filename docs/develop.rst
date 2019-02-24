@@ -25,7 +25,7 @@ They get called by different ``mrbob hooks``, like ``pre_render``, ``post_render
 
 
 Standalone templates
-=====================
+====================
 
 Standalone templates are normal templates for mrbob, which are meant to live standalone and are not depending on any other template.
 
@@ -33,7 +33,7 @@ Examples are the ``buildout`` and ``addon`` templates. For details see the docum
 
 
 Sub-templates
-============
+=============
 
 Sub-templates are templates which are living inside an existing package created by a standalone template like the ``addon`` template.
 These templates extend the existing standalone template structure by new features like a ``theme`` or a ``content_type``.

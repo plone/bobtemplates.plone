@@ -1,8 +1,8 @@
 Changelog
 =========
 
-3.6.0 (unreleased)
---------------------
+3.6.0 (2019-02-25)
+------------------
 
 - Use @implementer decorator instead of implements.
   [erral]

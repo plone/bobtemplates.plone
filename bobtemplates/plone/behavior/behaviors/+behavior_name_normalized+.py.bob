@@ -10,6 +10,9 @@ from zope.interface import implementer
 from zope.interface import provider
 
 
+class I{{{behavior_name_klass}}}Marker:
+    pass
+
 @provider(IFormFieldProvider)
 class I{{{behavior_name_klass}}}(model.Schema):
     """
@@ -23,7 +26,7 @@ class I{{{behavior_name_klass}}}(model.Schema):
 
 
 @implementer(I{{{behavior_name_klass}}})
-@adapter(IDexterityContent)
+@adapter(I{{{behavior_name_klass}}}Marker)
 class {{{behavior_name_klass}}}(object):
     def __init__(self, context):
         self.context = context

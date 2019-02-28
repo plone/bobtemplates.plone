@@ -36,3 +36,5 @@ Vagrantfile
 /.pytest_cache/
 /tmpdist
 /man
+/.tmppytes
+/.tmppytest

@@ -83,54 +83,12 @@ portlet_name=Another Weather Portlet
     assert file_exists(wd, '/src/collective/sample/configure.zcml')
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
-        setup_virtualenv_result = subprocess.call(
-            [
-                'virtualenv',
-                '.',
-            ],
-            cwd=wd,
-        )
-        assert setup_virtualenv_result == 0
-
-        install_buildout_result = subprocess.call(
-            [
-                './bin/pip',
-                'install',
-                '-U',
-                '-r',
-                'requirements.txt',
-            ],
-            cwd=wd,
-        )
-        assert install_buildout_result == 0
-
-        annotate_result = subprocess.call(
-            [
-                'bin/buildout',
-                'code-analysis:return-status-codes=True',
-                'annotate',
-            ],
-            cwd=wd,
-        )
-        assert annotate_result == 0
-
-        buildout_result = subprocess.call(
-            [
-                'bin/buildout',
-                'code-analysis:return-status-codes=True',
-            ],
-            cwd=wd,
-        )
-        assert buildout_result == 0
-
-        test_result = subprocess.call(
-            ['bin/test'],
-            cwd=wd,
-        )
-        assert test_result == 0
-
-        test__code_convention_result = subprocess.call(
-            ['bin/code-analysis'],
-            cwd=wd,
-        )
-        assert test__code_convention_result == 0
+        try:
+            test_result = subprocess.check_output(
+                ['tox'],
+                cwd=wd,
+            )
+            print(test_result)
+        except subprocess.CalledProcessError as execinfo:
+            print(execinfo.output)
+            assert 'failed' in execinfo

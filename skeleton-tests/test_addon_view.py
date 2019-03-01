@@ -9,6 +9,10 @@ import subprocess
 
 
 def test_addon_view(tmpdir, capsys, config):
+    answers_init_path = os.path.join(tmpdir.strpath, 'answers.ini')
+    package_dir = os.path.abspath(
+        tmpdir.strpath,
+    )
     template = """[variables]
 package.description = Dummy package
 package.example = True
@@ -31,7 +35,7 @@ plone.version = {version}
             'mrbob',
             '-O', config.package_name,
             'bobtemplates.plone:' + config.template,
-            '--config', 'answers.ini',
+            '--config', answers_init_path,
             '--non-interactive',
         ],
         cwd=tmpdir.strpath,
@@ -44,65 +48,20 @@ plone.version = {version}
 
     # generate subtemplate view:
     template = """[variables]
-subtemplate_warning=True
 view_python_class=True
 view_python_class_name=MyView
 view_name=my_view
 view_template=True
 view_template_name=pt_view
 """
-    generate_answers_ini(wd, template)
+    generate_answers_ini(package_dir, template)
 
     config.template = 'view'
     result = subprocess.call(
         [
             'mrbob',
             'bobtemplates.plone:' + config.template,
-            '--config', 'answers.ini',
-            '--non-interactive',
-        ],
-        cwd=wd,
-    )
-    assert result == 0
-
-    # generate subtemplate view:
-    template = """[variables]
-subtemplate_warning=True
-view_python_class=True
-view_python_class_name=MyView
-view_name=my_view
-view_template=False
-"""
-    generate_answers_ini(wd, template)
-
-    config.template = 'view'
-    result = subprocess.call(
-        [
-            'mrbob',
-            'bobtemplates.plone:' + config.template,
-            '--config', 'answers.ini',
-            '--non-interactive',
-        ],
-        cwd=wd,
-    )
-    assert result == 0
-
-    # generate subtemplate view:
-    template = """[variables]
-subtemplate_warning=True
-view_python_class=False
-view_name=my_view
-view_template=True
-view_template_name=pt_view
-"""
-    generate_answers_ini(wd, template)
-
-    config.template = 'view'
-    result = subprocess.call(
-        [
-            'mrbob',
-            'bobtemplates.plone:' + config.template,
-            '--config', 'answers.ini',
+            '--config', answers_init_path,
             '--non-interactive',
         ],
         cwd=wd,
@@ -112,54 +71,14 @@ view_template_name=pt_view
     assert file_exists(wd, '/src/collective/sample/configure.zcml')
 
     with capsys.disabled() if config.verbose else dummy_contextmanager():
-        setup_virtualenv_result = subprocess.call(
-            [
-                'virtualenv',
-                '.',
-            ],
-            cwd=wd,
-        )
-        assert setup_virtualenv_result == 0
-
-        install_buildout_result = subprocess.call(
-            [
-                './bin/pip',
-                'install',
-                '-U',
-                '-r',
-                'requirements.txt',
-            ],
-            cwd=wd,
-        )
-        assert install_buildout_result == 0
-
-        annotate_result = subprocess.call(
-            [
-                'bin/buildout',
-                'code-analysis:return-status-codes=True',
-                'annotate',
-            ],
-            cwd=wd,
-        )
-        assert annotate_result == 0
-
-        buildout_result = subprocess.call(
-            [
-                'bin/buildout',
-                'code-analysis:return-status-codes=True',
-            ],
-            cwd=wd,
-        )
-        assert buildout_result == 0
-
-        test_result = subprocess.call(
-            ['bin/test'],
-            cwd=wd,
-        )
-        assert test_result == 0
-
-        test__code_convention_result = subprocess.call(
-            ['bin/code-analysis'],
-            cwd=wd,
-        )
-        assert test__code_convention_result == 0
+        try:
+            test_result = subprocess.check_output(
+                ['tox'],
+                cwd=wd,
+            )
+            print(">>>>>>\n{0}\n>>>>>>\n".format(test_result.decode('utf-8')))
+        except subprocess.CalledProcessError as execinfo:
+            tox_msg = b''.join(
+                execinfo.output.partition(b'__ summary __')[1:],
+            ).decode()
+            assert execinfo.returncode == 0, tox_msg

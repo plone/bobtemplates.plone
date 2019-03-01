@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from base import dummy_contextmanager
 from base import file_exists
 from base import generate_answers_ini
 
@@ -70,15 +69,15 @@ view_template_name=pt_view
 
     assert file_exists(wd, '/src/collective/sample/configure.zcml')
 
-    with capsys.disabled() if config.verbose else dummy_contextmanager():
+    with capsys.disabled():
         try:
             test_result = subprocess.check_output(
                 ['tox'],
                 cwd=wd,
             )
-            print(">>>>>>\n{0}\n>>>>>>\n".format(test_result.decode('utf-8')))
+            print('\n{0}\n'.format(test_result.decode('utf-8')))
         except subprocess.CalledProcessError as execinfo:
             tox_msg = b''.join(
                 execinfo.output.partition(b'__ summary __')[1:],
             ).decode()
-            assert execinfo.returncode == 0, tox_msg
+            assert execinfo.returncode == 0, '\n{0}'.format(tox_msg)

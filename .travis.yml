@@ -23,56 +23,58 @@ matrix:
           env: TOXENV=lint-py36,docs
         - python: "2.7"
           env: TOXENV=py27-packagetests
-        - python: "3.4"
-          env: TOXENV=py34-packagetests
-        - python: "3.5"
-          env: TOXENV=py35-packagetests
-        - python: "3.6"
-          env: TOXENV=py36-packagetests
-        - python: "pypy"
-          env: TOXENV=pypy-packagetests
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-4.3-template-addon
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.0-template-addon
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.1-template-addon
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-4.3-template-addon_content_type
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.0-template-addon_content_type
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.1-template-addon_content_type
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-4.3-template-addon_theme
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.0-template-addon_theme
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.1-template-addon_theme
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-4.3-template-theme_package
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.0-template-theme_package
-        - python: "2.7"
-          env: TOXENV=py27-skeletontests-Plone-5.1-template-theme_package
+        - python: "3.7"
+          env: TOXENV=py37-packagetests
+          dist: xenial
+        - python: "3.7"
+          env: TOXENV=py37-skeletontests-template-addon
+          dist: xenial
+        - python: "3.7"
+          env: TOXENV=py37-skeletontests-template-addon_content_type
+          dist: xenial
+        - python: "3.7"
+          env: TOXENV=py37-skeletontests-template-addon_behavior
+          dist: xenial
+        - python: "3.7"
+          env: TOXENV=py37-skeletontests-template-addon_portlet
+          dist: xenial
+        - python: "3.7"
+          env: TOXENV=py37-skeletontests-template-addon_theme_barceloneta
+          dist: xenial
+        - python: "3.7"
+          env: TOXENV=py37-skeletontests-template-addon_theme
+          dist: xenial
+        - python: "3.7"
+          env: TOXENV=py37-skeletontests-template-addon_view
+          dist: xenial
+        - python: "3.7"
+          env: TOXENV=py37-skeletontests-template-addon_viewlet
+          dist: xenial
+        - python: "3.7"
+          env: TOXENV=py37-skeletontests-template-addon_vocabulary
+          dist: xenial
+        - python: "3.7"
+          env: TOXENV=py37-skeletontests-template-theme_package
+          dist: xenial
 
 install:
     - travis_retry pip install -U tox coveralls coverage
 
 before_script:
-  - export DISPLAY=:99.0
+  - 'export DISPLAY=:99.0'
   - export VERBOSE=true
-  - sh -e /etc/init.d/xvfb start
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - sleep 3
 
 script:
     - PYTEST_ADDOPTS="-s -vv" travis_retry tox
 
-after_success:
-    - coverage combine
-    - coveralls
-
 after_script:
-  - sh -e /etc/init.d/xvfb stop
+  - bin/createcoverage --output-dir=parts/test/coverage
+
+after_success:
+  - pip install -q coveralls
+  - coveralls
 
 notifications:
   email:

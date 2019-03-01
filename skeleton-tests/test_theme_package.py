@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from base import dummy_contextmanager
 import base
 import glob
 import os.path
@@ -70,13 +69,15 @@ plone.version = {version}
         os.path.join(tmpdir.strpath, config.package_name),
     )
 
-    with capsys.disabled() if config.verbose else dummy_contextmanager():
+    with capsys.disabled():
         try:
             test_result = subprocess.check_output(
                 ['tox'],
                 cwd=wd,
             )
-            print(test_result)
+            print('\n{0}\n'.format(test_result.decode('utf-8')))
         except subprocess.CalledProcessError as execinfo:
-            print(execinfo.output)
-            assert 'failed' in execinfo
+            tox_msg = b''.join(
+                execinfo.output.partition(b'__ summary __')[1:],
+            ).decode()
+            assert execinfo.returncode == 0, '\n{0}'.format(tox_msg)

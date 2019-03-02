@@ -105,6 +105,20 @@ version=5.1
     base.set_plone_version_variables(configurator)
     assert configurator.variables.get('plone.is_plone5')
     assert not configurator.variables.get('plone.is_plone51')
+    assert not configurator.variables.get('plone.is_plone52')
+    assert configurator.variables.get('plone.minor_version') == '5'
+
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory=target_dir,
+        variables={
+            'plone.version': '5.2',
+        },
+    )
+    base.set_plone_version_variables(configurator)
+    assert configurator.variables.get('plone.is_plone5')
+    assert not configurator.variables.get('plone.is_plone51')
+    assert not configurator.variables.get('plone.is_plone52')
     assert configurator.variables.get('plone.minor_version') == '5'
 
     configurator = Configurator(
@@ -117,6 +131,7 @@ version=5.1
     base.set_plone_version_variables(configurator)
     assert configurator.variables.get('plone.is_plone5')
     assert configurator.variables.get('plone.is_plone51')
+    assert not configurator.variables.get('plone.is_plone52')
     assert configurator.variables.get('plone.minor_version') == '5.1'
 
     configurator = Configurator(
@@ -129,6 +144,7 @@ version=5.1
     base.set_plone_version_variables(configurator)
     assert not configurator.variables.get('plone.is_plone5')
     assert not configurator.variables.get('plone.is_plone51')
+    assert not configurator.variables.get('plone.is_plone52')
     assert configurator.variables.get('plone.minor_version') == '4.3'
 
 

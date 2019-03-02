@@ -40,9 +40,14 @@ Changelog
 - Add custom tox2travis.py script, to generate a Travis matrix from Tox configuration.
   [MrTango]
 
-- Fix behavior template: use separate marker interface, register marker in the
-  behavior zcml and adapt content to the marker, not to IDexterityContent. For
-  further reference, see the plone.behavior README.rst Example 2. fixes #16.
+- Fix some confusion in setup.py classifiers and depenencies due to introduction of Plone 5.2 support.
+  Introduces plone.is_plone5.2 variable.
+  [jensens]
+
+- Fix behavior template: use separate marker interface,
+  register marker in the behavior zcml and adapt content to the marker, not to IDexterityContent.
+  For further reference, see the plone.behavior README.rst Example 2.
+  Fixes #16.
   [fredvd, jensens]
 
 - Use behavior shortnames in FTI.

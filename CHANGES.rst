@@ -40,6 +40,9 @@ Changelog
 - Add custom tox2travis.py script, to generate a Travis matrix from Tox configuration.
   [MrTango]
 
+- Fixes #350: add "python_requires" option to setup.py.
+  [jensens, iham]
+
 - Fix some confusion in setup.py classifiers and depenencies due to introduction of Plone 5.2 support.
   Introduces plone.is_plone5.2 variable.
   [jensens]

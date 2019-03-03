@@ -24,11 +24,11 @@ plone.version = {version}
 """.format(
         version=config.version,
     )
-    generate_answers_ini(tmpdir.strpath, template)
+    generate_answers_ini(package_dir, template)
 
     # generate template addon:
     config.template = 'addon'
-    config.package_name = 'collective.sample'
+    config.package_name = 'collective.task'
     result = subprocess.call(
         [
             'mrbob',
@@ -67,7 +67,7 @@ view_template_name=pt_view
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/sample/configure.zcml')
+    assert file_exists(wd, '/src/collective/task/configure.zcml')
 
     with capsys.disabled():
         try:

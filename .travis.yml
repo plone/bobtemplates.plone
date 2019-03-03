@@ -73,7 +73,6 @@ after_script:
   - bin/createcoverage --output-dir=parts/test/coverage
 
 after_success:
-  - pip install -q coveralls
   - coveralls
 
 notifications:

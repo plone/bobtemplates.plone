@@ -8,6 +8,10 @@ import subprocess
 
 
 def test_addon_theme(tmpdir, capsys, config):
+    answers_init_path = os.path.join(tmpdir.strpath, 'answers.ini')
+    package_dir = os.path.abspath(
+        tmpdir.strpath,
+    )
     template = """[variables]
 package.description = Dummy package
 
@@ -21,17 +25,17 @@ plone.version = {version}
 """.format(
         version=config.version,
     )
-    generate_answers_ini(tmpdir.strpath, template)
+    generate_answers_ini(package_dir, template)
 
     # generate template addon:
     config.template = 'addon'
-    config.package_name = 'plonetheme.blacksea'
+    config.package_name = 'plonetheme.task'
     result = subprocess.call(
         [
             'mrbob',
             '-O', config.package_name,
             'bobtemplates.plone:' + config.template,
-            '--config', 'answers.ini',
+            '--config', answers_init_path,
             '--non-interactive',
         ],
         cwd=tmpdir.strpath,
@@ -47,21 +51,21 @@ plone.version = {version}
 theme.name = Plone theme Blacksea
 subtemplate_warning=False
 """
-    generate_answers_ini(wd, template)
+    generate_answers_ini(package_dir, template)
 
     config.template = 'theme_barceloneta'
     result = subprocess.call(
         [
             'mrbob',
             'bobtemplates.plone:' + config.template,
-            '--config', 'answers.ini',
+            '--config', answers_init_path,
             '--non-interactive',
         ],
         cwd=wd,
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/plonetheme/blacksea/theme/manifest.cfg')
+    assert file_exists(wd, '/src/plonetheme/task/theme/manifest.cfg')
 
     with capsys.disabled():
         try:

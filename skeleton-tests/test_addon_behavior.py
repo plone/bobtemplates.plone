@@ -8,6 +8,10 @@ import subprocess
 
 
 def test_behavior(tmpdir, capsys, config):
+    answers_init_path = os.path.join(tmpdir.strpath, 'answers.ini')
+    package_dir = os.path.abspath(
+        tmpdir.strpath,
+    )
     template = """[variables]
 package.description = Dummy package
 package.example = True
@@ -21,7 +25,7 @@ plone.version = {version}
 """.format(
         version=config.version,
     )
-    generate_answers_ini(tmpdir.strpath, template)
+    generate_answers_ini(package_dir, template)
 
     # generate template addon:
     config.template = 'addon'
@@ -31,7 +35,7 @@ plone.version = {version}
             'mrbob',
             '-O', config.package_name,
             'bobtemplates.plone:' + config.template,
-            '--config', 'answers.ini',
+            '--config', answers_init_path,
             '--non-interactive',
         ],
         cwd=tmpdir.strpath,
@@ -50,14 +54,14 @@ plone.version = {version}
 behavior_name = Project
 subtemplate_warning = Yes
 """
-    generate_answers_ini(wd, template)
+    generate_answers_ini(package_dir, template)
 
     config.template = 'behavior'
     result = subprocess.call(
         [
             'mrbob',
             'bobtemplates.plone:' + config.template,
-            '--config', 'answers.ini',
+            '--config', answers_init_path,
             '--non-interactive',
         ],
         cwd=wd,

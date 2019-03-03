@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+<<<<<<< HEAD
 {{% if plone.is_plone51 %}}
 from Products.CMFPlone.utils import get_installer
 {{% endif %}}
 from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+=======
+>>>>>>> 06cc216... fix skeletontests, deactivate coverage & docs test in generated tox.ini, because it breaks the parent tox
 
 import unittest
 

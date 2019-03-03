@@ -80,7 +80,7 @@ eggs = createcoverage
 recipe = zc.recipe.egg
 eggs =
     ${test:eggs}
-    plone.app.robotframework[debug,ride,reload]
+    plone.app.robotframework[debug,reload]
 
 
 [releaser]

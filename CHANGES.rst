@@ -45,6 +45,12 @@ Changelog
   further reference, see the plone.behavior README.rst Example 2. fixes #16.
   [fredvd, jensens]
 
+- Use behavior shortnames in FTI.
+  [jensens]
+
+- Do not add dxterity as dependency in Plone 5.x due to the fact it is already in Plone core.
+  [jensens]
+
 
 3.6.0 (2019-02-25)
 ------------------

@@ -224,6 +224,8 @@ def _update_permissions_zcml(configurator):
 
 
 def _update_setup_py(configurator):
+    if configurator.variables['plone.is_plone5']:
+        return
     file_name = u'setup.py'
     file_path = configurator.variables['package.root_folder'] + '/' + file_name
     match_str = '-*- Extra requirements: -*-'

@@ -48,7 +48,11 @@ Changelog
 - Use behavior shortnames in FTI.
   [jensens]
 
-- Do not add dxterity as dependency in Plone 5.x due to the fact it is already in Plone core.
+- Do not add dexterity as dependency in Plone 5.x due to the fact it is already in Plone core.
+  [jensens]
+
+- Do not try to use the main supermodel schema class as behavior.
+  This can work and will lead to warnings.
   [jensens]
 
 

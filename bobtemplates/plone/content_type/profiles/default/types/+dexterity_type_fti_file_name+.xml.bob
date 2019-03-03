@@ -51,9 +51,6 @@
 
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
-{{% if not dexterity_type_create_class %}}
-    <element value="{{{ package.dottedname }}}.content.{{{ dexterity_type_name_normalized }}}.I{{{ dexterity_type_name_klass }}}"/>
-{{%  endif %}}
 {{% if dexterity_type_activate_default_behaviors %}}
     <element value="plone.namefromtitle"/>
     <element value="plone.allowdiscussion"/>

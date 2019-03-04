@@ -41,8 +41,8 @@ plone.version = {version}
             ],
             cwd=tmpdir.strpath,
         )
-    except Exception:
-        import pdb; pdb.set_trace()
+    except Exception, e:
+        print(e)
     assert result == 0
 
     wd = os.path.abspath(
@@ -72,8 +72,8 @@ dexterity_type_supermodel=True
             ],
             cwd=wd,
         )
-    except Exception:
-        import pdb; pdb.set_trace()
+    except Exception, e:
+        print(e)
     assert result == 0
 
     # generate 2. subtemplate content_type with Item instead of Container:
@@ -100,8 +100,8 @@ dexterity_type_activate_default_behaviors=False
             ],
             cwd=wd,
         )
-    except Exception:
-        import pdb; pdb.set_trace()
+    except Exception, e:
+        print(e)
     assert result == 0
 
     assert file_exists(wd, '/src/collective/task/configure.zcml')

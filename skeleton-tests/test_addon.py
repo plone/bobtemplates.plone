@@ -21,7 +21,7 @@ addon_files = [
 ]
 
 
-def test_addon(tmpdir, capsys, config):
+def test_addon(tmpdir, capsys, config, skeleton_tox_env):
     template = """[variables]
 package.description = Dummy package
 package.example = True
@@ -71,7 +71,7 @@ plone.version = {version}
     with capsys.disabled():
         try:
             test_result = subprocess.check_output(
-                ['tox'],
+                ['tox', '-e', config.skeleton_tox_env],
                 cwd=wd,
             )
             print('\n{0}\n'.format(test_result.decode('utf-8')))

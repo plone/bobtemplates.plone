@@ -1,64 +1,55 @@
 language: python
 sudo: false
+dist: xenial
 
 cache:
   pip: true
   directories:
     - $HOME/buildout-cache
+    - $HOME/.buildout
 
 before_install:
     - mkdir -p $HOME/buildout-cache/{downloads,eggs,extends}
-    - mkdir $HOME/.buildout
+    - mkdir -p $HOME/.buildout
     - echo "[buildout]" > $HOME/.buildout/default.cfg
     - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
     - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
     - echo "extends-cache = $HOME/buildout-cache/extends" >> $HOME/.buildout/default.cfg
     - echo "abi-tag-eggs = true" >> $HOME/.buildout/default.cfg
 
-matrix:
-    include:
-        - python: "2.7"
-          env: TOXENV=lint-py27,docs
-        - python: "3.6"
-          env: TOXENV=lint-py36,docs
-        - python: "2.7"
-          env: TOXENV=py27-packagetests
-        - python: "3.7"
-          env: TOXENV=py37-packagetests
-          dist: xenial
-        - python: "3.7"
-          env: TOXENV=py37-skeletontests-template-addon
-          dist: xenial
-        - python: "3.7"
-          env: TOXENV=py37-skeletontests-template-addon_content_type
-          dist: xenial
-        - python: "3.7"
-          env: TOXENV=py37-skeletontests-template-addon_behavior
-          dist: xenial
-        - python: "3.7"
-          env: TOXENV=py37-skeletontests-template-addon_portlet
-          dist: xenial
-        - python: "3.7"
-          env: TOXENV=py37-skeletontests-template-addon_theme_barceloneta
-          dist: xenial
-        - python: "3.7"
-          env: TOXENV=py37-skeletontests-template-addon_theme
-          dist: xenial
-        - python: "3.7"
-          env: TOXENV=py37-skeletontests-template-addon_view
-          dist: xenial
-        - python: "3.7"
-          env: TOXENV=py37-skeletontests-template-addon_viewlet
-          dist: xenial
-        - python: "3.7"
-          env: TOXENV=py37-skeletontests-template-addon_vocabulary
-          dist: xenial
-        - python: "3.7"
-          env: TOXENV=py37-skeletontests-template-theme_package
-          dist: xenial
+#matrix:
+#    include:
+#        - python: "2.7"
+#          env: TOXENV=lint-py27,docs
+#        - python: "3.7"
+#          env: TOXENV=lint-py37,docs
+#        - python: "2.7"
+#          env: TOXENV=py27-packagetests
+#        - python: "2.7"
+#          env: TOXENV=py37-packagetests
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-template-addon
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-template-addon_content_type
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-template-addon_behavior
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-template-addon_portlet
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-template-addon_theme_barceloneta
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-template-addon_theme
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-template-addon_view
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-template-addon_viewlet
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-template-addon_vocabulary
+#        - python: "2.7"
+#          env: TOXENV=py27-skeletontests-template-theme_package
 
 install:
-    - travis_retry pip install -U tox coveralls coverage
+    - travis_retry pip install -U tox tox-travis coveralls coverage
 
 before_script:
   - 'export DISPLAY=:99.0'
@@ -67,7 +58,7 @@ before_script:
   - sleep 3
 
 script:
-    - PYTEST_ADDOPTS="-s -vv" travis_retry tox
+    - PYTEST_ADDOPTS="-s -vv" tox
 
 after_script:
   - bin/createcoverage --output-dir=parts/test/coverage

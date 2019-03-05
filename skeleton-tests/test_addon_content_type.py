@@ -2,6 +2,7 @@
 
 from base import file_exists
 from base import generate_answers_ini
+from bobtemplates.plone.utils import safe_unicode
 
 import os.path
 import subprocess
@@ -114,7 +115,11 @@ dexterity_type_activate_default_behaviors=False
             )
             print('\n{0}\n'.format(test_result.decode('utf-8')))
         except subprocess.CalledProcessError as execinfo:
-            tox_msg = b''.join(
+            tox_msg = safe_unicode(b''.join(
+                execinfo.output,
+            ))
+            print(tox_msg)
+            tox_summary = safe_unicode(b''.join(
                 execinfo.output.partition(b'__ summary __')[1:],
-            ).decode()
-            assert execinfo.returncode == 0, '\n{0}'.format(tox_msg)
+            ))
+            assert execinfo.returncode == 0, '\n{0}'.format(tox_summary)

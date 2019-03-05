@@ -27,6 +27,12 @@ except ImportError:
     from configparser import ConfigParser
 
 
+ZCML_NAMESPACES = {
+    'browser': 'http://namespaces.zope.org/browser',
+    'plone': 'http://namespaces.plone.org/plone',
+}
+
+
 def to_boolean(value):
     if not value:
         return False

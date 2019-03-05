@@ -16,6 +16,8 @@ before_install:
     - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
     - echo "extends-cache = $HOME/buildout-cache/extends" >> $HOME/.buildout/default.cfg
     - echo "abi-tag-eggs = true" >> $HOME/.buildout/default.cfg
+    - git config --global user.email "travis@travis-ci.org"
+    - git config --global user.name "Travis CI"
 
 #matrix:
 #    include:
@@ -60,11 +62,11 @@ before_script:
 script:
     - PYTEST_ADDOPTS="-s -vv" tox
 
-after_script:
-  - bin/createcoverage --output-dir=parts/test/coverage
-
 after_success:
+  - coverage combine
   - coveralls
+
+# after_script:
 
 notifications:
   email:

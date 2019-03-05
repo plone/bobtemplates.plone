@@ -70,7 +70,7 @@ subtemplate_warning=False
     with capsys.disabled():
         try:
             test_result = subprocess.check_output(
-                ['tox'],
+                ['tox', '-e', config.skeleton_tox_env],
                 cwd=wd,
             )
             print('\n{0}\n'.format(test_result.decode('utf-8')))

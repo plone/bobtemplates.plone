@@ -41,7 +41,7 @@ plone.version = {version}
             ],
             cwd=tmpdir.strpath,
         )
-    except Exception, e:
+    except Exception as e:
         print(e)
     assert result == 0
 
@@ -72,7 +72,7 @@ dexterity_type_supermodel=True
             ],
             cwd=wd,
         )
-    except Exception, e:
+    except Exception as e:
         print(e)
     assert result == 0
 
@@ -100,7 +100,7 @@ dexterity_type_activate_default_behaviors=False
             ],
             cwd=wd,
         )
-    except Exception, e:
+    except Exception as e:
         print(e)
     assert result == 0
 
@@ -109,7 +109,7 @@ dexterity_type_activate_default_behaviors=False
     with capsys.disabled():
         try:
             test_result = subprocess.check_output(
-                ['tox'],
+                ['tox', '-e', config.skeleton_tox_env],
                 cwd=wd,
             )
             print('\n{0}\n'.format(test_result.decode('utf-8')))

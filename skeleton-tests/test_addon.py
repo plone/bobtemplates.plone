@@ -2,6 +2,7 @@
 
 from base import file_exists
 from base import generate_answers_ini
+from bobtemplates.plone.utils import safe_unicode
 
 import glob
 import os.path
@@ -21,7 +22,7 @@ addon_files = [
 ]
 
 
-def test_addon(tmpdir, capsys, config, skeleton_tox_env):
+def test_addon(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True
@@ -74,9 +75,9 @@ plone.version = {version}
                 ['tox', '-e', config.skeleton_tox_env],
                 cwd=wd,
             )
-            print('\n{0}\n'.format(test_result.decode('utf-8')))
+            print(u'\n{0}\n'.format(safe_unicode(test_result)))
         except subprocess.CalledProcessError as execinfo:
-            tox_msg = b''.join(
+            tox_msg = safe_unicode(b''.join(
                 execinfo.output.partition(b'__ summary __')[1:],
-            ).decode()
+            ))
             assert execinfo.returncode == 0, '\n{0}'.format(tox_msg)

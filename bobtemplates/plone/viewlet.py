@@ -83,19 +83,26 @@ def _update_viewlets_configure_zcml(configurator):
 
     match_str = '-*- extra stuff goes here -*-'
 
+    if configurator.variables['plone.is_plone5']:
+        iface_name = 'plone.app.contenttypes.interfaces.IDocument'
+    else:
+        # BBB Plone 4 fallback:
+        iface_name = 'Products.ATContentTypes.interfaces.document.IATDocument'
+
     if configurator.variables['viewlet_template']:
         insert_str = """
   <browser:viewlet
      name="{0}"
-     for="plone.app.contenttypes.interfaces.IDocument"
+     for="{1}"
      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
-     layer="{1}.interfaces.{2}"
-     class=".{3}.{4}"
-     template="{5}.pt"
+     layer="{2}.interfaces.{3}"
+     class=".{4}.{5}"
+     template="{6}.pt"
      permission="zope2.View"
      />
 """.format(
             configurator.variables['viewlet_name'],
+            iface_name,
             configurator.variables['package.dottedname'],
             configurator.variables['browser_layer'],
             configurator.variables['viewlet_python_file_name'],
@@ -107,14 +114,15 @@ def _update_viewlets_configure_zcml(configurator):
         insert_str = """
   <browser:viewlet
      name="{0}"
-     for="plone.app.contenttypes.interfaces.IDocument"
+     for="{1}"
      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
-     layer="{1}.interfaces.{2}"
-     class=".{3}.{4}"
+     layer="{2}.interfaces.{3}"
+     class=".{4}.{5}"
      permission="zope2.View"
      />
 """.format(
             configurator.variables['viewlet_name'],
+            iface_name,
             configurator.variables['package.dottedname'],
             configurator.variables['browser_layer'],
             configurator.variables['viewlet_python_file_name'],

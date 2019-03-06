@@ -194,3 +194,74 @@ By the time or writing this, we have the following test cases (combinations), wh
 The tests are defined in the directory ``skeleton-tests`` and are called by ``tox`` as defined in ``tox.ini``.
 
 If you add new test cases (files), make sure that they are in the ``tox.ini`` and also called by Travis!
+
+Generating travis matrix from tox.ini
+=====================================
+
+.. code-block:: shell
+
+    $ python tox2travis.py
+    matrix:
+        include:
+            - env: TOXENV=py37-lint
+            python: "3.7"
+            - env: TOXENV=py27-lint
+            - env: TOXENV=docs
+            - env: TOXENV=py27-packagetests
+            - env: TOXENV=py37-packagetests
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_content_type
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_content_type
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_content_type
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_content_type
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_view
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_view
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_view
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_view
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_viewlet
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_viewlet
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_viewlet
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_viewlet
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_portlet
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_portlet
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_portlet
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_portlet
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_theme
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_theme
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_theme
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_theme
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_theme_barceoneta
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_theme_barceoneta
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_theme_barceoneta
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_vocabulary
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_vocabulary
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_vocabulary
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_vocabulary
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_behavior
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_behavior
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_behavior
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_behavior
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_restapi_service
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_restapi_service
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_restapi_service
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_restapi_service
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-theme_package
+            - env: TOXENV=py27-skeletontests-Plone51-template-theme_package
+            - env: TOXENV=coverage-report
+
+
+replace the current matrix in ``.travis.yml`` with the result.

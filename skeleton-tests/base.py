@@ -23,6 +23,7 @@ def file_exists(base_path, file_path):
 
 
 def run_skeleton_tox_env(wd, config):
+    print(wd)
     try:
         test_result = subprocess.check_output(
             ['tox', '-e', config.skeleton_tox_env],

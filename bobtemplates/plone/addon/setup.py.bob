@@ -51,6 +51,7 @@ setup(
         'z3c.jbot',
 {{% if not plone.is_plone5 %}}
         'plone.app.dexterity<=2.1.1',
+        'plone.restapi',
         'plone.app.referenceablebehavior',
         'plone.app.relationfield',
         'plone.app.lockingbehavior',

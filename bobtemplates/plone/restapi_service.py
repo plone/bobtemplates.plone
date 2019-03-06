@@ -2,16 +2,11 @@
 
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import is_string_in_file
 from bobtemplates.plone.base import remove_unwanted_files
 from bobtemplates.plone.base import update_configure_zcml
-from bobtemplates.plone.base import update_file
+from lxml import etree
 
 import case_conversion as cc
-
-
-# from mrbob.bobexceptions import SkipQuestion
-# from mrbob.bobexceptions import ValidationError
 
 
 def get_service_name_from_python_class(configurator, question):
@@ -90,18 +85,44 @@ def _update_services_configure_zcml(configurator):
     )
 
 
-def _update_setup_py(configurator):
-    file_name = u'setup.py'
-    file_path = configurator.variables['package.root_folder'] + '/' + file_name
-    match_str = '-*- Extra requirements: -*-'
-    insert_strings = [
-        'plone.restapi',
-    ]
-    for insert_str in insert_strings:
-        insert_str = "        '{0}',\n".format(insert_str)
-        if is_string_in_file(configurator, file_path, insert_str):
-            continue
-        update_file(configurator, file_path, match_str, insert_str)
+def _update_metadata_xml(configurator):
+    """ Add plone.restapi dependency metadata.xml in
+        Generic Setup profiles.
+    """
+    metadata_file_name = u'metadata.xml'
+    metadata_file_dir = u'profiles/default'
+    metadata_file_path = configurator.variables['package_folder'] + '/' + \
+        metadata_file_dir + '/' + metadata_file_name
+
+    with open(metadata_file_path, 'r') as xml_file:
+        parser = etree.XMLParser(remove_blank_text=True)
+        tree = etree.parse(xml_file, parser)
+        dependencies = tree.xpath('/metadata/dependencies')[0]
+        dep = 'profile-plone.restapi:default'
+        dep_exists = False
+        for e in dependencies.iter('dependency'):
+            dep_name = e.text
+            if dep_name == dep:
+                dep_exists = True
+
+        if dep_exists:
+            print(
+                '{dep} already in metadata.xml, skip adding!'.format(
+                    dep=dep,
+                ),
+            )
+            return
+        dep_element = etree.Element('dependency')
+        dep_element.text = dep
+        dependencies.append(dep_element)
+
+    with open(metadata_file_path, 'wb') as xml_file:
+        tree.write(
+            xml_file,
+            pretty_print=True,
+            xml_declaration=True,
+            encoding='utf-8',
+        )
 
 
 def _remove_unwanted_files(configurator):
@@ -127,6 +148,7 @@ def pre_renderer(configurator):
     configurator.variables['service_class_name'] = cc.pascalcase(     # NOQA: E501
         class_name,
     )
+    # XXX use dashed name
     configurator.variables['service_class_name_normalized'] = cc.snakecase(
         class_name,
     )
@@ -138,7 +160,8 @@ def post_renderer(configurator):
     _update_package_configure_zcml(configurator)
     _update_api_configure_zcml(configurator)
     _update_services_configure_zcml(configurator)
-    # _remove_unwanted_files(configurator)
+    _update_metadata_xml(configurator)
+    _remove_unwanted_files(configurator)
     git_commit(
         configurator,
         'Add restapi_service: {0}'.format(

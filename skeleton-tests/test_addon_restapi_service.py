@@ -8,7 +8,7 @@ import os.path
 import subprocess
 
 
-def test_addon_portlet(tmpdir, capsys, config):
+def test_addon_restapi_service(tmpdir, capsys, config):
     answers_init_path = os.path.join(tmpdir.strpath, 'answers.ini')
     package_dir = os.path.abspath(
         tmpdir.strpath,
@@ -46,31 +46,14 @@ plone.version = {version}
         os.path.join(tmpdir.strpath, config.package_name),
     )
 
-    # generate subtemplate portlet:
+    # generate subtemplate view:
     template = """[variables]
-portlet_name=My Weather
+service_class_name=RelatedImages
+service_name=related-images
 """
     generate_answers_ini(package_dir, template)
 
-    config.template = 'portlet'
-    result = subprocess.call(
-        [
-            'mrbob',
-            'bobtemplates.plone:' + config.template,
-            '--config', answers_init_path,
-            '--non-interactive',
-        ],
-        cwd=wd,
-    )
-    assert result == 0
-
-    # generate subtemplate portlet:
-    template = """[variables]
-portlet_name=Another Weather Portlet
-"""
-    generate_answers_ini(package_dir, template)
-
-    config.template = 'portlet'
+    config.template = 'restapi_service'
     result = subprocess.call(
         [
             'mrbob',

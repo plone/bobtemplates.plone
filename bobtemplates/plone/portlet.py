@@ -78,7 +78,7 @@ def _update_portlets_xml(configurator):
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
             print(
                 u'{0} already in portlets.xml, skip adding!'.format(
-                    configurator.variables['portlet_name'],
+                    configurator.variables['portlet_configuration_name'],
                 ),
             )
             return

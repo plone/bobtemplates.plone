@@ -4,8 +4,8 @@
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
-from bobtemplates.plone.utils import slugify
 from bobtemplates.plone.base import ZCML_NAMESPACES
+from bobtemplates.plone.utils import slugify
 from lxml import etree
 
 import case_conversion as cc

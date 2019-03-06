@@ -23,16 +23,15 @@ def file_exists(base_path, file_path):
 
 
 def run_skeleton_tox_env(wd, config):
-    print(wd)
     try:
         test_result = subprocess.check_output(
             ['tox', '-e', config.skeleton_tox_env],
             cwd=wd,
         )
-        print('\n{0}\n'.format(test_result.decode('utf-8')))
+        print(u'\n{0}\n'.format(safe_unicode(test_result)))
     except subprocess.CalledProcessError as execinfo:
         tox_msg = safe_unicode(
-            b''.join(execinfo.output),
+            b''.join(bytes(execinfo.output)),
         )
         print(tox_msg)
         tox_summary = safe_unicode(

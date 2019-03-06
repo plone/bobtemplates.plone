@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Generate portlet."""
 
+from __future__ import absolute_import
+from __future__ import print_function
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
@@ -29,11 +31,11 @@ def _update_portlets_configure_zcml(configurator):
             configurator.variables['portlet_name'],
         )
         if len(tree_root.xpath(portlet_xpath, namespaces=ZCML_NAMESPACES)):
-            print(
+            print((
                 u'{0} already in configure.zcml, skip adding!'.format(
                     configurator.variables['portlet_name'],
                 ),
-            )
+            ))
             return
 
     match_str = '-*- extra stuff goes here -*-'
@@ -76,11 +78,11 @@ def _update_portlets_xml(configurator):
             configurator.variables['portlet_configuration_name'],
         )
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
-            print(
+            print((
                 u'{0} already in portlets.xml, skip adding!'.format(
                     configurator.variables['portlet_configuration_name'],
                 ),
-            )
+            ))
             return
 
     match_str = u'<!-- Extra portlets here  -->'
@@ -140,9 +142,9 @@ def _update_configure_zcml(configurator):
         tree_root = tree.getroot()
         xpath_selector = "./include[@package='{0}']".format('.portlets')  # NOQA: E501
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
-            print(
+            print((
                 u'.views already in configure.zcml, skip adding!',
-            )
+            ))
             return
 
     match_str = u'<!--<includeDependencies package="." />-->'

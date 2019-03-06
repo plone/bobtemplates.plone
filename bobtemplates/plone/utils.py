@@ -6,26 +6,6 @@ import unicodedata
 
 def safe_unicode(value, encoding='utf-8'):
     """Converts a value to unicode, even it is already a unicode string.
-        >>> from Products.CMFPlone.utils import safe_unicode
-        >>> test_bytes = u'\u01b5'.encode('utf-8')
-        >>> safe_unicode('spam') == u'spam'
-        True
-        >>> safe_unicode(b'spam') == u'spam'
-        True
-        >>> safe_unicode(u'spam') == u'spam'
-        True
-        >>> safe_unicode(u'spam'.encode('utf-8')) == u'spam'
-        True
-        >>> safe_unicode(test_bytes) == u'\u01b5'
-        True
-        >>> safe_unicode(u'\xc6\xb5'.encode('iso-8859-1')) == u'\u01b5'
-        True
-        >>> safe_unicode(test_bytes, encoding='ascii') == u'\u01b5'
-        True
-        >>> safe_unicode(1) == 1
-        True
-        >>> print(safe_unicode(None))
-        None
     """
     if six.PY2:
         if isinstance(value, unicode):

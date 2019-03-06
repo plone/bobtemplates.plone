@@ -22,36 +22,54 @@ before_install:
     - git config --global user.email "travis@travis-ci.org"
     - git config --global user.name "Travis CI"
 
-#matrix:
-#    include:
-#        - python: "2.7"
-#          env: TOXENV=lint-py27,docs
-#        - python: "3.7"
-#          env: TOXENV=lint-py37,docs
-#        - python: "2.7"
-#          env: TOXENV=py27-packagetests
-#        - python: "2.7"
-#          env: TOXENV=py37-packagetests
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-template-addon
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-template-addon_content_type
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-template-addon_behavior
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-template-addon_portlet
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-template-addon_theme_barceloneta
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-template-addon_theme
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-template-addon_view
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-template-addon_viewlet
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-template-addon_vocabulary
-#        - python: "2.7"
-#          env: TOXENV=py27-skeletontests-template-theme_package
+env:
+  - TOXENV=lint-py27
+  - TOXENV=lint-py37
+  - TOXENV=docs
+  - TOXENV=py27-packagetests
+  - TOXENV=py37-packagetests
+  - TOXENV=py27-skeletontests-Plone43-template-addon
+  - TOXENV=py27-skeletontests-Plone51-template-addon
+  - TOXENV=py27-skeletontests-Plone52-template-addon
+  - TOXENV=py37-skeletontests-Plone52-template-addon
+  - TOXENV=py27-skeletontests-Plone43-template-addon_content_type
+  - TOXENV=py27-skeletontests-Plone51-template-addon_content_type
+  - TOXENV=py27-skeletontests-Plone52-template-addon_content_type
+  - TOXENV=py37-skeletontests-Plone52-template-addon_content_type
+  - TOXENV=py27-skeletontests-Plone43-template-addon_view
+  - TOXENV=py27-skeletontests-Plone51-template-addon_view
+  - TOXENV=py27-skeletontests-Plone52-template-addon_view
+  - TOXENV=py37-skeletontests-Plone52-template-addon_view
+  - TOXENV=py27-skeletontests-Plone43-template-addon_viewlet
+  - TOXENV=py27-skeletontests-Plone51-template-addon_viewlet
+  - TOXENV=py27-skeletontests-Plone52-template-addon_viewlet
+  - TOXENV=py37-skeletontests-Plone52-template-addon_viewlet
+  - TOXENV=py27-skeletontests-Plone43-template-addon_portlet
+  - TOXENV=py27-skeletontests-Plone51-template-addon_portlet
+  - TOXENV=py27-skeletontests-Plone52-template-addon_portlet
+  - TOXENV=py37-skeletontests-Plone52-template-addon_portlet
+  - TOXENV=py27-skeletontests-Plone43-template-addon_theme
+  - TOXENV=py27-skeletontests-Plone51-template-addon_theme
+  - TOXENV=py27-skeletontests-Plone52-template-addon_theme
+  - TOXENV=py37-skeletontests-Plone52-template-addon_theme
+  - TOXENV=py27-skeletontests-Plone51-template-addon_theme_barceoneta
+  - TOXENV=py27-skeletontests-Plone52-template-addon_theme_barceoneta
+  - TOXENV=py37-skeletontests-Plone52-template-addon_theme_barceoneta
+  - TOXENV=py27-skeletontests-Plone43-template-addon_vocabulary
+  - TOXENV=py27-skeletontests-Plone51-template-addon_vocabulary
+  - TOXENV=py27-skeletontests-Plone52-template-addon_vocabulary
+  - TOXENV=py37-skeletontests-Plone52-template-addon_vocabulary
+  - TOXENV=py27-skeletontests-Plone43-template-addon_behavior
+  - TOXENV=py27-skeletontests-Plone51-template-addon_behavior
+  - TOXENV=py27-skeletontests-Plone52-template-addon_behavior
+  - TOXENV=py37-skeletontests-Plone52-template-addon_behavior
+  - TOXENV=py27-skeletontests-Plone43-template-addon_restapi_service
+  - TOXENV=py27-skeletontests-Plone51-template-addon_restapi_service
+  - TOXENV=py27-skeletontests-Plone52-template-addon_restapi_service
+  - TOXENV=py37-skeletontests-Plone52-template-addon_restapi_service
+  - TOXENV=py27-skeletontests-Plone43-template-theme_package
+  - TOXENV=py27-skeletontests-Plone51-template-theme_package
+  - TOXENV=coverage-report
 
 install:
     - travis_retry pip install -U tox tox-travis coveralls coverage -c constraints.txt

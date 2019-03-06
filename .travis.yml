@@ -1,9 +1,7 @@
 language: python
-python:
-  - "2.7"
-  - "3.7"
 sudo: false
 dist: xenial
+python: 2.7
 
 cache:
   pip: true
@@ -22,54 +20,68 @@ before_install:
     - git config --global user.email "travis@travis-ci.org"
     - git config --global user.name "Travis CI"
 
-env:
-  - TOXENV=lint-py27
-  - TOXENV=lint-py37
-  - TOXENV=docs
-  - TOXENV=py27-packagetests
-  - TOXENV=py37-packagetests
-  - TOXENV=py27-skeletontests-Plone43-template-addon
-  - TOXENV=py27-skeletontests-Plone51-template-addon
-  - TOXENV=py27-skeletontests-Plone52-template-addon
-  - TOXENV=py37-skeletontests-Plone52-template-addon
-  - TOXENV=py27-skeletontests-Plone43-template-addon_content_type
-  - TOXENV=py27-skeletontests-Plone51-template-addon_content_type
-  - TOXENV=py27-skeletontests-Plone52-template-addon_content_type
-  - TOXENV=py37-skeletontests-Plone52-template-addon_content_type
-  - TOXENV=py27-skeletontests-Plone43-template-addon_view
-  - TOXENV=py27-skeletontests-Plone51-template-addon_view
-  - TOXENV=py27-skeletontests-Plone52-template-addon_view
-  - TOXENV=py37-skeletontests-Plone52-template-addon_view
-  - TOXENV=py27-skeletontests-Plone43-template-addon_viewlet
-  - TOXENV=py27-skeletontests-Plone51-template-addon_viewlet
-  - TOXENV=py27-skeletontests-Plone52-template-addon_viewlet
-  - TOXENV=py37-skeletontests-Plone52-template-addon_viewlet
-  - TOXENV=py27-skeletontests-Plone43-template-addon_portlet
-  - TOXENV=py27-skeletontests-Plone51-template-addon_portlet
-  - TOXENV=py27-skeletontests-Plone52-template-addon_portlet
-  - TOXENV=py37-skeletontests-Plone52-template-addon_portlet
-  - TOXENV=py27-skeletontests-Plone43-template-addon_theme
-  - TOXENV=py27-skeletontests-Plone51-template-addon_theme
-  - TOXENV=py27-skeletontests-Plone52-template-addon_theme
-  - TOXENV=py37-skeletontests-Plone52-template-addon_theme
-  - TOXENV=py27-skeletontests-Plone51-template-addon_theme_barceoneta
-  - TOXENV=py27-skeletontests-Plone52-template-addon_theme_barceoneta
-  - TOXENV=py37-skeletontests-Plone52-template-addon_theme_barceoneta
-  - TOXENV=py27-skeletontests-Plone43-template-addon_vocabulary
-  - TOXENV=py27-skeletontests-Plone51-template-addon_vocabulary
-  - TOXENV=py27-skeletontests-Plone52-template-addon_vocabulary
-  - TOXENV=py37-skeletontests-Plone52-template-addon_vocabulary
-  - TOXENV=py27-skeletontests-Plone43-template-addon_behavior
-  - TOXENV=py27-skeletontests-Plone51-template-addon_behavior
-  - TOXENV=py27-skeletontests-Plone52-template-addon_behavior
-  - TOXENV=py37-skeletontests-Plone52-template-addon_behavior
-  - TOXENV=py27-skeletontests-Plone43-template-addon_restapi_service
-  - TOXENV=py27-skeletontests-Plone51-template-addon_restapi_service
-  - TOXENV=py27-skeletontests-Plone52-template-addon_restapi_service
-  - TOXENV=py37-skeletontests-Plone52-template-addon_restapi_service
-  - TOXENV=py27-skeletontests-Plone43-template-theme_package
-  - TOXENV=py27-skeletontests-Plone51-template-theme_package
-  - TOXENV=coverage-report
+matrix:
+    include:
+        - env: TOXENV=py37-lint
+          python: "3.7"
+        - env: TOXENV=py27-lint
+        - env: TOXENV=docs
+        - env: TOXENV=py27-packagetests
+        - env: TOXENV=py37-packagetests
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone43-template-addon
+        - env: TOXENV=py27-skeletontests-Plone51-template-addon
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone43-template-addon_content_type
+        - env: TOXENV=py27-skeletontests-Plone51-template-addon_content_type
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon_content_type
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon_content_type
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone43-template-addon_view
+        - env: TOXENV=py27-skeletontests-Plone51-template-addon_view
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon_view
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon_view
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone43-template-addon_viewlet
+        - env: TOXENV=py27-skeletontests-Plone51-template-addon_viewlet
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon_viewlet
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon_viewlet
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone43-template-addon_portlet
+        - env: TOXENV=py27-skeletontests-Plone51-template-addon_portlet
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon_portlet
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon_portlet
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone43-template-addon_theme
+        - env: TOXENV=py27-skeletontests-Plone51-template-addon_theme
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon_theme
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon_theme
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone51-template-addon_theme_barceoneta
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon_theme_barceoneta
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon_theme_barceoneta
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone43-template-addon_vocabulary
+        - env: TOXENV=py27-skeletontests-Plone51-template-addon_vocabulary
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon_vocabulary
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon_vocabulary
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone43-template-addon_behavior
+        - env: TOXENV=py27-skeletontests-Plone51-template-addon_behavior
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon_behavior
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon_behavior
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone43-template-addon_restapi_service
+        - env: TOXENV=py27-skeletontests-Plone51-template-addon_restapi_service
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon_restapi_service
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon_restapi_service
+          python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone43-template-theme_package
+        - env: TOXENV=py27-skeletontests-Plone51-template-theme_package
+        - env: TOXENV=coverage-report
+
 
 install:
     - travis_retry pip install -U tox tox-travis coveralls coverage -c constraints.txt

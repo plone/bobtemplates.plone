@@ -148,7 +148,6 @@ def pre_renderer(configurator):
     configurator.variables['service_class_name'] = cc.pascalcase(     # NOQA: E501
         class_name,
     )
-    # XXX use dashed name
     configurator.variables['service_class_name_normalized'] = cc.snakecase(
         class_name,
     )

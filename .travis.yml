@@ -1,4 +1,7 @@
 language: python
+python:
+  - "2.7"
+  - "3.7"
 sudo: false
 dist: xenial
 
@@ -51,7 +54,7 @@ before_install:
 #          env: TOXENV=py27-skeletontests-template-theme_package
 
 install:
-    - travis_retry pip install -U tox tox-travis coveralls coverage
+    - travis_retry pip install -U tox tox-travis coveralls coverage -c constraints.txt
 
 before_script:
   - 'export DISPLAY=:99.0'

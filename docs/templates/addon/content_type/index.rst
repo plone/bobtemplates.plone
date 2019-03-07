@@ -13,9 +13,21 @@ First create a Plone add-on package:
 
 .. code-block:: shell
 
-    mrbob -O collective.todolist bobtemplates.plone:addon
+    plonecli create addon ./collective.todolist
+
+or without the ``plonecli``:
+
+.. code-block:: shell
+
+    mrbob bobtemplates.plone:addon -O collective.todolist
 
 then change into the created folder ``collective.todolist`` and create your first Content Type:
+
+.. code-block:: shell
+
+    plonecli add content_type
+
+or without the ``plonecli``
 
 .. code-block:: shell
 
@@ -37,7 +49,7 @@ Add a container Content Type
 
 .. code-block:: shell
 
-    $ mrbob bobtemplates.plone:content_type
+    $ plonecli add content_type
 
     Welcome to mr.bob interactive mode. Before we generate directory structure, some questions need to be answered.
 
@@ -91,7 +103,7 @@ Add an item Content Type
 
 .. code-block:: shell
 
-    $ mrbob bobtemplates.plone:content_type
+    $ plonecli add content_type
 
     Welcome to mr.bob interactive mode. Before we generate directory structure, some questions need to be answered.
 

@@ -1,10 +1,44 @@
 Changelog
 =========
 
-3.6.1 (unreleased)
+4.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Only recommend using short names for behaviors, improve behavior docs.
+  [MrTango]
+
+- Generate the same tests for P4/5 packages.
+  [MrTango]
+
+- Add Tox setup to generated packages, to test multiple Python and Plone versions.
+  [MrTango]
+
+- Provided buildout, requirements and constraints for all Plone versions.
+  [MrTango]
+
+- Finally activate and fix new templates: view, viewlet, portlet, restapi_service.
+  [MrTango]
+
+- Refactor skeleton-tests setup, we call specific Tox envs inside the generated packages.
+  [MrTango]
+
+- Add Sphinx doc config to addon template docs.
+  [MrTango]
+
+- Make portlet sub-template Python compatible.
+  [MrTango]
+
+- Remove skeleton test for theme_barceloneta on Plone 4
+  [MrTango]
+
+- Always include plone.restapi in setup.py
+  [MrTango]
+
+- Use newest Tox and Pytest versions, to allow running test in parallel mod on local machine.
+  [MrTango]
+
+- Add custom tox2travis.py script, to generate a Travis matrix from Tox configuration.
+  [MrTango]
 
 
 3.6.0 (2019-02-25)

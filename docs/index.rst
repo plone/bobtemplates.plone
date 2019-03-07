@@ -34,7 +34,7 @@ You can also create a package with nested name space
 
 .. note::
 
-    With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone. We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplate.plone.
+    With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone. We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplates.plone.
 
 Features
 ========
@@ -49,6 +49,7 @@ Provided templates
   - behavior
   - content_type
   - portlet
+  - restapi_service
   - theme
   - theme_barceloneta
   - view
@@ -56,7 +57,7 @@ Provided templates
   - vocabulary
 
  - buildout
- - theme_package [deprecated] >> Please use the theme_barceloneta subtemplate!
+ - theme_package [deprecated] >> Please use the theme_barceloneta sub-template!
 
 .. note::
 
@@ -75,8 +76,74 @@ It should work on Linux, Mac and Windows.
 Installation
 ============
 
-Use in a buildout
------------------
+Installation global for a user (recommended)
+--------------------------------------------
+
+To have ``bobtemplates.plone`` and the `plonecli <https://pypi.python.org/pypi/plonecli>`_ always avilable, it's recommended to install it globally for your user.
+
+.. code-block:: shell
+
+    pip install plonecli --user
+
+This will install the ``plonecli`` and ``bobtemplates.plone``. If you only want ``bobtemplates.plone``, you install only this package as follow:
+
+.. code-block:: shell
+
+    pip install bobtemplates.plone --user
+
+
+Installation in a Virtualenv
+----------------------------
+
+You can also install ``bobtemplates.plone`` in a Virtualenv.
+
+.. code-block:: shell
+
+    pip install bobtemplates.plone
+
+With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
+
+.. code-block:: shell
+
+    pip install mr.bob
+
+
+Use plonecli and bobtemplates.plone
+-----------------------------------
+
+You can use the bobtemplates now with the ``plonecli``:
+
+.. code-block:: shell
+
+    plonecli create addon src/collective.foo
+    cd src/collective.foo
+    plonecli add content_type
+    plonecli build test serve
+
+.. code-block:: shell
+
+    mrbob bobtemplates.plone:addon -O collective.foo
+    cd src/collective.foo
+    mrbob bobtemplates.plone:content_type
+    virtualenv .
+    ./bin/pip install -r requirements.txt
+    ./bin/buildout
+    ./bin/test
+    ./bin/instance fg
+
+Changing the default Python and Plone versions
+..............................................
+
+By default you will build a virtualenv with Python2.7 and a buildout Plone 5.2. You can change this by customizing the buildout.cfg to extend one of the other test file, like test_plone43.cfg. Also you can change the requirements.txt to point to another constraints file like constraints_plone43.txt.
+
+Additional information on plonecli and mrbob
+--------------------------------------------
+
+See `plonecli <https://pypi.python.org/pypi/plonecli>`_ and `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ documentation for further information.
+
+
+Installing and using it in a buildout
+-------------------------------------
 
 ::
 
@@ -96,30 +163,6 @@ Call it from the ``src``-directory of your Plone project like this.
 .. code-block:: shell
 
     ../bin/mrbob -O collective.foo bobtemplates:addon
-
-
-Installation in a Virtualenv
-----------------------------
-
-You can also install ``bobtemplates.plone`` in a Virtualenv.
-
-.. code-block:: shell
-
-    pip install bobtemplates.plone
-
-With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
-
-.. code-block:: shell
-
-    pip install mr.bob
-
-Now you can use it like this
-
-.. code-block:: shell
-
-    mrbob -O collective.foo bobtemplates:addon
-
-See `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ documentation for further information.
 
 
 Indices and tables

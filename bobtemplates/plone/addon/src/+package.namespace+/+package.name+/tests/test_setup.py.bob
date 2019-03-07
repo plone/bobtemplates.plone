@@ -4,19 +4,10 @@ from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEG
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-<<<<<<< HEAD
-{{% if plone.is_plone51 %}}
-from Products.CMFPlone.utils import get_installer
-{{% endif %}}
-from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
-=======
->>>>>>> 06cc216... fix skeletontests, deactivate coverage & docs test in generated tox.ini, because it breaks the parent tox
 
 import unittest
 
 
-<<<<<<< HEAD
-=======
 no_get_installer = False
 
 
@@ -26,7 +17,6 @@ except Exception:
     no_get_installer = True
 
 
->>>>>>> aad778a... Refactore skeleton tests, to use tox inside the generted packages
 class TestSetup(unittest.TestCase):
     """Test that {{{ package.dottedname }}} is properly installed."""
 

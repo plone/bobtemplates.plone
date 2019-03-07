@@ -163,6 +163,7 @@ def test_update_portlets_configure_zcml(tmpdir):
             'non_interactive': True,
         },
         variables={
+            'portlet_name': 'MyWeather',
             'portlet_name_normalized': 'my_weather',
             'portlet_configuration_name': 'collective.sample.portlets.MyWeather',  # NOQA: E501
             'data_provider_class_name': 'IMyWeatherPortlet',

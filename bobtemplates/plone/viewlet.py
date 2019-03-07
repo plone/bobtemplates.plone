@@ -4,6 +4,7 @@
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
+from bobtemplates.plone.base import ZCML_NAMESPACES
 from lxml import etree
 from mrbob.bobexceptions import SkipQuestion
 
@@ -59,23 +60,22 @@ def _update_viewlets_configure_zcml(configurator):
     file_name = u'configure.zcml'
     directory_path = configurator.variables['package_folder'] + '/viewlets/'
     file_path = directory_path + file_name
+
     configure_example_file_path = configurator.variables['package_folder'] + '/viewlets/configure.zcml.example'  # NOQA: E501
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
-    namespaces = '{http://namespaces.zope.org/zope}'
 
     with open(file_path, 'r') as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_xpath = "{0}browser:viewlet[@name='{1}']".format(
-            namespaces,
+        view_xpath = "./browser:viewlet[@name='{0}']".format(
             configurator.variables['viewlet_name'],
         )
-        if len(tree_root.findall(view_xpath)):
+        if len(tree_root.xpath(view_xpath, namespaces=ZCML_NAMESPACES)):
             print(
-                '{0} already in configure.zcml, skip adding!'.format(
+                '{0} already in configure.zcml, skip adding!!!'.format(
                     configurator.variables['viewlet_name'],
                 ),
             )
@@ -83,19 +83,26 @@ def _update_viewlets_configure_zcml(configurator):
 
     match_str = '-*- extra stuff goes here -*-'
 
+    if configurator.variables['plone.is_plone5']:
+        iface_name = 'plone.app.contenttypes.interfaces.IDocument'
+    else:
+        # BBB Plone 4 fallback:
+        iface_name = 'Products.ATContentTypes.interfaces.document.IATDocument'
+
     if configurator.variables['viewlet_template']:
         insert_str = """
   <browser:viewlet
      name="{0}"
-     for="plone.app.contenttypes.interfaces.IDocument"
+     for="{1}"
      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
-     layer="{1}.interfaces.{2}"
-     class=".{3}.{4}"
-     template="{5}.pt"
+     layer="{2}.interfaces.{3}"
+     class=".{4}.{5}"
+     template="{6}.pt"
      permission="zope2.View"
      />
 """.format(
             configurator.variables['viewlet_name'],
+            iface_name,
             configurator.variables['package.dottedname'],
             configurator.variables['browser_layer'],
             configurator.variables['viewlet_python_file_name'],
@@ -107,14 +114,15 @@ def _update_viewlets_configure_zcml(configurator):
         insert_str = """
   <browser:viewlet
      name="{0}"
-     for="plone.app.contenttypes.interfaces.IDocument"
+     for="{1}"
      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
-     layer="{1}.interfaces.{2}"
-     class=".{3}.{4}"
+     layer="{2}.interfaces.{3}"
+     class=".{4}.{5}"
      permission="zope2.View"
      />
 """.format(
             configurator.variables['viewlet_name'],
+            iface_name,
             configurator.variables['package.dottedname'],
             configurator.variables['browser_layer'],
             configurator.variables['viewlet_python_file_name'],

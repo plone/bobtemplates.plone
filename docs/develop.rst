@@ -82,6 +82,7 @@ Template Registration
 Even though you can use bobtemplates without registration, you should register the template to allow plonecli and future mrbob versions to query for it.
 The registration is done by adding a Python entry point into the ``setup.py`` of ``bobtemplates.plone`` and by adding a short method to the ``bobregistry.py`` file.
 You can of course create your own custom package, analog to bobtemplates.plone and register your templates plonecli the same way.
+This could be used for example for your agency or client specific code structures. If you need help by creating such custom bobtemplates and plonecli integration's, give us a sign on Gitter: https://gitter.im/plone/plonecli.
 
 Let's look first on the entry point:
 
@@ -122,7 +123,7 @@ All templates and sub-templates should have tests for the structure they provide
 These tests will give developers a good starting point to write tests for their own code.
 Also these tests will be called by Tox and on Travis to make sure that all the structures created by ``bobtemplates.plone`` are working and tested.
 
-We run tests for both all the templates with every combination and inside the created packages.
+We run tests for both all the templates with every combination and inside the generated packages.
 
 For example tests could be run only on ``addon``.
 Alternately, for a package with Dexterity content types, tests could be run first for the ``add-on`` template, then inside the package created by the ``content_type`` sub-template.
@@ -134,63 +135,169 @@ You can also run individual tests for a specific environment. To get a list of a
 
 .. code-block:: shell
 
-   tox -l
-   py27-packagetests
-   py34-packagetests
-   py35-packagetests
-   py36-packagetests
-   pypy-packagetests
-   py27-skeletontests-Plone-4.3-template-addon
-   py27-skeletontests-Plone-5.0-template-addon
-   py27-skeletontests-Plone-5.1-template-addon
-   py27-skeletontests-Plone-4.3-template-addon_content_type
-   py27-skeletontests-Plone-5.0-template-addon_content_type
-   py27-skeletontests-Plone-5.1-template-addon_content_type
-   py27-skeletontests-Plone-4.3-template-addon_theme
-   py27-skeletontests-Plone-5.0-template-addon_theme
-   py27-skeletontests-Plone-5.1-template-addon_theme
-   py27-skeletontests-Plone-4.3-template-addon_vocabulary
-   py27-skeletontests-Plone-5.0-template-addon_vocabulary
-   py27-skeletontests-Plone-5.1-template-addon_vocabulary
-   py27-skeletontests-Plone-4.3-template-theme_package
-   py27-skeletontests-Plone-5.0-template-theme_package
-   py27-skeletontests-Plone-5.1-template-theme_package
-   lint-py27
-   lint-py36
-   docs
-   coverage-report
+    $ tox -l
+    py37-lint
+    py27-lint
+    docs
+    py27-packagetests
+    py37-packagetests
+    py27-skeletontests-Plone43-template-addon
+    py27-skeletontests-Plone51-template-addon
+    py27-skeletontests-Plone52-template-addon
+    py37-skeletontests-Plone52-template-addon
+    py27-skeletontests-Plone43-template-addon_content_type
+    py27-skeletontests-Plone51-template-addon_content_type
+    py27-skeletontests-Plone52-template-addon_content_type
+    py37-skeletontests-Plone52-template-addon_content_type
+    py27-skeletontests-Plone43-template-addon_view
+    py27-skeletontests-Plone51-template-addon_view
+    py27-skeletontests-Plone52-template-addon_view
+    py37-skeletontests-Plone52-template-addon_view
+    py27-skeletontests-Plone43-template-addon_viewlet
+    py27-skeletontests-Plone51-template-addon_viewlet
+    py27-skeletontests-Plone52-template-addon_viewlet
+    py37-skeletontests-Plone52-template-addon_viewlet
+    py27-skeletontests-Plone43-template-addon_portlet
+    py27-skeletontests-Plone51-template-addon_portlet
+    py27-skeletontests-Plone52-template-addon_portlet
+    py37-skeletontests-Plone52-template-addon_portlet
+    py27-skeletontests-Plone43-template-addon_theme
+    py27-skeletontests-Plone51-template-addon_theme
+    py27-skeletontests-Plone52-template-addon_theme
+    py37-skeletontests-Plone52-template-addon_theme
+    py27-skeletontests-Plone51-template-addon_theme_barceoneta
+    py27-skeletontests-Plone52-template-addon_theme_barceoneta
+    py37-skeletontests-Plone52-template-addon_theme_barceoneta
+    py27-skeletontests-Plone43-template-addon_vocabulary
+    py27-skeletontests-Plone51-template-addon_vocabulary
+    py27-skeletontests-Plone52-template-addon_vocabulary
+    py37-skeletontests-Plone52-template-addon_vocabulary
+    py27-skeletontests-Plone43-template-addon_behavior
+    py27-skeletontests-Plone51-template-addon_behavior
+    py27-skeletontests-Plone52-template-addon_behavior
+    py37-skeletontests-Plone52-template-addon_behavior
+    py27-skeletontests-Plone43-template-addon_restapi_service
+    py27-skeletontests-Plone51-template-addon_restapi_service
+    py27-skeletontests-Plone52-template-addon_restapi_service
+    py37-skeletontests-Plone52-template-addon_restapi_service
+    py27-skeletontests-Plone43-template-theme_package
+    py27-skeletontests-Plone51-template-theme_package
+    coverage-report
 
 You can run just one of them:
 
 .. code-block:: sh
 
-   tox -e py27-skeletontests-Plone-5.1-template-addon
+   tox -e py27-skeletontests-Plone52-template-addon
 
 or call all of the same template but for different Plone versions:
 
 .. code-block:: shell
 
-   tox -e py27-skeletontests-Plone-4.3-template-addon_content_type,py27-skeletontests-Plone-5.0-template-add-on_content_type,py27-skeletontests-Plone-5.1-template-add-on_content_type
+   tox -e py27-skeletontests-Plone43-template-addon_content_type,py27-skeletontests-Plone51-template-add-on_content_type,py27-skeletontests-Plone52-template-add-on_content_type
 
 .. note::
 
    There is no empty space between the list elements!
 
-Running a specific test:
+Running a specific test
+-----------------------
+
+The actual tests are written with the pytest module, therefor you can always run them with pytest directly.
+
+To run a specific pytest with Tox, you can pass additional arguments to pytest, buy putting them after the ``--`` parameter.
 
 .. code-block:: shell
 
     $ tox -e py36-packagetests -- -k test_set_global_vars
 
-By the time or writing this, we have the following test cases (combinations), which we are testing:
+Package tests
+.............
 
-- addon
-- addon_content_type
-- addon_theme
-- addon_vocabulary
-- addon_behavior
-- theme_package
+Package tests are for testing the code of bobtemplates.plone it self. These code is used to generate and update the structures of the generated packages.
+
+You can find these test in the ``package-test`` folder.
+This is a good place to test everything related to the generation process.
+
+Skeleton tests
+..............
+
+Skeleton tests are for testing, that the generated packages are actually work. We generate the packages, with different combinations of sub-templates, build and run the tests inside.
 
 The tests are defined in the directory ``skeleton-tests`` and are called by ``tox`` as defined in ``tox.ini``.
 
-If you add new test cases (files), make sure that they are in the ``tox.ini`` and also called by Travis!
+If you add new test cases (files), make sure that they are in the ``tox.ini`` and also included int the Travis matrix, see below!
+
+Skeleton tests it self are using pytest too, but the tests inside the generated packages are Zope tests running by zc.testrunner.
+Starting from version 4.x, packages generated by bobtemplates.plone are containing also a tox setup by them self. This allows you to easily test your package against multiple Python and Plone versions.
+
+Generating Travis matrix from tox.ini
+=====================================
+
+.. code-block:: shell
+
+    $ python tox2travis.py
+    matrix:
+        include:
+            - env: TOXENV=py37-lint
+            python: "3.7"
+            - env: TOXENV=py27-lint
+            - env: TOXENV=docs
+            - env: TOXENV=py27-packagetests
+            - env: TOXENV=py37-packagetests
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_content_type
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_content_type
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_content_type
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_content_type
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_view
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_view
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_view
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_view
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_viewlet
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_viewlet
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_viewlet
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_viewlet
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_portlet
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_portlet
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_portlet
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_portlet
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_theme
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_theme
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_theme
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_theme
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_theme_barceoneta
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_theme_barceoneta
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_theme_barceoneta
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_vocabulary
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_vocabulary
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_vocabulary
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_vocabulary
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_behavior
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_behavior
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_behavior
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_behavior
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-addon_restapi_service
+            - env: TOXENV=py27-skeletontests-Plone51-template-addon_restapi_service
+            - env: TOXENV=py27-skeletontests-Plone52-template-addon_restapi_service
+            - env: TOXENV=py37-skeletontests-Plone52-template-addon_restapi_service
+            python: "3.7"
+            - env: TOXENV=py27-skeletontests-Plone43-template-theme_package
+            - env: TOXENV=py27-skeletontests-Plone51-template-theme_package
+            - env: TOXENV=coverage-report
+
+
+replace the current matrix in ``.travis.yml`` with the result.

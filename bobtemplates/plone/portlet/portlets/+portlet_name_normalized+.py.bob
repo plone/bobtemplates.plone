@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 from Acquisition import aq_inner
 from {{{package.dottedname}}} import _
 from plone import schema
@@ -11,8 +12,8 @@ from zope.component import getMultiAdapter
 from zope.interface import implementer
 
 import json
-import urllib
-import urllib2
+import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
+import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
 
 
 class {{{data_provider_class_name}}}(IPortletDataProvider):
@@ -93,8 +94,10 @@ class Renderer(base.Renderer):
         yql_query = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="{0}")'.format(  # NOQA: E501
             self.data.place_str,
         )
-        yql_url = baseurl + urllib.urlencode({'q': yql_query}) + '&format=json'
-        result = urllib2.urlopen(yql_url).read()
+        yql_url = baseurl + six.moves.urllib.parse.urlencode(
+            {'q': yql_query},
+        ) + '&format=json'
+        result = six.moves.urllib.request.urlopen(yql_url).read()
         data = json.loads(result)
         result = {}
         result['description'] = data['query']['results']['channel']['description']  # NOQA: E501

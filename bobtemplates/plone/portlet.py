@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 """Generate portlet."""
 
+from __future__ import absolute_import
+from __future__ import print_function
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
+from bobtemplates.plone.base import ZCML_NAMESPACES
 from bobtemplates.plone.utils import slugify
 from lxml import etree
 
@@ -19,22 +22,20 @@ def _update_portlets_configure_zcml(configurator):
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
-    namespaces = '{http://namespaces.zope.org/zope}'
 
     with open(file_path, 'r') as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_xpath = u"{0}plone:portlet[@name='{1}']".format(
-            namespaces,
-            configurator.variables['portlet_configuration_name'],
+        portlet_xpath = u"./plone:portlet[@name='{0}']".format(
+            configurator.variables['portlet_name'],
         )
-        if len(tree_root.findall(view_xpath)):
-            print(
+        if len(tree_root.xpath(portlet_xpath, namespaces=ZCML_NAMESPACES)):
+            print((
                 u'{0} already in configure.zcml, skip adding!'.format(
                     configurator.variables['portlet_name'],
                 ),
-            )
+            ))
             return
 
     match_str = '-*- extra stuff goes here -*-'
@@ -68,22 +69,20 @@ def _update_portlets_xml(configurator):
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
-    namespaces = '{http://namespaces.zope.org/zope}'
 
     with open(file_path, 'r') as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_xpath = u"{0}portlet[@addview='{1}']".format(
-            namespaces,
+        xpath_selector = "./portlet[@addview='{0}']".format(
             configurator.variables['portlet_configuration_name'],
         )
-        if len(tree_root.findall(view_xpath)):
-            print(
+        if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
+            print((
                 u'{0} already in portlets.xml, skip adding!'.format(
-                    configurator.variables['portlet_name'],
+                    configurator.variables['portlet_configuration_name'],
                 ),
-            )
+            ))
             return
 
     match_str = u'<!-- Extra portlets here  -->'
@@ -136,17 +135,16 @@ def _delete_unnecessary_files(configurator):
 def _update_configure_zcml(configurator):
     file_name = u'configure.zcml'
     file_path = configurator.variables['package_folder'] + '/' + file_name
-    namespaces = '{http://namespaces.zope.org/zope}'
 
     with open(file_path, 'r') as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_xpath = u"{0}include[@package='.portlets']".format(namespaces)
-        if len(tree_root.findall(view_xpath)):
-            print(
+        xpath_selector = "./include[@package='{0}']".format('.portlets')  # NOQA: E501
+        if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
+            print((
                 u'.views already in configure.zcml, skip adding!',
-            )
+            ))
             return
 
     match_str = u'<!--<includeDependencies package="." />-->'

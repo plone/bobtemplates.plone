@@ -6,6 +6,7 @@ from {{{ package.dottedname }}} import _
 from Products.Five.browser import BrowserView
 {{% if view_template %}}
 
+
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 {{% endif %}}
 

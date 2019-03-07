@@ -7,8 +7,8 @@
   <plone:service
     method="GET"
     for="zope.interface.Interface"
-    factory=".get.{{{ service_class_name }}}"
-    name="@{{{ service_name_normalized }}}"
+    factory=".get.{{{ service_class_name }}}Get"
+    name="@{{{ service_class_name_normalized }}}"
     permission="zope2.View"
     />
 

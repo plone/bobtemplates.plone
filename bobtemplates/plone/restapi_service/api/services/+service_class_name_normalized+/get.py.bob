@@ -18,7 +18,7 @@ class {{{ service_class_name }}}(object):
     def __call__(self, expand=False):
         result = {
             '{{{ service_name_normalized }}}': {
-                '@id': '{}/@{{{ service_name_normalized }}}'.format(
+                '@id': '{}/@{{{ service_class_name_normalized }}}'.format(
                     self.context.absolute_url(),
                 ),
             },
@@ -29,28 +29,32 @@ class {{{ service_class_name }}}(object):
         # === Your custom code comes here ===
 
         # Example:
+        try:
+            subjects = self.context.Subject()
+        except:
+            subjects = []
         query = {}
         query['portal_type'] = "Document"
         query['Subject'] = {
-            'query': ['Cats', 'Dogs'],
+            'query': subjects,
             'operator': 'or',
         }
         brains = api.content.find(**query)
         items = []
         for brain in brains:
-            obj = brain.getObject()
-            parent = obj.aq_inner.aq_parent
+            # obj = brain.getObject()
+            # parent = obj.aq_inner.aq_parent
             items.append({
                 'title': brain.Title,
                 'description': brain.Description,
                 '@id': brain.getURL(),
             })
-        result['{{{ service_name_normalized }}}']['items'] = items
+        result['{{{ service_class_name_normalized }}}']['items'] = items
         return result
 
 
 class {{{ service_class_name }}}Get(Service):
 
     def reply(self):
-        service_factory = {{{ service_class_name }}}(self.context, self.request)
-        return service_factory(expand=True)['{{{ service_name_normalized }}}']
+        service_factory = {{{ service_class_name_normalized }}}(self.context, self.request)
+        return service_factory(expand=True)['{{{ service_class_name_normalized }}}']

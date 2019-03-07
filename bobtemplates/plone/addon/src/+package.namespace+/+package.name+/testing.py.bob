@@ -32,6 +32,8 @@ class {{{ package.browserlayer }}}(PloneSandboxLayer):
         import plone.app.dexterity
         self.loadZCML(package=plone.app.dexterity)
 {{% endif %}}
+        import plone.restapi
+        self.loadZCML(package=plone.restapi)
         self.loadZCML(package={{{ package.dottedname }}})
 
     def setUpPloneSite(self, portal):

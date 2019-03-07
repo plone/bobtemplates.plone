@@ -8,7 +8,7 @@ import os.path
 import subprocess
 
 
-def test_vocabulary(tmpdir, capsys, config):
+def test_addon_restapi_service(tmpdir, capsys, config):
     answers_init_path = os.path.join(tmpdir.strpath, 'answers.ini')
     package_dir = os.path.abspath(
         tmpdir.strpath,
@@ -16,12 +16,11 @@ def test_vocabulary(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True
-
+package.git.init = True
 author.name = The Plone Collective
 author.email = collective@plone.org
 author.github.user = collective
-package.git.init = True
-
+package.git.autocommit = True
 plone.version = {version}
 """.format(
         version=config.version,
@@ -47,14 +46,14 @@ plone.version = {version}
         os.path.join(tmpdir.strpath, config.package_name),
     )
 
-    # generate subtemplate content_type:
+    # generate subtemplate view:
     template = """[variables]
-vocabulary_name = AvailableTasks
-subtemplate_warning = Yes
+service_class_name=RelatedImages
+service_name=related-images
 """
     generate_answers_ini(package_dir, template)
 
-    config.template = 'vocabulary'
+    config.template = 'restapi_service'
     result = subprocess.call(
         [
             'mrbob',
@@ -66,15 +65,7 @@ subtemplate_warning = Yes
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/task/vocabularies/configure.zcml')
-    assert file_exists(
-        wd,
-        '/src/collective/task/tests/test_vocab_available_tasks.py',
-    )
-    assert file_exists(
-        wd,
-        '/src/collective/task/vocabularies/available_tasks.py',
-    )
+    assert file_exists(wd, '/src/collective/task/configure.zcml')
 
     with capsys.disabled():
         run_skeleton_tox_env(wd, config)

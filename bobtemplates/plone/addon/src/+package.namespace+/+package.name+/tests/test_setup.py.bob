@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
+from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-{{% if plone.is_plone51 %}}
-from Products.CMFPlone.utils import get_installer
-{{% endif %}}
-from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
 
 import unittest
+
+
+no_get_installer = False
+
+
+try:
+    from Products.CMFPlone.utils import get_installer
+except Exception:
+    no_get_installer = True
 
 
 class TestSetup(unittest.TestCase):

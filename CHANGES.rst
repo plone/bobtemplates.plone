@@ -40,6 +40,11 @@ Changelog
 - Add custom tox2travis.py script, to generate a Travis matrix from Tox configuration.
   [MrTango]
 
+- Fix behavior template: use separate marker interface, register marker in the
+  behavior zcml and adapt content to the marker, not to IDexterityContent. For
+  further reference, see the plone.behavior README.rst Example 2. fixes #16.
+  [fredvd, jensens]
+
 
 3.6.0 (2019-02-25)
 ------------------

@@ -70,7 +70,7 @@ def _update_behaviors_configure_zcml(configurator):
         description="{description}"
         provides=".{normalized_name}.I{klass_name}"
         factory=".{normalized_name}.{klass_name}"
-        marker=".{normalized_name}.I{klass_name}"
+        marker=".{normalized_name}.I{klass_name}Marker"
         />
 
 """.format(

@@ -80,11 +80,10 @@ matrix:
           python: "3.7"
         - env: TOXENV=py27-skeletontests-Plone43-template-theme_package
         - env: TOXENV=py27-skeletontests-Plone51-template-theme_package
-        - env: TOXENV=coverage-report
 
 
 install:
-    - travis_retry pip install -U tox tox-travis coveralls coverage -c constraints.txt
+    - travis_retry pip install -U tox coveralls coverage -c constraints.txt
 
 before_script:
   - 'export DISPLAY=:99.0'

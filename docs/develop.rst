@@ -195,7 +195,8 @@ The tests are defined in the directory ``skeleton-tests`` and are called by ``to
 
 If you add new test cases (files), make sure that they are in the ``tox.ini`` and also called by Travis!
 
-Generating travis matrix from tox.ini
+
+Generating Travis matrix from tox.ini
 =====================================
 
 .. code-block:: shell

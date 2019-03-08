@@ -45,6 +45,9 @@ Changelog
   further reference, see the plone.behavior README.rst Example 2. fixes #16.
   [fredvd, jensens]
 
+- Enforce base class, when supermodel is used, to have a decent marker interface
+  [MrTango]
+
 
 3.6.0 (2019-02-25)
 ------------------

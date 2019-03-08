@@ -55,6 +55,9 @@ Changelog
   This can work and will lead to warnings.
   [jensens]
 
+- Enforce base class, when supermodel is used, to have a decent marker interface
+  [MrTango]
+
 
 3.6.0 (2019-02-25)
 ------------------

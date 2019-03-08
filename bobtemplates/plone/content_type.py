@@ -23,6 +23,15 @@ def is_container(configurator, question):
         raise SkipQuestion(u'Is not a Container, so we skip filter question.')
 
 
+def supermodel_is_used(configurator, question):
+    """Test if supermodel is used."""
+    if configurator.variables.get('dexterity_type_supermodel', False):
+        raise SkipQuestion(
+            u'Skip question, because we need a base class ',
+            u'when supermodel ist used.',
+        )
+
+
 def check_dexterity_type_name(configurator, question, answer):
     """Test if type name is valid."""
     if keyword.iskeyword(answer):

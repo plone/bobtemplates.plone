@@ -211,6 +211,13 @@ To run a specific pytest with Tox, you can pass additional arguments to pytest, 
 
     $ tox -e py36-packagetests -- -k test_set_global_vars
 
+Increase verbosity of Tox/Pytest
+................................
+
+.. code-block:: shell
+
+    tox -e py36-packagetests -vv -- -s
+
 Package tests
 .............
 

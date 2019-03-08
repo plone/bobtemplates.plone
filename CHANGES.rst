@@ -51,10 +51,6 @@ Changelog
 - Do not add dexterity as dependency in Plone 5.x due to the fact it is already in Plone core.
   [jensens]
 
-- Do not try to use the main supermodel schema class as behavior.
-  This can work and will lead to warnings.
-  [jensens]
-
 - Enforce base class, when supermodel is used, to have a decent marker interface
   [MrTango]
 

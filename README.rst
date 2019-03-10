@@ -14,6 +14,8 @@
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: Egg Status
 
+.. image:: https://img.shields.io/pypi/pyversions/bobtemplates.plone.svg?style=plastic   :alt: Supported - Python Versions
+
 .. image:: https://img.shields.io/pypi/l/bobtemplates.plone.svg
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: License

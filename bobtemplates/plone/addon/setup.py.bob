@@ -54,9 +54,9 @@ setup(
     include_package_data=True,
     zip_safe=False,
 {{% if plone.is_plone52 %}}
-    python_requires="=2.7, >=3.6",
+    python_requires="==2.7, >=3.6",
 {{% else %}}
-    python_requires="=2.7",
+    python_requires="==2.7",
 {{% endif %}}
     install_requires=[
         'setuptools',
@@ -69,7 +69,6 @@ setup(
         'plone.api>=1.8.4',
         'plone.restapi',
 {{% endif %}}
->>>>>>> Fix some confusion in setup.py classifiers and depenencies due to introduction of Plone 5.2 support
 {{% if not plone.is_plone5 %}}
         'plone.app.dexterity<=2.1.1',
         'plone.app.referenceablebehavior',

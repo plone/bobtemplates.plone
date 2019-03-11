@@ -1,10 +1,11 @@
 Changelog
 =========
 
-4.1 (unreleased)
+4.0.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Remove version conditions for addon dependencies, p43-p52 should be supported.
+  [MrTango]
 
 
 4.0 (2019-03-11)
@@ -31,7 +32,7 @@ Changelog
 - Add Sphinx doc config to addon template docs.
   [MrTango]
 
-- Make portlet sub-template Python compatible.
+- Make portlet sub-template Python 3 compatible.
   [MrTango]
 
 - Remove skeleton test for theme_barceloneta on Plone 4

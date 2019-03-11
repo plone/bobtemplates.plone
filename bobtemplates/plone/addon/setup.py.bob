@@ -63,15 +63,9 @@ setup(
         # -*- Extra requirements: -*-
         'z3c.jbot',
         'Products.GenericSetup>=1.8.2',
-<<<<<<< HEAD
         'plone.api',
         'plone.restapi',
         'plone.app.dexterity',
-=======
-        'plone.api>=1.8.4',
-        'plone.restapi',
-        'plone.app.dexterity<=2.1.1',
->>>>>>> 12d0e600d01f396646c5d6c0427787ee105ccb4a
         'plone.app.referenceablebehavior',
         'plone.app.relationfield',
         'plone.app.lockingbehavior',

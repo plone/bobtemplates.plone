@@ -62,20 +62,14 @@ setup(
         'setuptools',
         # -*- Extra requirements: -*-
         'z3c.jbot',
-{{% if not (plone.is_plone51 or plone.is_plone52) %}}
         'Products.GenericSetup>=1.8.2',
-{{% endif %}}
-{{% if not plone.is_plone52 %}}
         'plone.api>=1.8.4',
         'plone.restapi',
-{{% endif %}}
-{{% if not plone.is_plone5 %}}
         'plone.app.dexterity<=2.1.1',
         'plone.app.referenceablebehavior',
         'plone.app.relationfield',
         'plone.app.lockingbehavior',
         'plone.schema',
-{{% endif %}}
     ],
     extras_require={
         'test': [

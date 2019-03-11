@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.0.1 (unreleased)
-----------------
+4.0.1 (2019-03-11)
+------------------
 
 - Remove version conditions for addon dependencies, p43-p52 should be supported.
   [MrTango]

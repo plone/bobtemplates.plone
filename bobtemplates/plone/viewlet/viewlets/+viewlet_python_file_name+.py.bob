@@ -5,17 +5,21 @@ from plone.app.layout.viewlets import ViewletBase
 
 class {{{ viewlet_python_class_name }}}(ViewletBase):
 
-{{% if viewlet_template %}}
-    def get_message(self):
-        return u'My message'
-
-    def render(self):
+    def update(self):
         self.message = self.get_message()
-        return self.index()
+
+    def get_message(self):
+{{% if viewlet_template %}}
+        return u'My message'
 {{% else %}}
-    def render(self):
-        self.message = '''<li class="heading" i18n:translate="">
+        return u'''<li class="heading" i18n:translate="">
           Simple Viewlet!
         </li>'''
+{{% endif %}}
+
+    def render(self):
+{{% if viewlet_template %}}
+        return super({{{ viewlet_python_class_name }}}, self).render()
+{{% else %}}
         return self.message
 {{% endif %}}

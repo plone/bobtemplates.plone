@@ -5,6 +5,7 @@ from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import validate_packagename
+from bobtemplates.plone.theme import _update_setup_py
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
@@ -124,6 +125,7 @@ def _update_configure_zcml(configurator):
 def post_renderer(configurator):
     """"""
     _update_configure_zcml(configurator)
+    _update_setup_py(configurator)
     _update_metadata_xml(configurator)
     git_commit(
         configurator,

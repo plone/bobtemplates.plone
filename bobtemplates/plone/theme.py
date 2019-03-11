@@ -126,6 +126,7 @@ def _update_setup_py(configurator):
     insert_strings = [
         'collective.themesitesetup',
         'collective.themefragments',
+        'plone.app.themingplugins',
     ]
     for insert_str in insert_strings:
         insert_str = "        '{0}',\n".format(insert_str)

@@ -5,6 +5,7 @@ from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import validate_packagename
+from bobtemplates.plone.theme import _update_setup_py
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
@@ -45,10 +46,11 @@ def prepare_renderer(configurator):
         value = '-'.join(value.split('_'))
         value = '-'.join(value.split())
         return value
-
     configurator.variables['theme.normalized_name'] = normalize_theme_name(
         configurator.variables.get('theme.name'),
     ).lower()
+
+    configurator.target_directory = configurator.variables['package_folder']
 
 
 def _update_metadata_xml(configurator):
@@ -124,6 +126,7 @@ def _update_configure_zcml(configurator):
 def post_renderer(configurator):
     """"""
     _update_configure_zcml(configurator)
+    _update_setup_py(configurator)
     _update_metadata_xml(configurator)
     git_commit(
         configurator,

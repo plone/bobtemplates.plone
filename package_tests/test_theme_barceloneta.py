@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from .base import init_package_base_files
 from bobtemplates.plone import base
-from bobtemplates.plone import theme
+from bobtemplates.plone import theme_barceloneta
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 from mrbob.configurator import Question
@@ -19,8 +20,8 @@ def test_pre_theme_name():
         'package',
         'type',
     )
-    theme.pre_theme_name(configurator, question)
-    theme.pre_theme_name(configurator, question)
+    theme_barceloneta.pre_theme_name(configurator, question)
+    theme_barceloneta.pre_theme_name(configurator, question)
 
 
 def test_post_theme_name(tmpdir):
@@ -30,32 +31,61 @@ def test_post_theme_name(tmpdir):
         target_directory=target_path,
     )
 
-    theme.post_theme_name(configurator, None, 'collective.theme')
+    theme_barceloneta.post_theme_name(configurator, None, 'collective.theme')
     with pytest.raises(ValidationError):
-        theme.post_theme_name(configurator, None, 'collective.$SPAM')
+        theme_barceloneta.post_theme_name(
+            configurator,
+            None,
+            'collective.$SPAM',
+        )
 
 
-def test_prepare_renderer():
+def test_prepare_renderer(tmpdir):
+    base_path = tmpdir.strpath
+    package_root_folder = os.path.join(
+        base_path,
+        'collective.foo',
+    )
     configurator = Configurator(
         template='bobtemplates.plone:theme_barceloneta',
-        target_directory='collective.foo',
+        target_directory=os.path.join(
+            package_root_folder,
+            'src/collective/foo',
+        ),
         variables={
             'theme.name': 'test.theme',
+            'package.root_folder': package_root_folder,
         },
     )
-    theme.prepare_renderer(configurator)
+    init_package_base_files(configurator)
+    theme_barceloneta.prepare_renderer(configurator)
 
-    assert configurator.variables['template_id'] == 'theme'
+    assert configurator.variables['template_id'] == 'theme_barceloneta'
     assert configurator.variables['theme.normalized_name'] == 'test.theme'
+    assert configurator.target_directory.endswith('/collective.foo/src/collective/foo')  # NOQA: E501
 
 
 def test_post_renderer(tmpdir):
-    target_path = tmpdir.strpath + '/collective.theme'
-    package_path = target_path + '/src/collective/theme'
-    profiles_path = package_path + '/profiles/default'
-    os.makedirs(target_path)
+    base_path = tmpdir.strpath
+    target_path = os.path.join(
+        base_path,
+        'collective.theme',
+    )
+    package_path = os.path.join(
+        target_path,
+        u'src/collective/theme',
+    )
+    profiles_path = os.path.join(
+        package_path,
+        u'profiles/default',
+    )
+    theme_path = os.path.join(
+        package_path,
+        u'theme',
+    )
     os.makedirs(package_path)
     os.makedirs(profiles_path)
+    os.makedirs(theme_path)
 
     template = """<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
@@ -110,6 +140,6 @@ version=5.1
     assert configurator
     os.chdir(package_path)
     base.set_global_vars(configurator)
-    theme.prepare_renderer(configurator)
+    theme_barceloneta.prepare_renderer(configurator)
     configurator.render()
-    theme.post_renderer(configurator)
+    theme_barceloneta.post_renderer(configurator)

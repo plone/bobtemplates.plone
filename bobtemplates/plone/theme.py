@@ -48,6 +48,7 @@ def prepare_renderer(configurator):
     configurator.variables['theme.normalized_name'] = normalize_theme_name(
         configurator.variables.get('theme.name'),
     ).lower()
+    configurator.target_directory = configurator.variables['package_folder']
 
 
 def _update_metadata_xml(configurator):
@@ -126,6 +127,7 @@ def _update_setup_py(configurator):
     insert_strings = [
         'collective.themesitesetup',
         'collective.themefragments',
+        'plone.app.themingplugins',
     ]
     for insert_str in insert_strings:
         insert_str = "        '{0}',\n".format(insert_str)

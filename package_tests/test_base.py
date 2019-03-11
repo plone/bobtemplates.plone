@@ -202,7 +202,8 @@ def test_subtemplate_warning_post_question():
         base.subtemplate_warning_post_question(None, None, 'n')
 
 
-def test_validate_packagename():
+def test_validate_packagename(tmpdir):
+    base_path = tmpdir.strpath
     # step 1: test None
     with pytest.raises(AttributeError):
         base.validate_packagename(None)
@@ -210,47 +211,75 @@ def test_validate_packagename():
     # step 2: test base namespace (level 2)
     configurator = Configurator(
         template='bobtemplates.plone:addon',
-        target_directory='collective.foo',
+        target_directory=os.path.join(
+            base_path,
+            'collective.foo',
+        ),
     )
     base.validate_packagename(configurator)
 
-    # step 3: test without namespace (level 1)
+    # step 3: test nested namespace (level 3)
+    configurator = Configurator(
+        template='bobtemplates.plone:addon',
+        target_directory=os.path.join(
+            base_path,
+            'collective.foo.bar',
+        ),
+    )
+    base.validate_packagename(configurator)
+
+    # step 4: test without namespace (level 1)
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates.plone:addon',
-            target_directory='foo',
+            target_directory=os.path.join(
+                base_path,
+                'foo',
+            ),
         )
         base.validate_packagename(configurator)
 
-    # step 4: test deep nested namespace (level 4)
+    # step 5: test deep nested namespace (level 4)
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates.plone:addon',
-            target_directory='collective.foo.bar.spam',
+            target_directory=os.path.join(
+                base_path,
+                'collective.foo.bar.spam',
+            ),
         )
         base.validate_packagename(configurator)
 
-    # step 5: test leading dot
+    # step 6: test leading dot
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates.plone:addon',
-            target_directory='.collective.foo',
+            target_directory=os.path.join(
+                base_path,
+                '.collective.foo',
+            ),
         )
         base.validate_packagename(configurator)
 
-    # step 6: test ending dot
+    # step 7: test ending dot
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates.plone:addon',
-            target_directory='collective.foo.',
+            target_directory=os.path.join(
+                base_path,
+                'collective.foo.',
+            ),
         )
         base.validate_packagename(configurator)
 
-    # step 7: test invalid char
+    # step 8: test invalid char
     with pytest.raises(SystemExit):
         configurator = Configurator(
             template='bobtemplates.plone:addon',
-            target_directory='collective.$PAM',
+            target_directory=os.path.join(
+                base_path,
+                'collective.$SPAM',
+            ),
         )
         base.validate_packagename(configurator)
 

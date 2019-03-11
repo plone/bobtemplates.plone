@@ -62,6 +62,15 @@ Changelog
 - Enforce base class, when supermodel is used, to have a decent marker interface
   [MrTango]
 
+- Fix theme templates: #349, use package_directory as target now, improve testing
+  [MrTango]
+
+- Correct viewlet example code, fixes: #351
+  [MrTango]
+
+- Add missing plone.app.themingplugins to dependencies, fixes: #353
+  [MrTango]
+
 
 3.6.0 (2019-02-25)
 ------------------

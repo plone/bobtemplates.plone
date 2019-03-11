@@ -46,10 +46,11 @@ def prepare_renderer(configurator):
         value = '-'.join(value.split('_'))
         value = '-'.join(value.split())
         return value
-
     configurator.variables['theme.normalized_name'] = normalize_theme_name(
         configurator.variables.get('theme.name'),
     ).lower()
+
+    configurator.target_directory = configurator.variables['package_folder']
 
 
 def _update_metadata_xml(configurator):

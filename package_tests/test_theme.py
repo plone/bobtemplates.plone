@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from .base import init_package_base_files
 from bobtemplates.plone import base
 from bobtemplates.plone import theme
 from mrbob.bobexceptions import ValidationError
@@ -10,10 +11,14 @@ import os
 import pytest
 
 
-def test_pre_theme_name():
+def test_pre_theme_name(tmpdir):
+    base_path = tmpdir.strpath
     configurator = Configurator(
         template='bobtemplates.plone:theme',
-        target_directory='collective.foo',
+        target_directory=os.path.join(
+            base_path,
+            'collective.foo',
+        ),
     )
     question = Question(
         'package',
@@ -24,38 +29,89 @@ def test_pre_theme_name():
 
 
 def test_post_theme_name(tmpdir):
-    target_path = tmpdir.strpath + '/collective.theme'
+    base_path = tmpdir.strpath
     configurator = Configurator(
         template='bobtemplates.plone:theme',
-        target_directory=target_path,
+        target_directory=os.path.join(
+            base_path,
+            'collective.foo',
+        ),
     )
 
-    theme.post_theme_name(configurator, None, 'collective.theme')
+    theme.post_theme_name(configurator, None, 'collective.foo')
     with pytest.raises(ValidationError):
         theme.post_theme_name(configurator, None, 'collective.$SPAM')
 
 
-def test_prepare_renderer():
+def test_prepare_renderer(tmpdir):
+    base_path = tmpdir.strpath
+    package_root_folder = os.path.join(
+        base_path,
+        'collective.foo',
+    )
     configurator = Configurator(
-        template='bobtemplates.plone:theme_package',
-        target_directory='collective.foo',
+        template='bobtemplates.plone:theme',
+        target_directory=os.path.join(
+            package_root_folder,
+            'src/collective/foo',
+        ),
         variables={
             'theme.name': 'test.theme',
+            'package.root_folder': package_root_folder,
         },
     )
+    init_package_base_files(configurator)
     theme.prepare_renderer(configurator)
 
     assert configurator.variables['template_id'] == 'theme'
     assert configurator.variables['theme.normalized_name'] == 'test.theme'
+    assert configurator.target_directory.endswith('/collective.foo/src/collective/foo')  # NOQA: E501
+
+    # nested namespace package
+    package_root_folder = os.path.join(
+        base_path,
+        'collective.foo.bar',
+    )
+    configurator = Configurator(
+        template='bobtemplates.plone:theme',
+        target_directory=os.path.join(
+            package_root_folder,
+            'src/collective/foo/bar',
+        ),
+        variables={
+            'theme.name': 'test.theme',
+            'package.root_folder': package_root_folder,
+        },
+    )
+    init_package_base_files(configurator)
+    theme.prepare_renderer(configurator)
+
+    assert configurator.variables['template_id'] == 'theme'
+    assert configurator.variables['theme.normalized_name'] == 'test.theme'
+    assert configurator.target_directory.endswith('/collective.foo.bar/src/collective/foo/bar')  # NOQA: E501
 
 
 def test_post_renderer(tmpdir):
-    target_path = tmpdir.strpath + '/collective.theme'
-    package_path = target_path + '/src/collective/theme'
-    profiles_path = package_path + '/profiles/default'
-    os.makedirs(target_path)
+    base_path = tmpdir.strpath
+    target_path = os.path.join(
+        base_path,
+        'collective.theme',
+    )
+    package_path = os.path.join(
+        target_path,
+        u'src/collective/theme',
+    )
+    profiles_path = os.path.join(
+        package_path,
+        u'profiles/default',
+    )
+    theme_path = os.path.join(
+        package_path,
+        u'theme',
+    )
     os.makedirs(package_path)
     os.makedirs(profiles_path)
+    os.makedirs(theme_path)
 
     template = """<?xml version="1.0" encoding="UTF-8"?>
 <metadata>

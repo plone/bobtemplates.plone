@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.0 (unreleased)
-------------------
+4.0 (2019-03-11)
+----------------
 
 - Only recommend using short names for behaviors, improve behavior docs.
   [MrTango]

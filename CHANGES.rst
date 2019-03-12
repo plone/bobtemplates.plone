@@ -4,7 +4,11 @@ Changelog
 4.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix git output in python 3.
+  [pbauer]
+
+- Change installer-tests to work in all Plone-Versions.
+  [pbauer]
 
 
 4.0.1 (2019-03-11)

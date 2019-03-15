@@ -33,6 +33,8 @@ def test_post_dexterity_type_name():
     assert hookit(u'Super Type') == u'Super Type'
     assert hookit(u'second_coming') == u'second_coming'
     assert hookit(u'second coming') == u'second coming'
+    assert hookit(u'catalogue 3d objects') == 'catalogue 3d objects'
+    assert hookit(u'_underscore') == '_underscore'
 
 
 def test_is_container_false():

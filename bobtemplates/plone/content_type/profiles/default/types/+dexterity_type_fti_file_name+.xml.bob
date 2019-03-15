@@ -91,6 +91,7 @@
     <!--<element value="plone.richtext"/>-->
     <!--<element value="plone.tableofcontents"/>-->
     <!--<element value="plone.versionable" />-->
+    <!--<element value="plone.translatable" />-->
 {{% if dexterity_type_base_class == "Container" %}}
     <!--<element value="plone.nextprevioustoggle" />-->
     <!--<element value="plone.nextpreviousenabled" />-->

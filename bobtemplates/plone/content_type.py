@@ -36,7 +36,7 @@ def check_dexterity_type_name(configurator, question, answer):
     """Test if type name is valid."""
     if keyword.iskeyword(answer):
         raise ValidationError(u'"{key}" is a reserved Python keyword!'.format(key=answer))  # NOQA: E501
-    if not re.match('[_a-zA-Z ]*$', answer):
+    if not re.match('[_a-zA-Z][_a-zA-Z0-9 ]*$', answer):
         raise ValidationError(
             u'"{key}" is not a valid identifier!\n'
             u'Allowed characters: _ a-z A-Z and whitespace.\n'.format(key=answer),  # NOQA: E501

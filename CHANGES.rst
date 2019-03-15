@@ -4,7 +4,8 @@ Changelog
 4.0.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Allow digits in content_type names, but not as a starting chars.
+  [erral]
 
 
 4.0.1 (2019-03-11)

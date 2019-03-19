@@ -10,6 +10,9 @@ Changelog
 - Change installer-tests to work in all Plone-Versions.
   [pbauer]
 
+- Add `plone.translatable` as a commented behavior
+  [erral]
+
 
 4.0.1 (2019-03-11)
 ------------------

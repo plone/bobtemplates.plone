@@ -9,9 +9,8 @@ import unittest
 
 try:
     from Products.CMFPlone.utils import get_installer
-    has_get_installer = True
 except ImportError:
-    has_get_installer = False
+    get_installer = None
 
 
 class TestSetup(unittest.TestCase):
@@ -22,7 +21,7 @@ class TestSetup(unittest.TestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
-        if has_get_installer:
+        if get_installer:
             self.installer = get_installer(self.portal, self.layer['request'])
         else:
             self.installer = api.portal.get_tool('portal_quickinstaller')
@@ -48,7 +47,7 @@ class TestUninstall(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        if has_get_installer:
+        if get_installer:
             self.installer = get_installer(self.portal, self.layer['request'])
         else:
             self.installer = api.portal.get_tool('portal_quickinstaller')

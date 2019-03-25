@@ -268,6 +268,8 @@ def get_git_info(value):
         result = subprocess.check_output(
             gitargs + [value],
         ).strip()
+        if six.PY3 and isinstance(result, six.binary_type):
+            result = result.decode('utf8')
         return result
     except (OSError, subprocess.CalledProcessError):
         return 'FakeGitUserOrEmail'

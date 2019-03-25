@@ -4,6 +4,12 @@ Changelog
 4.0.2 (unreleased)
 ------------------
 
+- Fix git output in python 3.
+  [pbauer]
+
+- Change installer-tests to work in all Plone-Versions.
+  [pbauer]
+
 - Add `plone.translatable` as a commented behavior
   [erral]
 

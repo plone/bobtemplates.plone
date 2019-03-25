@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.0.2 (unreleased)
+4.0.2 (2019-03-25)
 ------------------
 
 - Fix git output in python 3.

@@ -4,7 +4,8 @@ Changelog
 4.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix travis setup in addon template.
+  [erral]
 
 
 4.0.2 (2019-03-25)

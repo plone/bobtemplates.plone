@@ -16,6 +16,7 @@ local/
 node_modules/
 parts/
 src/*
+dist/*
 test.plone_addon/
 var/
 # files

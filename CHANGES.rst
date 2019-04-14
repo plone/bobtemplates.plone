@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.0.3 (unreleased)
+4.0.3 (2019-04-14)
 ------------------
 
 - Fix travis setup in generated addon template.

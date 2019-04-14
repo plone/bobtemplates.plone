@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.0.3 (2019-04-14)
+4.0.4 (2019-04-14)
 ------------------
 
 - Fix travis setup in generated addon template.
@@ -12,6 +12,7 @@ Changelog
 
 - Add python.version question in addon template, to define the Python binary for the virtualenv to create
   [MrTango]
+
 
 4.0.2 (2019-03-25)
 ------------------

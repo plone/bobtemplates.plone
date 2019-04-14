@@ -30,11 +30,11 @@ before_install:
   - bin/pip install -r requirements.txt -c constraints_plone$PLONE_VERSION.txt
 #  - bin/buildout -N out:download-cache=downloads code-analysis:return-status-codes=True annotate
 #  - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True
-  - cp test_$PLONE_VERSION.cfg buildout.cfg
+  - cp test_plone$PLONE_VERSION.cfg buildout.cfg
 
 install:
-  - buildout -N -t 3 code-analysis:return-status-codes=True annotate
-  - buildout -N -t 3 code-analysis:return-status-codes=True
+  - bin/buildout -N -t 3 code-analysis:return-status-codes=True annotate
+  - bin/buildout -N -t 3 code-analysis:return-status-codes=True
 
 before_script:
 - 'export DISPLAY=:99.0'
@@ -47,10 +47,8 @@ script:
   - python --version 2> /dev/stdout | grep 3.6 || bin/code-analysis
   - bin/test --all
 
-after_script:
-  - bin/createcoverage --output-dir=parts/test/coverage
-
 after_success:
+  - bin/createcoverage --output-dir=parts/test/coverage
   - bin/pip install coverage
   - bin/python -m coverage.pickle2json
   - bin/pip install -q coveralls

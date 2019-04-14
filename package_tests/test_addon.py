@@ -54,6 +54,7 @@ def test_cleanup_package(tmpdir):
             'author.email': 'collective@plone.org',
             'author.github.user': 'collective',
             'plone.version': '5.1',
+            'python.version': 'python2.7',
             'plone.is_plone5': True,
         },
     )

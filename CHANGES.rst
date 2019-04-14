@@ -10,6 +10,8 @@ Changelog
 - extend versions from dist.plone.org in constraints files, to stay in sync with the buildout versions from there
   [MrTango]
 
+- Add python.version question in addon template, to define the Python binary for the virtualenv to create
+  [MrTango]
 
 4.0.2 (2019-03-25)
 ------------------

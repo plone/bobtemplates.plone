@@ -2,3 +2,4 @@
 version = {{{ plone.version }}}
 template = plone_addon
 git_init = {{{ package.git.init }}}
+python = {{{ python.version }}}

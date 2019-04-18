@@ -32,8 +32,8 @@ bobtemplates.plone
 
 .. note::
 
-    With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone. We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplate.plone.
-
+   With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone. 
+   We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplates.plone.
 
 Features
 ========

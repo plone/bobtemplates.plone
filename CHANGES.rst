@@ -4,7 +4,7 @@ Changelog
 4.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- ReST fomatting and fix typo in README.rst
 
 
 4.0.4 (2019-04-14)

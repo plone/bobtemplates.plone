@@ -1,9 +1,11 @@
 [theme]
 title = Plone Theme: {{{ theme.name|capitalize }}}
 description = A Diazo based Plone theme
-doctype = <!DOCTYPE html>
+preview = barceloneta/preview.png
 rules = /++theme++{{{ theme.normalized_name }}}/rules.xml
 prefix = /++theme++{{{ theme.normalized_name }}}
+doctype = <!DOCTYPE html>
+
 enabled-bundles =
 disabled-bundles =
 

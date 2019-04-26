@@ -5,6 +5,7 @@ Changelog
 ------------------
 
 - ReST fomatting and fix typo in README.rst
+- Add version plone.app.dexterity pinning in Plone 4 buildout versions in addon template
 
 
 4.0.4 (2019-04-14)

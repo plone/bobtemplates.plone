@@ -5,16 +5,11 @@
       i18n:domain="{{{ package.dottedname }}}"
       metal:use-macro="context/main_template/macros/master">
 <body>
-    <metal:block fill-slot="content-core">
-      <div class="heading">
-        <li i18n:translate="">
-          Sample View
-        </li>
+  <metal:block fill-slot="content-core">
+      <h2 i18n:translate="">Sample View</h2>
 {{% if view_python_class %}}
-      <span tal:content="view/msg">this gets replaced</span>
+      <p tal:content="view/msg">this gets replaced</p>
 {{% endif %}}
-      </div>
-    </metal:block>
-
+  </metal:block>
 <body>
 </html>

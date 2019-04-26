@@ -20,6 +20,8 @@
 @plone-default-internal-color:				darken(@plone-toolbar-internal-color, 15%); // is draft
 @plone-default-internally-published-color:	darken(@plone-toolbar-internally-published-color, 5%); // is intranet
 
+//** Disabled cursor for form controls and buttons.
+@cursor-disabled:                           not-allowed;
 
 
 //*// SCAFFOLDING
@@ -126,31 +128,32 @@
 @plone-screen-sm-min:              768px;
 @plone-screen-md-min:              992px;
 @plone-screen-lg-min:              1200px;
-
-@plone-container-sm: 			   750px;
-@plone-container-md:               970px;
-@plone-container-lg:               1170px;
+@plone-screen-xl-min:              1600px;
 
 @plone-screen-xs-max:              (@plone-screen-sm-min - 1);
 @plone-screen-sm-max:              (@plone-screen-md-min - 1);
 @plone-screen-md-max:              (@plone-screen-lg-min - 1);
+@plone-screen-lg-max:              (@plone-screen-xl-min - 1);
 
-@plone-grid-columns:				12;
+@plone-grid-columns:        12;
 @plone-grid-gutter-width:         30px;
 @plone-grid-float-breakpoint:     @plone-screen-sm-min;
 //** Point at which the navbar begins collapsing.
 @plone-grid-float-breakpoint-max: (@plone-grid-float-breakpoint - 1);
 
-
 //*// CONTAINERS
-@plone-container-tablet:             ((720px + @plone-grid-gutter-width));
-@plone-container-sm:                 @plone-container-tablet;
+@plone-container-xs:                 (540px + @plone-grid-gutter-width);
+@plone-container-sm:                 (720px + @plone-grid-gutter-width);
+@plone-container-md:                 (960px + @plone-grid-gutter-width);
+@plone-container-lg:                 (1140px + @plone-grid-gutter-width);
+@plone-container-xl:                 (1540px + @plone-grid-gutter-width);
 
-@plone-container-desktop:            ((940px + @plone-grid-gutter-width));
-@plone-container-md:                 @plone-container-desktop;
-
-@plone-container-large-desktop:      ((1140px + @plone-grid-gutter-width));
-@plone-container-lg:                 @plone-container-large-desktop;
+//*// CONTAINER SIZE ALIASES
+@plone-container-mobile:              @plone-container-xs;
+@plone-container-tablet:              @plone-container-sm;
+@plone-container-desktop:             @plone-container-md;
+@plone-container-large-desktop:       @plone-container-lg;
+@plone-container-extra-large:         @plone-container-xl;
 
 
 //*// Buttons
@@ -227,7 +230,7 @@
 @plone-portlet-list-bullet:					#64bee8;
 @plone-portlet-list-hover-bg:				#fcfcfd;
 @plone-portlet-list-small-text:				@plone-gray;
-
+@plone-portlet-navtree-maxlevel:			5;
 
 
 //*// THUMBS

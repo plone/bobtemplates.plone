@@ -1,0 +1,8 @@
+// Loop for .navTreeLevel
+.navtree-level-loop(@maxlevel) when (@maxlevel > 0) {
+    .navtree-level-loop(@maxlevel - 1);
+
+    ul.navTreeLevel@{maxlevel} > li a {
+        padding-left: 15px * (@maxlevel + 1);
+    }
+}

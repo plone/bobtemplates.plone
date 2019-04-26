@@ -20,17 +20,27 @@
       border: @plone-pagination-border !important; // AAARG, "#content-core a" is taking precedence and messing it up! !important needed.
       margin-left: -1px;
     }
-    &:first-child {
+    &.previous {
       > a {
         margin-left: 0;
         .border-left-radius(@plone-border-radius-base);
       }
+      .arrow:before {
+        content: '\3c';
+      }
     }
-    &:last-child {
+    &.next {
       > a {
         .border-right-radius(@plone-border-radius-base);
       }
+      .arrow:after {
+        content: '\3e';
+      }
     }
+    /* wanna hide the label "next ... items"? */
+    /* .label {
+      display: none;
+    } */
     > a {
       &:hover,
       &:focus {

@@ -5,21 +5,152 @@
   padding-left: 0; // Override default ul/ol
   list-style: none;
   &:extend(.clearfix all);
-  > li {
+  li {
     position: relative;
     display: block;
-
-    > a {
+    &.has_subtree a {
+      padding-right: 2.5em;
+    }
+    label {
+      margin: 0;
+    }
+    a {
       position: relative;
       display: block;
       padding: @plone-sitenav-link-padding;
       color: white;
       font-size: ceil((@plone-font-size-base * 1.15));;
+      hyphens: auto;
       &:hover,
       &:focus {
         text-decoration: none;
         background-color: @plone-sitenav-link-hover-bg;
       }
+    }
+    // Navigation sublevels
+    ul {
+      padding-left: 0.5em;
+      visibility: hidden;
+      opacity: 0;
+      height: 0;
+      li {
+        a {
+          font-size: ceil((@plone-font-size-base * 1.1));;
+          background-color: @plone-sitenav-bg;
+        }
+      }
+    }
+    .opener {
+      display: none;
+      & + label:after {
+        transform: rotate(0deg);
+        transition: ease-in 0.35s;
+      }
+      @media (max-width: @plone-grid-float-breakpoint) {
+        &:checked + label:after {
+          transform: rotate(-180deg);
+          transition: ease-in 0.35s;
+        }
+      }
+      & ~ ul {
+        transition: ease-out 0.35s;
+      }
+      &:checked ~ ul {
+        height: auto;
+        transition: ease-in 0.35s;
+      }
+      @media (max-width: @plone-grid-float-breakpoint) {
+        &:checked ~ ul {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+    label {
+      position: absolute;
+      right: 0em;
+      top: 0em;
+      height: 100%;
+      width: 4em;
+      text-align: center;
+      &:after {
+        background: darken(@plone-link-color, 7%);
+        border-radius: @plone-input-border-radius;
+        content: "▼";
+        cursor: pointer;
+        display: inline-block;
+        line-height: 1;
+        width: 1.5em;
+        height: 1.5em;
+        font-size: 1.25em;
+        padding: 0.25em;
+        right: 0.5em;
+        top: 0.45em;
+        position: absolute;
+      }
+    }
+  }
+
+  @media (min-width: @plone-grid-float-breakpoint) {
+    li {
+      label {
+        top: 0em;
+        width: 2em;
+        &:after {
+          top: 1.25em;
+        }
+      }
+      &.has_subtree {
+        .has_subtree li {
+          label {
+            right: 0.25em;
+            &:after {
+              top: 0.5em;
+            }
+          }
+
+        }
+      }
+      label {
+        &:after {
+            width: 2.0em;
+            height: 2.0em;
+            font-size: 0.75em;
+            padding: 0.5em 1em 0.5em 0;
+            background: transparent;
+        }
+      }
+      ul {
+        position: absolute;
+        z-index: 100;
+        padding: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: ease-out 0.75s;
+        li {
+          a {
+            min-width: 14em;
+            display: inline-block;
+          }
+        }
+      }
+    }
+    .has_subtree:hover > ul,
+    .has_subtree .has_subtree:hover > ul {
+      opacity: 1;
+      visibility: visible;
+      transition: ease-in .35s;
+    }
+    .has_subtree .has_subtree ul {
+      position: absolute;
+      z-index: -1;
+      left: 0em;
+      top: 0px;
+    }
+    .has_subtree .has_subtree:hover > ul {
+      // we only shift the submenus to the right if visible
+      // to prevent horizontal scrollers if not needed
+      left: 16em;
     }
   }
 }
@@ -35,13 +166,10 @@
 
   // Prevent floats from breaking the navbar
   &:extend(.clearfix all);
-
-
 }
 
 .plone-navbar-header {
   .clearfix(); //without extend
-
   @media (min-width: @plone-grid-float-breakpoint) {
     float: left;
   }
@@ -58,7 +186,6 @@
 
   display: none;
   &.in {
-    overflow-y: auto;
     display: block;
   }
 
@@ -66,18 +193,15 @@
     width: auto;
     border-top: 0;
     box-shadow: none;
-
     &.plone-collapse {
       display: block !important;
       height: auto !important;
       padding-bottom: 0; // Override default setting
       overflow: visible !important;
     }
-
     &.in {
       overflow-y: visible;
     }
-
     // Undo the collapse side padding for navbars with containers to ensure
     // alignment of right-aligned contents.
     .navbar-fixed-top &,
@@ -93,8 +217,8 @@
   z-index: 1; //just in case
   position: relative;
   float: right;
-  margin-top:  6px;
-  margin-bottom: 3px;
+  margin-top:  8px;
+  margin-bottom: 6px;
   padding: 6px 10px;
 
   background-color: transparent;
@@ -153,7 +277,10 @@
     padding-bottom: 10px;
     line-height: @plone-line-height-computed;
   }
-  > .selected > a {
+  // use selected for the last item in the structure
+
+  .current > a,
+  .selected > a {
     &,
     &:hover,
     &:focus {
@@ -162,21 +289,42 @@
     }
   }
 
-
   // Uncollapse the nav
   @media (min-width: @plone-grid-float-breakpoint) {
     float: left;
-
     > li {
       float: left;
+      &.has_subtree a {
+        padding-right: 2em;
+      }
       > a {
         padding-top:    @plone-sitenav-padding-vertical;
         padding-bottom: @plone-sitenav-padding-vertical;
+      }
+      label {
+        font-size: 1em;
+        background: transparent;
+        &:after {
+        }
+      }
+      li.has_subtree label:after {
+        transform: rotate(-90deg);
+
       }
     }
 
     &.navbar-right:last-child {
       margin-right: -@plone-sitenav-padding-horizontal;
     }
+
+    .has_subtree.inPath > a {
+      &,
+      &:hover,
+      &:focus {
+        color: white;
+        background-color: @plone-sitenav-link-hover-bg;
+      }
+    }
+
   }
 }

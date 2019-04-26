@@ -4,10 +4,11 @@
 
 
 
-// Container widths
+// Container widths for anon users
+// For logged-in, toolbar adjustments are in main.plone.less
 .container {
   .container-fixed();
-
+  max-width: 100%;
   @media (min-width: @plone-screen-sm-min) {
     width: @plone-container-sm;
   }
@@ -16,6 +17,9 @@
   }
   @media (min-width: @plone-screen-lg-min) {
     width: @plone-container-lg;
+  }
+  @media (min-width: @plone-screen-xl-min) {
+    width: @plone-container-xl;
   }
 }
 
@@ -59,9 +63,9 @@
 }
 
 
-// toolbar needs to match grid 
+// toolbar needs to match grid
 #edit-zone.plone-toolbar-top .plone-toolbar-container {
-  .container-fixed(); 
+  .container-fixed();
   @media (min-width: @plone-screen-sm-min) {
     width: @plone-container-sm;
   }

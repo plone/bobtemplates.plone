@@ -19,6 +19,8 @@ Changelog
 
 - Remove Gruntfile.js and package.json from .gitignore in addon package.
   [erral]
+- Update theme_barceloneta with plonetheme.barceloneta 2.1.3 and cleanup structure
+  [agitator]
 
 - ReST fomatting and fix typo in README.rst
   Add version plone.app.dexterity pinning in Plone 4 buildout versions in addon template

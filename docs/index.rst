@@ -1,6 +1,6 @@
-===================
-bobtempalates.plone
-===================
+==================
+bobtemplates.plone
+==================
 
 .. topic:: Description
 

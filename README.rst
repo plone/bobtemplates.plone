@@ -1,10 +1,10 @@
-==================
+================
 bobtemplates.eea
-==================
+================
 
-``bobtemplates.eea`` provides `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ templates to generate packages for Plone projects.
+``bobtemplates.eea`` provides `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ templates to generate packages for EEA projects.
 
-This is a fork of [bobtemplates.plone](https://github.com/plone/bobtemplates.plone)
+**This is a custom fork** of `bobtemplates.plone <https://github.com/plone/bobtemplates.plone>`_
 
 Features
 ========
@@ -103,7 +103,7 @@ If you are using `buildout <https://pypi.python.org/pypi/zc.buildout>`_  or an u
 
 .. code-block:: console
 
-    ./bin/mrbob bobtemplates.eea:addon -O src/collective.foo
+    ./bin/mrbob bobtemplates.eea:addon -O src/eea.foo
 
 If you are using pipenv or an activated virtualenv, you can use mrbob like this:
 
@@ -121,7 +121,7 @@ or activate your virtualenv:
 
 .. code-block:: console
 
-    mrbob bobtemplates.eea:addon -O src/collective.foo
+    mrbob bobtemplates.eea:addon -O src/eea.foo
 
 This will create your Plone package inside the ``src`` directory.
 
@@ -140,10 +140,10 @@ Here is an example:
     verbose = False
 
     [variables]
-    author.name = Maik Derstappen
-    author.email = md@derico.de
-    author.github.user = MrTango
-    plone.version = 5.1.3-pending
+    author.name = Alin Voinea
+    author.email = contact@avoinea.com
+    author.github.user = avoinea
+    plone.version = 4.3
     #package.git.init = y
     #package.git.autocommit = n
     #package.git.disabled = n
@@ -158,13 +158,13 @@ Here is an example:
 Contribute
 ==========
 
-- Issue Tracker: https://github.com/plone/bobtemplates.eea/issues
-- Source Code: https://github.com/plone/bobtemplates.eea
-- Documentation: https://docs.plone.org/develop/addons/bobtemplates.eea/docs/ or https://bobtemplatesplone.readthedocs.io/en/latest/
+- Issue Tracker: https://github.com/eea/bobtemplates.eea/issues
+- Source Code: https://github.com/eea/bobtemplates.eea
+- Documentation: https://docs.plone.org/develop/addons/bobtemplates.plone/docs/ or https://bobtemplatesplone.readthedocs.io/en/latest/
 
 
 Support
 =======
 
 If you are having issues, please let us know.
-We have a Gitter channel here: `plone/bobtemplates.eea <https://gitter.im/plone/bobtemplates.eea>`_
+We have a Gitter channel here: `plone/bobtemplates.plone <https://gitter.im/plone/bobtemplates.plone>`_

@@ -1,12 +1,42 @@
+.coverage
 *.egg-info
-*.pyc
-*.pyo
+*.log
 *.mo
+*.py?
 *.swp
-dist
-.project
-.pydevproject
-.idea
+# dirs
+bin/
+buildout-cache/
+develop-eggs/
+eggs/
+htmlcov/
+include/
+lib/
+local/
+node_modules/
+parts/
+src/*
+dist/*
+test.plone_addon/
+var/
+# files
+.installed.cfg
+.mr.developer.cfg
+Gruntfile.js
+lib64
+log.html
+output.xml
+package.json
 pip-selfcheck.json
-searchindex.js
-search.html
+report.html
+.vscode/
+.tox/
+reports/
+# excludes
+!.coveragerc
+!.editorconfig
+!.gitattributes
+!.gitignore
+!.gitkeep
+!.travis.yml
+!src/{{{ package.namespace }}}

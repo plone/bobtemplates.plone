@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from bobtemplates.plone import base
-from bobtemplates.plone import restapi_service
+from bobtemplates.eea import base
+from bobtemplates.eea import restapi_service
 from mrbob.configurator import Configurator
 
 import os
@@ -27,7 +27,7 @@ version=5.1
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:restapi_service',
+        template='bobtemplates.eea:restapi_service',
         target_directory=target_path,
         variables={
             'service_class_name': 'SomeRelatedThings',
@@ -86,7 +86,7 @@ version=5.1
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:restapi_service',
+        template='bobtemplates.eea:restapi_service',
         target_directory=package_path,
         bobconfig={
             'non_interactive': True,
@@ -115,7 +115,7 @@ def test_remove_unwanted_files(tmpdir):
     package_path = target_path + '/src/collective/todo'
     os.makedirs(package_path + '/api/services/')
     configurator = Configurator(
-        template='bobtemplates.plone:restapi_service',
+        template='bobtemplates.eea:restapi_service',
         target_directory=tmpdir.strpath,
         variables={
             'package_folder': package_path,
@@ -174,7 +174,7 @@ version=5.1
     with open(os.path.join(package_path + '/api/configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:restapi_service',
+        template='bobtemplates.eea:restapi_service',
         target_directory=package_path,
         bobconfig={
             'non_interactive': True,
@@ -239,7 +239,7 @@ version=5.1
     ) as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:restapi_service',
+        template='bobtemplates.eea:restapi_service',
         target_directory=package_path,
         bobconfig={
             'non_interactive': True,

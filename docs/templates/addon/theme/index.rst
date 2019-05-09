@@ -13,13 +13,13 @@ First create a Plone add-on package:
 
 .. code-block:: shell
 
-    mrbob -O plonetheme.blacksea bobtemplates.plone:addon
+    mrbob -O plonetheme.blacksea bobtemplates.eea:addon
 
 then change into the created folder ``plonetheme.blacksea`` and your theme:
 
 .. code-block:: shell
 
-    mrbob bobtemplates.plone:theme
+    mrbob bobtemplates.eea:theme
 
 It will ask you about the name of your theme and will generate the structure of your theme and also register it inside the Plone package.
 

@@ -15,7 +15,7 @@ long_description = '\n\n'.join([
 
 
 setup(
-    name='bobtemplates.plone',
+    name='bobtemplates.eea',
     version=version,
     description='Templates for Plone projects.',
     long_description=long_description,
@@ -36,7 +36,7 @@ setup(
     keywords='web plone zope skeleton project',
     author='Plone Foundation',
     author_email='plone-developers@lists.sourceforge.net',
-    url='https://github.com/plone/bobtemplates.plone',
+    url='https://github.com/plone/bobtemplates.eea',
     license='GPL version 2',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['bobtemplates'],
@@ -54,18 +54,18 @@ setup(
     extras_require={},
     entry_points={
         'mrbob_templates': [
-            'plone_addon = bobtemplates.plone.bobregistry:plone_addon',
-            'plone_buildout = bobtemplates.plone.bobregistry:plone_buildout',  # NOQA E501
-            'plone_theme_package = bobtemplates.plone.bobregistry:plone_theme_package',  # NOQA E501
-            'plone_content_type = bobtemplates.plone.bobregistry:plone_content_type',  # NOQA E501
-            'plone_view = bobtemplates.plone.bobregistry:plone_view',
-            'plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet',
-            'plone_portlet = bobtemplates.plone.bobregistry:plone_portlet',
-            'plone_theme = bobtemplates.plone.bobregistry:plone_theme',
-            'plone_theme_barceloneta = bobtemplates.plone.bobregistry:plone_theme_barceloneta',  # NOQA E501
-            'plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary',  # NOQA E501
-            'plone_behavior = bobtemplates.plone.bobregistry:plone_behavior',  # NOQA E501
-            'plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service',  # NOQA E501
+            'plone_addon = bobtemplates.eea.bobregistry:plone_addon',
+            'plone_buildout = bobtemplates.eea.bobregistry:plone_buildout',  # NOQA E501
+            'plone_theme_package = bobtemplates.eea.bobregistry:plone_theme_package',  # NOQA E501
+            'plone_content_type = bobtemplates.eea.bobregistry:plone_content_type',  # NOQA E501
+            'plone_view = bobtemplates.eea.bobregistry:plone_view',
+            'plone_viewlet = bobtemplates.eea.bobregistry:plone_viewlet',
+            'plone_portlet = bobtemplates.eea.bobregistry:plone_portlet',
+            'plone_theme = bobtemplates.eea.bobregistry:plone_theme',
+            'plone_theme_barceloneta = bobtemplates.eea.bobregistry:plone_theme_barceloneta',  # NOQA E501
+            'plone_vocabulary = bobtemplates.eea.bobregistry:plone_vocabulary',  # NOQA E501
+            'plone_behavior = bobtemplates.eea.bobregistry:plone_behavior',  # NOQA E501
+            'plone_restapi_service = bobtemplates.eea.bobregistry:plone_restapi_service',  # NOQA E501
         ],
     },
 )

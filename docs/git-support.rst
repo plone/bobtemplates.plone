@@ -2,7 +2,7 @@
 GIT-Support
 ===========
 
-Since 3.2.x bobtemplates.plone has integrated GIT support and can check for clean repository state, initialize a GIT repository for a new created package and commit all changes a template is making.
+Since 3.2.x bobtemplates.eea has integrated GIT support and can check for clean repository state, initialize a GIT repository for a new created package and commit all changes a template is making.
 
 For your convenience, you can set some defaults in your mrbob user configuration
 

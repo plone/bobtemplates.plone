@@ -1,75 +1,104 @@
-.. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
-   If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
-   This text does not appear on pypi or github. It is a comment.
-
-{{% for i in package.dottedname %}}={{% endfor %}}
-
+==========================
 {{{ package.dottedname }}}
-{{% for i in package.dottedname %}}={{% endfor %}}
+==========================
+.. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/{{{ package.dottedname }}}/develop
+  :target: https://ci.eionet.europa.eu/job/eea/job/{{{ package.dottedname }}}/job/develop/display/redirect
+  :alt: Develop
+.. image:: https://ci.eionet.europa.eu/buildStatus/icon?job=eea/{{{ package.dottedname }}}/master
+  :target: https://ci.eionet.europa.eu/job/eea/job/{{{ package.dottedname }}}/job/master/display/redirect
+  :alt: Master
+
+The {{{ package.dottedname }}} is a Plone add-on
+
+.. contents::
 
 
-Tell me what your product does
+Main features
+=============
+It comes with plenty of configuration options and features like:
 
-Features
---------
+1. Easy to install/uninstall via Site Setup > Add-ons
+2.
+3.
 
-- Can be bullet points
+Install
+=======
 
-
-Examples
---------
-
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
-
-
-Documentation
--------------
-
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
-
-
-Translations
-------------
-
-This product has been translated into
-
-- Klingon (thanks, K'Plai)
-
-
-Installation
-------------
-
-Install {{{ package.dottedname }}} by adding it to your buildout::
+* Add {{{ package.dottedname }}} to your eggs section in your buildout and
+  re-run buildout::
 
     [buildout]
+    eggs +=
+      {{{ package.dottedname }}}
 
-    ...
+* You can download a sample buildout from:
 
-    eggs =
-        {{{ package.dottedname }}}
+  - https://github.com/eea/{{{ package.dottedname }}}/tree/master/buildouts/plone4
+  - https://github.com/eea/{{{ package.dottedname }}}/tree/master/buildouts/plone5
 
+* Or via docker::
 
-and then running ``bin/buildout``
+    $ docker run --rm -p 8080:8080 -e ADDONS="{{{ package.dottedname }}}" plone
 
-
-Contribute
-----------
-
-- Issue Tracker: https://github.com/collective/{{{ package.dottedname }}}/issues
-- Source Code: https://github.com/collective/{{{ package.dottedname }}}
-- Documentation: https://docs.plone.org/foo/bar
+* Install *{{{ package.dottedname }}}* within Site Setup > Add-ons
 
 
-Support
--------
+Buildout installation
+=====================
 
-If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
+- `Plone 4+ <https://github.com/eea/{{{ package.dottedname }}}/tree/master/buildouts/plone4>`_
+- `Plone 5+ <https://github.com/eea/{{{ package.dottedname }}}/tree/master/buildouts/plone5>`_
 
 
-License
--------
+Source code
+===========
 
-The project is licensed under the GPLv2.
+- `Plone 4+ on github <https://github.com/eea/{{{ package.dottedname }}}>`_
+- `Plone 5+ on github <https://github.com/eea/{{{ package.dottedname }}}>`_
 
+
+Eggs repository
+===============
+
+- https://pypi.python.org/pypi/{{{ package.dottedname }}}
+- http://eggrepo.eea.europa.eu/simple
+
+
+Plone versions
+==============
+It has been developed and tested for Plone 4 and 5. See buildouts section above.
+
+
+How to contribute
+=================
+See the `contribution guidelines (CONTRIBUTING.md) <https://github.com/eea/{{{ package.dottedname }}}/blob/master/CONTRIBUTING.md>`_.
+
+Copyright and license
+=====================
+
+{{{ package.dottedname }}} (the Original Code) is free software; you can
+redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 59
+Temple Place, Suite 330, Boston, MA 02111-1307 USA.
+
+The Initial Owner of the Original Code is European Environment Agency (EEA).
+Portions created by Eau de Web are Copyright (C) 2009 by
+European Environment Agency. All Rights Reserved.
+
+
+Funding
+=======
+
+EEA_ - European Environment Agency (EU)
+
+.. _EEA: https://www.eea.europa.eu/
+.. _`EEA Web Systems Training`: http://www.youtube.com/user/eeacms/videos?view=1

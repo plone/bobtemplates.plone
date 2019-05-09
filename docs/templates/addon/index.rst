@@ -16,16 +16,16 @@ With this template you can create a basic Plone package.
 
 .. code-block:: shell
 
-    mrbob -O collective.todos bobtemplates.plone:addon
+    mrbob -O collective.todos bobtemplates.eea:addon
 
-This will create a Python package for you, which you can extend manually or by using other sub-templates like ``theme`` or ``content_type`` from bobtemplates.plone.
+This will create a Python package for you, which you can extend manually or by using other sub-templates like ``theme`` or ``content_type`` from bobtemplates.eea.
 
 Example
 =======
 
 .. code-block:: shell
 
-    $ mrbob bobtemplates.plone:addon -O collective.todolist
+    $ mrbob bobtemplates.eea:addon -O collective.todolist
 
     Welcome to mr.bob interactive mode. Before we generate directory structure, some questions need to be answered.
 
@@ -39,12 +39,12 @@ Example
 
 
     RUN: git init
-    Leeres Git-Repository in /home/maik/develop/src/bobtemplates.plone/tmp/collective.todolist/.git/ initialisiert
+    Leeres Git-Repository in /home/maik/develop/src/bobtemplates.eea/tmp/collective.todolist/.git/ initialisiert
 
     Should we run?:
     git add .
     git commit -m "Create addon: collective.todolist"
-    in: /home/maik/develop/src/bobtemplates.plone/tmp/collective.todolist
+    in: /home/maik/develop/src/bobtemplates.eea/tmp/collective.todolist
     [y]/n:
     RUN: git add .
     RUN: git commit -m "Create addon: collective.todolist"
@@ -99,4 +99,4 @@ Example
     create mode 100644 src/collective/todolist/upgrades.py
     create mode 100644 src/collective/todolist/upgrades.zcml
 
-    Generated file structure at /home/maik/develop/src/bobtemplates.plone/tmp/collective.todolist
+    Generated file structure at /home/maik/develop/src/bobtemplates.eea/tmp/collective.todolist

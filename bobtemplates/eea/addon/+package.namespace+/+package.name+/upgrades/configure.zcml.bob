@@ -1,0 +1,18 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  i18n_domain="eea">
+
+  <genericsetup:upgradeSteps
+    source="*"
+    destination="1.0"
+    profile="{{{ package.dottedname }}}:default">
+
+    <genericsetup:upgradeDepends
+       title="Import all steps from {{{ package.dottedname }}} default profile"
+       import_profile="{{{ package.dottedname }}}:default"
+      />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

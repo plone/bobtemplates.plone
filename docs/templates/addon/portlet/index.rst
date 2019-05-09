@@ -13,13 +13,13 @@ First create a Plone add-on package:
 
 .. code-block:: shell
 
-    mrbob -O collective.todo bobtemplates.plone:addon
+    mrbob -O collective.todo bobtemplates.eea:addon
 
 then change into the created folder ``collective.todo`` and create your first Portlet:
 
 .. code-block:: shell
 
-    mrbob bobtemplates.plone:portlet
+    mrbob bobtemplates.eea:portlet
 
 Portlets are used for wide variety of tasks in Plone and you can read about it in `Portlets reference manual <https://docs.plone.org/4/en/old-reference-manuals/portlets/index.html>`_ for in-depth information. It will just ask for the name of the portlet and the same name is used to create file structures and as well as the portlet name. This will create a basic portlet which ask for city name and country and it will fetch weather data of that city using Yahoo Weather API.
 
@@ -37,7 +37,7 @@ Add a Portlet
 
 .. code-block:: shell
 
-    $ mrbob bobtemplates.plone:portlet
+    $ mrbob bobtemplates.eea:portlet
 
     Welcome to mr.bob interactive mode. Before we generate directory structure, some questions need to be answered.
 

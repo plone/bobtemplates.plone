@@ -45,7 +45,7 @@ plone.version = {version}
         [
             'mrbob',
             '-O', config.package_name,
-            'bobtemplates.plone:' + config.template,
+            'bobtemplates.eea:' + config.template,
             '--config', 'answers.ini',
             '--non-interactive',
         ],

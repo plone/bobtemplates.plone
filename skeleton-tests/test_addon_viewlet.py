@@ -34,7 +34,7 @@ plone.version = {version}
         [
             'mrbob',
             '-O', config.package_name,
-            'bobtemplates.plone:' + config.template,
+            'bobtemplates.eea:' + config.template,
             '--config', answers_init_path,
             '--non-interactive',
         ],
@@ -60,7 +60,7 @@ viewlet_template_name=pt_viewlet
     result = subprocess.call(
         [
             'mrbob',
-            'bobtemplates.plone:' + config.template,
+            'bobtemplates.eea:' + config.template,
             '--config', answers_init_path,
             '--non-interactive',
         ],
@@ -81,7 +81,7 @@ viewlet_template=False
     result = subprocess.call(
         [
             'mrbob',
-            'bobtemplates.plone:' + config.template,
+            'bobtemplates.eea:' + config.template,
             '--config', answers_init_path,
             '--non-interactive',
         ],

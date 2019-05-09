@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from bobtemplates.plone import theme_package
+from bobtemplates.eea import theme_package
 from mrbob.configurator import Configurator
 
 
 def test_pre_render():
     configurator = Configurator(
-        template='bobtemplates.plone:theme_package',
+        template='bobtemplates.eea:theme_package',
         target_directory='collective.theme',
         variables={
             'theme.name': 'Test Theme',
@@ -18,7 +18,7 @@ def test_pre_render():
 def test_cleanup_package(tmpdir):
     target_path = tmpdir.strpath + '/collective.theme'
     configurator = Configurator(
-        template='bobtemplates.plone:theme_package',
+        template='bobtemplates.eea:theme_package',
         target_directory=target_path,
         variables={
             'package.nested': False,

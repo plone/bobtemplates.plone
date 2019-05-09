@@ -18,7 +18,7 @@ If you like it a bit more modular or you don't want to use the Barceloneta theme
 
 .. code-block:: shell
 
-    mrbob -O plonetheme.blacksea bobtemplates.plone:theme_package
+    mrbob -O plonetheme.blacksea bobtemplates.eea:theme_package
 
 then change into the created folder ``plonetheme.blacksea`` initialize it as followed:
 

@@ -1,0 +1,11 @@
+version: "2"
+services:
+  plone:
+    image: plone:5
+    ports:
+    - "8080"
+    volumes:
+    - ../../:/plone/instance/src/{{{ package.dottedname }}}
+    environment:
+      ADDONS: "{{{ package.dottedname }}}[test]"
+      DEVELOP: "src/{{{ package.dottedname }}}"

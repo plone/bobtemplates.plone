@@ -13,7 +13,7 @@
         "lib",
         "local",
         "collective.*",
-        "bobtemplates.plone.egg-info",
+        "bobtemplates.eea.egg-info",
         "node_modules",
         "**/node_modules/*"
     ]

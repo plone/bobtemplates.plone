@@ -1,4 +1,8 @@
-graft src/{{{ package.namespace }}}
+include *.md *.rst *.txt
 graft docs
-include *.rst
-global-exclude *.pyc
+graft eea
+global-exclude *pyc
+global-exclude *~
+global-exclude *.un~
+
+global-include *.mo

@@ -13,13 +13,13 @@ First create a Plone add-on package:
 
 .. code-block:: shell
 
-    mrbob -O collective.todos bobtemplates.plone:addon
+    mrbob -O collective.todos bobtemplates.eea:addon
 
 then change into the created folder ``collective.todos`` and create your restapi_service:
 
 .. code-block:: shell
 
-    mrbob bobtemplates.plone:restapi_service
+    mrbob bobtemplates.eea:restapi_service
 
 It will ask you about the name of your Rest-API service class and name.
 

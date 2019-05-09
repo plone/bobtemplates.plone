@@ -2,8 +2,8 @@
 
 """Test dexterity content type generation."""
 
-from bobtemplates.plone import base
-from bobtemplates.plone import content_type
+from bobtemplates.eea import base
+from bobtemplates.eea import content_type
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
@@ -37,7 +37,7 @@ def test_post_dexterity_type_name():
 
 def test_is_container_false():
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -52,7 +52,7 @@ def test_is_container_false():
 
 def test_is_container_true():
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -67,7 +67,7 @@ def test_is_container_true():
 def test_prepare_renderer(tmpdir):
     """Test prepare renderer."""
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -84,7 +84,7 @@ def test_prepare_renderer(tmpdir):
     assert configurator.target_directory.endswith('/collective.todo/src/collective/todo')  # NOQA: E501
 
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -101,7 +101,7 @@ def test_prepare_renderer(tmpdir):
     assert configurator.target_directory.endswith('/collective.todo/src/collective/todo')  # NOQA: E501
 
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -118,7 +118,7 @@ def test_prepare_renderer(tmpdir):
     assert configurator.target_directory.endswith('/collective.todo/src/collective/todo')  # NOQA: E501
 
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -138,7 +138,7 @@ def test_prepare_renderer(tmpdir):
 def test_check_global_allow_true():
     """Test global_allow set to True."""
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -154,7 +154,7 @@ def test_check_global_allow_true():
 def test_check_global_allow_false():
     """Test global_allow set to False."""
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -191,7 +191,7 @@ def test_update_parent_types_fti_xml(tmpdir):
     with open(os.path.join(profiles_path + '/My_Parent.xml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -236,7 +236,7 @@ def test_update_rolemap_xml(tmpdir):
     with open(os.path.join(profiles_path + '/rolemap.xml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -246,7 +246,7 @@ def test_update_rolemap_xml(tmpdir):
         },
     )
     configurator.variables['package_folder'] = package_path
-    configurator.variables['package.dottedname'] = 'bobtemplates.plone'
+    configurator.variables['package.dottedname'] = 'bobtemplates.eea'
     configurator.variables['dexterity_type_name_klass'] = 'Parent'
     content_type._update_rolemap_xml(configurator)
 
@@ -278,7 +278,7 @@ def test_update_permissions_zcml(tmpdir):
     with open(os.path.join(package_path + '/permissions.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:content_type',
+        template='bobtemplates.eea:content_type',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -288,7 +288,7 @@ def test_update_permissions_zcml(tmpdir):
         },
     )
     configurator.variables['package_folder'] = package_path
-    configurator.variables['package.dottedname'] = 'bobtemplates.plone'
+    configurator.variables['package.dottedname'] = 'bobtemplates.eea'
     configurator.variables['dexterity_type_name_klass'] = 'Parent'
     content_type._update_permissions_zcml(configurator)
 
@@ -370,7 +370,7 @@ version=5.1
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=package_path,
         bobconfig={
             'non_interactive': True,

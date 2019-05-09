@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from bobtemplates.plone import base
-from bobtemplates.plone import vocabulary
+from bobtemplates.eea import base
+from bobtemplates.eea import vocabulary
 from mrbob.configurator import Configurator
 
 import os
@@ -9,7 +9,7 @@ import os
 
 def test_prepare_renderer():
     configurator = Configurator(
-        template='bobtemplates.plone:vocabulary',
+        template='bobtemplates.eea:vocabulary',
         target_directory='.',
         variables={
             'vocabulary_name': 'ExampleVocabulary',
@@ -65,7 +65,7 @@ version=5.1
     with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:vocabulary',
+        template='bobtemplates.eea:vocabulary',
         target_directory=package_path,
         bobconfig={
             'non_interactive': True,

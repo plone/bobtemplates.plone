@@ -2,8 +2,8 @@
 
 """Test view generation."""
 
-from bobtemplates.plone import base
-from bobtemplates.plone import view
+from bobtemplates.eea import base
+from bobtemplates.eea import view
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
@@ -16,7 +16,7 @@ import pytest
 def test_get_view_name_default():
     question = Question(name='view_name', question='', default=None)
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -31,7 +31,7 @@ def test_get_view_name_default():
 def test_get_view_name():
     question = Question(name='view_name', question='', default=None)
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -47,7 +47,7 @@ def test_get_view_name():
 def test_get_template_name_default():
     question = Question(name='view_name', question='', default=None)
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -62,7 +62,7 @@ def test_get_template_name_default():
 def test_get_template_name():
     question = Question(name='view_name', question='', default=None)
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -77,7 +77,7 @@ def test_get_template_name():
 
 def test_python_class_true():
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -91,7 +91,7 @@ def test_python_class_true():
 
 def test_python_class_false():
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -106,7 +106,7 @@ def test_python_class_false():
 
 def test_view_template_true():
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -121,7 +121,7 @@ def test_view_template_true():
 
 def test_view_template_false():
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -137,7 +137,7 @@ def test_view_template_false():
 
 def test_view_template_and_python_class_false():
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.foo.bar',
         bobconfig={
             'non_interactive': True,
@@ -180,7 +180,7 @@ def test_update_views_configure_zcml(tmpdir):
     with open(os.path.join(views_path + 'configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -231,7 +231,7 @@ def test_update_views_configure_zcml_without_template(tmpdir):
     with open(os.path.join(views_path + 'configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -281,7 +281,7 @@ def test_update_views_configure_zcml_without_python_class(tmpdir):
     with open(os.path.join(views_path + 'configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -317,7 +317,7 @@ def test_file_names(tmpdir):
     template_file_path = views_path + template_file_name
     open(template_file_path, 'a').close()
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -355,7 +355,7 @@ def test_delete_template_file(tmpdir):
     file_path = views_path + file_name
     open(file_path, 'a').close()
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -388,7 +388,7 @@ def test_delete_python_file(tmpdir):
     file_path = views_path + file_name
     open(file_path, 'a').close()
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -429,7 +429,7 @@ def test_update_configure_zcml(tmpdir):
     with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:view',
+        template='bobtemplates.eea:view',
         target_directory='collective.demo',
         bobconfig={
             'non_interactive': True,
@@ -526,7 +526,7 @@ class MyView(BrowserView):
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=package_path,
         bobconfig={
             'non_interactive': True,

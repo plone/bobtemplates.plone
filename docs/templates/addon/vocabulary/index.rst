@@ -13,13 +13,13 @@ First create a Plone add-on package:
 
 .. code-block:: shell
 
-    mrbob -O collective.todos bobtemplates.plone:addon
+    mrbob -O collective.todos bobtemplates.eea:addon
 
 then change into the created folder ``collective.todos`` and create your Vocabulary_:
 
 .. code-block:: shell
 
-    mrbob bobtemplates.plone:vocabulary
+    mrbob bobtemplates.eea:vocabulary
 
 It will ask you about the name of your Vocabulary_ class.
 

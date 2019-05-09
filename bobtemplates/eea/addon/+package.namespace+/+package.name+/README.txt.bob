@@ -1,0 +1,16 @@
+Overview
+========
+{{{ package.dottedname }}} is a revolutionary plone package that redefines Plone Add-ons.
+
+  * See more: http://github.com/eea/{{{ package.dottedname }}}
+
+
+Installation
+============
+  * Go to admin > Site Setup > Add-ons
+  * Activate {{{ package.dottedname }}}
+
+
+Authors
+=======
+  "European Environment Agency", mailto:eea-edw-a-team-alerts@googlegroups.com

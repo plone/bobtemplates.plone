@@ -2,8 +2,8 @@
 
 """Test view generation."""
 
-from bobtemplates.plone import base
-from bobtemplates.plone import portlet
+from bobtemplates.eea import base
+from bobtemplates.eea import portlet
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
@@ -13,7 +13,7 @@ import pytest
 
 def test_pre_renderer():
     configurator = Configurator(
-        template='bobtemplates.plone:portlet',
+        template='bobtemplates.eea:portlet',
         target_directory='.',
         variables={
             'portlet_name': u'My nice portlet, with umlauts: öÖÖÖÖ'.encode(
@@ -52,7 +52,7 @@ def test_update_configure_zcml_with_changes(tmpdir):
     with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:portlet',
+        template='bobtemplates.eea:portlet',
         target_directory='collective.demo',
         bobconfig={
             'non_interactive': True,
@@ -93,7 +93,7 @@ def test_update_configure_zcml_without_changes(tmpdir):
     with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:portlet',
+        template='bobtemplates.eea:portlet',
         target_directory='collective.demo',
         bobconfig={
             'non_interactive': True,
@@ -157,7 +157,7 @@ def test_update_portlets_configure_zcml(tmpdir):
     with open(os.path.join(portlets_path + 'configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:portlet',
+        template='bobtemplates.eea:portlet',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -196,7 +196,7 @@ def test_delete_unnecessary_files(tmpdir):
     xml_file_path = profile_path + file_name
     open(xml_file_path, 'a').close()
     configurator = Configurator(
-        template='bobtemplates.plone:portlet',
+        template='bobtemplates.eea:portlet',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -231,7 +231,7 @@ def test_update_portlets_xml(tmpdir):
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:portlet',
+        template='bobtemplates.eea:portlet',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -317,7 +317,7 @@ def test_update_portlets_xml_with_changes(tmpdir):
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:portlet',
+        template='bobtemplates.eea:portlet',
         target_directory='collective.sample',
         bobconfig={
             'non_interactive': True,
@@ -534,7 +534,7 @@ class Renderer(base.Renderer):
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=package_path,
         bobconfig={
             'non_interactive': True,

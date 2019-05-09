@@ -13,13 +13,13 @@ First create a Plone add-on package:
 
 .. code-block:: shell
 
-    mrbob -O collective.todo bobtemplates.plone:addon
+    mrbob -O collective.todo bobtemplates.eea:addon
 
 then change into the created folder ``collective.todo`` and create your first Viewlet:
 
 .. code-block:: shell
 
-    mrbob bobtemplates.plone:viewlet
+    mrbob bobtemplates.eea:viewlet
 
 It will ask if you need Python class and template file, you can have both or at least one to have a working viewlet. Based on the input it will ask about class name, template name or both. By default it will suggest you to use class name as viewlet name but you can also change it. This will create a viewlet registered to ``IAboveContentTitle`` viewlet manager and on ``IDocument`` interface.
 
@@ -37,7 +37,7 @@ Add a Viewlet
 
 .. code-block::shell
     
-    $ mrbob bobtemplates.plone:viewlet
+    $ mrbob bobtemplates.eea:viewlet
 
     Welcome to mr.bob interactive mode. Before we generate directory structure, some questions need to be answered.
 

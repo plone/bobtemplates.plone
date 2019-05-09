@@ -36,7 +36,7 @@ plone.version = {version}
             [
                 'mrbob',
                 '-O', config.package_name,
-                'bobtemplates.plone:' + config.template,
+                'bobtemplates.eea:' + config.template,
                 '--config', answers_init_path,
                 '--non-interactive',
             ],
@@ -67,7 +67,7 @@ dexterity_type_supermodel=True
         result = subprocess.call(
             [
                 'mrbob',
-                'bobtemplates.plone:' + config.template,
+                'bobtemplates.eea:' + config.template,
                 '--config', answers_init_path,
                 '--non-interactive',
             ],
@@ -95,7 +95,7 @@ dexterity_type_activate_default_behaviors=False
         result = subprocess.call(
             [
                 'mrbob',
-                'bobtemplates.plone:' + config.template,
+                'bobtemplates.eea:' + config.template,
                 '--config', answers_init_path,
                 '--non-interactive',
             ],

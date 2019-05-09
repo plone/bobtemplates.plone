@@ -1,5 +1,5 @@
 =======================================
-Developing bobtemplates.plone templates
+Developing bobtemplates.eea templates
 =======================================
 
 Setup dev environment
@@ -16,7 +16,7 @@ In the package folder create a virtualenv and install the package:
 Intro
 =====
 
-We can have standalone templates and sub-templates for bobtemplates.plone.
+We can have standalone templates and sub-templates for bobtemplates.eea.
 By convention we will have a python module and a template folder for every template and use some generic functions from the base module.
 
 All templates are living inside the ``bobtemplates/plone`` folder, in their own template folder.
@@ -45,13 +45,13 @@ Every sub-template should define a ``pre_renderer`` and a ``post_renderer`` hook
 .. code-block:: ini
 
    [template]
-   pre_render = bobtemplates.plone.<YOURTEMPLATE_MODULE>:pre_renderer
-   post_render = bobtemplates.plone.<YOURTEMPLATE_MODULE>:post_renderer
+   pre_render = bobtemplates.eea.<YOURTEMPLATE_MODULE>:pre_renderer
+   post_render = bobtemplates.eea.<YOURTEMPLATE_MODULE>:post_renderer
 
 
 .. code-block:: python
 
-   from bobtemplates.plone.base import base_prepare_renderer
+   from bobtemplates.eea.base import base_prepare_renderer
 
 
    def pre_renderer(configurator):
@@ -80,8 +80,8 @@ Template Registration
 =====================
 
 Even though you can use bobtemplates without registration, you should register the template to allow plonecli and future mrbob versions to query for it.
-The registration is done by adding a Python entry point into the ``setup.py`` of ``bobtemplates.plone`` and by adding a short method to the ``bobregistry.py`` file.
-You can of course create your own custom package, analog to bobtemplates.plone and register your templates plonecli the same way.
+The registration is done by adding a Python entry point into the ``setup.py`` of ``bobtemplates.eea`` and by adding a short method to the ``bobregistry.py`` file.
+You can of course create your own custom package, analog to bobtemplates.eea and register your templates plonecli the same way.
 This could be used for example for your agency or client specific code structures. If you need help by creating such custom bobtemplates and plonecli integration's, give us a sign on Gitter: https://gitter.im/plone/plonecli.
 
 Let's look first on the entry point:
@@ -90,9 +90,9 @@ Let's look first on the entry point:
 
     entry_points={
         'mrbob_templates': [
-            'plone_addon = bobtemplates.plone.bobregistry:plone_addon',
-            'plone_content_type = bobtemplates.plone.bobregistry:plone_content_type',
-            'plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary',
+            'plone_addon = bobtemplates.eea.bobregistry:plone_addon',
+            'plone_content_type = bobtemplates.eea.bobregistry:plone_content_type',
+            'plone_vocabulary = bobtemplates.eea.bobregistry:plone_vocabulary',
         ],
 
 This registers every template globally for mrbob and tools like plonecli. The first part is the global template name and the second part points to a method in the bobregistry module. This method gives back some details for the template.
@@ -101,7 +101,7 @@ This registers every template globally for mrbob and tools like plonecli. The fi
 
     def plone_vocabulary():
         reg = RegEntry()
-        reg.template = 'bobtemplates.plone:vocabulary'
+        reg.template = 'bobtemplates.eea:vocabulary'
         reg.plonecli_alias = 'vocabulary'
         reg.depend_on = 'plone_addon'
         return reg
@@ -121,7 +121,7 @@ Testing
 All templates and sub-templates should have tests for the structure they provide.
 
 These tests will give developers a good starting point to write tests for their own code.
-Also these tests will be called by Tox and on Travis to make sure that all the structures created by ``bobtemplates.plone`` are working and tested.
+Also these tests will be called by Tox and on Travis to make sure that all the structures created by ``bobtemplates.eea`` are working and tested.
 
 We run tests for both all the templates with every combination and inside the generated packages.
 
@@ -221,7 +221,7 @@ Increase verbosity of Tox/Pytest
 Package tests
 .............
 
-Package tests are for testing the code of bobtemplates.plone it self. These code is used to generate and update the structures of the generated packages.
+Package tests are for testing the code of bobtemplates.eea it self. These code is used to generate and update the structures of the generated packages.
 
 You can find these test in the ``package-test`` folder.
 This is a good place to test everything related to the generation process.
@@ -236,7 +236,7 @@ The tests are defined in the directory ``skeleton-tests`` and are called by ``to
 If you add new test cases (files), make sure that they are in the ``tox.ini`` and also included int the Travis matrix, see below!
 
 Skeleton tests it self are using pytest too, but the tests inside the generated packages are Zope tests running by zc.testrunner.
-Starting from version 4.x, packages generated by bobtemplates.plone are containing also a tox setup by them self. This allows you to easily test your package against multiple Python and Plone versions.
+Starting from version 4.x, packages generated by bobtemplates.eea are containing also a tox setup by them self. This allows you to easily test your package against multiple Python and Plone versions.
 
 Generating Travis matrix from tox.ini
 =====================================

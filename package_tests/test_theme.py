@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from .base import init_package_base_files
-from bobtemplates.plone import base
-from bobtemplates.plone import theme
+from bobtemplates.eea import base
+from bobtemplates.eea import theme
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 from mrbob.configurator import Question
@@ -14,7 +14,7 @@ import pytest
 def test_pre_theme_name(tmpdir):
     base_path = tmpdir.strpath
     configurator = Configurator(
-        template='bobtemplates.plone:theme',
+        template='bobtemplates.eea:theme',
         target_directory=os.path.join(
             base_path,
             'collective.foo',
@@ -31,7 +31,7 @@ def test_pre_theme_name(tmpdir):
 def test_post_theme_name(tmpdir):
     base_path = tmpdir.strpath
     configurator = Configurator(
-        template='bobtemplates.plone:theme',
+        template='bobtemplates.eea:theme',
         target_directory=os.path.join(
             base_path,
             'collective.foo',
@@ -50,7 +50,7 @@ def test_prepare_renderer(tmpdir):
         'collective.foo',
     )
     configurator = Configurator(
-        template='bobtemplates.plone:theme',
+        template='bobtemplates.eea:theme',
         target_directory=os.path.join(
             package_root_folder,
             'src/collective/foo',
@@ -73,7 +73,7 @@ def test_prepare_renderer(tmpdir):
         'collective.foo.bar',
     )
     configurator = Configurator(
-        template='bobtemplates.plone:theme',
+        template='bobtemplates.eea:theme',
         target_directory=os.path.join(
             package_root_folder,
             'src/collective/foo/bar',
@@ -152,7 +152,7 @@ version=5.1
     with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:theme',
+        template='bobtemplates.eea:theme',
         target_directory=package_path,
         bobconfig={
             'non_interactive': True,

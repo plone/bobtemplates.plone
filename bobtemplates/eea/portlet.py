@@ -3,11 +3,11 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
-from bobtemplates.plone.base import base_prepare_renderer
-from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import update_file
-from bobtemplates.plone.base import ZCML_NAMESPACES
-from bobtemplates.plone.utils import slugify
+from bobtemplates.eea.base import base_prepare_renderer
+from bobtemplates.eea.base import git_commit
+from bobtemplates.eea.base import update_file
+from bobtemplates.eea.base import ZCML_NAMESPACES
+from bobtemplates.eea.utils import slugify
 from lxml import etree
 
 import case_conversion as cc

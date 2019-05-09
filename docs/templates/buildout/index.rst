@@ -11,7 +11,7 @@ With this template you can create a basic Plone Buildout, which often used as a 
 
 .. code-block:: shell
 
-    mrbob bobtemplates.plone:Buildout -O my_project
+    mrbob bobtemplates.eea:Buildout -O my_project
 
 This will ask you for a Plone version and will create a Buildout folder for you. The Buildout configuration is using the buildout.plonetest configurations provided by the Plone community for developing and testing Plone. For more information about the buildout.plonetest configurations see here: https://github.com/collective/buildout.plonetest
 

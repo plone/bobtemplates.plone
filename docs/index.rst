@@ -4,7 +4,7 @@ bobtempalates.plone
 
 .. topic:: Description
 
-    Overview of bobtemplates.plone features, compatibility and installation.
+    Overview of bobtemplates.eea features, compatibility and installation.
 
 ..  toctree::
     :maxdepth: 2
@@ -17,29 +17,29 @@ bobtempalates.plone
 Introduction
 ============
 
-``bobtemplates.plone`` provides a `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ template to generate packages for Plone projects.
+``bobtemplates.eea`` provides a `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ template to generate packages for Plone projects.
 
 To create a package like ``collective.myaddon``
 
 .. code-block:: shell
 
-    pip install bobtemplates.plone
-    mrbob -O collective.myaddon bobtemplates.plone:addon
+    pip install bobtemplates.eea
+    mrbob -O collective.myaddon bobtemplates.eea:addon
 
 You can also create a package with nested name space
 
 .. code-block:: shell
 
-    mrbob -O collective.foo.myaddon bobtemplates.plone:addon
+    mrbob -O collective.foo.myaddon bobtemplates.eea:addon
 
 .. note::
 
-    With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone. We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplates.plone.
+    With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.eea. We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplates.eea.
 
 Features
 ========
 
-packages created with ``bobtemplates.plone`` use the current best-practices when creating an add-on and does all of boilerplate for you.
+packages created with ``bobtemplates.eea`` use the current best-practices when creating an add-on and does all of boilerplate for you.
 
 Provided templates
 ------------------
@@ -68,7 +68,7 @@ Provided templates
 Compatibility
 =============
 
-Add-on's created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
+Add-on's created with ``bobtemplates.eea`` are tested to work in Plone 4.3.x and Plone 5.
 They should also work with older versions but that was not tested.
 It should work on Linux, Mac and Windows.
 
@@ -79,36 +79,36 @@ Installation
 Installation global for a user (recommended)
 --------------------------------------------
 
-To have ``bobtemplates.plone`` and the `plonecli <https://pypi.python.org/pypi/plonecli>`_ always avilable, it's recommended to install it globally for your user.
+To have ``bobtemplates.eea`` and the `plonecli <https://pypi.python.org/pypi/plonecli>`_ always avilable, it's recommended to install it globally for your user.
 
 .. code-block:: shell
 
     pip install plonecli --user
 
-This will install the ``plonecli`` and ``bobtemplates.plone``. If you only want ``bobtemplates.plone``, you install only this package as follow:
+This will install the ``plonecli`` and ``bobtemplates.eea``. If you only want ``bobtemplates.eea``, you install only this package as follow:
 
 .. code-block:: shell
 
-    pip install bobtemplates.plone --user
+    pip install bobtemplates.eea --user
 
 
 Installation in a Virtualenv
 ----------------------------
 
-You can also install ``bobtemplates.plone`` in a Virtualenv.
+You can also install ``bobtemplates.eea`` in a Virtualenv.
 
 .. code-block:: shell
 
-    pip install bobtemplates.plone
+    pip install bobtemplates.eea
 
-With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.plone``.
+With ``pip 6.0`` or newer ``mr.bob`` will automatically be installed as a dependency. If you still use a older version of pip you need install ``mr.bob`` before ``bobtemplates.eea``.
 
 .. code-block:: shell
 
     pip install mr.bob
 
 
-Use plonecli and bobtemplates.plone
+Use plonecli and bobtemplates.eea
 -----------------------------------
 
 You can use the bobtemplates now with the ``plonecli``:
@@ -122,9 +122,9 @@ You can use the bobtemplates now with the ``plonecli``:
 
 .. code-block:: shell
 
-    mrbob bobtemplates.plone:addon -O collective.foo
+    mrbob bobtemplates.eea:addon -O collective.foo
     cd src/collective.foo
-    mrbob bobtemplates.plone:content_type
+    mrbob bobtemplates.eea:content_type
     virtualenv .
     ./bin/pip install -r requirements.txt
     ./bin/buildout
@@ -154,7 +154,7 @@ Installing and using it in a buildout
     recipe = zc.recipe.egg
     eggs =
         mr.bob
-        bobtemplates.plone
+        bobtemplates.eea
 
 
 This creates a mrbob-executable in your bin-directory.

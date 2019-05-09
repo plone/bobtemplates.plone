@@ -13,13 +13,13 @@ First create a Plone add-on package:
 
 .. code-block:: shell
 
-    mrbob -O collective.todo bobtemplates.plone:addon
+    mrbob -O collective.todo bobtemplates.eea:addon
 
 then change into the created folder ``collective.todo`` and create your first View:
 
 .. code-block:: shell
 
-    mrbob bobtemplates.plone:view
+    mrbob bobtemplates.eea:view
 
 It will ask if you need Python class and template file, you can have both or at least one to have a working view. Based on the input it will ask about class name, template name or both. By default it will suggest you to use class name as view name (the part of url) but you can also change it. You can see your newly created view by using the url that you used for view name on ``IFolderish`` interface.
 
@@ -37,7 +37,7 @@ Add a View
 
 .. code-block:: shell
 
-    $ mrbob bobtemplates.plone:view
+    $ mrbob bobtemplates.eea:view
 
     Welcome to mr.bob interactive mode. Before we generate directory structure, some questions need to be answered.
 

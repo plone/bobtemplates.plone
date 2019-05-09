@@ -19,7 +19,7 @@ or without the ``plonecli``:
 
 .. code-block:: shell
 
-    mrbob bobtemplates.plone:addon -O collective.todolist
+    mrbob bobtemplates.eea:addon -O collective.todolist
 
 then change into the created folder ``collective.todolist`` and create your first Content Type:
 
@@ -31,7 +31,7 @@ or without the ``plonecli``
 
 .. code-block:: shell
 
-    mrbob bobtemplates.plone:content_type
+    mrbob bobtemplates.eea:content_type
 
 It will ask you about the name of your Content Type and will use this name also for classes, interfaces. You also have the choice of using the XML supermodel or the zope.schema to define the models. The default base class is Container, but you can choose also Item. By default the template will create a class for every content type, but you can decide to use the generic Dexterity classes if you don't need your own content type classes.
 
@@ -81,7 +81,7 @@ Add a container Content Type
     Should we run?:
     git add .
     git commit -m "Add content_type: Todo List"
-    in: /home/maik/develop/src/bobtemplates.plone/tmp/collective.todolist
+    in: /home/maik/develop/src/bobtemplates.eea/tmp/collective.todolist
     [y]/n:
     RUN: git add .
     RUN: git commit -m "Add content_type: Todo List"
@@ -95,7 +95,7 @@ Add a container Content Type
     create mode 100644 src/collective/todolist/tests/robot/test_ct_todo_list.robot
     create mode 100644 src/collective/todolist/tests/test_ct_todo_list.py
 
-    Generated file structure at /home/maik/develop/src/bobtemplates.plone/tmp/collective.todolist
+    Generated file structure at /home/maik/develop/src/bobtemplates.eea/tmp/collective.todolist
 
 
 Add an item Content Type
@@ -136,7 +136,7 @@ Add an item Content Type
     Should we run?:
     git add .
     git commit -m "Add content_type: Todo List Item"
-    in: /home/maik/develop/src/bobtemplates.plone/tmp/collective.todolist
+    in: /home/maik/develop/src/bobtemplates.eea/tmp/collective.todolist
     [y]/n:
     RUN: git add .
     RUN: git commit -m "Add content_type: Todo List Item"
@@ -149,4 +149,4 @@ Add an item Content Type
     create mode 100644 src/collective/todolist/tests/robot/test_ct_todo_list_item.robot
     create mode 100644 src/collective/todolist/tests/test_ct_todo_list_item.py
 
-    Generated file structure at /home/maik/develop/src/bobtemplates.plone/tmp/collective.todolist
+    Generated file structure at /home/maik/develop/src/bobtemplates.eea/tmp/collective.todolist

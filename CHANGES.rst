@@ -300,7 +300,7 @@ Changelog
 - Add new field in behavior, improve test naming and tests
   [MrTango]
 
-- Add a chapter howto upgrade existing packages to be compatible with plonecli and new bobtemplates.plone templates
+- Add a chapter howto upgrade existing packages to be compatible with plonecli and new bobtemplates.eea templates
   [MrTango]
 
 - improve test naming of content_Type and vocabulary templates
@@ -414,7 +414,7 @@ Changelog
 
 - Use default Travis notifications.
   Until now only the creator of the package would get a notification, instead of the committer.
-  Fixes `issue 208 <https://github.com/plone/bobtemplates.plone/issues/208>`_.
+  Fixes `issue 208 <https://github.com/plone/bobtemplates.eea/issues/208>`_.
   [maurits]
 
 - Fixed the pypi index to explicitly reference https://pypi.python.org/simple/ to prevent buildout from defaulting to the old and unsupported http:// url.

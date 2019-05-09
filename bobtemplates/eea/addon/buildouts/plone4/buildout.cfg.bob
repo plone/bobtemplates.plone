@@ -1,0 +1,11 @@
+[buildout]
+extends = https://raw.githubusercontent.com/collective/buildout.plonetest/master/test-4.x.cfg
+package-name = {{{ package.dottedname }}}
+package-extras = [test]
+develop = ../../
+
+[versions]
+setuptools =
+zc.buildout =
+wheel =
+pip =

@@ -1,0 +1,16 @@
+pip-selfcheck.json
+.*.cfg
+src
+parts
+*eggs
+*-dev.yml
+bootstrap*
+bin
+lib*
+var
+local
+share
+secret.cfg
+include
+.Python
+.idea

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from .base import init_package_base_files
-from bobtemplates.plone import base
-from bobtemplates.plone import theme_barceloneta
+from bobtemplates.eea import base
+from bobtemplates.eea import theme_barceloneta
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 from mrbob.configurator import Question
@@ -13,7 +13,7 @@ import pytest
 
 def test_pre_theme_name():
     configurator = Configurator(
-        template='bobtemplates.plone:theme_barceloneta',
+        template='bobtemplates.eea:theme_barceloneta',
         target_directory='collective.foo',
     )
     question = Question(
@@ -27,7 +27,7 @@ def test_pre_theme_name():
 def test_post_theme_name(tmpdir):
     target_path = tmpdir.strpath + '/collective.theme'
     configurator = Configurator(
-        template='bobtemplates.plone:theme_barceloneta',
+        template='bobtemplates.eea:theme_barceloneta',
         target_directory=target_path,
     )
 
@@ -47,7 +47,7 @@ def test_prepare_renderer(tmpdir):
         'collective.foo',
     )
     configurator = Configurator(
-        template='bobtemplates.plone:theme_barceloneta',
+        template='bobtemplates.eea:theme_barceloneta',
         target_directory=os.path.join(
             package_root_folder,
             'src/collective/foo',
@@ -126,7 +126,7 @@ version=5.1
     with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:theme_barceloneta',
+        template='bobtemplates.eea:theme_barceloneta',
         target_directory=package_path,
         bobconfig={
             'non_interactive': True,

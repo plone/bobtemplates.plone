@@ -34,7 +34,7 @@ plone.version = {version}
         [
             'mrbob',
             '-O', config.package_name,
-            'bobtemplates.plone:' + config.template,
+            'bobtemplates.eea:' + config.template,
             '--config', answers_init_path,
             '--non-interactive',
         ],
@@ -56,7 +56,7 @@ portlet_name=My Weather
     result = subprocess.call(
         [
             'mrbob',
-            'bobtemplates.plone:' + config.template,
+            'bobtemplates.eea:' + config.template,
             '--config', answers_init_path,
             '--non-interactive',
         ],
@@ -74,7 +74,7 @@ portlet_name=Another Weather Portlet
     result = subprocess.call(
         [
             'mrbob',
-            'bobtemplates.plone:' + config.template,
+            'bobtemplates.eea:' + config.template,
             '--config', answers_init_path,
             '--non-interactive',
         ],

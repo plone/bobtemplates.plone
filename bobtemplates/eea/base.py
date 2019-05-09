@@ -44,7 +44,7 @@ def to_boolean(value):
 
 
 # this is a custom filter which we can use in jinja template.
-# see https://github.com/plone/bobtemplates.plone/issues/292
+# see https://github.com/plone/bobtemplates.eea/issues/292
 jinja2_env.filters['to_boolean'] = to_boolean
 
 

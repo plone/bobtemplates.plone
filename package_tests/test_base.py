@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from bobtemplates.plone import base
+from bobtemplates.eea import base
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
@@ -36,7 +36,7 @@ def test_check_klass_name():
 
 def test_read_bobtemplate_ini(tmpdir):
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory='collective.todo',
     )
     base.read_bobtemplates_ini(configurator)
@@ -50,7 +50,7 @@ version=5.1
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=target_dir,
     )
     base.read_bobtemplates_ini(configurator)
@@ -66,7 +66,7 @@ version=5.1
     with open(os.path.join(target_dir + '/bobtemplate.cfg'), 'w') as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=target_dir,
         variables={
             'year': 1970,
@@ -76,7 +76,7 @@ version=5.1
     base.set_global_vars(configurator)
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=target_dir,
         variables={
             'year': 1970,
@@ -96,7 +96,7 @@ version=5.1
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=target_dir,
         variables={
             'plone.version': '5',
@@ -109,7 +109,7 @@ version=5.1
     assert configurator.variables.get('plone.minor_version') == '5'
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=target_dir,
         variables={
             'plone.version': '5.2',
@@ -122,7 +122,7 @@ version=5.1
     assert configurator.variables.get('plone.minor_version') == '5.2'
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=target_dir,
         variables={
             'plone.version': '5.1',
@@ -135,7 +135,7 @@ version=5.1
     assert configurator.variables.get('plone.minor_version') == '5.1'
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=target_dir,
         variables={
             'plone.version': '4.3',
@@ -210,7 +210,7 @@ def test_validate_packagename(tmpdir):
 
     # step 2: test base namespace (level 2)
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=os.path.join(
             base_path,
             'collective.foo',
@@ -220,7 +220,7 @@ def test_validate_packagename(tmpdir):
 
     # step 3: test nested namespace (level 3)
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory=os.path.join(
             base_path,
             'collective.foo.bar',
@@ -231,7 +231,7 @@ def test_validate_packagename(tmpdir):
     # step 4: test without namespace (level 1)
     with pytest.raises(SystemExit):
         configurator = Configurator(
-            template='bobtemplates.plone:addon',
+            template='bobtemplates.eea:addon',
             target_directory=os.path.join(
                 base_path,
                 'foo',
@@ -242,7 +242,7 @@ def test_validate_packagename(tmpdir):
     # step 5: test deep nested namespace (level 4)
     with pytest.raises(SystemExit):
         configurator = Configurator(
-            template='bobtemplates.plone:addon',
+            template='bobtemplates.eea:addon',
             target_directory=os.path.join(
                 base_path,
                 'collective.foo.bar.spam',
@@ -253,7 +253,7 @@ def test_validate_packagename(tmpdir):
     # step 6: test leading dot
     with pytest.raises(SystemExit):
         configurator = Configurator(
-            template='bobtemplates.plone:addon',
+            template='bobtemplates.eea:addon',
             target_directory=os.path.join(
                 base_path,
                 '.collective.foo',
@@ -264,7 +264,7 @@ def test_validate_packagename(tmpdir):
     # step 7: test ending dot
     with pytest.raises(SystemExit):
         configurator = Configurator(
-            template='bobtemplates.plone:addon',
+            template='bobtemplates.eea:addon',
             target_directory=os.path.join(
                 base_path,
                 'collective.foo.',
@@ -275,7 +275,7 @@ def test_validate_packagename(tmpdir):
     # step 8: test invalid char
     with pytest.raises(SystemExit):
         configurator = Configurator(
-            template='bobtemplates.plone:addon',
+            template='bobtemplates.eea:addon',
             target_directory=os.path.join(
                 base_path,
                 'collective.$SPAM',
@@ -291,7 +291,7 @@ def test_pre_username():
 
     # step 2: test base namespace
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         bobconfig={
             'non_interactive': True,
         },
@@ -301,7 +301,7 @@ def test_pre_username():
 
     # step 3: test invalid name
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         bobconfig={
             'non_interactive': True,
         },
@@ -313,7 +313,7 @@ def test_pre_username():
 
 def test_pre_email():
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         bobconfig={
             'non_interactive': True,
         },
@@ -324,31 +324,31 @@ def test_pre_email():
 
 def test_post_plone_version():
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory='collective.foo',
     )
     base.post_plone_version(configurator, None, '4.3')
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory='collective.foo',
     )
     base.post_plone_version(configurator, None, '4-latest')
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory='collective.foo',
     )
     base.post_plone_version(configurator, None, '5.1')
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory='collective.foo',
     )
     base.post_plone_version(configurator, None, '5-latest')
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.eea:addon',
         target_directory='collective.foo',
         variables={
             'plone.is_plone5': True,

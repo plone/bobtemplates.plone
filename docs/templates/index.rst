@@ -1,10 +1,10 @@
 ========================================
-Templates provided by bobtemplates.plone
+Templates provided by bobtemplates.eea
 ========================================
 
 .. topic:: Description
 
-    Overview and documentation of templates provided by bobtemplates.plone.
+    Overview and documentation of templates provided by bobtemplates.eea.
 
 ..  toctree::
     :maxdepth: 2

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from bobtemplates.plone.utils import safe_unicode
+from bobtemplates.eea.utils import safe_unicode
 
 import contextlib
 import os

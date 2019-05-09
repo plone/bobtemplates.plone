@@ -1,50 +1,20 @@
-
-.. image:: https://secure.travis-ci.org/plone/bobtemplates.plone.png?branch=master
-    :target: http://travis-ci.org/plone/bobtemplates.plone
-
-.. image:: https://coveralls.io/repos/github/plone/bobtemplates.plone/badge.svg?branch=master
-    :target: https://coveralls.io/github/plone/bobtemplates.plone?branch=master
-    :alt: Coveralls
-
-.. image:: https://img.shields.io/pypi/v/bobtemplates.plone.svg
-    :target: https://pypi.python.org/pypi/bobtemplates.plone/
-    :alt: Latest Version
-
-.. image:: https://img.shields.io/pypi/status/bobtemplates.plone.svg
-    :target: https://pypi.python.org/pypi/bobtemplates.plone/
-    :alt: Egg Status
-
-.. image:: https://img.shields.io/pypi/pyversions/bobtemplates.plone.svg?style=plastic   :alt: Supported - Python Versions
-
-.. image:: https://img.shields.io/pypi/l/bobtemplates.plone.svg
-    :target: https://pypi.python.org/pypi/bobtemplates.plone/
-    :alt: License
-
-.. image:: https://badges.gitter.im/plone/bobtemplates.plone.svg
-    :target: https://gitter.im/plone/bobtemplates.plone?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
-    :alt: Gitter channel
-
 ==================
-bobtemplates.plone
+bobtemplates.eea
 ==================
 
-``bobtemplates.plone`` provides `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ templates to generate packages for Plone projects.
+``bobtemplates.eea`` provides `mr.bob <http://mrbob.readthedocs.org/en/latest/>`_ templates to generate packages for Plone projects.
 
-.. note::
-
-   With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone. 
-   We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplates.plone.
+This is a fork of [bobtemplates.plone](https://github.com/plone/bobtemplates.plone)
 
 Features
 ========
 
-Package created with ``bobtemplates.plone`` use the current best-practices when creating an add-on. It also support's GIT by default, to keep track of changes one is doing with the bobtemplates.
+Package created with ``bobtemplates.eea`` use the current best-practices when creating an add-on. It also support's GIT by default, to keep track of changes one is doing with the bobtemplates.
 
 Provided templates
 ------------------
 
 - addon
-- theme_package (Deprecated, use theme_barceloneta subtemplate)
 - buildout
 
 
@@ -65,24 +35,15 @@ These templates are meant to be used inside a package which was created by the a
 Compatibility
 =============
 
-Add-ons created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
+Add-ons created with ``bobtemplates.eea`` are tested to work in Plone 4.3.x and Plone 5.
 They should also work with older versions but that was not tested.
 It should work on Linux, Mac and Windows.
 
 
-Documentation
-=============
-
-Full documentation for end users and template developers can be found in the "docs" folder.
-
-    For easy usage see: `plonecli <https://pypi.python.org/pypi/plonecli>`_
-
-It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone/docs/
-
 Installation
 ============
 
-You can install bobtemplates.plone as every other normal Python package with `pip <https://pypi.python.org/pypi/pip>`_ inside a `virtualenv <https://pypi.python.org/pypi/virtualenv>`_ or better with `pipenv <https://pypi.python.org/pypi/pipenv>`_.
+You can install `bobtemplates.eea` as every other normal Python package with `pip <https://pypi.python.org/pypi/pip>`_ inside a `virtualenv <https://pypi.python.org/pypi/virtualenv>`_ or better with `pipenv <https://pypi.python.org/pypi/pipenv>`_.
 
 
 Installion with pipenv
@@ -90,13 +51,13 @@ Installion with pipenv
 
 .. code-block:: console
 
-    pipenv install bobtemplates.plone
+    pipenv install bobtemplates.eea
 
 
 Installation with pip in a virtualenv
 -------------------------------------
 
-You can also install ``bobtemplates.plone`` with pip in a virtualenv.
+You can also install ``bobtemplates.eea`` with pip in a virtualenv.
 If you don't have an active virtualenv, you can create one inside your project directory.
 
 .. code-block:: bash
@@ -113,7 +74,7 @@ or just use the binaries directly inside the bin folder as below:
 
 .. code-block:: console
 
-    ./bin/pip install bobtemplates.plone
+    ./bin/pip install bobtemplates.eea
 
 
 Use in a buildout
@@ -128,7 +89,7 @@ Use in a buildout
     recipe = zc.recipe.egg
     eggs =
         mr.bob
-        bobtemplates.plone
+        bobtemplates.eea
 
 This creates a mrbob-executable in your bin-directory.
 
@@ -136,13 +97,13 @@ This creates a mrbob-executable in your bin-directory.
 Usage
 -----
 
-As bobtemplates.plone is a template for mr.bob_, we use mrbob to run the templates.
+As bobtemplates.eea is a template for mr.bob_, we use mrbob to run the templates.
 
 If you are using `buildout <https://pypi.python.org/pypi/zc.buildout>`_  or an unactivated `virtualenv <https://pypi.python.org/pypi/virtualenv>`_, you can use mrbob like this:
 
 .. code-block:: console
 
-    ./bin/mrbob bobtemplates.plone:addon -O src/collective.foo
+    ./bin/mrbob bobtemplates.eea:addon -O src/collective.foo
 
 If you are using pipenv or an activated virtualenv, you can use mrbob like this:
 
@@ -160,7 +121,7 @@ or activate your virtualenv:
 
 .. code-block:: console
 
-    mrbob bobtemplates.plone:addon -O src/collective.foo
+    mrbob bobtemplates.eea:addon -O src/collective.foo
 
 This will create your Plone package inside the ``src`` directory.
 
@@ -197,13 +158,13 @@ Here is an example:
 Contribute
 ==========
 
-- Issue Tracker: https://github.com/plone/bobtemplates.plone/issues
-- Source Code: https://github.com/plone/bobtemplates.plone
-- Documentation: https://docs.plone.org/develop/addons/bobtemplates.plone/docs/ or https://bobtemplatesplone.readthedocs.io/en/latest/
+- Issue Tracker: https://github.com/plone/bobtemplates.eea/issues
+- Source Code: https://github.com/plone/bobtemplates.eea
+- Documentation: https://docs.plone.org/develop/addons/bobtemplates.eea/docs/ or https://bobtemplatesplone.readthedocs.io/en/latest/
 
 
 Support
 =======
 
 If you are having issues, please let us know.
-We have a Gitter channel here: `plone/bobtemplates.plone <https://gitter.im/plone/bobtemplates.plone>`_
+We have a Gitter channel here: `plone/bobtemplates.eea <https://gitter.im/plone/bobtemplates.eea>`_

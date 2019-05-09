@@ -10,32 +10,51 @@ VERSION = open(join(*PATH)).read().strip()
 
 setup(name=NAME,
       version=VERSION,
-      description="{{{ package.dottedname }}} Plone Add-on",
+      description="{{{ package.description }}}",
       long_description=(
           open("README.rst").read() + "\n" +
           open(os.path.join("docs", "HISTORY.txt")).read()
       ),
-      # https://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
-          "Framework :: Zope2",
+          "Environment :: Web Environment",
           "Framework :: Plone",
+          "Framework :: Plone :: Addon",
+          "Framework :: EEA :: Addon",
+{{% if not plone.is_plone5 %}}
           "Framework :: Plone :: 4.3",
+{{% endif %}}
+{{% if plone.is_plone5 and not plone.is_plone51 and not plone.is_plone52 %}}
+          "Framework :: Plone :: 5.0",
+{{% endif %}}
+{{% if plone.is_plone51 %}}
           "Framework :: Plone :: 5.1",
-          "Programming Language :: Zope",
+{{% endif %}}
+{{% if plone.is_plone52 %}}
+          "Framework :: Plone :: 5.2",
+{{% endif %}}
           "Programming Language :: Python",
           "Programming Language :: Python :: 2.7",
-          "Topic :: Software Development :: Libraries :: Python Modules",
-          "License :: OSI Approved :: GNU General Public License (GPL)",
+{{% if plone.is_plone52 %}}
+          "Programming Language :: Python :: 3.6",
+          "Programming Language :: Python :: 3.7",
+{{% endif %}}
+          "Operating System :: OS Independent",
+          "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
       ],
-      keywords='EEA Add-ons Plone Zope',
-      author='European Environment Agency: IDM2 A-Team',
-      author_email='eea-edw-a-team-alerts@googlegroups.com',
+      keywords='EEA Add-ons Plone Zope'
+      author='{{{ author.name }}}',
+      author_email='{{{ author.email }}}',
       url='https://github.com/eea/{{{ package.dottedname }}}',
       license='GPL version 2',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['eea'],
       include_package_data=True,
       zip_safe=False,
+      {{% if plone.is_plone52 %}}
+      python_requires="==2.7, >=3.6",
+      {{% else %}}
+      python_requires="==2.7",
+      {{% endif %}}
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-

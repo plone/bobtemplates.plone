@@ -41,7 +41,7 @@ setup(name=NAME,
           "Operating System :: OS Independent",
           "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
       ],
-      keywords='EEA Add-ons Plone Zope'
+      keywords='EEA Add-ons Plone Zope',
       author='{{{ author.name }}}',
       author_email='{{{ author.email }}}',
       url='https://github.com/eea/{{{ package.dottedname }}}',

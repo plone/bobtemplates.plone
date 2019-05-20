@@ -4,6 +4,9 @@ Changelog
 4.0.5 (unreleased)
 ------------------
 
+- Remove Gruntfile.js and package.json from .gitignore in addon package.
+  [erral]
+
 - ReST fomatting and fix typo in README.rst
 
 

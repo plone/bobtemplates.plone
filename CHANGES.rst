@@ -11,6 +11,9 @@ Changelog
 - Improve view page template
   [MrTango]
 
+- Add project_urls to setup.py, fixes: #376
+  [MrTango]
+
 - Check deleting object in content_type tests
   [MrTango]
 

@@ -38,7 +38,7 @@ setup(
     author_email='plone-developers@lists.sourceforge.net',
     url='https://github.com/plone/bobtemplates.plone/',
     project_urls={
-        'PyPI': 'https://pypi.python.org/pypi/jlu.zsbdb',
+        'PyPI': 'https://pypi.python.org/pypi/bobtemplates.plone',
         'Documentation': 'https://bobtemplatesplone.readthedocs.io/en/latest/',
         'Source': 'https://github.com/plone/bobtemplates.plone/',
         'Tracker': 'https://github.com/plone/bobtemplates.plone/issues',

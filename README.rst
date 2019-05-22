@@ -71,7 +71,7 @@ They should also work with older versions but that was not tested.
 It should work on Linux, Mac and Windows.
 
 .. note::
-    Please note that the theme tempates by default only work for Plone > 5, because they are based on Barceloneta. But they can be use for older version too, with some changes to the rules file.
+    Please note that the theme templates by default only work for Plone > 5, because they are based on Barceloneta. But they can be use for older version too, with some changes to the rules file.
 
 
 Documentation

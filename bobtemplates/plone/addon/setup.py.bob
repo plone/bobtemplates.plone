@@ -51,7 +51,7 @@ setup(
         'PyPI': 'https://pypi.python.org/pypi/{{{ package.dottedname }}}',
         'Source': 'https://github.com/collective/{{{ package.dottedname }}}',
         'Tracker': 'https://github.com/collective/{{{ package.dottedname }}}/issues',
-        'Documentation': 'https://{{{ package.dottedname }}}.readthedocs.io/en/latest/',
+        # 'Documentation': 'https://{{{ package.dottedname }}}.readthedocs.io/en/latest/',
     },
     license='GPL version 2',
     packages=find_packages('src', exclude=['ez_setup']),

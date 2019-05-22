@@ -23,15 +23,6 @@ def get_view_name_from_python_class(configurator, question):
         question.default = 'my-view'
 
 
-def get_template_name_default(configurator, question):
-    if configurator.variables['view_template']:
-        view_url = configurator.variables['view_name']
-        template_default_name = cc.snakecase(view_url)
-        question.default = template_default_name
-    else:
-        question.default = 'view'
-
-
 def check_python_class_answer(configurator, question):
     if not configurator.variables['view_python_class']:
         raise SkipQuestion(u'No python class, so we skip python class name question.')  # NOQA: E501

@@ -32,7 +32,7 @@ bobtemplates.plone
 
 .. note::
 
-   With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone. 
+   With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone.
    We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplates.plone.
 
 Features
@@ -62,12 +62,16 @@ These templates are meant to be used inside a package which was created by the a
 - viewlet
 - vocabulary
 
+
 Compatibility
 =============
 
 Add-ons created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
 They should also work with older versions but that was not tested.
 It should work on Linux, Mac and Windows.
+
+.. note::
+    Please note that the theme templates by default only work for Plone > 5, because they are based on Barceloneta. But they can be use for older version too, with some changes to the rules file.
 
 
 Documentation

@@ -28,37 +28,6 @@ def test_get_view_name_default():
     viewlet.get_view_name_from_python_class(configurator, question)
 
 
-def test_get_template_name_default():
-    question = Question(name='viewlet_name', question='', default=None)
-    configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
-        target_directory='collective.foo.bar',
-        bobconfig={
-            'non_interactive': True,
-        },
-        variables={
-            'viewlet_template': False,
-        },
-    )
-    viewlet.get_template_name_default(configurator, question)
-
-
-def test_get_template_name():
-    question = Question(name='viewlet_name', question='', default=None)
-    configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
-        target_directory='collective.foo.bar',
-        bobconfig={
-            'non_interactive': True,
-        },
-        variables={
-            'viewlet_template': True,
-            'viewlet_name': 'myviewlet',
-        },
-    )
-    viewlet.get_template_name_default(configurator, question)
-
-
 def test_viewlet_template_true():
     configurator = Configurator(
         template='bobtemplates.plone:viewlet',

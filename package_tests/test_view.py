@@ -13,21 +13,6 @@ import os
 import pytest
 
 
-def test_get_view_name_default():
-    question = Question(name='view_name', question='', default=None)
-    configurator = Configurator(
-        template='bobtemplates.plone:view',
-        target_directory='collective.foo.bar',
-        bobconfig={
-            'non_interactive': True,
-        },
-        variables={
-            'view_python_class': False,
-        },
-    )
-    view.get_view_name_from_python_class(configurator, question)
-
-
 def test_get_view_name():
     question = Question(name='view_name', question='', default=None)
     configurator = Configurator(
@@ -42,37 +27,6 @@ def test_get_view_name():
         },
     )
     view.get_view_name_from_python_class(configurator, question)
-
-
-def test_get_template_name_default():
-    question = Question(name='view_name', question='', default=None)
-    configurator = Configurator(
-        template='bobtemplates.plone:view',
-        target_directory='collective.foo.bar',
-        bobconfig={
-            'non_interactive': True,
-        },
-        variables={
-            'view_template': False,
-        },
-    )
-    view.get_template_name_default(configurator, question)
-
-
-def test_get_template_name():
-    question = Question(name='view_name', question='', default=None)
-    configurator = Configurator(
-        template='bobtemplates.plone:view',
-        target_directory='collective.foo.bar',
-        bobconfig={
-            'non_interactive': True,
-        },
-        variables={
-            'view_template': True,
-            'view_name': 'my-view',
-        },
-    )
-    view.get_template_name_default(configurator, question)
 
 
 def test_python_class_true():

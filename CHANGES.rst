@@ -17,7 +17,7 @@ Changelog
   Add version plone.app.dexterity pinning in Plone 4 buildout versions in addon template
   [MrTango]
 
-- Improve view page template
+- Improve view ZPT
   [MrTango]
 
 - Add project_urls to setup.py, fixes: #376
@@ -32,7 +32,7 @@ Changelog
 - Improve default view/viewlet template filename, fixes #372
   [MrTango]
 
-- view: add base_class question to allow BorwserView or DefaultView base class
+- view: add base_class question to allow BrowserView or DefaultView base class
   [MrTango]
 
 

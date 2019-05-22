@@ -17,6 +17,15 @@ Changelog
 - Check deleting object in content_type tests
   [MrTango]
 
+- Add "mrbob: extra extends" marker in addon buildout.cfg, to allow injection of custom extends
+  [MrTango]
+
+- Improve default view/viewlet template filename, fixes #372
+  [MrTango]
+
+- view: add base_class question to allow BorwserView or DefaultView base class
+  [MrTango]
+
 
 4.0.4 (2019-04-14)
 ------------------

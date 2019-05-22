@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.0.5 (unreleased)
+4.0.5 (2019-05-22)
 ------------------
 
 - Remove Gruntfile.js and package.json from .gitignore in addon package.

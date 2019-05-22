@@ -3,23 +3,31 @@
 {{% if view_template %}}
 from {{{ package.dottedname }}} import _
 {{% endif %}}
+{{% if view_base_class == 'DefaultView' %}}
+from plone.dexterity.browser.view import DefaultView
+{{% else %}}
 from Products.Five.browser import BrowserView
+{{% endif %}}
 {{% if view_template %}}
-
 
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 {{% endif %}}
 
 
-class {{{ view_python_class_name }}}(BrowserView):
+class {{{ view_python_class_name }}}({{{ view_base_class }}}):
 {{% if view_template %}}
     # If you want to define a template here, please remove the template from
     # the configure.zcml registration of this view.
     # template = ViewPageTemplateFile('{{{ view_template_name }}}.pt')
 
     def __call__(self):
+        # Implement your own actions:
+{{% if view_base_class == 'DefaultView' %}}
+        return super({{{ view_python_class_name }}}, self).__call__()
+{{% else %}}
         self.msg = _(u'A small message')
         return self.index()
+{{% endif %}}
 {{% else %}}
     def __call__(self):
         template = '''<li class="heading" i18n:translate="">

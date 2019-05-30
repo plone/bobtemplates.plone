@@ -1,10 +1,11 @@
 Changelog
 =========
 
-4.0.6 (unreleased)
+4.1.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add subscriber sub-template
+  [MrTango]
 
 
 4.0.5 (2019-05-22)

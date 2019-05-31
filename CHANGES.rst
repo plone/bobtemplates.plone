@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.1.0 (unreleased)
+4.1.0 (2019-05-31)
 ------------------
 
 - Add subscriber sub-template

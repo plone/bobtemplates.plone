@@ -5,7 +5,6 @@ from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import validate_packagename
-from bobtemplates.plone.theme import _update_setup_py
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
@@ -116,6 +115,22 @@ def _update_configure_zcml(configurator):
         configurator.variables["theme.normalized_name"]
     )
     update_file(configurator, file_path, match_str, insert_str)
+
+
+def _update_setup_py(configurator):
+    file_name = u"setup.py"
+    file_path = configurator.variables["package.root_folder"] + "/" + file_name
+    match_str = "-*- Extra requirements: -*-"
+    insert_strings = [
+        "collective.themesitesetup",  # disable while not ready for Plone 5.2
+        "collective.themefragments",  # disable while not ready for Plone 5.2
+        "plone.app.themingplugins",  # disable while not ready for Plone 5.2
+    ]
+    for insert_str in insert_strings:
+        insert_str = "        '{0}',\n".format(insert_str)
+        if is_string_in_file(configurator, file_path, insert_str):
+            continue
+        update_file(configurator, file_path, match_str, insert_str)
 
 
 def post_renderer(configurator):

@@ -122,9 +122,9 @@ def _update_setup_py(configurator):
     file_path = configurator.variables["package.root_folder"] + "/" + file_name
     match_str = "-*- Extra requirements: -*-"
     insert_strings = [
-        "collective.themesitesetup",  # disable while not ready for Plone 5.2
-        "collective.themefragments",  # disable while not ready for Plone 5.2
-        "plone.app.themingplugins",  # disable while not ready for Plone 5.2
+        # "collective.themesitesetup",  # disable while not ready for Plone 5.2
+        # "collective.themefragments",  # disable while not ready for Plone 5.2
+        # "plone.app.themingplugins",  # disable while not ready for Plone 5.2
     ]
     for insert_str in insert_strings:
         insert_str = "        '{0}',\n".format(insert_str)

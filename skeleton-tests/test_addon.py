@@ -54,16 +54,27 @@ plone.version = {version}
     assert result == 0
 
     generated_files = glob.glob(
-        tmpdir.strpath + '/' + config.package_name + '/*',
+        os.path.join(tmpdir.strpath, config.package_name, '*'),
     )
-    length = len(tmpdir.strpath + '/' + config.package_name + '/')
+    length = len(os.path.join(tmpdir.strpath, config.package_name)) + 1
     generated_files = [f[length:] for f in generated_files]
     required_files = base_files + addon_files
     assert required_files <= generated_files
 
-    base_path = tmpdir.strpath + '/' + config.package_name
+    base_path = os.path.join(tmpdir.strpath, config.package_name)
 
-    assert file_exists(base_path, '/src/collective/task/configure.zcml')
+    assert file_exists(
+        base_path,
+        str(
+            os.path.join(
+                base_path,
+                'src',
+                'collective',
+                'task',
+                'configure.zcml',
+            ),
+        ),
+    )
 
     wd = os.path.abspath(
         os.path.join(tmpdir.strpath, config.package_name),
@@ -80,7 +91,7 @@ plone.version = {version}
         assert setup_virtualenv_result == 0
         install_buildout_result = subprocess.call(
             [
-                './bin/pip',
+                os.path.join('.', 'bin', 'pip'),
                 'install',
                 '-U',
                 '-r',

@@ -6,6 +6,8 @@ Changelog
 
 - Change classifiers URL, closes #389.
   [ale-rt]
+- Added two black Environments into tox.ini to enforce coding conventions
+  [loechel]
 
 
 4.1.0 (2019-05-31)

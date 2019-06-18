@@ -4,7 +4,8 @@ Changelog
 4.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Change classifiers URL, closes #389.
+  [ale-rt]
 
 
 4.1.0 (2019-05-31)

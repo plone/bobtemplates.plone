@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xhtml="http://www.w3.org/1999/xhtml"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+       xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <theme href="index.html" />
+  <notheme css:if-not-content="#visual-portal-wrapper" />
+
+  <rules css:if-content="#portal-top">
+    <!-- Attributes -->
+    <copy attributes="*" css:theme="html" css:content="html" />
+    <!-- Base tag -->
+    <before css:theme="title" css:content="base" />
+    <!-- Title -->
+    <replace css:theme="title" css:content="title" />
+    <!-- Pull in Plone Meta -->
+    <after css:theme-children="head" css:content="head meta" />
+    <!-- Don't use Plone icons, use the theme's -->
+    <drop css:content="head link[rel='apple-touch-icon']" />
+    <drop css:content="head link[rel='shortcut icon']" />
+    <!-- CSS -->
+    <after css:theme-children="head" css:content="head link" />
+    <after css:theme-children="head" css:content="head style" />
+    <!-- Script -->
+    <after css:theme-children="head" css:content="head script" />
+  </rules>
+
+  <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
+  <copy attributes="*" css:content="body" css:theme="body" />
+
+  <!-- move global nav -->
+  <replace css:theme-children="#mainnavigation" css:content-children="#portal-mainnavigation" method="raw" />
+
+  <!-- move hero to top -->
+  <replace css:theme-children="#hero .gigantic" css:content-children=".hero"/>
+  <drop css:theme="#hero" css:if-not-content=".hero" />
+  <drop css:content=".hero" />
+
+  <!-- full-width breadcrumb -->
+  <replace css:content="#viewlet-above-content" css:theme="#above-content" />
+
+  <!-- Central column -->
+  <replace css:theme="#content-container" method="raw">
+
+    <xsl:variable name="central">
+      <xsl:if test="//aside[@id='portal-column-one'] and //aside[@id='portal-column-two']">col-xs-12 col-sm-12 col-md-6 col-md-push-3</xsl:if>
+      <xsl:if test="//aside[@id='portal-column-two'] and not(//aside[@id='portal-column-one'])">col-xs-12 col-sm-12 col-md-9</xsl:if>
+      <xsl:if test="//aside[@id='portal-column-one'] and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-12 col-md-9 col-md-push-3</xsl:if>
+      <xsl:if test="not(//aside[@id='portal-column-one']) and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-12 col-md-12</xsl:if>
+    </xsl:variable>
+
+    <div class="{$central}">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12">
+          <xsl:apply-templates css:select="#content" />
+        </div>
+      </div>
+      <footer class="row">
+        <div class="col-xs-12 col-sm-12">
+          <xsl:copy-of css:select="#viewlet-below-content" />
+        </div>
+      </footer>
+    </div>
+  </replace>
+
+  <!-- Alert message -->
+  <replace css:theme-children="#global_statusmessage" css:content-children="#global_statusmessage" />
+
+  <!-- Left column -->
+  <rules css:if-content="#portal-column-one">
+    <replace css:theme="#column1-container">
+      <xsl:variable name="columnone">
+        <xsl:if test="//aside[@id='portal-column-two']">col-xs-12 col-sm-6 col-md-3 col-md-pull-6</xsl:if>
+        <xsl:if test="//aside[@id='portal-column-one'] and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-12 col-md-3 col-md-pull-9</xsl:if>
+      </xsl:variable>
+      <div class="{$columnone} sidebar-offcanvas">
+        <aside id="portal-column-one">
+          <xsl:copy-of css:select="#portal-column-one > *" />
+        </aside>
+      </div>
+    </replace>
+  </rules>
+
+  <!-- Right column -->
+  <rules css:if-content="#portal-column-two">
+    <replace css:theme="#column2-container">
+      <xsl:variable name="columntwo">
+        <xsl:if test="//aside[@id='portal-column-one']">col-xs-12 col-sm-6 col-md-3</xsl:if>
+        <xsl:if test="//aside[@id='portal-column-two'] and not(//aside[@id='portal-column-one'])">col-xs-12 col-sm-12 col-md-3</xsl:if>
+      </xsl:variable>
+      <div class="{$columntwo} sidebar-offcanvas" role="complementary">
+        <aside id="portal-column-two">
+          <xsl:copy-of css:select="#portal-column-two > *" />
+        </aside>
+      </div>
+    </replace>
+  </rules>
+
+  <!-- Content header -->
+  <replace css:theme="#portal-top" css:content-children="#portal-top" />
+
+  <!-- Footer -->
+  <xsl:variable name="footer_portlets" select="//footer[@id='portal-footer-wrapper']//div[@class='portletWrapper']/*[not(contains(@id,'portal-colophon')) and not(contains(@id,'portal-footer-signature')) and not(contains(@class,'portletActions'))]"></xsl:variable>
+  <xsl:variable name="footer_portlets_count" select="count($footer_portlets)"></xsl:variable>
+
+
+  <!-- Replace footer information with Plone version. -->
+  <replace
+      css:theme-children="#portal-footer .copyright > div"
+      css:content-children="#portal-footer-wrapper #portal-footer-signature .portletContent"
+      />
+  <drop css:theme="#portal-footer .copyright" css:if-not-content="#portal-footer-wrapper #portal-footer-signature" />
+
+  <!-- Replace colophon information with Plone version. -->
+  <replace
+      css:theme-children="#portal-footer .colophon > div"
+      css:content-children="#portal-footer-wrapper #portal-colophon .portletContent"
+      />
+  <drop css:theme="#portal-footer .colophon" css:if-not-content="#portal-footer-wrapper #portal-colophon" />
+
+  <!-- Replace site-actions with Plone version. -->
+  <replace
+      css:theme-children="#portal-footer .site-actions > div"
+      css:content="#portal-footer-wrapper .actions-site_actions"
+      />
+  <drop css:theme="#portal-footer .site-actions" css:if-not-content="#portal-footer-wrapper .actions-site_actions" />
+
+  <!-- Move all other footer portlets into doormat area. -->
+  <replace css:theme-children="#portal-footer .doormat">
+    <xsl:variable name="columns">
+      <xsl:if test="$footer_portlets_count=1">col-md-12</xsl:if>
+      <xsl:if test="$footer_portlets_count=2">col-md-6</xsl:if>
+      <xsl:if test="$footer_portlets_count=3">col-md-4</xsl:if>
+      <xsl:if test="$footer_portlets_count=4">col-md-3</xsl:if>
+      <xsl:if test="$footer_portlets_count>4">col-md-4</xsl:if>
+    </xsl:variable>
+    <xsl:for-each select="$footer_portlets">
+      <div class="col-xs-12 {$columns}">
+        <xsl:for-each select=".">
+          <xsl:choose>
+            <xsl:when css:test=".portlet">
+              <xsl:choose>
+                <xsl:when css:test=".portletHeader:not(.titleless)">
+                  <div class="headline"><h2><xsl:value-of css:select=".portletHeader" /></h2></div>
+                </xsl:when>
+              </xsl:choose>
+              <xsl:choose>
+                <xsl:when css:test=".portletCollection">
+                  <ul>
+                    <xsl:for-each css:select=".portletItem">
+                      <li>
+                        <a><xsl:copy-of select="a/attribute::*" /><xsl:apply-templates select="./a/text()" /></a>
+                        <small><xsl:value-of css:select=".portletItemDetails" /></small>
+                      </li>
+                    </xsl:for-each>
+                  </ul>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:apply-templates css:select=".portletContent" />
+                </xsl:otherwise>
+              </xsl:choose>
+              <xsl:if css:test=".portletFooter">
+                <p><xsl:apply-templates select="./node()[@class='portletFooter']/node()" /></p>
+              </xsl:if>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="./node()" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+      </div>
+    </xsl:for-each>
+  </replace>
+
+  <!-- Add additional footer content, like script tags (from site settings). -->
+  <after
+      css:theme-children="html body"
+      content="//footer[@id='portal-footer-wrapper']/*[not(@class='row')]"
+      />
+
+  <!-- toolbar -->
+  <replace css:theme="#portal-toolbar" css:content="#edit-bar" css:if-not-content=".ajax_load" css:if-content=".userrole-authenticated" />
+  <drop css:theme="#portal-toolbar" css:if-content=".userrole-anonymous" />
+  <replace css:theme="#anonymous-actions" css:content-children="#portal-personaltools-wrapper" css:if-not-content=".ajax_load" css:if-content=".userrole-anonymous" />
+
+</rules>

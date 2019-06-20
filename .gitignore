@@ -32,6 +32,7 @@ Vagrantfile
 !.travis.yml
 
 /dist/
+/.idea/
 /.vscode/
 /.pytest_cache/
 /tmpdist

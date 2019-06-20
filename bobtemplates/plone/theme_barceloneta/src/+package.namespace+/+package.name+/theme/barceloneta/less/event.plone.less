@@ -1,0 +1,112 @@
+//*// EVENT //*//
+
+.event.summary {
+	font-weight: @plone-font-weight-regular;
+	max-width: 300px;
+	float: right;
+	background: @plone-body-bg;
+	box-shadow: 0 1px 3px rgba(0,0,0,.17);
+	padding: @plone-padding-base-horizontal @plone-padding-base-horizontal @plone-padding-base-horizontal (@plone-padding-base-horizontal*3);
+	margin-left: 5px;
+	strong, li > span {
+		display: block;
+	}
+	.icalIcon {
+		margin-top: -4px;
+	}
+}
+
+//*// Event listing
+.template-event_listing {
+	.documentFirstHeading {
+		position: relative;
+		nav {
+	    font-size: 14px;
+	    position: absolute;
+	    right: 0;
+	    bottom: 13px;
+	    ul {
+		    margin: 0;
+		    list-style-type:none;
+		    li {
+		    	display: inline;
+		    	a {
+				    display: inline-block;
+				    margin-left: 0.5em;
+				    &:hover,
+				    &:focus {
+					    text-decoration: none;
+					    border-bottom: 0;
+				    }
+		    	}
+		    }
+	    }
+		}
+	}
+	.documentDescription {
+		margin-bottom: 1.5em;
+	}
+	article {
+		margin-bottom: 2em;
+		.tileHeadline {
+			margin-top: 0;
+			> a {
+				border-bottom: 0;
+			}
+		}
+		.clearfix();
+		.cal_date {
+			// .clearfix();
+		}
+		.cal_info {
+			margin-left: 9em;
+			// .clearfix();
+		}
+	}
+}
+
+.event_listing article {
+	border-top: @plone-portlet-border;
+	padding: @plone-padding-base-horizontal 0  @plone-padding-base-horizontal;
+	h2 {
+		margin: 0;
+		padding: @plone-padding-base-horizontal 0  @plone-padding-base-horizontal;
+	}
+}
+.event_listing article:first-child {
+	border-top: 0;
+	margin-top: -@plone-padding-base-vertical;
+}
+.cal_date {
+	float: left;
+	box-shadow: 0 1px 3px rgba(0,0,0,.17);
+	text-align: center;
+	width: 100px;
+	margin: 0 @plone-padding-base-horizontal*2 @plone-padding-base-horizontal 0;
+	border-radius: @plone-border-radius-base;
+	overflow: hidden;
+}
+.cal_month {
+	background: @plone-link-color;
+	font-weight: @plone-font-weight-regular;
+	display:block;
+	color:#fff;
+	padding:@plone-padding-base-vertical @plone-padding-base-horizontal;
+	font-size: 1.2em;
+}
+.cal_day {
+	font-size: @plone-font-size-large*2;
+	font-weight: @plone-font-weight-bold;
+	display:block;
+	margin-bottom: -0.1em;
+	margin-top: 0.1em;
+}
+.cal_wkday {
+	font-size: @plone-font-size-base;
+	font-weight: @plone-font-weight-regular;
+	display:block;
+	padding:0 @plone-padding-base-horizontal @plone-padding-base-vertical;
+}
+.event_listing .sub_nav {
+	float: right;
+}

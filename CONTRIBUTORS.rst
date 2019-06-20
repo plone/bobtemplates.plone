@@ -18,3 +18,4 @@ This package was originally based on `bobtemplates.niteoweb <https://github.com/
 - Aurore Mariscal [AuroreMariscal]
 - Víctor Fernández de Alba [sneridagh]
 - Alexander Loechel [loechel]
+- Peter Holzer [agitator]

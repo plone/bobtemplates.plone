@@ -1,0 +1,136 @@
+//*// FOOTER //*//
+
+#portal-footer-wrapper {
+  padding: 30px 0 30px 0;
+  background-color: @plone-footer-bg;
+  color: @plone-gray-lighter;
+  clear: both;
+
+  p {
+    border: none;
+    margin-bottom: 14px;
+    padding-bottom: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  abbr, ul {
+    color: @plone-gray-lighter;
+  }
+  a {
+    color: @plone-link-color-on-dark;
+    &:hover {color: lighten(@plone-link-color-on-dark,15%);}
+  }
+  .portletWrapper {
+    display: inline-block;
+    &:first-child {
+      display: block;
+      border-bottom: 1px solid @plone-gray-dark;
+      padding-bottom: 1em;
+      margin-bottom: .5em;
+    }
+  }
+  .portlet {
+    background: transparent;
+    border: 0;
+    font-weight: @plone-font-weight-light;
+    box-shadow: none;
+    margin-bottom: 0;
+    .portletContent {
+      padding: 0;
+      background: transparent;
+      border: 0;
+      > * {padding: inherit;}
+      li {
+        background: transparent;
+        display: inline-block;
+        border: 0;
+        white-space: nowrap;
+        padding: 10px 30px;
+      }
+    }
+    &#portal-colophon .portletContent a { //remove if remove Powered by Plone
+        padding: 10px 30px;
+    }
+    .portletItem::before, .portletItem a::before {
+      content: "";
+    }
+    .portletItem a {
+      padding: 0; border:0;
+    }
+    .portletActions {
+      text-transform: uppercase;
+      font-size: @plone-font-size-small;
+      font-weight: @plone-font-weight-bold;
+      margin-right: 15px;
+    }
+  }
+}
+
+
+#portal-footer {
+  font-weight: 400;
+
+  > .row {
+    margin-top: 14px;
+    padding-top: 14px;
+
+    &:first-child {
+      padding-top: 0;
+      margin-top: 0;
+    }
+  }
+
+  .colophon,
+  .copyright,
+  .site-actions {
+    text-align: center;
+  }
+
+  .row + .site-actions {
+    border-top: 1px solid #4d4d4d;
+  }
+
+  .site-actions {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: inline-block;
+        padding: 10px 30px;
+      }
+    }
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+
+#portal-siteactions {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: @plone-font-size-small;
+}
+#portal-siteactions li {
+  font-weight: bold;
+  display: inline-block;
+  margin-left: 30px;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.doormat {
+  h2 {
+    margin-top: 10px;
+  }
+
+  > div {
+    margin-bottom: 10px;
+  }
+}

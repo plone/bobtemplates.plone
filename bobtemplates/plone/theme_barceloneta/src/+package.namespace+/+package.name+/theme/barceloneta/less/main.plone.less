@@ -1,0 +1,107 @@
+//*// MAIN //*//
+
+
+//*// Principal box
+.principal {
+	background: linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 14%, transparent 14%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 64%, transparent 64%, transparent);
+	background-color: darken(@plone-breadcrumb-bg, 5%);
+	background-size: 20px 20px;
+	margin-top: -20px;
+	margin-bottom: 20px;
+	padding: 50px 0;
+	& .container-fluid {margin: 0 auto; width: 960px;}
+}
+
+.gigantic {
+	h1 { font-size: 500%;}
+	p { font-size: 150%;}
+}
+
+//*// Adjustments
+#content {margin-bottom: @plone-padding-base-horizontal * 4;}
+// resize image in image.pt when portlets exist ....:
+#content-core img {
+    max-width: 100%;
+    height: auto;
+}
+#content-core {
+  a {
+    border-bottom: 1px solid @plone-gray-lighter;
+
+    &:hover,
+    &:focus {
+      border-bottom: none;
+    }
+
+    &:focus {
+      .tab-focus(); //--> NOT DONE
+    }
+  }
+  #portal-sitemap, h1, h2, h3, h4, h5, h6 {
+    a {
+      border-bottom: 0;
+    }
+  }
+}
+
+#content-core .pat-structure a, #content-core .pat-resourceregistry a {
+  border-bottom: none;
+}
+#content-core .pat-structure a.btn, #content-core .pat-resourceregistry  a.btn, #content-core .pat-structure .pagination a {
+  border-bottom: 1px solid @plone-gray-lighter;
+}
+
+a.plone-toolbar-logo {
+	color: #fff;
+}
+
+// Container widths for logged-in users
+// For anon, check grid.plone.less
+
+@media (min-width: (@plone-screen-sm-min + @plone-left-toolbar)) {
+  .plone-toolbar-left-default .container {
+    width: (@plone-container-sm - @plone-left-toolbar);
+  }
+}
+
+@media (min-width: (@plone-screen-sm-min + @plone-left-toolbar-expanded)) {
+  .plone-toolbar-left-expanded .container {
+    width: (@plone-container-sm - @plone-left-toolbar-expanded);
+  }
+}
+
+@media (min-width: (@plone-screen-md-min + @plone-left-toolbar)) {
+  .plone-toolbar-left-default .container {
+    width: (@plone-container-md - @plone-left-toolbar);
+  }
+}
+
+@media (min-width: (@plone-screen-md-min + @plone-left-toolbar-expanded)) {
+  .plone-toolbar-left-expanded .container {
+    width: (@plone-container-md - @plone-left-toolbar-expanded);
+  }
+}
+
+@media (min-width: (@plone-screen-lg-min + @plone-left-toolbar)) {
+  .plone-toolbar-left-default .container {
+    width: (@plone-container-lg - @plone-left-toolbar);
+  }
+}
+
+@media (min-width: (@plone-screen-lg-min + @plone-left-toolbar-expanded)) {
+  .plone-toolbar-left-expanded .container {
+    width: (@plone-container-lg - @plone-left-toolbar-expanded);
+  }
+}
+
+@media (min-width: (@plone-screen-xl-min + @plone-left-toolbar)) {
+  .plone-toolbar-left-default .container {
+    width: (@plone-container-xl - @plone-left-toolbar);
+  }
+}
+
+@media (min-width: (@plone-screen-xl-min + @plone-left-toolbar-expanded)) {
+  .plone-toolbar-left-expanded .container {
+    width: (@plone-container-xl - @plone-left-toolbar-expanded);
+  }
+}

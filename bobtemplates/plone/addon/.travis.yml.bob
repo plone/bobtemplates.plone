@@ -1,23 +1,22 @@
 language: python
+dist: xenial
 sudo: false
+
 cache:
   pip: true
   directories:
   - eggs
   - downloads
-python:
-  - "2.7"
+
 matrix:
   include:
-    - python: "2.7"
-      env: PLONE_VERSION=43
-    - python: "2.7"
-      env: PLONE_VERSION=51
-    - python: "2.7"
-      env: PLONE_VERSION=52
-    - python: "3.7"
-      env: PLONE_VERSION=52
-      dist: xenial
+    - env: TOXENV=black-check
+    - env: TOXENV=py37-lint
+    - env: TOXENV=py27-lint
+    - env: TOXENV=py27-Plone43
+    - env: TOXENV=py27-Plone51
+    - env: TOXENV=py27-Plone52
+    - env: TOXENV=py37-Plone52
   sudo: true
   fast_finish: true
 before_install:

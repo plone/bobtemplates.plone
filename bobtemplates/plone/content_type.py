@@ -83,11 +83,7 @@ def _update_metadata_xml(configurator):
                 if dep_name in dep:
                     dep_exists = True
             if dep_exists:
-                print(
-                    '{dep} already in metadata.xml, skip adding!'.format(
-                        dep=dep
-                    )
-                )
+                print('{dep} already in metadata.xml, skip adding!'.format(dep=dep))
                 continue
             dep_element = etree.Element('dependency')
             dep_element.text = dep
@@ -98,9 +94,7 @@ def _update_metadata_xml(configurator):
         return
 
     with open(metadata_file_path, 'wb') as xml_file:
-        tree.write(
-            xml_file, pretty_print=True, xml_declaration=True, encoding='utf-8'
-        )
+        tree.write(xml_file, pretty_print=True, xml_declaration=True, encoding='utf-8')
 
 
 def _update_types_xml(configurator):
@@ -108,17 +102,10 @@ def _update_types_xml(configurator):
     types_file_name = u'types.xml'
     types_file_dir = u'profiles/default'
     types_file_path = (
-        configurator.target_directory
-        + '/'
-        + types_file_dir
-        + '/'
-        + types_file_name
+        configurator.target_directory + '/' + types_file_dir + '/' + types_file_name
     )
     types_example_file_path = (
-        configurator.target_directory
-        + '/'
-        + types_file_dir
-        + '/types.xml.example'
+        configurator.target_directory + '/' + types_file_dir + '/types.xml.example'
     )
     file_list = os.listdir(os.path.dirname(types_file_path))
     if types_file_name not in file_list:
@@ -131,19 +118,13 @@ def _update_types_xml(configurator):
         type_name = configurator.variables['dexterity_type_name']
         if len(types.xpath("./object[@name='{name}']".format(name=type_name))):
             print(
-                '{name} already in types.xml, skip adding!'.format(
-                    name=type_name
-                )
+                '{name} already in types.xml, skip adding!'.format(name=type_name)
             )  # NOQA: E501
             return
-        types.append(
-            etree.Element('object', name=type_name, meta_type='Dexterity FTI')
-        )
+        types.append(etree.Element('object', name=type_name, meta_type='Dexterity FTI'))
 
     with open(types_file_path, 'wb') as xml_file:
-        tree.write(
-            xml_file, pretty_print=True, xml_declaration=True, encoding='utf-8'
-        )
+        tree.write(xml_file, pretty_print=True, xml_declaration=True, encoding='utf-8')
 
 
 def _update_parent_types_fti_xml(configurator):
@@ -199,9 +180,7 @@ def _update_rolemap_xml(configurator):
         xpath_selector = ".//permission[@name='{0}']".format(permname)
         if len(tree_root.findall(xpath_selector)):
             print(
-                '{name} already in rolemap.xml, skip adding!'.format(
-                    name=permname
-                )
+                '{name} already in rolemap.xml, skip adding!'.format(name=permname)
             )  # NOQA: E501
             return
 
@@ -303,7 +282,5 @@ def post_renderer(configurator):
     _update_setup_py(configurator)
     git_commit(
         configurator,
-        'Add content_type: {0}'.format(
-            configurator.variables['dexterity_type_name']
-        ),
+        'Add content_type: {0}'.format(configurator.variables['dexterity_type_name']),
     )

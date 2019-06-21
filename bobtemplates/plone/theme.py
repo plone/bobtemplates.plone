@@ -18,9 +18,7 @@ def pre_theme_name(configurator, question):
     validate_packagename(configurator)
 
     default = (
-        os.path.basename(configurator.target_directory)
-        .split('.')[-1]
-        .capitalize()
+        os.path.basename(configurator.target_directory).split('.')[-1].capitalize()
     )
     if default:
         question.default = default
@@ -79,18 +77,14 @@ def _update_metadata_xml(configurator):
                 dep_exists = True
 
         if dep_exists:
-            print(
-                '{dep} already in metadata.xml, skip adding!'.format(dep=dep)
-            )
+            print('{dep} already in metadata.xml, skip adding!'.format(dep=dep))
             return
         dep_element = etree.Element('dependency')
         dep_element.text = dep
         dependencies.append(dep_element)
 
     with open(metadata_file_path, 'wb') as xml_file:
-        tree.write(
-            xml_file, pretty_print=True, xml_declaration=True, encoding='utf-8'
-        )
+        tree.write(xml_file, pretty_print=True, xml_declaration=True, encoding='utf-8')
 
 
 def _update_configure_zcml(configurator):
@@ -105,9 +99,7 @@ def _update_configure_zcml(configurator):
         theme_xpath = "./plone:static[@name='{0}']".format(theme_name)
         if len(tree_root.xpath(theme_xpath, namespaces=ZCML_NAMESPACES)):
             print(
-                '{name} already in configure.zcml, skip adding!'.format(
-                    name=theme_name
-                )
+                '{name} already in configure.zcml, skip adding!'.format(name=theme_name)
             )
             return
 
@@ -147,6 +139,5 @@ def post_renderer(configurator):
     _update_setup_py(configurator)
     _update_metadata_xml(configurator)
     git_commit(
-        configurator,
-        'Add theme: {0}'.format(configurator.variables['theme.name']),
+        configurator, 'Add theme: {0}'.format(configurator.variables['theme.name'])
     )

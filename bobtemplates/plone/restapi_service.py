@@ -105,18 +105,14 @@ def _update_metadata_xml(configurator):
                 dep_exists = True
 
         if dep_exists:
-            print(
-                '{dep} already in metadata.xml, skip adding!'.format(dep=dep)
-            )
+            print('{dep} already in metadata.xml, skip adding!'.format(dep=dep))
             return
         dep_element = etree.Element('dependency')
         dep_element.text = dep
         dependencies.append(dep_element)
 
     with open(metadata_file_path, 'wb') as xml_file:
-        tree.write(
-            xml_file, pretty_print=True, xml_declaration=True, encoding='utf-8'
-        )
+        tree.write(xml_file, pretty_print=True, xml_declaration=True, encoding='utf-8')
 
 
 def _remove_unwanted_files(configurator):
@@ -138,15 +134,11 @@ def pre_renderer(configurator):
     name = configurator.variables['service_name'].strip('_')
     name_normalized = cc.snakecase(name)
     configurator.variables['service_name_normalized'] = name_normalized
-    class_name = configurator.variables['service_class_name'].strip(
-        '_'
-    )  # NOQA: E501
+    class_name = configurator.variables['service_class_name'].strip('_')  # NOQA: E501
     configurator.variables['service_class_name'] = cc.pascalcase(  # NOQA: E501
         class_name
     )
-    configurator.variables['service_class_name_normalized'] = cc.snakecase(
-        class_name
-    )
+    configurator.variables['service_class_name_normalized'] = cc.snakecase(class_name)
     configurator.target_directory = configurator.variables['package_folder']
 
 
@@ -159,7 +151,5 @@ def post_renderer(configurator):
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        'Add restapi_service: {0}'.format(
-            configurator.variables['service_name']
-        ),
+        'Add restapi_service: {0}'.format(configurator.variables['service_name']),
     )

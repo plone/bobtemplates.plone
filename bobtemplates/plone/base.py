@@ -97,9 +97,7 @@ def git_init(configurator):
     params = ['git', 'init']
     echo(u'RUN: {0}'.format(' '.join(params)), 'info')
     try:
-        result = subprocess.check_output(
-            params, cwd=configurator.target_directory
-        )
+        result = subprocess.check_output(params, cwd=configurator.target_directory)
     except subprocess.CalledProcessError as e:
         echo(e.output, 'warning')
     else:
@@ -120,9 +118,7 @@ def git_commit(configurator, msg):
     params2 = ['git', 'commit', '-m', u'"{0}"'.format(msg)]
     git_autocommit = None
     run_git_commit = True
-    autocommit_flag = configurator.variables.get(
-        'package.git.autocommit', u'False'
-    )
+    autocommit_flag = configurator.variables.get('package.git.autocommit', u'False')
     if hooks.to_boolean(None, None, autocommit_flag):
         git_autocommit = True
     if not non_interactive and not git_autocommit:
@@ -162,9 +158,7 @@ def git_clean_state_check(configurator, question):
     params = ['git', 'status', '--porcelain', '--ignore-submodules']
     echo(u'\nRUN: {0}'.format(' '.join(params)), 'info')
     try:
-        result = subprocess.check_output(
-            params, cwd=configurator.target_directory
-        )
+        result = subprocess.check_output(params, cwd=configurator.target_directory)
     except subprocess.CalledProcessError as e:
         echo(e.output, 'error')
     else:
@@ -172,9 +166,7 @@ def git_clean_state_check(configurator, question):
             echo('Git state is clean.\n', 'info')
             raise SkipQuestion('Git state is clean, so we skip this question.')
         echo(
-            u'git status result:\n----------------------------\n{0}'.format(
-                result
-            ),
+            u'git status result:\n----------------------------\n{0}'.format(result),
             'warning',
         )
 
@@ -233,9 +225,7 @@ def set_plone_version_variables(configurator, answer=None):
         # extract minor version (4.3)
         # (according to https://plone.org/support/version-support-policy)
         # this is used for the trove classifier in setup.py of the product
-        configurator.variables['plone.minor_version'] = '.'.join(
-            version.split('.')[:2]
-        )
+        configurator.variables['plone.minor_version'] = '.'.join(version.split('.')[:2])
 
 
 def get_git_info(value):
@@ -343,11 +333,7 @@ def update_configure_zcml(
         tree_root = tree.getroot()
         match_xpath_ns = '{0}{1}'.format(namespaces, match_xpath)
         if len(tree_root.findall(match_xpath_ns)):
-            print(
-                '{0} already in configure.zcml, skip adding!'.format(
-                    insert_str
-                )
-            )
+            print('{0} already in configure.zcml, skip adding!'.format(insert_str))
             return
     update_file(configurator, file_path, match_str, insert_str)
 
@@ -439,19 +425,13 @@ def base_prepare_renderer(configurator):
         configurator.variables['package.dottedname'].replace('.', '_').upper()
     )
 
-    package_subpath = dottedname_to_path(
-        configurator.variables['package.dottedname']
-    )
-    configurator.variables['package_folder_rel_path'] = (
-        u'/src/' + package_subpath
-    )
+    package_subpath = dottedname_to_path(configurator.variables['package.dottedname'])
+    configurator.variables['package_folder_rel_path'] = u'/src/' + package_subpath
     configurator.variables['package_folder'] = (
         configurator.variables['package.root_folder']
         + configurator.variables['package_folder_rel_path']
     )
-    configurator.target_directory = configurator.variables[
-        'package.root_folder'
-    ]
+    configurator.target_directory = configurator.variables['package.root_folder']
     return configurator
 
 

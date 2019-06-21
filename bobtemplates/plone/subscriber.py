@@ -78,7 +78,5 @@ def post_renderer(configurator):
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        'Add subscriber: {0}'.format(
-            configurator.variables['subscriber_handler_name']
-        ),
+        'Add subscriber: {0}'.format(configurator.variables['subscriber_handler_name']),
     )

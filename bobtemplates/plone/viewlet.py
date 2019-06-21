@@ -15,9 +15,7 @@ import os
 def get_view_name_from_python_class(configurator, question):
     """Generate view default name from python class"""
     view_class_name = configurator.variables['viewlet_python_class_name']
-    view_generated_name = cc.snakecase(view_class_name).replace(
-        '_', '-'
-    )  # NOQA: E501
+    view_generated_name = cc.snakecase(view_class_name).replace('_', '-')  # NOQA: E501
     question.default = view_generated_name
 
 
@@ -55,8 +53,7 @@ def _update_viewlets_configure_zcml(configurator):
     file_path = directory_path + file_name
 
     configure_example_file_path = (
-        configurator.variables['package_folder']
-        + '/viewlets/configure.zcml.example'
+        configurator.variables['package_folder'] + '/viewlets/configure.zcml.example'
     )  # NOQA: E501
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:
@@ -155,14 +152,10 @@ def prepare_renderer(configurator):
         configurator.variables[
             'viewlet_template_name'
         ] = normalized_viewlet_name  # NOQA: E501
-    python_class_name = configurator.variables[
-        'viewlet_python_class_name'
-    ].strip(
+    python_class_name = configurator.variables['viewlet_python_class_name'].strip(
         '_'
     )  # NOQA: E501
-    configurator.variables[
-        'viewlet_python_class_name'
-    ] = cc.pascalcase(  # NOQA: E501
+    configurator.variables['viewlet_python_class_name'] = cc.pascalcase(  # NOQA: E501
         python_class_name
     )
     viewlet_python_file_name = cc.snakecase(viewlet_name)
@@ -183,6 +176,5 @@ def post_renderer(configurator):
     _update_viewlets_configure_zcml(configurator)
     _delete_unwanted_files(configurator)
     git_commit(
-        configurator,
-        'Add viewlet: {0}'.format(configurator.variables['viewlet_name']),
+        configurator, 'Add viewlet: {0}'.format(configurator.variables['viewlet_name'])
     )

@@ -66,9 +66,7 @@ def pre_render(configurator):
             configurator.variables['package.namespace2'],
         )
     else:
-        namespace_packages = "'{0}'".format(
-            configurator.variables['package.namespace']
-        )
+        namespace_packages = "'{0}'".format(configurator.variables['package.namespace'])
     configurator.variables['package.namespace_packages'] = namespace_packages
 
     if configurator.variables.get('theme.name'):
@@ -123,9 +121,7 @@ def _cleanup_package(configurator):
         )
 
         # directory to be created: .../src/collective/behavior
-        newpath = make_path(
-            start_path, configurator.variables['package.namespace2']
-        )
+        newpath = make_path(start_path, configurator.variables['package.namespace2'])
         if not os.path.exists(newpath):
             # create new directory .../src/collective/behavior
             os.makedirs(newpath)

@@ -36,9 +36,7 @@ def _update_package_configure_zcml(configurator):
 
 def _update_behaviors_configure_zcml(configurator):
     file_name = u'configure.zcml'
-    file_path = (
-        configurator.variables['package_folder'] + '/behaviors/' + file_name
-    )
+    file_path = configurator.variables['package_folder'] + '/behaviors/' + file_name
     example_file_path = file_path + '.example'
     file_list = os.listdir(os.path.dirname(file_path))
     if file_name not in file_list:
@@ -87,12 +85,8 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'behavior'
     behavior_name = configurator.variables['behavior_name'].strip('_')
-    configurator.variables['behavior_name_klass'] = cc.pascalcase(
-        behavior_name
-    )
-    configurator.variables[
-        'behavior_name_normalized'
-    ] = cc.snakecase(  # NOQA: E501
+    configurator.variables['behavior_name_klass'] = cc.pascalcase(behavior_name)
+    configurator.variables['behavior_name_normalized'] = cc.snakecase(  # NOQA: E501
         behavior_name
     )
     configurator.target_directory = configurator.variables['package_folder']

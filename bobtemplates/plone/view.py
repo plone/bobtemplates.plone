@@ -51,8 +51,7 @@ def _update_views_configure_zcml(configurator):
     directory_path = configurator.variables['package_folder'] + '/views/'
     file_path = directory_path + file_name
     configure_example_file_path = (
-        configurator.variables['package_folder']
-        + '/views/configure.zcml.example'
+        configurator.variables['package_folder'] + '/views/configure.zcml.example'
     )  # NOQA: E501
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:
@@ -154,16 +153,12 @@ def _update_configure_zcml(configurator):
 def _delete_unwanted_files(configurator):
     directory_path = configurator.variables['package_folder'] + '/views/'
     if not configurator.variables['view_template']:
-        file_name = u'{0}.pt'.format(
-            configurator.variables['view_template_name']
-        )
+        file_name = u'{0}.pt'.format(configurator.variables['view_template_name'])
         file_path = directory_path + file_name
         os.remove(file_path)
 
     elif not configurator.variables['view_python_class']:
-        file_name = u'{0}.py'.format(
-            configurator.variables['view_python_file_name']
-        )
+        file_name = u'{0}.py'.format(configurator.variables['view_python_file_name'])
         file_path = directory_path + file_name
         os.remove(file_path)
 
@@ -182,14 +177,10 @@ def prepare_renderer(configurator):
     normalized_view_name = cc.snakecase(view_name)
     configurator.variables['view_name_normalized'] = normalized_view_name
     if configurator.variables['view_python_class']:
-        python_class_name = configurator.variables[
-            'view_python_class_name'
-        ].strip(
+        python_class_name = configurator.variables['view_python_class_name'].strip(
             '_'
         )  # NOQA: E501
-        configurator.variables[
-            'view_python_class_name'
-        ] = cc.pascalcase(  # NOQA: E501
+        configurator.variables['view_python_class_name'] = cc.pascalcase(  # NOQA: E501
             python_class_name
         )
         view_python_file_name = cc.snakecase(python_class_name)
@@ -213,6 +204,5 @@ def post_renderer(configurator):
     _update_views_configure_zcml(configurator)
     _delete_unwanted_files(configurator)
     git_commit(
-        configurator,
-        'Add view: {0}'.format(configurator.variables['view_name']),
+        configurator, 'Add view: {0}'.format(configurator.variables['view_name'])
     )

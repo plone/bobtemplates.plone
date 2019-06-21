@@ -19,8 +19,7 @@ def _update_portlets_configure_zcml(configurator):
     directory_path = configurator.variables['package_folder'] + '/portlets/'
     file_path = directory_path + file_name
     configure_example_file_path = (
-        configurator.variables['package_folder']
-        + '/portlets/configure.zcml.example'
+        configurator.variables['package_folder'] + '/portlets/configure.zcml.example'
     )  # NOQA: E501
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:
@@ -152,9 +151,7 @@ def _update_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        xpath_selector = "./include[@package='{0}']".format(
-            '.portlets'
-        )  # NOQA: E501
+        xpath_selector = "./include[@package='{0}']".format('.portlets')  # NOQA: E501
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
             print((u'.views already in configure.zcml, skip adding!',))
             return
@@ -187,9 +184,7 @@ def prepare_renderer(configurator):
         '.', '_'
     )  # NOQA: E501
     browser_layer = cc.pascalcase(package_name)
-    configurator.variables['browser_layer'] = u'I{0}Layer'.format(
-        browser_layer
-    )
+    configurator.variables['browser_layer'] = u'I{0}Layer'.format(browser_layer)
 
 
 def post_renderer(configurator):
@@ -199,6 +194,5 @@ def post_renderer(configurator):
     _update_portlets_xml(configurator)
     _delete_unnecessary_files(configurator)
     git_commit(
-        configurator,
-        u'Add portlet: {0}'.format(configurator.variables['portlet_name']),
+        configurator, u'Add portlet: {0}'.format(configurator.variables['portlet_name'])
     )

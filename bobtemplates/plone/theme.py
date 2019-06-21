@@ -17,9 +17,11 @@ import re
 def pre_theme_name(configurator, question):
     validate_packagename(configurator)
 
-    default = os.path.basename(
-        configurator.target_directory,
-    ).split('.')[-1].capitalize()
+    default = (
+        os.path.basename(configurator.target_directory)
+        .split('.')[-1]
+        .capitalize()
+    )
     if default:
         question.default = default
 
@@ -45,8 +47,9 @@ def prepare_renderer(configurator):
         value = '-'.join(value.split('_'))
         value = '-'.join(value.split())
         return value
+
     configurator.variables['theme.normalized_name'] = normalize_theme_name(
-        configurator.variables.get('theme.name'),
+        configurator.variables.get('theme.name')
     ).lower()
     configurator.target_directory = configurator.variables['package_folder']
 
@@ -56,8 +59,13 @@ def _update_metadata_xml(configurator):
     profiles."""
     metadata_file_name = u'metadata.xml'
     metadata_file_dir = u'profiles/default'
-    metadata_file_path = configurator.variables['package_folder'] + '/' + \
-        metadata_file_dir + '/' + metadata_file_name
+    metadata_file_path = (
+        configurator.variables['package_folder']
+        + '/'
+        + metadata_file_dir
+        + '/'
+        + metadata_file_name
+    )
 
     with open(metadata_file_path, 'r') as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
@@ -72,9 +80,7 @@ def _update_metadata_xml(configurator):
 
         if dep_exists:
             print(
-                '{dep} already in metadata.xml, skip adding!'.format(
-                    dep=dep,
-                ),
+                '{dep} already in metadata.xml, skip adding!'.format(dep=dep)
             )
             return
         dep_element = etree.Element('dependency')
@@ -83,10 +89,7 @@ def _update_metadata_xml(configurator):
 
     with open(metadata_file_path, 'wb') as xml_file:
         tree.write(
-            xml_file,
-            pretty_print=True,
-            xml_declaration=True,
-            encoding='utf-8',
+            xml_file, pretty_print=True, xml_declaration=True, encoding='utf-8'
         )
 
 
@@ -103,8 +106,8 @@ def _update_configure_zcml(configurator):
         if len(tree_root.xpath(theme_xpath, namespaces=ZCML_NAMESPACES)):
             print(
                 '{name} already in configure.zcml, skip adding!'.format(
-                    name=theme_name,
-                ),
+                    name=theme_name
+                )
             )
             return
 
@@ -116,7 +119,9 @@ def _update_configure_zcml(configurator):
       name="{0}"
       />
 
-""".format(configurator.variables['theme.normalized_name'])
+""".format(
+        configurator.variables['theme.normalized_name']
+    )
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -143,7 +148,5 @@ def post_renderer(configurator):
     _update_metadata_xml(configurator)
     git_commit(
         configurator,
-        'Add theme: {0}'.format(
-            configurator.variables['theme.name'],
-        ),
+        'Add theme: {0}'.format(configurator.variables['theme.name']),
     )

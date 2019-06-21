@@ -39,12 +39,13 @@ def pre_render(configurator):
     configurator.variables['package.dottedname'] = dottedname
 
     # package.uppercasename = 'COLLECTIVE_FOO_SOMETHING'
-    configurator.variables['package.uppercasename'] = \
+    configurator.variables['package.uppercasename'] = (
         configurator.variables['package.dottedname'].replace('.', '_').upper()
+    )
 
-    camelcasename = dottedname.replace('.', ' ').title()\
-        .replace(' ', '')\
-        .replace('_', '')
+    camelcasename = (
+        dottedname.replace('.', ' ').title().replace(' ', '').replace('_', '')
+    )
     browserlayer = '{0}Layer'.format(camelcasename)
 
     # package.browserlayer = 'CollectiveFooSomethingLayer'
@@ -54,7 +55,9 @@ def pre_render(configurator):
     configurator.variables['package.longname'] = camelcasename.lower()
 
     # jenkins.directories = 'collective/foo/something'
-    configurator.variables['jenkins.directories'] = dottedname.replace('.', '/')  # NOQA: E501
+    configurator.variables['jenkins.directories'] = dottedname.replace(
+        '.', '/'
+    )  # NOQA: E501
 
     # namespace_packages = "['collective', 'collective.foo']"
     if nested:
@@ -64,7 +67,7 @@ def pre_render(configurator):
         )
     else:
         namespace_packages = "'{0}'".format(
-            configurator.variables['package.namespace'],
+            configurator.variables['package.namespace']
         )
     configurator.variables['package.namespace_packages'] = namespace_packages
 
@@ -88,10 +91,7 @@ def _cleanup_package(configurator):
     )
 
     # path for normal packages: '.../src/collective/myaddon'
-    base_path = make_path(
-        start_path,
-        configurator.variables['package.name'],
-    )
+    base_path = make_path(start_path, configurator.variables['package.name'])
 
     if nested:
         # Event though the target-dir was 'collective.behavior.myaddon' mrbob
@@ -111,8 +111,7 @@ def _cleanup_package(configurator):
 
         # directory to be created: .../src/collective/behavior
         newpath = make_path(
-            start_path,
-            configurator.variables['package.namespace2'],
+            start_path, configurator.variables['package.namespace2']
         )
         if not os.path.exists(newpath):
             # create new directory .../src/collective/behavior
@@ -142,6 +141,6 @@ def post_render(configurator):
         git_commit(
             configurator,
             'Create addon: {0}'.format(
-                configurator.variables['package.dottedname'],
+                configurator.variables['package.dottedname']
             ),
         )

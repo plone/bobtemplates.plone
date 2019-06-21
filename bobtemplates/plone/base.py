@@ -63,8 +63,7 @@ def echo(msg, msg_type=None):
     if msg_type == 'error':
         colored_msg = Fore.RED + msg + Style.RESET_ALL
     if msg_type == 'info':
-        colored_msg = Fore.GREEN + Style.DIM + msg + \
-            Style.RESET_ALL
+        colored_msg = Fore.GREEN + Style.DIM + msg + Style.RESET_ALL
     if not msg_type:
         colored_msg = msg + Style.RESET_ALL
     print(colored_msg)
@@ -95,15 +94,11 @@ def git_init(configurator):
     if not hooks.to_boolean(None, None, str(git_init_flag)):
         echo('git init is disabled!')
         return
-    params = [
-        'git',
-        'init',
-    ]
+    params = ['git', 'init']
     echo(u'RUN: {0}'.format(' '.join(params)), 'info')
     try:
         result = subprocess.check_output(
-            params,
-            cwd=configurator.target_directory,
+            params, cwd=configurator.target_directory
         )
     except subprocess.CalledProcessError as e:
         echo(e.output, 'warning')
@@ -117,32 +112,23 @@ def git_commit(configurator, msg):
     if not git_support(configurator):
         return
     non_interactive = configurator.bobconfig.get('non_interactive')
-    working_dir = configurator.variables.get(
-        'package.root_folder') or configurator.target_directory
-    params1 = [
-        'git',
-        'add',
-        '.',
-    ]
-    params2 = [
-        'git',
-        'commit',
-        '-m',
-        u'"{0}"'.format(msg),
-    ]
+    working_dir = (
+        configurator.variables.get('package.root_folder')
+        or configurator.target_directory
+    )
+    params1 = ['git', 'add', '.']
+    params2 = ['git', 'commit', '-m', u'"{0}"'.format(msg)]
     git_autocommit = None
     run_git_commit = True
     autocommit_flag = configurator.variables.get(
-        'package.git.autocommit', u'False',
+        'package.git.autocommit', u'False'
     )
     if hooks.to_boolean(None, None, autocommit_flag):
         git_autocommit = True
     if not non_interactive and not git_autocommit:
         echo(
             u'Should we run?:\n{0}\n{1}\nin: {2}'.format(
-                ' '.join(params1),
-                ' '.join(params2),
-                working_dir,
+                ' '.join(params1), ' '.join(params2), working_dir
             ),
             'info',
         )
@@ -154,10 +140,7 @@ def git_commit(configurator, msg):
 
     echo(u'RUN: {0}'.format(' '.join(params1)), 'info')
     try:
-        result1 = subprocess.check_output(
-            params1,
-            cwd=working_dir,
-        )
+        result1 = subprocess.check_output(params1, cwd=working_dir)
     except subprocess.CalledProcessError as e:
         echo(e.output, 'warning')
     else:
@@ -166,10 +149,7 @@ def git_commit(configurator, msg):
 
     echo(u'RUN: {0}'.format(' '.join(params2)), 'info')
     try:
-        result2 = subprocess.check_output(
-            params2,
-            cwd=working_dir,
-        )
+        result2 = subprocess.check_output(params2, cwd=working_dir)
     except subprocess.CalledProcessError as e:
         echo(e.output, 'warning')
     else:
@@ -179,29 +159,21 @@ def git_commit(configurator, msg):
 def git_clean_state_check(configurator, question):
     if not git_support(configurator):
         return
-    params = [
-        'git',
-        'status',
-        '--porcelain',
-        '--ignore-submodules',
-    ]
+    params = ['git', 'status', '--porcelain', '--ignore-submodules']
     echo(u'\nRUN: {0}'.format(' '.join(params)), 'info')
     try:
         result = subprocess.check_output(
-            params,
-            cwd=configurator.target_directory,
+            params, cwd=configurator.target_directory
         )
     except subprocess.CalledProcessError as e:
         echo(e.output, 'error')
     else:
         if not result:
             echo('Git state is clean.\n', 'info')
-            raise SkipQuestion(
-                'Git state is clean, so we skip this question.',
-            )
+            raise SkipQuestion('Git state is clean, so we skip this question.')
         echo(
             u'git status result:\n----------------------------\n{0}'.format(
-                result,
+                result
             ),
             'warning',
         )
@@ -209,9 +181,13 @@ def git_clean_state_check(configurator, question):
 
 def check_klass_name(configurator, question, answer):
     if keyword.iskeyword(answer):
-        raise ValidationError(u'{key} is a reserved Python keyword'.format(key=answer))  # NOQA: E501
+        raise ValidationError(
+            u'{key} is a reserved Python keyword'.format(key=answer)
+        )  # NOQA: E501
     if not re.match('[a-zA-Z_][a-zA-Z0-9_]*$', answer):
-        raise ValidationError(u'{key} is not a valid class identifier'.format(key=answer))  # NOQA: E501
+        raise ValidationError(
+            u'{key} is not a valid class identifier'.format(key=answer)
+        )  # NOQA: E501
     return answer
 
 
@@ -257,17 +233,16 @@ def set_plone_version_variables(configurator, answer=None):
         # extract minor version (4.3)
         # (according to https://plone.org/support/version-support-policy)
         # this is used for the trove classifier in setup.py of the product
-        configurator.variables['plone.minor_version'] = \
-            '.'.join(version.split('.')[:2])
+        configurator.variables['plone.minor_version'] = '.'.join(
+            version.split('.')[:2]
+        )
 
 
 def get_git_info(value):
     """Try to get information from the git-config."""
     gitargs = [b'git', b'config', b'--get']
     try:
-        result = subprocess.check_output(
-            gitargs + [value],
-        ).strip()
+        result = subprocess.check_output(gitargs + [value]).strip()
         if six.PY3 and isinstance(result, six.binary_type):
             result = result.decode('utf8')
         return result
@@ -370,8 +345,8 @@ def update_configure_zcml(
         if len(tree_root.findall(match_xpath_ns)):
             print(
                 '{0} already in configure.zcml, skip adding!'.format(
-                    insert_str,
-                ),
+                    insert_str
+                )
             )
             return
     update_file(configurator, file_path, match_str, insert_str)
@@ -434,7 +409,8 @@ def check_root_folder(configurator, question):
             'Please run this subtemplate inside an existing package,\n'
             'in the package dir, where the actual code is!\n'
             "In the package collective.dx it's in collective.dx/collective/dx"
-            '\n')
+            '\n'
+        )
 
 
 def dottedname_to_path(dottedname):
@@ -445,30 +421,37 @@ def dottedname_to_path(dottedname):
 def base_prepare_renderer(configurator):
     """generic rendering before template specific rendering."""
     configurator.variables['package.root_folder'] = _get_package_root_folder(
-        configurator,
+        configurator
     )
     if not configurator.variables['package.root_folder']:
         raise MrBobError(u'No setup.py found in path!\n')
-    configurator.variables['package.dottedname'] = \
-        configurator.variables['package.root_folder'].split('/')[-1]
-    configurator.variables['package.namespace'] = \
-        configurator.variables['package.dottedname'].split('.')[0]
-    configurator.variables['package.name'] = \
-        configurator.variables['package.dottedname'].split('.')[-1]
+    configurator.variables['package.dottedname'] = configurator.variables[
+        'package.root_folder'
+    ].split('/')[-1]
+    configurator.variables['package.namespace'] = configurator.variables[
+        'package.dottedname'
+    ].split('.')[0]
+    configurator.variables['package.name'] = configurator.variables[
+        'package.dottedname'
+    ].split('.')[-1]
     # package.uppercasename = 'COLLECTIVE_FOO_SOMETHING'
-    configurator.variables['package.uppercasename'] = \
+    configurator.variables['package.uppercasename'] = (
         configurator.variables['package.dottedname'].replace('.', '_').upper()
+    )
 
     package_subpath = dottedname_to_path(
-        configurator.variables['package.dottedname'],
+        configurator.variables['package.dottedname']
     )
-    configurator.variables['package_folder_rel_path'] = \
+    configurator.variables['package_folder_rel_path'] = (
         u'/src/' + package_subpath
-    configurator.variables['package_folder'] = \
-        configurator.variables['package.root_folder'] + \
-        configurator.variables['package_folder_rel_path']
-    configurator.target_directory = \
+    )
+    configurator.variables['package_folder'] = (
         configurator.variables['package.root_folder']
+        + configurator.variables['package_folder_rel_path']
+    )
+    configurator.target_directory = configurator.variables[
+        'package.root_folder'
+    ]
     return configurator
 
 
@@ -481,14 +464,16 @@ def remove_unwanted_files(file_paths):
 
 def subtemplate_warning(configurator, question):
     """Show a warning to the user before using subtemplates!"""
-    print("""
+    print(
+        """
     ### WARNING ###
 
     This is a subtemplate, it might override existing files without warnings!
     Please use a version control system like GIT with a clean state,
     to track changes, before using this subtemplate!
 
-    """)
+    """
+    )
 
 
 def subtemplate_warning_post_question(configurator, question, answer):

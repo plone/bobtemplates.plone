@@ -20,8 +20,7 @@ def _update_package_configure_zcml(configurator):
         tree_root = tree.getroot()
         permid = '.behaviors'
         xpath_selector = ".//{0}include[@package='{1}']".format(
-            nsprefix,
-            permid,
+            nsprefix, permid
         )  # NOQA: S100
         if len(tree_root.findall(xpath_selector)):
             print('{0} already in configure.zcml, skip adding!'.format(permid))
@@ -37,8 +36,9 @@ def _update_package_configure_zcml(configurator):
 
 def _update_behaviors_configure_zcml(configurator):
     file_name = u'configure.zcml'
-    file_path = configurator.variables[
-        'package_folder'] + '/behaviors/' + file_name
+    file_path = (
+        configurator.variables['package_folder'] + '/behaviors/' + file_name
+    )
     example_file_path = file_path + '.example'
     file_list = os.listdir(os.path.dirname(file_path))
     if file_name not in file_list:
@@ -57,8 +57,8 @@ def _update_behaviors_configure_zcml(configurator):
         if len(tree_root.xpath(xpath_str, namespaces=namespaces)):
             print(
                 '{name} already in configure.zcml, skip adding!'.format(
-                    name=behavior_name,
-                ),
+                    name=behavior_name
+                )
             )
             return
 
@@ -88,9 +88,13 @@ def prepare_renderer(configurator):
     configurator.variables['template_id'] = 'behavior'
     behavior_name = configurator.variables['behavior_name'].strip('_')
     configurator.variables['behavior_name_klass'] = cc.pascalcase(
-        behavior_name)
-    configurator.variables['behavior_name_normalized'] = cc.snakecase(  # NOQA: E501
-        behavior_name)
+        behavior_name
+    )
+    configurator.variables[
+        'behavior_name_normalized'
+    ] = cc.snakecase(  # NOQA: E501
+        behavior_name
+    )
     configurator.target_directory = configurator.variables['package_folder']
 
 
@@ -101,9 +105,7 @@ def post_renderer(configurator):
     _update_behaviors_configure_zcml(configurator)
     git_commit(
         configurator,
-        'Add behavior: {0}'.format(
-            configurator.variables['behavior_name'],
-        ),
+        'Add behavior: {0}'.format(configurator.variables['behavior_name']),
     )
     behavior_name = '{0}.behaviors.{1}.{2}'.format(
         configurator.variables['package.dottedname'],
@@ -117,15 +119,14 @@ def post_renderer(configurator):
     echo(
         '===================================================\n'
         '=> Sucessfully added: {0} template.  \\o/ \n\n'.format(
-            configurator.variables['template_id'],
+            configurator.variables['template_id']
         ),
         'info',
     )
     echo(
         'You can lookup your behavior by the name:\n "{0}"\n'
         'or by the shorter version:\n "{1}"\n'.format(
-            behavior_name,
-            behavior_name_short,
+            behavior_name, behavior_name_short
         ),
         'info',
     )

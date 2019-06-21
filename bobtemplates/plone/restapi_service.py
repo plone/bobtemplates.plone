@@ -20,9 +20,7 @@ def get_service_name_from_python_class(configurator, question):
 
 
 def _update_package_configure_zcml(configurator):
-    path = '{0}'.format(
-        configurator.variables['package_folder'],
-    )
+    path = '{0}'.format(configurator.variables['package_folder'])
     file_name = u'configure.zcml'
     match_xpath = "include[@package='.api']"
     match_str = '-*- extra stuff goes here -*-'
@@ -40,9 +38,7 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_api_configure_zcml(configurator):
-    path = '{0}/api'.format(
-        configurator.variables['package_folder'],
-    )
+    path = '{0}/api'.format(configurator.variables['package_folder'])
     file_name = u'configure.zcml'
     example_file_name = '{0}.example'.format(file_name)
     match_xpath = "include[@package='.services']"
@@ -62,17 +58,15 @@ def _update_api_configure_zcml(configurator):
 
 
 def _update_services_configure_zcml(configurator):
-    path = '{0}/api/services'.format(
-        configurator.variables['package_folder'],
-    )
+    path = '{0}/api/services'.format(configurator.variables['package_folder'])
     file_name = u'configure.zcml'
     example_file_name = '{0}.example'.format(file_name)
     match_xpath = "include[@package='.{0}']".format(
-        configurator.variables['service_class_name_normalized'],
+        configurator.variables['service_class_name_normalized']
     )
     match_str = '-*- extra stuff goes here -*-'
     insert_str = '<include package=".{0}" />\n'.format(
-        configurator.variables['service_class_name_normalized'],
+        configurator.variables['service_class_name_normalized']
     )
     update_configure_zcml(
         configurator,
@@ -91,8 +85,13 @@ def _update_metadata_xml(configurator):
     """
     metadata_file_name = u'metadata.xml'
     metadata_file_dir = u'profiles/default'
-    metadata_file_path = configurator.variables['package_folder'] + '/' + \
-        metadata_file_dir + '/' + metadata_file_name
+    metadata_file_path = (
+        configurator.variables['package_folder']
+        + '/'
+        + metadata_file_dir
+        + '/'
+        + metadata_file_name
+    )
 
     with open(metadata_file_path, 'r') as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
@@ -107,9 +106,7 @@ def _update_metadata_xml(configurator):
 
         if dep_exists:
             print(
-                '{dep} already in metadata.xml, skip adding!'.format(
-                    dep=dep,
-                ),
+                '{dep} already in metadata.xml, skip adding!'.format(dep=dep)
             )
             return
         dep_element = etree.Element('dependency')
@@ -118,10 +115,7 @@ def _update_metadata_xml(configurator):
 
     with open(metadata_file_path, 'wb') as xml_file:
         tree.write(
-            xml_file,
-            pretty_print=True,
-            xml_declaration=True,
-            encoding='utf-8',
+            xml_file, pretty_print=True, xml_declaration=True, encoding='utf-8'
         )
 
 
@@ -144,12 +138,14 @@ def pre_renderer(configurator):
     name = configurator.variables['service_name'].strip('_')
     name_normalized = cc.snakecase(name)
     configurator.variables['service_name_normalized'] = name_normalized
-    class_name = configurator.variables['service_class_name'].strip('_')  # NOQA: E501
-    configurator.variables['service_class_name'] = cc.pascalcase(     # NOQA: E501
-        class_name,
+    class_name = configurator.variables['service_class_name'].strip(
+        '_'
+    )  # NOQA: E501
+    configurator.variables['service_class_name'] = cc.pascalcase(  # NOQA: E501
+        class_name
     )
     configurator.variables['service_class_name_normalized'] = cc.snakecase(
-        class_name,
+        class_name
     )
     configurator.target_directory = configurator.variables['package_folder']
 
@@ -164,6 +160,6 @@ def post_renderer(configurator):
     git_commit(
         configurator,
         'Add restapi_service: {0}'.format(
-            configurator.variables['service_name'],
+            configurator.variables['service_name']
         ),
     )

@@ -9,9 +9,7 @@ import case_conversion as cc
 
 
 def _update_package_configure_zcml(configurator):
-    path = '{0}'.format(
-        configurator.variables['package_folder'],
-    )
+    path = '{0}'.format(configurator.variables['package_folder'])
     file_name = u'configure.zcml'
     match_xpath = "include[@package='.subscribers']"
     match_str = '-*- extra stuff goes here -*-'
@@ -29,13 +27,11 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_subscribers_configure_zcml(configurator):
-    path = '{0}/subscribers'.format(
-        configurator.variables['package_folder'],
-    )
+    path = '{0}/subscribers'.format(configurator.variables['package_folder'])
     file_name = u'configure.zcml'
     example_file_name = '{0}.example'.format(file_name)
     match_xpath = "./subscriber[@handler='.{0}.handler']".format(
-        configurator.variables['subscriber_handler_file_name'],
+        configurator.variables['subscriber_handler_file_name']
     )
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
@@ -44,7 +40,7 @@ def _update_subscribers_configure_zcml(configurator):
               handler=".{0}.handler"
               />
 """.format(
-        configurator.variables['subscriber_handler_file_name'],
+        configurator.variables['subscriber_handler_file_name']
     )
     update_configure_zcml(
         configurator,
@@ -59,9 +55,7 @@ def _update_subscribers_configure_zcml(configurator):
 
 def _remove_unwanted_files(configurator):
     file_paths = []
-    rel_file_paths = [
-        '/subscribers/configure.zcml.example',
-    ]
+    rel_file_paths = ['/subscribers/configure.zcml.example']
     base_path = configurator.variables['package_folder']
     for rel_file_path in rel_file_paths:
         file_paths.append('{0}{1}'.format(base_path, rel_file_path))
@@ -85,6 +79,6 @@ def post_renderer(configurator):
     git_commit(
         configurator,
         'Add subscriber: {0}'.format(
-            configurator.variables['subscriber_handler_name'],
+            configurator.variables['subscriber_handler_name']
         ),
     )

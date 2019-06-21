@@ -52,14 +52,10 @@ def slugify(value):
     Convert to lowercase. Also strip leading and trailing whitespace.
     """
     value = safe_unicode(value)
-    value = unicodedata.normalize(
-        'NFKD',
-        value,
-    ).encode(
-        'ascii',
-        'ignore',
-    ).decode(
-        'ascii',
+    value = (
+        unicodedata.normalize('NFKD', value)
+        .encode('ascii', 'ignore')
+        .decode('ascii')
     )
     value = re.sub(r'[^\w\s-]', '', value).strip().lower()
     return re.sub(r'[-\s]+', '-', value)

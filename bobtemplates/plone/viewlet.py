@@ -15,13 +15,17 @@ import os
 def get_view_name_from_python_class(configurator, question):
     """Generate view default name from python class"""
     view_class_name = configurator.variables['viewlet_python_class_name']
-    view_generated_name = cc.snakecase(view_class_name).replace('_', '-')  # NOQA: E501
+    view_generated_name = cc.snakecase(view_class_name).replace(
+        '_', '-'
+    )  # NOQA: E501
     question.default = view_generated_name
 
 
 def check_viewlet_template_answer(configurator, question):
     if not configurator.variables['viewlet_template']:
-        raise SkipQuestion(u'No view template, so we skip view template name question.')  # NOQA: E501
+        raise SkipQuestion(
+            u'No view template, so we skip view template name question.'
+        )  # NOQA: E501
 
 
 def _update_configure_zcml(configurator):
@@ -35,9 +39,7 @@ def _update_configure_zcml(configurator):
         tree_root = tree.getroot()
         view_xpath = "{0}include[@package='.viewlets']".format(namespaces)
         if len(tree_root.findall(view_xpath)):
-            print(
-                '.viewlets already in configure.zcml, skip adding!',
-            )
+            print('.viewlets already in configure.zcml, skip adding!')
             return
 
     match_str = '<!--<includeDependencies package="." />-->'
@@ -52,7 +54,10 @@ def _update_viewlets_configure_zcml(configurator):
     directory_path = configurator.variables['package_folder'] + '/viewlets/'
     file_path = directory_path + file_name
 
-    configure_example_file_path = configurator.variables['package_folder'] + '/viewlets/configure.zcml.example'  # NOQA: E501
+    configure_example_file_path = (
+        configurator.variables['package_folder']
+        + '/viewlets/configure.zcml.example'
+    )  # NOQA: E501
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
@@ -62,13 +67,13 @@ def _update_viewlets_configure_zcml(configurator):
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
         view_xpath = "./browser:viewlet[@name='{0}']".format(
-            configurator.variables['viewlet_name'],
+            configurator.variables['viewlet_name']
         )
         if len(tree_root.xpath(view_xpath, namespaces=ZCML_NAMESPACES)):
             print(
                 '{0} already in configure.zcml, skip adding!!!'.format(
-                    configurator.variables['viewlet_name'],
-                ),
+                    configurator.variables['viewlet_name']
+                )
             )
             return
 
@@ -127,7 +132,7 @@ def _delete_unwanted_files(configurator):
     directory_path = configurator.variables['package_folder'] + '/viewlets/'
     if not configurator.variables['viewlet_template']:
         template_file_name = u'{0}.pt'.format(
-            configurator.variables['viewlet_template_name'],
+            configurator.variables['viewlet_template_name']
         )
         file_path = directory_path + template_file_name
         os.remove(file_path)
@@ -147,15 +152,27 @@ def prepare_renderer(configurator):
     normalized_viewlet_name = cc.snakecase(viewlet_name)
     configurator.variables['viewlet_name_normalized'] = normalized_viewlet_name
     if not configurator.variables['viewlet_template']:
-        configurator.variables['viewlet_template_name'] = normalized_viewlet_name  # NOQA: E501
-    python_class_name = configurator.variables['viewlet_python_class_name'].strip('_')  # NOQA: E501
-    configurator.variables['viewlet_python_class_name'] = cc.pascalcase(      # NOQA: E501
-        python_class_name,
+        configurator.variables[
+            'viewlet_template_name'
+        ] = normalized_viewlet_name  # NOQA: E501
+    python_class_name = configurator.variables[
+        'viewlet_python_class_name'
+    ].strip(
+        '_'
+    )  # NOQA: E501
+    configurator.variables[
+        'viewlet_python_class_name'
+    ] = cc.pascalcase(  # NOQA: E501
+        python_class_name
     )
     viewlet_python_file_name = cc.snakecase(viewlet_name)
-    configurator.variables['viewlet_python_file_name'] = viewlet_python_file_name    # NOQA: E501
+    configurator.variables[
+        'viewlet_python_file_name'
+    ] = viewlet_python_file_name  # NOQA: E501
     configurator.target_directory = configurator.variables['package_folder']
-    package_name = configurator.variables['package.dottedname'].replace('.', '_')  # NOQA: E501
+    package_name = configurator.variables['package.dottedname'].replace(
+        '.', '_'
+    )  # NOQA: E501
     browser_layer = cc.pascalcase(package_name)
     configurator.variables['browser_layer'] = 'I{0}Layer'.format(browser_layer)
 
@@ -167,7 +184,5 @@ def post_renderer(configurator):
     _delete_unwanted_files(configurator)
     git_commit(
         configurator,
-        'Add viewlet: {0}'.format(
-            configurator.variables['viewlet_name'],
-        ),
+        'Add viewlet: {0}'.format(configurator.variables['viewlet_name']),
     )

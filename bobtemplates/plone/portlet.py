@@ -18,7 +18,10 @@ def _update_portlets_configure_zcml(configurator):
     file_name = u'configure.zcml'
     directory_path = configurator.variables['package_folder'] + '/portlets/'
     file_path = directory_path + file_name
-    configure_example_file_path = configurator.variables['package_folder'] + '/portlets/configure.zcml.example'  # NOQA: E501
+    configure_example_file_path = (
+        configurator.variables['package_folder']
+        + '/portlets/configure.zcml.example'
+    )  # NOQA: E501
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
@@ -28,14 +31,16 @@ def _update_portlets_configure_zcml(configurator):
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
         portlet_xpath = u"./plone:portlet[@name='{0}']".format(
-            configurator.variables['portlet_name'],
+            configurator.variables['portlet_name']
         )
         if len(tree_root.xpath(portlet_xpath, namespaces=ZCML_NAMESPACES)):
-            print((
-                u'{0} already in configure.zcml, skip adding!'.format(
-                    configurator.variables['portlet_name'],
-                ),
-            ))
+            print(
+                (
+                    u'{0} already in configure.zcml, skip adding!'.format(
+                        configurator.variables['portlet_name']
+                    ),
+                )
+            )
             return
 
     match_str = '-*- extra stuff goes here -*-'
@@ -63,9 +68,14 @@ def _update_portlets_configure_zcml(configurator):
 
 def _update_portlets_xml(configurator):
     file_name = u'portlets.xml'
-    directory_path = configurator.variables['package_folder'] + '/profiles/default/'  # NOQA: E501
+    directory_path = (
+        configurator.variables['package_folder'] + '/profiles/default/'
+    )  # NOQA: E501
     file_path = directory_path + file_name
-    configure_example_file_path = configurator.variables['package_folder'] + '/profiles/default/portlets.xml.example'  # NOQA: E501
+    configure_example_file_path = (
+        configurator.variables['package_folder']
+        + '/profiles/default/portlets.xml.example'
+    )  # NOQA: E501
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
@@ -75,14 +85,16 @@ def _update_portlets_xml(configurator):
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
         xpath_selector = "./portlet[@addview='{0}']".format(
-            configurator.variables['portlet_configuration_name'],
+            configurator.variables['portlet_configuration_name']
         )
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
-            print((
-                u'{0} already in portlets.xml, skip adding!'.format(
-                    configurator.variables['portlet_configuration_name'],
-                ),
-            ))
+            print(
+                (
+                    u'{0} already in portlets.xml, skip adding!'.format(
+                        configurator.variables['portlet_configuration_name']
+                    ),
+                )
+            )
             return
 
     match_str = u'<!-- Extra portlets here  -->'
@@ -140,11 +152,11 @@ def _update_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        xpath_selector = "./include[@package='{0}']".format('.portlets')  # NOQA: E501
+        xpath_selector = "./include[@package='{0}']".format(
+            '.portlets'
+        )  # NOQA: E501
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
-            print((
-                u'.views already in configure.zcml, skip adding!',
-            ))
+            print((u'.views already in configure.zcml, skip adding!',))
             return
 
     match_str = u'<!--<includeDependencies package="." />-->'
@@ -162,18 +174,21 @@ def prepare_renderer(configurator):
     normalized_portlet_name = cc.snakecase(slugify(portlet_name))  # NOQA: E501
     configurator.variables['portlet_name_normalized'] = normalized_portlet_name
     portlet_config_name = cc.pascalcase(normalized_portlet_name)
-    configurator.variables['portlet_configuration_name'] = u'{0}.portlets.{1}'.format(  # NOQA: E501
-        configurator.variables['package.dottedname'],
-        portlet_config_name,
+    configurator.variables[
+        'portlet_configuration_name'
+    ] = u'{0}.portlets.{1}'.format(  # NOQA: E501
+        configurator.variables['package.dottedname'], portlet_config_name
     )
     configurator.variables['data_provider_class_name'] = u'I{0}Portlet'.format(
-        portlet_config_name,
+        portlet_config_name
     )
     configurator.target_directory = configurator.variables['package_folder']
-    package_name = configurator.variables['package.dottedname'].replace('.', '_')  # NOQA: E501
+    package_name = configurator.variables['package.dottedname'].replace(
+        '.', '_'
+    )  # NOQA: E501
     browser_layer = cc.pascalcase(package_name)
     configurator.variables['browser_layer'] = u'I{0}Layer'.format(
-        browser_layer,
+        browser_layer
     )
 
 
@@ -185,7 +200,5 @@ def post_renderer(configurator):
     _delete_unnecessary_files(configurator)
     git_commit(
         configurator,
-        u'Add portlet: {0}'.format(
-            configurator.variables['portlet_name'],
-        ),
+        u'Add portlet: {0}'.format(configurator.variables['portlet_name']),
     )

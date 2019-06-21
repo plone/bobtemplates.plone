@@ -9,10 +9,10 @@ import case_conversion as cc
 
 
 def _update_package_configure_zcml(configurator):
-    path = '{0}'.format(configurator.variables['package_folder'])
-    file_name = u'configure.zcml'
+    path = "{0}".format(configurator.variables["package_folder"])
+    file_name = u"configure.zcml"
     match_xpath = "include[@package='.subscribers']"
-    match_str = '-*- extra stuff goes here -*-'
+    match_str = "-*- extra stuff goes here -*-"
     insert_str = """
   <include package=".subscribers" />
 """
@@ -27,20 +27,20 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_subscribers_configure_zcml(configurator):
-    path = '{0}/subscribers'.format(configurator.variables['package_folder'])
-    file_name = u'configure.zcml'
-    example_file_name = '{0}.example'.format(file_name)
+    path = "{0}/subscribers".format(configurator.variables["package_folder"])
+    file_name = u"configure.zcml"
+    example_file_name = "{0}.example".format(file_name)
     match_xpath = "./subscriber[@handler='.{0}.handler']".format(
-        configurator.variables['subscriber_handler_file_name']
+        configurator.variables["subscriber_handler_file_name"]
     )
-    match_str = '-*- extra stuff goes here -*-'
+    match_str = "-*- extra stuff goes here -*-"
     insert_str = """
   <subscriber for="plone.dexterity.interfaces.IDexterityContent
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
               handler=".{0}.handler"
               />
 """.format(
-        configurator.variables['subscriber_handler_file_name']
+        configurator.variables["subscriber_handler_file_name"]
     )
     update_configure_zcml(
         configurator,
@@ -55,20 +55,20 @@ def _update_subscribers_configure_zcml(configurator):
 
 def _remove_unwanted_files(configurator):
     file_paths = []
-    rel_file_paths = ['/subscribers/configure.zcml.example']
-    base_path = configurator.variables['package_folder']
+    rel_file_paths = ["/subscribers/configure.zcml.example"]
+    base_path = configurator.variables["package_folder"]
     for rel_file_path in rel_file_paths:
-        file_paths.append('{0}{1}'.format(base_path, rel_file_path))
+        file_paths.append("{0}{1}".format(base_path, rel_file_path))
     remove_unwanted_files(file_paths)
 
 
 def pre_renderer(configurator):
     """Pre rendering."""
     configurator = base_prepare_renderer(configurator)
-    configurator.variables['template_id'] = 'subscriber'
-    name = configurator.variables['subscriber_handler_name'].strip('_')
-    configurator.variables['subscriber_handler_file_name'] = cc.snakecase(name)
-    configurator.target_directory = configurator.variables['package_folder']
+    configurator.variables["template_id"] = "subscriber"
+    name = configurator.variables["subscriber_handler_name"].strip("_")
+    configurator.variables["subscriber_handler_file_name"] = cc.snakecase(name)
+    configurator.target_directory = configurator.variables["package_folder"]
 
 
 def post_renderer(configurator):
@@ -78,5 +78,5 @@ def post_renderer(configurator):
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        'Add subscriber: {0}'.format(configurator.variables['subscriber_handler_name']),
+        "Add subscriber: {0}".format(configurator.variables["subscriber_handler_name"]),
     )

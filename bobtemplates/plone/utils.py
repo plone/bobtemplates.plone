@@ -4,7 +4,7 @@ import six
 import unicodedata
 
 
-def safe_unicode(value, encoding='utf-8'):
+def safe_unicode(value, encoding="utf-8"):
     """Converts a value to unicode, even it is already a unicode string.
     """
     if six.PY2:
@@ -14,7 +14,7 @@ def safe_unicode(value, encoding='utf-8'):
             try:
                 value = unicode(value, encoding)
             except (UnicodeDecodeError):
-                value = value.decode('utf-8', 'replace')
+                value = value.decode("utf-8", "replace")
         return value
 
     if isinstance(value, str):
@@ -23,11 +23,11 @@ def safe_unicode(value, encoding='utf-8'):
         try:
             value = str(value, encoding)
         except (UnicodeDecodeError):
-            value = value.decode('utf-8', 'replace')
+            value = value.decode("utf-8", "replace")
     return value
 
 
-def safe_encode(value, encoding='utf-8'):
+def safe_encode(value, encoding="utf-8"):
     """Convert unicode to the specified encoding.
     """
     if isinstance(value, six.text_type):
@@ -35,7 +35,7 @@ def safe_encode(value, encoding='utf-8'):
     return value
 
 
-def safe_nativestring(value, encoding='utf-8'):
+def safe_nativestring(value, encoding="utf-8"):
     """Convert a value to str in py2 and to text in py3
     """
     if six.PY2 and isinstance(value, six.text_type):
@@ -53,7 +53,7 @@ def slugify(value):
     """
     value = safe_unicode(value)
     value = (
-        unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
+        unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
     )
-    value = re.sub(r'[^\w\s-]', '', value).strip().lower()
-    return re.sub(r'[-\s]+', '-', value)
+    value = re.sub(r"[^\w\s-]", "", value).strip().lower()
+    return re.sub(r"[-\s]+", "-", value)

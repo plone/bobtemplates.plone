@@ -4,6 +4,9 @@ Changelog
 4.1.1 (unreleased)
 ------------------
 
+- Properly close HTML body tag in view template.
+  [erral]
+
 - Change classifiers URL, closes #389.
   [ale-rt]
 

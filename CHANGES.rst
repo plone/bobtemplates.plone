@@ -4,6 +4,9 @@ Changelog
 4.1.1 (unreleased)
 ------------------
 
+- Fix restapi service.
+  [erral]
+
 - Change classifiers URL, closes #389.
   [ale-rt]
 

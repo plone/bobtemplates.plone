@@ -56,5 +56,5 @@ class {{{ service_class_name }}}(object):
 class {{{ service_class_name }}}Get(Service):
 
     def reply(self):
-        service_factory = {{{ service_class_name_normalized }}}(self.context, self.request)
+        service_factory = {{{ service_class_name }}}(self.context, self.request)
         return service_factory(expand=True)['{{{ service_class_name_normalized }}}']

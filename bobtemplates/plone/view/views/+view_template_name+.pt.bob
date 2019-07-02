@@ -11,5 +11,5 @@
       <p tal:content="view/msg">this gets replaced</p>
 {{% endif %}}
   </metal:block>
-<body>
+</body>
 </html>

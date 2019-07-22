@@ -4,6 +4,9 @@ Changelog
 4.1.1 (unreleased)
 ------------------
 
+- Change fonts mixin to bob template and use normalized_name.
+  [balavec]
+
 - Properly close HTML body tag in view template.
   [erral]
 

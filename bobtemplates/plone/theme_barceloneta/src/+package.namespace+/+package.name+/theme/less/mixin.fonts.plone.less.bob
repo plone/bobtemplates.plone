@@ -1,5 +1,5 @@
 //*// MIXIN FONT FACE //*//
-@theme-roboto-path: '/++theme++bob-theme/barceloneta/less/';
+@theme-roboto-path: '/++theme++{{{ theme.normalized_name }}}/barceloneta/less/';
 
 .font-face(@font-path; @file-name; @font-family; @font-weight; @font-style; @svg-id; @local, ~''; ) {
   @font-face {

@@ -7,6 +7,10 @@ Changelog
 - Fix restapi service.
   [erral]
 
+- Change fonts mixin to bob template and use normalized_name.
+  [balavec]
+
+
 - Properly close HTML body tag in view template.
   [erral]
 

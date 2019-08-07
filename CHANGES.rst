@@ -4,6 +4,9 @@ Changelog
 4.1.1 (unreleased)
 ------------------
 
+- Fix flake8 isort error in generated addon.
+  [jensens]
+
 - Change fonts mixin to bob template and use normalized_name.
   [balavec]
 

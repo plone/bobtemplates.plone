@@ -8,6 +8,9 @@ Changelog
   `How can i exclude directories when is use i18ndude command <https://community.plone.org/t/solved-how-can-i-exclude-directories-when-is-use-i18ndude-command/6193/5>`_
   [jensens]
 
+- Fix flake8 isort error in generated addon.
+  [jensens]
+
 - Change fonts mixin to bob template and use normalized_name.
   [balavec]
 

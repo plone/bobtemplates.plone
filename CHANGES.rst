@@ -4,6 +4,10 @@ Changelog
 4.1.1 (unreleased)
 ------------------
 
+- Fix failing ``./bin/update-locales`` if a theme is in development. See also
+  `How can i exclude directories when is use i18ndude command <https://community.plone.org/t/solved-how-can-i-exclude-directories-when-is-use-i18ndude-command/6193/5>`_
+  [jensens]
+
 - Fix flake8 isort error in generated addon.
   [jensens]
 

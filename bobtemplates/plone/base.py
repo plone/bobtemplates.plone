@@ -347,7 +347,6 @@ def update_configure_zcml(
     with open(file_path, "r") as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
-        import pdb; pdb.set_trace()  # NOQA: E702
         if len(tree.xpath(match_xpath, namespaces=namespaces)):
             print("{0} already in {1}, skip adding!".format(insert_str, file_path))
             return

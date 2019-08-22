@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.1.1 (unreleased)
+4.1.1 (2019-08-22)
 ------------------
 
 - Fix failing ``./bin/update-locales`` if a theme is in development. See also

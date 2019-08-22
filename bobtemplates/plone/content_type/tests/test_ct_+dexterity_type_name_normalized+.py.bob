@@ -131,9 +131,12 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         self.assertTrue(IDexterityItem.providedBy(obj))
 {{% endif %}}
 
+        parent = obj.__parent__
+        self.assertIn('{{{ dexterity_type_name_normalized }}}', parent.objectIds())
+
         # check that deleting the object works too
         api.content.delete(obj=obj)
-        self.assertNotIn('{{{ dexterity_type_name_normalized }}}', self.parent.objectIds())
+        self.assertNotIn('{{{ dexterity_type_name_normalized }}}', parent.objectIds())
 
 {{% if dexterity_type_global_allow | to_boolean %}}
     def test_ct_{{{ dexterity_type_name_normalized }}}_globally_addable(self):

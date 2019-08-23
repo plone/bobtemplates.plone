@@ -4,7 +4,8 @@ Changelog
 4.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix match_str in view, viewlet and portlet templates
+  [MrTango]
 
 
 4.1.1 (2019-08-22)

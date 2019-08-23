@@ -46,7 +46,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         parent_id = portal_types.constructContent(
             '{{{ dexterity_parent_container_type_name }}}',
             self.portal,
-            '{{{ dexterity_type_name_normalized }}}',
+            'parent_container',
             title='Parent container',
         )
         self.parent = self.portal[parent_id]

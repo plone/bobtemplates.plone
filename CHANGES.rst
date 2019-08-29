@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.1.2 (unreleased)
+4.1.2 (2019-08-29)
 ------------------
 
 - Fix match_str in view, viewlet and portlet templates

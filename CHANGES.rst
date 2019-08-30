@@ -4,8 +4,9 @@ Changelog
 4.1.3 (unreleased)
 ------------------
 
-- Fix restapi service.
+- Fix restapi service_factory name.
   [erral]
+
 - Allow user to insert view config, even if one exists
   [MrTango]
 

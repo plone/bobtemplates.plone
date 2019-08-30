@@ -6,6 +6,11 @@ Changelog
 
 - Fix restapi service.
   [erral]
+- Allow user to insert view config, even if one exists
+  [MrTango]
+
+- Use snakecase for template files, as we do for python files
+  [MrTango]
 
 
 4.1.2 (2019-08-29)

@@ -59,12 +59,12 @@ def _update_views_configure_zcml(configurator):
     if configurator.variables['view_template'] and configurator.variables['view_python_class']:  # NOQA: E501
         insert_str = """
   <browser:page
-     name="{0}"
-     for="Products.CMFCore.interfaces.IFolderish"
-     class=".{1}.{2}"
-     template="{3}.pt"
-     permission="zope2.View"
-     />
+    name="{0}"
+    for="Products.CMFCore.interfaces.IFolderish"
+    class=".{1}.{2}"
+    template="{3}.pt"
+    permission="zope2.View"
+    />
 """.format(
             configurator.variables['view_name'],
             configurator.variables['view_python_file_name'],
@@ -74,12 +74,12 @@ def _update_views_configure_zcml(configurator):
 
     if configurator.variables['view_template'] and not configurator.variables['view_python_class']:  # NOQA: E501
         insert_str = """
-    <browser:page
-       name="{0}"
-       for="Products.CMFCore.interfaces.IFolderish"
-       template="{1}.pt"
-       permission="zope2.View"
-       />
+  <browser:page
+    name="{0}"
+    for="Products.CMFCore.interfaces.IFolderish"
+    template="{1}.pt"
+    permission="zope2.View"
+    />
 """.format(
             configurator.variables['view_name'],
             configurator.variables['view_template_name'],
@@ -87,12 +87,12 @@ def _update_views_configure_zcml(configurator):
 
     if not configurator.variables['view_template'] and configurator.variables['view_python_class']:  # NOQA: E501
         insert_str = """
-    <browser:page
-       name="{0}"
-       for="Products.CMFCore.interfaces.IFolderish"
-       class=".{1}.{2}"
-       permission="zope2.View"
-       />
+  <browser:page
+    name="{0}"
+    for="Products.CMFCore.interfaces.IFolderish"
+    class=".{1}.{2}"
+    permission="zope2.View"
+    />
 """.format(
             configurator.variables['view_name'],
             configurator.variables['view_python_file_name'],
@@ -192,6 +192,9 @@ def prepare_renderer(configurator):
 
     if not configurator.variables['view_template']:
         configurator.variables['view_template_name'] = normalized_view_name
+
+    if not configurator.variables.get('view_base_class'):
+        configurator.variables['view_base_class'] = 'BrowserView'
 
     configurator.target_directory = configurator.variables['package_folder']
 

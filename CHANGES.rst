@@ -6,7 +6,6 @@ Changelog
 
 - Fix restapi service.
   [erral]
-- Nothing changed yet.
 
 
 4.1.2 (2019-08-29)

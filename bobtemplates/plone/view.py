@@ -114,6 +114,8 @@ def _update_views_configure_zcml(configurator):
                 ),
                 'info',
             )
+            if configurator.bobconfig.get('non_interactive'):
+                return
             choice = raw_input().lower()
             if choice != 'y':
                 return

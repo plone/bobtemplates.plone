@@ -4,7 +4,8 @@ Changelog
 4.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix restapi service.
+  [erral]
 
 
 4.1.2 (2019-08-29)
@@ -26,6 +27,7 @@ Changelog
 
 - Change fonts mixin to bob template and use normalized_name.
   [balavec]
+
 
 - Properly close HTML body tag in view template.
   [erral]

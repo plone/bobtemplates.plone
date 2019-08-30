@@ -1,11 +1,30 @@
 Changelog
 =========
 
-4.1.1 (unreleased)
+4.1.3 (unreleased)
 ------------------
 
 - Fix restapi service.
   [erral]
+- Nothing changed yet.
+
+
+4.1.2 (2019-08-29)
+------------------
+
+- Fix match_str in view, viewlet and portlet templates
+  [MrTango]
+
+
+4.1.1 (2019-08-22)
+------------------
+
+- Fix failing ``./bin/update-locales`` if a theme is in development. See also
+  `How can i exclude directories when is use i18ndude command <https://community.plone.org/t/solved-how-can-i-exclude-directories-when-is-use-i18ndude-command/6193/5>`_
+  [jensens]
+
+- Fix flake8 isort error in generated addon.
+  [jensens]
 
 - Change fonts mixin to bob template and use normalized_name.
   [balavec]
@@ -16,6 +35,9 @@ Changelog
 
 - Change classifiers URL, closes #389.
   [ale-rt]
+
+- Fix content_type_test which test the deletion of an object
+  [MrTango]
 
 
 4.1.0 (2019-05-31)

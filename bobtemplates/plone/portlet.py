@@ -147,7 +147,7 @@ def _update_configure_zcml(configurator):
             ))
             return
 
-    match_str = u'<!--<includeDependencies package="." />-->'
+    match_str = '-*- extra stuff goes here -*-'
     insert_str = u"""
   <include package=".portlets" />
 """

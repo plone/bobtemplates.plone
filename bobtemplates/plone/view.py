@@ -123,7 +123,7 @@ def _update_configure_zcml(configurator):
             )
             return
 
-    match_str = '<!--<includeDependencies package="." />-->'
+    match_str = '-*- extra stuff goes here -*-'
     insert_str = """
   <include package=".views" />
 """

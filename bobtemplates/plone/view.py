@@ -20,7 +20,16 @@ def get_view_name_from_python_class(configurator, question):
         view_generated_name = cc.snakecase(view_class_name).replace('_', '-')  # NOQA: E501
         question.default = view_generated_name
     else:
-        question.default = 'my-view'
+        question.default = 'my_view'
+
+
+def get_view_template_name_from_python_class(configurator, question):
+    if configurator.variables['view_python_class']:
+        view_class_name = configurator.variables['view_python_class_name']
+        view_generated_name = cc.snakecase(view_class_name)  # NOQA: E501
+        question.default = view_generated_name
+    else:
+        question.default = 'my_view'
 
 
 def check_python_class_answer(configurator, question):
@@ -172,10 +181,10 @@ def prepare_renderer(configurator):
         if view_name_from_input != view_name_from_python_class:
             configurator.variables['view_name'] = view_name_from_input
     else:
-        configurator.variables['view_python_file_name'] = view_name
+        configurator.variables['view_python_file_name'] = normalized_view_name
 
     if not configurator.variables['view_template']:
-        configurator.variables['view_template_name'] = view_name
+        configurator.variables['view_template_name'] = normalized_view_name
 
     configurator.target_directory = configurator.variables['package_folder']
 

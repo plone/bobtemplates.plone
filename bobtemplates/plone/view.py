@@ -3,6 +3,7 @@
 
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
+from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import ZCML_NAMESPACES
 from lxml import etree
@@ -53,21 +54,6 @@ def _update_views_configure_zcml(configurator):
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
 
-    with open(file_path, 'r') as xml_file:
-        parser = etree.XMLParser(remove_blank_text=True)
-        tree = etree.parse(xml_file, parser)
-        tree_root = tree.getroot()
-        view_xpath = "./browser:page[@name='{0}']".format(
-            configurator.variables['view_name'],
-        )
-        if len(tree_root.xpath(view_xpath, namespaces=ZCML_NAMESPACES)):
-            print(
-                '{0} already in configure.zcml, skip adding!'.format(
-                    configurator.variables['view_name'],
-                ),
-            )
-            return
-
     match_str = '-*- extra stuff goes here -*-'
 
     if configurator.variables['view_template'] and configurator.variables['view_python_class']:  # NOQA: E501
@@ -112,6 +98,25 @@ def _update_views_configure_zcml(configurator):
             configurator.variables['view_python_file_name'],
             configurator.variables['view_python_class_name'],
         )
+    with open(file_path, 'r') as xml_file:
+        parser = etree.XMLParser(remove_blank_text=True)
+        tree = etree.parse(xml_file, parser)
+        tree_root = tree.getroot()
+        view_xpath = "./browser:page[@name='{0}']".format(
+            configurator.variables['view_name'],
+        )
+        if len(tree_root.xpath(view_xpath, namespaces=ZCML_NAMESPACES)):
+            echo(
+                u'{0} already in configure.zcml, do you really want to add this config?'
+                u'\n\n{1}\n [y/N]: '.format(
+                    configurator.variables['view_name'],
+                    insert_str,
+                ),
+                'info',
+            )
+            choice = raw_input().lower()
+            if choice != 'y':
+                return
 
     update_file(configurator, file_path, match_str, insert_str)
 

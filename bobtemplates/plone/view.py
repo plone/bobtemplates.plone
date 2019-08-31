@@ -12,6 +12,7 @@ from mrbob.bobexceptions import ValidationError
 
 import case_conversion as cc
 import os
+import six
 
 
 def get_view_name_from_python_class(configurator, question):
@@ -116,7 +117,7 @@ def _update_views_configure_zcml(configurator):
             )
             if configurator.bobconfig.get('non_interactive'):
                 return
-            choice = raw_input().lower()
+            choice = six.moves.input().lower()
             if choice != 'y':
                 return
 

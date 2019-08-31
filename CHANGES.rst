@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.1.3 (unreleased)
+4.1.3 (2019-08-31)
 ------------------
 
 - Fix restapi service_factory name.

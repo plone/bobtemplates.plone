@@ -13,6 +13,12 @@ Changelog
 - Use snakecase for template files, as we do for python files
   [MrTango]
 
+- Improve and fix package tests for view template
+  [MrTango]
+
+- Add init_package_base_structure method to easiely create test structures in packages tests
+  [MrTango]
+
 
 4.1.2 (2019-08-29)
 ------------------

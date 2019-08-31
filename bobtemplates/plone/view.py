@@ -2,6 +2,7 @@
 """Generate view."""
 
 from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import ZCML_NAMESPACES
@@ -11,6 +12,7 @@ from mrbob.bobexceptions import ValidationError
 
 import case_conversion as cc
 import os
+import six
 
 
 def get_view_name_from_python_class(configurator, question):
@@ -20,7 +22,16 @@ def get_view_name_from_python_class(configurator, question):
         view_generated_name = cc.snakecase(view_class_name).replace('_', '-')  # NOQA: E501
         question.default = view_generated_name
     else:
-        question.default = 'my-view'
+        question.default = 'my_view'
+
+
+def get_view_template_name_from_python_class(configurator, question):
+    if configurator.variables['view_python_class']:
+        view_class_name = configurator.variables['view_python_class_name']
+        view_generated_name = cc.snakecase(view_class_name)  # NOQA: E501
+        question.default = view_generated_name
+    else:
+        question.default = 'my_view'
 
 
 def check_python_class_answer(configurator, question):
@@ -44,32 +55,17 @@ def _update_views_configure_zcml(configurator):
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
 
-    with open(file_path, 'r') as xml_file:
-        parser = etree.XMLParser(remove_blank_text=True)
-        tree = etree.parse(xml_file, parser)
-        tree_root = tree.getroot()
-        view_xpath = "./browser:page[@name='{0}']".format(
-            configurator.variables['view_name'],
-        )
-        if len(tree_root.xpath(view_xpath, namespaces=ZCML_NAMESPACES)):
-            print(
-                '{0} already in configure.zcml, skip adding!'.format(
-                    configurator.variables['view_name'],
-                ),
-            )
-            return
-
     match_str = '-*- extra stuff goes here -*-'
 
     if configurator.variables['view_template'] and configurator.variables['view_python_class']:  # NOQA: E501
         insert_str = """
   <browser:page
-     name="{0}"
-     for="Products.CMFCore.interfaces.IFolderish"
-     class=".{1}.{2}"
-     template="{3}.pt"
-     permission="zope2.View"
-     />
+    name="{0}"
+    for="Products.CMFCore.interfaces.IFolderish"
+    class=".{1}.{2}"
+    template="{3}.pt"
+    permission="zope2.View"
+    />
 """.format(
             configurator.variables['view_name'],
             configurator.variables['view_python_file_name'],
@@ -79,12 +75,12 @@ def _update_views_configure_zcml(configurator):
 
     if configurator.variables['view_template'] and not configurator.variables['view_python_class']:  # NOQA: E501
         insert_str = """
-    <browser:page
-       name="{0}"
-       for="Products.CMFCore.interfaces.IFolderish"
-       template="{1}.pt"
-       permission="zope2.View"
-       />
+  <browser:page
+    name="{0}"
+    for="Products.CMFCore.interfaces.IFolderish"
+    template="{1}.pt"
+    permission="zope2.View"
+    />
 """.format(
             configurator.variables['view_name'],
             configurator.variables['view_template_name'],
@@ -92,17 +88,38 @@ def _update_views_configure_zcml(configurator):
 
     if not configurator.variables['view_template'] and configurator.variables['view_python_class']:  # NOQA: E501
         insert_str = """
-    <browser:page
-       name="{0}"
-       for="Products.CMFCore.interfaces.IFolderish"
-       class=".{1}.{2}"
-       permission="zope2.View"
-       />
+  <browser:page
+    name="{0}"
+    for="Products.CMFCore.interfaces.IFolderish"
+    class=".{1}.{2}"
+    permission="zope2.View"
+    />
 """.format(
             configurator.variables['view_name'],
             configurator.variables['view_python_file_name'],
             configurator.variables['view_python_class_name'],
         )
+    with open(file_path, 'r') as xml_file:
+        parser = etree.XMLParser(remove_blank_text=True)
+        tree = etree.parse(xml_file, parser)
+        tree_root = tree.getroot()
+        view_xpath = "./browser:page[@name='{0}']".format(
+            configurator.variables['view_name'],
+        )
+        if len(tree_root.xpath(view_xpath, namespaces=ZCML_NAMESPACES)):
+            echo(
+                u'{0} already in configure.zcml, do you really want to add this config?'
+                u'\n\n{1}\n [y/N]: '.format(
+                    configurator.variables['view_name'],
+                    insert_str,
+                ),
+                'info',
+            )
+            if configurator.bobconfig.get('non_interactive'):
+                return
+            choice = six.moves.input().lower()
+            if choice != 'y':
+                return
 
     update_file(configurator, file_path, match_str, insert_str)
 
@@ -172,10 +189,13 @@ def prepare_renderer(configurator):
         if view_name_from_input != view_name_from_python_class:
             configurator.variables['view_name'] = view_name_from_input
     else:
-        configurator.variables['view_python_file_name'] = view_name
+        configurator.variables['view_python_file_name'] = normalized_view_name
 
     if not configurator.variables['view_template']:
-        configurator.variables['view_template_name'] = view_name
+        configurator.variables['view_template_name'] = normalized_view_name
+
+    if not configurator.variables.get('view_base_class'):
+        configurator.variables['view_base_class'] = 'BrowserView'
 
     configurator.target_directory = configurator.variables['package_folder']
 

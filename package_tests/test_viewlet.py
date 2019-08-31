@@ -346,7 +346,7 @@ class MyViewlet(ViewletBase):
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template='bobtemplates.plone:viewlet',
         target_directory=package_path,
         bobconfig={
             'non_interactive': True,

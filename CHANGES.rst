@@ -1,11 +1,29 @@
 Changelog
 =========
 
-4.1.3 (unreleased)
+4.1.4 (unreleased)
 ------------------
 
-- Fix restapi service.
+- Nothing changed yet.
+
+
+4.1.3 (2019-08-31)
+------------------
+
+- Fix restapi service_factory name.
   [erral]
+
+- Allow user to insert view config, even if one exists
+  [MrTango]
+
+- Use snakecase for template files, as we do for python files
+  [MrTango]
+
+- Improve and fix package tests for view template
+  [MrTango]
+
+- Add init_package_base_structure method to easiely create test structures in packages tests
+  [MrTango]
 
 
 4.1.2 (2019-08-29)

@@ -10,6 +10,9 @@ Changelog
 - Fix 'geckodriver' error when running tests in Travis.
   [erral]
 
+- Use dist: bionic on Travis, install firefox-geckodriver via apt
+  [MrTango]
+
 
 4.1.3 (2019-08-31)
 ------------------

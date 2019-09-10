@@ -4,7 +4,11 @@ Changelog
 4.1.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Run coveralls in the correct path
+  [erral]
+
+- Fix 'geckodriver' error when running tests in Travis.
+  [erral]
 
 
 4.1.3 (2019-08-31)

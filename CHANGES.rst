@@ -4,6 +4,10 @@ Changelog
 4.1.4 (unreleased)
 ------------------
 
+- Fixed name of commented out version behavior.
+  This is ``plone.versioning`` and not ``plone.versionable``.
+  [maurits]
+
 - Run coveralls in the correct path
   [erral]
 

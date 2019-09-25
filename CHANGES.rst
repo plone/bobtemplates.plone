@@ -4,6 +4,11 @@ Changelog
 4.1.4 (unreleased)
 ------------------
 
+- Fixed Travis caching.  Downloads do not need to be cached.
+  And for the eggs we were caching the wrong directory.
+  Fixes `issue #408 <https://github.com/plone/bobtemplates.plone/issues/408>`_.
+  [maurits]
+
 - Fixed name of commented out version behavior.
   This is ``plone.versioning`` and not ``plone.versionable``.
   [maurits]

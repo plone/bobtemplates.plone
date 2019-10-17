@@ -6,6 +6,7 @@ from bobtemplates.plone.base import remove_unwanted_files
 from bobtemplates.plone.base import update_configure_zcml
 
 import case_conversion as cc
+import os
 
 
 def _update_package_configure_zcml(configurator):
@@ -34,23 +35,11 @@ def _update_indexers_configure_zcml(configurator):
     )
     file_name = u'configure.zcml'
     example_file_name = '{0}.example'.format(file_name)
-    match_xpath = "zope:adapter[@factory='.{0}.handler']".format(
-        configurator.variables['indexer_file_name'],
-    )
+    match_xpath = "zope:include[@package='.{0}']".format(configurator.variables['indexer_name'])
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
-  <adapter
-    name="{indexer_index_name}"
-    factory=".{indexer_file_name}.dummy"
-    />
-  <adapter
-    name="{indexer_index_name}"
-    factory=".{indexer_file_name}.handler"
-    />
-""".format(
-        indexer_index_name=configurator.variables['indexer_index_name'],
-        indexer_file_name=configurator.variables['indexer_file_name'],
-    )
+  <include package=".{0}" />
+""".format(configurator.variables['indexer_name'])
     update_configure_zcml(
         configurator,
         path,
@@ -77,8 +66,10 @@ def pre_renderer(configurator):
     """Pre rendering."""
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'indexer'
-    name = configurator.variables['indexer_indexer_name'].strip('_')
-    configurator.variables['indexer_file_name'] = cc.snakecase(name)
+    name = configurator.variables['indexer_name'].strip('_')
+    indexer_name = cc.snakecase(name)
+    configurator.variables['indexer_name'] = indexer_name
+    configurator.variables['indexer_file_name'] = indexer_name
     configurator.target_directory = configurator.variables['package_folder']
 
 
@@ -89,8 +80,7 @@ def post_renderer(configurator):
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        'Add indexer: {0} for index {1}'.format(
-            configurator.variables['indexer_indexer_name'],
-            configurator.variables['indexer_index_name'],
+        'Add indexer: {0}'.format(
+            configurator.variables['indexer_name'],
         ),
     )

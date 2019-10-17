@@ -2,7 +2,8 @@
 
 """Test view generation."""
 
-# from bobtemplates.plone import base
+from .base import init_package_base_files
+from bobtemplates.plone import base
 from bobtemplates.plone import indexer
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
@@ -23,14 +24,6 @@ def test_update_indexers_configure_zcml(tmpdir):
     i18n_domain="{{{ package.dottedname }}}">
 
   -*- extra stuff goes here -*-
-  <adapter
-    name="{indexer_index_name}"
-    factory=".{indexer_file_name}.dummy"
-    />
-  <adapter
-    name="{indexer_index_name}"
-    factory=".{indexer_file_name}.handler"
-    />
 
 </configure>
 """
@@ -41,8 +34,7 @@ def test_update_indexers_configure_zcml(tmpdir):
         target_directory="collective.sample",
         bobconfig={"non_interactive": True},
         variables={
-            "indexer_index_name": "my_cool_index",
-            "indexer_indexer_name": "my_cool_indexer",
+            "indexer_name": "my_cool_index",
             "package_folder": package_path,
         },
     )
@@ -52,3 +44,74 @@ def test_update_indexers_configure_zcml(tmpdir):
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
+
+
+def test_pre_renderer(tmpdir):
+    base_path = tmpdir.strpath
+    package_root_folder = os.path.join(
+        base_path,
+        'collective.foo',
+    )
+    configurator = Configurator(
+        template='bobtemplates.plone:indexer',
+        bobconfig={"non_interactive": True},
+        target_directory=os.path.join(
+            package_root_folder,
+            'src/collective/foo',
+        ),
+        variables={
+            'package.root_folder': package_root_folder,
+            "indexer_name": "my_cool_index",
+            "package_folder": os.path.join(
+                package_root_folder,
+                'src/collective/foo',
+            ),
+        },
+    )
+    init_package_base_files(configurator)
+    indexer.pre_renderer(configurator)
+
+
+def test_post_renderer(tmpdir):
+    base_path = tmpdir.strpath
+    package_root_folder = os.path.join(
+        base_path,
+        'collective.foo',
+    )
+    package_path = os.path.join(
+        package_root_folder,
+        'src/collective/foo',
+    )
+    configurator = Configurator(
+        template='bobtemplates.plone:indexer',
+        bobconfig={"non_interactive": True},
+        target_directory=os.path.join(
+            package_root_folder,
+            'src/collective/foo',
+        ),
+        variables={
+            'package.root_folder': package_root_folder,
+            "indexer_name": "my_cool_index",
+            "package_folder": package_path,
+        },
+    )
+    init_package_base_files(configurator)
+    # os.makedirs(target_path)
+
+    template = """
+    <configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+    <!-- -*- extra stuff goes here -*- -->
+
+    </configure>
+"""
+    with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
+        f.write(template)
+
+    os.chdir(package_path)
+    base.set_global_vars(configurator)
+    configurator.render()

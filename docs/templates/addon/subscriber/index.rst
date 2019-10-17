@@ -57,7 +57,7 @@ Add a subscriber
     Should we run?:
     git add .
     git commit -m "Add subscriber: obj_mod_clear_cache"
-    in: /home/maik/develop/src/bobtemplates.plone/tmp/collective.todo
+    in: /home/maik/develop/src/collective.todo
     [y]/n:
     RUN: git add .
     RUN: git commit -m "Add subscriber: obj_mod_clear_cache"
@@ -67,5 +67,3 @@ Add a subscriber
     create mode 100644 src/collective/todo/subscribers/configure.zcml
     create mode 100644 src/collective/todo/subscribers/obj_mod_clear_cache.py
     create mode 100644 src/collective/todo/tests/test_subscriber_obj_mod_clear_cache.py
-
-    Generated file structure at /home/maik/develop/src/bobtemplates.plone/tmp/collective.todo

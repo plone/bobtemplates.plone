@@ -70,6 +70,7 @@ Changelog
   [ale-rt]
 
 - Fix content_type_test which test the deletion of an object
+- Add indexer sub-template to generate indexers
   [MrTango]
 
 

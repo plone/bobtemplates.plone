@@ -8,17 +8,35 @@ from mrbob.configurator import Configurator
 import os
 
 
-def test_prepare_renderer():
+def test_pre_renderer(tmpdir):
+    package_root = tmpdir.strpath + "/collective.todo"
+    package_path = init_package_base_structure(package_root)
+    target_path = os.path.join(package_path, 'profiles/default')
+
+    template = """<?xml version='1.0' encoding='UTF-8'?>
+<metadata>
+  <version>1004</version>
+  <dependencies>
+    <dependency>profile-plone.app.dexterity:default</dependency>
+  </dependencies>
+</metadata>
+"""
+    with open(os.path.join(target_path, 'metadata.xml'), 'w') as f:
+        f.write(template)
     configurator = Configurator(
         template='bobtemplates.plone:upgrade_step',
-        target_directory='.',
+        target_directory=package_path,
         variables={
+            'package_folder': package_path,
             'upgrade_step_title': 'Add cool index and reindex it',
             'upgrade_step_description': 'We add an index and reindex it with existing content.',
         },
     )
     assert configurator
-    upgrade_step.prepare_renderer(configurator)
+    upgrade_step.pre_renderer(configurator)
+    assert configurator.variables["upgrade_step_source_version"] == 1004
+    assert configurator.variables["upgrade_step_dest_version"] == 1005
+    assert configurator.variables["upgrade_step_id"] == "1005"
 
 
 def test_post_renderer(tmpdir):
@@ -91,8 +109,7 @@ def test_read_source_version(tmpdir):
     package_path = init_package_base_structure(package_root)
     target_path = os.path.join(package_path, 'profiles/default')
 
-    template = """
-<?xml version='1.0' encoding='UTF-8'?>
+    template = """<?xml version='1.0' encoding='UTF-8'?>
 <metadata>
   <version>1004</version>
   <dependencies>
@@ -110,6 +127,7 @@ def test_read_source_version(tmpdir):
         },
         variables={
             'plone.version': '5.1',
+            'package_folder': package_path,
             'upgrade_step_title': 'Add cool index and reindex it',
             'upgrade_step_description': 'We add an index and reindex it with existing content.',
         },

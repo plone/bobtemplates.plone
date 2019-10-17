@@ -38,7 +38,7 @@ def _update_upgrades_configure_zcml(configurator):
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
   <include package=".{0}" />
-""".format(update_configure_zcml)
+""".format(zcml_package_name)
     update_configure_zcml(
         configurator,
         path,
@@ -71,18 +71,21 @@ def _read_source_version(configurator):
         tree_root = tree.getroot()
         match_xpath = "version"
         match_result = tree_root.findall(match_xpath)
-        import pdb; pdb.set_trace()  # NOQA: E702
-    return int("1004")
+        if not match_result:
+            raise RuntimeError("source version not found in metadata.xml!")
+            return
+        return int(match_result[0].text)
 
 
 def pre_renderer(configurator):
     """Pre rendering."""
     configurator = base_prepare_renderer(configurator)
     configurator.variables['template_id'] = 'upgrade_step'
-    upgrade_step_source_version = None
+    upgrade_step_source_version = _read_source_version(configurator)
     upgrade_step_dest_version = upgrade_step_source_version + 1
     configurator.variables['upgrade_step_source_version'] = upgrade_step_source_version
     configurator.variables['upgrade_step_dest_version'] = upgrade_step_dest_version
+    configurator.variables['upgrade_step_id'] = str(upgrade_step_dest_version)
     configurator.target_directory = configurator.variables['package_folder']
 
 

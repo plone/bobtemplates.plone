@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
-from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING
 
 import unittest
 
 
-class SubscriberIntegrationTest(unittest.TestCase):
+class UpgradeStepIntegrationTest(unittest.TestCase):
 
     layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
 
@@ -16,7 +16,7 @@ class SubscriberIntegrationTest(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
 
-class SubscriberFunctionalTest(unittest.TestCase):
+class UpgradeStepFunctionalTest(unittest.TestCase):
 
     layer = {{{package.uppercasename}}}_FUNCTIONAL_TESTING
 

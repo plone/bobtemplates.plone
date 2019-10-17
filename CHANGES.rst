@@ -8,6 +8,13 @@ Changelog
 
 
 4.1.4 (2019-10-18)
+5.0.0 (unreleased)
+
+- Add upgrade step sub-template, remove upgrades from addon template
+  [MrTango]
+
+
+4.1.4 (unreleased)
 ------------------
 
 - Fixed Travis caching.  Downloads do not need to be cached.

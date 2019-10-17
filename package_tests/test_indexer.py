@@ -2,7 +2,7 @@
 
 """Test view generation."""
 
-from .base import init_package_base_files
+from .base import init_package_base_structure
 from bobtemplates.plone import base
 from bobtemplates.plone import indexer
 from mrbob.bobexceptions import ValidationError
@@ -52,13 +52,11 @@ def test_pre_renderer(tmpdir):
         base_path,
         'collective.foo',
     )
+    package_path = init_package_base_structure(package_root_folder)
     configurator = Configurator(
         template='bobtemplates.plone:indexer',
         bobconfig={"non_interactive": True},
-        target_directory=os.path.join(
-            package_root_folder,
-            'src/collective/foo',
-        ),
+        target_directory=package_path,
         variables={
             'package.root_folder': package_root_folder,
             "indexer_name": "my_cool_index",
@@ -68,7 +66,6 @@ def test_pre_renderer(tmpdir):
             ),
         },
     )
-    init_package_base_files(configurator)
     indexer.pre_renderer(configurator)
 
 
@@ -78,24 +75,17 @@ def test_post_renderer(tmpdir):
         base_path,
         'collective.foo',
     )
-    package_path = os.path.join(
-        package_root_folder,
-        'src/collective/foo',
-    )
+    package_path = init_package_base_structure(package_root_folder)
     configurator = Configurator(
         template='bobtemplates.plone:indexer',
         bobconfig={"non_interactive": True},
-        target_directory=os.path.join(
-            package_root_folder,
-            'src/collective/foo',
-        ),
+        target_directory=package_path,
         variables={
             'package.root_folder': package_root_folder,
             "indexer_name": "my_cool_index",
             "package_folder": package_path,
         },
     )
-    init_package_base_files(configurator)
     # os.makedirs(target_path)
 
     template = """

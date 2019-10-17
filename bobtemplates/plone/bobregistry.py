@@ -112,3 +112,11 @@ def plone_subscriber():
     reg.plonecli_alias = 'subscriber'
     reg.depend_on = 'plone_addon'
     return reg
+
+
+def plone_indexer():
+    reg = RegEntry()
+    reg.template = 'bobtemplates.plone:indexer'
+    reg.plonecli_alias = 'indexer'
+    reg.depend_on = 'plone_addon'
+    return reg

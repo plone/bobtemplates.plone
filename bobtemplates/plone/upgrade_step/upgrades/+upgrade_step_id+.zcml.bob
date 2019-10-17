@@ -1,0 +1,24 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+  xmlns:gs="http://namespaces.zope.org/genericsetup">
+
+  <gs:registerProfile name="{{{ upgrade_step_dest_version }}}"
+    title="{{{ upgrade_step_title }}}"
+    description='Configuration for version {{{ upgrade_step_dest_version }}}'
+    for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <gs:upgradeSteps source="{{{ upgrade_step_source_version }}}"
+    destination="{{{ upgrade_step_dest_version }}}"
+    profile="{{{ package.dottedname }}}:default">
+
+    <gs:upgradeStep title="{{{ upgrade_step_title }}}"
+      description="{{{ upgrade_step_description }}}"
+      handler=".v{{{ upgrade_step_dest_version }}}.upgrade" />
+
+    <gs:upgradeDepends title="{{{ upgrade_step_title }}} (GS profile)"
+      description="{{{ upgrade_step_description }}}"
+      import_profile="{{{ package.dottedname }}}.upgrades:{{{ upgrade_step_dest_version }}}" />
+
+  </gs:upgradeSteps
+
+</configure>

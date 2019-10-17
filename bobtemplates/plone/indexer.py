@@ -6,7 +6,6 @@ from bobtemplates.plone.base import remove_unwanted_files
 from bobtemplates.plone.base import update_configure_zcml
 
 import case_conversion as cc
-import os
 
 
 def _update_package_configure_zcml(configurator):

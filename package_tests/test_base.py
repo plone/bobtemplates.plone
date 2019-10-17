@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from bobtemplates.plone import base
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
@@ -389,4 +388,3 @@ def test_post_plone_version():
         variables={"plone.is_plone5": True, "plone.minor_version": "5.0"},
     )
     base.post_plone_version(configurator, None, "5.0.1")
-

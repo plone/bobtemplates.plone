@@ -465,7 +465,7 @@ def subtemplate_warning(configurator, question):
     Please use a version control system like GIT with a clean state,
     to track changes, before using this subtemplate!
 
-    """
+    """,
     )
 
 

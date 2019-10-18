@@ -4,12 +4,6 @@ Changelog
 5.0.1 (2019-10-18)
 ------------------
 
-- Nothing changed yet.
-
-
-5.0.1 (2019-10-18)
-------------------
-
 - Add missing registration for plonecli
   [MrTango]
 

@@ -1,0 +1,41 @@
+from setuptools import setup, find_packages
+import json
+
+package_json = json.load(open('package.json'))
+version = package_json['version']
+
+setup(
+    name='{{{ package.dottedname }}}',
+    version=version,
+    description='{{{ package.description }}}',
+    long_description=open('README.rst').read(),
+    classifiers=[
+        'Framework :: Plone',
+        'Framework :: Plone :: 5.1',
+        'Framework :: Plone :: 5.2',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+    ],
+    keywords='plone theme resources',
+    author='{{{ author.name }}}',
+    author_email='{{{ author.email }}}',
+    url='',
+    license='MIT',
+    packages=find_packages('src', exclude=['ez_setup']),
+    package_dir={'': 'src'},
+    namespace_packages=['{{{ package.namespace }}}'],
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=[],
+    entry_points='''
+        [z3c.autoinclude.plugin]
+        target = plone
+    ''',
+)

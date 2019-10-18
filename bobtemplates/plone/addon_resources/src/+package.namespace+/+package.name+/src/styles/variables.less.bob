@@ -1,0 +1,120 @@
+// Path Img
+@img-path: '../++plone++{{{ package.dottedname }}}.static/';
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+@gray-darker: #2b2b2b;
+@gray-agid: #303030;
+@gray-dark: #313131;
+@gray: #515151;
+@gray-light: #777;
+@gray-lighter: #ccc;
+@gray-bg: #eee;
+@gray-row: #d8d8d8;
+@gray-desc-border: #c1c1c1;
+@gray-nav: #4a4a4a;
+@gray-border: #4a4a4a;
+@gray-documentByLine: #666;
+@gray-label: #5c5c5c;
+
+@tr: transparent;
+@brand-primary: #0070ba;
+@brand-dark: darken(@brand-primary, 15%);
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+@plone-body-bg: #ececec;
+//** Global text color on `<body>`.
+@plone-text-color: #1d1d1b;
+@text-color-light: #5a6772;
+
+//** Global textual link color.
+@plone-link-color: @brand-primary;
+//** Link hover color set via `darken()` function.
+@plone-link-hover-color: darken(@plone-link-color, 10%);
+//** Link hover decoration.
+@plone-link-hover-decoration: none;
+
+//** COLORE SOTTOLINEATURA ALL'HOVER DEI LINK
+@plone-link-hover-border-color: @gray-lighter;
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+// pesi dei font
+@light: 300;
+@regular: 400;
+@semibold: 600;
+@bold: 700;
+
+@font-family-sans-serif: 'Titillium Web', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@font-family-serif: Georgia, 'Times New Roman', Times, serif;
+//@font-family-condensed:  "Open Sans Condensed";
+
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+@font-family-monospace: Menlo, Monaco, Consolas, 'Courier New', monospace;
+@plone-font-family-base: @font-family-sans-serif;
+
+@plone-font-size-base: 1rem;
+@font-size-large: ceil((@plone-font-size-base * 1.25)); // ~18px
+@font-size-small: ceil((@plone-font-size-base * 0.85)); // ~12px
+
+@plone-font-size-h1: 50px;
+@plone-font-size-h2: 28px;
+@plone-font-size-h3: 22px;
+@plone-font-size-h4: ceil((@plone-font-size-base * 1.1));
+@plone-font-size-h5: @plone-font-size-base;
+@plone-font-size-h6: ceil((@plone-font-size-base * 0.95));
+
+//** Unit-less `line-height` for use in components like buttons.
+@plone-line-height-base: 1.5;
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+@plone-line-height-computed: floor((@plone-font-size-base * @plone-line-height-base)); // ~20px
+
+//** By default, this inherits from the `<body>`.
+@plone-headings-font-family: inherit;
+@plone-headings-font-weight: 700;
+@plone-headings-line-height: 1.3;
+@plone-headings-color: inherit;
+
+// NAV COLLAPSE
+//$screen-nav-collapse: 1045px;
+
+//*// DEVICES
+@plone-screen-xs-min: 480px;
+@plone-screen-sm-min: 768px;
+@plone-screen-md-min: 992px;
+@plone-screen-lg-min: 1200px;
+@plone-screen-xl-min: 1420px;
+
+@plone-screen-xs-max: (@plone-screen-sm-min - 1);
+@plone-screen-sm-max: (@plone-screen-md-min - 1);
+@plone-screen-md-max: (@plone-screen-lg-min - 1);
+@plone-screen-lg-max: (@plone-screen-xl-min - 1);
+
+@plone-grid-columns: 12;
+@plone-grid-gutter-width: 30px;
+@plone-grid-float-breakpoint: @plone-screen-lg-min;
+//** Point at which the navbar begins collapsing.
+@plone-grid-float-breakpoint-max: (@plone-grid-float-breakpoint - 1);
+
+//*// CONTAINERS
+@plone-container-xs: (@plone-screen-xs-min - @plone-grid-gutter-width);
+@plone-container-sm: (@plone-screen-sm-min - @plone-grid-gutter-width);
+@plone-container-md: (960px + @plone-grid-gutter-width);
+@plone-container-lg: (1170px + @plone-grid-gutter-width);
+@plone-container-xl: (1368px + @plone-grid-gutter-width);
+
+//*// CONTAINER SIZE ALIASES
+@plone-container-mobile: @plone-container-xs;
+@plone-container-tablet: @plone-container-sm;
+@plone-container-desktop: @plone-container-md;
+@plone-container-large-desktop: @plone-container-lg;
+@plone-container-extra-large: @plone-container-xl;
+
+@course-core-max-width: 1070px;

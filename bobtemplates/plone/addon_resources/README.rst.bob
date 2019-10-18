@@ -1,0 +1,46 @@
+==========================
+{{{ package.dottedname }}}
+==========================
+
+{{{ package.description }}}
+
+
+Available resources
+===================
+
+...
+
+
+Installation
+============
+
+...
+
+
+Development
+===========
+
+In this repo there is a `.nvmrc` file. To use automatically the correct version of node::
+
+    nvm use
+
+
+To install its dependencies::
+
+    yarn
+
+
+You can use webpack dev-server in development::
+
+    yarn start
+
+
+Build
+=====
+
+Lauch the build script::
+
+    yarn build
+
+This operation will produce several js and css files in `dist/prod` directory.
+There will be one for each widget plus a generic one for the website and another for the backend.

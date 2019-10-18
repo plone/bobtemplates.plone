@@ -17,6 +17,13 @@ def plone_addon():
     return reg
 
 
+def plone_addon_resources():
+    reg = RegEntry()
+    reg.template = 'bobtemplates.plone:addon_resources'
+    reg.plonecli_alias = 'addon_resources'
+    return reg
+
+
 def plone_buildout():
     reg = RegEntry()
     reg.template = 'bobtemplates.plone:buildout'

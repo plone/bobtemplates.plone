@@ -1,0 +1,14 @@
+.history/
+.babelrc
+.browserslistrc
+.editorconfig
+.env
+.eslintrc.json
+.flowconfig
+.nvmrc
+.prettierrc.json
+.stylelintrc.json
+.travis.yml
+postcss.config.js
+webpack.config.js
+yarn.lock

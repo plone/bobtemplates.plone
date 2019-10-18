@@ -1,0 +1,15 @@
+[ignore]
+.*/.history/.*
+.*/build/.*
+.*/node_modules/findup/test/.*
+
+[untyped]
+
+[include]
+
+[libs]
+
+[options]
+module.name_mapper='.*\(.less\)' -> 'empty/object'
+
+[lints]

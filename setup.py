@@ -4,7 +4,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '4.1.4.dev0'
+version = "4.1.4.dev0"
 
 
 long_description = "\n\n".join(
@@ -57,6 +57,7 @@ setup(
     entry_points={
         "mrbob_templates": [
             "plone_addon = bobtemplates.plone.bobregistry:plone_addon",
+            "plone_addon_resources = bobtemplates.plone.bobregistry:plone_addon_resources",
             "plone_behavior = bobtemplates.plone.bobregistry:plone_behavior",
             "plone_buildout = bobtemplates.plone.bobregistry:plone_buildout",
             "plone_content_type = bobtemplates.plone.bobregistry:plone_content_type",

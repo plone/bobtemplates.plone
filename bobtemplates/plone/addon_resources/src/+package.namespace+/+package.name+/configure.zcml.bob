@@ -1,0 +1,18 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="{{{ package.dottedname }}}">
+
+  <plone:static
+    name="{{{ package.dottedname }}}"
+    type="plone"
+    directory="dist"
+    />
+
+  <plone:static
+    name="{{{ package.dottedname }}}.static"
+    type="plone"
+    directory="static"
+    />
+
+</configure>

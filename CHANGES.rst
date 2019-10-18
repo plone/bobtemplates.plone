@@ -1,7 +1,7 @@
 Changelog
 =========
 
-4.1.4 (unreleased)
+4.1.4 (2019-10-18)
 ------------------
 
 - Fixed Travis caching.  Downloads do not need to be cached.
@@ -20,6 +20,9 @@ Changelog
   [erral]
 
 - Use dist: bionic on Travis, install firefox-geckodriver via apt
+  [MrTango]
+
+- Add indexer sub-template to generate indexers
   [MrTango]
 
 
@@ -70,7 +73,6 @@ Changelog
   [ale-rt]
 
 - Fix content_type_test which test the deletion of an object
-- Add indexer sub-template to generate indexers
   [MrTango]
 
 

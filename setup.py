@@ -60,6 +60,7 @@ setup(
             "plone_behavior = bobtemplates.plone.bobregistry:plone_behavior",
             "plone_buildout = bobtemplates.plone.bobregistry:plone_buildout",
             "plone_content_type = bobtemplates.plone.bobregistry:plone_content_type",
+            "plone_indexer = bobtemplates.plone.bobregistry:plone_indexer",
             "plone_portlet = bobtemplates.plone.bobregistry:plone_portlet",
             "plone_subscriber = bobtemplates.plone.bobregistry:plone_subscriber",
             "plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service",  # NOQA E501

@@ -15,15 +15,19 @@
   -->
   <!-- BACKEND ONLY BLOCK -->
   <!--
-  <rules css:if-not-content="body.frontend#visual-portal-wrapper">
+  <rules css:if-not-content="body.viewpermission-view, body.viewpermission-none">
   </rules>
   -->
 
   <!-- FRONTEND ONLY BLOCK -->
-  <rules css:if-content="body.frontend#visual-portal-wrapper">
+  <rules css:if-content="body.viewpermission-view, body.viewpermission-none">
     <!--<theme href="home.html" css:if-content=".section-front-page" />-->
     <theme href="article.html" />
     <notheme css:if-not-content="#visual-portal-wrapper" />
+
+    <!-- ### REMOVE THIS RULE AFTER ACTIVATING YOUR OWN RULES BELOW ### -->
+    <!-- Copy over the whole body content of Plone -->
+    <replace theme-children="/html/body" content-children="/html/body" />
 
     <rules css:if-content="#portal-top">
       <!-- Attributes -->
@@ -95,14 +99,6 @@
     <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
     <copy attributes="*" css:content="body" css:theme="body" />
 
-    <!-- Insert the Plone toolbar -->
-    <before
-      theme-children="/html/body"
-      css:content-children="#edit-zone"
-      css:if-not-content=".ajax_load"
-      css:if-content=".userrole-authenticated"
-      />
-
     <!-- Copy anonymous actions like the login link -->
     <before
       theme="/html/body"
@@ -110,12 +106,6 @@
       css:if-not-content=".ajax_load"
       css:if-content=".userrole-anonymous"
       />
-
-
-    <!-- ### REMOVE THIS RULE AFTER ACTIVATING YOUR OWN RULES BELOW ### -->
-    <!-- Copy over the whole body content of Plone -->
-    <replace theme-children="/html/body" content-children="/html/body" />
-
 
     <!-- ### ACTIVATE OR ADD YOUR OWN RULES BELOW ACCORDING TO YOUR THEME ### -->
 
@@ -162,8 +152,4 @@
     <!-- <drop css:theme="#footer .icons" /> -->
 
   </rules>
-
-
-
-
 </rules>

@@ -13,10 +13,10 @@ def _update_package_configure_zcml(configurator):
         configurator.variables['package_folder'],
     )
     file_name = u'configure.zcml'
-    match_xpath = "zope:include[@package='.subscribers']"
+    match_xpath = "zope:include[@package='.indexers']"
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
-  <include package=".subscribers" />
+  <include package=".indexers" />
 """
     update_configure_zcml(
         configurator,
@@ -28,24 +28,17 @@ def _update_package_configure_zcml(configurator):
     )
 
 
-def _update_subscribers_configure_zcml(configurator):
-    path = '{0}/subscribers'.format(
+def _update_indexers_configure_zcml(configurator):
+    path = '{0}/indexers'.format(
         configurator.variables['package_folder'],
     )
     file_name = u'configure.zcml'
     example_file_name = '{0}.example'.format(file_name)
-    match_xpath = "zope:subscriber[@handler='.{0}.handler']".format(
-        configurator.variables['subscriber_handler_file_name'],
-    )
+    match_xpath = "zope:include[@package='.{0}']".format(configurator.variables['indexer_name'])
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
-  <subscriber for="plone.dexterity.interfaces.IDexterityContent
-                   zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-              handler=".{0}.handler"
-              />
-""".format(
-        configurator.variables['subscriber_handler_file_name'],
-    )
+  <include package=".{0}" />
+""".format(configurator.variables['indexer_name'])
     update_configure_zcml(
         configurator,
         path,
@@ -60,7 +53,7 @@ def _update_subscribers_configure_zcml(configurator):
 def _remove_unwanted_files(configurator):
     file_paths = []
     rel_file_paths = [
-        '/subscribers/configure.zcml.example',
+        '/indexers/configure.zcml.example',
     ]
     base_path = configurator.variables['package_folder']
     for rel_file_path in rel_file_paths:
@@ -71,20 +64,22 @@ def _remove_unwanted_files(configurator):
 def pre_renderer(configurator):
     """Pre rendering."""
     configurator = base_prepare_renderer(configurator)
-    configurator.variables['template_id'] = 'subscriber'
-    name = configurator.variables['subscriber_handler_name'].strip('_')
-    configurator.variables['subscriber_handler_file_name'] = cc.snakecase(name)
+    configurator.variables['template_id'] = 'indexer'
+    name = configurator.variables['indexer_name'].strip('_')
+    indexer_name = cc.snakecase(name)
+    configurator.variables['indexer_name'] = indexer_name
+    configurator.variables['indexer_file_name'] = indexer_name
     configurator.target_directory = configurator.variables['package_folder']
 
 
 def post_renderer(configurator):
     """Post rendering."""
     _update_package_configure_zcml(configurator)
-    _update_subscribers_configure_zcml(configurator)
+    _update_indexers_configure_zcml(configurator)
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        'Add subscriber: {0}'.format(
-            configurator.variables['subscriber_handler_name'],
+        'Add indexer: {0}'.format(
+            configurator.variables['indexer_name'],
         ),
     )

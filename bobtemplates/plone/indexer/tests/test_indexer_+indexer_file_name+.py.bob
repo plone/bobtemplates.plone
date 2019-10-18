@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING
+
+import unittest
+
+
+class IndexerIntegrationTest(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+
+
+class IndexerFunctionalTest(unittest.TestCase):
+
+    layer = {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])

@@ -45,7 +45,7 @@ def _update_api_configure_zcml(configurator):
     )
     file_name = u'configure.zcml'
     example_file_name = '{0}.example'.format(file_name)
-    match_xpath = "include[@package='.services']"
+    match_xpath = "zope:include[@package='.services']"
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
   <include package=".services" />
@@ -67,7 +67,7 @@ def _update_services_configure_zcml(configurator):
     )
     file_name = u'configure.zcml'
     example_file_name = '{0}.example'.format(file_name)
-    match_xpath = "include[@package='.{0}']".format(
+    match_xpath = "zope:include[@package='.{0}']".format(
         configurator.variables['service_class_name_normalized'],
     )
     match_str = '-*- extra stuff goes here -*-'

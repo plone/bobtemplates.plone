@@ -1,10 +1,11 @@
 Changelog
 =========
 
-4.1.5 (unreleased)
+5.0.0 (2019-10-18)
 ------------------
 
-- Nothing changed yet.
+- Add upgrade_step sub-template, remove upgrades from addon template, read the `Upgrade chapter <https://bobtemplatesplone.readthedocs.io/en/latest/upgrade-packages.html>`_ in the docs, how to upgrade existing packages.
+  [MrTango]
 
 
 4.1.4 (2019-10-18)

@@ -62,11 +62,12 @@ setup(
             "plone_content_type = bobtemplates.plone.bobregistry:plone_content_type",
             "plone_indexer = bobtemplates.plone.bobregistry:plone_indexer",
             "plone_portlet = bobtemplates.plone.bobregistry:plone_portlet",
-            "plone_subscriber = bobtemplates.plone.bobregistry:plone_subscriber",
             "plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service",  # NOQA E501
+            "plone_subscriber = bobtemplates.plone.bobregistry:plone_subscriber",
             "plone_theme = bobtemplates.plone.bobregistry:plone_theme",
             "plone_theme_barceloneta = bobtemplates.plone.bobregistry:plone_theme_barceloneta",  # NOQA E501
             "plone_theme_package = bobtemplates.plone.bobregistry:plone_theme_package",
+            "plone_upgrade_step = bobtemplates.plone.bobregistry:plone_upgrade_step",
             "plone_view = bobtemplates.plone.bobregistry:plone_view",
             "plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet",
             "plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary",

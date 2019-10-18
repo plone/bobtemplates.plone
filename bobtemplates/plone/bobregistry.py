@@ -120,3 +120,10 @@ def plone_indexer():
     reg.plonecli_alias = 'indexer'
     reg.depend_on = 'plone_addon'
     return reg
+
+def plone_upgrade_step():
+    reg = RegEntry()
+    reg.template = 'bobtemplates.plone:upgrade_step'
+    reg.plonecli_alias = 'upgrade_step'
+    reg.depend_on = 'plone_addon'
+    return reg

@@ -77,6 +77,28 @@ def _read_source_version(configurator):
         return int(match_result[0].text)
 
 
+def _write_dest_version(configurator):
+    """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""  # NOQA: E501
+    metadata_file_name = u'metadata.xml'
+    metadata_file_dir = u'profiles/default'
+    metadata_file_path = configurator.variables['package_folder'] + '/' + \
+        metadata_file_dir + '/' + metadata_file_name
+
+    with open(metadata_file_path, 'r') as xml_file:
+        parser = etree.XMLParser(remove_blank_text=True)
+        tree = etree.parse(xml_file, parser)
+        version = tree.xpath('/metadata/version')[0]
+        version.text = str(configurator.variables["upgrade_step_dest_version"])
+
+    with open(metadata_file_path, 'wb') as xml_file:
+        tree.write(
+            xml_file,
+            pretty_print=True,
+            xml_declaration=True,
+            encoding='utf-8',
+        )
+
+
 def pre_renderer(configurator):
     """Pre rendering."""
     configurator = base_prepare_renderer(configurator)

@@ -134,3 +134,37 @@ def test_read_source_version(tmpdir):
     )
     assert configurator
     assert upgrade_step._read_source_version(configurator) == 1004
+
+
+def test_write_dest_version(tmpdir):
+    package_root = tmpdir.strpath + "/collective.todo"
+    package_path = init_package_base_structure(package_root)
+    target_path = os.path.join(package_path, 'profiles/default')
+
+    template = """<?xml version='1.0' encoding='UTF-8'?>
+<metadata>
+  <version>1004</version>
+  <dependencies>
+    <dependency>profile-plone.app.dexterity:default</dependency>
+  </dependencies>
+</metadata>
+"""
+    with open(os.path.join(target_path, 'metadata.xml'), 'w') as f:
+        f.write(template)
+    configurator = Configurator(
+        template='bobtemplates.plone:upgrade_step',
+        target_directory=package_path,
+        bobconfig={
+            'non_interactive': True,
+        },
+        variables={
+            'plone.version': '5.1',
+            'package_folder': package_path,
+            'upgrade_step_title': 'Add cool index and reindex it',
+            'upgrade_step_dest_version': 1005,
+            'upgrade_step_description': 'We add an index and reindex it with existing content.',
+        },
+    )
+    assert configurator
+    upgrade_step._write_dest_version(configurator)
+    assert upgrade_step._read_source_version(configurator) == 1005

@@ -1,10 +1,11 @@
 Changelog
 =========
 
-5.0.2 (unreleased)
+5.0.2 (2019-10-21)
 ------------------
 
-- Nothing changed yet.
+- Add auto increment version to upgrade_step sub-template
+  [MrTango]
 
 
 5.0.1 (2019-10-18)

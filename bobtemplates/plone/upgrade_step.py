@@ -115,6 +115,7 @@ def post_renderer(configurator):
     """Post rendering."""
     _update_package_configure_zcml(configurator)
     _update_upgrades_configure_zcml(configurator)
+    _write_dest_version(configurator)
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,

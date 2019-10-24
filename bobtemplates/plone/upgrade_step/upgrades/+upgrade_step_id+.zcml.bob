@@ -19,6 +19,6 @@
       description="{{{ upgrade_step_description }}}"
       import_profile="{{{ package.dottedname }}}.upgrades:{{{ upgrade_step_dest_version }}}" />
 
-  </gs:upgradeSteps
+  </gs:upgradeSteps>
 
 </configure>

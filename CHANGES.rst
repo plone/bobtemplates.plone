@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.0.3 (unreleased)
+5.0.3 (2019-10-24)
 ------------------
 
 - Fix upgrade_step sub-template

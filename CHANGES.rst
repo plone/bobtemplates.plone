@@ -4,7 +4,8 @@ Changelog
 5.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix flake8-plone-hasattr issue, space and unused import.
+  [balavec]
 
 
 5.0.2 (2019-10-21)

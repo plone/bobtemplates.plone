@@ -4,7 +4,8 @@ Changelog
 5.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix upgrade_step sub-template
+  [MrTango]
 
 
 5.0.2 (2019-10-21)

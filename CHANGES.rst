@@ -1,11 +1,21 @@
 Changelog
 =========
 
-5.0.3 (unreleased)
+5.0.4 (unreleased)
 ------------------
 
-- Fix flake8-plone-hasattr issue, space and unused import.
+- Fix flake8-plone-hasattr issue, space and unused import
   [balavec]
+
+- Disable extra requirements for theme addon
+  [balavec]
+
+
+5.0.3 (2019-10-24)
+------------------
+
+- Fix upgrade_step sub-template
+  [MrTango]
 
 
 5.0.2 (2019-10-21)

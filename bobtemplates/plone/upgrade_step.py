@@ -34,10 +34,10 @@ def _update_upgrades_configure_zcml(configurator):
     file_name = u'configure.zcml'
     example_file_name = '{0}.example'.format(file_name)
     zcml_package_name = configurator.variables['upgrade_step_dest_version']
-    match_xpath = "zope:include[@package='.{0}']".format(zcml_package_name)
+    match_xpath = "zope:include[@file='{0}.zcml']".format(zcml_package_name)
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
-  <include package=".{0}" />
+  <include file="{0}.zcml" />
 """.format(zcml_package_name)
     update_configure_zcml(
         configurator,

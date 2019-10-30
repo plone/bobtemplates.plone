@@ -4,6 +4,9 @@ Changelog
 5.0.4 (unreleased)
 ------------------
 
+- Fix flake8-plone-hasattr issue, space and unused import
+  [balavec]
+
 - Disable extra requirements for theme addon
   [balavec]
 

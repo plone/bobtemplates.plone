@@ -3,8 +3,8 @@
 from {{{package.dottedname}}} import _
 from plone import schema
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.dexterity.interfaces import IDexterityContent
 from plone.supermodel import model
+from Products.CMFPlone.utils import safe_hasattr
 from zope.component import adapter
 from zope.interface import Interface
 from zope.interface import implementer
@@ -13,6 +13,7 @@ from zope.interface import provider
 
 class I{{{behavior_name_klass}}}Marker(Interface):
     pass
+
 
 @provider(IFormFieldProvider)
 class I{{{behavior_name_klass}}}(model.Schema):
@@ -34,7 +35,7 @@ class {{{behavior_name_klass}}}(object):
 
     @property
     def project(self):
-        if hasattr(self.context, 'project'):
+        if safe_hasattr(self.context, 'project'):
             return self.context.project
         return None
 

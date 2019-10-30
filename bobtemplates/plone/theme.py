@@ -125,7 +125,7 @@ def _update_setup_py(configurator):
     file_path = configurator.variables['package.root_folder'] + '/' + file_name
     match_str = '-*- Extra requirements: -*-'
     insert_strings = [
-        'collective.themesitesetup',
+        # 'collective.themesitesetup',  # disable while not ready for Plone 5.2
         'collective.themefragments',
         'plone.app.themingplugins',
     ]

@@ -4,7 +4,8 @@ Changelog
 5.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Disable extra requirements for theme addon
+  [balavec]
 
 
 5.0.3 (2019-10-24)

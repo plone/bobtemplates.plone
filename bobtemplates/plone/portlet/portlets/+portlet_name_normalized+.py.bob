@@ -12,8 +12,9 @@ from zope.component import getMultiAdapter
 from zope.interface import implementer
 
 import json
-import six.moves.urllib.request, six.moves.urllib.parse, six.moves.urllib.error
-import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
+import six.moves.urllib.error
+import six.moves.urllib.parse
+import six.moves.urllib.request
 
 
 class {{{data_provider_class_name}}}(IPortletDataProvider):
@@ -21,7 +22,7 @@ class {{{data_provider_class_name}}}(IPortletDataProvider):
         title=_(u'Name of your place with country code'),
         description=_(u'City name along with country code i.e Delhi,IN'),  # NOQA: E501
         required=True,
-        default=u'delhi,in'
+        default=u'delhi,in',
     )
 
 
@@ -65,7 +66,7 @@ class Renderer(base.Renderer):
         context = aq_inner(self.context)
         portal_state = getMultiAdapter(
             (context, self.request),
-            name=u'plone_portal_state'
+            name=u'plone_portal_state',
         )
         self.anonymous = portal_state.anonymous()
 

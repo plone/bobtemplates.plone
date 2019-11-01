@@ -144,7 +144,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name }}}')
         self.assertTrue(
             fti.global_allow,
-            u'{0} is not globally addable!'.format(fti.id)
+            u'{0} is not globally addable!'.format(fti.id),
         )
 {{% else %}}
     def test_ct_{{{ dexterity_type_name_normalized }}}_globally_not_addable(self):
@@ -152,7 +152,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name }}}')
         self.assertFalse(
             fti.global_allow,
-            u'{0} is globally addable!'.format(fti.id)
+            u'{0} is globally addable!'.format(fti.id),
         )
 {{% endif %}}
 {{% if dexterity_type_filter_content_types | to_boolean and dexterity_type_base_class | lower == 'container' %}}
@@ -166,7 +166,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
             self.portal,
             '{{{ dexterity_type_name_normalized }}}_id',
             title='{{{ dexterity_type_name }}} container',
-         )
+        )
         self.parent = self.portal[parent_id]
         with self.assertRaises(InvalidParameterError):
             api.content.create(

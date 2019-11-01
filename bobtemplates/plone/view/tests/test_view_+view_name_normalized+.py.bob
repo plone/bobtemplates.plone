@@ -23,7 +23,7 @@ class ViewsIntegrationTest(unittest.TestCase):
     def test_{{{view_name_normalized}}}_is_registered(self):
         view = getMultiAdapter(
             (self.portal['other-folder'], self.portal.REQUEST),
-            name='{{{ view_name }}}'
+            name='{{{ view_name }}}',
         )
         self.assertTrue(view.__name__ == '{{{ view_name }}}')
 {{% if view_python_class and view_template %}}
@@ -42,7 +42,7 @@ class ViewsIntegrationTest(unittest.TestCase):
         with self.assertRaises(ComponentLookupError):
             getMultiAdapter(
                 (self.portal['front-page'], self.portal.REQUEST),
-                name='{{{ view_name }}}'
+                name='{{{ view_name }}}',
             )
 
 

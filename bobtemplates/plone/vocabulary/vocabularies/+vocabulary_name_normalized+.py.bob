@@ -43,7 +43,7 @@ class {{{ vocabulary_name_klass }}}(object):
                     value=item.token,
                     token=str(item.token),
                     title=item.value,
-                )
+                ),
             )
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)

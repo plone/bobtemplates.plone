@@ -41,12 +41,12 @@ def locale_folder_setup():
 
 
 def _rebuild():
-    cmd = '{i18ndude} rebuild-pot --pot {locale_path}/{domain}.pot --exclude {excludes} --create {domain} {target_path}'.format(  # NOQA: E501
+    cmd = '{i18ndude} rebuild-pot --pot {locale_path}/{domain}.pot --exclude {excludes} --create {domain} {target_path}'.format(  # NOQA: E501,P202,P302
         i18ndude=i18ndude,
         locale_path=locale_path,
         domain=domain,
         target_path=target_path,
-        exclude=excludes
+        exclude=excludes,
     )
     subprocess.call(
         cmd,

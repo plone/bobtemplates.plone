@@ -30,7 +30,7 @@ plone.version = {version}
 
     # generate template addon:
     config.template = 'addon'
-    config.package_name = 'plonetheme.task'
+    config.package_name = 'collective.task'
     result = subprocess.call(
         [
             'mrbob',
@@ -66,7 +66,7 @@ subtemplate_warning=False
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/plonetheme/task/theme/manifest.cfg')
+    assert file_exists(wd, '/src/collective/task/theme/manifest.cfg')
 
     with capsys.disabled():
         run_skeleton_tox_env(wd, config)
@@ -94,7 +94,7 @@ plone.version = {version}
 
     # generate template addon:
     config.template = 'addon'
-    config.package_name = 'plonetheme.task.foo'
+    config.package_name = 'collective.task.foo'
     result = subprocess.call(
         [
             'mrbob',
@@ -129,4 +129,4 @@ subtemplate_warning=False
         cwd=wd,
     )
     assert result == 0
-    assert file_exists(wd, '/src/plonetheme/task/foo/theme/manifest.cfg')
+    assert file_exists(wd, '/src/collective/task/foo/theme/manifest.cfg')

@@ -4,6 +4,9 @@ Changelog
 5.0.4 (unreleased)
 ------------------
 
+- Make code-analysis actually run on code, fix flake8 issues
+  [balavec]
+
 - Fix flake8-plone-hasattr issue, space and unused import
   [balavec]
 

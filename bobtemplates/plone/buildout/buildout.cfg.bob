@@ -1,46 +1,50 @@
 [buildout]
-extends =
-    https://raw.github.com/collective/buildout.plonetest/master/test-{{{ plone.version }}}.cfg
-    https://raw.github.com/collective/buildout.plonetest/master/qa.cfg
-    https://raw.github.com/plone/plone.app.robotframework/master/versions.cfg
 
+# makes sure you're not running buildout as root.
 extensions =
     buildout.sanitycheck
-    mr.developer
 
-# mr.developer settings:
-auto-checkout = *
-always-checkout = true
-
-versions = versions
-extensions = mr.developer
-
-parts = 
-    test
+extends =
+    base.cfg
+    http://dist.plone.org/release/{{{ plone.version }}}/versions.cfg
 
 
-eggs +=
+find-links +=
+    http://dist.plone.org/release/{{{ plone.version }}}
+
+
+eggs =
+    Plone
+    Pillow
+
+
+zcml =
+#    plone.reload
 
 
 develop =
+#    src/my.package
 
 
-auto-checkout = *
-# always-checkout = true
+var-dir=${buildout:directory}/var
+backups-dir=${buildout:var-dir}
+user=admin:{{{ plone.initial_admin_password }}}
+deprecation-warnings = off
+verbose-security = off
 
 
-[sources]
-# my.package = git git@github.com:collective/collective.easyform.git
+parts =
+    instance
+    repozo
+    backup
+    zopepy
+#    unifiedinstaller
+
+
+[instance]
+<= instance_base
+recipe = plone.recipe.zope2instance
+http-address = {{{ plone.instance_address }}}
 
 
 [versions]
-zc.buildout =
-setuptools =
-
-
-[test]
-recipe = zc.recipe.testrunner
-defaults = ['--auto-color', '--auto-progress']
-eggs =
-    Plone
-    ${buildout:eggs}

@@ -10,6 +10,9 @@ Changelog
 - Disable extra requirements for theme addon
   [balavec]
 
+- Fix upgrade_step template, missing bob-file-extension and import
+  [MrTango]
+
 
 5.0.3 (2019-10-24)
 ------------------

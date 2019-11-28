@@ -33,7 +33,7 @@ eggs =
 
 
 [code-analysis]
-recipe = plone.recipe.codeanalysis[recommended]
+recipe = plone.recipe.codeanalysis
 directory = ${buildout:directory}/src/{{{ package.namespace }}}
 return-status-codes = False
 

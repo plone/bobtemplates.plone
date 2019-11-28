@@ -10,6 +10,12 @@ Changelog
 - Disable extra requirements for theme addon
   [balavec]
 
+- Fix upgrade_step template, missing bob-file-extension and import
+  [MrTango]
+
+- Fix upgrade_step by add missing directory attribute to UpgradeStep profile, upgrade_steps are no longer visible in addon control panel
+  [MrTango]
+
 
 5.0.3 (2019-10-24)
 ------------------

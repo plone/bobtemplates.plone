@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.0.4 (unreleased)
+5.0.4 (2019-11-28)
 ------------------
 
 - Fix flake8-plone-hasattr issue, space and unused import

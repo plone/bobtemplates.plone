@@ -1,7 +1,13 @@
 Changelog
 =========
 
-5.0.4 (unreleased)
+5.0.5 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
+5.0.4 (2019-11-28)
 ------------------
 
 - Make code-analysis actually run on code, fix flake8 issues
@@ -12,6 +18,12 @@ Changelog
 
 - Disable extra requirements for theme addon
   [balavec]
+
+- Fix upgrade_step template, missing bob-file-extension and import
+  [MrTango]
+
+- Fix upgrade_step by add missing directory attribute to UpgradeStep profile, upgrade_steps are no longer visible in addon control panel
+  [MrTango]
 
 
 5.0.3 (2019-10-24)

@@ -3,6 +3,7 @@
 
   <gs:registerProfile name="{{{ upgrade_step_dest_version }}}"
     title="{{{ upgrade_step_title }}}"
+    directory="{{{ upgrade_step_dest_version }}}"
     description='Configuration for version {{{ upgrade_step_dest_version }}}'
     for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot"
     provides="Products.GenericSetup.interfaces.EXTENSION" />

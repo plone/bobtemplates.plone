@@ -13,7 +13,7 @@ Run buildout::
 
     $ ./bin/buildout
 
-Start Plone in foreground:
+Start Plone in foreground::
 
     $ ./bin/instance fg
 

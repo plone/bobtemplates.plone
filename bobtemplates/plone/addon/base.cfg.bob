@@ -91,6 +91,7 @@ eggs = zest.releaser
 recipe = zc.recipe.egg
 eggs = i18ndude
 
+
 [plone-helper-scripts]
 recipe = zc.recipe.egg
 eggs =
@@ -100,6 +101,7 @@ interpreter = zopepy
 scripts =
    zopepy
    plone-compile-resources
+
 
 [versions]
 # Don't use a released version of {{{ package.dottedname }}}

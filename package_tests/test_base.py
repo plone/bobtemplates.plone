@@ -66,7 +66,7 @@ version=5.1
     configurator = Configurator(
         template="bobtemplates.plone:addon",
         target_directory=target_dir,
-        variables={"year": 1970, "plone.version": "5.1-latest"},
+        variables={"year": 1970, "plone.version": "5.2"},
     )
     base.set_global_vars(configurator)
 

@@ -1,5 +1,5 @@
 [buildout]
-extends = http://dist.plone.org/release/{{{ plone.version }}}/versions.cfg
+extends = http://dist.plone.org/release/{{{ plone.version }}}-latest/versions.cfg
 show-picked-versions = true
 extensions =
     mr.developer

@@ -24,7 +24,10 @@ class PortletIntegrationTest(unittest.TestCase):
             IPortletType,
             name='{{{portlet_configuration_name}}}',
         )
-        self.assertEqual(portlet.addview, '{{{portlet_configuration_name}}}')
+        self.assertEqual(
+            portlet.addview,
+            '{{{portlet_configuration_name}}}',
+        )
 
 
 class PortletFunctionalTest(unittest.TestCase):

@@ -4,7 +4,8 @@ Changelog
 5.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Make tox run lint, refactor plone versions, clean-up.
+  [balavec]
 
 
 5.0.4 (2019-11-28)

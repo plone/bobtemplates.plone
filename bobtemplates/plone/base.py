@@ -209,6 +209,14 @@ def read_bobtemplates_ini(configurator):
     return bob_config
 
 
+def get_version_digits(version):
+    _version_digits = version
+    if isinstance(version, six.string_types):
+        _digits_list = re.findall(r"\d+", version)
+        _version_digits = "".join(_digits_list)
+    return _version_digits
+
+
 def set_global_vars(configurator):
     bob_config = read_bobtemplates_ini(configurator)
     configurator.variables["year"] = date.today().year
@@ -217,6 +225,7 @@ def set_global_vars(configurator):
         print(">>> reading Plone version from bobtemplate.cfg")
         version = bob_config.version
     configurator.variables["plone.version"] = version
+    configurator.variables["plone.version_digits"] = get_version_digits(version)
     set_plone_version_variables(configurator)
 
 

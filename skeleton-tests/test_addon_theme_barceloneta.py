@@ -47,12 +47,11 @@ plone.version = {version}
         os.path.join(tmpdir.strpath, config.package_name),
     )
 
-    _package_directories = config.package_name.split(".")
     subprocess.call(
         [
             'isort',
-            os.path.join("src", *_package_directories, "tests", "test_robot.py"),
-            os.path.join("src", *_package_directories, "tests", "test_setup.py"),
+            os.path.join("src", "plonetheme", "task", "tests", "test_robot.py"),
+            os.path.join("src", "plonetheme", "task", "tests", "test_setup.py"),
         ],
         cwd=wd,
     )
@@ -124,12 +123,11 @@ plone.version = {version}
         os.path.join(tmpdir.strpath, config.package_name),
     )
 
-    _package_directories = config.package_name.split(".")
     subprocess.call(
         [
             'isort',
-            os.path.join("src", *_package_directories, "tests", "test_robot.py"),
-            os.path.join("src", *_package_directories, "tests", "test_setup.py"),
+            os.path.join("src", "plonetheme", "task", "tests", "test_robot.py"),
+            os.path.join("src", "plonetheme", "task", "tests", "test_setup.py"),
         ],
         cwd=wd,
     )

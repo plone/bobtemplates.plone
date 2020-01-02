@@ -30,7 +30,7 @@ plone.version = {version}
 
     # generate template addon:
     config.template = 'addon'
-    config.package_name = 'collective.task'
+    config.package_name = 'plonetheme.task'
     result = subprocess.call(
         [
             'mrbob',
@@ -45,6 +45,17 @@ plone.version = {version}
 
     wd = os.path.abspath(
         os.path.join(tmpdir.strpath, config.package_name),
+    )
+
+    _package_directories = config.package_name.split(".")
+
+    _r = subprocess.call(
+        [
+            'isort',
+            os.path.join("src", *_package_directories, "tests", "test_robot.py"),
+            os.path.join("src", *_package_directories, "tests", "test_setup.py"),
+        ],
+        cwd=wd,
     )
 
     # generate subtemplate content_type:
@@ -67,7 +78,7 @@ subtemplate_warning=False
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/task/theme/manifest.cfg')
+    assert file_exists(wd, '/src/plonetheme/task/theme/manifest.cfg')
 
     with capsys.disabled():
         run_skeleton_tox_env(wd, config)
@@ -95,7 +106,7 @@ plone.version = {version}
 
     # generate template addon:
     config.template = 'addon'
-    config.package_name = 'collective.task.foo'
+    config.package_name = 'plonetheme.task.foo'
     result = subprocess.call(
         [
             'mrbob',
@@ -112,6 +123,17 @@ plone.version = {version}
 
     wd = os.path.abspath(
         os.path.join(tmpdir.strpath, config.package_name),
+    )
+
+    _package_directories = config.package_name.split(".")
+
+    _r = subprocess.call(
+        [
+            'isort',
+            os.path.join("src", *_package_directories, "tests", "test_robot.py"),
+            os.path.join("src", *_package_directories, "tests", "test_setup.py"),
+        ],
+        cwd=wd,
     )
 
     # generate subtemplate content_type:
@@ -133,4 +155,4 @@ subtemplate_warning=False
         cwd=wd,
     )
     assert result == 0
-    assert file_exists(wd, '/src/collective/task/foo/theme/manifest.cfg')
+    assert file_exists(wd, '/src/plonetheme/task/foo/theme/manifest.cfg')

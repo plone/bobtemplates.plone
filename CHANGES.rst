@@ -4,7 +4,7 @@ Changelog
 5.0.5 (unreleased)
 ------------------
 
-- Make tox run lint, refactor plone versions, clean-up.
+- Make tox run lint, refactor plone versions, fix import sorting for plonetheme.task package.
   [balavec]
 
 

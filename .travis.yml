@@ -83,7 +83,7 @@ matrix:
 
 
 install:
-    - travis_retry pip install -U tox coveralls coverage -c constraints.txt
+    - travis_retry pip install -U tox isort coveralls coverage -c constraints.txt
 
 before_script:
   - 'export DISPLAY=:99.0'

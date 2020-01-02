@@ -48,8 +48,7 @@ plone.version = {version}
     )
 
     _package_directories = config.package_name.split(".")
-
-    _r = subprocess.call(
+    subprocess.call(
         [
             'isort',
             os.path.join("src", *_package_directories, "tests", "test_robot.py"),
@@ -126,8 +125,7 @@ plone.version = {version}
     )
 
     _package_directories = config.package_name.split(".")
-
-    _r = subprocess.call(
+    subprocess.call(
         [
             'isort',
             os.path.join("src", *_package_directories, "tests", "test_robot.py"),

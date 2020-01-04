@@ -27,6 +27,8 @@ log.html
 output.xml
 pip-selfcheck.json
 report.html
+.Python
+.idea/
 .vscode/
 .tox/
 reports/

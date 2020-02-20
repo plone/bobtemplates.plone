@@ -4,7 +4,8 @@ Changelog
 5.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Require coverage<5 in travis configuration file. Fixes #421
+  [erral]
 
 
 5.0.4 (2019-11-28)

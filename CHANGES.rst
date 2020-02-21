@@ -4,10 +4,12 @@ Changelog
 5.0.5 (unreleased)
 ------------------
 
+- Require coverage<5 in travis configuration file. Fixes #421
+  [erral]
+
 - Align template's setup.cfg to the projects one.
   Especially raises the flake8 line-length to black default.
   [thet]
-
 
 5.0.4 (2019-11-28)
 ------------------

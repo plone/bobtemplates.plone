@@ -4,7 +4,9 @@ Changelog
 5.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Align template's setup.cfg to the projects one.
+  Especially raises the flake8 line-length to black default.
+  [thet]
 
 
 5.0.4 (2019-11-28)

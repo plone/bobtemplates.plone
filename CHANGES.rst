@@ -5,6 +5,10 @@ Changelog
 ------------------
 
 - Require coverage<5. Fixes #421
+- Fix indexer subtemplate. Fixes #425
+  [erral]
+
+- Require coverage<5 in travis configuration file. Fixes #421
   [erral]
 
 - Align template's setup.cfg to the projects one.

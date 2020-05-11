@@ -23,6 +23,8 @@ Changelog
 - Add collective.recipe.vscode to addon base.cfg, activated by default, we have a question to disable it.
   [MrTango]
 
+- Fix flake8 missing trailing comma, format call uses missing keyword, provides unused keyword
+  [fulv]
 
 5.0.4 (2019-11-28)
 ------------------

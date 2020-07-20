@@ -8,7 +8,7 @@ index = https://pypi.python.org/simple/
 parts =
     instance
     test
-    code-analysis
+#    code-analysis
     coverage
     test-coverage
     createcoverage
@@ -17,6 +17,7 @@ parts =
     omelette
     robot
     plone-helper-scripts
+#    vscode
 develop = .
 
 
@@ -31,6 +32,10 @@ eggs =
     Pillow
     {{{ package.dottedname }}} [test]
 
+[vscode]
+recipe = collective.recipe.vscode
+eggs = ${instance:eggs}
+autocomplete-use-omelette = True
 
 [code-analysis]
 recipe = plone.recipe.codeanalysis

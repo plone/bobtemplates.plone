@@ -37,10 +37,10 @@ recipe = collective.recipe.vscode
 eggs = ${instance:eggs}
 autocomplete-use-omelette = True
 
-[code-analysis]
-recipe = plone.recipe.codeanalysis
-directory = ${buildout:directory}/src/{{{ package.namespace }}}
-return-status-codes = False
+# [code-analysis]
+# recipe = plone.recipe.codeanalysis
+# directory = ${buildout:directory}/src/{{{ package.namespace }}}
+# return-status-codes = False
 
 
 [omelette]

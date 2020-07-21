@@ -26,6 +26,7 @@ Changelog
 - Fix flake8 missing trailing comma, format call uses missing keyword, provides unused keyword
   [fulv]
 
+
 5.0.4 (2019-11-28)
 ------------------
 

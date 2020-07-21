@@ -14,6 +14,15 @@ Changelog
 - Update travis setup, use tox for all testing and linting of addon package, not code-analysis.
   [MrTango]
 
+- Update default Plone and Python version to 5.2.1 and 3.7 for addon template
+  [MrTango]
+
+- Add badges to addon README file
+  [MrTango]
+
+- Add collective.recipe.vscode to addon base.cfg, activated by default, we have a question to disable it.
+  [MrTango]
+
 
 5.0.4 (2019-11-28)
 ------------------

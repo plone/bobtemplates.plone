@@ -8,6 +8,7 @@ index = https://pypi.python.org/simple/
 parts =
     instance
     test
+# we use tox for testing and linting, by default
 #    code-analysis
     coverage
     test-coverage
@@ -17,7 +18,12 @@ parts =
     omelette
     robot
     plone-helper-scripts
+{{% if vscode_support %}}
+    vscode
+{{% else %}}
 #    vscode
+{{% endif %}}
+
 develop = .
 
 

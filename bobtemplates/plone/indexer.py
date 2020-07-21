@@ -37,7 +37,7 @@ def _update_indexers_configure_zcml(configurator):
     match_xpath = "zope:include[@package='.{0}']".format(configurator.variables['indexer_name'])
     match_str = '-*- extra stuff goes here -*-'
     insert_str = """
-  <include package=".{0}" />
+  <include file="{0}.zcml" />
 """.format(configurator.variables['indexer_name'])
     update_configure_zcml(
         configurator,

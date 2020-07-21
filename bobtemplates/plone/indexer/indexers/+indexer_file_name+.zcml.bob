@@ -6,4 +6,4 @@
   <adapter factory=".{{{ indexer_file_name }}}.{{{ indexer_name }}}"
     name="{{{ indexer_name }}}" />
 
-</configure
+</configure>

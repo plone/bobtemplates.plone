@@ -56,6 +56,7 @@ def test_cleanup_package(tmpdir):
             'plone.version': '5.1',
             'python.version': 'python2.7',
             'plone.is_plone5': True,
+            'vscode_support': True,
         },
     )
     assert configurator

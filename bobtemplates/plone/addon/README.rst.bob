@@ -2,6 +2,28 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
    This text does not appear on pypi or github. It is a comment.
 
+.. image:: https://travis-ci.org/collective/{{{ package.dottedname }}}.svg?branch=master
+    :target: https://travis-ci.org/collective/{{{ package.dottedname }}}
+
+.. image:: https://coveralls.io/repos/github/collective/{{{ package.dottedname }}}/badge.svg?branch=master
+    :target: https://coveralls.io/github/collective/{{{ package.dottedname }}}?branch=master
+    :alt: Coveralls
+
+.. image:: https://img.shields.io/pypi/v/{{{ package.dottedname }}}.svg
+    :target: https://pypi.python.org/pypi/{{{ package.dottedname }}}/
+    :alt: Latest Version
+
+.. image:: https://img.shields.io/pypi/status/{{{ package.dottedname }}}.svg
+    :target: https://pypi.python.org/pypi/{{{ package.dottedname }}}
+    :alt: Egg Status
+
+.. image:: https://img.shields.io/pypi/pyversions/{{{ package.dottedname }}}.svg?style=plastic   :alt: Supported - Python Versions
+
+.. image:: https://img.shields.io/pypi/l/{{{ package.dottedname }}}.svg
+    :target: https://pypi.python.org/pypi/{{{ package.dottedname }}}/
+    :alt: License
+
+
 {{% for i in package.dottedname %}}={{% endfor %}}
 
 {{{ package.dottedname }}}

@@ -4,12 +4,25 @@ Changelog
 5.0.5 (unreleased)
 ------------------
 
-- Require coverage<5 in travis configuration file. Fixes #421
+- Require coverage<5. Fixes #421
   [erral]
 
 - Align template's setup.cfg to the projects one.
   Especially raises the flake8 line-length to black default.
   [thet]
+
+- Update travis setup, use tox for all testing and linting of addon package, not code-analysis.
+  [MrTango]
+
+- Update default Plone and Python version to 5.2.1 and 3.7 for addon template
+  [MrTango]
+
+- Add badges to addon README file
+  [MrTango]
+
+- Add collective.recipe.vscode to addon base.cfg, activated by default, we have a question to disable it.
+  [MrTango]
+
 
 5.0.4 (2019-11-28)
 ------------------

@@ -8,7 +8,8 @@ index = https://pypi.python.org/simple/
 parts =
     instance
     test
-    code-analysis
+# we use tox for testing and linting, by default
+#    code-analysis
     coverage
     test-coverage
     createcoverage
@@ -17,6 +18,12 @@ parts =
     omelette
     robot
     plone-helper-scripts
+{{% if vscode_support %}}
+    vscode
+{{% else %}}
+#    vscode
+{{% endif %}}
+
 develop = .
 
 
@@ -31,11 +38,15 @@ eggs =
     Pillow
     {{{ package.dottedname }}} [test]
 
+[vscode]
+recipe = collective.recipe.vscode
+eggs = ${instance:eggs}
+autocomplete-use-omelette = True
 
-[code-analysis]
-recipe = plone.recipe.codeanalysis
-directory = ${buildout:directory}/src/{{{ package.namespace }}}
-return-status-codes = False
+# [code-analysis]
+# recipe = plone.recipe.codeanalysis
+# directory = ${buildout:directory}/src/{{{ package.namespace }}}
+# return-status-codes = False
 
 
 [omelette]

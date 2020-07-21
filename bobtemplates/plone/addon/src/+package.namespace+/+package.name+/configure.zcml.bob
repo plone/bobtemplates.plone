@@ -8,8 +8,8 @@
   <i18n:registerTranslations directory="locales" />
 
   <!--
-    Be careful if you use general includeDependencies, it can have sideffects!
-    Better import explicite packages or configurations ;)
+    Be careful if you use general includeDependencies, it can have side effects!
+    Better import explicit packages or configurations ;)
   -->
   <!--<includeDependencies package="." />-->
 

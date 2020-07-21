@@ -4,6 +4,9 @@ Changelog
 5.0.5 (unreleased)
 ------------------
 
+- Create upgrade step profile directory. Fixes #434
+  [erral]
+
 - Require coverage<5. Fixes #421
   [erral]
 

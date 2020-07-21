@@ -46,7 +46,7 @@ def _rebuild():
         locale_path=locale_path,
         domain=domain,
         target_path=target_path,
-        exclude=excludes
+        excludes=excludes,
     )
     subprocess.call(
         cmd,

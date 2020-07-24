@@ -92,7 +92,7 @@ before_script:
   - sleep 3
 
 script:
-    - PYTEST_ADDOPTS="-s -vv" tox
+    - PYTEST_ADDOPTS="-s -vv" tox -r
 
 after_success:
   - coverage combine

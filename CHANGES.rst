@@ -36,6 +36,9 @@ Changelog
 - Improve generated package tox env, also run linting inside skeleton-tests.
   [MrTango]
 
+- Improve bobtemplate.plone tox output, it's now easier to read and find the errors.
+  [MrTango]
+
 
 5.0.4 (2019-11-28)
 ------------------

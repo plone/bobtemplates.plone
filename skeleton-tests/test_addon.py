@@ -26,7 +26,7 @@ def test_addon(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True
-package.git.init = True
+package.git.disabled = True
 
 author.name = The Plone Collective
 author.email = collective@plone.org
@@ -70,4 +70,5 @@ plone.version = {version}
     )
 
     with capsys.disabled():
-        run_skeleton_tox_env(wd, config)
+        returncode = run_skeleton_tox_env(wd, config)
+        assert returncode == 0, u"The tests inside the generated package are failing, please check the output above!"

@@ -6,6 +6,7 @@ from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import ZCML_NAMESPACES
+from bobtemplates.plone.utils import run_isort
 from lxml import etree
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
@@ -205,6 +206,7 @@ def post_renderer(configurator):
     _update_configure_zcml(configurator)
     _update_views_configure_zcml(configurator)
     _delete_unwanted_files(configurator)
+    run_isort(configurator)
     git_commit(
         configurator,
         'Add view: {0}'.format(

@@ -38,10 +38,9 @@ plone.version = {version}
             '--config', answers_init_path,
             '--non-interactive',
         ],
-        cwd=tmpdir.strpath,
+        cwd=package_dir,
     )
     assert result == 0
-
     wd = os.path.abspath(
         os.path.join(tmpdir.strpath, config.package_name),
     )
@@ -85,4 +84,5 @@ portlet_name=Another Weather Portlet
     assert file_exists(wd, '/src/collective/task/configure.zcml')
 
     with capsys.disabled():
-        run_skeleton_tox_env(wd, config)
+        returncode = run_skeleton_tox_env(wd, config)
+        assert returncode == 0, u"The tests inside the generated package are failing, please check the output above!"

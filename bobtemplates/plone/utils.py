@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
 from bobtemplates.plone.base import _get_package_root_folder
 
-import logging
 import re
 import six
 import subprocess
 import unicodedata
-
-
-logger = logging.getLogger("bobtemplates.plone.utils")
 
 
 def safe_unicode(value, encoding='utf-8'):
@@ -79,6 +75,6 @@ def run_isort(configurator):
             ['tox', '-e', 'isort-apply'],
             cwd=root_folder,
         )
-        logger.debug(u'\n{0}\n'.format(safe_unicode(test_result)))
+        print(u'\nisort-apply: successful:\n{0}\n'.format(safe_unicode(test_result)))
     except subprocess.CalledProcessError as execinfo:
-        logger.debug(u'{0}'.format(safe_unicode(execinfo.output)))
+        print(u'Error on isort-apply: {0}'.format(safe_unicode(execinfo.output)))

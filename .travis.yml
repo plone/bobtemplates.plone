@@ -24,7 +24,6 @@ matrix:
     include:
         - env: TOXENV=py37-lint
           python: "3.7"
-        - env: TOXENV=py27-lint
         - env: TOXENV=docs
         - env: TOXENV=py27-packagetests
         - env: TOXENV=py37-packagetests

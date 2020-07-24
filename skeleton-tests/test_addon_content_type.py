@@ -108,4 +108,5 @@ dexterity_type_activate_default_behaviors=False
     assert file_exists(wd, '/src/collective/task/configure.zcml')
 
     with capsys.disabled():
-        run_skeleton_tox_env(wd, config)
+        returncode = run_skeleton_tox_env(wd, config)
+        assert returncode == 0, u"The tests inside the generated package are failing, please check the output above!"

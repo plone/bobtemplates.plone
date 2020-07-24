@@ -41,17 +41,18 @@ plone.version = {version}
     config.template = 'addon'
     config.package_name = 'collective.task'
 
-    result = subprocess.call(
-        [
-            'mrbob',
-            '-O', config.package_name,
-            'bobtemplates.plone:' + config.template,
-            '--config', 'answers.ini',
-            '--non-interactive',
-        ],
-        cwd=tmpdir.strpath,
-    )
-    assert result == 0
+    with capsys.disabled():
+        result = subprocess.call(
+            [
+                'mrbob',
+                '-O', config.package_name,
+                'bobtemplates.plone:' + config.template,
+                '--config', 'answers.ini',
+                '--non-interactive',
+            ],
+            cwd=tmpdir.strpath,
+        )
+        assert result == 0
 
     generated_files = glob.glob(
         tmpdir.strpath + '/' + config.package_name + '/*',

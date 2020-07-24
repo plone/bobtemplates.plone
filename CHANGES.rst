@@ -39,6 +39,9 @@ Changelog
 - Improve bobtemplate.plone tox output, it's now easier to read and find the errors.
   [MrTango]
 
+- Automatically fix isort issues after using addon template.
+  [MrTango]
+
 
 5.0.4 (2019-11-28)
 ------------------

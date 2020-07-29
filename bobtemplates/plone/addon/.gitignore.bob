@@ -15,7 +15,6 @@ lib/
 local/
 node_modules/
 parts/
-src/*
 dist/*
 test.plone_addon/
 var/
@@ -31,10 +30,3 @@ report.html
 .tox/
 reports/
 # excludes
-!.coveragerc
-!.editorconfig
-!.gitattributes
-!.gitignore
-!.gitkeep
-!.travis.yml
-!src/{{{ package.namespace }}}

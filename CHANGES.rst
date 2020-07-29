@@ -42,6 +42,9 @@ Changelog
 - Automatically fix isort issues after using addon template.
   [MrTango]
 
+- Improve buildout template, it's now using Plone release versions rather than buildouttesting.
+  [MrTango]
+
 
 5.0.4 (2019-11-28)
 ------------------

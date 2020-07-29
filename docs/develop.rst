@@ -216,7 +216,7 @@ Increase verbosity of Tox/Pytest
 
 .. code-block:: shell
 
-    tox -e py36-packagetests -vv -- -s
+    tox -e py37-packagetests -vv -- -s
 
 Package tests
 .............

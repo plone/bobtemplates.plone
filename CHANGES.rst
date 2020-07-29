@@ -10,6 +10,9 @@ Changelog
 - Fix #437 cleanup .gitignore file
   [MrTango]
 
+- Fix #432 Bare except in restapi_service
+  [MrTango]
+
 
 5.1 (2020-07-29)
 ----------------

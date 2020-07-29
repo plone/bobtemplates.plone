@@ -5,6 +5,7 @@ from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import ZCML_NAMESPACES
+from bobtemplates.plone.utils import run_isort
 from lxml import etree
 
 import case_conversion as cc
@@ -87,6 +88,7 @@ def post_renderer(configurator):
     """"""
     _update_package_configure_zcml(configurator)
     _update_vocabularies_configure_zcml(configurator)
+    run_isort(configurator)
     git_commit(
         configurator,
         'Add vocabulary: {0}'.format(

@@ -70,4 +70,5 @@ subtemplate_warning = Yes
     assert file_exists(wd, "/src/collective/task/indexers/my_custom_test_indexer.py")
 
     with capsys.disabled():
-        run_skeleton_tox_env(wd, config)
+        returncode = run_skeleton_tox_env(wd, config)
+        assert returncode == 0, u"The tests inside the generated package are failing, please check the output above!"

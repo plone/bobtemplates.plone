@@ -26,7 +26,7 @@ def test_addon(tmpdir, capsys, config):
     template = """[variables]
 package.description = Dummy package
 package.example = True
-package.git.init = True
+package.git.disabled = True
 
 author.name = The Plone Collective
 author.email = collective@plone.org
@@ -41,17 +41,18 @@ plone.version = {version}
     config.template = 'addon'
     config.package_name = 'collective.task'
 
-    result = subprocess.call(
-        [
-            'mrbob',
-            '-O', config.package_name,
-            'bobtemplates.plone:' + config.template,
-            '--config', 'answers.ini',
-            '--non-interactive',
-        ],
-        cwd=tmpdir.strpath,
-    )
-    assert result == 0
+    with capsys.disabled():
+        result = subprocess.call(
+            [
+                'mrbob',
+                '-O', config.package_name,
+                'bobtemplates.plone:' + config.template,
+                '--config', 'answers.ini',
+                '--non-interactive',
+            ],
+            cwd=tmpdir.strpath,
+        )
+        assert result == 0
 
     generated_files = glob.glob(
         tmpdir.strpath + '/' + config.package_name + '/*',
@@ -70,4 +71,5 @@ plone.version = {version}
     )
 
     with capsys.disabled():
-        run_skeleton_tox_env(wd, config)
+        returncode = run_skeleton_tox_env(wd, config)
+        assert returncode == 0, u"The tests inside the generated package are failing, please check the output above!"

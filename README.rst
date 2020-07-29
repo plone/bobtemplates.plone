@@ -55,10 +55,13 @@ These templates are meant to be used inside a package which was created by the a
 
 - behavior
 - content_type
+- indexer
+- portlet
 - restapi_service
 - subscriber
 - theme
 - theme_barceloneta
+- upgrade_step
 - view
 - viewlet
 - vocabulary
@@ -84,10 +87,18 @@ Full documentation for end users and template developers can be found in the "do
 
 It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone/docs/
 
+
 Installation
 ============
 
 You can install bobtemplates.plone as every other normal Python package with `pip <https://pypi.python.org/pypi/pip>`_ inside a `virtualenv <https://pypi.python.org/pypi/virtualenv>`_ or better with `pipenv <https://pypi.python.org/pypi/pipenv>`_.
+
+Installation with pip global for a user
+---------------------------------------
+
+.. code-block:: console
+
+    pip install bobtemplates.plone --user
 
 
 Installion with pipenv

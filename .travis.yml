@@ -24,7 +24,6 @@ matrix:
     include:
         - env: TOXENV=py37-lint
           python: "3.7"
-        - env: TOXENV=py27-lint
         - env: TOXENV=docs
         - env: TOXENV=py27-packagetests
         - env: TOXENV=py37-packagetests
@@ -78,8 +77,6 @@ matrix:
         - env: TOXENV=py27-skeletontests-Plone52-template-addon_restapi_service
         - env: TOXENV=py37-skeletontests-Plone52-template-addon_restapi_service
           python: "3.7"
-        - env: TOXENV=py27-skeletontests-Plone43-template-theme_package
-        - env: TOXENV=py27-skeletontests-Plone51-template-theme_package
 
 
 install:
@@ -92,7 +89,7 @@ before_script:
   - sleep 3
 
 script:
-    - PYTEST_ADDOPTS="-s -vv" tox
+    - PYTEST_ADDOPTS="-s -vv" tox -r
 
 after_success:
   - coverage combine

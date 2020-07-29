@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from bobtemplates.plone.base import _get_package_root_folder
+
 import re
 import six
+import subprocess
 import unicodedata
 
 
@@ -63,3 +66,15 @@ def slugify(value):
     )
     value = re.sub(r'[^\w\s-]', '', value).strip().lower()
     return re.sub(r'[-\s]+', '-', value)
+
+
+def run_isort(configurator):
+    root_folder = _get_package_root_folder(configurator)
+    try:
+        test_result = subprocess.check_output(
+            ['tox', '-e', 'isort-apply'],
+            cwd=root_folder,
+        )
+        print(u'\nisort-apply: successful:\n{0}\n'.format(safe_unicode(test_result)))
+    except subprocess.CalledProcessError as execinfo:
+        print(u'Error on isort-apply: {0}'.format(safe_unicode(execinfo.output)))

@@ -1,10 +1,17 @@
 Changelog
 =========
 
-5.2 (unreleased)
+5.1.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix #436 remove index option in base.cfg
+  [MrTango]
+
+- Fix #437 cleanup .gitignore file
+  [MrTango]
+
+- Fix #432 Bare except in restapi_service
+  [MrTango]
 
 
 5.1 (2020-07-29)

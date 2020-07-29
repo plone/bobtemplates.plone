@@ -31,7 +31,8 @@ class {{{ service_class_name }}}(object):
         # Example:
         try:
             subjects = self.context.Subject()
-        except:
+        except Exception as e:
+            print(e)
             subjects = []
         query = {}
         query['portal_type'] = "Document"

@@ -30,19 +30,10 @@ def file_exists(base_path, file_path):
 def run_skeleton_tox_env(wd, config):
     try:
         returncode = subprocess.check_call(
-            ['tox', '-e', config.skeleton_tox_env, '-v'],
+            ['tox', '-e', config.skeleton_tox_env, '-p', 'auto', '-o', '-v'],
             cwd=wd,
         )
-        # logger.debug(u'\n{0}\n'.format(safe_unicode(test_result)))
         return returncode
     except subprocess.CalledProcessError as execinfo:
         logger.debug(u'{0}'.format(safe_unicode(execinfo.output)))
         return execinfo.returncode
-        # tox_msg = safe_unicode(execinfo.output)
-        # print(tox_msg)
-        # tox_summary = safe_unicode(
-        #     b''.join(
-        #         execinfo.output.partition(b'__ summary __')[1:],
-        #     ),
-        # )
-        # assert execinfo.returncode == 0  #, u'\n{0}'.format(tox_msg)

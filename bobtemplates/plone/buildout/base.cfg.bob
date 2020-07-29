@@ -226,3 +226,8 @@ need-sudo = ${buildout:need-sudo}
 recipe = plone.recipe.precompiler
 eggs = ${buildout:eggs}
 compile-mo-files = true
+
+[vscode]
+recipe = collective.recipe.vscode
+eggs = ${instance:eggs}
+autocomplete-use-omelette = True

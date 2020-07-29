@@ -38,7 +38,11 @@ parts =
     repozo
     backup
     zopepy
-#    unifiedinstaller
+{{% if vscode_support %}}
+    vscode
+{{% else %}}
+#    vscode
+{{% endif %}}
 
 
 [instance]

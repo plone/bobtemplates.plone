@@ -1,8 +1,8 @@
 Changelog
 =========
 
-5.1 (unreleased)
-------------------
+5.1 (2020-07-29)
+----------------
 
 - Create upgrade step profile directory. Fixes #434
   [erral]

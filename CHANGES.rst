@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.1.1 (unreleased)
+5.1.1 (2020-07-30)
 ------------------
 
 - Fix #436 remove index option in base.cfg

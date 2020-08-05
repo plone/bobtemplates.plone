@@ -4,7 +4,8 @@ Changelog
 5.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add tox as a dependency. Fixes #442.
+  [erral]
 
 
 5.1.1 (2020-07-30)

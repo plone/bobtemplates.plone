@@ -1,6 +1,11 @@
 Changelog
 =========
 
+4.0.5rc3 (2020-09-02)
+---------------------
+- Cleanup: Update Jenkinsfile and setup.py
+  [avoinea]
+
 4.0.5rc2 (2019-05-09)
 ---------------------
 - Bug fix: Fix addon setup.py.bob syntax

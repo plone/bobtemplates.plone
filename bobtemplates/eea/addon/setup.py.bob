@@ -19,7 +19,6 @@ setup(name=NAME,
           "Environment :: Web Environment",
           "Framework :: Plone",
           "Framework :: Plone :: Addon",
-          "Framework :: EEA :: Addon",
 {{% if not plone.is_plone5 %}}
           "Framework :: Plone :: 4.3",
 {{% endif %}}
@@ -35,8 +34,7 @@ setup(name=NAME,
           "Programming Language :: Python",
           "Programming Language :: Python :: 2.7",
 {{% if plone.is_plone52 %}}
-          "Programming Language :: Python :: 3.6",
-          "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
 {{% endif %}}
           "Operating System :: OS Independent",
           "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",

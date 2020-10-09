@@ -4,6 +4,12 @@ Changelog
 5.2 (unreleased)
 ----------------
 
+- Add plone.recipe.codeanalysis version pins
+  [erral]
+
+- Remove firefoxdriver installation from gitlabci
+  [erral]
+
 - Add tox as a dependency. Fixes #442.
   [erral]
 

@@ -29,7 +29,6 @@ stages:
 before_script:
   - echo "deb http://ftp.de.debian.org/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
   - apt-get update
-  - apt-get install -y firefoxdriver
   - apt-get install -y xvfb
   - python -V # Print out python version for debugging
   - pip install virtualenv

@@ -76,5 +76,8 @@ def run_isort(configurator):
             cwd=root_folder,
         )
         print(u'\nisort-apply: successful:\n{0}\n'.format(safe_unicode(test_result)))
+    except OSError as e:
+        print(u'Error on isort-apply: {0}, make sure you have tox and isort installed globally!'.format(safe_unicode(e)))
+        raise
     except subprocess.CalledProcessError as execinfo:
         print(u'Error on isort-apply: {0}'.format(safe_unicode(execinfo.output)))

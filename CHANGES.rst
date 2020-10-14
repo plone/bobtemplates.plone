@@ -1,8 +1,8 @@
 Changelog
 =========
 
-5.1.2 (unreleased)
-----------------
+5.1.2 (2020-10-14)
+------------------
 
 - Add tox as a dependency. Fixes #442.
   [erral]

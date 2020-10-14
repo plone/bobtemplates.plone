@@ -1,11 +1,14 @@
 Changelog
 =========
 
-5.2 (unreleased)
+5.1.2 (unreleased)
 ----------------
 
 - Add tox as a dependency. Fixes #442.
   [erral]
+
+- Improved run_isort error handling
+  [MrTango]
 
 
 5.1.1 (2020-07-30)

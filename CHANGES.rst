@@ -1,10 +1,12 @@
 Changelog
 =========
 
-5.1.3 (unreleased)
+5.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- addon: switch from profiles/default/registry.xml to profiles/default/registry folder
+  [MrTango]
+
 
 
 5.1.2 (2020-10-14)

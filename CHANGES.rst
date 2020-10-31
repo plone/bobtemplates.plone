@@ -4,7 +4,8 @@ Changelog
 5.1.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Remove Travis configuration sudo false.
+  [wesleybl]
 
 
 5.1.2 (2020-10-14)

@@ -77,6 +77,9 @@ matrix:
         - env: TOXENV=py27-skeletontests-Plone52-template-addon_restapi_service
         - env: TOXENV=py37-skeletontests-Plone52-template-addon_restapi_service
           python: "3.7"
+        - env: TOXENV=py27-skeletontests-Plone52-template-addon_svelte_app
+        - env: TOXENV=py37-skeletontests-Plone52-template-addon_svelte_app
+          python: "3.7"
 
 
 install:

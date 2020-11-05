@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.2.0b4 (unreleased)
+5.2.0b4 (2020-11-06)
 --------------------
 
 - use dashed name for svelte apps, fix dev server including live reload

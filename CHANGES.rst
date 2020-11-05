@@ -4,7 +4,12 @@ Changelog
 5.2.0b3 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- fix svelte component import, in custom_element mode
+  [MrTango]
+
+- Improve svelte_app docs
+  [MrTango]
+
 
 
 5.2.0b2 (2020-11-05)

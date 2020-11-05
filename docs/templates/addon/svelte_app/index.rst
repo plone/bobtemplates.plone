@@ -67,6 +67,36 @@ or in case of a nativ Svelte app, which uses a CSS class "my-custom-element" to 
     <div class="my-custom-element"></div>
     <p>Some more static content of the Plone page.</p>
 
+Necessary settings in Plone
+===========================
+
+If you are using custom-elements there some settings, to make so that you can use theme in TinyMCE.
+
+In the HTML filter, you want to add the name of your custom element, for example svelte-card to the list of allowed tags.
+
+.. figure:: html-filter-settings.png
+   :alt: HTML filter setting with svelte-card tag and slot attribute allowed
+
+We also added the slot attribute to the custom attrbitures list, so that we can use it in our custom elements.
+
+..code-block:: html
+
+    <h1>Heading in your Plone page</h1>
+
+    <svelte-card>
+      <span slot="head">Svelte Card</span>
+      <p slot="content">Svelte is nice! This custom element has no dependencies, is very small and works in any modern Browser and most JS Frameworks.</p>
+    </svelte-card>
+
+    <p>Some more static content of the Plone page.</p>
+
+
+The code above, us to add some settings to TinyMCE.
+
+.. figure:: tinymce-advanced-settings.png
+   :alt: TinyMCe custom-elment to allow our svelte-card to have content
+
+
 Optimizing
 ==========
 

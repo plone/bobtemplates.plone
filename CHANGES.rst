@@ -1,8 +1,12 @@
 Changelog
 =========
 
+
 5.2.0b5 (unreleased)
 --------------------
+
+- addon: switch from profiles/default/registry.xml to profiles/default/registry folder
+  [MrTango]
 
 - Remove Travis configuration sudo false.
   [wesleybl]

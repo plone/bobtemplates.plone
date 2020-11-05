@@ -96,6 +96,17 @@ The code above needs us to add some settings to TinyMCE.
 .. figure:: tinymce-advanced-settings.png
    :alt: TinyMCe custom-elment to allow our svelte-card to have content
 
+You could do this also via registry settings in you profiles:
+
+.. code-block:: xml
+
+    <?xml version='1.0' encoding='UTF-8'?>
+    <registry>
+    <records interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" prefix="plone">
+        <value key="other_settings" purge="false">{"custom_elements": "svelte-card"}</value>
+    </records>
+    </registry>
+
 
 Optimizing
 ==========

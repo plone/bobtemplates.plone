@@ -50,7 +50,7 @@ setup(
     namespace_packages=["bobtemplates"],
     include_package_data=True,
     zip_safe=False,
-    install_requires=["setuptools", "mr.bob", "lxml", "case-conversion", "colorama", "tox"],
+    install_requires=["setuptools", "mr.bob", "lxml", "case-conversion", "colorama", "tox", "isort"],
     setup_requires=[],
     tests_require=[],
     extras_require={},

@@ -4,7 +4,8 @@ Changelog
 5.2.0b2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add missing entry point for svelte_app template
+  [MrTango]
 
 
 5.2.0b1 (2020-11-05)

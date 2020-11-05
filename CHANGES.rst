@@ -4,7 +4,11 @@ Changelog
 5.2.0b4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- use dashed name for svelte apps, fix dev server including live reload
+  [MrTango]
+
+- Add custom elements to allowed tags by default via registry, also add slot to custom attributes
+  [MrTango]
 
 
 5.2.0b3 (2020-11-05)

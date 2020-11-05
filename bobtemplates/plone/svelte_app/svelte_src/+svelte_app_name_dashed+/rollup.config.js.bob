@@ -1,31 +1,12 @@
-import svelte from 'rollup-plugin-svelte';
-import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
+import resolve from '@rollup/plugin-node-resolve';
+import serve from 'rollup-plugin-serve'
+import svelte from 'rollup-plugin-svelte';
 import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 
-function serve() {
-    let server;
-
-    function toExit() {
-        if (server) server.kill(0);
-    }
-
-    return {
-        writeBundle() {
-            if (server) return;
-            server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
-                stdio: ['ignore', 'inherit', 'inherit'],
-                shell: true
-            });
-
-            process.on('SIGTERM', toExit);
-            process.on('exit', toExit);
-        }
-    };
-}
 
 export default {
     input: 'src/main.js',
@@ -33,7 +14,7 @@ export default {
         sourcemap: true,
         format: 'iife',
         name: '{{{ svelte_app_file_name }}}',
-        file: '../../src/{{{ package.namespace }}}/{{{ package.name }}}/svelte_apps/{{{ svelte_app_file_name }}}/bundle.js'
+        file: '../../src/{{{ package.namespace }}}/{{{ package.name }}}/svelte_apps/{{{ svelte_app_name_dashed }}}/bundle.js'
     },
     plugins: [
         svelte({
@@ -65,11 +46,17 @@ export default {
 
         // In dev mode, call `npm run start` once
         // the bundle has been generated
-        !production && serve(),
+        !production && serve({
+          contentBase: '../../src/{{{ package.namespace }}}/{{{ package.name }}}/svelte_apps/{{{ svelte_app_name_dashed }}}',
+          open: true
+        }),
 
         // Watch the `public` directory and refresh the
         // browser on changes when not in production
-        !production && livereload('public'),
+        !production && livereload({
+          verbose: false,
+          watch: '../../src/{{{ package.namespace }}}/{{{ package.name }}}/svelte_apps/{{{ svelte_app_name_dashed }}}'
+        }),
 
         // If we're building for production (npm run build
         // instead of npm run dev), minify

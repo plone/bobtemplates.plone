@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.2.0b3 (unreleased)
+5.2.0b3 (2020-11-05)
 --------------------
 
 - fix svelte component import, in custom_element mode

@@ -79,7 +79,7 @@ In the HTML filter, you want to add the name of your custom element, for example
 
 We also added the slot attribute to the custom attrbitures list, so that we can use it in our custom elements.
 
-.. code-block::xml
+.. code-block:: xml
 
     <h1>Heading in your Plone page</h1>
 
@@ -91,7 +91,7 @@ We also added the slot attribute to the custom attrbitures list, so that we can 
     <p>Some more static content of the Plone page.</p>
 
 
-The code above, us to add some settings to TinyMCE.
+The code above needs us to add some settings to TinyMCE.
 
 .. figure:: tinymce-advanced-settings.png
    :alt: TinyMCe custom-elment to allow our svelte-card to have content

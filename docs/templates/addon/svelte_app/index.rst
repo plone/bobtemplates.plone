@@ -53,7 +53,7 @@ If you are not using custom element support, you can also change the target sele
 
 To activate the app in Plone, you can put either the custom element for example my-custom-element inside any html, even with the TinyMCE source code mode.
 
-..code-block:: html
+.. code-block:: xml
 
     <h1>Heading in your Plone page</h1>
     <my-custom-element></my-custom-element>
@@ -61,7 +61,7 @@ To activate the app in Plone, you can put either the custom element for example 
 
 or in case of a nativ Svelte app, which uses a CSS class "my-custom-element" to activate the app, you can include it like this:
 
-..code-block:: html
+.. code-block:: xml
 
     <h1>Heading in your Plone page</h1>
     <div class="my-custom-element"></div>
@@ -79,7 +79,7 @@ In the HTML filter, you want to add the name of your custom element, for example
 
 We also added the slot attribute to the custom attrbitures list, so that we can use it in our custom elements.
 
-..code-block:: html
+.. code-block::xml
 
     <h1>Heading in your Plone page</h1>
 

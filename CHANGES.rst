@@ -4,7 +4,8 @@ Changelog
 5.2.0b5 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Remove Travis configuration sudo false.
+  [wesleybl]
 
 
 5.2.0b4 (2020-11-06)

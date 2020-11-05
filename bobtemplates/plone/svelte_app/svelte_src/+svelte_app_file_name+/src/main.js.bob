@@ -12,7 +12,7 @@ for(let i = 0;i < targets.length; i++){
   });
 }
 {{% else %}}
-// import App from './App.svelte';
+import App from './App.svelte';
 //
 // let targets = document.getElementsByTagName("{{{ svelte_app_name }}}");
 //

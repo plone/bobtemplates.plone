@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="{{{ package.dottedname }}}">
+  <records prefix="plone.bundles/{{{ svelte_app_file_name }}}"
+          interface='Products.CMFPlone.interfaces.IBundleRegistry'
+          remove="true">
+  </records>
+
+  <!-- <records interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" prefix="plone">
+    <value key="other_settings" purge="false">{"custom_elements": "{{{ svelte_app_name_dashed }}}"}</value>
+  </records> -->
+
+</registry>

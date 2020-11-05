@@ -4,7 +4,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '5.1.3.dev0'
+version = '5.2.0b5.dev0'
 
 
 long_description = "\n\n".join(
@@ -50,7 +50,7 @@ setup(
     namespace_packages=["bobtemplates"],
     include_package_data=True,
     zip_safe=False,
-    install_requires=["setuptools", "mr.bob", "lxml", "case-conversion", "colorama", "tox"],
+    install_requires=["setuptools", "mr.bob", "lxml", "case-conversion", "colorama", "tox", "isort"],
     setup_requires=[],
     tests_require=[],
     extras_require={},
@@ -63,6 +63,7 @@ setup(
             "plone_indexer = bobtemplates.plone.bobregistry:plone_indexer",
             "plone_portlet = bobtemplates.plone.bobregistry:plone_portlet",
             "plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service",  # NOQA E501
+            "plone_svelte_app = bobtemplates.plone.bobregistry:plone_svelte_app",
             "plone_subscriber = bobtemplates.plone.bobregistry:plone_subscriber",
             "plone_theme = bobtemplates.plone.bobregistry:plone_theme",
             "plone_theme_barceloneta = bobtemplates.plone.bobregistry:plone_theme_barceloneta",  # NOQA E501

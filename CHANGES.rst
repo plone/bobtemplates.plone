@@ -1,12 +1,50 @@
 Changelog
 =========
 
-5.2 (unreleased)
-------------------
+
+5.2.0b5 (unreleased)
+--------------------
 
 - addon: switch from profiles/default/registry.xml to profiles/default/registry folder
   [MrTango]
 
+- Remove Travis configuration sudo false.
+  [wesleybl]
+
+
+5.2.0b4 (2020-11-06)
+--------------------
+
+- use dashed name for svelte apps, fix dev server including live reload
+  [MrTango]
+
+- Add custom elements to allowed tags by default via registry, also add slot to custom attributes
+  [MrTango]
+
+
+5.2.0b3 (2020-11-05)
+--------------------
+
+- fix svelte component import, in custom_element mode
+  [MrTango]
+
+- Improve svelte_app docs
+  [MrTango]
+
+
+
+5.2.0b2 (2020-11-05)
+--------------------
+
+- Add missing entry point for svelte_app template
+  [MrTango]
+
+
+5.2.0b1 (2020-11-05)
+--------------------
+
+- Add svelte_app template including with custom-element (web-component) support
+  [MrTango]
 
 
 5.1.2 (2020-10-14)

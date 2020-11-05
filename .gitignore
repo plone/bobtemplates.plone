@@ -1,6 +1,7 @@
 
 *.egg-info
 *.mo
+.*project
 *.py[cod]
 # dirs
 bin/

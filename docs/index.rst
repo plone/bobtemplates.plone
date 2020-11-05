@@ -48,8 +48,11 @@ Provided templates
 
   - behavior
   - content_type
+  - indexer
   - portlet
   - restapi_service
+  - subsriber
+  - svelte_app
   - theme
   - theme_barceloneta
   - view

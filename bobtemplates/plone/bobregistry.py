@@ -106,6 +106,14 @@ def plone_restapi_service():
     return reg
 
 
+def plone_svelte_app():
+    reg = RegEntry()
+    reg.template = 'bobtemplates.plone:svelte_app'
+    reg.plonecli_alias = 'svelte_app'
+    reg.depend_on = 'plone_addon'
+    return reg
+
+
 def plone_subscriber():
     reg = RegEntry()
     reg.template = 'bobtemplates.plone:subscriber'

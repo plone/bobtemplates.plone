@@ -1,8 +1,8 @@
 Changelog
 =========
 
-5.2 (unreleased)
-------------------
+5.2.0b1 (2020-11-05)
+--------------------
 
 - Add svelte_app template including with custom-element (web-component) support
   [MrTango]

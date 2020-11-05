@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.2.0b2 (unreleased)
+5.2.0b2 (2020-11-05)
 --------------------
 
 - Add missing entry point for svelte_app template

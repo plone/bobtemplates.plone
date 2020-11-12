@@ -11,7 +11,7 @@ import re
 
 
 def check_name(configurator, question, answer):
-    if not re.match("[a-z]+-+[a-z0-9]+$", answer):
+    if not re.match("^[a-z]+-+[a-z0-9]+(-+[a-z0-9]+)*$", answer):
         raise ValidationError(
             u"{key} is not a valid custom-element identifier. Please try something like this 'my-element'".format(key=answer)
         )  # NOQA: E501

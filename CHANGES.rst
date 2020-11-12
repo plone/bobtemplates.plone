@@ -1,8 +1,7 @@
 Changelog
 =========
 
-
-5.2.0b5 (unreleased)
+5.2.0 (unreleased)
 --------------------
 
 - addon: switch from profiles/default/registry.xml to profiles/default/registry folder
@@ -11,6 +10,9 @@ Changelog
 - Remove Travis configuration sudo false.
   [wesleybl]
 
+- Fix svelte_app_name regex and add a test for it
+  [MrTango]
+  
 
 5.2.0b4 (2020-11-06)
 --------------------

@@ -2,20 +2,48 @@
 
 from bobtemplates.plone import base
 from bobtemplates.plone import svelte_app
+from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
+from mrbob.configurator import Question
 
 import os
+import pytest
 
 
-def test_prep_renderer():
+def test_prep_renderer(tmpdir):
+    target_path = tmpdir.strpath + '/collective.todo'
     configurator = Configurator(
         template='bobtemplates.plone:svelte_app',
-        target_directory='.',
+        target_directory=target_path,
         variables={
             'svelte_app_name': 'my-cool-svelte-app',
         },
     )
     svelte_app.pre_renderer(configurator)
+
+
+def test_check_name(tmpdir):
+    target_path = tmpdir.strpath + '/collective.todo'
+    question = Question(name="svelte_app_name", question="Name of your Svelte app", default=None)
+    configurator = Configurator(
+        template='bobtemplates.plone:svelte_app',
+        target_directory=target_path,
+        bobconfig={"non_interactive": True},
+    )
+    with pytest.raises(ValidationError):
+        svelte_app.check_name(configurator, question, 'My-Svelteapp')
+    with pytest.raises(ValidationError):
+        svelte_app.check_name(configurator, question, 'MySvelteApp')
+    with pytest.raises(ValidationError):
+        svelte_app.check_name(configurator, question, 'mysvelteapp')
+    with pytest.raises(ValidationError):
+        svelte_app.check_name(configurator, question, 'my_svelteapp')
+    with pytest.raises(ValidationError):
+        svelte_app.check_name(configurator, question, 'my_svelte_app')
+    assert svelte_app.check_name(configurator, question, 'my-app') == 'my-app'
+    assert svelte_app.check_name(configurator, question, 'my-svelte-app') == 'my-svelte-app'
+    assert svelte_app.check_name(configurator, question, 'my-cool-svelte-app') == 'my-cool-svelte-app'
+    assert svelte_app.check_name(configurator, question, 'my-cool-svelte-app-one') == 'my-cool-svelte-app-one'
 
 
 def test_post_renderer(tmpdir):

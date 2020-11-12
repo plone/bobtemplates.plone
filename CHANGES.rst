@@ -7,6 +7,8 @@ Changelog
 - Updated default Plone version for addon packages to 5.2.2
   [MrTango]
 
+- Change default answer of "Use XML Model" to false, because the Python way is usually easier and provides a better developer experience
+  [MrTango]
 
 5.2.0 (2020-11-12)
 ------------------

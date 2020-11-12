@@ -4,7 +4,8 @@ Changelog
 5.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Updated default Plone version for addon packages to 5.2.2
+  [MrTango]
 
 
 5.2.0 (2020-11-12)

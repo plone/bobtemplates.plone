@@ -16,6 +16,9 @@ Changelog
 - Fix #447: Typo in setup.cfg.bob - isort fails
   [MrTango]
 
+- Add black-check env to tox.ini, this allows us to check for black linting issues in the templates
+  [MTango]
+
 
 5.2.0b4 (2020-11-06)
 --------------------

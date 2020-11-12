@@ -12,7 +12,10 @@ Changelog
 
 - Fix svelte_app_name regex and add a test for it
   [MrTango]
-  
+
+- Fix #447: Typo in setup.cfg.bob - isort fails
+  [MrTango]
+
 
 5.2.0b4 (2020-11-06)
 --------------------

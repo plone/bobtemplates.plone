@@ -10,6 +10,8 @@ Changelog
 - Change default answer of "Use XML Model" to false, because the Python way is usually easier and provides a better developer experience
   [MrTango]
 
+- Pin importlib-metadata = >=1 to avoid broken buildout in new packages
+  [MrTango]
 5.2.0 (2020-11-12)
 ------------------
 

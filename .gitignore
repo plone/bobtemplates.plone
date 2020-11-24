@@ -41,3 +41,4 @@ Vagrantfile
 /.tmppytes
 /.tmppytest
 *.bak
+/venv

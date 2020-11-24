@@ -12,6 +12,10 @@ Changelog
 
 - Pin importlib-metadata = >=1 to avoid broken buildout in new packages
   [MrTango]
+
+- Change bundle names for svelte_app, it's now <my-app-name>-bundle.js/css, which makes it better distinguishable in Browser inspector
+  [MrTango]
+
 5.2.0 (2020-11-12)
 ------------------
 

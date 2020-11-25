@@ -1,6 +1,11 @@
 Changelog
 =========
 
+4.0.5rc4 (2020-11-25)
+---------------------
+- Cleanup: Remove CasperJS functional tests
+  [avoinea]
+
 4.0.5rc3 (2020-09-02)
 ---------------------
 - Cleanup: Update Jenkinsfile and setup.py

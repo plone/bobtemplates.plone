@@ -9,61 +9,61 @@ PATH = NAME.split('.') + ['version.txt']
 VERSION = open(join(*PATH)).read().strip()
 
 setup(name=NAME,
-      version=VERSION,
-      description="{{{ package.description }}}",
-      long_description=(
-          open("README.rst").read() + "\n" +
-          open(os.path.join("docs", "HISTORY.txt")).read()
-      ),
-      classifiers=[
-          "Environment :: Web Environment",
-          "Framework :: Plone",
-          "Framework :: Plone :: Addon",
+    version=VERSION,
+    description="{{{ package.description }}}",
+    long_description=(
+        open("README.rst").read() + "\n" +
+        open(os.path.join("docs", "HISTORY.txt")).read()
+    ),
+    classifiers=[
+        "Environment :: Web Environment",
+        "Framework :: Plone",
+        "Framework :: Plone :: Addon",
 {{% if not plone.is_plone5 %}}
-          "Framework :: Plone :: 4.3",
+        "Framework :: Plone :: 4.3",
 {{% endif %}}
 {{% if plone.is_plone5 and not plone.is_plone51 and not plone.is_plone52 %}}
-          "Framework :: Plone :: 5.0",
+        "Framework :: Plone :: 5.0",
 {{% endif %}}
 {{% if plone.is_plone51 %}}
-          "Framework :: Plone :: 5.1",
+        "Framework :: Plone :: 5.1",
 {{% endif %}}
 {{% if plone.is_plone52 %}}
-          "Framework :: Plone :: 5.2",
+        "Framework :: Plone :: 5.2",
 {{% endif %}}
-          "Programming Language :: Python",
-          "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
 {{% if plone.is_plone52 %}}
-          "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.8",
 {{% endif %}}
-          "Operating System :: OS Independent",
-          "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
-      ],
-      keywords='EEA Add-ons Plone Zope',
-      author='{{{ author.name }}}',
-      author_email='{{{ author.email }}}',
-      url='https://github.com/eea/{{{ package.dottedname }}}',
-      license='GPL version 2',
-      packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['eea'],
-      include_package_data=True,
-      zip_safe=False,
-      {{% if plone.is_plone52 %}}
-      python_requires="==2.7, >=3.6",
-      {{% else %}}
-      python_requires="==2.7",
-      {{% endif %}}
-      install_requires=[
-          'setuptools',
-          # -*- Extra requirements: -*-
-      ],
-      extras_require={
-          'test': [
-              'plone.app.testing',
-          ],
-      },
-      entry_points="""
-      [z3c.autoinclude.plugin]
-      target = plone
-      """
-      )
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    ],
+    keywords='EEA Add-ons Plone Zope',
+    author='{{{ author.name }}}',
+    author_email='{{{ author.email }}}',
+    url='https://github.com/eea/{{{ package.dottedname }}}',
+    license='GPL version 2',
+    packages=find_packages(exclude=['ez_setup']),
+    namespace_packages=['eea'],
+    include_package_data=True,
+    zip_safe=False,
+    {{% if plone.is_plone52 %}}
+    python_requires="==2.7, >=3.6",
+    {{% else %}}
+    python_requires="==2.7",
+    {{% endif %}}
+    install_requires=[
+        'setuptools',
+        # -*- Extra requirements: -*-
+    ],
+    extras_require={
+        'test': [
+            'plone.app.testing',
+        ],
+    },
+    entry_points="""
+    [z3c.autoinclude.plugin]
+    target = plone
+    """
+)

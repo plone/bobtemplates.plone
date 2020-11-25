@@ -1,6 +1,11 @@
 Changelog
 =========
 
+4.0.5rc5 (2020-11-25)
+---------------------
+- Cleanup: Fix pylint, pep8
+  [avoinea]
+
 4.0.5rc4 (2020-11-25)
 ---------------------
 - Cleanup: Remove CasperJS functional tests

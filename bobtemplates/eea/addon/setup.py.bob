@@ -8,7 +8,8 @@ NAME = '{{{ package.dottedname }}}'
 PATH = NAME.split('.') + ['version.txt']
 VERSION = open(join(*PATH)).read().strip()
 
-setup(name=NAME,
+setup(
+    name=NAME,
     version=VERSION,
     description="{{{ package.description }}}",
     long_description=(

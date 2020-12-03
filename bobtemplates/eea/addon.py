@@ -94,14 +94,6 @@ def _cleanup_package(configurator):
     )
 
     if nested:
-        # Event though the target-dir was 'collective.behavior.myaddon' mrbob
-        # created a package collective.behavior.myaddon/src/collective/myaddon
-        # since the template does not hava a folder for namespace2.
-        # Here this package is turned into a nested package
-        # collective.behavior.myaddon/src/collective/behavior/myaddon by
-        # inserting a folder with the namepsace2 ('behavior') and oopying
-        # a __init__.py into it.
-
         # full path for nested packages
         base_path_nested = make_path(
             start_path,
@@ -109,14 +101,9 @@ def _cleanup_package(configurator):
             configurator.variables['package.name'],
         )
 
-        # directory to be created: .../src/collective/behavior
-        newpath = make_path(
-            start_path,
-            configurator.variables['package.namespace2'],
-        )
-
-        # delete base path folder since it is not required
-        shutil.rmtree(base_path)
+        # delete base path folder if it exists since it is not required
+        if os.path.exists(base_path):
+            shutil.rmtree(base_path)
 
         # use the new path for deleting
         base_path = base_path_nested

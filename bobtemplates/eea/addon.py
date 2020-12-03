@@ -19,7 +19,9 @@ def pre_render(configurator):
     if nested:
         namespace2 = package_dir.split('.')[1]
     else:
-        namespace2 = None
+        # in order for it to work with the 3 namespace template we use the
+        # first namespace as placeholder
+        namespace2 = configurator.variables['package.namespace']
     configurator.variables['package.namespace2'] = namespace2
     configurator.variables['package.name'] = package_dir.split('.')[-1]
 
@@ -77,13 +79,11 @@ def _cleanup_package(configurator):
     configuration.
 
     """
-
     nested = configurator.variables['package.nested']
 
     # construct full path '.../src/collective'
     start_path = make_path(
         configurator.target_directory,
-        'src',
         configurator.variables['package.namespace'],
     )
 
@@ -102,7 +102,7 @@ def _cleanup_package(configurator):
         # inserting a folder with the namepsace2 ('behavior') and oopying
         # a __init__.py into it.
 
-        # full path for nested packages: '.../src/collective/behavior/myaddon'
+        # full path for nested packages
         base_path_nested = make_path(
             start_path,
             configurator.variables['package.namespace2'],
@@ -114,20 +114,19 @@ def _cleanup_package(configurator):
             start_path,
             configurator.variables['package.namespace2'],
         )
-        if not os.path.exists(newpath):
-            # create new directory .../src/collective/behavior
-            os.makedirs(newpath)
 
-        # copy .../src/collective/__init__.py to
-        # .../src/collective/myaddon/__init__.py
-        init = make_path(start_path, '__init__.py')
-        shutil.copy2(init, newpath)
-
-        # move .../src/collective/myaddon to .../src/collective/behavior
-        shutil.move(base_path, base_path_nested)
+        # delete base path folder since it is not required
+        shutil.rmtree(base_path)
 
         # use the new path for deleting
         base_path = base_path_nested
+    else:
+        newpath = make_path(
+            start_path,
+            configurator.variables['package.namespace2'],
+        )
+        # delete the extra placeholder folder
+        shutil.rmtree(newpath)
 
 
 def pre_ask(configurator):

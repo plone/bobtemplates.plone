@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from .base import init_package_base_structure
 from bobtemplates.plone import base
 from bobtemplates.plone import svelte_app
 from mrbob.bobexceptions import ValidationError
@@ -11,10 +12,11 @@ import pytest
 
 
 def test_prep_renderer(tmpdir):
-    target_path = tmpdir.strpath + '/collective.todo'
+    package_root = tmpdir.strpath + "/collective.todo"
+    package_path = init_package_base_structure(package_root)
     configurator = Configurator(
         template='bobtemplates.plone:svelte_app',
-        target_directory=target_path,
+        target_directory=package_root,
         variables={
             'svelte_app_name': 'my-cool-svelte-app',
         },

@@ -8,6 +8,7 @@ from bobtemplates.plone.base import get_normalized_ftiname
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import is_string_in_file
 from bobtemplates.plone.base import update_file
+from bobtemplates.plone.utils import run_isort
 from lxml import etree
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
@@ -274,6 +275,7 @@ def post_renderer(configurator):
     _update_rolemap_xml(configurator)
     _update_metadata_xml(configurator)
     _update_setup_py(configurator)
+    run_isort(configurator)
     git_commit(
         configurator,
         'Add content_type: {0}'.format(

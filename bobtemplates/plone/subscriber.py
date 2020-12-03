@@ -4,6 +4,7 @@ from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import remove_unwanted_files
 from bobtemplates.plone.base import update_configure_zcml
+from bobtemplates.plone.utils import run_isort
 
 import case_conversion as cc
 
@@ -82,6 +83,7 @@ def post_renderer(configurator):
     _update_package_configure_zcml(configurator)
     _update_subscribers_configure_zcml(configurator)
     _remove_unwanted_files(configurator)
+    run_isort(configurator)
     git_commit(
         configurator,
         'Add subscriber: {0}'.format(

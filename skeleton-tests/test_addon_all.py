@@ -10,7 +10,11 @@ import subprocess
 
 def test_addon_all(tmpdir, capsys, config):
     answers_init_path = os.path.join(tmpdir.strpath, "answers.ini")
+<<<<<<< HEAD
     package_dir = os.path.abspath(tmpdir.strpath)
+=======
+    package_dir = os.path.abspath(tmpdir.strpath,)
+>>>>>>> refactor test setup, run most skeleton test in at once, apply isort to more templates
     template = """[variables]
 package.description = Dummy package
 package.example = True
@@ -46,7 +50,11 @@ plone.version = {version}
         print(e)
     assert result == 0
 
+<<<<<<< HEAD
     wd = os.path.abspath(os.path.join(tmpdir.strpath, config.package_name))
+=======
+    wd = os.path.abspath(os.path.join(tmpdir.strpath, config.package_name),)
+>>>>>>> refactor test setup, run most skeleton test in at once, apply isort to more templates
 
     # generate subtemplate content_type:
     template = """[variables]
@@ -241,6 +249,30 @@ subtemplate_warning = Yes
     assert file_exists(wd, "/svelte_src/my-custom-svelte-element/README.md")
     assert file_exists(wd, "/src/collective/task/svelte_apps/my-custom-svelte-element/README.md")
 
+<<<<<<< HEAD
+=======
+    # generate subtemplate theme:
+    template = """[variables]
+theme.name = Plone theme Blacksea
+subtemplate_warning=False
+"""
+    generate_answers_ini(package_dir, template)
+
+    config.template = 'theme'
+    result = subprocess.call(
+        [
+            'mrbob',
+            'bobtemplates.plone:' + config.template,
+            '--config', answers_init_path,
+            '--non-interactive',
+        ],
+        cwd=wd,
+    )
+    assert result == 0
+
+    assert file_exists(wd, '/src/collective/task/theme/manifest.cfg')
+
+>>>>>>> refactor test setup, run most skeleton test in at once, apply isort to more templates
     # generate subtemplate upgrade_step:
     template = """[variables]
 upgrade_step_title = reindex the thing

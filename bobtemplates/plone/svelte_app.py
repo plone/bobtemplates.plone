@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
@@ -65,4 +66,16 @@ def post_renderer(configurator):
         'Add Svelte app: in svelte_apps/{0}'.format(
             configurator.variables['svelte_app_name'],
         ),
+    )
+    echo(
+        '===================================================\n'
+        '=> Sucessfully added: {0} in svelte_apps/{1} \n'
+        '=> you might want to go into the dir and run:\n'
+        '$ yarn\n'
+        'and then:'
+        '$ yarn dev\n'.format(
+            configurator.variables['template_id'],
+            configurator.variables['svelte_app_name'],
+        ),
+        'info',
     )

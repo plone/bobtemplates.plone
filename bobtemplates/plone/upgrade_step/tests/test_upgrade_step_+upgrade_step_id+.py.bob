@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+# from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
 from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING
 
 import unittest

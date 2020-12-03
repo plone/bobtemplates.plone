@@ -121,6 +121,22 @@ def _cleanup_package(configurator):
         # use the new path for deleting
         base_path = base_path_nested
     else:
+        base_path_nested = make_path(
+            start_path,
+            configurator.variables['package.namespace2'],
+            configurator.variables['package.name'],
+        )
+
+        # mkdir base_path
+        if not os.path.exists(base_path):
+            os.makedirs(base_path)
+
+        # move files/folders from base_path_nested in base_path
+        for file in os.listdir(base_path_nested):
+            path = make_path(base_path_nested, file)
+            newpath = make_path(base_path, file)
+            shutil.move(path, newpath)
+
         newpath = make_path(
             start_path,
             configurator.variables['package.namespace2'],

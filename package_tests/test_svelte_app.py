@@ -13,7 +13,7 @@ import pytest
 
 def test_prep_renderer(tmpdir):
     package_root = tmpdir.strpath + "/collective.todo"
-    package_path = init_package_base_structure(package_root)
+    init_package_base_structure(package_root)
     configurator = Configurator(
         template='bobtemplates.plone:svelte_app',
         target_directory=package_root,

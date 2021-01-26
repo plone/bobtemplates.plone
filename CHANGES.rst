@@ -16,6 +16,13 @@ Changelog
 - Change bundle names for svelte_app, it's now <my-app-name>-bundle.js/css, which makes it better distinguishable in Browser inspector
   [MrTango]
 
+- Optimize skeleton test maxtrix, to be much faster
+  [MrTango]
+
+- Override index method in viewlets, not the render method.
+  [MrTango]
+  
+
 5.2.0 (2020-11-12)
 ------------------
 

@@ -17,7 +17,7 @@ class {{{ viewlet_python_class_name }}}(ViewletBase):
         </li>'''
 {{% endif %}}
 
-    def render(self):
+    def index(self):
 {{% if viewlet_template %}}
         return super({{{ viewlet_python_class_name }}}, self).render()
 {{% else %}}

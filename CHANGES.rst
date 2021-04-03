@@ -1,6 +1,13 @@
 Changelog
 =========
 
+4.0.6 (2021-04-03)
+------------------
+- Change: Disable WWW and KGS tests in Jenkinsfile by default to be able to release the egg
+  [avoinea]
+- Bugfix: Fix Jenkinsfile python3 Docker container name
+  [avoinea]
+
 4.0.5 (2020-12-03)
 ------------------
 - Change: Modified addon template so that you can now create packages with 2

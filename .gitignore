@@ -24,13 +24,7 @@ pip-selfcheck.json
 coverage.xml
 Vagrantfile
 .DS_Store
-
-# excludes / This Files should go into version control
-!.editorconfig
-!.gitattributes
-!.gitignore
-!.gitkeep
-!.travis.yml
+/.settings
 
 /dist/
 /.idea/

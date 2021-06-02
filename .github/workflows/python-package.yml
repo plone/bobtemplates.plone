@@ -40,4 +40,4 @@ jobs:
                   pip install -e .
             - name: Test with tox
               run: |
-                  tox
+                  tox -r

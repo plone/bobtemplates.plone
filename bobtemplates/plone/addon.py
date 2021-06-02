@@ -10,64 +10,66 @@ import shutil
 
 
 def pre_render(configurator):
-    """Some variables to make templating easier.
-    """
+    """Some variables to make templating easier."""
     # get package-name from user-input
     package_dir = os.path.basename(configurator.target_directory)
-    nested = bool(len(package_dir.split('.')) == 3)
-    configurator.variables['package.nested'] = nested
-    configurator.variables['package.namespace'] = package_dir.split('.')[0]
+    nested = bool(len(package_dir.split(".")) == 3)
+    configurator.variables["package.nested"] = nested
+    configurator.variables["package.namespace"] = package_dir.split(".")[0]
     if nested:
-        namespace2 = package_dir.split('.')[1]
+        namespace2 = package_dir.split(".")[1]
     else:
         namespace2 = None
-    configurator.variables['package.namespace2'] = namespace2
-    configurator.variables['package.name'] = package_dir.split('.')[-1]
+    configurator.variables["package.namespace2"] = namespace2
+    configurator.variables["package.name"] = package_dir.split(".")[-1]
 
     if nested:
-        dottedname = '{0}.{1}.{2}'.format(
-            configurator.variables['package.namespace'],
-            configurator.variables['package.namespace2'],
-            configurator.variables['package.name'],
+        dottedname = "{0}.{1}.{2}".format(
+            configurator.variables["package.namespace"],
+            configurator.variables["package.namespace2"],
+            configurator.variables["package.name"],
         )
     else:
-        dottedname = '{0}.{1}'.format(
-            configurator.variables['package.namespace'],
-            configurator.variables['package.name'],
+        dottedname = "{0}.{1}".format(
+            configurator.variables["package.namespace"],
+            configurator.variables["package.name"],
         )
 
     # package.dottedname = 'collective.foo.something'
-    configurator.variables['package.dottedname'] = dottedname
+    configurator.variables["package.dottedname"] = dottedname
 
     # package.uppercasename = 'COLLECTIVE_FOO_SOMETHING'
-    configurator.variables['package.uppercasename'] = \
-        configurator.variables['package.dottedname'].replace('.', '_').upper()
+    configurator.variables["package.uppercasename"] = (
+        configurator.variables["package.dottedname"].replace(".", "_").upper()
+    )
 
-    camelcasename = dottedname.replace('.', ' ').title()\
-        .replace(' ', '')\
-        .replace('_', '')
-    browserlayer = '{0}Layer'.format(camelcasename)
+    camelcasename = (
+        dottedname.replace(".", " ").title().replace(" ", "").replace("_", "")
+    )
+    browserlayer = "{0}Layer".format(camelcasename)
 
     # package.browserlayer = 'CollectiveFooSomethingLayer'
-    configurator.variables['package.browserlayer'] = browserlayer
+    configurator.variables["package.browserlayer"] = browserlayer
 
     # package.longname = 'collectivefoosomething'
-    configurator.variables['package.longname'] = camelcasename.lower()
+    configurator.variables["package.longname"] = camelcasename.lower()
 
     # jenkins.directories = 'collective/foo/something'
-    configurator.variables['jenkins.directories'] = dottedname.replace('.', '/')  # NOQA: E501
+    configurator.variables["jenkins.directories"] = dottedname.replace(
+        ".", "/"
+    )  # NOQA: E501
 
     # namespace_packages = "['collective', 'collective.foo']"
     if nested:
         namespace_packages = "'{0}', '{0}.{1}'".format(
-            configurator.variables['package.namespace'],
-            configurator.variables['package.namespace2'],
+            configurator.variables["package.namespace"],
+            configurator.variables["package.namespace2"],
         )
     else:
         namespace_packages = "'{0}'".format(
-            configurator.variables['package.namespace'],
+            configurator.variables["package.namespace"],
         )
-    configurator.variables['package.namespace_packages'] = namespace_packages
+    configurator.variables["package.namespace_packages"] = namespace_packages
 
 
 def _cleanup_package(configurator):
@@ -79,19 +81,19 @@ def _cleanup_package(configurator):
 
     """
 
-    nested = configurator.variables['package.nested']
+    nested = configurator.variables["package.nested"]
 
     # construct full path '.../src/collective'
     start_path = make_path(
         configurator.target_directory,
-        'src',
-        configurator.variables['package.namespace'],
+        "src",
+        configurator.variables["package.namespace"],
     )
 
     # path for normal packages: '.../src/collective/myaddon'
     base_path = make_path(
         start_path,
-        configurator.variables['package.name'],
+        configurator.variables["package.name"],
     )
 
     if nested:
@@ -106,14 +108,14 @@ def _cleanup_package(configurator):
         # full path for nested packages: '.../src/collective/behavior/myaddon'
         base_path_nested = make_path(
             start_path,
-            configurator.variables['package.namespace2'],
-            configurator.variables['package.name'],
+            configurator.variables["package.namespace2"],
+            configurator.variables["package.name"],
         )
 
         # directory to be created: .../src/collective/behavior
         newpath = make_path(
             start_path,
-            configurator.variables['package.namespace2'],
+            configurator.variables["package.namespace2"],
         )
         if not os.path.exists(newpath):
             # create new directory .../src/collective/behavior
@@ -121,7 +123,7 @@ def _cleanup_package(configurator):
 
         # copy .../src/collective/__init__.py to
         # .../src/collective/myaddon/__init__.py
-        init = make_path(start_path, '__init__.py')
+        init = make_path(start_path, "__init__.py")
         shutil.copy2(init, newpath)
 
         # move .../src/collective/myaddon to .../src/collective/behavior
@@ -132,8 +134,7 @@ def _cleanup_package(configurator):
 
 
 def pre_ask(configurator):
-    """
-    """
+    """ """
 
 
 def post_render(configurator):
@@ -143,7 +144,7 @@ def post_render(configurator):
     if git_init_status:
         git_commit(
             configurator,
-            'Create addon: {0}'.format(
-                configurator.variables['package.dottedname'],
+            "Create addon: {0}".format(
+                configurator.variables["package.dottedname"],
             ),
         )

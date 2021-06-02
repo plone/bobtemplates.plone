@@ -77,8 +77,7 @@ class BobConfig(object):
 
 
 def git_support(configurator):
-    """ check if GIT support is disabled/enabled
-    """
+    """check if GIT support is disabled/enabled"""
     git_support = True
     disabled = configurator.variables.get("package.git.disabled", u"False")
     if hooks.to_boolean(None, None, disabled):

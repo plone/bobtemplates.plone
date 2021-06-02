@@ -8,12 +8,12 @@ from lxml import etree
 
 
 def _update_package_configure_zcml(configurator):
-    path = '{0}'.format(
-        configurator.variables['package_folder'],
+    path = "{0}".format(
+        configurator.variables["package_folder"],
     )
-    file_name = u'configure.zcml'
+    file_name = u"configure.zcml"
     match_xpath = "zope:include[@package='.upgrades']"
-    match_str = '-*- extra stuff goes here -*-'
+    match_str = "-*- extra stuff goes here -*-"
     insert_str = """
   <include package=".upgrades" />
 """
@@ -28,17 +28,19 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_upgrades_configure_zcml(configurator):
-    path = '{0}/upgrades'.format(
-        configurator.variables['package_folder'],
+    path = "{0}/upgrades".format(
+        configurator.variables["package_folder"],
     )
-    file_name = u'configure.zcml'
-    example_file_name = '{0}.example'.format(file_name)
-    zcml_package_name = configurator.variables['upgrade_step_dest_version']
+    file_name = u"configure.zcml"
+    example_file_name = "{0}.example".format(file_name)
+    zcml_package_name = configurator.variables["upgrade_step_dest_version"]
     match_xpath = "zope:include[@file='{0}.zcml']".format(zcml_package_name)
-    match_str = '-*- extra stuff goes here -*-'
+    match_str = "-*- extra stuff goes here -*-"
     insert_str = """
   <include file="{0}.zcml" />
-""".format(zcml_package_name)
+""".format(
+        zcml_package_name
+    )
     update_configure_zcml(
         configurator,
         path,
@@ -53,19 +55,19 @@ def _update_upgrades_configure_zcml(configurator):
 def _remove_unwanted_files(configurator):
     file_paths = []
     rel_file_paths = [
-        '/upgrades/configure.zcml.example',
+        "/upgrades/configure.zcml.example",
     ]
-    base_path = configurator.variables['package_folder']
+    base_path = configurator.variables["package_folder"]
     for rel_file_path in rel_file_paths:
-        file_paths.append('{0}{1}'.format(base_path, rel_file_path))
+        file_paths.append("{0}{1}".format(base_path, rel_file_path))
     remove_unwanted_files(file_paths)
 
 
 def _read_source_version(configurator):
-    base_path = configurator.variables['package_folder']
-    rel_file_path = '/profiles/default/metadata.xml'
-    metadata_path = '{0}{1}'.format(base_path, rel_file_path)
-    with open(metadata_path, 'r') as xml_file:
+    base_path = configurator.variables["package_folder"]
+    rel_file_path = "/profiles/default/metadata.xml"
+    metadata_path = "{0}{1}".format(base_path, rel_file_path)
+    with open(metadata_path, "r") as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
@@ -79,36 +81,41 @@ def _read_source_version(configurator):
 
 def _write_dest_version(configurator):
     """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""  # NOQA: E501
-    metadata_file_name = u'metadata.xml'
-    metadata_file_dir = u'profiles/default'
-    metadata_file_path = configurator.variables['package_folder'] + '/' + \
-        metadata_file_dir + '/' + metadata_file_name
+    metadata_file_name = u"metadata.xml"
+    metadata_file_dir = u"profiles/default"
+    metadata_file_path = (
+        configurator.variables["package_folder"]
+        + "/"
+        + metadata_file_dir
+        + "/"
+        + metadata_file_name
+    )
 
-    with open(metadata_file_path, 'r') as xml_file:
+    with open(metadata_file_path, "r") as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
-        version = tree.xpath('/metadata/version')[0]
+        version = tree.xpath("/metadata/version")[0]
         version.text = str(configurator.variables["upgrade_step_dest_version"])
 
-    with open(metadata_file_path, 'wb') as xml_file:
+    with open(metadata_file_path, "wb") as xml_file:
         tree.write(
             xml_file,
             pretty_print=True,
             xml_declaration=True,
-            encoding='utf-8',
+            encoding="utf-8",
         )
 
 
 def pre_renderer(configurator):
     """Pre rendering."""
     configurator = base_prepare_renderer(configurator)
-    configurator.variables['template_id'] = 'upgrade_step'
+    configurator.variables["template_id"] = "upgrade_step"
     upgrade_step_source_version = _read_source_version(configurator)
     upgrade_step_dest_version = upgrade_step_source_version + 1
-    configurator.variables['upgrade_step_source_version'] = upgrade_step_source_version
-    configurator.variables['upgrade_step_dest_version'] = upgrade_step_dest_version
-    configurator.variables['upgrade_step_id'] = str(upgrade_step_dest_version)
-    configurator.target_directory = configurator.variables['package_folder']
+    configurator.variables["upgrade_step_source_version"] = upgrade_step_source_version
+    configurator.variables["upgrade_step_dest_version"] = upgrade_step_dest_version
+    configurator.variables["upgrade_step_id"] = str(upgrade_step_dest_version)
+    configurator.target_directory = configurator.variables["package_folder"]
 
 
 def post_renderer(configurator):
@@ -119,7 +126,7 @@ def post_renderer(configurator):
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        'Add upgrade_step: {0}'.format(
-            configurator.variables['upgrade_step_title'],
+        "Add upgrade_step: {0}".format(
+            configurator.variables["upgrade_step_title"],
         ),
     )

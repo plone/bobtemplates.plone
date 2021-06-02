@@ -29,21 +29,18 @@ plone.version = {version}
     # generate template addon:
     config.template = "addon"
     config.package_name = "collective.task"
-    try:
-        result = subprocess.call(
-            [
-                "mrbob",
-                "-O",
-                config.package_name,
-                "bobtemplates.plone:" + config.template,
-                "--config",
-                answers_init_path,
-                "--non-interactive",
-            ],
-            cwd=tmpdir.strpath,
-        )
-    except Exception as e:
-        print(e)
+    result = subprocess.call(
+        [
+            "mrbob",
+            "-O",
+            config.package_name,
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
+        ],
+        cwd=tmpdir.strpath,
+    )
     assert result == 0
 
     wd = os.path.abspath(os.path.join(tmpdir.strpath, config.package_name))
@@ -61,19 +58,16 @@ dexterity_type_supermodel=False
     generate_answers_ini(package_dir, template)
 
     config.template = "content_type"
-    try:
-        result = subprocess.call(
-            [
-                "mrbob",
-                "bobtemplates.plone:" + config.template,
-                "--config",
-                answers_init_path,
-                "--non-interactive",
-            ],
-            cwd=wd,
-        )
-    except Exception as e:
-        print(e)
+    result = subprocess.call(
+        [
+            "mrbob",
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
+        ],
+        cwd=wd,
+    )
     assert result == 0
 
     # generate 2. subtemplate content_type with Item instead of Container:
@@ -90,19 +84,16 @@ dexterity_type_activate_default_behaviors=False
     generate_answers_ini(package_dir, template)
 
     config.template = "content_type"
-    try:
-        result = subprocess.call(
-            [
-                "mrbob",
-                "bobtemplates.plone:" + config.template,
-                "--config",
-                answers_init_path,
-                "--non-interactive",
-            ],
-            cwd=wd,
-        )
-    except Exception as e:
-        print(e)
+    result = subprocess.call(
+        [
+            "mrbob",
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
+        ],
+        cwd=wd,
+    )
     assert result == 0
 
     assert file_exists(wd, "/src/collective/task/configure.zcml")

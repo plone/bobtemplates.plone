@@ -4,7 +4,7 @@ Changelog
 5.2.1 (unreleased)
 ------------------
 
-- Updated default Plone version for addon packages to 5.2.2
+- Updated default Plone version for addon packages to 5.2.4
   [MrTango]
 
 - Change default answer of "Use XML Model" to false, because the Python way is usually easier and provides a better developer experience
@@ -16,12 +16,12 @@ Changelog
 - Change bundle names for svelte_app, it's now <my-app-name>-bundle.js/css, which makes it better distinguishable in Browser inspector
   [MrTango]
 
-- Optimize skeleton test maxtrix, to be much faster
+- Optimize skeleton test matrix, to be much faster
   [MrTango]
 
 - Override index method in viewlets, not the render method.
   [MrTango]
-  
+
 
 5.2.0 (2020-11-12)
 ------------------

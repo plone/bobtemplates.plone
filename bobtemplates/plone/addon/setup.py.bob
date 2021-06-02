@@ -71,7 +71,11 @@ setup(
         'Products.GenericSetup>=1.8.2',
 {{% endif %}}
         'plone.api>=1.8.4',
+{{% if not plone.is_plone5 %}}
+        'plone.restapi < 7.0.0a1',
+{{% else %}}
         'plone.restapi',
+{{% endif %}}
         'plone.app.dexterity',
 {{% if not plone.is_plone5 %}}
         'plone.app.referenceablebehavior',

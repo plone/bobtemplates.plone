@@ -18,6 +18,7 @@ class IndexerIntegrationTest(unittest.TestCase):
     def test_dummy(self):
         self.assertTrue(True)
 
+
 class IndexerFunctionalTest(unittest.TestCase):
 
     layer = {{{package.uppercasename}}}_FUNCTIONAL_TESTING

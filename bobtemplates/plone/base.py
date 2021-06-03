@@ -77,8 +77,7 @@ class BobConfig(object):
 
 
 def git_support(configurator):
-    """ check if GIT support is disabled/enabled
-    """
+    """check if GIT support is disabled/enabled"""
     git_support = True
     disabled = configurator.variables.get("package.git.disabled", u"False")
     if hooks.to_boolean(None, None, disabled):
@@ -445,6 +444,7 @@ def base_prepare_renderer(configurator):
         + configurator.variables["package_folder_rel_path"]
     )
     configurator.target_directory = configurator.variables["package.root_folder"]
+    set_global_vars(configurator)
     return configurator
 
 

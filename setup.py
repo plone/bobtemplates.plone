@@ -4,7 +4,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '5.2.1.dev0'
+version = "5.2.1.dev0"
 
 
 long_description = "\n\n".join(
@@ -51,7 +51,15 @@ setup(
     namespace_packages=["bobtemplates"],
     include_package_data=True,
     zip_safe=False,
-    install_requires=["setuptools", "mr.bob", "lxml", "case-conversion", "colorama", "tox", "isort"],
+    install_requires=[
+        "setuptools",
+        "mr.bob",
+        "lxml",
+        "case-conversion",
+        "colorama",
+        "tox",
+        "isort",
+    ],
     setup_requires=[],
     tests_require=[],
     extras_require={},

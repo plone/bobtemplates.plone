@@ -30,7 +30,7 @@ def file_exists(base_path, file_path):
 def run_skeleton_tox_env(wd, config):
     try:
         returncode = subprocess.check_call(
-            ['tox', '-e', config.skeleton_tox_env, '-p', 'auto', '-o', '-v'],
+            ['tox', '-e', config.skeleton_tox_env, '-p', 'auto', '-o', '-v', '-r'],
             cwd=wd,
         )
         return returncode

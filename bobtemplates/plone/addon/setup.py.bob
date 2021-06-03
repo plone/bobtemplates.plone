@@ -74,7 +74,7 @@ setup(
 {{% if not plone.is_plone5 %}}
         'plone.restapi < 7.0.0a1',
 {{% else %}}
-        'plone.restapi',
+        'plone.restapi < 8.0.0',
 {{% endif %}}
         'plone.app.dexterity',
 {{% if not plone.is_plone5 %}}

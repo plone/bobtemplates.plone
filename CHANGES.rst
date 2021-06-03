@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.2.1 (unreleased)
+5.2.1 (2021-06-03)
 ------------------
 
 - Do not create an empty docstring for the content-type class

@@ -133,6 +133,7 @@
       category="object"
       condition_expr=""
       i18n:attributes="title"
+      i18n:domain="plone"
       title="View"
       url_expr="string:${object_url}"
       visible="True">
@@ -147,6 +148,7 @@
       condition_expr=""
 {{% endif %}}
       i18n:attributes="title"
+      i18n:domain="plone"
       title="Edit"
       url_expr="string:${object_url}/edit"
       visible="True">

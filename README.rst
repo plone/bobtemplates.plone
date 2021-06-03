@@ -1,9 +1,8 @@
+.. image:: https://github.com/plone/bobtemplates.plone/workflows/Plone%20package/badge.svg
+    :target: https://github.com/plone/bobtemplates.plone/actions
 
-.. image:: https://secure.travis-ci.org/plone/bobtemplates.plone.png?branch=master
-    :target: http://travis-ci.org/plone/bobtemplates.plone
-
-.. image:: https://coveralls.io/repos/github/plone/bobtemplates.plone/badge.svg?branch=master
-    :target: https://coveralls.io/github/plone/bobtemplates.plone?branch=master
+.. image:: https://coveralls.io/repos/github/plone/bobtemplates.plone/badge.svg?branch=main
+    :target: https://coveralls.io/github/plone/bobtemplates.plone?branch=main
     :alt: Coveralls
 
 .. image:: https://img.shields.io/pypi/v/bobtemplates.plone.svg
@@ -33,7 +32,7 @@ bobtemplates.plone
 
 .. note::
 
-   With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice commandline client for bobtemplates.plone.
+   With the `plonecli <https://pypi.python.org/pypi/plonecli>`_, we have a nice command line client for bobtemplates.plone.
    We highly recommend to use the plonecli, because it adds auto completion and some nice helpers to bobtemplates.plone.
 
 Features
@@ -71,28 +70,26 @@ These templates are meant to be used inside a package which was created by the a
 Compatibility
 =============
 
-Add-ons created with ``bobtemplates.plone`` are tested to work in Plone 4.3.x and Plone 5.
-They should also work with older versions but that was not tested.
+Add-on's created with ``bobtemplates.plone`` are tested to work in Plone >= 5.2 and Python >= 3.7.
+If you need to create Plone packages for older version of Plone and Python, please use bobtemplates.plone 5.x.
 It should work on Linux, Mac and Windows.
-
-.. note::
-    Please note that the theme templates by default only work for Plone > 5, because they are based on Barceloneta. But they can be use for older version too, with some changes to the rules file.
 
 
 Documentation
 =============
 
-Full documentation for end users and template developers can be found in the "docs" folder.
+Full documentation for end users and template developers can be found on `bobtemplatesplone.readthedocs.io <https://bobtemplatesplone.readthedocs.io>`_.
+
+plonecli
+--------
 
     For easy usage see: `plonecli <https://pypi.python.org/pypi/plonecli>`_
-
-It is also available online at http://docs.plone.org/develop/addons/bobtemplates.plone/docs/
 
 
 Installation
 ============
 
-You can install bobtemplates.plone as every other normal Python package with `pip <https://pypi.python.org/pypi/pip>`_ inside a `virtualenv <https://pypi.python.org/pypi/virtualenv>`_ or better with `pipenv <https://pypi.python.org/pypi/pipenv>`_.
+You can install bobtemplates.plone as every other normal Python package with `pip <https://pypi.python.org/pypi/pip>`_ user global or inside a virtualenv or better with `pipx <https://pypa.github.io/pipx/installation/>`_.
 
 Installation with pip global for a user
 ---------------------------------------
@@ -102,12 +99,14 @@ Installation with pip global for a user
     pip install bobtemplates.plone --user
 
 
-Installion with pipenv
+Installation with pipx
 ----------------------
+
+pipx installs bobtemplates.plone and all dependencies in a global isolated virtualenv.
 
 .. code-block:: console
 
-    pipenv install bobtemplates.plone
+    pipx install bobtemplates.plone
 
 
 Installation with pip in a virtualenv
@@ -118,36 +117,19 @@ If you don't have an active virtualenv, you can create one inside your project d
 
 .. code-block:: bash
 
-    virtualenv .
+    python3 -m venv venv
 
 Then either activate the virtualenv:
 
 .. code-block:: bash
 
-    source ./bin/activate
+    source ./venv/bin/activate
 
 or just use the binaries directly inside the bin folder as below:
 
 .. code-block:: console
 
-    ./bin/pip install bobtemplates.plone
-
-
-Use in a buildout
------------------
-
-.. code-block:: ini
-
-    [buildout]
-    parts += mrbob
-
-    [mrbob]
-    recipe = zc.recipe.egg
-    eggs =
-        mr.bob
-        bobtemplates.plone
-
-This creates a mrbob-executable in your bin-directory.
+    ./venv/bin/pip install bobtemplates.plone
 
 
 Usage
@@ -155,25 +137,25 @@ Usage
 
 As bobtemplates.plone is a template for mr.bob_, we use mrbob to run the templates.
 
-If you are using `buildout <https://pypi.python.org/pypi/zc.buildout>`_  or an unactivated `virtualenv <https://pypi.python.org/pypi/virtualenv>`_, you can use mrbob like this:
+If you are using pipx or have bobtemplates.plone globally installed, you can just use mrbob directly.
 
 .. code-block:: console
 
-    ./bin/mrbob bobtemplates.plone:addon -O src/collective.foo
+    mrbob bobtemplates.plone:addon -O src/collective.foo
 
-If you are using pipenv or an activated virtualenv, you can use mrbob like this:
-
-Activate pipenv shell:
+If you are using an unactivated virtualenv, you can use mrbob like this:
 
 .. code-block:: console
 
-    pipenv shell
+    ./venv/bin/mrbob bobtemplates.plone:addon -O src/collective.foo
 
-or activate your virtualenv:
+If you are using an activated virtualenv, you can use mrbob like this:
+
+Activate your virtualenv:
 
 .. code-block:: console
 
-    source bin/activate
+    source venv/bin/activate
 
 .. code-block:: console
 

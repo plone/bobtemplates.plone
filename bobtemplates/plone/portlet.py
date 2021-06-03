@@ -3,6 +3,7 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
+
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file

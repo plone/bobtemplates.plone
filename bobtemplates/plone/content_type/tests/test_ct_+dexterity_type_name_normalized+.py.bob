@@ -59,7 +59,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         schema = fti.lookupSchema()
 {{% if dexterity_type_supermodel %}}
         schema_name = portalTypeToSchemaName('{{{ dexterity_type_name }}}')
-        self.assertEqual(schema_name, schema.getName())
+        self.assertIn(schema_name.lstrip('plone_0_'), schema.getName())
 {{% else %}}
         self.assertEqual(I{{{ dexterity_type_name_klass }}}, schema)
 {{% endif %}}
@@ -166,7 +166,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
             self.portal,
             '{{{ dexterity_type_name_normalized }}}_id',
             title='{{{ dexterity_type_name }}} container',
-         )
+        )
         self.parent = self.portal[parent_id]
         with self.assertRaises(InvalidParameterError):
             api.content.create(
@@ -185,7 +185,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
             self.portal,
             '{{{ dexterity_type_name_normalized }}}_id',
             title='{{{ dexterity_type_name }}} container',
-         )
+        )
         self.parent = self.portal[parent_id]
         obj = api.content.create(
             container=self.parent,

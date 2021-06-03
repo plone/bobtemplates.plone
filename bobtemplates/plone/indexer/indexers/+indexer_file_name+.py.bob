@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
+{{% if not plone.is_plone5 %}}
+from Products.ATContentTypes.interfaces.document import IATDocument
+{{% else %}}
 from plone.app.contenttypes.interfaces import IDocument
+{{% endif %}}
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
 
@@ -11,7 +15,11 @@ def dummy(obj):
     raise AttributeError('This field should not indexed here!')
 
 
+{{% if not plone.is_plone5 %}}
+@indexer(IATDocument)  # ADJUST THIS!
+{{% else %}}
 @indexer(IDocument)  # ADJUST THIS!
+{{% endif %}}
 def {{{ indexer_name }}}(obj):
     """Calculate and return the value for the indexer"""
     return obj.{{{ indexer_name }}}

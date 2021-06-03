@@ -80,6 +80,6 @@ class I{{{ dexterity_type_name_klass }}}(model.Schema):
 
 @implementer(I{{{ dexterity_type_name_klass }}})
 class {{{ dexterity_type_name_klass }}}({{{ dexterity_type_base_class }}}):
-    """
+    """ Content-type class for I{{{ dexterity_type_name_klass }}}
     """
 {{% endif %}}

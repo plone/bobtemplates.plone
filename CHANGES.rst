@@ -4,6 +4,9 @@ Changelog
 5.2.1 (unreleased)
 ------------------
 
+- Do not create an empty docstring for the content-type class
+  [erral]
+
 - Updated default Plone version for addon packages to 5.2.4
   [MrTango]
 

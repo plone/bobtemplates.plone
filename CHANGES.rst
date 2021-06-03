@@ -1,10 +1,14 @@
 Changelog
 =========
 
-5.2.2 (unreleased)
+6.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Drop Python 2 support
+  [MrTango]
+
+- Drop support for Plone < 5.2
+  [MrTango]
 
 
 5.2.1 (2021-06-03)

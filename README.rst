@@ -165,6 +165,7 @@ This will create your Plone package inside the ``src`` directory.
 
 See the documentation of mr.bob_ for further information.
 
+
 Configuration
 =============
 

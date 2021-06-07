@@ -1,7 +1,6 @@
 # Constraints for Python Packages
 # -----------------------------------------------
 # Pin Versions / Version Ranges if necessary.
-
 setuptools==57.0.0
 tox>=3.6
 isort>=5

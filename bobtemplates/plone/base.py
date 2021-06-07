@@ -187,7 +187,7 @@ def check_method_name(configurator, question, answer):
         raise ValidationError(
             u"{key} is a reserved Python keyword".format(key=answer)
         )  # NOQA: E501
-    if not re.match("[a-z_][a-z0-9_]*$", answer):
+    if not re.match("[a-zA-Z_][a-zA-Z0-9_]*$", answer):
         raise ValidationError(
             u"{key} is not a valid method identifier".format(key=answer)
         )  # NOQA: E501

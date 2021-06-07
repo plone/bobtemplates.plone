@@ -10,6 +10,9 @@ Changelog
 - Drop support for Plone < 5.2
   [MrTango]
 
+- Fix placeholder syntax in configure.zmcl files
+  [MrTango]
+
 
 5.2.1 (2021-06-03)
 ------------------

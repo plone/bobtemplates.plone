@@ -10,6 +10,9 @@ Changelog
 - Drop support for Plone < 5.2
   [MrTango]
 
+- make behaviors translateable in the package's i18n_domain
+  [fRiSi]
+
 
 5.2.1 (2021-06-03)
 ------------------

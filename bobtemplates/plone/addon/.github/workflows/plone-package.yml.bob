@@ -49,7 +49,7 @@ jobs:
                   pip install tox tox-gh-actions
             - name: Black-Check
               run: |
-                  tox -e black-check
+                  tox -r -e black-check
             - name: Test with tox
               run: |
                   tox -r

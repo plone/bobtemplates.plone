@@ -9,6 +9,7 @@ from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import ZCML_NAMESPACES
 from bobtemplates.plone.utils import run_isort
+from bobtemplates.plone.utils import run_black
 from bobtemplates.plone.utils import slugify
 from lxml import etree
 
@@ -199,6 +200,7 @@ def post_renderer(configurator):
     _update_portlets_xml(configurator)
     _delete_unnecessary_files(configurator)
     run_isort(configurator)
+    run_black(configurator)
     git_commit(
         configurator,
         u"Add portlet: {0}".format(

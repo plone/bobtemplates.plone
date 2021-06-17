@@ -86,3 +86,21 @@ def run_isort(configurator):
         raise
     except subprocess.CalledProcessError as execinfo:
         print(u"Error on isort-apply: {0}".format(safe_unicode(execinfo.output)))
+
+def run_black(configurator):
+    root_folder = _get_package_root_folder(configurator)
+    try:
+        test_result = subprocess.check_output(
+            ["tox", "-e", "black-enforce"],
+            cwd=root_folder,
+        )
+        print(u"\nblack-enforce: successful:\n{0}\n".format(safe_unicode(test_result)))
+    except OSError as e:
+        print(
+            u"Error on black-enforce: {0}, make sure you have tox an black installed globally!".format(
+                safe_unicode(e)
+            )
+        )
+        raise
+    except subprocess.CalledProcessError as execinfo:
+        print(u"Error on black-enforce: {0}".format(safe_unicode(execinfo.output)))

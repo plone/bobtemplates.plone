@@ -3,6 +3,7 @@
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import git_init
 from bobtemplates.plone.base import make_path
+from bobtemplates.plone.utils import run_black
 from bobtemplates.plone.utils import run_isort
 
 import os
@@ -140,6 +141,7 @@ def pre_ask(configurator):
 def post_render(configurator):
     _cleanup_package(configurator)
     run_isort(configurator)
+    run_black(configurator)
     git_init_status = git_init(configurator)
     if git_init_status:
         git_commit(

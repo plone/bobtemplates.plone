@@ -5,6 +5,7 @@ from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import remove_unwanted_files
 from bobtemplates.plone.base import update_configure_zcml
 from bobtemplates.plone.utils import run_isort
+from bobtemplates.plone.utils import run_black
 
 import case_conversion as cc
 
@@ -83,6 +84,7 @@ def post_renderer(configurator):
     _update_indexers_configure_zcml(configurator)
     _remove_unwanted_files(configurator)
     run_isort(configurator)
+    run_black(configurator)
     git_commit(
         configurator,
         "Add indexer: {0}".format(

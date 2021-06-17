@@ -59,6 +59,7 @@ setup(
         "colorama",
         "tox",
         "isort",
+        "black",
     ],
     setup_requires=[],
     tests_require=[],

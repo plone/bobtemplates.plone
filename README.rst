@@ -71,7 +71,7 @@ Compatibility
 =============
 
 Add-on's created with ``bobtemplates.plone`` are tested to work in Plone >= 5.2 and Python >= 3.7.
-If you need to create Plone packages for older version of Plone and Python, please use bobtemplates.plone 5.x.
+If you need to create Plone packages for older versions of Plone and Python, please use bobtemplates.plone 5.x.
 It should work on Linux, Mac and Windows.
 
 

@@ -84,8 +84,8 @@ def post_renderer(configurator):
     _update_package_configure_zcml(configurator)
     _update_subscribers_configure_zcml(configurator)
     _remove_unwanted_files(configurator)
-    run_isort(configurator)
     run_black(configurator)
+    run_isort(configurator)
     git_commit(
         configurator,
         "Add subscriber: {0}".format(

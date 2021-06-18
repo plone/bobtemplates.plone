@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
 
-from bobtemplates.plone.base import base_prepare_renderer
-from bobtemplates.plone.base import echo
-from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import is_string_in_file
-from bobtemplates.plone.base import update_file
-from bobtemplates.plone.base import validate_packagename
+import os
+import re
+
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
-import os
-import re
+from bobtemplates.plone.base import (
+    base_prepare_renderer,
+    echo,
+    git_commit,
+    is_string_in_file,
+    update_file,
+    validate_packagename,
+)
 
 
 def pre_theme_name(configurator, question):

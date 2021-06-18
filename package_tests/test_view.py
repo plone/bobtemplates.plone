@@ -2,16 +2,15 @@
 
 """Test view generation."""
 
-from .base import init_package_base_structure
-from bobtemplates.plone import base
-from bobtemplates.plone import view
-from mrbob.bobexceptions import SkipQuestion
-from mrbob.bobexceptions import ValidationError
-from mrbob.configurator import Configurator
-from mrbob.configurator import Question
-
 import os
+
 import pytest
+from mrbob.bobexceptions import SkipQuestion, ValidationError
+from mrbob.configurator import Configurator, Question
+
+from bobtemplates.plone import base, view
+
+from .base import init_package_base_structure
 
 
 def test_get_view_name():
@@ -23,7 +22,7 @@ def test_get_view_name():
         variables={"view_python_class": True, "view_python_class_name": "DemoView"},
     )
     view.get_view_name_from_python_class(configurator, question)
-    assert question.default == 'demo-view'
+    assert question.default == "demo-view"
 
 
 def test_get_view_template_name():
@@ -35,7 +34,7 @@ def test_get_view_template_name():
         variables={"view_python_class": True, "view_python_class_name": "DemoView"},
     )
     view.get_view_template_name_from_python_class(configurator, question)
-    assert question.default == 'demo_view'
+    assert question.default == "demo_view"
 
 
 def test_python_class_true():
@@ -287,8 +286,8 @@ def test_delete_unwanted_files_template(tmpdir):
     base.set_global_vars(configurator)
     configurator.render()  # pre/render/post
     # as the post_rederer also calls delete_unwanted_files. we don't need to call here
-    python_file_name = configurator.variables.get('view_python_file_name') + '.py'
-    template_file_name = configurator.variables.get('view_template_name') + '.pt'
+    python_file_name = configurator.variables.get("view_python_file_name") + ".py"
+    template_file_name = configurator.variables.get("view_template_name") + ".pt"
     python_file_path = os.path.join(views_path + python_file_name)
     template_file_path = os.path.join(views_path + template_file_name)
     assert os.path.isfile(template_file_path)
@@ -318,8 +317,8 @@ def test_delete_unwanted_files_python(tmpdir):
     base.set_global_vars(configurator)
     configurator.render()  # pre/render/post
     # as the post_rederer also calls delete_unwanted_files. we don't need to call here
-    python_file_name = configurator.variables.get('view_python_file_name') + '.py'
-    template_file_name = configurator.variables.get('view_template_name') + '.pt'
+    python_file_name = configurator.variables.get("view_python_file_name") + ".py"
+    template_file_name = configurator.variables.get("view_template_name") + ".pt"
     python_file_path = os.path.join(views_path + python_file_name)
     template_file_path = os.path.join(views_path + template_file_name)
     assert not os.path.isfile(template_file_path)

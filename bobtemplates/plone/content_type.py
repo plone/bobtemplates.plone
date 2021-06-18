@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
 """Generate content type."""
 
-from bobtemplates.plone.base import base_prepare_renderer
-from bobtemplates.plone.base import get_normalized_classname
-from bobtemplates.plone.base import get_normalized_dxtypename
-from bobtemplates.plone.base import get_normalized_ftiname
-from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import is_string_in_file
-from bobtemplates.plone.base import update_file
-from bobtemplates.plone.utils import run_isort
-from bobtemplates.plone.utils import run_black
-from lxml import etree
-from mrbob.bobexceptions import SkipQuestion
-from mrbob.bobexceptions import ValidationError
-
 import keyword
 import os
 import re
+
+from lxml import etree
+from mrbob.bobexceptions import SkipQuestion, ValidationError
+
+from bobtemplates.plone.base import (
+    base_prepare_renderer,
+    get_normalized_classname,
+    get_normalized_dxtypename,
+    get_normalized_ftiname,
+    git_commit,
+    is_string_in_file,
+    update_file,
+)
+from bobtemplates.plone.utils import run_black, run_isort
 
 
 def is_container(configurator, question):

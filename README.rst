@@ -70,7 +70,8 @@ These templates are meant to be used inside a package which was created by the a
 Compatibility
 =============
 
-Add-on's created with ``bobtemplates.plone`` are tested to work in Plone >= 5.2 and Python >= 3.7.
+Add-on's created with ``bobtemplates.plone`` are tested to work in **Plone >= 5.2** and **Python >= 3.7**.
+
 If you need to create Plone packages for older versions of Plone and Python, please use bobtemplates.plone 5.x.
 It should work on Linux, Mac and Windows.
 

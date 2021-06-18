@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from bobtemplates.plone.base import _get_package_root_folder
-
 import re
-import six
 import subprocess
 import unicodedata
+
+import six
+
+from bobtemplates.plone.base import _get_package_root_folder
 
 
 def safe_unicode(value, encoding="utf-8"):
@@ -86,6 +87,7 @@ def run_isort(configurator):
         raise
     except subprocess.CalledProcessError as execinfo:
         print(u"Error on isort-apply: {0}".format(safe_unicode(execinfo.output)))
+
 
 def run_black(configurator):
     root_folder = _get_package_root_folder(configurator)

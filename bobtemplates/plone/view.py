@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 """Generate view."""
 
-from bobtemplates.plone.base import base_prepare_renderer
-from bobtemplates.plone.base import echo
-from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import update_file
-from bobtemplates.plone.base import ZCML_NAMESPACES
-from bobtemplates.plone.utils import run_isort
-from bobtemplates.plone.utils import run_black
-from lxml import etree
-from mrbob.bobexceptions import SkipQuestion
-from mrbob.bobexceptions import ValidationError
+import os
 
 import case_conversion as cc
-import os
 import six
+from lxml import etree
+from mrbob.bobexceptions import SkipQuestion, ValidationError
+
+from bobtemplates.plone.base import (
+    ZCML_NAMESPACES,
+    base_prepare_renderer,
+    echo,
+    git_commit,
+    update_file,
+)
+from bobtemplates.plone.utils import run_black, run_isort
 
 
 def get_view_name_from_python_class(configurator, question):

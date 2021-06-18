@@ -2,14 +2,15 @@
 
 """Test view generation."""
 
-from .base import init_package_base_structure
-from bobtemplates.plone import base
-from bobtemplates.plone import indexer
+import os
+
+import pytest
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
-import os
-import pytest
+from bobtemplates.plone import base, indexer
+
+from .base import init_package_base_structure
 
 
 def test_update_indexers_configure_zcml(tmpdir):
@@ -50,19 +51,19 @@ def test_pre_renderer(tmpdir):
     base_path = tmpdir.strpath
     package_root_folder = os.path.join(
         base_path,
-        'collective.foo',
+        "collective.foo",
     )
     package_path = init_package_base_structure(package_root_folder)
     configurator = Configurator(
-        template='bobtemplates.plone:indexer',
+        template="bobtemplates.plone:indexer",
         bobconfig={"non_interactive": True},
         target_directory=package_path,
         variables={
-            'package.root_folder': package_root_folder,
+            "package.root_folder": package_root_folder,
             "indexer_name": "my_cool_index",
             "package_folder": os.path.join(
                 package_root_folder,
-                'src/collective/foo',
+                "src/collective/foo",
             ),
         },
     )
@@ -73,15 +74,15 @@ def test_post_renderer(tmpdir):
     base_path = tmpdir.strpath
     package_root_folder = os.path.join(
         base_path,
-        'collective.foo',
+        "collective.foo",
     )
     package_path = init_package_base_structure(package_root_folder)
     configurator = Configurator(
-        template='bobtemplates.plone:indexer',
+        template="bobtemplates.plone:indexer",
         bobconfig={"non_interactive": True},
         target_directory=package_path,
         variables={
-            'package.root_folder': package_root_folder,
+            "package.root_folder": package_root_folder,
             "indexer_name": "my_cool_index",
             "package_folder": package_path,
         },
@@ -99,7 +100,7 @@ def test_post_renderer(tmpdir):
 
     </configure>
 """
-    with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
         f.write(template)
 
     os.chdir(package_path)

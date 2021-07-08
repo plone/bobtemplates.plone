@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 """Generate portlet."""
 
-from __future__ import absolute_import
-from __future__ import print_function
+from __future__ import absolute_import, print_function
 
-from bobtemplates.plone.base import base_prepare_renderer
-from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import update_file
-from bobtemplates.plone.base import ZCML_NAMESPACES
-from bobtemplates.plone.utils import run_isort
-from bobtemplates.plone.utils import slugify
-from lxml import etree
+import os
 
 import case_conversion as cc
-import os
+from lxml import etree
+
+from bobtemplates.plone.base import (
+    ZCML_NAMESPACES,
+    base_prepare_renderer,
+    git_commit,
+    update_file,
+)
+from bobtemplates.plone.utils import run_black, run_isort, slugify
 
 
 def _update_portlets_configure_zcml(configurator):
@@ -199,6 +200,7 @@ def post_renderer(configurator):
     _update_portlets_xml(configurator)
     _delete_unnecessary_files(configurator)
     run_isort(configurator)
+    run_black(configurator)
     git_commit(
         configurator,
         u"Add portlet: {0}".format(

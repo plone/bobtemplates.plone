@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from bobtemplates.plone import base
+import os
+
+import pytest
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
-import os
-import pytest
+from bobtemplates.plone import base
 
 
 def test_to_boolean():
@@ -16,8 +17,7 @@ def test_to_boolean():
 
 
 def test_check_klass_name():
-    """Test validation of entered class names
-    """
+    """Test validation of entered class names"""
 
     def hookit(value):
         return base.check_klass_name(None, None, value)

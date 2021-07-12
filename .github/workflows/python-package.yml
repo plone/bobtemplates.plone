@@ -5,9 +5,9 @@ name: Python package
 
 on:
     push:
-        branches: [master]
+        branches: [main]
     pull_request:
-        branches: [master]
+        branches: [main]
 
 jobs:
     build:
@@ -15,14 +15,14 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                python-version: [3.7, 2.7]
+                python-version: [3.9, 3.8, 3.7]
 
         steps:
             - uses: actions/checkout@v2
             - uses: actions/cache@v2
               with:
                   path: ~/.cache/pip
-                  key: ${{ runner.os }}-tox-${{ hashFiles('**/tox.ini') }}-${{ hashFiles('**/requirements.txt') }}-${{ hashFiles('**/setup.py') }}
+                  key: ${{ runner.os }}-tox-${{ hashFiles('**/tox.ini') }}-${{ hashFiles('**/requirements.txt') }}-${{ hashFiles('**/constraints.txt') }}-${{ hashFiles('**/setup.py') }}
                   restore-keys: |
                     ${{ runner.os }}-pip-
             - name: Set up Python ${{ matrix.python-version }}
@@ -38,6 +38,9 @@ jobs:
                   pip install flake8 tox tox-gh-actions
                   if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
                   pip install -e .
+            - name: Black-Check
+              run: |
+                  tox -r -e black-check
             - name: Test with tox
               run: |
                   tox -r

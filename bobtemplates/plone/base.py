@@ -1,25 +1,21 @@
 # -*- coding: utf-8 -*-
-from colorama import Fore
-from colorama import Style
-from datetime import date
-from lxml import etree
-from mrbob import hooks
-from mrbob.bobexceptions import MrBobError
-from mrbob.bobexceptions import SkipQuestion
-from mrbob.bobexceptions import ValidationError
-from mrbob.rendering import jinja2_env
-from six.moves import input
-
-import case_conversion as cc
 import codecs
 import keyword
 import os
 import re
-import six
 import string
 import subprocess
 import sys
+from datetime import date
 
+import case_conversion as cc
+import six
+from colorama import Fore, Style
+from lxml import etree
+from mrbob import hooks
+from mrbob.bobexceptions import MrBobError, SkipQuestion, ValidationError
+from mrbob.rendering import jinja2_env
+from six.moves import input
 
 try:
     from ConfigParser import ConfigParser
@@ -187,7 +183,7 @@ def check_method_name(configurator, question, answer):
         raise ValidationError(
             u"{key} is a reserved Python keyword".format(key=answer)
         )  # NOQA: E501
-    if not re.match("[a-z_][a-z0-9_]*$", answer):
+    if not re.match("[a-zA-Z_][a-zA-Z0-9_]*$", answer):
         raise ValidationError(
             u"{key} is not a valid method identifier".format(key=answer)
         )  # NOQA: E501

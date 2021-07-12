@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
-
-version = "5.2.2.dev0"
+version = "6.0.dev0"
 
 
 long_description = "\n\n".join(
@@ -28,7 +26,6 @@ setup(
         "Natural Language :: English",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: Implementation :: CPython",
         "Development Status :: 5 - Production/Stable",
@@ -51,6 +48,7 @@ setup(
     namespace_packages=["bobtemplates"],
     include_package_data=True,
     zip_safe=False,
+    python_requires=">=3.7",
     install_requires=[
         "setuptools",
         "mr.bob",
@@ -59,6 +57,7 @@ setup(
         "colorama",
         "tox",
         "isort",
+        "black",
     ],
     setup_requires=[],
     tests_require=[],

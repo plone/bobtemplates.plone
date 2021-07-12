@@ -1,10 +1,23 @@
 Changelog
 =========
 
-5.2.2 (unreleased)
+6.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Drop Python 2 support
+  [MrTango]
+
+- Drop support for Plone < 5.2
+  [MrTango]
+
+- Fix placeholder syntax in configure.zmcl files
+  [MrTango]
+
+- Improve CI-Support with GitHub-Actions, in root package and generated add-on's
+  [MrTango]
+
+- Finalize Black code formater support in root package and generated add-on's
+  [MrTango]
 
 
 5.2.1 (2021-06-03)

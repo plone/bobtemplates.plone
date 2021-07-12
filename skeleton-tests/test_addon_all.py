@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from base import file_exists
-from base import generate_answers_ini
-from base import run_skeleton_tox_env
-
 import os.path
 import subprocess
+
+from base import file_exists, generate_answers_ini, run_skeleton_tox_env
 
 
 def test_addon_all(tmpdir, capsys, config):
@@ -194,19 +192,20 @@ service_name=related-images
 """
     generate_answers_ini(package_dir, template)
 
-    config.template = 'restapi_service'
+    config.template = "restapi_service"
     result = subprocess.call(
         [
-            'mrbob',
-            'bobtemplates.plone:' + config.template,
-            '--config', answers_init_path,
-            '--non-interactive',
+            "mrbob",
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
         ],
         cwd=wd,
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/task/configure.zcml')
+    assert file_exists(wd, "/src/collective/task/configure.zcml")
 
     # generate subtemplate svelte_app:
     template = """[variables]
@@ -230,7 +229,9 @@ subtemplate_warning = Yes
     assert result == 0
 
     assert file_exists(wd, "/svelte_src/my-custom-svelte-element/README.md")
-    assert file_exists(wd, "/src/collective/task/svelte_apps/my-custom-svelte-element/README.md")
+    assert file_exists(
+        wd, "/src/collective/task/svelte_apps/my-custom-svelte-element/README.md"
+    )
 
     # generate subtemplate upgrade_step:
     template = """[variables]
@@ -267,19 +268,20 @@ view_template_name=pt_view
 """
     generate_answers_ini(package_dir, template)
 
-    config.template = 'view'
+    config.template = "view"
     result = subprocess.call(
         [
-            'mrbob',
-            'bobtemplates.plone:' + config.template,
-            '--config', answers_init_path,
-            '--non-interactive',
+            "mrbob",
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
         ],
         cwd=wd,
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/task/configure.zcml')
+    assert file_exists(wd, "/src/collective/task/configure.zcml")
 
     # generate subtemplate viewlet:
     template = """[variables]
@@ -291,13 +293,14 @@ viewlet_template_name=pt_viewlet
 """
     generate_answers_ini(package_dir, template)
 
-    config.template = 'viewlet'
+    config.template = "viewlet"
     result = subprocess.call(
         [
-            'mrbob',
-            'bobtemplates.plone:' + config.template,
-            '--config', answers_init_path,
-            '--non-interactive',
+            "mrbob",
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
         ],
         cwd=wd,
     )
@@ -312,19 +315,20 @@ viewlet_template=False
 """
     generate_answers_ini(wd, template)
 
-    config.template = 'viewlet'
+    config.template = "viewlet"
     result = subprocess.call(
         [
-            'mrbob',
-            'bobtemplates.plone:' + config.template,
-            '--config', answers_init_path,
-            '--non-interactive',
+            "mrbob",
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
         ],
         cwd=wd,
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/task/configure.zcml')
+    assert file_exists(wd, "/src/collective/task/configure.zcml")
 
     # generate subtemplate vocabulary:
     template = """[variables]
@@ -333,28 +337,31 @@ subtemplate_warning = Yes
 """
     generate_answers_ini(package_dir, template)
 
-    config.template = 'vocabulary'
+    config.template = "vocabulary"
     result = subprocess.call(
         [
-            'mrbob',
-            'bobtemplates.plone:' + config.template,
-            '--config', answers_init_path,
-            '--non-interactive',
+            "mrbob",
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
         ],
         cwd=wd,
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/task/vocabularies/configure.zcml')
+    assert file_exists(wd, "/src/collective/task/vocabularies/configure.zcml")
     assert file_exists(
         wd,
-        '/src/collective/task/tests/test_vocab_available_tasks.py',
+        "/src/collective/task/tests/test_vocab_available_tasks.py",
     )
     assert file_exists(
         wd,
-        '/src/collective/task/vocabularies/available_tasks.py',
+        "/src/collective/task/vocabularies/available_tasks.py",
     )
 
     with capsys.disabled():
         returncode = run_skeleton_tox_env(wd, config)
-        assert returncode == 0, u"The tests inside the generated package are failing, please check the output above!"
+        assert (
+            returncode == 0
+        ), u"The tests inside the generated package are failing, please check the output above!"

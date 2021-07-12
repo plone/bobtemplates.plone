@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from bobtemplates.plone.base import base_prepare_renderer
-from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import remove_unwanted_files
-from bobtemplates.plone.base import update_configure_zcml
-from bobtemplates.plone.utils import run_isort
+import case_conversion as cc
 from lxml import etree
 
-import case_conversion as cc
+from bobtemplates.plone.base import (
+    base_prepare_renderer,
+    git_commit,
+    remove_unwanted_files,
+    update_configure_zcml,
+)
+from bobtemplates.plone.utils import run_black, run_isort
 
 
 def get_service_name_from_python_class(configurator, question):
@@ -168,6 +170,7 @@ def post_renderer(configurator):
     _update_metadata_xml(configurator)
     _remove_unwanted_files(configurator)
     run_isort(configurator)
+    run_black(configurator)
     git_commit(
         configurator,
         "Add restapi_service: {0}".format(

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0 (unreleased)
+6.0b1 (2021-07-12)
 ------------------
 
 - Drop Python 2 support

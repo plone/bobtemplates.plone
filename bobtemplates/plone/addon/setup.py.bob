@@ -22,23 +22,10 @@ setup(
         "Environment :: Web Environment",
         "Framework :: Plone",
         "Framework :: Plone :: Addon",
-{{% if not plone.is_plone5 %}}
-        "Framework :: Plone :: 4.3",
-{{% endif %}}
-{{% if plone.is_plone5 and not plone.is_plone51 and not plone.is_plone52 %}}
-        "Framework :: Plone :: 5.0",
-{{% endif %}}
-{{% if plone.is_plone51 %}}
-        "Framework :: Plone :: 5.1",
-{{% endif %}}
-{{% if plone.is_plone52 %}}
         "Framework :: Plone :: 5.2",
-{{% endif %}}
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-{{% if plone.is_plone52 %}}
         "Programming Language :: Python :: 3.7",
-{{% endif %}}
+        "Programming Language :: Python :: 3.8",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
@@ -58,31 +45,13 @@ setup(
     package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,
-{{% if plone.is_plone52 %}}
-    python_requires="==2.7, >=3.6",
-{{% else %}}
-    python_requires="==2.7",
-{{% endif %}}
+    python_requires=">=3.7",
     install_requires=[
         'setuptools',
         # -*- Extra requirements: -*-
         'z3c.jbot',
-{{% if not (plone.is_plone51 or plone.is_plone52) %}}
-        'Products.GenericSetup>=1.8.2',
-{{% endif %}}
         'plone.api>=1.8.4',
-{{% if not plone.is_plone5 %}}
-        'plone.restapi < 7.0.0a1',
-{{% else %}}
-        'plone.restapi < 8.0.0',
-{{% endif %}}
         'plone.app.dexterity',
-{{% if not plone.is_plone5 %}}
-        'plone.app.referenceablebehavior',
-        'plone.app.relationfield',
-        'plone.app.lockingbehavior',
-        'plone.schema',
-{{% endif %}}
     ],
     extras_require={
         'test': [
@@ -91,9 +60,7 @@ setup(
             # Remove if your package shall be part of coredev.
             # plone_coredev tests as of 2016-04-01.
             'plone.testing>=5.0.0',
-{{% if plone.is_plone5 %}}
             'plone.app.contenttypes',
-{{% endif %}}
             'plone.app.robotframework[debug]',
         ],
     },

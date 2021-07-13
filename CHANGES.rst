@@ -4,7 +4,8 @@ Changelog
 6.0b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Further cleanup
+  [MrTango]
 
 
 6.0b1 (2021-07-12)

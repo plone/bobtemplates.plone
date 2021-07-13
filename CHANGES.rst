@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0b3 (unreleased)
+6.0b3 (2021-07-13)
 ------------------
 
 - Update generated README from addon template, to replace Travis badge

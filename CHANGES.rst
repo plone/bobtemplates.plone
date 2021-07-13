@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0b2 (unreleased)
+6.0b2 (2021-07-13)
 ------------------
 
 - Further cleanup

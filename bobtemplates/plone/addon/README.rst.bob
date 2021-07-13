@@ -2,11 +2,11 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
    This text does not appear on pypi or github. It is a comment.
 
-.. image:: https://travis-ci.org/collective/{{{ package.dottedname }}}.svg?branch=master
-    :target: https://travis-ci.org/collective/{{{ package.dottedname }}}
+.. image:: https://github.com/collective/{{{ package.dottedname }}}/actions/workflows/plone-package.yml/badge.svg
+    :target: https://github.com/collective/{{{ package.dottedname }}}/actions/workflows/plone-package.yml
 
-.. image:: https://coveralls.io/repos/github/collective/{{{ package.dottedname }}}/badge.svg?branch=master
-    :target: https://coveralls.io/github/collective/{{{ package.dottedname }}}?branch=master
+.. image:: https://coveralls.io/repos/github/collective/{{{ package.dottedname }}}/badge.svg?branch=main
+    :target: https://coveralls.io/github/collective/{{{ package.dottedname }}}?branch=main
     :alt: Coveralls
 
 .. image:: https://img.shields.io/pypi/v/{{{ package.dottedname }}}.svg
@@ -73,6 +73,20 @@ Install {{{ package.dottedname }}} by adding it to your buildout::
 
 
 and then running ``bin/buildout``
+
+
+Authors
+-------
+
+Provided by awesome people ;)
+
+
+Contributors
+------------
+
+Put your name here, you deserve it!
+
+- ?
 
 
 Contribute

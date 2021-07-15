@@ -4,7 +4,8 @@ Changelog
 6.0b4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add Upload coverage to Codecov GH-action and update DEVELOP.rst in add-on's
+  [MrTango]
 
 
 6.0b3 (2021-07-13)

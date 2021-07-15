@@ -9,6 +9,9 @@
     :target: https://coveralls.io/github/collective/{{{ package.dottedname }}}?branch=main
     :alt: Coveralls
 
+.. image:: https://codecov.io/gh/collective/{{{ package.dottedname }}}/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/collective/{{{ package.dottedname }}}
+
 .. image:: https://img.shields.io/pypi/v/{{{ package.dottedname }}}.svg
     :target: https://pypi.python.org/pypi/{{{ package.dottedname }}}/
     :alt: Latest Version

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0b5 (unreleased)
+6.0b5 (2021-07-15)
 ------------------
 
 - Use codecov badge in add-on README instead of coveralls

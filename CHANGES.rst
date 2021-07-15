@@ -4,7 +4,8 @@ Changelog
 6.0b5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use codecov badge in add-on README instead of coveralls
+  [MrTango]
 
 
 6.0b4 (2021-07-15)

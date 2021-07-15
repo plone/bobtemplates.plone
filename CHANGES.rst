@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0b4 (unreleased)
+6.0b4 (2021-07-15)
 ------------------
 
 - Add Upload coverage to Codecov GH-action and update DEVELOP.rst in add-on's

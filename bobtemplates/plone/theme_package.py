@@ -9,8 +9,7 @@ import shutil
 
 
 def pre_render(configurator):
-    """Some variables to make templating easier.
-    """
+    """Some variables to make templating easier."""
     # get package-name from user-input
     package_dir = os.path.basename(configurator.target_directory)
     nested = bool(len(package_dir.split(".")) == 3)
@@ -150,8 +149,7 @@ def _cleanup_package(configurator):
 
 
 def pre_ask(configurator):
-    """
-    """
+    """ """
 
 
 def post_render(configurator):

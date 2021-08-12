@@ -5,8 +5,7 @@ import unicodedata
 
 
 def safe_unicode(value, encoding="utf-8"):
-    """Converts a value to unicode, even it is already a unicode string.
-    """
+    """Converts a value to unicode, even it is already a unicode string."""
     if six.PY2:
         if isinstance(value, unicode):
             return value
@@ -28,16 +27,14 @@ def safe_unicode(value, encoding="utf-8"):
 
 
 def safe_encode(value, encoding="utf-8"):
-    """Convert unicode to the specified encoding.
-    """
+    """Convert unicode to the specified encoding."""
     if isinstance(value, six.text_type):
         value = value.encode(encoding)
     return value
 
 
 def safe_nativestring(value, encoding="utf-8"):
-    """Convert a value to str in py2 and to text in py3
-    """
+    """Convert a value to str in py2 and to text in py3"""
     if six.PY2 and isinstance(value, six.text_type):
         value = safe_encode(value, encoding)
     if not six.PY2 and isinstance(value, six.binary_type):

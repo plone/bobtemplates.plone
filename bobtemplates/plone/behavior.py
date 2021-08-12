@@ -93,8 +93,7 @@ def prepare_renderer(configurator):
 
 
 def post_renderer(configurator):
-    """
-    """
+    """ """
     _update_package_configure_zcml(configurator)
     _update_behaviors_configure_zcml(configurator)
     git_commit(

@@ -80,8 +80,8 @@ def _update_services_configure_zcml(configurator):
 
 
 def _update_metadata_xml(configurator):
-    """ Add plone.restapi dependency metadata.xml in
-        Generic Setup profiles.
+    """Add plone.restapi dependency metadata.xml in
+    Generic Setup profiles.
     """
     metadata_file_name = u"metadata.xml"
     metadata_file_dir = u"profiles/default"

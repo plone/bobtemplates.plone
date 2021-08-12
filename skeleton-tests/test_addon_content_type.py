@@ -9,7 +9,7 @@ import subprocess
 
 
 def test_addon_content_type(tmpdir, capsys, config):
-    answers_init_path = os.path.join(tmpdir.strpath, 'answers.ini')
+    answers_init_path = os.path.join(tmpdir.strpath, "answers.ini")
     package_dir = os.path.abspath(
         tmpdir.strpath,
     )
@@ -29,16 +29,18 @@ plone.version = {version}
     generate_answers_ini(package_dir, template)
 
     # generate template addon:
-    config.template = 'addon'
-    config.package_name = 'collective.task'
+    config.template = "addon"
+    config.package_name = "collective.task"
     try:
         result = subprocess.call(
             [
-                'mrbob',
-                '-O', config.package_name,
-                'bobtemplates.plone:' + config.template,
-                '--config', answers_init_path,
-                '--non-interactive',
+                "mrbob",
+                "-O",
+                config.package_name,
+                "bobtemplates.plone:" + config.template,
+                "--config",
+                answers_init_path,
+                "--non-interactive",
             ],
             cwd=tmpdir.strpath,
         )
@@ -62,14 +64,15 @@ dexterity_type_supermodel=True
 """
     generate_answers_ini(package_dir, template)
 
-    config.template = 'content_type'
+    config.template = "content_type"
     try:
         result = subprocess.call(
             [
-                'mrbob',
-                'bobtemplates.plone:' + config.template,
-                '--config', answers_init_path,
-                '--non-interactive',
+                "mrbob",
+                "bobtemplates.plone:" + config.template,
+                "--config",
+                answers_init_path,
+                "--non-interactive",
             ],
             cwd=wd,
         )
@@ -90,14 +93,15 @@ dexterity_type_activate_default_behaviors=False
 """
     generate_answers_ini(package_dir, template)
 
-    config.template = 'content_type'
+    config.template = "content_type"
     try:
         result = subprocess.call(
             [
-                'mrbob',
-                'bobtemplates.plone:' + config.template,
-                '--config', answers_init_path,
-                '--non-interactive',
+                "mrbob",
+                "bobtemplates.plone:" + config.template,
+                "--config",
+                answers_init_path,
+                "--non-interactive",
             ],
             cwd=wd,
         )
@@ -105,7 +109,7 @@ dexterity_type_activate_default_behaviors=False
         print(e)
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/task/configure.zcml')
+    assert file_exists(wd, "/src/collective/task/configure.zcml")
 
     with capsys.disabled():
         run_skeleton_tox_env(wd, config)

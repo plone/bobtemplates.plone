@@ -9,7 +9,7 @@ import subprocess
 
 
 def test_vocabulary(tmpdir, capsys, config):
-    answers_init_path = os.path.join(tmpdir.strpath, 'answers.ini')
+    answers_init_path = os.path.join(tmpdir.strpath, "answers.ini")
     package_dir = os.path.abspath(
         tmpdir.strpath,
     )
@@ -29,15 +29,17 @@ plone.version = {version}
     generate_answers_ini(package_dir, template)
 
     # generate template addon:
-    config.template = 'addon'
-    config.package_name = 'collective.task'
+    config.template = "addon"
+    config.package_name = "collective.task"
     result = subprocess.call(
         [
-            'mrbob',
-            '-O', config.package_name,
-            'bobtemplates.plone:' + config.template,
-            '--config', answers_init_path,
-            '--non-interactive',
+            "mrbob",
+            "-O",
+            config.package_name,
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
         ],
         cwd=tmpdir.strpath,
     )
@@ -54,26 +56,27 @@ subtemplate_warning = Yes
 """
     generate_answers_ini(package_dir, template)
 
-    config.template = 'vocabulary'
+    config.template = "vocabulary"
     result = subprocess.call(
         [
-            'mrbob',
-            'bobtemplates.plone:' + config.template,
-            '--config', answers_init_path,
-            '--non-interactive',
+            "mrbob",
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
         ],
         cwd=wd,
     )
     assert result == 0
 
-    assert file_exists(wd, '/src/collective/task/vocabularies/configure.zcml')
+    assert file_exists(wd, "/src/collective/task/vocabularies/configure.zcml")
     assert file_exists(
         wd,
-        '/src/collective/task/tests/test_vocab_available_tasks.py',
+        "/src/collective/task/tests/test_vocab_available_tasks.py",
     )
     assert file_exists(
         wd,
-        '/src/collective/task/vocabularies/available_tasks.py',
+        "/src/collective/task/vocabularies/available_tasks.py",
     )
 
     with capsys.disabled():

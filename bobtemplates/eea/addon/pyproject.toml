@@ -1,0 +1,4 @@
+[tool.black]
+line-length = 79
+max_line_length = 79
+ignore = ['E203']

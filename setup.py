@@ -80,6 +80,7 @@ setup(
             "plone_view = bobtemplates.plone.bobregistry:plone_view",
             "plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet",
             "plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary",
+            "plone_controlpanel = bobtemplates.plone.bobregistry:plone_controlpanel",
         ]
     },
 )

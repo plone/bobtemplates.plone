@@ -2,21 +2,45 @@
 Some notes about the theme structure
 ====================================
 
-Configuring Plone within the theme
-==================================
+Configuring Plone within the theme package
+==========================================
 
-With `collective.themesitesetup <https://pypi.python.org/pypi/collective.themesitesetup/>`_ it is possible to configure Plone directly with the theme, analog to as we usually do with GenericSetup profiles in Python packages. This has the advantage of having the theme related configurations close to the theme.
+To configure Plone when this package is installed, you can use GenericSetup profiles in profiles/default.
+To revert the settings when the package is being uninstalled, place the default Plone configurations inside the profiles/uninstall folder.
 
-This bobtemplate provides you with the needed structure, but you have to make sure that ``collective.themesitesetup`` is installed on your server.
+Providing new template or override existing once
+================================================
 
-All what you need now is, to provide the same GenericSetup files, you would put into your profiles/default folder, in the ``install`` folder, inside the ``theme`` folder. The same applies for the uninstall profiles, you will put into the ``uninstall`` folder inside your ``theme`` folder.
+With the integration of `plone.app.themingplugins` we provide you with too folders, to either create new view templates or override existing templates.
+
+Providing new templates
+-----------------------
+
+Place you templates inside the folder theme/views.
+Every file with the extension .pt will be available as a view in Plone.
+
+To find out the default settings and how to change them look here:
+https://github.com/plone/plone.app.themingplugins#id5
 
 
-Overriding or providing PageTemplates with the theme
-====================================================
+Overriding existing templates
+-----------------------------
+
+To override a template, you place the template into the theme/overrides folder.
+
+The name of the template has to be the dotted namespace + templatename.
+
+.. code-block:: shell
+
+    theme/overrides/plone.app.layout.viewlets.logo.pt
+
+More info here:
+https://github.com/plone/plone.app.themingplugins#id4
+
+
+Providing new templates and Python Scripts
+==========================================
 
 With `collective.themefragments <https://pypi.python.org/pypi/collective.themefragments/>`_  it is possible to add PageTemplates which you can use in Diazo, as normal layout views for objects or as snippets in Mosaic editor.
-
-This bobtemplate provides you with the needed structure, but you have to make sure that ``collective.themefragments`` is installed on your server.
 
 All what you need now is, to provide your PageTemplate files in the ``fragments`` folder, inside the ``theme`` folder.

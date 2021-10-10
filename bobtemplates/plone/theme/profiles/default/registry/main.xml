@@ -2,38 +2,18 @@
 <registry>
 
 
-<!-- Allow only Link and Folder types in the navigation -->
+<!-- Set website title -->
 <!--
-  <record name="plone.displayed_types" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="displayed_types">
-    <value>
-      <element>Link</element>
-      <element>Folder</element>
-    </value>
+  <record name="plone.site_title" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="site_title">
+    <value>My great Plone site</value>
   </record>
--->
 
-<!-- Deactivate the generation of nonfolderish tabs in global navigation -->
-<!--
-  <record name="plone.nonfolderish_tabs" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="nonfolderish_tabs">
-    <value>False</value>
-  </record>
 -->
 
 <!-- Hide items from navigation which are normaly excluded from navigation -->
 <!--
   <record name="plone.show_excluded_items" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="show_excluded_items">
     <value>False</value>
-  </record>
--->
-
-<!-- Configure the Plone email settings -->
-<!--
-  <record name="plone.email_from_address" interface="Products.CMFPlone.interfaces.controlpanel.IMailSchema" field="email_from_address">
-    <value>info@example.com</value>
-  </record>
-
-  <record name="plone.email_from_name" interface="Products.CMFPlone.interfaces.controlpanel.IMailSchema" field="email_from_name">
-    <value>My Plone site</value>
   </record>
 -->
 
@@ -63,14 +43,6 @@
   <record name="plone.mark_special_links" interface="Products.CMFPlone.interfaces.controlpanel.ILinkSchema" field="mark_special_links">
     <value>False</value>
   </record>
--->
-
-<!-- Set website title -->
-<!--
-  <record name="plone.site_title" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="site_title">
-    <value>My great Plone site</value>
-  </record>
-
 -->
 
 <!-- Set Plone toolbar position to top -->

@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+from {{{ package.dottedname }}} import _
+from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
+from plone.app.registry.browser.controlpanel import RegistryEditForm
+from plone.z3cform import layout
+from zope.interface import Interface
+from zope.import schema
+
+class I{{{ controlpanel_name_klass }}}(Interface):
+    myfield_name = schema.TextLine(
+        title=_(
+            "This is an example field for this control panel",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+
+class {{{ controlpanel_name_klass }}}(RegistryEditForm):
+    schema = I{{{ controlpanel_name_klass }}}
+    schema_prefix = "{{{ package.dottedname }}}.{{{ controlpanel_name_normalized }}}"
+    label = _("{{{ controlpanel_separated_name }}}")
+
+
+{{{ controlpanel_name_klass }}}View = layout.wrap_form(
+    {{{ controlpanel_name_klass }}}, ControlPanelFormWrapper
+)

@@ -2,7 +2,7 @@
 
 from setuptools import find_packages, setup
 
-version = "6.0b6.dev0"
+version = "6.0b7.dev0"
 
 
 long_description = "\n\n".join(
@@ -80,6 +80,7 @@ setup(
             "plone_view = bobtemplates.plone.bobregistry:plone_view",
             "plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet",
             "plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary",
+            "plone_controlpanel = bobtemplates.plone.bobregistry:plone_controlpanel",
         ]
     },
 )

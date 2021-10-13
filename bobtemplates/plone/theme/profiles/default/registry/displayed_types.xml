@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<registry>
+  <!-- Allow only Link and Folder types in the navigation -->
+  <record name="plone.displayed_types"
+    interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema"
+    field="displayed_types">
+    <value>
+      <element>Link</element>
+      <element>Collection</element>
+      <element>Folder</element>
+    </value>
+  </record>
+
+</registry>

@@ -78,8 +78,6 @@ def _update_metadata_xml(configurator):
         deps = [
             "profile-plone.app.dexterity:default",
         ]
-        if not configurator.variables["plone.is_plone5"]:
-            deps.append("profile-plone.app.relationfield:default")
         changed = False
         for dep in deps:
             dep_exists = False
@@ -262,22 +260,6 @@ def _update_permissions_zcml(configurator):
     update_file(configurator, file_path, match_str, insert_str)
 
 
-def _update_setup_py(configurator):
-    if configurator.variables["plone.is_plone5"]:
-        return
-    file_name = u"setup.py"
-    file_path = configurator.variables["package.root_folder"] + "/" + file_name
-    match_str = "-*- Extra requirements: -*-"
-    insert_strings = [
-        "plone.app.dexterity",
-    ]
-    for insert_str in insert_strings:
-        insert_str = "        '{0}',\n".format(insert_str)
-        if is_string_in_file(configurator, file_path, insert_str):
-            continue
-        update_file(configurator, file_path, match_str, insert_str)
-
-
 def pre_ask(configurator):
     """Empty pre ask."""
 
@@ -307,7 +289,6 @@ def post_renderer(configurator):
     _update_permissions_zcml(configurator)
     _update_rolemap_xml(configurator)
     _update_metadata_xml(configurator)
-    _update_setup_py(configurator)
     run_isort(configurator)
     run_black(configurator)
     git_commit(

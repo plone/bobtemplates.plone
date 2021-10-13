@@ -136,3 +136,11 @@ def plone_upgrade_step():
     reg.plonecli_alias = "upgrade_step"
     reg.depend_on = "plone_addon"
     return reg
+
+
+def plone_controlpanel():
+    reg = RegEntry()
+    reg.template = "bobtemplates.plone:controlpanel"
+    reg.plonecli_alias = "controlpanel"
+    reg.depend_on = "plone_addon"
+    return reg

@@ -4,7 +4,8 @@ Changelog
 6.0b7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add controlpanel subtemplate.
+  [erral]
 
 
 6.0b6 (2021-10-13)

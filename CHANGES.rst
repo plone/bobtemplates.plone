@@ -4,7 +4,8 @@ Changelog
 6.0b6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Provide Plone 6 buildout config and constraints in generated add-on's
+  [MrTango]
 
 
 6.0b5 (2021-07-15)

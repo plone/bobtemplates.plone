@@ -1,0 +1,9 @@
+/* This file will be overridden on first compile */
+:root {
+    --bs-body-bg:  pink;
+}
+body:before {
+    content: "Please run 'npm run watch' to compile your theme styles";
+    font-size: 2rem;
+    margin: auto;
+}

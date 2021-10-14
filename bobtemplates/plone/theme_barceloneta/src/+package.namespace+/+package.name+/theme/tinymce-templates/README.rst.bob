@@ -8,6 +8,7 @@ Activate TinyMCE Templates Plugin
 ---------------------------------
 
 .. code-block::
+
     template|++plone++static/components/tinymce-builded/js/tinymce/plugins/template
 
 

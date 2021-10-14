@@ -7,24 +7,24 @@ configure the templates within the TinyMCE controlpanel of your Plone site.
 Activate TinyMCE Templates Plugin
 ---------------------------------
 
-```
-template|++plone++static/components/tinymce-builded/js/tinymce/plugins/template
+..code-block:
+    template|++plone++static/components/tinymce-builded/js/tinymce/plugins/template
 
 ```
 
 Configure TinyMCE Templates
 ---------------------------
 
-```
-  [
-    {
-      "title": "List",
-      "url": "++theme++{{{ theme.normalized_name }}}/tinymce-templates/list.html"
-    },
-    {
-      "title": "Card Group",
-      "url": "++theme++{{{ theme.normalized_name }}}/tinymce-templates/card-group.html"
-    },
-  ]
+..code-block:json
 
-```
+    [
+        {
+          "title": "List",
+          "url": "++theme++{{{ theme.normalized_name }}}/tinymce-templates/list.html"
+        },
+        {
+          "title": "Card Group",
+          "url": "++theme++{{{ theme.normalized_name }}}/tinymce-templates/card-group.html"
+        },
+    ]
+

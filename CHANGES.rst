@@ -4,7 +4,14 @@ Changelog
 6.0b7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Deprecated theme_package was removed, in 5.x it still exists
+  [MrTango]
+
+- Cleanup theme template and update generated README
+  [MrTango]
+
+- Add controlpanel subtemplate.
+  [erral]
 
 
 6.0b6 (2021-10-13)

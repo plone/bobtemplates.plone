@@ -82,11 +82,7 @@ def _update_viewlets_configure_zcml(configurator):
 
     match_str = "-*- extra stuff goes here -*-"
 
-    if configurator.variables["plone.is_plone5"]:
-        iface_name = "plone.app.contenttypes.interfaces.IDocument"
-    else:
-        # BBB Plone 4 fallback:
-        iface_name = "Products.ATContentTypes.interfaces.document.IATDocument"
+    iface_name = "plone.app.contenttypes.interfaces.IDocument"
 
     if configurator.variables["viewlet_template"]:
         insert_str = """

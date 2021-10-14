@@ -9,11 +9,9 @@ doctype = <!DOCTYPE html>
 enabled-bundles =
 disabled-bundles =
 
-development-css = /++theme++{{{ theme.normalized_name }}}/styles/theme.css
 production-css = /++theme++{{{ theme.normalized_name }}}/styles/theme.min.css
 tinymce-content-css = /++theme++{{{ theme.normalized_name }}}/styles/theme.min.css
 
-# development-js = /++theme++{{{ theme.normalized_name }}}/js/theme.js
 # production-js = /++theme++{{{ theme.normalized_name }}}/js/theme-compiled.js
 
 #[theme:overrides]

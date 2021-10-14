@@ -75,7 +75,6 @@ setup(
             "plone_subscriber = bobtemplates.plone.bobregistry:plone_subscriber",
             "plone_theme = bobtemplates.plone.bobregistry:plone_theme",
             "plone_theme_barceloneta = bobtemplates.plone.bobregistry:plone_theme_barceloneta",  # NOQA E501
-            "plone_theme_package = bobtemplates.plone.bobregistry:plone_theme_package",
             "plone_upgrade_step = bobtemplates.plone.bobregistry:plone_upgrade_step",
             "plone_view = bobtemplates.plone.bobregistry:plone_view",
             "plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet",

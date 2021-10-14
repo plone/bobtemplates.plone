@@ -10,7 +10,7 @@ In the package folder create a virtualenv and install the package:
 .. code-block:: shell
 
    python3 -m venv venv --clear
-   ./venv/bin/pip install -e .
+   ./venv/bin/pip install -e .[dev]
 
 
 Intro

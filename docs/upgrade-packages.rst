@@ -23,9 +23,9 @@ But it's recommended to add the following files from a generated addon package i
 - requirements.txt
 - constraints.txt
 - constraints_plone52.txt
-- constraints_plone51.txt
+- constraints_plone60.txt
 - test_plone52.cfg
-- test_plone51.cfg
+- test_plone60.cfg
 - tox.ini
 
 Folder structure

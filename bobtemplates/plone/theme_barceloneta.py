@@ -121,27 +121,36 @@ def _update_configure_zcml(configurator):
     update_file(configurator, file_path, match_str, insert_str)
 
 
-def _update_setup_py(configurator):
-    file_name = u"setup.py"
-    file_path = configurator.variables["package.root_folder"] + "/" + file_name
-    match_str = "-*- Extra requirements: -*-"
-    insert_strings = [
-        # "collective.themesitesetup",  # disable while not ready for Plone 5.2
-        "collective.themefragments",
-        "plone.app.themingplugins",
-    ]
-    for insert_str in insert_strings:
-        insert_str = "        '{0}',\n".format(insert_str)
-        if is_string_in_file(configurator, file_path, insert_str):
-            continue
-        update_file(configurator, file_path, match_str, insert_str)
+# def _update_setup_py(configurator):
+#     file_name = u"setup.py"
+#     file_path = configurator.variables["package.root_folder"] + "/" + file_name
+#     match_str = "-*- Extra requirements: -*-"
+#     insert_strings = [
+#         # "collective.themesitesetup",  # disable while not ready for Plone 5.2
+#         "collective.themefragments",
+#         "plone.app.themingplugins",
+#     ]
+#     for insert_str in insert_strings:
+#         insert_str = "        '{0}',\n".format(insert_str)
+#         if is_string_in_file(configurator, file_path, insert_str):
+#             continue
+#         update_file(configurator, file_path, match_str, insert_str)
 
 
 def post_renderer(configurator):
     """"""
     _update_configure_zcml(configurator)
-    _update_setup_py(configurator)
+    # _update_setup_py(configurator)
     _update_metadata_xml(configurator)
     git_commit(
         configurator, "Add theme: {0}".format(configurator.variables["theme.name"])
+    )
+    echo(
+        """\nYour theme was added here: {0}/theme
+Run 'npm install' to get the dependencies
+and then 'npm run watch' to compile the styles.
+""".format(
+            configurator.variables["package_folder"],
+        ),
+        "info",
     )

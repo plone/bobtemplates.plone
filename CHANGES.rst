@@ -13,6 +13,8 @@ Changelog
 - Add controlpanel subtemplate.
   [erral]
 
+- Updated theme_barceloneta for Plone 6 classic - uses plonetheme-barceloneta-base npm package.
+  [agitator]
 
 6.0b6 (2021-10-13)
 ------------------

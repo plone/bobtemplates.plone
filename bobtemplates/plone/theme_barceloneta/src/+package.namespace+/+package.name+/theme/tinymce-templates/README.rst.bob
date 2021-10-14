@@ -7,15 +7,14 @@ configure the templates within the TinyMCE controlpanel of your Plone site.
 Activate TinyMCE Templates Plugin
 ---------------------------------
 
-..code-block:
+.. code-block::
     template|++plone++static/components/tinymce-builded/js/tinymce/plugins/template
 
-```
 
 Configure TinyMCE Templates
 ---------------------------
 
-..code-block:json
+.. code-block:: json
 
     [
         {

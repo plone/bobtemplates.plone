@@ -19,6 +19,9 @@ Changelog
 - Updated TinyMCE template examples for Bootstrap 5.
   [agitator]
 
+- Multiple Plone 6 fixes and Plone 4 cleanup
+  [MrTango]
+
 
 6.0b6 (2021-10-13)
 ------------------

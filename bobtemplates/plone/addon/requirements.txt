@@ -1,1 +1,1 @@
--c requirements_plone60.txt
+-r requirements_plone60.txt

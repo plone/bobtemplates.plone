@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0b7 (unreleased)
+6.0b7 (2021-10-15)
 ------------------
 
 - Deprecated theme_package was removed, in 5.x it still exists

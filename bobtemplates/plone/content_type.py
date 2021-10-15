@@ -14,7 +14,6 @@ from bobtemplates.plone.base import (
     get_normalized_dxtypename,
     get_normalized_ftiname,
     git_commit,
-    is_string_in_file,
     update_file,
 )
 from bobtemplates.plone.utils import run_black, run_isort

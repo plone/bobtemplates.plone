@@ -10,7 +10,6 @@ from bobtemplates.plone.base import (
     base_prepare_renderer,
     echo,
     git_commit,
-    is_string_in_file,
     update_file,
     validate_packagename,
 )

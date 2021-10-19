@@ -1,0 +1,31 @@
+// Bootstrap Variable Overrides
+
+$enable-rounded: false;
+$primary: #007eb6;
+$secondary: #2e3133;
+
+// Option A: Include all of Bootstrap
+
+@import "bootstrap/scss/bootstrap";
+
+// Option B: Include parts of Bootstrap
+
+// Required
+// @import "bootstrap/scss/functions";
+// @import "bootstrap/scss/variables";
+// @import "bootstrap/scss/mixins";
+
+// Optional
+// @import "bootstrap/scss/reboot";
+// @import "bootstrap/scss/type";
+// @import "bootstrap/scss/images";
+// @import "bootstrap/scss/code";
+// @import "bootstrap/scss/grid";
+
+// Import form plonetheme-barceloneta-base npm package
+
+// @import "@plone/plonetheme-barceloneta-base/scss/grid.scss";
+
+// Import SASS files from your theme
+
+@import "base";

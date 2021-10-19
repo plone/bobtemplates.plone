@@ -61,6 +61,7 @@ These templates are meant to be used inside a package which was created by the a
 - subscriber
 - theme
 - theme_barceloneta
+- theme_basic
 - upgrade_step
 - view
 - viewlet

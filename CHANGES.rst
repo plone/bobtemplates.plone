@@ -4,7 +4,8 @@ Changelog
 6.0b8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added theme_basic as basic theme template for Plone 6 Classic UI
+  [santonelli]
 
 
 6.0b7 (2021-10-15)

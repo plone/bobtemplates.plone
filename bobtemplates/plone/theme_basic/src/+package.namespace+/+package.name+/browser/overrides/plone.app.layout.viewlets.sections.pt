@@ -1,0 +1,31 @@
+<tal:sections
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+     tal:define="portal_tabs python:view.portal_tabs"
+     tal:condition="portal_tabs"
+     i18n:domain="plone">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <tal:items tal:repeat="item portal_tabs">
+          <li class="nav-item">
+            <a class="nav-link" href="${item/url}">${item/name}</a>
+          </li>
+          </tal:items>
+        </ul>
+        <form class="d-flex" action="${context/portal_url}/@@search">
+          <input class="form-control me-2" type="search" name="SearchableText" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+</tal:sections>

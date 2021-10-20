@@ -12251,10 +12251,6 @@ article > header {
   margin: 0 0.5rem;
 }
 
-:root {
-    --bs-body-bg:  pink;
-}
-
 body:before {
     background: var(--bs-success);
     color: var(--bs-white);

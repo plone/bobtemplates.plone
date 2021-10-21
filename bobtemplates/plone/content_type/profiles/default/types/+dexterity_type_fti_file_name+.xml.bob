@@ -14,11 +14,7 @@
 
   <property name="allow_discussion">False</property>
   <property name="factory">{{{ dexterity_type_name }}}</property>
-{{% if plone.is_plone5 %}}
   <property name="icon_expr"></property>
-{{% else %}}
-  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
-{{% endif %}}
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
@@ -63,12 +59,7 @@
     <element value="plone.publication"/>
     <element value="plone.categorization"/>
     <element value="plone.basic"/>
-{{% if plone.is_plone5 %}}
     <element value="plone.locking" />
-    <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
-{{% else %}}
-    <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
-{{% endif %}}
 {{% endif %}}
 {{% if not dexterity_type_activate_default_behaviors %}}
     <!-- <element value="plone.namefromtitle"/> -->
@@ -79,12 +70,7 @@
     <!-- <element value="plone.publication"/> -->
     <!-- <element value="plone.categorization"/> -->
     <!-- <element value="plone.basic"/> -->
-{{% if plone.is_plone5 %}}
     <!-- <element value="plone.locking" /> -->
-    <!-- <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
-{{% else %}}
-    <!-- <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" /> -->
-{{% endif %}}
 {{% endif %}}
     <!--<element value="plone.leadimage"/>-->
     <!--<element value="plone.relateditems"/>-->

@@ -22,12 +22,12 @@
   <!-- FRONTEND ONLY BLOCK -->
   <rules css:if-content="body.viewpermission-view, body.viewpermission-none">
     <!--<theme href="home.html" css:if-content=".section-front-page" />-->
-    <theme href="article.html" />
+    <theme href="index.html" />
     <notheme css:if-not-content="#visual-portal-wrapper" />
 
     <!-- ### REMOVE THIS RULE AFTER ACTIVATING YOUR OWN RULES BELOW ### -->
     <!-- Copy over the whole body content of Plone -->
-    <replace theme-children="/html/body" content-children="/html/body" />
+    <!-- <replace theme-children="/html/body" content-children="/html/body" /> -->
 
     <rules css:if-content="#portal-top">
       <!-- Attributes -->
@@ -94,6 +94,12 @@
       </after>
       -->
 
+      <after theme-children="/html/head">
+        <script>
+            require = undefined;
+            define = undefined;
+        </script>
+      </after
     </rules>
 
     <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
@@ -116,7 +122,7 @@
       /> -->
 
     <!-- Copy global nav (portal tabs) -->
-    <!-- <replace css:theme="#nav > ul" css:content="#portal-globalnav" /> -->
+    <!-- <replace css:theme-children=".navbar-nav" css:content="#portal-globalnav > li" /> -->
 
     <!-- Copy breadcrumb bar -->
     <!-- <replace css:content="#viewlet-above-content" css:theme="#above-content" /> -->

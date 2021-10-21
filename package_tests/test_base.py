@@ -388,3 +388,11 @@ def test_post_plone_version():
         variables={"plone.is_plone5": True, "plone.minor_version": "5.0"},
     )
     base.post_plone_version(configurator, None, "5.0.1")
+
+
+def test_get_normalized_theme_name():
+    themename = "Start Bootstrap - Business Casual (2021)"
+    assert (
+        base.get_normalized_themename(themename)
+        == "start-bootstrap-business-casual-2021"
+    )

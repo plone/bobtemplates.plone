@@ -22,6 +22,8 @@ Changelog
 - Improve view page template
   [MrTango]
 
+- Added RegistryPanel adapter to controlpanel subtemplate, to have Volto support
+  [erral]
 
 
 6.0b7 (2021-10-15)

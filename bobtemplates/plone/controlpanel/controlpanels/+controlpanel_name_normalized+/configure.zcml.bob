@@ -13,5 +13,10 @@
     permission="cmf.ManagePortal"
     />
 
+  <include package="plone.restapi"  />
+  <adapter
+    factory=".controlpanel.{{{ controlpanel_name_klass }}}ConfigletPanel"
+    name="{{{ controlpanel_name_normalized }}}" />
+
 
 </configure>

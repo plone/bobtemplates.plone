@@ -156,3 +156,12 @@ def post_renderer(configurator):
             configurator.variables["theme.name"],
         ),
     )
+    echo(
+        """\nYour theme was added here: {0}/theme
+Run 'npm install' to get the dependencies
+and then 'npm run watch' to compile the styles.
+""".format(
+            configurator.variables["package_folder"],
+        ),
+        "info",
+    )

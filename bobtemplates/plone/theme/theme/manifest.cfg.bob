@@ -7,8 +7,8 @@ prefix = /++theme++{{{ theme.normalized_name }}}
 enabled-bundles =
 disabled-bundles =
 
-production-css = ++theme++{{{ theme.normalized_name }}}/css/theme.min.css
-tinymce-content-css = ++theme++{{{ theme.normalized_name }}}/css/theme.min.css
+production-css = ++theme++{{{ theme.normalized_name }}}/styles/theme.min.css
+tinymce-content-css = ++theme++{{{ theme.normalized_name }}}/styles/theme.min.css
 
 # production-js = ++theme++{{{ theme.normalized_name }}}/js/theme.min.js
 

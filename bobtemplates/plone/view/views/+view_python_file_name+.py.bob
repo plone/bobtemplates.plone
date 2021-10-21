@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 {{% if view_template %}}
-from {{{ package.dottedname }}} import _
+# from {{{ package.dottedname }}} import _
 {{% endif %}}
 {{% if view_base_class == 'DefaultView' %}}
 from plone.dexterity.browser.view import DefaultView

@@ -10,11 +10,11 @@ from bobtemplates.plone.base import (
     ZCML_NAMESPACES,
     base_prepare_renderer,
     echo,
+    get_normalized_themename,
     git_commit,
     is_string_in_file,
     update_file,
     validate_packagename,
-    get_normalized_themename,
 )
 
 

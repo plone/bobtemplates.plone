@@ -7,10 +7,10 @@ prefix = /++theme++{{{ theme.normalized_name }}}
 enabled-bundles =
 disabled-bundles =
 
-production-css = ++theme++{{{ theme.normalized_name }}}/css/main.min.css
-tinymce-content-css = ++theme++{{{ theme.normalized_name }}}/css/main.min.css
+production-css = ++theme++{{{ theme.normalized_name }}}/css/theme.min.css
+tinymce-content-css = ++theme++{{{ theme.normalized_name }}}/css/theme.min.css
 
-# production-js = ++theme++{{{ theme.normalized_name }}}/js/main.min.js
+# production-js = ++theme++{{{ theme.normalized_name }}}/js/theme.min.js
 
 [theme:parameters]
 # portal_url = python: portal.absolute_url()

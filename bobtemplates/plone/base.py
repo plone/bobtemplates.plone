@@ -488,10 +488,9 @@ def get_normalized_ftiname(name):
 
 
 def get_normalized_themename(name):
-    name = name.replace('(', '')
-    name = name.replace(')', '')
-    name = name.replace('-', '')
+    name = name.replace("(", "")
+    name = name.replace(")", "")
+    name = name.replace("-", "")
     name = name.replace(" ", "_")
     normalized_name = cc.dashcase(name)
     return normalized_name
-

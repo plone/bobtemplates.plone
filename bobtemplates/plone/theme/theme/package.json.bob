@@ -25,9 +25,9 @@
     "watch": "nodemon --watch css/ --ext scss --exec \"npm run css-main\"",
     "build": "npm-run-all fetch-vendor-files css-compile-main css-prefix-main css-minify-main",
     "css-main": "npm-run-all css-compile-main css-prefix-main css-minify-main",
-    "css-compile-main": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css css/main.scss:css/main.css",
+    "css-compile-main": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css css/theme.scss:css/theme.css",
     "css-prefix-main": "postcss --config postcss.config.js --replace \"css/*.css\" \"!css/*.min.css\"",
-    "css-minify-main": "cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output css/main.min.css css/main.css",
+    "css-minify-main": "cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output css/theme.min.css css/theme.css",
     "css-lint": "stylelint \"css/**/*.scss\" --cache --cache-location .cache/.stylelintcache",
     "fetch-vendor-files": "./node_modules/.bin/copy-node-modules ./ ./vendor --verbose",
     "reload-browser": "reload -b --exts html,js,css"

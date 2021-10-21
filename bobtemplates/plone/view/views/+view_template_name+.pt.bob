@@ -9,7 +9,8 @@
   <metal:block define-macro="content-core">
 
       <h2 i18n:translate="">Sample View</h2>
-      <!--<div tal:replace="view/my_custom_field" />-->
+      <!--<div tal:replace="view/my_custom_view_method" />-->
+      <!--<div tal:replace="context/my_custom_field" />-->
 
   </metal:block>
   </metal:content-core>

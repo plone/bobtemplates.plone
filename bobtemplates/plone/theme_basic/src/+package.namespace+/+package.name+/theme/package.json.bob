@@ -1,0 +1,34 @@
+{
+  "//": "Put here only theme dependencies, devDependencies should stay outside of the theme folder in the package root.",
+  "name": "{{{ package.dottedname }}}",
+  "version": "1.0.0",
+  "description": "A Theme for Plone 6 Classic UI",
+  "license": "MIT",
+  "devDependencies": {
+    "@plone/plonetheme-barceloneta-base": "^3.0.0-alpha5",
+    "autoprefixer": "^10.2.5",
+    "bootstrap": "^5.1.3",
+    "clean-css-cli": "^5.3.0",
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^8.3.1",
+    "postcss": "^8.2.15",
+    "sass": "^1.32.13",
+    "stylelint-config-twbs-bootstrap": "^2.2.0",
+    "stylelint": "^13.10.0",
+    "uglify-js": "^3.9.4"
+  },
+  "scripts": {
+    "build": "npm-run-all --parallel css js",
+    "css-compile": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css scss/theme.scss:css/theme.css",
+    "css-lint": "stylelint \"scss/**/*.scss\" --cache --cache-location .cache/.stylelintcache",
+    "css-minify": "cleancss --format breakWith=lf --source-map --source-map-inline-sources --output css/theme.min.css css/theme.css",
+    "css-prefix": "postcss --config build/postcss.config.js --replace \"css/*.css\" \"!css/*.min.css\"",
+    "css": "npm-run-all css-compile css-prefix css-minify",
+    "dist": "npm-run-all --parallel css js",
+    "js-compile": "uglifyjs js/theme.js --compress --mangle --output js/theme.min.js",
+    "js": "npm-run-all js-compile",
+    "lint": "npm-run-all --parallel css-lint",
+    "watch": "nodemon --watch scss/ --watch js/theme.js --ext scss,js --exec \"npm run dist\""
+  }
+}

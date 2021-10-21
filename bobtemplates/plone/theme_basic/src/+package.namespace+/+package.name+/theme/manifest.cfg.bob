@@ -1,0 +1,14 @@
+[theme]
+title = Plone Theme: {{{ theme.name|capitalize }}}
+description = A theme for Plone 6 Classic UI
+preview = preview.png
+rules = 
+prefix = /++theme++{{{ theme.normalized_name }}}
+doctype = <!DOCTYPE html>
+
+enabled-bundles =
+disabled-bundles =
+
+production-css = /++theme++{{{ theme.normalized_name }}}/css/theme.min.css
+tinymce-content-css = /++theme++{{{ theme.normalized_name }}}/css/theme.min.css
+production-js = /++theme++{{{ theme.normalized_name }}}/js/theme.min.js

@@ -7,8 +7,24 @@ Changelog
 - Added theme_basic as basic theme template for Plone 6 Classic UI
   [santonelli]
 
+- Template cleanup / Plone 6 fixes
+  [MrTango]
+
+- Provide some bootstrap snippet as TinyMCE templates, in theme
+  [MrTango]
+
+- Provide a Diazo rule, which by default deactivates RequireJS, so that one can use free style JS in the html. This well be removed when the ES6 branch is merged and RequireJS is finally gone
+  [MrTango]
+
+- Improve some default Diazo rules
+  [MrTango]
+
+- Improve view page template
+  [MrTango]
+
 - Added RegistryPanel adapter to controlpanel subtemplate, to have Volto support
   [erral]
+
 
 6.0b7 (2021-10-15)
 ------------------
@@ -19,13 +35,13 @@ Changelog
 - Cleanup theme template and update generated README
   [MrTango]
 
-- Add controlpanel subtemplate.
+- Add controlpanel subtemplate
   [erral]
 
-- Updated theme_barceloneta for Plone 6 classic - uses plonetheme-barceloneta-base npm package.
+- Updated theme_barceloneta for Plone 6 classic - uses plonetheme-barceloneta-base npm package
   [agitator]
 
-- Updated TinyMCE template examples for Bootstrap 5.
+- Updated TinyMCE template examples for Bootstrap 5
   [agitator]
 
 - Multiple Plone 6 fixes and Plone 4 cleanup

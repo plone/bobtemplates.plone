@@ -51,13 +51,13 @@ def test_prepare_renderer(tmpdir):
         template="bobtemplates.plone:theme",
         target_directory=package_path,
         variables={
-            "theme.name": "test.theme",
+            "theme.name": "My Beautiful Theme (2021)",
         },
     )
     theme.prepare_renderer(configurator)
 
     assert configurator.variables["template_id"] == "theme"
-    assert configurator.variables["theme.normalized_name"] == "test.theme"
+    assert configurator.variables["theme.normalized_name"] == "my-beautiful-theme-2021"
     assert configurator.target_directory.endswith(
         "/collective.todo/src/collective/todo"
     )  # NOQA: E501
@@ -72,14 +72,14 @@ def test_prepare_renderer(tmpdir):
         template="bobtemplates.plone:theme",
         target_directory=package_path,
         variables={
-            "theme.name": "test.theme",
+            "theme.name": "My Beautiful Theme (2021)",
             "package.root_folder": package_root,
         },
     )
     theme.prepare_renderer(configurator)
 
     assert configurator.variables["template_id"] == "theme"
-    assert configurator.variables["theme.normalized_name"] == "test.theme"
+    assert configurator.variables["theme.normalized_name"] == "my-beautiful-theme-2021"
     assert configurator.target_directory.endswith(
         "/collective.foo.bar/src/collective/foo/bar"
     )  # NOQA: E501

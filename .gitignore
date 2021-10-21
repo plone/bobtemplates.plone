@@ -42,3 +42,5 @@ Vagrantfile
 /.tmppytest
 *.bak
 /venv
+/collective.bob6test*
+/collective.bobtest*

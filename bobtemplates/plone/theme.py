@@ -10,6 +10,7 @@ from bobtemplates.plone.base import (
     ZCML_NAMESPACES,
     base_prepare_renderer,
     echo,
+    get_normalized_themename,
     git_commit,
     is_string_in_file,
     update_file,
@@ -32,12 +33,12 @@ def pre_theme_name(configurator, question):
 
 
 def post_theme_name(configurator, question, answer):
-    regex = r"^\w+[a-zA-Z0-9 \.\-_]*\w$"
+    regex = r"^\w+[a-zA-Z0-9 \.\-_\(\)]*$"
     if not re.match(regex, answer):
         msg = u"Error: '{0}' is not a valid themename.\n".format(answer)
-        msg += u"Please use a valid name (like 'Tango' or 'my-tango.com')!\n"
-        msg += u"At beginning or end only letters|diggits are allowed.\n"
-        msg += u"Inside the name also '.-_' are allowed.\n"
+        msg += u"Please use a valid name (like 'My Tango' or 'my-tango.com')!\n"
+        msg += u"At beginning only letters|diggits are allowed.\n"
+        msg += u"Inside the name also '.-_()' are allowed.\n"
         msg += u"No umlauts!"
         raise ValidationError(msg)
     return answer
@@ -48,14 +49,9 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables["template_id"] = "theme"
 
-    def normalize_theme_name(value):
-        value = "-".join(value.split("_"))
-        value = "-".join(value.split())
-        return value
-
-    configurator.variables["theme.normalized_name"] = normalize_theme_name(
+    configurator.variables["theme.normalized_name"] = get_normalized_themename(
         configurator.variables.get("theme.name"),
-    ).lower()
+    )
     configurator.target_directory = configurator.variables["package_folder"]
 
 

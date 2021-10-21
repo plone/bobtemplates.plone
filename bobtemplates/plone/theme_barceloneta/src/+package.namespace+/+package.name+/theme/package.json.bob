@@ -1,6 +1,6 @@
 {
   "//": "Put here only theme dependencies, devDependencies should stay outside of the theme folder in the package root.",
-  "name": "{{{ package.dottedname }}}",
+  "name": "{{{ theme.normalized_name }}}",
   "version": "1.0.0",
   "license": "MIT",
   "devDependencies": {

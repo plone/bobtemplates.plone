@@ -99,7 +99,7 @@
             require = undefined;
             define = undefined;
         </script>
-      </after
+      </after>
     </rules>
 
     <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->

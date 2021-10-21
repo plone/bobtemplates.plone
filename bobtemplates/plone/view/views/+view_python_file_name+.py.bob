@@ -25,7 +25,6 @@ class {{{ view_python_class_name }}}({{{ view_base_class }}}):
 {{% if view_base_class == 'DefaultView' %}}
         return super({{{ view_python_class_name }}}, self).__call__()
 {{% else %}}
-        self.msg = _(u'A small message')
         return self.index()
 {{% endif %}}
 {{% else %}}

@@ -4,7 +4,11 @@ Changelog
 6.0b9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Theme: Add some tags/attributes to the HTML Filter
+  [MrTango]
+
+- Cleanup and small Diazo fixes in theme template
+  [MrTango]
 
 
 6.0b8 (2021-10-21)

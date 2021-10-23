@@ -31,16 +31,16 @@
     </value>
   </record>
 
-  <records interface="Products.CMFPlone.interfaces.controlpanel.IFilterSchema" prefix="plone">
-    <value key="custom_attributes" purge="false">
-      <element>button</element>
-    </value>
-  </records>
-
   <!-- <records interface="Products.CMFPlone.interfaces.controlpanel.IFilterSchema" prefix="plone">
-    <value key="valid_tags" purge="false">
+    <value key="custom_attributes" purge="false">
       <element></element>
     </value>
   </records> -->
+
+  <records interface="Products.CMFPlone.interfaces.controlpanel.IFilterSchema" prefix="plone">
+    <value key="valid_tags" purge="false">
+      <element>button</element>
+    </value>
+  </records>
 
 </registry>

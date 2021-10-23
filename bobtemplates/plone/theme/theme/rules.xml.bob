@@ -81,8 +81,12 @@
       <after
         theme-children="/html/head"
         content="/html/head/script"
-        css:if-not-content="html > body.userrole-anonymous"
         />
+      <!-- <after
+        theme-children="/html/head"
+        content="/html/head/script"
+        css:if-not-content="html > body.userrole-anonymous"
+        /> -->
 
       <!--
         Add theme javascripts here, to have them at the bottom of all javascripts.
@@ -151,8 +155,15 @@
     <!-- Copy Document Content -->
     <!-- <replace
       css:content-children="#content"
-      css:theme-children="#content"
+      css:theme-children="main"
       /> -->
+
+    <!-- Copy footer -->
+    <!-- <replace
+      css:content-children="footer"
+      css:theme-children="footer"
+      /> -->
+
 
     <!-- Drop icons in footer -->
     <!-- <drop css:theme="#footer .icons" /> -->

@@ -18,7 +18,8 @@
     "postcss-cli": "^8.3.1",
     "reload": "^3.2.0",
     "sass": "^1.32.13",
-    "stylelint-config-twbs-bootstrap": "^2.2.0"
+    "stylelint-config-twbs-bootstrap": "^2.2.0",
+    "bootstrap": "^5.1.1"
   },
   "scripts": {
     "dev": "npm-run-all --parallel reload-browser watch",
@@ -33,6 +34,5 @@
     "reload-browser": "reload -b --exts html,js,css"
   },
   "dependencies": {
-    "bootstrap": "^5.1.1"
   }
 }

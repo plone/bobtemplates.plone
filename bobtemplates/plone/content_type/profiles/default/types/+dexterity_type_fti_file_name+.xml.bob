@@ -51,6 +51,7 @@
          https://docs.plone.org/external/plone.app.dexterity/docs/reference/standard-behaviours.html
     -->
 {{% if dexterity_type_activate_default_behaviors %}}
+    <element value="plone.basic"/>
     <element value="plone.namefromtitle"/>
     <element value="plone.allowdiscussion"/>
     <element value="plone.excludefromnavigation"/>
@@ -58,10 +59,10 @@
     <element value="plone.ownership"/>
     <element value="plone.publication"/>
     <element value="plone.categorization"/>
-    <element value="plone.basic"/>
     <element value="plone.locking" />
 {{% endif %}}
 {{% if not dexterity_type_activate_default_behaviors %}}
+    <!-- <element value="plone.basic"/> -->
     <!-- <element value="plone.namefromtitle"/> -->
     <!-- <element value="plone.allowdiscussion"/> -->
     <!-- <element value="plone.excludefromnavigation"/> -->
@@ -69,7 +70,6 @@
     <!-- <element value="plone.ownership"/> -->
     <!-- <element value="plone.publication"/> -->
     <!-- <element value="plone.categorization"/> -->
-    <!-- <element value="plone.basic"/> -->
     <!-- <element value="plone.locking" /> -->
 {{% endif %}}
     <!--<element value="plone.leadimage"/>-->

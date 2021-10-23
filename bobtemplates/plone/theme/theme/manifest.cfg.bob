@@ -4,8 +4,6 @@ description = A Diazo based Plone theme
 doctype = <!DOCTYPE html>
 rules = /++theme++{{{ theme.normalized_name }}}/rules.xml
 prefix = /++theme++{{{ theme.normalized_name }}}
-enabled-bundles =
-disabled-bundles =
 
 production-css = ++theme++{{{ theme.normalized_name }}}/styles/theme.min.css
 tinymce-content-css = ++theme++{{{ theme.normalized_name }}}/styles/theme.min.css

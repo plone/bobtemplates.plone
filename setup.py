@@ -2,7 +2,7 @@
 
 from setuptools import find_packages, setup
 
-version = "6.0b9"
+version = "6.0b10.dev0"
 
 
 long_description = "\n\n".join(

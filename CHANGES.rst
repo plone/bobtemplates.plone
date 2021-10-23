@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0b9 (unreleased)
+6.0b9 (2021-10-23)
 ------------------
 
 - Theme: Add some tags/attributes to the HTML Filter

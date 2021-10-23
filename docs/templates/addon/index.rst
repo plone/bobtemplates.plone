@@ -35,7 +35,7 @@ Example
 
     --> Package description [An add-on for Plone]: A todo list add-on for Plone
 
-    --> Do you want me to initialze a GIT repository in your new package? (y/n) [y]:
+    --> Do you want me to initialize a GIT repository in your new package? (y/n) [y]:
 
 
     RUN: git init

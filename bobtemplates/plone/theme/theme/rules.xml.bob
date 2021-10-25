@@ -126,7 +126,7 @@
       /> -->
 
     <!-- Copy global nav (portal tabs) -->
-    <!-- <replace css:theme-children=".navbar-nav" css:content="#portal-globalnav > li" /> -->
+    <!-- <replace css:theme-children=".navbar-nav" css:content-children="navbar-nav" /> -->
 
     <!-- Copy breadcrumb bar -->
     <!-- <replace css:content="#viewlet-above-content" css:theme="#above-content" /> -->

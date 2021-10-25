@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0b10 (unreleased)
+6.0b10 (2021-10-25)
 -------------------
 
 - Improve upgrade step template

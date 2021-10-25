@@ -4,7 +4,8 @@ Changelog
 6.0b10 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Improve upgrade step template
+  [MrTango]
 
 
 6.0b9 (2021-10-23)

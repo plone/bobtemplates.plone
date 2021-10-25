@@ -7,6 +7,9 @@ Changelog
 - Improve upgrade step template
   [MrTango]
 
+- Hide all upgrade profiles from site-creation and quickinstaller.
+  [thet]
+
 
 6.0b9 (2021-10-23)
 ------------------

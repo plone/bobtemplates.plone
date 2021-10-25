@@ -9,8 +9,12 @@ class HiddenProfiles(object):
     def getNonInstallableProfiles(self):
         """Hide uninstall profile from site-creation and quickinstaller."""
         return [
-            '{{{ package.dottedname }}}:uninstall',
+            "{{{ package.dottedname }}}:uninstall",
         ]
+
+    def getNonInstallableProducts(self):
+        """Hide the upgrades package from site-creation and quickinstaller."""
+        return ["{{{ package.dottedname }}}.upgrades"]
 
 
 def post_install(context):

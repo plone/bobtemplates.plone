@@ -4,7 +4,8 @@ Changelog
 6.0b11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Create an Interface for views by default
+  [MrTango]
 
 
 6.0b10 (2021-10-25)

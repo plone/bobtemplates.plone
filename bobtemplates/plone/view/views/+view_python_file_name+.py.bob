@@ -8,10 +8,15 @@ from plone.dexterity.browser.view import DefaultView
 {{% else %}}
 from Products.Five.browser import BrowserView
 {{% endif %}}
+from zope.interface import Interface
 {{% if view_template %}}
 
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 {{% endif %}}
+
+
+class I{{{ view_python_class_name }}}(Interface):
+    """ Marker Interface for I{{{ view_python_class_name }}}"""
 
 
 class {{{ view_python_class_name }}}({{{ view_base_class }}}):

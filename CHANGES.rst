@@ -10,6 +10,9 @@ Changelog
 - Hide all upgrade profiles from site-creation and quickinstaller.
   [thet]
 
+- fix typo in README.rst
+  [yurj]
+
 
 6.0b9 (2021-10-23)
 ------------------

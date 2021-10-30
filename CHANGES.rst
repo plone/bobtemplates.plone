@@ -4,6 +4,9 @@ Changelog
 6.0b10 (unreleased)
 -------------------
 
+- Update theme_barceloneta to use plonetheme-barceloneta-base 3.0.0-alpha.7
+  [agitator]
+
 - Improve upgrade step template
   [MrTango]
 

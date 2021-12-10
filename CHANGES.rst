@@ -4,6 +4,9 @@ Changelog
 6.0b11 (unreleased)
 -------------------
 
+- Increment .gitignore.
+  [wesleybl]
+
 - Create an Interface for views by default
   [MrTango]
 

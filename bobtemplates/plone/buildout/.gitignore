@@ -1,4 +1,5 @@
 .coverage
+.coverage.*
 *.egg-info
 *.log
 *.mo
@@ -8,13 +9,18 @@
 *.sublime-project
 .mr.developer.cfg
 .installed.cfg
+.*project
+coverage.xml
 lib64
+local.cfg
 log.html
 output.xml
 pip-selfcheck.json
+pyvenv.cfg
 report.html
 
 #dirs
+/.settings/
 bin/
 buildout-cache/
 develop-eggs/

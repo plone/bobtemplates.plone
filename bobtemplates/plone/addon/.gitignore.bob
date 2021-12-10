@@ -1,10 +1,13 @@
 .coverage
+.coverage.*
 *.egg-info
 *.log
 *.mo
 *.py?
 *.swp
+.*project
 # dirs
+/.settings/
 bin/
 buildout-cache/
 develop-eggs/
@@ -21,10 +24,13 @@ var/
 # files
 .installed.cfg
 .mr.developer.cfg
+coverage.xml
 lib64
+local.cfg
 log.html
 output.xml
 pip-selfcheck.json
+pyvenv.cfg
 report.html
 .vscode/
 .tox/

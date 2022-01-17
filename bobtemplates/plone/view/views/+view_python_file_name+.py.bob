@@ -5,6 +5,8 @@
 {{% endif %}}
 {{% if view_base_class == 'DefaultView' %}}
 from plone.dexterity.browser.view import DefaultView
+{{% elif view_base_class == 'CollectionView' %}}
+from plone.app.contenttypes.browser.collection import CollectionView
 {{% else %}}
 from Products.Five.browser import BrowserView
 {{% endif %}}
@@ -22,7 +24,7 @@ class {{{ view_python_class_name }}}({{{ view_base_class }}}):
 
     def __call__(self):
         # Implement your own actions:
-{{% if view_base_class == 'DefaultView' %}}
+{{% if view_base_class != 'BrowserView' %}}
         return super({{{ view_python_class_name }}}, self).__call__()
 {{% else %}}
         return self.index()

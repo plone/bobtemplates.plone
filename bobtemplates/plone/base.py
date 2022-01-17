@@ -29,6 +29,16 @@ ZCML_NAMESPACES = {
 }
 
 
+CONTENT_TYPE_INTERFACES = {
+    "*": "*",
+    "Document": "plone.app.contenttypes.interfaces.IDocument",
+    "Folder": "plone.app.contenttypes.interfaces.IFolder",
+    "Collection": "plone.app.contenttypes.interfaces.ICollection",
+    "Event": "plone.app.contenttypes.interfaces.IEvent",
+    "News Items": "plone.app.contenttypes.interfaces.INewsItem",
+}
+
+
 def to_boolean(value):
     if not value:
         return False

@@ -118,6 +118,7 @@ def test_update_views_configure_zcml(tmpdir):
             "view_python_class": True,
             "view_python_class_name": "MyView",
             "view_python_file_name": "py_view",
+            "view_register_for": "plone.app.contenttypes.interfaces.IFolder",
             "view_name": "py-view",
             "view_template": True,
             "view_template_name": "pt_view",
@@ -136,7 +137,7 @@ def test_update_views_configure_zcml(tmpdir):
 
   <browser:page
     name="py-view"
-    for="Products.CMFCore.interfaces.IFolderish"
+    for="plone.app.contenttypes.interfaces.IFolder"
     class=".py_view.MyView"
     template="pt_view.pt"
     permission="zope2.View"
@@ -177,6 +178,7 @@ def test_update_views_configure_zcml_without_template(tmpdir):
             "view_python_class": True,
             "view_python_class_name": "MyView",
             "view_python_file_name": "py_view",
+            "view_register_for": "plone.app.contenttypes.interfaces.IFolder",
             "view_name": "py-view",
             "view_template": False,
             "package_folder": package_path,
@@ -194,7 +196,7 @@ def test_update_views_configure_zcml_without_template(tmpdir):
 
   <browser:page
     name="py-view"
-    for="Products.CMFCore.interfaces.IFolderish"
+    for="plone.app.contenttypes.interfaces.IFolder"
     class=".py_view.MyView"
     permission="zope2.View"
     />
@@ -235,6 +237,7 @@ def test_update_views_configure_zcml_without_python_class(tmpdir):
             "view_name": "py-view",
             "view_template": True,
             "view_template_name": "pt_view",
+            "view_register_for": "*",
             "package_folder": package_path,
         },
     )
@@ -250,7 +253,7 @@ def test_update_views_configure_zcml_without_python_class(tmpdir):
 
   <browser:page
     name="py-view"
-    for="Products.CMFCore.interfaces.IFolderish"
+    for="*"
     template="pt_view.pt"
     permission="zope2.View"
     />
@@ -309,6 +312,7 @@ def test_delete_unwanted_files_python(tmpdir):
             "view_python_class_name": "NewView",
             "view_template": False,
             "view_template_name": "new_view",
+            "view_register_for": "plone.app.contenttypes.interfaces.IFolder",
             "plone.version": "5.1",
         },
     )
@@ -371,6 +375,7 @@ def test_pre_renderer(tmpdir):
             "view_base_class": "BrowserView",
             "view_template": True,
             "view_template_name": "new_view",
+            "view_register_for": "plone.app.contenttypes.interfaces.IFolder",
             "plone.version": "5.1",
         },
     )

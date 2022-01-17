@@ -4,6 +4,13 @@ Changelog
 6.0b10 (unreleased)
 -------------------
 
+- Remove deprecated theme_package template from entrypoints/bobregistry
+  [MrTango]
+
+
+6.0b10 (2021-10-25)
+-------------------
+
 - Improve upgrade step template
   [MrTango]
 

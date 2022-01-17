@@ -17,13 +17,6 @@ def test_reg_plone_buildout():
     assert not reg.depend_on
 
 
-def test_reg_plone_theme_package():
-    reg = bobregistry.plone_theme_package()
-    assert reg.template == u"bobtemplates.plone:theme_package"
-    assert reg.plonecli_alias == u"theme_package"
-    assert not reg.depend_on
-
-
 def test_reg_plone_theme():
     reg = bobregistry.plone_theme()
     assert reg.template == u"bobtemplates.plone:theme"

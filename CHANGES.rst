@@ -1,7 +1,7 @@
 Changelog
 =========
 
-5.2.2 (unreleased)
+5.2.2 (2022-02-08)
 ------------------
 
 - Fixed python_requires definition in addon setup.py

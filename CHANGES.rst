@@ -4,7 +4,8 @@ Changelog
 5.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed python_requires definition in addon setup.py
+  [MrTango]
 
 
 5.2.1 (2021-06-03)

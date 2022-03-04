@@ -1,6 +1,12 @@
 Changelog
 =========
 
+6.0b12 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
 6.0b11 (2022-03-04)
 
 - Remove deprecated theme_package template from entrypoints/bobregistry

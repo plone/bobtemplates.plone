@@ -88,4 +88,4 @@ Providing new templates and Python Scripts, alternative solutions
 
 - `collective.themefragments <https://pypi.python.org/pypi/collective.themefragments/>`_
 - `plone.app.themingplugins <https://pypi.python.org/pypi/plone.app.themingplugins/>`_
-- `collective.themesidesetup <https://pypi.python.org/pypi/collective.themesidesetup/>`_
+- `collective.themesitesetup <https://pypi.python.org/pypi/collective.themesitesetup/>`_

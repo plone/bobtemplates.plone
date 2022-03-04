@@ -2,7 +2,6 @@ Changelog
 =========
 
 6.0b11 (unreleased)
--------------------
 
 - Remove deprecated theme_package template from entrypoints/bobregistry
   [MrTango]
@@ -13,15 +12,27 @@ Changelog
 - Add view_register_for question, to allow view registration for a specific content type
   [MrTango]
 
+- Increment .gitignore.
+  [wesleybl]
+
+- Create an Interface for views by default
+  [MrTango]
+
 
 6.0b10 (2021-10-25)
 -------------------
+
+- Update theme_barceloneta to use plonetheme-barceloneta-base 3.0.0-alpha.7
+  [agitator]
 
 - Improve upgrade step template
   [MrTango]
 
 - Hide all upgrade profiles from site-creation and quickinstaller.
   [thet]
+
+- fix typo in README.rst
+  [yurj]
 
 
 6.0b9 (2021-10-23)

@@ -2,7 +2,15 @@ Changelog
 =========
 
 6.0b11 (unreleased)
--------------------
+
+- Remove deprecated theme_package template from entrypoints/bobregistry
+  [MrTango]
+
+- Add CollectionView to view base class options
+  [MrTango]
+
+- Add view_register_for question, to allow view registration for a specific content type
+  [MrTango]
 
 - Increment .gitignore.
   [wesleybl]

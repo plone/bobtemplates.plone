@@ -24,16 +24,6 @@ def plone_buildout():
     return reg
 
 
-def plone_theme_package():
-    reg = RegEntry()
-    reg.template = "bobtemplates.plone:theme_package"
-    reg.plonecli_alias = "theme_package"
-    reg.deprecated = True
-    reg.info = """Please use the theme_barceloneta subtemplate!
-    """
-    return reg
-
-
 def plone_theme():
     reg = RegEntry()
     reg.template = "bobtemplates.plone:theme"

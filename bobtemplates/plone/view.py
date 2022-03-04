@@ -9,6 +9,7 @@ from lxml import etree
 from mrbob.bobexceptions import SkipQuestion, ValidationError
 
 from bobtemplates.plone.base import (
+    CONTENT_TYPE_INTERFACES,
     ZCML_NAMESPACES,
     base_prepare_renderer,
     echo,
@@ -60,70 +61,61 @@ def check_view_template_answer(configurator, question):
         )  # NOQA: E501
 
 
+def get_view_configuration(configurator):
+    """return a dict with view configuration used for registration in zcml"""
+    config = dict()
+    config["name"] = configurator.variables["view_name"]
+    # get Interface by content type or use the string it self as interface
+    config["for"] = "{0}".format(
+        CONTENT_TYPE_INTERFACES.get(
+            configurator.variables["view_register_for"],
+            configurator.variables["view_register_for"],
+        )
+    )
+    if configurator.variables["view_template"]:
+        config["template"] = "{0}.pt".format(
+            configurator.variables["view_template_name"]
+        )
+    if configurator.variables["view_python_class"]:
+        config["class"] = ".{0}.{1}".format(
+            configurator.variables["view_python_file_name"],
+            configurator.variables["view_python_class_name"],
+        )
+    # if configurator.variables["view_permission"]:
+    config["permission"] = "zope2.View"
+    return config
+
+
 def _update_views_configure_zcml(configurator):
     file_name = u"configure.zcml"
     directory_path = configurator.variables["package_folder"] + "/views/"
     file_path = directory_path + file_name
     configure_example_file_path = (
         configurator.variables["package_folder"] + "/views/configure.zcml.example"
-    )  # NOQA: E501
+    )
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
 
     match_str = "-*- extra stuff goes here -*-"
 
-    if (
-        configurator.variables["view_template"]
-        and configurator.variables["view_python_class"]
-    ):  # NOQA: E501
-        insert_str = """
+    view_config = get_view_configuration(configurator)
+    insert_str = """
   <browser:page
     name="{0}"
-    for="Products.CMFCore.interfaces.IFolderish"
-    class=".{1}.{2}"
-    template="{3}.pt"
-    permission="zope2.View"
-    />
+    for="{1}"
 """.format(
-            configurator.variables["view_name"],
-            configurator.variables["view_python_file_name"],
-            configurator.variables["view_python_class_name"],
-            configurator.variables["view_template_name"],
-        )
+        view_config["name"],
+        view_config["for"],
+    )
+    if "class" in view_config:
+        insert_str += '    class="{0}"\n'.format(view_config["class"])
+    if "template" in view_config:
+        insert_str += '    template="{0}"\n'.format(view_config["template"])
+    if "permission" in view_config:
+        insert_str += '    permission="{0}"\n'.format(view_config["permission"])
+    insert_str += "    />\n"
 
-    if (
-        configurator.variables["view_template"]
-        and not configurator.variables["view_python_class"]
-    ):  # NOQA: E501
-        insert_str = """
-  <browser:page
-    name="{0}"
-    for="Products.CMFCore.interfaces.IFolderish"
-    template="{1}.pt"
-    permission="zope2.View"
-    />
-""".format(
-            configurator.variables["view_name"],
-            configurator.variables["view_template_name"],
-        )
-
-    if (
-        not configurator.variables["view_template"]
-        and configurator.variables["view_python_class"]
-    ):  # NOQA: E501
-        insert_str = """
-  <browser:page
-    name="{0}"
-    for="Products.CMFCore.interfaces.IFolderish"
-    class=".{1}.{2}"
-    permission="zope2.View"
-    />
-""".format(
-            configurator.variables["view_name"],
-            configurator.variables["view_python_file_name"],
-            configurator.variables["view_python_class_name"],
-        )
     with open(file_path, "r") as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)

@@ -55,9 +55,11 @@ Add a View
 
     --> View name (part of the URL) [demo-view]: demo-view
 
-    --> Should the View have a template file? [y]: 
+    --> Should the View have a template file? [y]:
 
     --> Template name (without extension) [demo_view]: demo
+
+    --> For which Content Type or Interface should we register the view (*/Document/Folder/Collection/Event/News Item]: collective.todo.content.todo.ITodo
 
     >>> reading Plone version from bobtemplate.cfg
 

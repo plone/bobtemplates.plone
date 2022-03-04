@@ -9,8 +9,8 @@ from lxml import etree
 from mrbob.bobexceptions import SkipQuestion, ValidationError
 
 from bobtemplates.plone.base import (
-    ZCML_NAMESPACES,
     CONTENT_TYPE_INTERFACES,
+    ZCML_NAMESPACES,
     base_prepare_renderer,
     echo,
     git_commit,

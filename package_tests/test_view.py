@@ -314,7 +314,6 @@ def test_delete_unwanted_files_python(tmpdir):
             "view_register_for": "*",
             "view_template": False,
             "view_template_name": "new_view",
-            "view_register_for": "plone.app.contenttypes.interfaces.IFolder",
             "plone.version": "5.1",
         },
     )

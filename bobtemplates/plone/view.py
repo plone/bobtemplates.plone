@@ -65,8 +65,12 @@ def get_view_configuration(configurator):
     """return a dict with view configuration used for registration in zcml"""
     config = dict()
     config["name"] = configurator.variables["view_name"]
+    # get Interface by content type or use the string it self as interface
     config["for"] = "{0}".format(
-        CONTENT_TYPE_INTERFACES.get(configurator.variables["view_register_for"], "*")
+        CONTENT_TYPE_INTERFACES.get(
+            configurator.variables["view_register_for"],
+            configurator.variables["view_register_for"],
+        )
     )
     if configurator.variables["view_template"]:
         config["template"] = "{0}.pt".format(

@@ -128,7 +128,7 @@ def test_remove_unwanted_files(tmpdir):
             ),
             "w",
         ) as f:
-            f.write(u"dummy")
+            f.write("dummy")
     restapi_service._remove_unwanted_files(configurator)
 
     for file_to_remove in files_to_remove:
@@ -194,7 +194,7 @@ version=5.1
         "r",
     ) as f:
         content = f.read()
-        assert content != template, u"configure.zcml was not updated!"
+        assert content != template, "configure.zcml was not updated!"
 
 
 def test_update_services_configure_zcml(tmpdir):
@@ -260,4 +260,4 @@ version=5.1
         "r",
     ) as f:
         content = f.read()
-        assert content != template, u"configure.zcml was not updated!"
+        assert content != template, "configure.zcml was not updated!"

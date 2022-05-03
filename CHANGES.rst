@@ -4,7 +4,11 @@ Changelog
 6.0b12 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add dummy style file in styles/theme.min.css to not break theme, when no css file was created
+  [MrTango]
+
+- Add layer attribute to view registrations
+  [MrTango]
 
 
 6.0b11 (2022-03-04)

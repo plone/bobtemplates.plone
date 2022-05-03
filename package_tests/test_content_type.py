@@ -20,19 +20,19 @@ def test_post_dexterity_type_name():
     with pytest.raises(ValidationError):
         hookit("import")
     with pytest.raises(ValidationError):
-        hookit(u"süpertype")
+        hookit("süpertype")
     #    with pytest.raises(ValidationError):
     #        hookit(u'Staff Member')
     with pytest.raises(ValidationError):
-        hookit(u"2ndComing")
+        hookit("2ndComing")
     #    with pytest.raises(ValidationError):
     #        hookit(u'Second Coming')
     with pytest.raises(ValidationError):
-        hookit(u"*sterisk")
-    assert hookit(u"SuperType") == u"SuperType"
-    assert hookit(u"Super Type") == u"Super Type"
-    assert hookit(u"second_coming") == u"second_coming"
-    assert hookit(u"second coming") == u"second coming"
+        hookit("*sterisk")
+    assert hookit("SuperType") == "SuperType"
+    assert hookit("Super Type") == "Super Type"
+    assert hookit("second_coming") == "second_coming"
+    assert hookit("second coming") == "second coming"
 
 
 def test_is_container_false():

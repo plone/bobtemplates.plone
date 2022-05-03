@@ -214,10 +214,10 @@ def test_delete_template_file(tmpdir):
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(viewlets_path)
-    file_name = u"configure.zcml.example"
+    file_name = "configure.zcml.example"
     file_path = viewlets_path + file_name
     open(file_path, "a").close()
-    file_name = u"my_viewlet.pt"
+    file_name = "my_viewlet.pt"
     file_path = viewlets_path + file_name
     open(file_path, "a").close()
     configurator = Configurator(
@@ -246,10 +246,10 @@ def test_delete_template_file_false(tmpdir):
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(viewlets_path)
-    file_name = u"configure.zcml.example"
+    file_name = "configure.zcml.example"
     file_path = viewlets_path + file_name
     open(file_path, "a").close()
-    file_name = u"my_viewlet.pt"
+    file_name = "my_viewlet.pt"
     file_path = viewlets_path + file_name
     open(file_path, "a").close()
     configurator = Configurator(

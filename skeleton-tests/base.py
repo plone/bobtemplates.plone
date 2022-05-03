@@ -34,5 +34,5 @@ def run_skeleton_tox_env(wd, config):
         )
         return returncode
     except subprocess.CalledProcessError as execinfo:
-        logger.debug(u"{0}".format(safe_unicode(execinfo.output)))
+        logger.debug("{0}".format(safe_unicode(execinfo.output)))
         return execinfo.returncode

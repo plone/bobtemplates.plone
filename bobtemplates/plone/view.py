@@ -43,7 +43,7 @@ def get_view_template_name_from_python_class(configurator, question):
 def check_python_class_answer(configurator, question):
     if not configurator.variables["view_python_class"]:
         raise SkipQuestion(
-            u"No python class, so we skip python class name question."
+            "No python class, so we skip python class name question."
         )  # NOQA: E501
 
 
@@ -53,11 +53,11 @@ def check_view_template_answer(configurator, question):
         and not configurator.variables["view_python_class"]
     ):  # NOQA: E501
         raise ValidationError(
-            u"View must at least have a template or a python class"
+            "View must at least have a template or a python class"
         )  # NOQA: E501
     elif not configurator.variables["view_template"]:
         raise SkipQuestion(
-            u"No view template, so we skip view template name question."
+            "No view template, so we skip view template name question."
         )  # NOQA: E501
 
 
@@ -87,7 +87,7 @@ def get_view_configuration(configurator):
 
 
 def _update_views_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     directory_path = configurator.variables["package_folder"] + "/views/"
     file_path = directory_path + file_name
     configure_example_file_path = (
@@ -114,6 +114,10 @@ def _update_views_configure_zcml(configurator):
         insert_str += '    template="{0}"\n'.format(view_config["template"])
     if "permission" in view_config:
         insert_str += '    permission="{0}"\n'.format(view_config["permission"])
+    insert_str += '    layer="{0}.interfaces.I{1}"\n'.format(
+        configurator.variables["package.dottedname"],
+        configurator.variables["package.browserlayer"],
+    )
     insert_str += "    />\n"
 
     with open(file_path, "r") as xml_file:
@@ -125,8 +129,8 @@ def _update_views_configure_zcml(configurator):
         )
         if len(tree_root.xpath(view_xpath, namespaces=ZCML_NAMESPACES)):
             echo(
-                u"{0} already in configure.zcml, do you really want to add this config?"
-                u"\n\n{1}\n [y/N]: ".format(
+                "{0} already in configure.zcml, do you really want to add this config?"
+                "\n\n{1}\n [y/N]: ".format(
                     configurator.variables["view_name"],
                     insert_str,
                 ),
@@ -142,7 +146,7 @@ def _update_views_configure_zcml(configurator):
 
 
 def _update_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
     namespaces = "{http://namespaces.zope.org/zope}"
 
@@ -167,20 +171,20 @@ def _update_configure_zcml(configurator):
 def _delete_unwanted_files(configurator):
     directory_path = configurator.variables["package_folder"] + "/views/"
     if not configurator.variables["view_template"]:
-        file_name = u"{0}.pt".format(
+        file_name = "{0}.pt".format(
             configurator.variables["view_template_name"],
         )
         file_path = directory_path + file_name
         os.remove(file_path)
 
     elif not configurator.variables["view_python_class"]:
-        file_name = u"{0}.py".format(
+        file_name = "{0}.py".format(
             configurator.variables["view_python_file_name"],
         )
         file_path = directory_path + file_name
         os.remove(file_path)
 
-    file_name = u"configure.zcml.example"
+    file_name = "configure.zcml.example"
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name in file_list:
         file_path = directory_path + file_name

@@ -14,7 +14,7 @@ def _update_package_configure_zcml(configurator):
     path = "{0}".format(
         configurator.variables["package_folder"],
     )
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     match_xpath = "zope:include[@package='.upgrades']"
     match_str = "-*- extra stuff goes here -*-"
     insert_str = """
@@ -34,7 +34,7 @@ def _update_upgrades_configure_zcml(configurator):
     path = "{0}/upgrades".format(
         configurator.variables["package_folder"],
     )
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     example_file_name = "{0}.example".format(file_name)
     zcml_package_name = configurator.variables["upgrade_step_dest_version"]
     match_xpath = "zope:include[@file='{0}.zcml']".format(zcml_package_name)
@@ -84,8 +84,8 @@ def _read_source_version(configurator):
 
 def _write_dest_version(configurator):
     """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""  # NOQA: E501
-    metadata_file_name = u"metadata.xml"
-    metadata_file_dir = u"profiles/default"
+    metadata_file_name = "metadata.xml"
+    metadata_file_dir = "profiles/default"
     metadata_file_path = (
         configurator.variables["package_folder"]
         + "/"

@@ -9,6 +9,7 @@ from bobtemplates.plone.utils import run_black, run_isort
 
 def pre_render(configurator):
     """Some variables to make templating easier."""
+    # TODO: refacture this to use base_prepare_renderer, like all sub template do
     # get package-name from user-input
     package_dir = os.path.basename(configurator.target_directory)
     nested = bool(len(package_dir.split(".")) == 3)

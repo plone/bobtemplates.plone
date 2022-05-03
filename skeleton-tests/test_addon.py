@@ -73,4 +73,4 @@ plone.version = {version}
         returncode = run_skeleton_tox_env(wd, config)
         assert (
             returncode == 0
-        ), u"The tests inside the generated package are failing, please check the output above!"
+        ), "The tests inside the generated package are failing, please check the output above!"

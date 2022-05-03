@@ -15,7 +15,7 @@ from bobtemplates.plone.utils import run_black, run_isort
 
 
 def _update_package_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
 
     with open(file_path, "r") as xml_file:
@@ -37,7 +37,7 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_controlpanels_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/controlpanels/" + file_name
     example_file_path = file_path + ".example"
     file_list = os.listdir(os.path.dirname(file_path))
@@ -73,7 +73,7 @@ def _update_controlpanels_configure_zcml(configurator):
 
 
 def _update_profile_controlpanel_xml(configurator):
-    file_name = u"controlpanel.xml"
+    file_name = "controlpanel.xml"
     file_path = (
         configurator.variables["package_folder"] + "/profiles/default/" + file_name
     )

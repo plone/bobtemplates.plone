@@ -21,7 +21,7 @@ def config():
     config = Config()
     config.verbose = bool(os.environ.get("VERBOSE"))
     config.version = os.environ.get("VERSION", "5.2.1")
-    config.skeleton_tox_env = u"{0}-{1},{0}-lint".format(
+    config.skeleton_tox_env = "{0}-{1},{0}-lint".format(
         skeleton_tox_env_parts[0],
         skeleton_tox_env_parts[2],
     )

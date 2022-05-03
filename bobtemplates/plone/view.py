@@ -114,7 +114,7 @@ def _update_views_configure_zcml(configurator):
         insert_str += '    template="{0}"\n'.format(view_config["template"])
     if "permission" in view_config:
         insert_str += '    permission="{0}"\n'.format(view_config["permission"])
-    insert_str += "    layer=\"{0}.interfaces.I{1}\"\n".format(
+    insert_str += '    layer="{0}.interfaces.I{1}"\n'.format(
         configurator.variables["package.dottedname"],
         configurator.variables["package.browserlayer"],
     )

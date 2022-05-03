@@ -55,10 +55,10 @@ jinja2_env.filters["to_boolean"] = to_boolean
 
 
 def git_support_enabled(configurator, question):
-    disabled = configurator.variables.get("package.git.disabled", u"False")
+    disabled = configurator.variables.get("package.git.disabled", "False")
     if hooks.to_boolean(None, None, disabled):
-        echo(u"GIT support disabled!!!")
-        raise SkipQuestion(u"GIT support is disabled, skip question!")
+        echo("GIT support disabled!!!")
+        raise SkipQuestion("GIT support is disabled, skip question!")
 
 
 def echo(msg, msg_type=None):
@@ -85,7 +85,7 @@ class BobConfig(object):
 def git_support(configurator):
     """check if GIT support is disabled/enabled"""
     git_support = True
-    disabled = configurator.variables.get("package.git.disabled", u"False")
+    disabled = configurator.variables.get("package.git.disabled", "False")
     if hooks.to_boolean(None, None, disabled):
         echo("GIT support disabled!")
         git_support = False
@@ -95,12 +95,12 @@ def git_support(configurator):
 def git_init(configurator):
     if not git_support(configurator):
         return
-    git_init_flag = configurator.variables.get("package.git.init", u"False")
+    git_init_flag = configurator.variables.get("package.git.init", "False")
     if not hooks.to_boolean(None, None, str(git_init_flag)):
         echo("git init is disabled!")
         return
     params = ["git", "init"]
-    echo(u"RUN: {0}".format(" ".join(params)), "info")
+    echo("RUN: {0}".format(" ".join(params)), "info")
     try:
         result = subprocess.check_output(params, cwd=configurator.target_directory)
     except subprocess.CalledProcessError as e:
@@ -120,15 +120,15 @@ def git_commit(configurator, msg):
         or configurator.target_directory
     )
     params1 = ["git", "add", "."]
-    params2 = ["git", "commit", "-m", u'"{0}"'.format(msg)]
+    params2 = ["git", "commit", "-m", '"{0}"'.format(msg)]
     git_autocommit = None
     run_git_commit = True
-    autocommit_flag = configurator.variables.get("package.git.autocommit", u"False")
+    autocommit_flag = configurator.variables.get("package.git.autocommit", "False")
     if hooks.to_boolean(None, None, autocommit_flag):
         git_autocommit = True
     if not non_interactive and not git_autocommit:
         echo(
-            u"Should we run?:\n{0}\n{1}\nin: {2}".format(
+            "Should we run?:\n{0}\n{1}\nin: {2}".format(
                 " ".join(params1), " ".join(params2), working_dir
             ),
             "info",
@@ -139,7 +139,7 @@ def git_commit(configurator, msg):
         echo("Skip git commit!", "warning")
         return
 
-    echo(u"RUN: {0}".format(" ".join(params1)), "info")
+    echo("RUN: {0}".format(" ".join(params1)), "info")
     try:
         result1 = subprocess.check_output(params1, cwd=working_dir)
     except subprocess.CalledProcessError as e:
@@ -148,7 +148,7 @@ def git_commit(configurator, msg):
         if result1:
             echo(result1, "info")
 
-    echo(u"RUN: {0}".format(" ".join(params2)), "info")
+    echo("RUN: {0}".format(" ".join(params2)), "info")
     try:
         result2 = subprocess.check_output(params2, cwd=working_dir)
     except subprocess.CalledProcessError as e:
@@ -161,7 +161,7 @@ def git_clean_state_check(configurator, question):
     if not git_support(configurator):
         return
     params = ["git", "status", "--porcelain", "--ignore-submodules"]
-    echo(u"\nRUN: {0}".format(" ".join(params)), "info")
+    echo("\nRUN: {0}".format(" ".join(params)), "info")
     try:
         result = subprocess.check_output(params, cwd=configurator.target_directory)
     except subprocess.CalledProcessError as e:
@@ -171,7 +171,7 @@ def git_clean_state_check(configurator, question):
             echo("Git state is clean.\n", "info")
             raise SkipQuestion("Git state is clean, so we skip this question.")
         echo(
-            u"git status result:\n----------------------------\n{0}".format(result),
+            "git status result:\n----------------------------\n{0}".format(result),
             "warning",
         )
 
@@ -179,11 +179,11 @@ def git_clean_state_check(configurator, question):
 def check_klass_name(configurator, question, answer):
     if keyword.iskeyword(answer):
         raise ValidationError(
-            u"{key} is a reserved Python keyword".format(key=answer)
+            "{key} is a reserved Python keyword".format(key=answer)
         )  # NOQA: E501
     if not re.match("[a-zA-Z_][a-zA-Z0-9_]*$", answer):
         raise ValidationError(
-            u"{key} is not a valid class identifier".format(key=answer)
+            "{key} is not a valid class identifier".format(key=answer)
         )  # NOQA: E501
     return answer
 
@@ -191,11 +191,11 @@ def check_klass_name(configurator, question, answer):
 def check_method_name(configurator, question, answer):
     if keyword.iskeyword(answer):
         raise ValidationError(
-            u"{key} is a reserved Python keyword".format(key=answer)
+            "{key} is a reserved Python keyword".format(key=answer)
         )  # NOQA: E501
     if not re.match("[a-zA-Z_][a-zA-Z0-9_]*$", answer):
         raise ValidationError(
-            u"{key} is not a valid method identifier".format(key=answer)
+            "{key} is not a valid method identifier".format(key=answer)
         )  # NOQA: E501
     return answer
 
@@ -276,9 +276,9 @@ def validate_packagename(configurator):
 
     if fail:
         msg = (
-            u"Error: '{0}' is not a valid packagename.\n"
+            "Error: '{0}' is not a valid packagename.\n"
             "Please use a valid name (like collective.myaddon or "
-            u"plone.app.myaddon)".format(package_dir)
+            "plone.app.myaddon)".format(package_dir)
         )
         sys.exit(msg)
 
@@ -378,7 +378,7 @@ def update_file(configurator, file_path, match_str, insert_str):
     if not changed:
         print(
             "WARNING: We couldn't find the match_str, "  # NOQA
-            u"skip inserting into {0}:\n".format(file_path)  # NOQA
+            "skip inserting into {0}:\n".format(file_path)  # NOQA
         )
 
 
@@ -428,7 +428,7 @@ def base_prepare_renderer(configurator):
         configurator
     )
     if not configurator.variables["package.root_folder"]:
-        raise MrBobError(u"No setup.py found in path!\n")
+        raise MrBobError("No setup.py found in path!\n")
     configurator.variables["package.dottedname"] = configurator.variables[
         "package.root_folder"
     ].split("/")[-1]
@@ -444,7 +444,7 @@ def base_prepare_renderer(configurator):
     )
 
     package_subpath = dottedname_to_path(configurator.variables["package.dottedname"])
-    configurator.variables["package_folder_rel_path"] = u"/src/" + package_subpath
+    configurator.variables["package_folder_rel_path"] = "/src/" + package_subpath
     configurator.variables["package_folder"] = (
         configurator.variables["package.root_folder"]
         + configurator.variables["package_folder_rel_path"]

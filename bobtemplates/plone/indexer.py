@@ -15,7 +15,7 @@ def _update_package_configure_zcml(configurator):
     path = "{0}".format(
         configurator.variables["package_folder"],
     )
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     match_xpath = "zope:include[@package='.indexers']"
     match_str = "-*- extra stuff goes here -*-"
     insert_str = """
@@ -35,7 +35,7 @@ def _update_indexers_configure_zcml(configurator):
     path = "{0}/indexers".format(
         configurator.variables["package_folder"],
     )
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     example_file_name = "{0}.example".format(file_name)
     match_xpath = "zope:include[@package='.{0}']".format(
         configurator.variables["indexer_name"]

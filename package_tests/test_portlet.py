@@ -16,13 +16,13 @@ def test_pre_renderer():
         template="bobtemplates.plone:portlet",
         target_directory=".",
         variables={
-            "portlet_name": u"My nice portlet, with umlauts: öÖÖÖÖ".encode(
+            "portlet_name": "My nice portlet, with umlauts: öÖÖÖÖ".encode(
                 "utf8",
             ),
         },
     )
     portlet.prepare_renderer(configurator)
-    expt = u"my_nice_portlet_with_umlauts_ooooo"
+    expt = "my_nice_portlet_with_umlauts_ooooo"
     assert configurator.variables["portlet_name_normalized"] == expt
 
 
@@ -189,10 +189,10 @@ def test_delete_unnecessary_files(tmpdir):
     os.makedirs(package_path)
     os.makedirs(portlets_path)
     os.makedirs(profile_path)
-    file_name = u"configure.zcml.example"
+    file_name = "configure.zcml.example"
     portlets_file_path = portlets_path + file_name
     open(portlets_file_path, "a").close()
-    file_name = u"portlets.xml.example"
+    file_name = "portlets.xml.example"
     xml_file_path = profile_path + file_name
     open(xml_file_path, "a").close()
     configurator = Configurator(
@@ -237,7 +237,7 @@ def test_update_portlets_xml(tmpdir):
             "non_interactive": True,
         },
         variables={
-            "portlet_name": u"My Weather",
+            "portlet_name": "My Weather",
             "portlet_name_normalized": "my_weather",
             "portlet_configuration_name": "collective.sample.portlets.MyWeather",  # NOQA: E501
             "package_folder": package_path,
@@ -323,7 +323,7 @@ def test_update_portlets_xml_with_changes(tmpdir):
             "non_interactive": True,
         },
         variables={
-            "portlet_name": u"My Weather",
+            "portlet_name": "My Weather",
             "portlet_name_normalized": "my_weather",
             "portlet_configuration_name": "collective.sample.portlets.MyWeather",  # NOQA: E501
             "package_folder": package_path,
@@ -540,7 +540,7 @@ class Renderer(base.Renderer):
             "non_interactive": True,
         },
         variables={
-            "portlet_name": u"My Weather",
+            "portlet_name": "My Weather",
             "plone.version": "5.1",
         },
     )

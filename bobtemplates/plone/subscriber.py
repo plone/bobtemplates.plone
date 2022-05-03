@@ -15,7 +15,7 @@ def _update_package_configure_zcml(configurator):
     path = "{0}".format(
         configurator.variables["package_folder"],
     )
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     match_xpath = "zope:include[@package='.subscribers']"
     match_str = "-*- extra stuff goes here -*-"
     insert_str = """
@@ -35,7 +35,7 @@ def _update_subscribers_configure_zcml(configurator):
     path = "{0}/subscribers".format(
         configurator.variables["package_folder"],
     )
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     example_file_name = "{0}.example".format(file_name)
     match_xpath = "zope:subscriber[@handler='.{0}.handler']".format(
         configurator.variables["subscriber_handler_file_name"],

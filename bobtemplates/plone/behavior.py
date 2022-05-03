@@ -9,7 +9,7 @@ from bobtemplates.plone.utils import run_black, run_isort
 
 
 def _update_package_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
     nsprefix = "{http://namespaces.zope.org/zope}"
 
@@ -35,7 +35,7 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_behaviors_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/behaviors/" + file_name
     example_file_path = file_path + ".example"
     file_list = os.listdir(os.path.dirname(file_path))

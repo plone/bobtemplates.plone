@@ -22,15 +22,15 @@ from bobtemplates.plone.utils import run_black, run_isort
 def is_container(configurator, question):
     """Test if base class is a container."""
     if configurator.variables["dexterity_type_base_class"] != "Container":
-        raise SkipQuestion(u"Is not a Container, so we skip filter question.")
+        raise SkipQuestion("Is not a Container, so we skip filter question.")
 
 
 def supermodel_is_used(configurator, question):
     """Test if supermodel is used."""
     if configurator.variables.get("dexterity_type_supermodel", False):
         raise SkipQuestion(
-            u"Skip question, because we need a base class ",
-            u"when supermodel ist used.",
+            "Skip question, because we need a base class ",
+            "when supermodel ist used.",
         )
 
 
@@ -38,12 +38,12 @@ def check_dexterity_type_name(configurator, question, answer):
     """Test if type name is valid."""
     if keyword.iskeyword(answer):
         raise ValidationError(
-            u'"{key}" is a reserved Python keyword!'.format(key=answer)
+            '"{key}" is a reserved Python keyword!'.format(key=answer)
         )  # NOQA: E501
     if not re.match("[_a-zA-Z ]*$", answer):
         raise ValidationError(
-            u'"{key}" is not a valid identifier!\n'
-            u"Allowed characters: _ a-z A-Z and whitespace.\n".format(
+            '"{key}" is not a valid identifier!\n'
+            "Allowed characters: _ a-z A-Z and whitespace.\n".format(
                 key=answer
             ),  # NOQA: E501
         )
@@ -54,14 +54,14 @@ def check_global_allow(configurator, answer):
     """Skip parent container name if global_allow is true."""
     if configurator.variables.get("dexterity_type_global_allow", False):
         raise SkipQuestion(
-            u"global_allow is true, so we skip parent container name question."
+            "global_allow is true, so we skip parent container name question."
         )  # NOQA: E501
 
 
 def _update_metadata_xml(configurator):
     """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""  # NOQA: E501
-    metadata_file_name = u"metadata.xml"
-    metadata_file_dir = u"profiles/default"
+    metadata_file_name = "metadata.xml"
+    metadata_file_dir = "profiles/default"
     metadata_file_path = (
         configurator.variables["package_folder"]
         + "/"
@@ -110,8 +110,8 @@ def _update_metadata_xml(configurator):
 
 def _update_types_xml(configurator):
     """Add the new type to types.xml in Generic Setup profiles."""
-    types_file_name = u"types.xml"
-    types_file_dir = u"profiles/default"
+    types_file_name = "types.xml"
+    types_file_dir = "profiles/default"
     types_file_path = (
         configurator.target_directory + "/" + types_file_dir + "/" + types_file_name
     )
@@ -154,7 +154,7 @@ def _update_parent_types_fti_xml(configurator):
     parent_dexterity_type_fti_file_name = get_normalized_ftiname(
         parent_ct_name
     )  # NOQA: E501
-    file_name = u"{0}.xml".format(
+    file_name = "{0}.xml".format(
         parent_dexterity_type_fti_file_name,
     )
     file_path = "{0}/profiles/default/types/{1}".format(
@@ -186,7 +186,7 @@ def _update_parent_types_fti_xml(configurator):
 
 
 def _update_rolemap_xml(configurator):
-    file_name = u"rolemap.xml"
+    file_name = "rolemap.xml"
     file_path = "{0}/profiles/default/{1}".format(
         configurator.variables["package_folder"],
         file_name,
@@ -224,7 +224,7 @@ def _update_rolemap_xml(configurator):
 
 
 def _update_permissions_zcml(configurator):
-    file_name = u"permissions.zcml"
+    file_name = "permissions.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
     nsprefix = "{http://namespaces.zope.org/zope}"
 

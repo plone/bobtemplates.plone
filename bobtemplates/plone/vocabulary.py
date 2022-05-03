@@ -16,7 +16,7 @@ from bobtemplates.plone.utils import run_black, run_isort
 
 
 def _update_package_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
 
     with open(file_path, "r") as xml_file:
@@ -38,7 +38,7 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_vocabularies_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/vocabularies/" + file_name
     example_file_path = file_path + ".example"
     file_list = os.listdir(os.path.dirname(file_path))

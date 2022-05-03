@@ -26,12 +26,12 @@ def get_view_name_from_python_class(configurator, question):
 def check_viewlet_template_answer(configurator, question):
     if not configurator.variables["viewlet_template"]:
         raise SkipQuestion(
-            u"No view template, so we skip view template name question."
+            "No view template, so we skip view template name question."
         )  # NOQA: E501
 
 
 def _update_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
     namespaces = "{http://namespaces.zope.org/zope}"
 
@@ -54,7 +54,7 @@ def _update_configure_zcml(configurator):
 
 
 def _update_viewlets_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     directory_path = configurator.variables["package_folder"] + "/viewlets/"
     file_path = directory_path + file_name
 
@@ -130,13 +130,13 @@ def _update_viewlets_configure_zcml(configurator):
 def _delete_unwanted_files(configurator):
     directory_path = configurator.variables["package_folder"] + "/viewlets/"
     if not configurator.variables["viewlet_template"]:
-        template_file_name = u"{0}.pt".format(
+        template_file_name = "{0}.pt".format(
             configurator.variables["viewlet_template_name"],
         )
         file_path = directory_path + template_file_name
         os.remove(file_path)
 
-    file_name = u"configure.zcml.example"
+    file_name = "configure.zcml.example"
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name in file_list:
         file_path = directory_path + file_name

@@ -13,7 +13,7 @@ from bobtemplates.plone.utils import run_black, run_isort
 def check_name(configurator, question, answer):
     if not re.match("^[a-z]+-+[a-z0-9]+(-+[a-z0-9]+)*$", answer):
         raise ValidationError(
-            u"{key} is not a valid custom-element identifier. Please try something like this 'my-element'".format(
+            "{key} is not a valid custom-element identifier. Please try something like this 'my-element'".format(
                 key=answer
             )
         )  # NOQA: E501
@@ -21,7 +21,7 @@ def check_name(configurator, question, answer):
 
 
 def _update_configure_zcml(configurator):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
     namespaces = {"plone": "http://namespaces.plone.org/plone"}
 

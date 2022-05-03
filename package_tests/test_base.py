@@ -25,13 +25,13 @@ def test_check_klass_name():
     with pytest.raises(ValidationError):
         hookit("import")
     with pytest.raises(ValidationError):
-        hookit(u"süpertype")
+        hookit("süpertype")
     with pytest.raises(ValidationError):
-        hookit(u"2ndComing")
+        hookit("2ndComing")
     with pytest.raises(ValidationError):
-        hookit(u"*sterisk")
-    assert hookit(u"Supertype") == u"Supertype"
-    assert hookit(u"second_coming") == u"second_coming"
+        hookit("*sterisk")
+    assert hookit("Supertype") == "Supertype"
+    assert hookit("second_coming") == "second_coming"
 
 
 def test_read_bobtemplate_ini(tmpdir):
@@ -162,12 +162,12 @@ def test_is_string_in_file(tmpdir):
 
 
 def test_update_configure_zcml(tmpdir):
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     path = tmpdir.strpath
     file_path = path + "/" + file_name
-    match_xpath = u"zope:include[@package='.indexers']"
-    match_str = u"-*- extra stuff goes here -*-"
-    insert_str = u'\n  <include package=".indexers" />'
+    match_xpath = "zope:include[@package='.indexers']"
+    match_str = "-*- extra stuff goes here -*-"
+    insert_str = '\n  <include package=".indexers" />'
 
     template = """
 <configure

@@ -450,6 +450,17 @@ def base_prepare_renderer(configurator):
         + configurator.variables["package_folder_rel_path"]
     )
     configurator.target_directory = configurator.variables["package.root_folder"]
+    camelcasename = (
+        configurator.variables["package.dottedname"]
+        .replace(".", " ")
+        .title()
+        .replace(" ", "")
+        .replace("_", "")
+    )
+    browserlayer = "{0}Layer".format(camelcasename)
+
+    # package.browserlayer = 'CollectiveFooSomethingLayer'
+    configurator.variables["package.browserlayer"] = browserlayer
     set_global_vars(configurator)
     return configurator
 

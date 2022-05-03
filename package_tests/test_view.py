@@ -123,6 +123,8 @@ def test_update_views_configure_zcml(tmpdir):
             "view_template": True,
             "view_template_name": "pt_view",
             "package_folder": package_path,
+            "package.dottedname": "collective.sample",
+            "package.browserlayer": "CollectiveSampleLayer",
         },
     )
     view._update_views_configure_zcml(configurator)
@@ -141,6 +143,7 @@ def test_update_views_configure_zcml(tmpdir):
     class=".py_view.MyView"
     template="pt_view.pt"
     permission="zope2.View"
+    layer="collective.sample.interfaces.ICollectiveSampleLayer"
     />
 
 </configure>
@@ -182,6 +185,8 @@ def test_update_views_configure_zcml_without_template(tmpdir):
             "view_name": "py-view",
             "view_template": False,
             "package_folder": package_path,
+            "package.dottedname": "collective.sample",
+            "package.browserlayer": "CollectiveSampleLayer",
         },
     )
     view._update_views_configure_zcml(configurator)
@@ -199,6 +204,7 @@ def test_update_views_configure_zcml_without_template(tmpdir):
     for="plone.app.contenttypes.interfaces.IFolder"
     class=".py_view.MyView"
     permission="zope2.View"
+    layer="collective.sample.interfaces.ICollectiveSampleLayer"
     />
 
 </configure>
@@ -239,6 +245,8 @@ def test_update_views_configure_zcml_without_python_class(tmpdir):
             "view_template_name": "pt_view",
             "view_register_for": "*",
             "package_folder": package_path,
+            "package.dottedname": "collective.sample",
+            "package.browserlayer": "CollectiveSampleLayer",
         },
     )
     view._update_views_configure_zcml(configurator)
@@ -256,6 +264,7 @@ def test_update_views_configure_zcml_without_python_class(tmpdir):
     for="*"
     template="pt_view.pt"
     permission="zope2.View"
+    layer="collective.sample.interfaces.ICollectiveSampleLayer"
     />
 
 </configure>

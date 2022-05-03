@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0b12 (unreleased)
+6.0b12 (2022-05-03)
 -------------------
 
 - Add dummy style file in styles/theme.min.css to not break theme, when no css file was created

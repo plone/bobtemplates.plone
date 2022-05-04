@@ -4,7 +4,8 @@ Changelog
 5.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Hide all upgrade profiles from prefs_install_products_form.
+  [thet]
 
 
 5.2.2 (2022-02-08)

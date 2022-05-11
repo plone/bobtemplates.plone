@@ -4,7 +4,8 @@ Changelog
 6.0b13 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Remove install of unnecessary system libraries on Github Actions.
+  [wesleybl]
 
 
 6.0b12 (2022-05-03)

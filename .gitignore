@@ -4,6 +4,7 @@
 .*project
 *.py[cod]
 # dirs
+/.settings/
 bin/
 tmp/
 build/
@@ -17,6 +18,7 @@ __pycache__
 .cache
 .vagrant
 # files
+local.cfg
 pip-selfcheck.json
 .python-version
 .Python

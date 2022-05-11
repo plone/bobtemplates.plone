@@ -4,6 +4,9 @@ Changelog
 5.2.3 (unreleased)
 ------------------
 
+- Increment .gitignore.
+  [wesleybl]
+
 - Hide all upgrade profiles from prefs_install_products_form.
   [thet]
 

@@ -10,7 +10,6 @@ $enable-roboto-webfont: false !default;
 // Import barceloneta files from node_modules --load-path=node_modules
 @import "@plone/plonetheme-barceloneta-base/scss/barceloneta.scss";
 
-
-//// STYLES
-// ... add your styles here
-
+.pat-{{{ package.name }}} {
+    // add styles here
+}

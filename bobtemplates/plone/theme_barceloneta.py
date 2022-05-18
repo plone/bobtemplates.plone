@@ -146,8 +146,8 @@ def post_renderer(configurator):
     )
     echo(
         """\nYour theme was added here: {0}/theme
-Run 'npm install' to get the dependencies
-and then 'npm run watch' to compile the styles.
+Run 'npx yarn install' to get the dependencies
+and then 'npx yarn run watch:scss' to compile the styles.
 """.format(
             configurator.variables["package_folder"],
         ),

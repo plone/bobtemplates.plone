@@ -10,21 +10,21 @@ Tooling
 Install dependencies
 --------------------
 
-Run `npm install` to add dependencies from package.json::
+Run `npx yarn install` to add dependencies from package.json::
 
 .. code-block:: shell
 
-    $ npm install
+    $ npx yarn install
 
 
 Compile resources
 -----------------
 
-Run `npm run build` to add dependencies from package.json::
+Run `npx yarn run build` to add dependencies from package.json::
 
 .. code-block:: shell
 
-    $ npm run build
+    $ npx yarn run build
 
 This will compile your `scss/theme.scss` into `css/theme.css`. A minified
 version () will be created as well. Check out the scripts section from
@@ -34,13 +34,13 @@ version () will be created as well. Check out the scripts section from
 Watch for changes
 -----------------
 
-Run `npm run watch` to automatically compile when a file has been changed::
+Run `npx yarn run watch:webpack` or `npx yarn run watch:scss` to automatically compile when a file has been changed::
 
 .. code-block:: shell
 
-    $ npm run watch
+    $ npx yarn run watch:webpack
 
-With `npm run watch` you start the build process automatically when you save a file.
+With `npx yarn run watch:webpack` you start the build process automatically when you save a file.
 
 
 Configuring Plone within the theme package

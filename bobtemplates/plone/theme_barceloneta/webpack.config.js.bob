@@ -1,0 +1,33 @@
+process.traceDeprecation = true;
+const package_json = require("./package.json");
+const path = require("path");
+const patternslib_config = require("@patternslib/patternslib/webpack/webpack.config");
+const mf_config = require("@patternslib/patternslib/webpack/webpack.mf");
+
+module.exports = async (env, argv) => {
+    let config = {
+        entry: {
+            "{{{ theme.normalized_name }}}.min": path.resolve(__dirname, "resources/index"),
+        },
+    };
+
+    config = patternslib_config(env, argv, config, ["mockup"]);
+    config.output.path = path.resolve(__dirname, "src/{{{ package.namespace }}}/{{{ package.name }}}/browser/static");
+
+    config.plugins.push(
+        mf_config({
+            filename: "{{{ theme.normalized_name }}}-remote.min.js",
+            package_json: package_json,
+            remote_entry: config.entry["{{{ theme.normalized_name }}}.min"],
+        })
+    );
+
+    if (process.env.NODE_ENV === "development") {
+        config.devServer.port = "8011";
+        config.devServer.static.directory = __dirname;
+    }
+
+    console.log(JSON.stringify(config, null, 4));
+
+    return config;
+};

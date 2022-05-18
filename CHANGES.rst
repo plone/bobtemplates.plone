@@ -6,6 +6,8 @@ Changelog
 
 - Remove install of unnecessary system libraries on Github Actions.
   [wesleybl]
+- Added webpack configuration to barceloneta theme template.
+  [reinhardt]
 
 
 6.0b12 (2022-05-03)

@@ -142,3 +142,11 @@ def plone_controlpanel():
     reg.plonecli_alias = "controlpanel"
     reg.depend_on = "plone_addon"
     return reg
+
+
+def plone_mockup_pattern():
+    reg = RegEntry()
+    reg.template = "bobtemplates.plone:mockup_pattern"
+    reg.plonecli_alias = "mockup_pattern"
+    reg.depend_on = "plone_addon"
+    return reg

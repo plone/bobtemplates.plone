@@ -57,6 +57,7 @@ These templates are meant to be used inside a package which was created by the a
 - content_type
 - controlpanel
 - indexer
+- mockup_pattern
 - portlet
 - restapi_service
 - subscriber

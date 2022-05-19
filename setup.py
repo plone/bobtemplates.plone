@@ -71,6 +71,7 @@ setup(
             "plone_buildout = bobtemplates.plone.bobregistry:plone_buildout",
             "plone_content_type = bobtemplates.plone.bobregistry:plone_content_type",
             "plone_indexer = bobtemplates.plone.bobregistry:plone_indexer",
+            "plone_mockup_pattern = bobtemplates.plone.bobregistry:plone_mockup_pattern",
             "plone_portlet = bobtemplates.plone.bobregistry:plone_portlet",
             "plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service",  # NOQA E501
             "plone_svelte_app = bobtemplates.plone.bobregistry:plone_svelte_app",

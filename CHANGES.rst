@@ -13,6 +13,8 @@ Changelog
 
 - Remove install of unnecessary system libraries on Github Actions.
   [wesleybl]
+- Added mockup pattern template.
+  [reinhardt]
 
 - Fix import of ComponentLookupError in tests
   [MrTango]

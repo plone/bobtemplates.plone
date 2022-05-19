@@ -1,0 +1,7 @@
+import "@patternslib/patternslib/src/globals";
+import registry from "@patternslib/patternslib/src/core/registry";
+
+{{{ original_imports }}}
+import "./js/pat-{{{ pattern.name }}}";
+
+registry.init();

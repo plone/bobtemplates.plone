@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<registry>
+
+  <records
+      interface="Products.CMFPlone.interfaces.IBundleRegistry"
+      prefix="plone.bundles/{{{ package.name }}}">
+    <value key="enabled">True</value>
+    <value key="jscompilation">++plone++{{{ package.namespace }}}.{{{ package.name }}}/patterns/{{{ package.name }}}-remote.min.js</value>
+    <value key="csscompilation">++plone++{{{ package.namespace }}}.{{{ package.name }}}/patterns/{{{ package.name }}}.min.css</value>
+    <value key="expression">python: member is not None</value>
+  </records>
+
+</registry>

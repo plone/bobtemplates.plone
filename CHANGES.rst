@@ -19,6 +19,8 @@ Changelog
 
 - Fix import of ComponentLookupError in tests
   [MrTango]
+- Add support for Python 3.10
+  [pbauer]
 
 
 6.0b12 (2022-05-03)

@@ -7,6 +7,9 @@ Changelog
 - Remove install of unnecessary system libraries on Github Actions.
   [wesleybl]
 
+- Add support for Python 3.10
+  [pbauer]
+
 
 6.0b12 (2022-05-03)
 -------------------

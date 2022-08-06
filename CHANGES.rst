@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0b13 (unreleased)
+6.0b13 (2022-08-06)
 -------------------
 
 - Remove install of unnecessary system libraries on Github Actions.

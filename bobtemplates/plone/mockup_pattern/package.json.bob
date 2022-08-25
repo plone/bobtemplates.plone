@@ -17,11 +17,10 @@
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.js",
     "build:css": "npm-run-all css-compile-main css-minify-main",
     "watch:webpack": "NODE_ENV=development webpack --config webpack.config.js --watch",
-    "watch:scss": "nodemon --watch resources/scss/ --ext scss --exec \"yarn build:css\"",
+    "watch:scss": "nodemon --watch patterns/ --ext scss --exec \"yarn build:css\"",
     "css-main": "npm-run-all css-compile-main css-minify-main",
-    "css-compile-main": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css resources/patterns/scss/:src/{{{ package.namespace }}}/{{{ package.name }}}/browser/static/patterns/",
-    "css-minify-main": "cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output src/{{{ package.namespace }}}/{{{ package.name }}}/browser/static/patterns/{{{ package.name }}}.min.css src/{{{ package.namespace }}}/{{{ package.name }}}/browser/static/patterns/*.css",
-    "css-lint": "stylelint \"resources/scss/*.scss\" --cache --cache-location .cache/.stylelintcache"
+    "css-compile-main": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css patterns/:src/{{{ package.namespace }}}/{{{ package.name }}}/browser/static/patterns/",
+    "css-minify-main": "cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output src/{{{ package.namespace }}}/{{{ package.name }}}/browser/static/patterns/{{{ package.name }}}.min.css src/{{{ package.namespace }}}/{{{ package.name }}}/browser/static/patterns/"
   },
   "dependencies": {
     "@patternslib/patternslib": "*",

@@ -1,5 +1,5 @@
 module.exports = {
-    rootDir: "./src",
+    rootDir: "./patterns",
     setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
     watchPlugins: ["jest-watch-typeahead/filename", "jest-watch-typeahead/testname"],
     transform: {

@@ -17,6 +17,21 @@ Run `npm install` to add dependencies from package.json::
     $ npm install
 
 
+prepare resources structure
+---------------------------
+
+For the following commands to work, we need a curtain file structure.
+
+styles
+......
+
+Styles are expected in the folder ``styles`` with a main files called ``theme.scss``.
+From there you can import other files coming with the theme.
+
+So if your theme uses a different folder name, you might want to rename the folder and adjust the usage in the HTML files, to use the styles folder.
+If you don't want that, you can also adjust the run script paths inside the package.json to fit your structure.
+
+
 Compile resources
 -----------------
 

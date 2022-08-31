@@ -4,7 +4,8 @@ Changelog
 6.0b14 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- update theme package versions and improve readme
+  [MrTango]
 
 
 6.0b13 (2022-08-06)

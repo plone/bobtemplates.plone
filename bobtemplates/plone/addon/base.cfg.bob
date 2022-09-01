@@ -103,12 +103,12 @@ eggs = i18ndude
 [plone-helper-scripts]
 recipe = zc.recipe.egg
 eggs =
-   Products.CMFPlone
-   ${instance:eggs}
+    plone.staticresources
+    ${instance:eggs}
 interpreter = zopepy
 scripts =
-   zopepy
-   plone-compile-resources
+    zopepy
+    plone-compile-resources
 
 [versions]
 # Don't use a released version of {{{ package.dottedname }}}

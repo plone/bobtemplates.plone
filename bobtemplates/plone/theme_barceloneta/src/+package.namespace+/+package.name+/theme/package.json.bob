@@ -23,6 +23,6 @@
     "css-lint": "stylelint \"styles/**/*.scss\" --cache --cache-location .cache/.stylelintcache"
   },
   "dependencies": {
-    "@plone/plonetheme-barceloneta-base": "^3.0.0-alpha.7"
+    "@plone/plonetheme-barceloneta-base": "^3.0.0b5"
   }
 }

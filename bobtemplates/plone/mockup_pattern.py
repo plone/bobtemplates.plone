@@ -12,7 +12,7 @@ def pre_render(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables["template_id"] = "mockup_pattern"
     bundle_js_path = os.path.join(
-        configurator.variables["package.root_folder"], "patterns/bundle.js"
+        configurator.variables["package.root_folder"], "resources/bundle.js"
     )
     configurator.variables["original_imports"] = ""
     if os.path.exists(bundle_js_path):
@@ -35,10 +35,9 @@ def post_render(configurator):
             "Add pattern: {0}".format(configurator.variables["pattern.name"]),
         )
     echo(
-        """\nYour pattern was added here: {0}/patterns
+        """\nYour pattern was added here: {0}/resources
 Run 'npx yarn install' to get the dependencies
-        and then 'npx yarn run build:webpack' to compile the javascript bundle,
-        and 'npx yarn run build:css' to compile the styles.
+        and then 'npx yarn run build:webpack' to compile the javascript bundle.
 """.format(
             configurator.variables["package.root_folder"],
         ),

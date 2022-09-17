@@ -1,4 +1,2 @@
-dist/
-docs/
-node_modules/
-stats.json
+*
+!resources/

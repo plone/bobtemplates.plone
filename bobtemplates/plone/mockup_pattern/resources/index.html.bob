@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>test demo</title>
-    <script src="/dist/bundle.min.js"></script>
+    <script src="/{{{ package.name }}}.min.js"></script>
   </head>
   <body>
 

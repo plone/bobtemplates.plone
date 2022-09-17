@@ -33,7 +33,7 @@ module.exports = () => {
     );
 
     if (process.env.NODE_ENV === "development") {
-        config.devServer.port = "8011";
+        config.devServer.port = "3001";
         config.devServer.static.directory = path.resolve(__dirname, "./resources/");
     }
 

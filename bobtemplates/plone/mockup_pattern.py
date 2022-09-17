@@ -35,9 +35,12 @@ def post_render(configurator):
             "Add pattern: {0}".format(configurator.variables["pattern.name"]),
         )
     echo(
-        """\nYour pattern was added here: {0}/resources
-Run 'npx yarn install' to get the dependencies
-        and then 'npx yarn run build:webpack' to compile the javascript bundle.
+        """
+Your pattern was added here: {0}/resources
+Run 'npx yarn install' to get the dependencies.
+Run 'npx yarn serve' to start the development server for developing your pattern.
+Run 'npx yarn watch' to watch the pattern in the Plone environment and build it on changes.
+and then 'npx yarn run build' to compile the javascript bundle for production.
 """.format(
             configurator.variables["package.root_folder"],
         ),

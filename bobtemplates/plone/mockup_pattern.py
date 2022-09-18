@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
+from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import echo
+from bobtemplates.plone.base import git_commit
+from bobtemplates.plone.base import git_init
+from mrbob.bobexceptions import ValidationError
+
 import os
 import re
 
-from mrbob.bobexceptions import ValidationError
-
-from bobtemplates.plone.base import base_prepare_renderer, echo, git_commit, git_init
-
 
 def pre_render(configurator):
-    """ """
+    """Prepare configuration variables."""
     configurator = base_prepare_renderer(configurator)
     configurator.variables["template_id"] = "mockup_pattern"
+
     bundle_js_path = os.path.join(
         configurator.variables["package.root_folder"], "resources/bundle.js"
     )
@@ -25,9 +28,22 @@ def pre_render(configurator):
                 ]
             )
 
+    demo_path = os.path.join(
+        configurator.variables["package.root_folder"], "resources/index.html"
+    )
+    configurator.variables["original_body"] = ""
+    if os.path.exists(demo_path):
+        with open(demo_path, "r") as demo_file:
+            # Read the HTML file and extract the body
+            demo_contents = demo_file.read()
+            re_pattern = re.compile(r"\<body\>(.*)\<\/body\>", flags=re.DOTALL)
+            configurator.variables["original_body"] = "".join(
+                re_pattern.findall(demo_contents)
+            )
+
 
 def post_render(configurator):
-    """ """
+    """"""
     git_init_status = git_init(configurator)
     if git_init_status:
         git_commit(

@@ -4,7 +4,8 @@ Changelog
 6.0b15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Switch to class based Patterns in mockup_pattern template
+  [thet]
 
 
 6.0b14 (2022-10-07)

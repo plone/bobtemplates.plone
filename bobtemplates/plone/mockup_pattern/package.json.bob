@@ -6,15 +6,15 @@
     "node": ">=12.20.0"
   },
   "dependencies": {
-    "@patternslib/patternslib": "< 10",
-    "@plone/mockup": "^5.0.0-alpha.21"
+    "@patternslib/patternslib": ">=9.7.0-alpha.0",
+    "@plone/mockup": ">=5.0.0-alpha.24"
   },
   "devDependencies": {
-    "@patternslib/dev": "< 3"
+    "@patternslib/dev": "<3"
   },
   "resolutions": {
-      "@patternslib/patternslib": "< 10",
-      "jquery": "< 4"
+      "@patternslib/patternslib": "<10",
+      "jquery": "<4"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.js",

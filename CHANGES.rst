@@ -4,6 +4,9 @@ Changelog
 6.0b14 (unreleased)
 -------------------
 
+- Added mockup pattern template.
+  [reinhardt, thet]
+
 - update theme package versions and improve readme
   [MrTango]
 

@@ -21,11 +21,11 @@ indent_style = space
 # Max Line Length - a hard line wrap, should be disabled
 max_line_length = off
 
-[*.{py,cfg,ini}]
+[*.{py,js,jsx,vue,ts,json,css,scss,cfg,ini}]
 # 4 space indentation
 indent_size = 4
 
-[*.{html,dtml,pt,zpt,xml,zcml,js}]
+[*.{html,dtml,pt,zpt,xml,zcml,yml}]
 # 2 space indentation
 indent_size = 2
 

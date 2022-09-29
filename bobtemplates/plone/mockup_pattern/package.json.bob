@@ -21,5 +21,10 @@
     "build": "NODE_ENV=production webpack --config webpack.config.js",
     "start": "NODE_ENV=development webpack serve --config webpack.config.js",
     "watch": "NODE_ENV=development webpack --config webpack.config.js --watch"
-  }
+  },
+  "keywords": [
+      "patternslib",
+      "mockup",
+      "plone"
+  ]
 }

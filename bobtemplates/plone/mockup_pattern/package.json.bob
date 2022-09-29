@@ -10,8 +10,7 @@
     "@plone/mockup": "^5.0.0-alpha.21"
   },
   "devDependencies": {
-    "@patternslib/dev": "< 3",
-    "yarn": "^1.22.19"
+    "@patternslib/dev": "< 3"
   },
   "resolutions": {
       "@patternslib/patternslib": "< 10",

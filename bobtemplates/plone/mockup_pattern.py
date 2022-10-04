@@ -40,11 +40,14 @@ def pre_render(configurator):
         r"(\<configure.*)\<\/configure\>",
     )
 
-    configurator.variables["original_browser_template"] = value_from_template(
-        configurator.variables["package_folder"],
-        "browser/pattern-demo.pt",
-        r"<metal:block define-macro=\"content-core\"\>(.*)\<\/metal:block\>",
-    ) or ""
+    configurator.variables["original_browser_template"] = (
+        value_from_template(
+            configurator.variables["package_folder"],
+            "browser/pattern-demo.pt",
+            r"<metal:block define-macro=\"content-core\"\>(.*)\<\/metal:block\>",
+        )
+        or ""
+    )
 
 
 def value_from_template(root_folder, relative_path, regex):

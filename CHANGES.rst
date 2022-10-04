@@ -4,6 +4,9 @@ Changelog
 6.0b14 (unreleased)
 -------------------
 
+- Update theme_barceloneta to use plonetheme-barceloneta-base 3.0.0b6 and use SCSS example import structure from Bootstrap documentation.
+  [agitator]
+
 - Added mockup pattern template.
   [reinhardt, thet]
 

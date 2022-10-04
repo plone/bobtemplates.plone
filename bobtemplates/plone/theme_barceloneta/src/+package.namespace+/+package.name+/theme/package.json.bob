@@ -11,7 +11,8 @@
     "postcss": "^8.3.11",
     "postcss-cli": "^9.0.1",
     "sass": "^1.43.3",
-    "stylelint-config-twbs-bootstrap": "^2.2.4"
+    "stylelint-config-twbs-bootstrap": "^2.2.4",
+    "tinymce": "^5.10.2"
   },
   "scripts": {
     "watch": "nodemon --watch styles/ --ext scss --exec \"npm run css-main\"",
@@ -23,6 +24,6 @@
     "css-lint": "stylelint \"styles/**/*.scss\" --cache --cache-location .cache/.stylelintcache"
   },
   "dependencies": {
-    "@plone/plonetheme-barceloneta-base": "^3.0.0b5"
+    "@plone/plonetheme-barceloneta-base": "^3.0.0b6"
   }
 }

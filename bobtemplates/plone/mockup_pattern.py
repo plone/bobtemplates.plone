@@ -2,11 +2,9 @@
 import os
 import re
 
-from bobtemplates.plone.base import base_prepare_renderer
-from bobtemplates.plone.base import echo
-from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import git_init
 from mrbob.bobexceptions import ValidationError
+
+from bobtemplates.plone.base import base_prepare_renderer, echo, git_commit, git_init
 
 
 def pre_render(configurator):
@@ -40,11 +38,14 @@ def pre_render(configurator):
         r"(\<configure.*)\<\/configure\>",
     )
 
-    configurator.variables["original_browser_template"] = value_from_template(
-        configurator.variables["package_folder"],
-        "browser/pattern-demo.pt",
-        r"<metal:block define-macro=\"content-core\"\>(.*)\<\/metal:block\>",
-    ) or ""
+    configurator.variables["original_browser_template"] = (
+        value_from_template(
+            configurator.variables["package_folder"],
+            "browser/pattern-demo.pt",
+            r"<metal:block define-macro=\"content-core\"\>(.*)\<\/metal:block\>",
+        )
+        or ""
+    )
 
 
 def value_from_template(root_folder, relative_path, regex):

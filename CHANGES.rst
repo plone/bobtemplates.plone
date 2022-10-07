@@ -1,10 +1,358 @@
 Changelog
 =========
 
-5.0.2 (unreleased)
+6.0b14 (unreleased)
+-------------------
+
+- Update theme_barceloneta to use plonetheme-barceloneta-base 3.0.0b6 and use SCSS example import structure from Bootstrap documentation.
+  [agitator]
+
+- Added mockup pattern template.
+  [reinhardt, thet]
+
+- update theme package versions and improve readme
+  [MrTango]
+
+
+6.0b13 (2022-08-06)
+-------------------
+
+- Remove install of unnecessary system libraries on Github Actions.
+  [wesleybl]
+
+- Fix import of ComponentLookupError in tests
+  [MrTango]
+
+
+6.0b12 (2022-05-03)
+-------------------
+
+- Add dummy style file in styles/theme.min.css to not break theme, when no css file was created
+  [MrTango]
+
+- Add layer attribute to view registrations
+  [MrTango]
+
+
+6.0b11 (2022-03-04)
+
+- Remove deprecated theme_package template from entrypoints/bobregistry
+  [MrTango]
+
+- Add CollectionView to view base class options
+  [MrTango]
+
+- Add view_register_for question, to allow view registration for a specific content type
+  [MrTango]
+
+- Increment .gitignore.
+  [wesleybl]
+
+- Create an Interface for views by default
+  [MrTango]
+
+
+6.0b10 (2021-10-25)
+-------------------
+
+- Update theme_barceloneta to use plonetheme-barceloneta-base 3.0.0-alpha.7
+  [agitator]
+
+- Improve upgrade step template
+  [MrTango]
+
+- Hide all upgrade profiles from site-creation and quickinstaller.
+  [thet]
+
+- fix typo in README.rst
+  [yurj]
+
+
+6.0b9 (2021-10-23)
 ------------------
 
-- Nothing changed yet.
+- Theme: Add some tags/attributes to the HTML Filter
+  [MrTango]
+
+- Cleanup and small Diazo fixes in theme template
+  [MrTango]
+
+
+6.0b8 (2021-10-21)
+------------------
+
+- Added theme_basic as basic theme template for Plone 6 Classic UI
+  [santonelli]
+
+- Template cleanup / Plone 6 fixes
+  [MrTango]
+
+- Provide some bootstrap snippet as TinyMCE templates, in theme
+  [MrTango]
+
+- Provide a Diazo rule, which by default deactivates RequireJS, so that one can use free style JS in the html. This well be removed when the ES6 branch is merged and RequireJS is finally gone
+  [MrTango]
+
+- Improve some default Diazo rules
+  [MrTango]
+
+- Improve view page template
+  [MrTango]
+
+- Added RegistryPanel adapter to controlpanel subtemplate, to have Volto support
+  [erral]
+
+
+6.0b7 (2021-10-15)
+------------------
+
+- Deprecated theme_package was removed, in 5.x it still exists
+  [MrTango]
+
+- Cleanup theme template and update generated README
+  [MrTango]
+
+- Add controlpanel subtemplate
+  [erral]
+
+- Updated theme_barceloneta for Plone 6 classic - uses plonetheme-barceloneta-base npm package
+  [agitator]
+
+- Updated TinyMCE template examples for Bootstrap 5
+  [agitator]
+
+- Multiple Plone 6 fixes and Plone 4 cleanup
+  [MrTango]
+
+
+6.0b6 (2021-10-13)
+------------------
+
+- Provide Plone 6 buildout config and constraints in generated add-on's
+  [MrTango]
+
+
+6.0b5 (2021-07-15)
+------------------
+
+- Use codecov badge in add-on README instead of coveralls
+  [MrTango]
+
+
+6.0b4 (2021-07-15)
+------------------
+
+- Add Upload coverage to Codecov GH-action and update DEVELOP.rst in add-on's
+  [MrTango]
+
+
+6.0b3 (2021-07-13)
+------------------
+
+- Update generated README from addon template, to replace Travis badge
+
+
+6.0b2 (2021-07-13)
+------------------
+
+- Further cleanup
+  [MrTango]
+
+
+6.0b1 (2021-07-12)
+------------------
+
+- Drop Python 2 support
+  [MrTango]
+
+- Drop support for Plone < 5.2
+  [MrTango]
+
+- Fix placeholder syntax in configure.zmcl files
+  [MrTango]
+
+- Improve CI-Support with GitHub-Actions, in root package and generated add-on's
+  [MrTango]
+
+- Finalize Black code formater support in root package and generated add-on's
+  [MrTango]
+
+
+5.2.1 (2021-06-03)
+------------------
+
+- Do not create an empty docstring for the content-type class
+  [erral]
+
+- Updated default Plone version for addon packages to 5.2.4
+  [MrTango]
+
+- Change default answer of "Use XML Model" to false, because the Python way is usually easier and provides a better developer experience
+  [MrTango]
+
+- Pin importlib-metadata = >=1 to avoid broken buildout in new packages
+  [MrTango]
+
+- Change bundle names for svelte_app, it's now <my-app-name>-bundle.js/css, which makes it better distinguishable in Browser inspector
+  [MrTango]
+
+- Optimize skeleton test matrix, to be much faster
+  [MrTango]
+
+- Override index method in viewlets, not the render method.
+  [MrTango]
+
+
+5.2.0 (2020-11-12)
+------------------
+
+- addon: switch from profiles/default/registry.xml to profiles/default/registry folder
+  [MrTango]
+
+- Remove Travis configuration sudo false.
+  [wesleybl]
+
+- Fix svelte_app_name regex and add a test for it
+  [MrTango]
+
+- Fix #447: Typo in setup.cfg.bob - isort fails
+  [MrTango]
+
+- Add black-check env to tox.ini, this allows us to check for black linting issues in the templates
+  [MTango]
+
+
+5.2.0b4 (2020-11-06)
+--------------------
+
+- use dashed name for svelte apps, fix dev server including live reload
+  [MrTango]
+
+- Add custom elements to allowed tags by default via registry, also add slot to custom attributes
+  [MrTango]
+
+
+5.2.0b3 (2020-11-05)
+--------------------
+
+- fix svelte component import, in custom_element mode
+  [MrTango]
+
+- Improve svelte_app docs
+  [MrTango]
+
+
+
+5.2.0b2 (2020-11-05)
+--------------------
+
+- Add missing entry point for svelte_app template
+  [MrTango]
+
+
+5.2.0b1 (2020-11-05)
+--------------------
+
+- Add svelte_app template including with custom-element (web-component) support
+  [MrTango]
+
+
+5.1.2 (2020-10-14)
+------------------
+
+- Add tox as a dependency. Fixes #442.
+  [erral]
+
+- Improved run_isort error handling
+  [MrTango]
+
+
+5.1.1 (2020-07-30)
+------------------
+
+- Fix #436 remove index option in base.cfg
+  [MrTango]
+
+- Fix #437 cleanup .gitignore file
+  [MrTango]
+
+- Fix #432 Bare except in restapi_service
+  [MrTango]
+
+
+5.1 (2020-07-29)
+----------------
+
+- Create upgrade step profile directory. Fixes #434
+  [erral]
+
+- Require coverage<5. Fixes #421
+- Fix indexer subtemplate. Fixes #425
+  [erral]
+
+- Require coverage<5 in travis configuration file. Fixes #421
+  [erral]
+
+- Align template's setup.cfg to the projects one.
+  Especially raises the flake8 line-length to black default.
+  [thet]
+
+- Update travis setup, use tox for all testing and linting of addon package, not code-analysis.
+  [MrTango]
+
+- Update default Plone and Python version to 5.2.1 and 3.7 for addon template.
+  [MrTango]
+
+- Add badges to addon README file.
+  [MrTango]
+
+- Add collective.recipe.vscode to addon base.cfg, activated by default, we have a question to disable it.
+  [MrTango]
+
+- Fix flake8 missing trailing comma, format call uses missing keyword, provides unused keyword.
+  [fulv]
+
+- Improve generated package tox env, also run linting inside skeleton-tests.
+  [MrTango]
+
+- Improve bobtemplate.plone tox output, it's now easier to read and find the errors.
+  [MrTango]
+
+- Automatically fix isort issues after using addon template.
+  [MrTango]
+
+- Improve buildout template, it's now using Plone release versions rather than buildouttesting.
+  [MrTango]
+
+
+5.0.4 (2019-11-28)
+------------------
+
+- Fix flake8-plone-hasattr issue, space and unused import
+  [balavec]
+
+- Disable extra requirements for theme addon
+  [balavec]
+
+- Fix upgrade_step template, missing bob-file-extension and import
+  [MrTango]
+
+- Fix upgrade_step by add missing directory attribute to UpgradeStep profile, upgrade_steps are no longer visible in addon control panel
+  [MrTango]
+
+
+5.0.3 (2019-10-24)
+------------------
+
+- Fix upgrade_step sub-template
+  [MrTango]
+
+
+5.0.2 (2019-10-21)
+------------------
+
+- Add auto increment version to upgrade_step sub-template
+  [MrTango]
 
 
 5.0.1 (2019-10-18)

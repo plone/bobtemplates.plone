@@ -14,11 +14,7 @@
 
   <property name="allow_discussion">False</property>
   <property name="factory">{{{ dexterity_type_name }}}</property>
-{{% if plone.is_plone5 %}}
   <property name="icon_expr"></property>
-{{% else %}}
-  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
-{{% endif %}}
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
@@ -55,6 +51,7 @@
          https://docs.plone.org/external/plone.app.dexterity/docs/reference/standard-behaviours.html
     -->
 {{% if dexterity_type_activate_default_behaviors %}}
+    <element value="plone.basic"/>
     <element value="plone.namefromtitle"/>
     <element value="plone.allowdiscussion"/>
     <element value="plone.excludefromnavigation"/>
@@ -62,15 +59,10 @@
     <element value="plone.ownership"/>
     <element value="plone.publication"/>
     <element value="plone.categorization"/>
-    <element value="plone.basic"/>
-{{% if plone.is_plone5 %}}
     <element value="plone.locking" />
-    <!--<element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
-{{% else %}}
-    <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
-{{% endif %}}
 {{% endif %}}
 {{% if not dexterity_type_activate_default_behaviors %}}
+    <!-- <element value="plone.basic"/> -->
     <!-- <element value="plone.namefromtitle"/> -->
     <!-- <element value="plone.allowdiscussion"/> -->
     <!-- <element value="plone.excludefromnavigation"/> -->
@@ -78,13 +70,7 @@
     <!-- <element value="plone.ownership"/> -->
     <!-- <element value="plone.publication"/> -->
     <!-- <element value="plone.categorization"/> -->
-    <!-- <element value="plone.basic"/> -->
-{{% if plone.is_plone5 %}}
     <!-- <element value="plone.locking" /> -->
-    <!-- <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />-->
-{{% else %}}
-    <!-- <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" /> -->
-{{% endif %}}
 {{% endif %}}
     <!--<element value="plone.leadimage"/>-->
     <!--<element value="plone.relateditems"/>-->
@@ -133,6 +119,7 @@
       category="object"
       condition_expr=""
       i18n:attributes="title"
+      i18n:domain="plone"
       title="View"
       url_expr="string:${object_url}"
       visible="True">
@@ -147,6 +134,7 @@
       condition_expr=""
 {{% endif %}}
       i18n:attributes="title"
+      i18n:domain="plone"
       title="Edit"
       url_expr="string:${object_url}/edit"
       visible="True">

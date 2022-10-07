@@ -1,8 +1,10 @@
 
 *.egg-info
 *.mo
+.*project
 *.py[cod]
 # dirs
+/.settings/
 bin/
 tmp/
 build/
@@ -16,6 +18,7 @@ __pycache__
 .cache
 .vagrant
 # files
+local.cfg
 pip-selfcheck.json
 .python-version
 .Python
@@ -40,3 +43,8 @@ Vagrantfile
 /.tmppytes
 /.tmppytest
 *.bak
+/venv
+/collective.bob6test*
+/collective.bobtest*
+lib64
+pyvenv.cfg

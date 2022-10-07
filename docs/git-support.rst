@@ -22,7 +22,7 @@ For your convenience, you can set some defaults in your mrbob user configuration
     package.git.autocommit = True
     package.git.disabled = False
 
-This will allow you to define if you want to allways git initialize a created package and do a commit after every sub-templates was rendered, without asking all the time. You can even disable the git support completely if you need to.
+This will allow you to define if you want to always git initialize a created package and do a commit after every sub-templates was rendered, without asking all the time. You can even disable the git support completely if you need to.
 
 
 Example configurations

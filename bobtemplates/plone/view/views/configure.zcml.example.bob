@@ -4,7 +4,6 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="{{{ package.dottedname }}}">
 
-  -*- extra stuff goes here -*-
-
+ <!-- -*- extra stuff goes here -*- -->
 
 </configure>

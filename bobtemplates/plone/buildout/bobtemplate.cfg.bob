@@ -1,3 +1,4 @@
 [main]
 version = {{{ plone.version }}}
 template = buildout
+python = {{{ python.version }}}

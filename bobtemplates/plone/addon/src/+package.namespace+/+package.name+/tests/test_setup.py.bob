@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
-from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa: E501
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa: E501
 
 import unittest
 
@@ -29,7 +29,7 @@ class TestSetup(unittest.TestCase):
 
     def test_product_installed(self):
         """Test if {{{ package.dottedname }}} is installed."""
-        self.assertTrue(self.installer.isProductInstalled(
+        self.assertTrue(self.installer.is_product_installed(
             '{{{ package.dottedname }}}'))
 
     def test_browserlayer(self):
@@ -54,12 +54,12 @@ class TestUninstall(unittest.TestCase):
             self.installer = api.portal.get_tool('portal_quickinstaller')
         roles_before = api.user.get_roles(TEST_USER_ID)
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.installer.uninstallProducts(['{{{ package.dottedname }}}'])
+        self.installer.uninstall_product('{{{ package.dottedname }}}')
         setRoles(self.portal, TEST_USER_ID, roles_before)
 
     def test_product_uninstalled(self):
         """Test if {{{ package.dottedname }}} is cleanly uninstalled."""
-        self.assertFalse(self.installer.isProductInstalled(
+        self.assertFalse(self.installer.is_product_installed(
             '{{{ package.dottedname }}}'))
 
     def test_browserlayer_removed(self):
@@ -67,6 +67,4 @@ class TestUninstall(unittest.TestCase):
         from {{{ package.dottedname }}}.interfaces import \
             I{{{ package.browserlayer }}}
         from plone.browserlayer import utils
-        self.assertNotIn(
-            I{{{ package.browserlayer }}},
-            utils.registered_layers())
+        self.assertNotIn(I{{{ package.browserlayer }}}, utils.registered_layers())

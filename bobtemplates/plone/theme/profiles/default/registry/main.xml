@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<registry>
+
+
+<!-- Set website title -->
+<!--
+  <record name="plone.site_title" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="site_title">
+    <value>My great Plone site</value>
+  </record>
+
+-->
+
+<!-- Hide items from navigation which are normaly excluded from navigation -->
+<!--
+  <record name="plone.show_excluded_items" interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema" field="show_excluded_items">
+    <value>False</value>
+  </record>
+-->
+
+<!-- Enable sitemap.xml.gz generation -->
+<!--
+  <record name="plone.enable_sitemap" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="enable_sitemap">
+    <value>True</value>
+  </record>
+-->
+
+<!-- Enable Dublin Core metatdata generation -->
+<!--
+  <record name="plone.exposeDCMetaTags" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="exposeDCMetaTags">
+    <value>True</value>
+  </record>
+-->
+
+<!-- Disable open external links in new windows -->
+<!--
+  <record name="plone.external_links_open_new_window" interface="Products.CMFPlone.interfaces.controlpanel.ILinkSchema" field="external_links_open_new_window">
+    <value>False</value>
+  </record>
+-->
+
+<!-- Disable marking special links -->
+<!--
+  <record name="plone.mark_special_links" interface="Products.CMFPlone.interfaces.controlpanel.ILinkSchema" field="mark_special_links">
+    <value>False</value>
+  </record>
+-->
+
+<!-- Set Plone toolbar position to top -->
+<!--
+  <record name="plone.toolbar_position" interface="Products.CMFPlone.interfaces.controlpanel.ISiteSchema" field="toolbar_position">
+    <value>top</value>
+  </record>
+-->
+
+<!-- Add custom Mosaic row format -->
+<!--
+  <record name="plone.app.mosaic.default_available_actions">
+    <value purge="False">
+      <element>grid-row-major-headline</element>
+    </value>
+  </record>
+
+  <records interface="plone.app.mosaic.interfaces.IFormat"
+           prefix="plone.app.mosaic.formats.grid_row_major_headline">
+    <value key="name">grid-row-major-headline</value>
+    <value key="category">row</value>
+    <value key="label">Major headline</value>
+    <value key="action">row-toggle-class</value>
+    <value key="icon">true</value>
+    <value key="favorite">false</value>
+    <value key="weight">100</value>
+  </records>
+-->
+
+</registry>

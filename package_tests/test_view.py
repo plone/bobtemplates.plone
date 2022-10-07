@@ -2,16 +2,15 @@
 
 """Test view generation."""
 
-from .base import init_package_base_structure
-from bobtemplates.plone import base
-from bobtemplates.plone import view
-from mrbob.bobexceptions import SkipQuestion
-from mrbob.bobexceptions import ValidationError
-from mrbob.configurator import Configurator
-from mrbob.configurator import Question
-
 import os
+
 import pytest
+from mrbob.bobexceptions import SkipQuestion, ValidationError
+from mrbob.configurator import Configurator, Question
+
+from bobtemplates.plone import base, view
+
+from .base import init_package_base_structure
 
 
 def test_get_view_name():
@@ -23,7 +22,7 @@ def test_get_view_name():
         variables={"view_python_class": True, "view_python_class_name": "DemoView"},
     )
     view.get_view_name_from_python_class(configurator, question)
-    assert question.default == 'demo-view'
+    assert question.default == "demo-view"
 
 
 def test_get_view_template_name():
@@ -35,7 +34,7 @@ def test_get_view_template_name():
         variables={"view_python_class": True, "view_python_class_name": "DemoView"},
     )
     view.get_view_template_name_from_python_class(configurator, question)
-    assert question.default == 'demo_view'
+    assert question.default == "demo_view"
 
 
 def test_python_class_true():
@@ -119,10 +118,13 @@ def test_update_views_configure_zcml(tmpdir):
             "view_python_class": True,
             "view_python_class_name": "MyView",
             "view_python_file_name": "py_view",
+            "view_register_for": "Folder",
             "view_name": "py-view",
             "view_template": True,
             "view_template_name": "pt_view",
             "package_folder": package_path,
+            "package.dottedname": "collective.sample",
+            "package.browserlayer": "CollectiveSampleLayer",
         },
     )
     view._update_views_configure_zcml(configurator)
@@ -137,10 +139,11 @@ def test_update_views_configure_zcml(tmpdir):
 
   <browser:page
     name="py-view"
-    for="Products.CMFCore.interfaces.IFolderish"
+    for="plone.app.contenttypes.interfaces.IFolder"
     class=".py_view.MyView"
     template="pt_view.pt"
     permission="zope2.View"
+    layer="collective.sample.interfaces.ICollectiveSampleLayer"
     />
 
 </configure>
@@ -178,9 +181,12 @@ def test_update_views_configure_zcml_without_template(tmpdir):
             "view_python_class": True,
             "view_python_class_name": "MyView",
             "view_python_file_name": "py_view",
+            "view_register_for": "plone.app.contenttypes.interfaces.IFolder",
             "view_name": "py-view",
             "view_template": False,
             "package_folder": package_path,
+            "package.dottedname": "collective.sample",
+            "package.browserlayer": "CollectiveSampleLayer",
         },
     )
     view._update_views_configure_zcml(configurator)
@@ -195,9 +201,10 @@ def test_update_views_configure_zcml_without_template(tmpdir):
 
   <browser:page
     name="py-view"
-    for="Products.CMFCore.interfaces.IFolderish"
+    for="plone.app.contenttypes.interfaces.IFolder"
     class=".py_view.MyView"
     permission="zope2.View"
+    layer="collective.sample.interfaces.ICollectiveSampleLayer"
     />
 
 </configure>
@@ -236,7 +243,10 @@ def test_update_views_configure_zcml_without_python_class(tmpdir):
             "view_name": "py-view",
             "view_template": True,
             "view_template_name": "pt_view",
+            "view_register_for": "*",
             "package_folder": package_path,
+            "package.dottedname": "collective.sample",
+            "package.browserlayer": "CollectiveSampleLayer",
         },
     )
     view._update_views_configure_zcml(configurator)
@@ -251,9 +261,10 @@ def test_update_views_configure_zcml_without_python_class(tmpdir):
 
   <browser:page
     name="py-view"
-    for="Products.CMFCore.interfaces.IFolderish"
+    for="*"
     template="pt_view.pt"
     permission="zope2.View"
+    layer="collective.sample.interfaces.ICollectiveSampleLayer"
     />
 
 </configure>
@@ -277,6 +288,7 @@ def test_delete_unwanted_files_template(tmpdir):
             "view_name": "my-new-view",
             "view_python_class": False,
             "view_python_class_name": "NewView",
+            "view_register_for": "*",
             "view_template": True,
             "view_template_name": "new_view",
             "plone.version": "5.1",
@@ -287,8 +299,8 @@ def test_delete_unwanted_files_template(tmpdir):
     base.set_global_vars(configurator)
     configurator.render()  # pre/render/post
     # as the post_rederer also calls delete_unwanted_files. we don't need to call here
-    python_file_name = configurator.variables.get('view_python_file_name') + '.py'
-    template_file_name = configurator.variables.get('view_template_name') + '.pt'
+    python_file_name = configurator.variables.get("view_python_file_name") + ".py"
+    template_file_name = configurator.variables.get("view_template_name") + ".pt"
     python_file_path = os.path.join(views_path + python_file_name)
     template_file_path = os.path.join(views_path + template_file_name)
     assert os.path.isfile(template_file_path)
@@ -308,6 +320,7 @@ def test_delete_unwanted_files_python(tmpdir):
             "view_name": "my-new-view",
             "view_python_class": True,
             "view_python_class_name": "NewView",
+            "view_register_for": "*",
             "view_template": False,
             "view_template_name": "new_view",
             "plone.version": "5.1",
@@ -318,8 +331,8 @@ def test_delete_unwanted_files_python(tmpdir):
     base.set_global_vars(configurator)
     configurator.render()  # pre/render/post
     # as the post_rederer also calls delete_unwanted_files. we don't need to call here
-    python_file_name = configurator.variables.get('view_python_file_name') + '.py'
-    template_file_name = configurator.variables.get('view_template_name') + '.pt'
+    python_file_name = configurator.variables.get("view_python_file_name") + ".py"
+    template_file_name = configurator.variables.get("view_template_name") + ".pt"
     python_file_path = os.path.join(views_path + python_file_name)
     template_file_path = os.path.join(views_path + template_file_name)
     assert not os.path.isfile(template_file_path)
@@ -372,6 +385,7 @@ def test_pre_renderer(tmpdir):
             "view_base_class": "BrowserView",
             "view_template": True,
             "view_template_name": "new_view",
+            "view_register_for": "plone.app.contenttypes.interfaces.IFolder",
             "plone.version": "5.1",
         },
     )
@@ -389,6 +403,7 @@ def test_pre_renderer(tmpdir):
         variables={
             "view_name": "my-new-view",
             "view_python_class": False,
+            "view_register_for": "*",
             "view_template": False,
             "plone.version": "5.1",
         },
@@ -421,6 +436,7 @@ def test_post_renderer(tmpdir):
             "view_python_class": True,
             "view_python_class_name": "NewView",
             "view_base_class": "BrowserView",
+            "view_register_for": "*",
             "view_template": True,
             "view_template_name": "new_view",
             "plone.version": "5.1",

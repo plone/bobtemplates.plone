@@ -1,0 +1,27 @@
+{{% if not svelte_app_custom_element %}}
+import App from './App.svelte';
+
+let targets = document.getElementsByTagName("{{{ svelte_app_name }}}");
+
+for(let i = 0;i < targets.length; i++){
+    let target = targets[i];
+    const app_instance = new App({
+    target: target,
+    props: {
+    }
+  });
+}
+{{% else %}}
+import App from './App.svelte';
+//
+// let targets = document.getElementsByTagName("{{{ svelte_app_name }}}");
+//
+// for(let i = 0;i < targets.length; i++){
+//     let target = targets[i];
+//     const app_instance = new App({
+//     target: target,
+//     props: {
+//     }
+//   });
+// }
+{{% endif %}}

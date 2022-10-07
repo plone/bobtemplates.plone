@@ -5,14 +5,10 @@ Sub-templates
 -------------
 
 - controlpanel
-- view (BrowserView and DX DefaultView)
-- viewlet
-- portlet
 - mosaic tile
 - global utility (almost the same as vocabulary)???
 - local utility (persistent utility)???
 - souper.plone ???
-- indexer
 - z3c.form default values
 - display widget templates
 

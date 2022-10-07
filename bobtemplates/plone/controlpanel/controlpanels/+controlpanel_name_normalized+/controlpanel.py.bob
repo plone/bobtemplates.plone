@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+from {{{ package.dottedname }}} import _
+from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
+from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
+from plone.app.registry.browser.controlpanel import RegistryEditForm
+from plone.restapi.controlpanels import RegistryConfigletPanel
+from plone.z3cform import layout
+from zope.component import adapter
+from zope.interface import Interface
+from zope import schema
+
+class I{{{ controlpanel_name_klass }}}(Interface):
+    myfield_name = schema.TextLine(
+        title=_(
+            "This is an example field for this control panel",
+        ),
+        description=_(
+            "",
+        ),
+        default="",
+        required=False,
+        readonly=False,
+    )
+
+
+class {{{ controlpanel_name_klass }}}(RegistryEditForm):
+    schema = I{{{ controlpanel_name_klass }}}
+    schema_prefix = "{{{ package.dottedname }}}.{{{ controlpanel_name_normalized }}}"
+    label = _("{{{ controlpanel_separated_name }}}")
+
+
+{{{ controlpanel_name_klass }}}View = layout.wrap_form(
+    {{{ controlpanel_name_klass }}}, ControlPanelFormWrapper
+)
+
+
+
+@adapter(Interface, I{{{ package.browserlayer }}})
+class {{{ controlpanel_name_klass }}}ConfigletPanel(RegistryConfigletPanel):
+    """Control Panel endpoint"""
+
+    schema = I{{{ controlpanel_name_klass }}}
+    configlet_id = "{{{ controlpanel_name_normalized }}}-controlpanel"
+    configlet_category_id = "Products"
+    title = _("{{{ controlpanel_separated_name }}}")
+    group = ""
+    schema_prefix = "{{{ package.dottedname }}}.{{{ controlpanel_name_normalized }}}"

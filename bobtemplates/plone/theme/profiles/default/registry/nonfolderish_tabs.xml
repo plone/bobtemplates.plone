@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<registry>
+  <!-- Deactivate the generation of nonfolderish tabs in global navigation -->
+  <record name="plone.nonfolderish_tabs"
+    interface="Products.CMFPlone.interfaces.controlpanel.INavigationSchema"
+    field="nonfolderish_tabs">
+    <value>False</value>
+  </record>
+</registry>

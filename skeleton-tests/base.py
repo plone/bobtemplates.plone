@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from bobtemplates.plone.utils import safe_unicode
-
+# from bobtemplates.plone.utils import safe_encode
 import contextlib
+import logging
 import os
 import subprocess
+
+from bobtemplates.plone.utils import safe_unicode
+
+logger = logging.getLogger("skeleton-tests")
 
 
 @contextlib.contextmanager
@@ -13,7 +17,7 @@ def dummy_contextmanager():
 
 
 def generate_answers_ini(path, template):
-    with open(os.path.join(path, 'answers.ini'), 'w') as f:
+    with open(os.path.join(path, "answers.ini"), "w") as f:
         f.write(template)
 
 
@@ -24,19 +28,11 @@ def file_exists(base_path, file_path):
 
 def run_skeleton_tox_env(wd, config):
     try:
-        test_result = subprocess.check_output(
-            ['tox', '-e', config.skeleton_tox_env],
+        returncode = subprocess.check_call(
+            ["tox", "-e", config.skeleton_tox_env, "-p", "auto", "-o", "-v", "-r"],
             cwd=wd,
         )
-        print(u'\n{0}\n'.format(safe_unicode(test_result)))
+        return returncode
     except subprocess.CalledProcessError as execinfo:
-        tox_msg = safe_unicode(
-            b''.join(bytes(execinfo.output)),
-        )
-        print(tox_msg)
-        tox_summary = safe_unicode(
-            b''.join(
-                execinfo.output.partition(b'__ summary __')[1:],
-            ),
-        )
-        assert execinfo.returncode == 0, '\n{0}'.format(tox_summary)
+        logger.debug("{0}".format(safe_unicode(execinfo.output)))
+        return execinfo.returncode

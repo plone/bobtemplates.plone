@@ -22,12 +22,12 @@
   <!-- FRONTEND ONLY BLOCK -->
   <rules css:if-content="body.viewpermission-view, body.viewpermission-none">
     <!--<theme href="home.html" css:if-content=".section-front-page" />-->
-    <theme href="article.html" />
+    <theme href="index.html" />
     <notheme css:if-not-content="#visual-portal-wrapper" />
 
     <!-- ### REMOVE THIS RULE AFTER ACTIVATING YOUR OWN RULES BELOW ### -->
     <!-- Copy over the whole body content of Plone -->
-    <replace theme-children="/html/body" content-children="/html/body" />
+    <!-- <replace theme-children="/html/body" content-children="/html/body" /> -->
 
     <rules css:if-content="#portal-top">
       <!-- Attributes -->
@@ -81,8 +81,12 @@
       <after
         theme-children="/html/head"
         content="/html/head/script"
-        css:if-not-content="html > body.userrole-anonymous"
         />
+      <!-- <after
+        theme-children="/html/head"
+        content="/html/head/script"
+        css:if-not-content="html > body.userrole-anonymous"
+        /> -->
 
       <!--
         Add theme javascripts here, to have them at the bottom of all javascripts.
@@ -94,6 +98,12 @@
       </after>
       -->
 
+      <after theme-children="/html/head">
+        <script>
+            require = undefined;
+            define = undefined;
+        </script>
+      </after>
     </rules>
 
     <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
@@ -116,7 +126,7 @@
       /> -->
 
     <!-- Copy global nav (portal tabs) -->
-    <!-- <replace css:theme="#nav > ul" css:content="#portal-globalnav" /> -->
+    <!-- <replace css:theme-children=".navbar-nav" css:content-children="navbar-nav" /> -->
 
     <!-- Copy breadcrumb bar -->
     <!-- <replace css:content="#viewlet-above-content" css:theme="#above-content" /> -->
@@ -145,8 +155,15 @@
     <!-- Copy Document Content -->
     <!-- <replace
       css:content-children="#content"
-      css:theme-children="#content"
+      css:theme-children="main"
       /> -->
+
+    <!-- Copy footer -->
+    <!-- <replace
+      css:content-children="footer"
+      css:theme-children="footer"
+      /> -->
+
 
     <!-- Drop icons in footer -->
     <!-- <drop css:theme="#footer .icons" /> -->

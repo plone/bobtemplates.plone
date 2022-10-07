@@ -2,27 +2,25 @@
 
 """Test view generation."""
 
-from bobtemplates.plone import base
-from bobtemplates.plone import viewlet
-from mrbob.bobexceptions import SkipQuestion
-from mrbob.bobexceptions import ValidationError
-from mrbob.configurator import Configurator
-from mrbob.configurator import Question
-
 import os
+
 import pytest
+from mrbob.bobexceptions import SkipQuestion, ValidationError
+from mrbob.configurator import Configurator, Question
+
+from bobtemplates.plone import base, viewlet
 
 
 def test_get_view_name_default():
-    question = Question(name='view_name', question='', default=None)
+    question = Question(name="view_name", question="", default=None)
     configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
-        target_directory='collective.foo.bar',
+        template="bobtemplates.plone:viewlet",
+        target_directory="collective.foo.bar",
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'viewlet_python_class_name': 'DemoViewlet',
+            "viewlet_python_class_name": "DemoViewlet",
         },
     )
     viewlet.get_view_name_from_python_class(configurator, question)
@@ -30,13 +28,13 @@ def test_get_view_name_default():
 
 def test_viewlet_template_true():
     configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
-        target_directory='collective.foo.bar',
+        template="bobtemplates.plone:viewlet",
+        target_directory="collective.foo.bar",
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'viewlet_template': True,
+            "viewlet_template": True,
         },
     )
     viewlet.check_viewlet_template_answer(configurator, None)
@@ -44,13 +42,13 @@ def test_viewlet_template_true():
 
 def test_viewlet_template_false():
     configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
-        target_directory='collective.foo.bar',
+        template="bobtemplates.plone:viewlet",
+        target_directory="collective.foo.bar",
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'viewlet_template': False,
+            "viewlet_template": False,
         },
     )
     with pytest.raises(SkipQuestion):
@@ -59,8 +57,8 @@ def test_viewlet_template_false():
 
 def test_update_configure_zcml(tmpdir):
     """Test configure changes when changes are already in place."""
-    target_path = tmpdir.strpath + '/collective.demo'
-    package_path = target_path + '/src/collective/demo'
+    target_path = tmpdir.strpath + "/collective.demo"
+    package_path = target_path + "/src/collective/demo"
     os.makedirs(target_path)
     os.makedirs(package_path)
     template = """<configure
@@ -80,21 +78,21 @@ def test_update_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
-        target_directory='collective.demo',
+        template="bobtemplates.plone:viewlet",
+        target_directory="collective.demo",
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'package_folder': package_path,
+            "package_folder": package_path,
         },
     )
     viewlet._update_configure_zcml(configurator)
 
-    with open(os.path.join(package_path + '/configure.zcml'), 'r') as f:
+    with open(os.path.join(package_path + "/configure.zcml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -102,9 +100,9 @@ def test_update_configure_zcml(tmpdir):
 
 def test_update_viewlets_configure_zcml_with_template(tmpdir):
     """Test configure changes when changes are already in place."""
-    target_path = tmpdir.strpath + '/collective.sample'
-    package_path = target_path + '/src/collective/sample'
-    viewlets_path = package_path + '/viewlets/'
+    target_path = tmpdir.strpath + "/collective.sample"
+    package_path = target_path + "/src/collective/sample"
+    viewlets_path = package_path + "/viewlets/"
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(viewlets_path)
@@ -128,28 +126,28 @@ def test_update_viewlets_configure_zcml_with_template(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(viewlets_path + 'configure.zcml'), 'w') as f:
+    with open(os.path.join(viewlets_path + "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
-        target_directory='collective.sample',
+        template="bobtemplates.plone:viewlet",
+        target_directory="collective.sample",
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'viewlet_name': 'viewlet',
-            'viewlet_python_class_name': 'MyViewlet',
-            'viewlet_python_file_name': 'py_viewlet',
-            'viewlet_template': True,
-            'viewlet_template_name': 'pt_viewlet',
-            'package_folder': package_path,
-            'package.dottedname': 'collective.sample',
-            'browser_layer': 'ICollectiveSampleLayer',
+            "viewlet_name": "viewlet",
+            "viewlet_python_class_name": "MyViewlet",
+            "viewlet_python_file_name": "py_viewlet",
+            "viewlet_template": True,
+            "viewlet_template_name": "pt_viewlet",
+            "package_folder": package_path,
+            "package.dottedname": "collective.sample",
+            "browser_layer": "ICollectiveSampleLayer",
         },
     )
     viewlet._update_viewlets_configure_zcml(configurator)
 
-    with open(os.path.join(viewlets_path + 'configure.zcml'), 'r') as f:
+    with open(os.path.join(viewlets_path + "configure.zcml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -157,9 +155,9 @@ def test_update_viewlets_configure_zcml_with_template(tmpdir):
 
 def test_update_viewlets_configure_zcml_without_template(tmpdir):
     """Test configure changes when changes are already in place."""
-    target_path = tmpdir.strpath + '/collective.sample'
-    package_path = target_path + '/src/collective/sample'
-    viewlets_path = package_path + '/viewlets/'
+    target_path = tmpdir.strpath + "/collective.sample"
+    package_path = target_path + "/src/collective/sample"
+    viewlets_path = package_path + "/viewlets/"
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(viewlets_path)
@@ -182,27 +180,27 @@ def test_update_viewlets_configure_zcml_without_template(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(viewlets_path + 'configure.zcml'), 'w') as f:
+    with open(os.path.join(viewlets_path + "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
-        target_directory='collective.sample',
+        template="bobtemplates.plone:viewlet",
+        target_directory="collective.sample",
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'viewlet_name': 'viewlet',
-            'viewlet_python_class_name': 'MyViewlet',
-            'viewlet_python_file_name': 'py_viewlet',
-            'viewlet_template': False,
-            'package_folder': package_path,
-            'package.dottedname': 'collective.sample',
-            'browser_layer': 'ICollectiveSampleLayer',
+            "viewlet_name": "viewlet",
+            "viewlet_python_class_name": "MyViewlet",
+            "viewlet_python_file_name": "py_viewlet",
+            "viewlet_template": False,
+            "package_folder": package_path,
+            "package.dottedname": "collective.sample",
+            "browser_layer": "ICollectiveSampleLayer",
         },
     )
     viewlet._update_viewlets_configure_zcml(configurator)
 
-    with open(os.path.join(viewlets_path + 'configure.zcml'), 'r') as f:
+    with open(os.path.join(viewlets_path + "configure.zcml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -210,29 +208,29 @@ def test_update_viewlets_configure_zcml_without_template(tmpdir):
 
 def test_delete_template_file(tmpdir):
     """Test to remove unwanted file."""
-    target_path = tmpdir.strpath + '/collective.sample'
-    package_path = target_path + '/src/collective/sample'
-    viewlets_path = package_path + '/viewlets/'
+    target_path = tmpdir.strpath + "/collective.sample"
+    package_path = target_path + "/src/collective/sample"
+    viewlets_path = package_path + "/viewlets/"
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(viewlets_path)
-    file_name = u'configure.zcml.example'
+    file_name = "configure.zcml.example"
     file_path = viewlets_path + file_name
-    open(file_path, 'a').close()
-    file_name = u'my_viewlet.pt'
+    open(file_path, "a").close()
+    file_name = "my_viewlet.pt"
     file_path = viewlets_path + file_name
-    open(file_path, 'a').close()
+    open(file_path, "a").close()
     configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
-        target_directory='collective.sample',
+        template="bobtemplates.plone:viewlet",
+        target_directory="collective.sample",
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'viewlet_name_normalized': 'my_viewlet',
-            'viewlet_template': False,
-            'viewlet_template_name': 'my_viewlet',
-            'package_folder': package_path,
+            "viewlet_name_normalized": "my_viewlet",
+            "viewlet_template": False,
+            "viewlet_template_name": "my_viewlet",
+            "package_folder": package_path,
         },
     )
     viewlet._delete_unwanted_files(configurator)
@@ -242,29 +240,29 @@ def test_delete_template_file(tmpdir):
 
 def test_delete_template_file_false(tmpdir):
     """Test to not remove template file."""
-    target_path = tmpdir.strpath + '/collective.sample'
-    package_path = target_path + '/src/collective/sample'
-    viewlets_path = package_path + '/viewlets/'
+    target_path = tmpdir.strpath + "/collective.sample"
+    package_path = target_path + "/src/collective/sample"
+    viewlets_path = package_path + "/viewlets/"
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(viewlets_path)
-    file_name = u'configure.zcml.example'
+    file_name = "configure.zcml.example"
     file_path = viewlets_path + file_name
-    open(file_path, 'a').close()
-    file_name = u'my_viewlet.pt'
+    open(file_path, "a").close()
+    file_name = "my_viewlet.pt"
     file_path = viewlets_path + file_name
-    open(file_path, 'a').close()
+    open(file_path, "a").close()
     configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
-        target_directory='collective.sample',
+        template="bobtemplates.plone:viewlet",
+        target_directory="collective.sample",
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'viewlet_name_normalized': 'my_viewlet',
-            'viewlet_template': True,
-            'viewlet_template_name': 'my_viewlet',
-            'package_folder': package_path,
+            "viewlet_name_normalized": "my_viewlet",
+            "viewlet_template": True,
+            "viewlet_template_name": "my_viewlet",
+            "package_folder": package_path,
         },
     )
     viewlet._delete_unwanted_files(configurator)
@@ -274,9 +272,9 @@ def test_delete_template_file_false(tmpdir):
 
 def test_post_renderer_with_template(tmpdir):
     """Test post rendering."""
-    target_path = tmpdir.strpath + '/collective.todo'
-    package_path = target_path + '/src/collective/todo'
-    viewlets_path = package_path + '/viewlets'
+    target_path = tmpdir.strpath + "/collective.todo"
+    package_path = target_path + "/src/collective/todo"
+    viewlets_path = package_path + "/viewlets"
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(viewlets_path)
@@ -292,13 +290,13 @@ class MyViewlet(ViewletBase):
         return u'Sample viewlet!'
 
 """
-    with open(os.path.join(viewlets_path + '/viewlet.py'), 'w') as f:
+    with open(os.path.join(viewlets_path + "/viewlet.py"), "w") as f:
         f.write(template)
     template = """<div class="days_to_conf">
     ${view/get_message}
 </div>
 """
-    with open(os.path.join(viewlets_path + '/viewlet.pt'), 'w') as f:
+    with open(os.path.join(viewlets_path + "/viewlet.pt"), "w") as f:
         f.write(template)
     template = """<configure
     xmlns="http://namespaces.zope.org/zope"
@@ -320,7 +318,7 @@ class MyViewlet(ViewletBase):
 
     </configure>
     """
-    with open(os.path.join(viewlets_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(viewlets_path + "/configure.zcml"), "w") as f:
         f.write(template)
 
     template = """<configure
@@ -342,21 +340,21 @@ class MyViewlet(ViewletBase):
 
 </configure>
 """
-    with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:viewlet',
+        template="bobtemplates.plone:viewlet",
         target_directory=package_path,
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'viewlet_name': 'viewlet',
-            'viewlet_python_class_name': 'MyViewlet',
-            'viewlet_template': True,
-            'viewlet_template_name': 'viewlet',
-            'plone.version': '5.1',
+            "viewlet_name": "viewlet",
+            "viewlet_python_class_name": "MyViewlet",
+            "viewlet_template": True,
+            "viewlet_template_name": "viewlet",
+            "plone.version": "5.1",
         },
     )
 
@@ -364,7 +362,7 @@ class MyViewlet(ViewletBase):
         dummy
         '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + '/setup.py'), 'w') as f:
+    with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 
     os.chdir(package_path)
@@ -375,9 +373,9 @@ class MyViewlet(ViewletBase):
 
 def test_post_renderer_without_template(tmpdir):
     """Test post rendering."""
-    target_path = tmpdir.strpath + '/collective.todo'
-    package_path = target_path + '/src/collective/todo'
-    viewlets_path = package_path + '/viewlets'
+    target_path = tmpdir.strpath + "/collective.todo"
+    package_path = target_path + "/src/collective/todo"
+    viewlets_path = package_path + "/viewlets"
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(viewlets_path)
@@ -393,13 +391,13 @@ class MyViewlet(ViewletBase):
         return u'Sample viewlet!'
 
 """
-    with open(os.path.join(viewlets_path + '/viewlet.py'), 'w') as f:
+    with open(os.path.join(viewlets_path + "/viewlet.py"), "w") as f:
         f.write(template)
     template = """<div class="days_to_conf">
     ${view/get_message}
 </div>
 """
-    with open(os.path.join(viewlets_path + '/viewlet.pt'), 'w') as f:
+    with open(os.path.join(viewlets_path + "/viewlet.pt"), "w") as f:
         f.write(template)
     template = """<configure
     xmlns="http://namespaces.zope.org/zope"
@@ -421,7 +419,7 @@ class MyViewlet(ViewletBase):
 
     </configure>
     """
-    with open(os.path.join(viewlets_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(viewlets_path + "/configure.zcml"), "w") as f:
         f.write(template)
 
     template = """<configure
@@ -443,20 +441,20 @@ class MyViewlet(ViewletBase):
 
 </configure>
 """
-    with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:addon',
+        template="bobtemplates.plone:addon",
         target_directory=package_path,
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'viewlet_name': 'viewlet',
-            'viewlet_python_class_name': 'MyViewlet',
-            'viewlet_template': False,
-            'plone.version': '5.1',
+            "viewlet_name": "viewlet",
+            "viewlet_python_class_name": "MyViewlet",
+            "viewlet_template": False,
+            "plone.version": "5.1",
         },
     )
 
@@ -464,7 +462,7 @@ class MyViewlet(ViewletBase):
         dummy
         '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + '/setup.py'), 'w') as f:
+    with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 
     os.chdir(package_path)

@@ -1,8 +1,10 @@
 # Constraints for Python Packages
 # -----------------------------------------------
 # Pin Versions / Version Ranges if necessary.
-
-setuptools==40.2.0
-isort==4.3.4
+setuptools==57.0.0
 tox>=3.6
+isort>=5
+flake8>=5.0.4
+black==22.8.0
 pytest>=4.3.0
+coverage>=5.2.0

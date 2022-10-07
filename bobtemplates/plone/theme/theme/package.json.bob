@@ -1,0 +1,38 @@
+{
+  "name": "{{{ theme.normalized_name }}}",
+  "description": "A grid based theme",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "front-end",
+    "sass",
+    "css"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^10.4.8",
+    "clean-css-cli": "^5.6.1",
+    "copy-node-modules": "^1.1.1",
+    "nodemon": "^2.0.19",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.16",
+    "postcss-cli": "^10.0.0",
+    "reload": "^3.2.0",
+    "sass": "^1.54.7",
+    "stylelint-config-twbs-bootstrap": "^5.0.0",
+    "bootstrap": "^5.2.0"
+  },
+  "scripts": {
+    "dev": "npm-run-all --parallel reload-browser watch",
+    "watch": "nodemon --watch css/ --ext scss --exec \"npm run css-main\"",
+    "build": "npm-run-all fetch-vendor-files css-compile-main css-prefix-main css-minify-main",
+    "css-main": "npm-run-all css-compile-main css-prefix-main css-minify-main",
+    "css-compile-main": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css styles/theme.scss:styles/theme.css",
+    "css-prefix-main": "postcss --config postcss.config.js --replace \"styles/*.css\" \"!styles/*.min.css\"",
+    "css-minify-main": "cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output styles/theme.min.css styles/theme.css",
+    "css-lint": "stylelint \"styles/**/*.scss\" --cache --cache-location .cache/.stylelintcache",
+    "fetch-vendor-files": "./node_modules/.bin/copy-node-modules ./ ./vendor --verbose",
+    "reload-browser": "reload -b --exts html,js,css"
+  },
+  "dependencies": {
+  }
+}

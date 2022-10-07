@@ -4,34 +4,36 @@ import os
 
 
 def init_package_base_structure(package_root):
-    """ creates initial folder and file structure for packages tests.
-        expects: package_root
-        returns: package_path
+    """creates initial folder and file structure for packages tests.
+    expects: package_root
+    returns: package_path
     """
-    package_name = package_root.split('/')[-1]
-    namespace_parts = package_name.split('.')
+    package_name = package_root.split("/")[-1]
+    namespace_parts = package_name.split(".")
     package_namespace_path = "/".join(namespace_parts)
-    package_path = os.path.join(package_root, u"src/" + package_namespace_path)
-    profiles_path = os.path.join(package_path, u"profiles/default")
-    views_path = os.path.join(package_path, u"views")
-    theme_path = os.path.join(package_path, u"theme")
+    package_path = os.path.join(package_root, "src/" + package_namespace_path)
+    profiles_path = os.path.join(package_path, "profiles/default")
+    views_path = os.path.join(package_path, "views")
+    svelte_apps_path = os.path.join(package_path, "svelte_apps")
+    theme_path = os.path.join(package_path, "theme")
     os.makedirs(package_root)
     os.makedirs(package_path)
     os.makedirs(profiles_path)
     os.makedirs(views_path)
+    os.makedirs(svelte_apps_path)
     os.makedirs(theme_path)
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(package_root + '/bobtemplate.cfg'), 'w') as f:
+    with open(os.path.join(package_root + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(package_root + '/setup.py'), 'w') as f:
+    with open(os.path.join(package_root + "/setup.py"), "w") as f:
         f.write(template)
 
     template = """<configure

@@ -1,0 +1,41 @@
+<script>
+  let name = "{{{ svelte_app_name }}}";
+</script>
+
+<style>
+  .svelte-app-wrapper {
+    text-align: center;
+    padding: 1em;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    color: #ff3e00;
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: 100;
+  }
+
+  @media (min-width: 640px) {
+    .svelte-app-wrapper {
+      max-width: none;
+    }
+  }
+</style>
+
+{{% if svelte_app_custom_element %}}
+<svelte:options tag="{{{ svelte_app_name_dashed }}}" />
+{{% else %}}
+<!--<svelte:options tag="{{{ svelte_app_name_dashed }}}" /> -->
+{{% endif %}}
+
+<div class="svelte-app-wrapper">
+  <h2>This is your Svelte app: {name}!</h2>
+  <input name="app-name" bind:value={name}>
+  <p>
+    Visit the
+    <a href="https://svelte.dev/tutorial">Svelte tutorial</a>
+    to learn how to build Svelte apps.
+  </p>
+</div>

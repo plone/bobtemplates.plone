@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from mrbob.configurator import Configurator
-
 from bobtemplates.plone import buildout
+from mrbob.configurator import Configurator
 
 
 def test_prepare_renderer():

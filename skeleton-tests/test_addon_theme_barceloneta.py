@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from base import file_exists
+from base import generate_answers_ini
+from base import run_skeleton_tox_env
+
 import os.path
 import subprocess
-
-from base import file_exists, generate_answers_ini, run_skeleton_tox_env
 
 
 def test_addon_theme(tmpdir, capsys, config):

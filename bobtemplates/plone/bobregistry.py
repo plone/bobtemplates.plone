@@ -104,6 +104,14 @@ def plone_restapi_service():
     return reg
 
 
+def plone_restapi_serializer():
+    reg = RegEntry()
+    reg.template = "bobtemplates.plone:restapi_serializer"
+    reg.plonecli_alias = "restapi_serializer"
+    reg.depend_on = "plone_addon"
+    return reg
+
+
 def plone_svelte_app():
     reg = RegEntry()
     reg.template = "bobtemplates.plone:svelte_app"

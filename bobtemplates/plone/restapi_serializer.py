@@ -11,7 +11,7 @@ import case_conversion as cc
 
 def _update_package_configure_zcml(configurator):
     path = "{0}".format(configurator.variables["package_folder"])
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     match_xpath = "include[@package='.api']"
     match_str = "-*- extra stuff goes here -*-"
     insert_str = """
@@ -29,7 +29,7 @@ def _update_package_configure_zcml(configurator):
 
 def _update_api_configure_zcml(configurator):
     path = "{0}/api".format(configurator.variables["package_folder"])
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     example_file_name = "{0}.example".format(file_name)
     match_xpath = "zope:include[@package='.serializers']"
     match_str = "-*- extra stuff goes here -*-"
@@ -49,7 +49,7 @@ def _update_api_configure_zcml(configurator):
 
 def _update_serializers_configure_zcml(configurator):
     path = "{0}/api/serializers".format(configurator.variables["package_folder"])
-    file_name = u"configure.zcml"
+    file_name = "configure.zcml"
     example_file_name = "{0}.example".format(file_name)
     match_xpath = "zope:include[@package='.{0}']".format(
         configurator.variables["serializer_class_name_normalized"]
@@ -70,11 +70,11 @@ def _update_serializers_configure_zcml(configurator):
 
 
 def _update_metadata_xml(configurator):
-    """ Add plone.restapi dependency metadata.xml in
-        Generic Setup profiles.
+    """Add plone.restapi dependency metadata.xml in
+    Generic Setup profiles.
     """
-    metadata_file_name = u"metadata.xml"
-    metadata_file_dir = u"profiles/default"
+    metadata_file_name = "metadata.xml"
+    metadata_file_dir = "profiles/default"
     metadata_file_path = (
         configurator.variables["package_folder"]
         + "/"
@@ -138,5 +138,7 @@ def post_renderer(configurator):
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        "Add restapi_serializer: {0}".format(configurator.variables["serializer_class_name"]),
+        "Add restapi_serializer: {0}".format(
+            configurator.variables["serializer_class_name"]
+        ),
     )

@@ -2,13 +2,14 @@
 
 """Test dexterity content type generation."""
 
-import os
-
-import pytest
-from mrbob.bobexceptions import SkipQuestion, ValidationError
+from bobtemplates.plone import base
+from bobtemplates.plone import content_type
+from mrbob.bobexceptions import SkipQuestion
+from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
-from bobtemplates.plone import base, content_type
+import os
+import pytest
 
 
 def test_post_dexterity_type_name():

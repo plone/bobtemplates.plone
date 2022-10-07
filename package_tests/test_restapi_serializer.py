@@ -8,40 +8,40 @@ import os
 
 
 def test_pre_renderer(tmpdir):
-    target_path = tmpdir.strpath + '/collective.todo'
-    package_path = target_path + '/src/collective/todo'
+    target_path = tmpdir.strpath + "/collective.todo"
+    package_path = target_path + "/src/collective/todo"
     os.makedirs(target_path)
     os.makedirs(package_path)
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + '/bobtemplate.cfg'), 'w') as f:
+    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + '/setup.py'), 'w') as f:
+    with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:restapi_service',
+        template="bobtemplates.plone:restapi_service",
         target_directory=target_path,
         variables={
-            'service_class_name': 'SomeRelatedThings',
-            'service_name': 'some-related-things',
-            'package_folder': package_path,
+            "service_class_name": "SomeRelatedThings",
+            "service_name": "some-related-things",
+            "package_folder": package_path,
         },
     )
     restapi_service.pre_renderer(configurator)
 
 
 def test_post_renderer(tmpdir):
-    target_path = tmpdir.strpath + '/collective.todo'
-    package_path = target_path + '/src/collective/todo'
-    profiles_path = package_path + '/profiles/default'
+    target_path = tmpdir.strpath + "/collective.todo"
+    package_path = target_path + "/src/collective/todo"
+    profiles_path = package_path + "/profiles/default"
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(profiles_path)
@@ -54,21 +54,21 @@ def test_post_renderer(tmpdir):
   </dependencies>
 </metadata>
 """
-    with open(os.path.join(profiles_path + '/metadata.xml'), 'w') as f:
+    with open(os.path.join(profiles_path + "/metadata.xml"), "w") as f:
         f.write(template)
 
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + '/bobtemplate.cfg'), 'w') as f:
+    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + '/setup.py'), 'w') as f:
+    with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 
     template = """
@@ -82,20 +82,20 @@ version=5.1
 
     </configure>
 """
-    with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
-        template='bobtemplates.plone:restapi_service',
+        template="bobtemplates.plone:restapi_service",
         target_directory=package_path,
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'package_folder': package_path,
-            'plone.version': '5.1',
-            'service_class_name': 'SomeRelatedThings',
-            'service_name': 'some-related-things',
+            "package_folder": package_path,
+            "plone.version": "5.1",
+            "service_class_name": "SomeRelatedThings",
+            "service_name": "some-related-things",
         },
     )
     assert configurator
@@ -108,17 +108,17 @@ version=5.1
 
 def test_remove_unwanted_files(tmpdir):
     files_to_remove = [
-        '/api/configure.zcml.example',
-        '/api/services/configure.zcml.example',
+        "/api/configure.zcml.example",
+        "/api/services/configure.zcml.example",
     ]
-    target_path = tmpdir.strpath + '/collective.todo'
-    package_path = target_path + '/src/collective/todo'
-    os.makedirs(package_path + '/api/services/')
+    target_path = tmpdir.strpath + "/collective.todo"
+    package_path = target_path + "/src/collective/todo"
+    os.makedirs(package_path + "/api/services/")
     configurator = Configurator(
-        template='bobtemplates.plone:restapi_service',
+        template="bobtemplates.plone:restapi_service",
         target_directory=tmpdir.strpath,
         variables={
-            'package_folder': package_path,
+            "package_folder": package_path,
         },
     )
     for file_to_remove in files_to_remove:
@@ -126,9 +126,9 @@ def test_remove_unwanted_files(tmpdir):
             os.path.join(
                 package_path + file_to_remove,
             ),
-            'w',
+            "w",
         ) as f:
-            f.write(u'dummy')
+            f.write("dummy")
     restapi_service._remove_unwanted_files(configurator)
 
     for file_to_remove in files_to_remove:
@@ -138,24 +138,23 @@ def test_remove_unwanted_files(tmpdir):
 
 
 def test_update_api_configure_zcml(tmpdir):
-    """
-    """
-    target_path = tmpdir.strpath + '/collective.todo'
-    package_path = target_path + '/src/collective/todo'
-    os.makedirs(package_path + '/api/')
+    """ """
+    target_path = tmpdir.strpath + "/collective.todo"
+    package_path = target_path + "/src/collective/todo"
+    os.makedirs(package_path + "/api/")
 
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + '/bobtemplate.cfg'), 'w') as f:
+    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + '/setup.py'), 'w') as f:
+    with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 
     template = """
@@ -169,54 +168,53 @@ version=5.1
 
     </configure>
 """
-    with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
         f.write(template)
-    with open(os.path.join(package_path + '/api/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path + "/api/configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:restapi_service',
+        template="bobtemplates.plone:restapi_service",
         target_directory=package_path,
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'package_folder': package_path,
-            'plone.version': '5.1',
-            'service_class_name': 'SomeRelatedThings',
-            'service_name': 'some-related-things',
+            "package_folder": package_path,
+            "plone.version": "5.1",
+            "service_class_name": "SomeRelatedThings",
+            "service_name": "some-related-things",
         },
     )
     restapi_service._update_api_configure_zcml(configurator)
 
     with open(
         os.path.join(
-            package_path + '/api/configure.zcml',
+            package_path + "/api/configure.zcml",
         ),
-        'r',
+        "r",
     ) as f:
         content = f.read()
-        assert content != template, u'configure.zcml was not updated!'
+        assert content != template, "configure.zcml was not updated!"
 
 
 def test_update_services_configure_zcml(tmpdir):
-    """
-    """
-    target_path = tmpdir.strpath + '/collective.todo'
-    package_path = target_path + '/src/collective/todo'
-    os.makedirs(package_path + '/api/services/')
+    """ """
+    target_path = tmpdir.strpath + "/collective.todo"
+    package_path = target_path + "/src/collective/todo"
+    os.makedirs(package_path + "/api/services/")
 
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + '/bobtemplate.cfg'), 'w') as f:
+    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + '/setup.py'), 'w') as f:
+    with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 
     template = """
@@ -230,35 +228,36 @@ version=5.1
 
     </configure>
 """
-    with open(os.path.join(package_path + '/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
         f.write(template)
-    with open(os.path.join(package_path + '/api/configure.zcml'), 'w') as f:
+    with open(os.path.join(package_path + "/api/configure.zcml"), "w") as f:
         f.write(template)
     with open(
-        os.path.join(package_path + '/api/services/configure.zcml'), 'w',
+        os.path.join(package_path + "/api/services/configure.zcml"),
+        "w",
     ) as f:
         f.write(template)
     configurator = Configurator(
-        template='bobtemplates.plone:restapi_service',
+        template="bobtemplates.plone:restapi_service",
         target_directory=package_path,
         bobconfig={
-            'non_interactive': True,
+            "non_interactive": True,
         },
         variables={
-            'package_folder': package_path,
-            'plone.version': '5.1',
-            'service_class_name': 'SomeRelatedThings',
-            'service_class_name_normalized': 'some_related_things',
-            'service_name': 'some-related-things',
+            "package_folder": package_path,
+            "plone.version": "5.1",
+            "service_class_name": "SomeRelatedThings",
+            "service_class_name_normalized": "some_related_things",
+            "service_name": "some-related-things",
         },
     )
     restapi_service._update_services_configure_zcml(configurator)
 
     with open(
         os.path.join(
-            package_path + '/api/services/configure.zcml',
+            package_path + "/api/services/configure.zcml",
         ),
-        'r',
+        "r",
     ) as f:
         content = f.read()
-        assert content != template, u'configure.zcml was not updated!'
+        assert content != template, "configure.zcml was not updated!"

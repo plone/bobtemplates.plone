@@ -2,15 +2,16 @@
 
 """Test view generation."""
 
-import os
-
-import pytest
-from mrbob.bobexceptions import SkipQuestion, ValidationError
-from mrbob.configurator import Configurator, Question
-
-from bobtemplates.plone import base, view
-
 from .base import init_package_base_structure
+from bobtemplates.plone import base
+from bobtemplates.plone import view
+from mrbob.bobexceptions import SkipQuestion
+from mrbob.bobexceptions import ValidationError
+from mrbob.configurator import Configurator
+from mrbob.configurator import Question
+
+import os
+import pytest
 
 
 def test_get_view_name():

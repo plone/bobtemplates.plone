@@ -1,21 +1,18 @@
 # -*- coding: utf-8 -*-
 
-import os
-import re
-
+from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import echo
+from bobtemplates.plone.base import get_normalized_themename
+from bobtemplates.plone.base import git_commit
+from bobtemplates.plone.base import is_string_in_file
+from bobtemplates.plone.base import update_file
+from bobtemplates.plone.base import validate_packagename
+from bobtemplates.plone.base import ZCML_NAMESPACES
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
-from bobtemplates.plone.base import (
-    ZCML_NAMESPACES,
-    base_prepare_renderer,
-    echo,
-    get_normalized_themename,
-    git_commit,
-    is_string_in_file,
-    update_file,
-    validate_packagename,
-)
+import os
+import re
 
 
 def pre_theme_name(configurator, question):

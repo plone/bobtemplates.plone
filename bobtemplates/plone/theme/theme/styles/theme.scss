@@ -1,0 +1,22 @@
+// import styles coming ith the theme here:
+
+//@import styles
+
+
+// Plone styles:
+
+// Roboto is not included in this template and therefore we disable the setup here.
+$enable-roboto-webfont: false !default;
+
+// Toolbar: to have a functional toolbar, we need some style from the default plone theme and bootstrap:
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "@plone/plonetheme-barceloneta-base/scss/variables.colors.plone";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+@import "@plone/plonetheme-barceloneta-base/scss/toolbar";
+
+
+// custom styles here:

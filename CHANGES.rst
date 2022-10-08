@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.0b15 (unreleased)
+6.0b15 (2022-10-08)
 -------------------
 
 - Remove stale templates from theme_basic

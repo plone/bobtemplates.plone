@@ -4,8 +4,14 @@ Changelog
 6.0b15 (unreleased)
 -------------------
 
+- Remove stale templates from theme_basic
+  [santonelli]
+
 - Switch to class based Patterns in mockup_pattern template
   [thet]
+  
+- Improve theme template README and theme.scss
+  [MrTango]
 
 
 6.0b14 (2022-10-07)

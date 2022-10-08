@@ -4,7 +4,8 @@ Changelog
 6.0b15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Remove stale templates from theme_basic
+  [santonelli]
 
 
 6.0b14 (2022-10-07)

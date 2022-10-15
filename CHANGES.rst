@@ -4,7 +4,8 @@ Changelog
 6.0b16 (unreleased)
 -------------------
 
-- cleanup
+- Upgrade @patternslib/dev dependency for the `mockup_pattern` template.
+  [thet]
 
 
 6.0b15 (2022-10-08)

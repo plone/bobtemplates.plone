@@ -1,7 +1,26 @@
 Changelog
 =========
 
-6.0b14 (unreleased)
+6.0b16 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
+6.0b15 (2022-10-08)
+-------------------
+
+- Remove stale templates from theme_basic
+  [santonelli]
+
+- Switch to class based Patterns in mockup_pattern template
+  [thet]
+  
+- Improve theme template README and theme.scss
+  [MrTango]
+
+
+6.0b14 (2022-10-07)
 -------------------
 
 - Update theme_barceloneta to use plonetheme-barceloneta-base 3.0.0b6 and use SCSS example import structure from Bootstrap documentation.

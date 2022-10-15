@@ -2,6 +2,13 @@
 Theme Development
 =================
 
+Preparing the package.json
+==========================
+
+Since every theme is different, we might need to adjust some paths inside the script part of ``the package.json`` file.
+By default the scripts expect a theme.scss file in a folder called styles.
+If your theme has for example all stylesheets in a folder called css, you have to either adjusts the paths in the ``package.json`` or to adjust the folder structure of your theme to reflect the one expected in the ``package.son``.
+
 
 Tooling
 =======

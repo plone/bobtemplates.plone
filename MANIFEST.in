@@ -4,3 +4,11 @@ graft docs
 global-exclude *pyc
 global-exclude tmp
 global-exclude .tox
+global-exclude tox.ini
+global-exclude skeleton-tests/
+global-exclude requirements.txt
+global-exclude jsconfig.json
+global-exclude constraints.txt
+global-exclude appveyor.yml
+
+

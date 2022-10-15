@@ -4,7 +4,7 @@ Changelog
 6.0b16 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- cleanup
 
 
 6.0b15 (2022-10-08)
@@ -15,7 +15,7 @@ Changelog
 
 - Switch to class based Patterns in mockup_pattern template
   [thet]
-  
+
 - Improve theme template README and theme.scss
   [MrTango]
 

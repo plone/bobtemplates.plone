@@ -19,7 +19,6 @@
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: License
 
-[![Python package]()]()
 
 ==================
 bobtemplates.plone

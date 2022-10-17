@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import os
-
+from bobtemplates.plone import addon
+from bobtemplates.plone import base
 from mrbob.configurator import Configurator
 
-from bobtemplates.plone import addon, base
+import os
 
 
 def test_pre_render(tmpdir):

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import find_packages, setup
+from setuptools import find_packages
+from setuptools import setup
+
 
 version = "6.0b16.dev0"
 
@@ -74,6 +76,7 @@ setup(
             "plone_mockup_pattern = bobtemplates.plone.bobregistry:plone_mockup_pattern",
             "plone_portlet = bobtemplates.plone.bobregistry:plone_portlet",
             "plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service",  # NOQA E501
+            "plone_restapi_serializer = bobtemplates.plone.bobregistry:plone_restapi_serializer",  # NOQA E501
             "plone_svelte_app = bobtemplates.plone.bobregistry:plone_svelte_app",
             "plone_subscriber = bobtemplates.plone.bobregistry:plone_subscriber",
             "plone_theme = bobtemplates.plone.bobregistry:plone_theme",

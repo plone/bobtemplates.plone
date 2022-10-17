@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import case_conversion as cc
+from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import git_commit
+from bobtemplates.plone.base import remove_unwanted_files
+from bobtemplates.plone.base import update_configure_zcml
+from bobtemplates.plone.utils import run_black
+from bobtemplates.plone.utils import run_isort
 
-from bobtemplates.plone.base import (
-    base_prepare_renderer,
-    git_commit,
-    remove_unwanted_files,
-    update_configure_zcml,
-)
-from bobtemplates.plone.utils import run_black, run_isort
+import case_conversion as cc
 
 
 def _update_package_configure_zcml(configurator):

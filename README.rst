@@ -1,9 +1,8 @@
-.. image:: https://github.com/plone/bobtemplates.plone/workflows/Plone%20package/badge.svg
-    :target: https://github.com/plone/bobtemplates.plone/actions
+.. image:: https://github.com/plone/bobtemplates.plone/actions/workflows/python-package.yml/badge.svg
+    :target: https://github.com/plone/bobtemplates.plone/actions/workflows/python-package.yml
 
-.. image:: https://coveralls.io/repos/github/plone/bobtemplates.plone/badge.svg?branch=main
-    :target: https://coveralls.io/github/plone/bobtemplates.plone?branch=main
-    :alt: Coveralls
+.. image:: https://codecov.io/gh/plone/plone.bobtemplates/branch/main/graph/badge.svg
+    :target: https://codecov.io/gh/plone/plone.bobtemplates
 
 .. image:: https://img.shields.io/pypi/v/bobtemplates.plone.svg
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
@@ -20,9 +19,6 @@
     :target: https://pypi.python.org/pypi/bobtemplates.plone/
     :alt: License
 
-.. image:: https://badges.gitter.im/plone/bobtemplates.plone.svg
-    :target: https://gitter.im/plone/bobtemplates.plone?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
-    :alt: Gitter channel
 
 ==================
 bobtemplates.plone
@@ -211,4 +207,4 @@ Support
 =======
 
 If you are having issues, please let us know.
-We have a Gitter channel here: `plone/bobtemplates.plone <https://gitter.im/plone/bobtemplates.plone>`_
+Just open an issue here.

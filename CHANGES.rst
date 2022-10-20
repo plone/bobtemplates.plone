@@ -7,6 +7,9 @@ Changelog
 - Improve namespace support #520
   [mamico]
 
+- Upgrade @patternslib/dev dependency for the `mockup_pattern` template.
+  [thet]
+
 
 6.0b15 (2022-10-08)
 -------------------
@@ -16,7 +19,7 @@ Changelog
 
 - Switch to class based Patterns in mockup_pattern template
   [thet]
-  
+
 - Improve theme template README and theme.scss
   [MrTango]
 

@@ -92,7 +92,9 @@ def _cleanup_package(configurator):
         # a __init__.py into it.
         if oldpath != newpath:
             # move .../src/collective/myaddon to .../src/collective/behavior
-            if not os.path.exists(newpath):
+            if not os.path.exists(
+                make_path(newpath, configurator.variables["package.name"])
+            ):
                 shutil.move(
                     make_path(oldpath, configurator.variables["package.name"]), newpath
                 )

@@ -265,6 +265,7 @@ view_python_class_name=MyView
 view_name=my_view
 view_template=True
 view_template_name=pt_view
+view_register_for=Folder
 """
     generate_answers_ini(package_dir, template)
 

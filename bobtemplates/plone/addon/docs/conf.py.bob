@@ -42,7 +42,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'{{{ package.dottedname }}}'
+project = u'{{{ package.distributionname }}}'
 copyright = u'{{{ author.name }}} ({{{ author.github.user }}})'
 author = u'{{{ author.name }}} ({{{ author.github.user }}})'
 
@@ -199,7 +199,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = '{{{ package.dottedname }}}doc'
+htmlhelp_basename = '{{{ package.distributionname }}}doc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -237,4 +237,3 @@ latex_elements = {
 
 # If false, no module index is generated.
 #latex_domain_indices = True
-

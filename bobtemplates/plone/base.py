@@ -270,10 +270,6 @@ def validate_packagename(configurator):
     if package_dir.startswith(".") or package_dir.endswith("."):
         fail = True
 
-    parts = len(package_dir.split("."))
-    if parts < 2 or parts > 3:
-        fail = True
-
     if fail:
         msg = (
             "Error: '{0}' is not a valid packagename.\n"

@@ -1,7 +1,7 @@
-{{% for i in package.dottedname %}}={{% endfor %}}
+{{% for i in package.distributionname %}}={{% endfor %}}
 
-{{{ package.dottedname }}}
-{{% for i in package.dottedname %}}={{% endfor %}}
+{{{ package.distributionname }}}
+{{% for i in package.distributionname %}}={{% endfor %}}
 
 
 User documentation

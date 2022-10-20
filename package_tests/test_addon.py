@@ -62,3 +62,41 @@ def test_cleanup_package(tmpdir):
     assert configurator
     base.set_global_vars(configurator)
     configurator.render()
+
+
+def test_no_namespace(tmpdir):
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=tmpdir.strpath + "mypackage",
+        variables={},
+    )
+    addon.pre_render(configurator)
+    name = os.path.split(tmpdir.strpath + "mypackage")[-1]
+    assert configurator.variables["package.dottedname"] == name
+    assert configurator.variables["package.distributionname"] == name
+
+
+def test_with_dash(tmpdir):
+    # no namespace
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=tmpdir.strpath + "my-package",
+        variables={},
+    )
+    addon.pre_render(configurator)
+    package_name = os.path.split(tmpdir.strpath + "my_package")[-1]
+    distribution_name = os.path.split(tmpdir.strpath + "my-package")[-1]
+    assert configurator.variables["package.dottedname"] == package_name
+    assert configurator.variables["package.distributionname"] == distribution_name
+
+    # with namespace
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=tmpdir.strpath + "my-namespace.my-package",
+        variables={},
+    )
+    addon.pre_render(configurator)
+    package_name = os.path.split(tmpdir.strpath + "my_namespace.my_package")[-1]
+    distribution_name = os.path.split(tmpdir.strpath + "my-namespace.my-package")[-1]
+    assert configurator.variables["package.dottedname"] == package_name
+    assert configurator.variables["package.distributionname"] == distribution_name

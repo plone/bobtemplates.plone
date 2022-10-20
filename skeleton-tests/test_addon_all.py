@@ -282,7 +282,30 @@ view_register_for=Folder
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/configure.zcml")
+    assert file_exists(wd, "/src/collective/task/views/configure.zcml")
+
+    # generate subtemplate form:
+    template = """[variables]
+view_python_class_name=MyCoolForm
+view_name=my-cool-form
+view_register_for=Folder
+"""
+    generate_answers_ini(package_dir, template)
+
+    config.template = "form"
+    result = subprocess.call(
+        [
+            "mrbob",
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
+        ],
+        cwd=wd,
+    )
+    assert result == 0
+
+    assert file_exists(wd, "/src/collective/task/forms/configure.zcml")
 
     # generate subtemplate viewlet:
     template = """[variables]
@@ -306,6 +329,7 @@ viewlet_template_name=pt_viewlet
         cwd=wd,
     )
     assert result == 0
+    assert file_exists(wd, "/src/collective/task/viewlets/configure.zcml")
 
     # generate subtemplate viewlet:
     template = """[variables]
@@ -329,7 +353,7 @@ viewlet_template=False
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/configure.zcml")
+    assert file_exists(wd, "/src/collective/task/viewlets/configure.zcml")
 
     # generate subtemplate vocabulary:
     template = """[variables]

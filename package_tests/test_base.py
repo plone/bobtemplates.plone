@@ -289,20 +289,18 @@ def test_validate_packagename(tmpdir):
     base.validate_packagename(configurator)
 
     # step 4: test without namespace (level 1)
-    with pytest.raises(SystemExit):
-        configurator = Configurator(
-            template="bobtemplates.plone:addon",
-            target_directory=os.path.join(base_path, "foo"),
-        )
-        base.validate_packagename(configurator)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=os.path.join(base_path, "foo"),
+    )
+    base.validate_packagename(configurator)
 
     # step 5: test deep nested namespace (level 4)
-    with pytest.raises(SystemExit):
-        configurator = Configurator(
-            template="bobtemplates.plone:addon",
-            target_directory=os.path.join(base_path, "collective.foo.bar.spam"),
-        )
-        base.validate_packagename(configurator)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=os.path.join(base_path, "collective.foo.bar.spam"),
+    )
+    base.validate_packagename(configurator)
 
     # step 6: test leading dot
     with pytest.raises(SystemExit):
@@ -327,6 +325,13 @@ def test_validate_packagename(tmpdir):
             target_directory=os.path.join(base_path, "collective.$SPAM"),
         )
         base.validate_packagename(configurator)
+
+    # step 9: test with dash (ugly package name)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=os.path.join(base_path, "m-y.p-a.c-k.a-g-e"),
+    )
+    base.validate_packagename(configurator)
 
 
 def test_pre_username():

@@ -34,7 +34,7 @@ environment-vars =
 eggs =
     Plone
     Pillow
-    {{{ package.dottedname }}} [test]
+    {{{ package.distributionname }}} [test]
 
 [vscode]
 recipe = collective.recipe.vscode
@@ -111,5 +111,5 @@ scripts =
     plone-compile-resources
 
 [versions]
-# Don't use a released version of {{{ package.dottedname }}}
-{{{ package.dottedname }}} =
+# Don't use a released version of {{{ package.distributionname }}}
+{{{ package.distributionname }}} =

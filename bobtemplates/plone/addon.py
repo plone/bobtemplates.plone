@@ -12,30 +12,15 @@ def pre_render(configurator):
     # TODO: refacture this to use base_prepare_renderer, like all sub template do
     # get package-name from user-input
     package_dir = os.path.basename(configurator.target_directory)
-    nested = bool(len(package_dir.split(".")) == 3)
-    configurator.variables["package.nested"] = nested
-    configurator.variables["package.namespace"] = package_dir.split(".")[0]
-    if nested:
-        namespace2 = package_dir.split(".")[1]
-    else:
-        namespace2 = None
-    configurator.variables["package.namespace2"] = namespace2
-    configurator.variables["package.name"] = package_dir.split(".")[-1]
 
-    if nested:
-        dottedname = "{0}.{1}.{2}".format(
-            configurator.variables["package.namespace"],
-            configurator.variables["package.namespace2"],
-            configurator.variables["package.name"],
-        )
-    else:
-        dottedname = "{0}.{1}".format(
-            configurator.variables["package.namespace"],
-            configurator.variables["package.name"],
-        )
+    namespaces = package_dir.replace("-", "_").split(".")
 
-    # package.dottedname = 'collective.foo.something'
-    configurator.variables["package.dottedname"] = dottedname
+    configurator.variables["package.namespace"] = ".".join(namespaces[:-1])
+    configurator.variables["package.dottedname"] = ".".join(namespaces)
+    configurator.variables["package.name"] = namespaces[-1]
+
+    # DISTRIBUTION NAME
+    configurator.variables["package.distributionname"] = package_dir
 
     # package.uppercasename = 'COLLECTIVE_FOO_SOMETHING'
     configurator.variables["package.uppercasename"] = (
@@ -43,7 +28,11 @@ def pre_render(configurator):
     )
 
     camelcasename = (
-        dottedname.replace(".", " ").title().replace(" ", "").replace("_", "")
+        configurator.variables["package.dottedname"]
+        .replace(".", " ")
+        .title()
+        .replace(" ", "")
+        .replace("_", "")
     )
     browserlayer = "{0}Layer".format(camelcasename)
 
@@ -54,21 +43,19 @@ def pre_render(configurator):
     configurator.variables["package.longname"] = camelcasename.lower()
 
     # jenkins.directories = 'collective/foo/something'
-    configurator.variables["jenkins.directories"] = dottedname.replace(
+    configurator.variables["jenkins.directories"] = configurator.variables[
+        "package.distributionname"
+    ].replace(
         ".", "/"
     )  # NOQA: E501
 
-    # namespace_packages = "['collective', 'collective.foo']"
-    if nested:
-        namespace_packages = "'{0}', '{0}.{1}'".format(
-            configurator.variables["package.namespace"],
-            configurator.variables["package.namespace2"],
+    if namespaces:
+        configurator.variables["package.namespace_packages"] = ", ".join(
+            "'{0}'".format(".".join(namespaces[:idx]))
+            for idx in range(1, len(namespaces))
         )
     else:
-        namespace_packages = "'{0}'".format(
-            configurator.variables["package.namespace"],
-        )
-    configurator.variables["package.namespace_packages"] = namespace_packages
+        configurator.variables["package.namespace_packages"] = ""
 
 
 def _cleanup_package(configurator):
@@ -80,56 +67,42 @@ def _cleanup_package(configurator):
 
     """
 
-    nested = configurator.variables["package.nested"]
+    start_path = configurator.target_directory
 
-    # construct full path '.../src/collective'
-    start_path = make_path(
-        configurator.target_directory,
-        "src",
-        configurator.variables["package.namespace"],
-    )
-
-    # path for normal packages: '.../src/collective/myaddon'
-    base_path = make_path(
-        start_path,
-        configurator.variables["package.name"],
-    )
-
-    if nested:
+    if configurator.variables["package.namespace"]:
+        newpath = make_path(
+            start_path,
+            "src",
+            *configurator.variables["package.namespace"].split("."),
+        )
+        if not os.path.exists(newpath):
+            # create new directory .../src/collective/behavior
+            os.makedirs(newpath)
+        oldpath = make_path(
+            start_path,
+            "src",
+            configurator.variables["package.namespace"],
+        )
         # Event though the target-dir was 'collective.behavior.myaddon' mrbob
         # created a package collective.behavior.myaddon/src/collective/myaddon
         # since the template does not hava a folder for namespace2.
         # Here this package is turned into a nested package
         # collective.behavior.myaddon/src/collective/behavior/myaddon by
-        # inserting a folder with the namepsace2 ('behavior') and oopying
+        # inserting a folder with the namepsace2 ('behavior') and copying
         # a __init__.py into it.
-
-        # full path for nested packages: '.../src/collective/behavior/myaddon'
-        base_path_nested = make_path(
-            start_path,
-            configurator.variables["package.namespace2"],
-            configurator.variables["package.name"],
-        )
-
-        # directory to be created: .../src/collective/behavior
-        newpath = make_path(
-            start_path,
-            configurator.variables["package.namespace2"],
-        )
-        if not os.path.exists(newpath):
-            # create new directory .../src/collective/behavior
-            os.makedirs(newpath)
-
-        # copy .../src/collective/__init__.py to
-        # .../src/collective/myaddon/__init__.py
-        init = make_path(start_path, "__init__.py")
-        shutil.copy2(init, newpath)
-
-        # move .../src/collective/myaddon to .../src/collective/behavior
-        shutil.move(base_path, base_path_nested)
-
-        # use the new path for deleting
-        base_path = base_path_nested
+        if oldpath != newpath:
+            # move .../src/collective/myaddon to .../src/collective/behavior
+            if not os.path.exists(
+                make_path(newpath, configurator.variables["package.name"])
+            ):
+                shutil.move(
+                    make_path(oldpath, configurator.variables["package.name"]), newpath
+                )
+            init = make_path(oldpath, "__init__.py")
+            namespaces = configurator.variables["package.namespace"].split(".")
+            for idx in range(len(namespaces)):
+                shutil.copy(init, make_path(start_path, "src", *namespaces[: idx + 1]))
+            shutil.rmtree(oldpath)
 
 
 def pre_ask(configurator):

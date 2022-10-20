@@ -4,6 +4,9 @@ Changelog
 6.0b16 (unreleased)
 -------------------
 
+- Improve namespace support #520
+  [mamico]
+
 - Upgrade @patternslib/dev dependency for the `mockup_pattern` template.
   [thet]
 

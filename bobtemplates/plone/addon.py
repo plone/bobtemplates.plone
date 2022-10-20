@@ -29,10 +29,10 @@ def pre_render(configurator):
 
     camelcasename = (
         configurator.variables["package.dottedname"]
-            .replace(".", " ")
-            .title()
-            .replace(" ", "")
-            .replace("_", "")
+        .replace(".", " ")
+        .title()
+        .replace(" ", "")
+        .replace("_", "")
     )
     browserlayer = "{0}Layer".format(camelcasename)
 
@@ -99,7 +99,7 @@ def _cleanup_package(configurator):
             init = make_path(oldpath, "__init__.py")
             namespaces = configurator.variables["package.namespace"].split(".")
             for idx in range(len(namespaces)):
-                shutil.copy(init, make_path(start_path, "src", *namespaces[:idx + 1]))
+                shutil.copy(init, make_path(start_path, "src", *namespaces[: idx + 1]))
             shutil.rmtree(oldpath)
 
 

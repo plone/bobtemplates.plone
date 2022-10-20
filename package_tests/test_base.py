@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-import os
-
-import pytest
+from bobtemplates.plone import base
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
-from bobtemplates.plone import base
+import os
+import pytest
 
 
 def test_to_boolean():

@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
+from bobtemplates.plone.base import git_commit
+from bobtemplates.plone.base import git_init
+from bobtemplates.plone.base import make_path
+from bobtemplates.plone.utils import run_black
+from bobtemplates.plone.utils import run_isort
+
 import os
 import shutil
-
-from bobtemplates.plone.base import git_commit, git_init, make_path
-from bobtemplates.plone.utils import run_black, run_isort
 
 
 def pre_render(configurator):

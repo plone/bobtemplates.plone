@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-import os
-
-import pytest
+from .base import init_package_base_structure
+from bobtemplates.plone import base
+from bobtemplates.plone import mockup_pattern
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
-from bobtemplates.plone import base, mockup_pattern
-
-from .base import init_package_base_structure
+import os
+import pytest
 
 
 def test_pre_render(tmpdir):

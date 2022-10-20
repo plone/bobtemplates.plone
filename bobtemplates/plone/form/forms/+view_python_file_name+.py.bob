@@ -16,7 +16,7 @@ class I{{{ view_python_class_name }}}(Interface):
 
 
 class {{{ view_python_class_name }}}(AutoExtensibleForm, form.EditForm):
-    schema = IMyForm
+    schema = I{{{ view_python_class_name }}}
     ignoreContext = True
 
     label = u"What's your name?"
@@ -37,5 +37,5 @@ class {{{ view_python_class_name }}}(AutoExtensibleForm, form.EditForm):
 
     @button.buttonAndHandler(u"Cancel")
     def handleCancel(self, action):
-        """User cancelled. Redirect back to the front page.
+        """User canceled. Redirect back to the front page.
         """

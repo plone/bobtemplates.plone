@@ -6,8 +6,8 @@ from z3c.form import form
 from zope.interface import Interface
 
 
-class I{{{ view_python_class_name }}}(Interface):
-    """ Schema Interface for I{{{ view_python_class_name }}}
+class I{{{ form_python_class_name }}}(Interface):
+    """ Schema Interface for I{{{ form_python_class_name }}}
         Define your form fields here.
     """
     name = schema.TextLine(
@@ -15,8 +15,8 @@ class I{{{ view_python_class_name }}}(Interface):
     )
 
 
-class {{{ view_python_class_name }}}(AutoExtensibleForm, form.EditForm):
-    schema = I{{{ view_python_class_name }}}
+class {{{ form_python_class_name }}}(AutoExtensibleForm, form.EditForm):
+    schema = I{{{ form_python_class_name }}}
     ignoreContext = True
 
     label = u"What's your name?"

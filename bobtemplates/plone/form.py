@@ -19,29 +19,29 @@ import six
 # from mrbob.bobexceptions import SkipQuestion, ValidationError
 
 
-def get_view_name_from_python_class(configurator, question):
-    """Generate view default name from python class"""
-    view_class_name = configurator.variables["view_python_class_name"]
-    view_generated_name = cc.snakecase(view_class_name).replace("_", "-")  # NOQA: E501
-    question.default = view_generated_name
+def get_form_name_from_python_class(configurator, question):
+    """Generate form default name from python class"""
+    form_class_name = configurator.variables["form_python_class_name"]
+    form_generated_name = cc.snakecase(form_class_name).replace("_", "-")  # NOQA: E501
+    question.default = form_generated_name
 
 
-def get_view_configuration(configurator):
-    """return a dict with view configuration used for registration in zcml"""
+def get_form_configuration(configurator):
+    """return a dict with form configuration used for registration in zcml"""
     config = dict()
-    config["name"] = configurator.variables["view_name"]
+    config["name"] = configurator.variables["form_name"]
     # get Interface by content type or use the string it self as interface
     config["for"] = "{0}".format(
         CONTENT_TYPE_INTERFACES.get(
-            configurator.variables["view_register_for"],
-            configurator.variables["view_register_for"],
+            configurator.variables["form_register_for"],
+            configurator.variables["form_register_for"],
         )
     )
     config["class"] = ".{0}.{1}".format(
-        configurator.variables["view_python_file_name"],
-        configurator.variables["view_python_class_name"],
+        configurator.variables["form_python_file_name"],
+        configurator.variables["form_python_class_name"],
     )
-    # if configurator.variables["view_permission"]:
+    # if configurator.variables["form_permission"]:
     config["permission"] = "zope2.View"
     return config
 
@@ -59,21 +59,21 @@ def _update_forms_configure_zcml(configurator):
 
     match_str = "-*- extra stuff goes here -*-"
 
-    view_config = get_view_configuration(configurator)
+    form_config = get_form_configuration(configurator)
     insert_str = """
   <browser:page
     name="{0}"
     for="{1}"
 """.format(
-        view_config["name"],
-        view_config["for"],
+        form_config["name"],
+        form_config["for"],
     )
-    if "class" in view_config:
-        insert_str += '    class="{0}"\n'.format(view_config["class"])
-    # if "template" in view_config:
-    #     insert_str += '    template="{0}"\n'.format(view_config["template"])
-    if "permission" in view_config:
-        insert_str += '    permission="{0}"\n'.format(view_config["permission"])
+    if "class" in form_config:
+        insert_str += '    class="{0}"\n'.format(form_config["class"])
+    # if "template" in form_config:
+    #     insert_str += '    template="{0}"\n'.format(form_config["template"])
+    if "permission" in form_config:
+        insert_str += '    permission="{0}"\n'.format(form_config["permission"])
     insert_str += '    layer="{0}.interfaces.I{1}"\n'.format(
         configurator.variables["package.dottedname"],
         configurator.variables["package.browserlayer"],
@@ -84,14 +84,14 @@ def _update_forms_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_xpath = "./browser:page[@name='{0}']".format(
-            configurator.variables["view_name"],
+        form_xpath = "./browser:page[@name='{0}']".format(
+            configurator.variables["form_name"],
         )
-        if len(tree_root.xpath(view_xpath, namespaces=ZCML_NAMESPACES)):
+        if len(tree_root.xpath(form_xpath, namespaces=ZCML_NAMESPACES)):
             echo(
                 "{0} already in configure.zcml, do you really want to add this config?"
                 "\n\n{1}\n [y/N]: ".format(
-                    configurator.variables["view_name"],
+                    configurator.variables["form_name"],
                     insert_str,
                 ),
                 "info",
@@ -114,8 +114,8 @@ def _update_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_xpath = "{0}include[@package='.forms']".format(namespaces)
-        if len(tree_root.findall(view_xpath)):
+        form_xpath = "{0}include[@package='.forms']".format(namespaces)
+        if len(tree_root.findall(form_xpath)):
             print(
                 ".forms already in configure.zcml, skip adding!",
             )
@@ -142,19 +142,19 @@ def prepare_renderer(configurator):
     """Prepare rendering."""
     configurator = base_prepare_renderer(configurator)
     configurator.variables["template_id"] = "form"
-    view_name = configurator.variables["view_name"].strip("_")
-    normalized_view_name = cc.snakecase(view_name)
-    configurator.variables["view_name_normalized"] = normalized_view_name
-    python_class_name = configurator.variables["view_python_class_name"].strip("_")
-    configurator.variables["view_python_class_name"] = cc.pascalcase(  # NOQA: E501
+    form_name = configurator.variables["form_name"].strip("_")
+    normalized_form_name = cc.snakecase(form_name)
+    configurator.variables["form_name_normalized"] = normalized_form_name
+    python_class_name = configurator.variables["form_python_class_name"].strip("_")
+    configurator.variables["form_python_class_name"] = cc.pascalcase(  # NOQA: E501
         python_class_name,
     )
-    view_python_file_name = cc.snakecase(python_class_name)
-    configurator.variables["view_python_file_name"] = view_python_file_name
-    view_name_from_input = normalized_view_name.replace("_", "-")
-    view_name_from_python_class = view_python_file_name.replace("_", "-")
-    if view_name_from_input != view_name_from_python_class:
-        configurator.variables["view_name"] = view_name_from_input
+    form_python_file_name = cc.snakecase(python_class_name)
+    configurator.variables["form_python_file_name"] = form_python_file_name
+    form_name_from_input = normalized_form_name.replace("_", "-")
+    form_name_from_python_class = form_python_file_name.replace("_", "-")
+    if form_name_from_input != form_name_from_python_class:
+        configurator.variables["form_name"] = form_name_from_input
 
     configurator.target_directory = configurator.variables["package_folder"]
 
@@ -169,6 +169,6 @@ def post_renderer(configurator):
     git_commit(
         configurator,
         "Add form: {0}".format(
-            configurator.variables["view_name"],
+            configurator.variables["form_name"],
         ),
     )

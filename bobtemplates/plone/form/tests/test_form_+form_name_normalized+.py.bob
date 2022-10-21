@@ -20,18 +20,18 @@ class ViewsIntegrationTest(unittest.TestCase):
         api.content.create(self.portal, 'Folder', 'other-folder')
         api.content.create(self.portal, 'Document', 'front-page')
 
-    def test_{{{view_name_normalized}}}_is_registered(self):
+    def test_{{{form_name_normalized}}}_is_registered(self):
         view = getMultiAdapter(
             (self.portal['other-folder'], self.portal.REQUEST),
-            name='{{{ view_name }}}'
+            name='{{{ form_name }}}'
         )
-        self.assertTrue(view.__name__ == '{{{ view_name }}}')
+        self.assertTrue(view.__name__ == '{{{ form_name }}}')
 
-    def test_{{{view_name_normalized}}}_not_matching_interface(self):
+    def test_{{{form_name_normalized}}}_not_matching_interface(self):
         with self.assertRaises(ComponentLookupError):
             getMultiAdapter(
                 (self.portal['front-page'], self.portal.REQUEST),
-                name='{{{ view_name }}}'
+                name='{{{ form_name }}}'
             )
 
 

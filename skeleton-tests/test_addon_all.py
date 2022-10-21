@@ -129,7 +129,6 @@ behavior_name = Project
     template = """[variables]
 subtemplate_warning = Yes
 indexer_name = my_custom_test_indexer
-subtemplate_warning = Yes
 """
     generate_answers_ini(package_dir, template)
 
@@ -296,9 +295,9 @@ view_register_for=Folder
     # generate subtemplate form:
     template = """[variables]
 subtemplate_warning = Yes
-view_python_class_name=MyCoolForm
-view_name=my-cool-form
-view_register_for=Folder
+form_python_class_name=MyCoolForm
+form_name=my-cool-form
+form_register_for=Folder
 """
     generate_answers_ini(package_dir, template)
 
@@ -367,8 +366,8 @@ viewlet_template=False
 
     # generate subtemplate vocabulary:
     template = """[variables]
-vocabulary_name = AvailableTasks
 subtemplate_warning = Yes
+vocabulary_name = AvailableTasks
 """
     generate_answers_ini(package_dir, template)
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Test view generation."""
+"""Test form generation."""
 
 from .base import init_package_base_structure
 from bobtemplates.plone import base
@@ -11,15 +11,15 @@ from mrbob.configurator import Question
 import os
 
 
-def test_get_view_name():
-    question = Question(name="view_name", question="", default=None)
+def test_get_form_name():
+    question = Question(name="form_name", question="", default=None)
     configurator = Configurator(
         template="bobtemplates.plone:form",
         target_directory="collective.foo.bar",
         bobconfig={"non_interactive": True},
-        variables={"view_python_class_name": "FancyDemoForm"},
+        variables={"form_python_class_name": "FancyDemoForm"},
     )
-    form.get_view_name_from_python_class(configurator, question)
+    form.get_form_name_from_python_class(configurator, question)
     assert question.default == "fancy-demo-form"
 
 
@@ -48,9 +48,9 @@ def test_update_forms_configure_zcml(tmpdir):
         target_directory="collective.sample",
         bobconfig={"non_interactive": True},
         variables={
-            "view_python_class_name": "MyForm",
-            "view_register_for": "Folder",
-            "view_name": "py-form",
+            "form_python_class_name": "MyForm",
+            "form_register_for": "Folder",
+            "form_name": "py-form",
             "package_folder": package_path,
             "package.dottedname": "collective.sample",
             "package.browserlayer": "CollectiveSampleLayer",
@@ -122,36 +122,36 @@ def test_pre_renderer(tmpdir):
         target_directory=package_path,
         bobconfig={"non_interactive": True},
         variables={
-            "view_name": "my-new-view",
-            "view_python_class_name": "New_View",
-            "view_register_for": "plone.app.contenttypes.interfaces.IFolder",
+            "form_name": "my-new-form",
+            "form_python_class_name": "New_Form",
+            "form_register_for": "plone.app.contenttypes.interfaces.IFolder",
             "plone.version": "6.0",
         },
     )
     form.prepare_renderer(configurator)
 
-    assert configurator.variables["view_name"] == "my-new-view"
-    assert configurator.variables["view_python_class_name"] == "NewView"
-    assert configurator.variables["view_python_file_name"] == "new_view"
+    assert configurator.variables["form_name"] == "my-new-form"
+    assert configurator.variables["form_python_class_name"] == "NewForm"
+    assert configurator.variables["form_python_file_name"] == "new_form"
 
     configurator = Configurator(
         template="bobtemplates.plone:form",
         target_directory=package_path,
         bobconfig={"non_interactive": True},
         variables={
-            "view_name": "my-new-view",
-            "view_python_class_name": "MyNewView",
-            "view_register_for": "*",
+            "form_name": "my-new-form",
+            "form_python_class_name": "MyNewForm",
+            "form_register_for": "*",
             "plone.version": "5.1",
         },
     )
 
     form.prepare_renderer(configurator)
 
-    assert configurator.variables["view_name"] == "my-new-view"
+    assert configurator.variables["form_name"] == "my-new-form"
     assert (
-        configurator.variables["view_python_file_name"]
-        == configurator.variables["view_name_normalized"]
+        configurator.variables["form_python_file_name"]
+        == configurator.variables["form_name_normalized"]
     )
 
 
@@ -165,9 +165,9 @@ def test_post_renderer(tmpdir):
         target_directory=package_path,
         bobconfig={"non_interactive": True},
         variables={
-            "view_name": "my-new-view",
-            "view_python_class_name": "NewView",
-            "view_register_for": "*",
+            "form_name": "my-new-form",
+            "form_python_class_name": "NewForm",
+            "form_register_for": "*",
             "plone.version": "5.1",
         },
     )

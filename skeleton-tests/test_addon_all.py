@@ -47,6 +47,7 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
+subtemplate_warning = Yes
 dexterity_type_name=Tasks Container
 dexterity_type_base_class=Container
 dexterity_type_create_class=True
@@ -72,6 +73,7 @@ dexterity_type_supermodel=False
 
     # generate 2. subtemplate content_type with Item instead of Container:
     template = """[variables]
+subtemplate_warning = Yes
 dexterity_type_name=Task Item
 dexterity_type_desc=A task Task content type for Plone
 dexterity_type_supermodel=True
@@ -100,8 +102,8 @@ dexterity_type_activate_default_behaviors=False
 
     # generate subtemplate behavior:
     template = """[variables]
-behavior_name = Project
 subtemplate_warning = Yes
+behavior_name = Project
 """
     generate_answers_ini(package_dir, template)
 
@@ -125,6 +127,7 @@ subtemplate_warning = Yes
 
     # generate subtemplate indexer:
     template = """[variables]
+subtemplate_warning = Yes
 indexer_name = my_custom_test_indexer
 subtemplate_warning = Yes
 """
@@ -149,6 +152,7 @@ subtemplate_warning = Yes
 
     # generate subtemplate portlet:
     template = """[variables]
+subtemplate_warning = Yes
 portlet_name=My Weather
 """
     generate_answers_ini(package_dir, template)
@@ -168,6 +172,7 @@ portlet_name=My Weather
 
     # generate subtemplate portlet:
     template = """[variables]
+subtemplate_warning = Yes
 portlet_name=Another Weather Portlet
 """
     generate_answers_ini(package_dir, template)
@@ -189,6 +194,7 @@ portlet_name=Another Weather Portlet
 
     # generate subtemplate restapi_service:
     template = """[variables]
+subtemplate_warning = Yes
 service_class_name=RelatedImages
 service_name=related-images
 """
@@ -211,9 +217,9 @@ service_name=related-images
 
     # generate subtemplate svelte_app:
     template = """[variables]
+subtemplate_warning = Yes
 svelte_app_name = my-custom-svelte-element
 svelte_app_custom_element = Yes
-subtemplate_warning = Yes
 """
     generate_answers_ini(package_dir, template)
 
@@ -237,9 +243,9 @@ subtemplate_warning = Yes
 
     # generate subtemplate upgrade_step:
     template = """[variables]
+subtemplate_warning = Yes
 upgrade_step_title = reindex the thing
 upgrade_step_description = Upgrade the thing
-subtemplate_warning = Yes
 """
     generate_answers_ini(package_dir, template)
 
@@ -262,6 +268,7 @@ subtemplate_warning = Yes
 
     # generate subtemplate view:
     template = """[variables]
+subtemplate_warning = Yes
 view_python_class=True
 view_python_class_name=MyView
 view_name=my_view
@@ -288,6 +295,7 @@ view_register_for=Folder
 
     # generate subtemplate form:
     template = """[variables]
+subtemplate_warning = Yes
 view_python_class_name=MyCoolForm
 view_name=my-cool-form
 view_register_for=Folder

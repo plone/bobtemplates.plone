@@ -45,9 +45,10 @@ def test_update_forms_configure_zcml(tmpdir):
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:form",
-        target_directory="collective.sample",
+        target_directory=target_path,
         bobconfig={"non_interactive": True},
         variables={
+            "form_python_file_name": "py_form",
             "form_python_class_name": "MyForm",
             "form_register_for": "Folder",
             "form_name": "py-form",

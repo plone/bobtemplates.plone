@@ -40,7 +40,6 @@ Provided templates
 ------------------
 
 - addon
-- theme_package (Deprecated, use theme_barceloneta subtemplate)
 - buildout (useful setup a development buildout or to test new pending Plone versions)
 
 

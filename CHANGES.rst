@@ -1,8 +1,8 @@
 Changelog
 =========
 
-6.0b16 (unreleased)
--------------------
+6.0 (2022-10-24)
+----------------
 
 - Improve namespace support #520
   [mamico]

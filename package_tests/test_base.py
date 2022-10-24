@@ -30,6 +30,8 @@ def test_check_klass_name():
         hookit("2ndComing")
     with pytest.raises(ValidationError):
         hookit("*sterisk")
+    with pytest.raises(ValidationError):
+        hookit("da-sh")
     assert hookit("Supertype") == "Supertype"
     assert hookit("second_coming") == "second_coming"
 

@@ -31,6 +31,8 @@ def test_post_dexterity_type_name():
     #        hookit(u'Second Coming')
     with pytest.raises(ValidationError):
         hookit("*sterisk")
+    with pytest.raises(ValidationError):
+        hookit("da-sh")
     assert hookit("SuperType") == "SuperType"
     assert hookit("Super Type") == "Super Type"
     assert hookit("second_coming") == "second_coming"

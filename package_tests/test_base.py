@@ -23,8 +23,9 @@ def test_check_klass_name():
 
     with pytest.raises(ValidationError):
         hookit("import")
-    with pytest.raises(ValidationError):
-        hookit("süpertype")
+    # Python 3.0 introduces additional characters from outside the ASCII range (see PEP 3131).
+    # with pytest.raises(ValidationError):
+    #     hookit("süpertype")
     with pytest.raises(ValidationError):
         hookit("2ndComing")
     with pytest.raises(ValidationError):
@@ -331,6 +332,30 @@ def test_validate_packagename(tmpdir):
         target_directory=os.path.join(base_path, "m-y.p-a.c-k.a-g-e"),
     )
     base.validate_packagename(configurator)
+
+    # step 10: invalid identifier
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template="bobtemplates.plone:addon",
+            target_directory=os.path.join(base_path, "1collective.foo"),
+        )
+        base.validate_packagename(configurator)
+
+    # step 10b: invalid identifier
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template="bobtemplates.plone:addon",
+            target_directory=os.path.join(base_path, "collective.1foo"),
+        )
+        base.validate_packagename(configurator)
+
+    # step 10c: invalid identifier
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template="bobtemplates.plone:addon",
+            target_directory=os.path.join(base_path, "collective.def"),
+        )
+        base.validate_packagename(configurator)
 
 
 def test_pre_username():

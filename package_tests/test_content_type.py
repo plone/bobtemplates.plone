@@ -20,8 +20,9 @@ def test_post_dexterity_type_name():
 
     with pytest.raises(ValidationError):
         hookit("import")
-    with pytest.raises(ValidationError):
-        hookit("süpertype")
+    # Python 3.0 introduces additional characters from outside the ASCII range (see PEP 3131).
+    # with pytest.raises(ValidationError):
+    #     hookit("süpertype")
     #    with pytest.raises(ValidationError):
     #        hookit(u'Staff Member')
     with pytest.raises(ValidationError):

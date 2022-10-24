@@ -2,14 +2,13 @@
 
 """Test view generation."""
 
-import os
-
-import pytest
+# from bobtemplates.plone import base
+from bobtemplates.plone import subscriber
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
-# from bobtemplates.plone import base
-from bobtemplates.plone import subscriber
+import os
+import pytest
 
 
 def test_update_subscribers_configure_zcml(tmpdir):

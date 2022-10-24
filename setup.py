@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import find_packages, setup
+from setuptools import find_packages
+from setuptools import setup
+
 
 version = "6.1.dev0"
 
@@ -84,6 +86,7 @@ setup(
             "plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet",
             "plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary",
             "plone_controlpanel = bobtemplates.plone.bobregistry:plone_controlpanel",
+            "plone_form = bobtemplates.plone.bobregistry:plone_form",
         ]
     },
 )

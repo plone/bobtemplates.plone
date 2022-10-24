@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import os
-
+from bobtemplates.plone import base
+from bobtemplates.plone import restapi_service
 from mrbob.configurator import Configurator
 
-from bobtemplates.plone import base, restapi_service
+import os
 
 
 def test_pre_renderer(tmpdir):

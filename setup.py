@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import find_packages, setup
+from setuptools import find_packages
+from setuptools import setup
 
-version = "6.0b14.dev0"
+
+version = "6.2.dev0"
 
 
 long_description = "\n\n".join(
@@ -85,6 +87,7 @@ setup(
             "plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet",
             "plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary",
             "plone_controlpanel = bobtemplates.plone.bobregistry:plone_controlpanel",
+            "plone_form = bobtemplates.plone.bobregistry:plone_form",
         ]
     },
 )

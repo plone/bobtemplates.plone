@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
+from base import file_exists
+from base import generate_answers_ini
+from base import run_skeleton_tox_env
+
 import glob
 import os.path
 import subprocess
 
-from base import file_exists, generate_answers_ini, run_skeleton_tox_env
 
 base_files = [
     ".editorconfig",
@@ -70,6 +73,7 @@ plone.version = {version}
     )
 
     with capsys.disabled():
+        import pdb; pdb.set_trace()
         returncode = run_skeleton_tox_env(wd, config)
         assert (
             returncode == 0

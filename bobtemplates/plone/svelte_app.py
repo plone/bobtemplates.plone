@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 
-import re
-
-import case_conversion as cc
+from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import echo
+from bobtemplates.plone.base import git_commit
+from bobtemplates.plone.base import update_file
+from bobtemplates.plone.utils import run_black
+from bobtemplates.plone.utils import run_isort
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
-from bobtemplates.plone.base import base_prepare_renderer, echo, git_commit, update_file
-from bobtemplates.plone.utils import run_black, run_isort
+import case_conversion as cc
+import re
 
 
 def check_name(configurator, question, answer):

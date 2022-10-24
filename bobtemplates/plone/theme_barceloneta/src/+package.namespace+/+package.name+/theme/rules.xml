@@ -9,6 +9,7 @@
 
   <theme href="index.html" />
   <notheme css:if-not-content="#visual-portal-wrapper" />
+  <notheme css:if-content=".template-manage-viewlets" />
 
   <rules css:if-content="#portal-top">
     <!-- Attributes -->
@@ -16,12 +17,11 @@
     <!-- Base tag -->
     <before css:theme="title" css:content="base" />
     <!-- Title -->
-    <replace css:theme="title" css:content="title" />
+    <replace css:theme="head title" css:content="head title" />
     <!-- Pull in Plone Meta -->
     <after css:theme-children="head" css:content="head meta" />
     <!-- Don't use Plone icons, use the theme's -->
     <drop css:content="head link[rel='apple-touch-icon']" />
-    <drop css:content="head link[rel='shortcut icon']" />
     <!-- CSS -->
     <after css:theme-children="head" css:content="head link" />
     <after css:theme-children="head" css:content="head style" />
@@ -31,12 +31,21 @@
 
   <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
   <copy attributes="*" css:content="body" css:theme="body" />
+  <merge attributes="class" css:content="body" css:theme="body" />
 
-  <!-- move global nav -->
-  <replace css:theme-children="#mainnavigation" css:content-children="#portal-mainnavigation" method="raw" />
+  <!-- move global nav and livesearch -->
+  <replace css:theme-children="#portal-globalnav" css:content-children="#portal-globalnav" />
+  <!-- set aria-label for toggler button -->
+  <copy attributes="aria-label" css:theme=".navbar-toggler" css:content=".navbar-toggler" />
+  <!-- move searchbox into place -->
+  <replace css:theme="#portal-searchbox" css:content="#portal-searchbox" mode="raw" />
+  <drop css:content="#portal-header #portal-searchbox" />
 
   <!-- Content header -->
-  <replace css:theme="#portal-top" css:content-children="#portal-top" />
+  <replace css:theme="#portal-logo" css:content="#portal-logo" mode="raw" />
+   <drop css:content="#portal-logo"  />
+
+  <replace css:theme-children="#portal-top" css:content-children="#portal-header" />
 
   <!-- full-width breadcrumb -->
   <replace css:theme="#above-content" css:content="#viewlet-above-content" />
@@ -55,11 +64,12 @@
   <after css:theme-children="#portal-column-two" css:content-children="#portal-column-two"></after>
   <drop css:theme="#portal-column-two" css:if-not-content="#portal-column-two" />
 
+  <!-- manage-portlets Footer portlets -->
+  <after css:theme-children="#portal-footer-wrapper" css:content-children="#portal-footer-wrapper" css:if-content="#portal-footer-wrapper #portletmanager-plone-footerportlets"></after>
 
   <!-- Footer -->
   <xsl:variable name="footer_portlets" select="//footer[@id='portal-footer-wrapper']//div[@class='portletWrapper']/*[not(contains(@id,'portal-colophon')) and not(contains(@id,'portal-footer-signature')) and not(contains(@class,'portletActions'))]"></xsl:variable>
   <xsl:variable name="footer_portlets_count" select="count($footer_portlets)"></xsl:variable>
-
 
   <!-- Replace footer information with Plone version. -->
   <replace
@@ -98,7 +108,7 @@
             <xsl:when css:test=".card">
               <xsl:choose>
                 <xsl:when css:test=".card-header:not(.titleless)">
-                  <div class="headline"><h2><xsl:value-of css:select=".card-header" /></h2></div>
+                  <div class="headline"><h2><xsl:apply-templates select="./node()[@class='card-header']/node()" /></h2></div>
                 </xsl:when>
               </xsl:choose>
               <xsl:choose>
@@ -138,6 +148,6 @@
   <!-- toolbar -->
   <replace css:theme="#portal-toolbar" css:content="#edit-bar" css:if-not-content=".ajax_load" css:if-content=".userrole-authenticated" />
   <drop css:theme="#portal-toolbar" css:if-content=".userrole-anonymous" />
-  <replace css:theme="#anonymous-actions" css:content-children="#portal-personaltools-wrapper" css:if-not-content=".ajax_load" css:if-content=".userrole-anonymous" />
+  <!-- <replace css:theme="#anonymous-actions" css:content-children="#portal-personaltools-wrapper" css:if-not-content=".ajax_load" css:if-content=".userrole-anonymous" /> -->
 
 </rules>

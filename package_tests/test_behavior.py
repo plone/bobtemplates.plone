@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import os
-
+from bobtemplates.plone import base
+from bobtemplates.plone import behavior
 from mrbob.configurator import Configurator
 
-from bobtemplates.plone import base, behavior
+import os
 
 
 def test_prepare_renderer():

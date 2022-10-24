@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from base import file_exists
+from base import generate_answers_ini
+from base import run_skeleton_tox_env
+
 import os.path
 import subprocess
-
-from base import file_exists, generate_answers_ini, run_skeleton_tox_env
 
 
 def test_addon_all(tmpdir, capsys, config):
@@ -45,6 +47,7 @@ plone.version = {version}
 
     # generate subtemplate content_type:
     template = """[variables]
+subtemplate_warning = Yes
 dexterity_type_name=Tasks Container
 dexterity_type_base_class=Container
 dexterity_type_create_class=True
@@ -70,6 +73,7 @@ dexterity_type_supermodel=False
 
     # generate 2. subtemplate content_type with Item instead of Container:
     template = """[variables]
+subtemplate_warning = Yes
 dexterity_type_name=Task Item
 dexterity_type_desc=A task Task content type for Plone
 dexterity_type_supermodel=True
@@ -98,8 +102,8 @@ dexterity_type_activate_default_behaviors=False
 
     # generate subtemplate behavior:
     template = """[variables]
-behavior_name = Project
 subtemplate_warning = Yes
+behavior_name = Project
 """
     generate_answers_ini(package_dir, template)
 
@@ -123,8 +127,8 @@ subtemplate_warning = Yes
 
     # generate subtemplate indexer:
     template = """[variables]
-indexer_name = my_custom_test_indexer
 subtemplate_warning = Yes
+indexer_name = my_custom_test_indexer
 """
     generate_answers_ini(package_dir, template)
 
@@ -147,6 +151,7 @@ subtemplate_warning = Yes
 
     # generate subtemplate portlet:
     template = """[variables]
+subtemplate_warning = Yes
 portlet_name=My Weather
 """
     generate_answers_ini(package_dir, template)
@@ -166,6 +171,7 @@ portlet_name=My Weather
 
     # generate subtemplate portlet:
     template = """[variables]
+subtemplate_warning = Yes
 portlet_name=Another Weather Portlet
 """
     generate_answers_ini(package_dir, template)
@@ -187,6 +193,7 @@ portlet_name=Another Weather Portlet
 
     # generate subtemplate restapi_service:
     template = """[variables]
+subtemplate_warning = Yes
 service_class_name=RelatedImages
 service_name=related-images
 """
@@ -209,9 +216,9 @@ service_name=related-images
 
     # generate subtemplate svelte_app:
     template = """[variables]
+subtemplate_warning = Yes
 svelte_app_name = my-custom-svelte-element
 svelte_app_custom_element = Yes
-subtemplate_warning = Yes
 """
     generate_answers_ini(package_dir, template)
 
@@ -235,9 +242,9 @@ subtemplate_warning = Yes
 
     # generate subtemplate upgrade_step:
     template = """[variables]
+subtemplate_warning = Yes
 upgrade_step_title = reindex the thing
 upgrade_step_description = Upgrade the thing
-subtemplate_warning = Yes
 """
     generate_answers_ini(package_dir, template)
 
@@ -260,11 +267,13 @@ subtemplate_warning = Yes
 
     # generate subtemplate view:
     template = """[variables]
+subtemplate_warning = Yes
 view_python_class=True
 view_python_class_name=MyView
 view_name=my_view
 view_template=True
 view_template_name=pt_view
+view_register_for=Folder
 """
     generate_answers_ini(package_dir, template)
 
@@ -281,7 +290,31 @@ view_template_name=pt_view
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/configure.zcml")
+    assert file_exists(wd, "/src/collective/task/views/configure.zcml")
+
+    # generate subtemplate form:
+    template = """[variables]
+subtemplate_warning = Yes
+form_python_class_name=MyCoolForm
+form_name=my-cool-form
+form_register_for=Folder
+"""
+    generate_answers_ini(package_dir, template)
+
+    config.template = "form"
+    result = subprocess.call(
+        [
+            "mrbob",
+            "bobtemplates.plone:" + config.template,
+            "--config",
+            answers_init_path,
+            "--non-interactive",
+        ],
+        cwd=wd,
+    )
+    assert result == 0
+
+    assert file_exists(wd, "/src/collective/task/forms/configure.zcml")
 
     # generate subtemplate viewlet:
     template = """[variables]
@@ -305,6 +338,7 @@ viewlet_template_name=pt_viewlet
         cwd=wd,
     )
     assert result == 0
+    assert file_exists(wd, "/src/collective/task/viewlets/configure.zcml")
 
     # generate subtemplate viewlet:
     template = """[variables]
@@ -328,12 +362,12 @@ viewlet_template=False
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/configure.zcml")
+    assert file_exists(wd, "/src/collective/task/viewlets/configure.zcml")
 
     # generate subtemplate vocabulary:
     template = """[variables]
-vocabulary_name = AvailableTasks
 subtemplate_warning = Yes
+vocabulary_name = AvailableTasks
 """
     generate_answers_ini(package_dir, template)
 

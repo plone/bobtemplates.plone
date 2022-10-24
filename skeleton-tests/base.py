@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
 # from bobtemplates.plone.utils import safe_encode
+from bobtemplates.plone.utils import safe_unicode
+
 import contextlib
 import logging
 import os
 import subprocess
 
-from bobtemplates.plone.utils import safe_unicode
 
 logger = logging.getLogger("skeleton-tests")
 

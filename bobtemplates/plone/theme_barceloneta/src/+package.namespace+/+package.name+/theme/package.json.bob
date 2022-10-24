@@ -4,14 +4,15 @@
   "version": "1.0.0",
   "license": "MIT",
   "devDependencies": {
-    "autoprefixer": "^10.3.7",
-    "clean-css-cli": "^5.4.0",
-    "nodemon": "^2.0.14",
+    "autoprefixer": "^10.4.8",
+    "clean-css-cli": "^5.6.1",
+    "nodemon": "^2.0.19",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.3.11",
+    "postcss": "^8.4.16",
     "postcss-cli": "^9.0.1",
-    "sass": "^1.43.3",
-    "stylelint-config-twbs-bootstrap": "^2.2.4"
+    "sass": "^1.54.7",
+    "stylelint-config-twbs-bootstrap": "^5.0.0",
+    "tinymce": "^5.10.2"
   },
   "scripts": {
     "watch": "nodemon --watch styles/ --ext scss --exec \"npm run css-main\"",
@@ -23,6 +24,6 @@
     "css-lint": "stylelint \"styles/**/*.scss\" --cache --cache-location .cache/.stylelintcache"
   },
   "dependencies": {
-    "@plone/plonetheme-barceloneta-base": "^3.0.0-alpha.7"
+    "@plone/plonetheme-barceloneta-base": "^3.0.0b6"
   }
 }

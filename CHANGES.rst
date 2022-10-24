@@ -4,7 +4,8 @@ Changelog
 6.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add sub-template form, to generate z3c.form based forms
+  [MrTango]
 
 
 6.0 (2022-10-24)
@@ -15,9 +16,6 @@ Changelog
 
 - Upgrade @patternslib/dev dependency for the `mockup_pattern` template.
   [thet]
-
-- Add sub-template form, to generate z3c.form based forms
-  [MrTango]
 
 
 6.0b15 (2022-10-08)

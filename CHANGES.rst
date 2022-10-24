@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.1 (unreleased)
+6.1 (2022-10-24)
 ----------------
 
 - Add sub-template form, to generate z3c.form based forms

@@ -73,7 +73,6 @@ plone.version = {version}
     )
 
     with capsys.disabled():
-        import pdb; pdb.set_trace()
         returncode = run_skeleton_tox_env(wd, config)
         assert (
             returncode == 0

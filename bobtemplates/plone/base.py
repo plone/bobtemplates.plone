@@ -14,7 +14,6 @@ import case_conversion as cc
 import codecs
 import keyword
 import os
-import re
 import six
 import string
 import subprocess
@@ -185,7 +184,7 @@ def check_klass_name(configurator, question, answer):
         raise ValidationError(
             "{key} is a reserved Python keyword".format(key=answer)
         )  # NOQA: E501
-    if not re.match("[a-zA-Z_][a-zA-Z0-9_]*$", answer):
+    if not answer.isidentifier():
         raise ValidationError(
             "{key} is not a valid class identifier".format(key=answer)
         )  # NOQA: E501
@@ -197,7 +196,7 @@ def check_method_name(configurator, question, answer):
         raise ValidationError(
             "{key} is a reserved Python keyword".format(key=answer)
         )  # NOQA: E501
-    if not re.match("[a-zA-Z_][a-zA-Z0-9_]*$", answer):
+    if not answer.isidentifier():
         raise ValidationError(
             "{key} is not a valid method identifier".format(key=answer)
         )  # NOQA: E501
@@ -273,6 +272,10 @@ def validate_packagename(configurator):
 
     if package_dir.startswith(".") or package_dir.endswith("."):
         fail = True
+
+    for namespace in package_dir.replace("-", "_").split("."):
+        if keyword.iskeyword(namespace) or not namespace.isidentifier():
+            fail = True
 
     if fail:
         msg = (

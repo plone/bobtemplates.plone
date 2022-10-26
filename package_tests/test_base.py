@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-import os
-
-import pytest
+from bobtemplates.plone import base
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
-from bobtemplates.plone import base
+import os
+import pytest
 
 
 def test_to_boolean():
@@ -24,12 +23,15 @@ def test_check_klass_name():
 
     with pytest.raises(ValidationError):
         hookit("import")
-    with pytest.raises(ValidationError):
-        hookit("süpertype")
+    # Python 3.0 introduces additional characters from outside the ASCII range (see PEP 3131).
+    # with pytest.raises(ValidationError):
+    #     hookit("süpertype")
     with pytest.raises(ValidationError):
         hookit("2ndComing")
     with pytest.raises(ValidationError):
         hookit("*sterisk")
+    with pytest.raises(ValidationError):
+        hookit("da-sh")
     assert hookit("Supertype") == "Supertype"
     assert hookit("second_coming") == "second_coming"
 
@@ -289,20 +291,18 @@ def test_validate_packagename(tmpdir):
     base.validate_packagename(configurator)
 
     # step 4: test without namespace (level 1)
-    with pytest.raises(SystemExit):
-        configurator = Configurator(
-            template="bobtemplates.plone:addon",
-            target_directory=os.path.join(base_path, "foo"),
-        )
-        base.validate_packagename(configurator)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=os.path.join(base_path, "foo"),
+    )
+    base.validate_packagename(configurator)
 
     # step 5: test deep nested namespace (level 4)
-    with pytest.raises(SystemExit):
-        configurator = Configurator(
-            template="bobtemplates.plone:addon",
-            target_directory=os.path.join(base_path, "collective.foo.bar.spam"),
-        )
-        base.validate_packagename(configurator)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=os.path.join(base_path, "collective.foo.bar.spam"),
+    )
+    base.validate_packagename(configurator)
 
     # step 6: test leading dot
     with pytest.raises(SystemExit):
@@ -325,6 +325,37 @@ def test_validate_packagename(tmpdir):
         configurator = Configurator(
             template="bobtemplates.plone:addon",
             target_directory=os.path.join(base_path, "collective.$SPAM"),
+        )
+        base.validate_packagename(configurator)
+
+    # step 9: test with dash (ugly package name)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=os.path.join(base_path, "m-y.p-a.c-k.a-g-e"),
+    )
+    base.validate_packagename(configurator)
+
+    # step 10: invalid identifier
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template="bobtemplates.plone:addon",
+            target_directory=os.path.join(base_path, "1collective.foo"),
+        )
+        base.validate_packagename(configurator)
+
+    # step 10b: invalid identifier
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template="bobtemplates.plone:addon",
+            target_directory=os.path.join(base_path, "collective.1foo"),
+        )
+        base.validate_packagename(configurator)
+
+    # step 10c: invalid identifier
+    with pytest.raises(SystemExit):
+        configurator = Configurator(
+            template="bobtemplates.plone:addon",
+            target_directory=os.path.join(base_path, "collective.def"),
         )
         base.validate_packagename(configurator)
 

@@ -19,3 +19,4 @@ This package was originally based on `bobtemplates.niteoweb <https://github.com/
 - Víctor Fernández de Alba [sneridagh]
 - Alexander Loechel [loechel]
 - Peter Holzer [agitator]
+- Manuel Reinhardt [reinhardt]

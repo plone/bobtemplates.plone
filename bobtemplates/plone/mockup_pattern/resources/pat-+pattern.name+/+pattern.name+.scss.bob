@@ -1,0 +1,6 @@
+.pat-{{{ pattern.name }}} {
+    // add styles here
+    border: 1px solid green;
+    margin: 1em;
+    padding: 1em;
+}

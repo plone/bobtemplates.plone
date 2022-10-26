@@ -46,3 +46,5 @@ Vagrantfile
 /venv
 /collective.bob6test*
 /collective.bobtest*
+lib64
+pyvenv.cfg

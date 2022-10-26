@@ -1,12 +1,64 @@
 Changelog
 =========
 
-6.0b13 (unreleased)
+6.2 (unreleased)
+----------------
+
+- Improve namespace support #419
+  [mamico]
+
+
+6.1 (2022-10-24)
+----------------
+
+- Add sub-template form, to generate z3c.form based forms
+  [MrTango]
+
+
+6.0 (2022-10-24)
+----------------
+
+- Improve namespace support #520
+  [mamico]
+
+- Upgrade @patternslib/dev dependency for the `mockup_pattern` template.
+  [thet]
+
+
+6.0b15 (2022-10-08)
+-------------------
+
+- Remove stale templates from theme_basic
+  [santonelli]
+
+- Switch to class based Patterns in mockup_pattern template
+  [thet]
+
+- Improve theme template README and theme.scss
+  [MrTango]
+
+
+6.0b14 (2022-10-07)
+-------------------
+
+- Update theme_barceloneta to use plonetheme-barceloneta-base 3.0.0b6 and use SCSS example import structure from Bootstrap documentation.
+  [agitator]
+
+- Added mockup pattern template.
+  [reinhardt, thet]
+
+- update theme package versions and improve readme
+  [MrTango]
+
+
+6.0b13 (2022-08-06)
 -------------------
 
 - Remove install of unnecessary system libraries on Github Actions.
   [wesleybl]
 
+- Fix import of ComponentLookupError in tests
+  [MrTango]
 - Add support for Python 3.10
   [pbauer]
 

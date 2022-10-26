@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Installer for the {{{ package.dottedname }}} package."""
+"""Installer for the {{{ package.distributionname }}} package."""
 
 from setuptools import find_packages
 from setuptools import setup
@@ -13,7 +13,7 @@ long_description = '\n\n'.join([
 
 
 setup(
-    name='{{{ package.dottedname }}}',
+    name='{{{ package.distributionname }}}',
     version='1.0a1',
     description="{{{ package.description }}}",
     long_description=long_description,
@@ -34,12 +34,12 @@ setup(
     keywords='Python Plone CMS',
     author='{{{ author.name }}}',
     author_email='{{{ author.email }}}',
-    url='https://github.com/collective/{{{ package.dottedname }}}',
+    url='https://github.com/collective/{{{ package.distributionname }}}',
     project_urls={
-        'PyPI': 'https://pypi.python.org/pypi/{{{ package.dottedname }}}',
-        'Source': 'https://github.com/collective/{{{ package.dottedname }}}',
-        'Tracker': 'https://github.com/collective/{{{ package.dottedname }}}/issues',
-        # 'Documentation': 'https://{{{ package.dottedname }}}.readthedocs.io/en/latest/',
+        'PyPI': 'https://pypi.python.org/pypi/{{{ package.distributionname }}}',
+        'Source': 'https://github.com/collective/{{{ package.distributionname }}}',
+        'Tracker': 'https://github.com/collective/{{{ package.distributionname }}}/issues',
+        # 'Documentation': 'https://{{{ package.distributionname }}}.readthedocs.io/en/latest/',
     },
     license='GPL version 2',
     packages=find_packages('src', exclude=['ez_setup']),

@@ -13,13 +13,11 @@ def init_package_base_structure(package_root):
     package_namespace_path = "/".join(namespace_parts)
     package_path = os.path.join(package_root, "src/" + package_namespace_path)
     profiles_path = os.path.join(package_path, "profiles/default")
-    views_path = os.path.join(package_path, "views")
     svelte_apps_path = os.path.join(package_path, "svelte_apps")
     theme_path = os.path.join(package_path, "theme")
     os.makedirs(package_root)
     os.makedirs(package_path)
     os.makedirs(profiles_path)
-    os.makedirs(views_path)
     os.makedirs(svelte_apps_path)
     os.makedirs(theme_path)
     template = """
@@ -51,7 +49,7 @@ version=5.1
   -->
   <!--<includeDependencies package="." />-->
 
-  <include package=".views" />
+  <!-- -*- extra stuff goes here -*- -->
 
 </configure>
 """

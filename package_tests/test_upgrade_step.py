@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import os
-
+from .base import init_package_base_structure
+from bobtemplates.plone import base
+from bobtemplates.plone import upgrade_step
 from mrbob.configurator import Configurator
 
-from bobtemplates.plone import base, upgrade_step
-
-from .base import init_package_base_structure
+import os
 
 
 def test_pre_renderer(tmpdir):

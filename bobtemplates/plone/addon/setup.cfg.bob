@@ -7,7 +7,7 @@ ignore =
 
 [isort]
 # black compatible isort rules:
-profile = black
+profile = plone
 
 [flake8]
 # black compatible flake8 rules:
@@ -17,6 +17,7 @@ ignore =
     E501
     T001
     C813
+    C101
 # E203, E266
 exclude = bootstrap.py,docs,*.egg.,omelette
 max-line-length = 88

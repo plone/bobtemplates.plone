@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>test demo</title>
+    <script src="/{{{ package.name }}}.min.js"></script>
+  </head>
+  <body>{{{ original_body }}}
+    <div class="pat-{{{ pattern.name }}}"></div>
+  </body>
+</html>

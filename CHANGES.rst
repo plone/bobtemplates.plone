@@ -7,6 +7,9 @@ Changelog
 - Improve namespace support #419
   [mamico]
 
+- Add support for Python 3.10 / drop Python 3.7 in CI
+  [pbauer]
+
 
 6.1 (2022-10-24)
 ----------------
@@ -59,8 +62,6 @@ Changelog
 
 - Fix import of ComponentLookupError in tests
   [MrTango]
-- Add support for Python 3.10
-  [pbauer]
 
 
 6.0b12 (2022-05-03)

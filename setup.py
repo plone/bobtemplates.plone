@@ -56,7 +56,7 @@ setup(
     python_requires=">=3.7",
     install_requires=[
         "setuptools",
-        "mr.bob @ git+https://github.com/collective/mr.bob@python310",
+        "mr.bob",
         "lxml",
         "case-conversion",
         "colorama",

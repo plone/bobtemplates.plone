@@ -4,7 +4,8 @@ Changelog
 6.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Improve namespace support #419
+  [mamico]
 
 
 6.1 (2022-10-24)

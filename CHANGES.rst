@@ -7,6 +7,9 @@ Changelog
 - Improve namespace support #419
   [mamico]
 
+- Add support for Python 3.10 / drop Python 3.7 in CI
+  [pbauer]
+
 - use cmf.ManagePortal permission by default in forms
   [MrTango]
 

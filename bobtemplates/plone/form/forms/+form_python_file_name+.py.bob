@@ -31,9 +31,11 @@ class {{{ form_python_class_name }}}(AutoExtensibleForm, form.EditForm):
 
         # Do something with valid data here
 
+        changes = self.applyChanges(data)
         # Set status on this form page
         # (this status message is not bind to the session and does not go thru redirects)
-        self.status = "Thank you very much {}!".format(data.get('name', ''))
+        if changes:
+            self.status = "Settings saved"
 
     @button.buttonAndHandler(u"Cancel")
     def handleCancel(self, action):

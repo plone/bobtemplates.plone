@@ -71,7 +71,7 @@ def test_update_forms_configure_zcml(tmpdir):
     name="py-form"
     for="plone.app.contenttypes.interfaces.IFolder"
     class=".py_form.MyForm"
-    permission="zope2.View"
+    permission="cmf.ManagePortal"
     layer="collective.sample.interfaces.ICollectiveSampleLayer"
     />
 

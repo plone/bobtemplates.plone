@@ -7,6 +7,12 @@ Changelog
 - Improve namespace support #419
   [mamico]
 
+- use cmf.ManagePortal permission by default in forms
+  [MrTango]
+
+- run applyChanges in forms by default
+  [MrTango]
+
 
 6.1 (2022-10-24)
 ----------------

@@ -42,7 +42,7 @@ def get_form_configuration(configurator):
         configurator.variables["form_python_class_name"],
     )
     # if configurator.variables["form_permission"]:
-    config["permission"] = "zope2.View"
+    config["permission"] = "cmf.ManagePortal"
     return config
 
 

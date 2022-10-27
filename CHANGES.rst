@@ -10,6 +10,12 @@ Changelog
 - Add support for Python 3.10 / drop Python 3.7 in CI
   [pbauer]
 
+- use cmf.ManagePortal permission by default in forms
+  [MrTango]
+
+- run applyChanges in forms by default
+  [MrTango]
+
 
 6.1 (2022-10-24)
 ----------------

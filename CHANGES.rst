@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2 (unreleased)
+6.2 (2022-10-28)
 ----------------
 
 - Improve namespace support #419

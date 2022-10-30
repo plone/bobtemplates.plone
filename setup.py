@@ -76,13 +76,16 @@ setup(
             "plone_buildout = bobtemplates.plone.bobregistry:plone_buildout",
             "plone_content_type = bobtemplates.plone.bobregistry:plone_content_type",
             "plone_indexer = bobtemplates.plone.bobregistry:plone_indexer",
-            "plone_mockup_pattern = bobtemplates.plone.bobregistry:plone_mockup_pattern",
+            "plone_mockup_pattern ="
+            " bobtemplates.plone.bobregistry:plone_mockup_pattern",
             "plone_portlet = bobtemplates.plone.bobregistry:plone_portlet",
-            "plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service",  # NOQA E501
+            "plone_restapi_service ="
+            " bobtemplates.plone.bobregistry:plone_restapi_service",  # NOQA E501
             "plone_svelte_app = bobtemplates.plone.bobregistry:plone_svelte_app",
             "plone_subscriber = bobtemplates.plone.bobregistry:plone_subscriber",
             "plone_theme = bobtemplates.plone.bobregistry:plone_theme",
-            "plone_theme_barceloneta = bobtemplates.plone.bobregistry:plone_theme_barceloneta",  # NOQA E501
+            "plone_theme_barceloneta ="
+            " bobtemplates.plone.bobregistry:plone_theme_barceloneta",  # NOQA E501
             "plone_theme_basic = bobtemplates.plone.bobregistry:plone_theme_basic",  # NOQA E501
             "plone_upgrade_step = bobtemplates.plone.bobregistry:plone_upgrade_step",
             "plone_view = bobtemplates.plone.bobregistry:plone_view",
@@ -90,6 +93,7 @@ setup(
             "plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary",
             "plone_controlpanel = bobtemplates.plone.bobregistry:plone_controlpanel",
             "plone_form = bobtemplates.plone.bobregistry:plone_form",
+            "plone_starter = bobtemplates.plone.bobregistry:plone_starter",
         ]
     },
 )

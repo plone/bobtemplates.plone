@@ -4,6 +4,9 @@ Changelog
 6.2 (unreleased)
 ----------------
 
+- Add a starter subtemplate to initialize a Plone site with some sane default values
+  [erral]
+
 - Improve namespace support #419
   [mamico]
 

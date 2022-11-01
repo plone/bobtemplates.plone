@@ -1,7 +1,13 @@
 Changelog
 =========
 
-6.2 (unreleased)
+6.3 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
+6.2 (2022-10-28)
 ----------------
 
 - Add a starter subtemplate to initialize a Plone site with some sane default values

@@ -434,7 +434,7 @@ def base_prepare_renderer(configurator):
         raise MrBobError("No setup.py found in path!\n")
     configurator.variables["package.dottedname"] = configurator.variables[
         "package.root_folder"
-    ].split("/")[-1]
+    ].split(os.path.sep)[-1]
     configurator.variables["package.namespace"] = configurator.variables[
         "package.dottedname"
     ].split(".")[0]

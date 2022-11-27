@@ -163,6 +163,6 @@ def plone_form():
 def plone_starter():
     reg = RegEntry()
     reg.template = "bobtemplates.plone:starter"
-    reg.plonecli_alias = "starter"
+    reg.plonecli_alias = "plone_site_initialization"
     reg.depend_on = "plone_addon"
     return reg

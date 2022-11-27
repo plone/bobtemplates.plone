@@ -12,4 +12,4 @@ def prepare_renderer(configurator):
 def post_renderer(configurator):
     """Post rendering."""
     if git_support(configurator):
-        git_commit(configurator, "Add starter configuration")
+        git_commit(configurator, "Add Plone site initialization configuration")

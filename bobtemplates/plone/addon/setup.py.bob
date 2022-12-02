@@ -36,7 +36,7 @@ setup(
     author_email='{{{ author.email }}}',
     url='https://github.com/collective/{{{ package.distributionname }}}',
     project_urls={
-        'PyPI': 'https://pypi.python.org/pypi/{{{ package.distributionname }}}',
+        'PyPI': 'https://pypi.org/project/{{{ package.distributionname }}}/',
         'Source': 'https://github.com/collective/{{{ package.distributionname }}}',
         'Tracker': 'https://github.com/collective/{{{ package.distributionname }}}/issues',
         # 'Documentation': 'https://{{{ package.distributionname }}}.readthedocs.io/en/latest/',

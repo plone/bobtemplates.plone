@@ -13,5 +13,4 @@
 
 isort>=5
 black==22.8.0
-flake8>=5.0.4
-flake8-html>=0.4.2
+flake8==5.0.4

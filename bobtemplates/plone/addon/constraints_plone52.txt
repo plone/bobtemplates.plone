@@ -5,3 +5,4 @@
 
 isort>=5
 black==21.6b0
+tox==4.0.16

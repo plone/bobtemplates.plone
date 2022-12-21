@@ -28,6 +28,8 @@ def file_exists(base_path, file_path):
 
 
 def run_skeleton_tox_env(wd, config):
+    logger.info("show_versions: python / tox")
+    print("show_versions: python / tox")
     subprocess.check_call(
         ["python", "--version"],
         cwd=wd,

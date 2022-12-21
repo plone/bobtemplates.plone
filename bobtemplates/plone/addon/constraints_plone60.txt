@@ -10,7 +10,7 @@
 #
 ## SSL Certs on windows, because Python is missing them otherwise:
 #certifi ; platform_system == 'Windows'
-tox==4.0.16
+tox==3.28.0
 isort>=5
 black==22.8.0
 flake8==5.0.4

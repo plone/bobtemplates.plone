@@ -4,7 +4,8 @@ Changelog
 6.2.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- mockup_pattern: The parser attribute should be a static attribute.
+  [thet]
 
 
 6.2.1 (2023-01-26)

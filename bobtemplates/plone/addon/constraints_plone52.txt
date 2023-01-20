@@ -4,4 +4,6 @@
 # zc.buildout==2.13.2
 
 isort>=5
-black==21.6b0
+black==22.8.0
+tox==4.3.5
+flake8==5.0.4

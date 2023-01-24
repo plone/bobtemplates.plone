@@ -2,35 +2,35 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
    This text does not appear on pypi or github. It is a comment.
 
-.. image:: https://github.com/collective/{{{ package.dottedname }}}/actions/workflows/plone-package.yml/badge.svg
-    :target: https://github.com/collective/{{{ package.dottedname }}}/actions/workflows/plone-package.yml
+.. image:: https://github.com/collective/{{{ package.distributionname }}}/actions/workflows/plone-package.yml/badge.svg
+    :target: https://github.com/collective/{{{ package.distributionname }}}/actions/workflows/plone-package.yml
 
-.. image:: https://coveralls.io/repos/github/collective/{{{ package.dottedname }}}/badge.svg?branch=main
-    :target: https://coveralls.io/github/collective/{{{ package.dottedname }}}?branch=main
+.. image:: https://coveralls.io/repos/github/collective/{{{ package.distributionname }}}/badge.svg?branch=main
+    :target: https://coveralls.io/github/collective/{{{ package.distributionname }}}?branch=main
     :alt: Coveralls
 
-.. image:: https://codecov.io/gh/collective/{{{ package.dottedname }}}/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/collective/{{{ package.dottedname }}}
+.. image:: https://codecov.io/gh/collective/{{{ package.distributionname }}}/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/collective/{{{ package.distributionname }}}
 
-.. image:: https://img.shields.io/pypi/v/{{{ package.dottedname }}}.svg
-    :target: https://pypi.python.org/pypi/{{{ package.dottedname }}}/
+.. image:: https://img.shields.io/pypi/v/{{{ package.distributionname }}}.svg
+    :target: https://pypi.python.org/pypi/{{{ package.distributionname }}}/
     :alt: Latest Version
 
-.. image:: https://img.shields.io/pypi/status/{{{ package.dottedname }}}.svg
-    :target: https://pypi.python.org/pypi/{{{ package.dottedname }}}
+.. image:: https://img.shields.io/pypi/status/{{{ package.distributionname }}}.svg
+    :target: https://pypi.python.org/pypi/{{{ package.distributionname }}}
     :alt: Egg Status
 
-.. image:: https://img.shields.io/pypi/pyversions/{{{ package.dottedname }}}.svg?style=plastic   :alt: Supported - Python Versions
+.. image:: https://img.shields.io/pypi/pyversions/{{{ package.distributionname }}}.svg?style=plastic   :alt: Supported - Python Versions
 
-.. image:: https://img.shields.io/pypi/l/{{{ package.dottedname }}}.svg
-    :target: https://pypi.python.org/pypi/{{{ package.dottedname }}}/
+.. image:: https://img.shields.io/pypi/l/{{{ package.distributionname }}}.svg
+    :target: https://pypi.python.org/pypi/{{{ package.distributionname }}}/
     :alt: License
 
 
-{{% for i in package.dottedname %}}={{% endfor %}}
+{{% for i in package.distributionname %}}={{% endfor %}}
 
-{{{ package.dottedname }}}
-{{% for i in package.dottedname %}}={{% endfor %}}
+{{{ package.distributionname }}}
+{{% for i in package.distributionname %}}={{% endfor %}}
 
 
 {{{ package.description }}}
@@ -65,14 +65,14 @@ This product has been translated into
 Installation
 ------------
 
-Install {{{ package.dottedname }}} by adding it to your buildout::
+Install {{{ package.distributionname }}} by adding it to your buildout::
 
     [buildout]
 
     ...
 
     eggs =
-        {{{ package.dottedname }}}
+        {{{ package.distributionname }}}
 
 
 and then running ``bin/buildout``
@@ -95,8 +95,8 @@ Put your name here, you deserve it!
 Contribute
 ----------
 
-- Issue Tracker: https://github.com/collective/{{{ package.dottedname }}}/issues
-- Source Code: https://github.com/collective/{{{ package.dottedname }}}
+- Issue Tracker: https://github.com/collective/{{{ package.distributionname }}}/issues
+- Source Code: https://github.com/collective/{{{ package.distributionname }}}
 - Documentation: https://docs.plone.org/foo/bar
 
 
@@ -111,4 +111,3 @@ License
 -------
 
 The project is licensed under the GPLv2.
-

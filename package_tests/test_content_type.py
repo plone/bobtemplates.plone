@@ -2,13 +2,14 @@
 
 """Test dexterity content type generation."""
 
-import os
-
-import pytest
-from mrbob.bobexceptions import SkipQuestion, ValidationError
+from bobtemplates.plone import base
+from bobtemplates.plone import content_type
+from mrbob.bobexceptions import SkipQuestion
+from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
-from bobtemplates.plone import base, content_type
+import os
+import pytest
 
 
 def test_post_dexterity_type_name():
@@ -19,8 +20,9 @@ def test_post_dexterity_type_name():
 
     with pytest.raises(ValidationError):
         hookit("import")
-    with pytest.raises(ValidationError):
-        hookit("süpertype")
+    # Python 3.0 introduces additional characters from outside the ASCII range (see PEP 3131).
+    # with pytest.raises(ValidationError):
+    #     hookit("süpertype")
     #    with pytest.raises(ValidationError):
     #        hookit(u'Staff Member')
     with pytest.raises(ValidationError):
@@ -29,6 +31,8 @@ def test_post_dexterity_type_name():
     #        hookit(u'Second Coming')
     with pytest.raises(ValidationError):
         hookit("*sterisk")
+    with pytest.raises(ValidationError):
+        hookit("da-sh")
     assert hookit("SuperType") == "SuperType"
     assert hookit("Super Type") == "Super Type"
     assert hookit("second_coming") == "second_coming"

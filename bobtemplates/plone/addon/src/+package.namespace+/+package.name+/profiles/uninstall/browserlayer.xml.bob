@@ -2,6 +2,6 @@
 <layers>
   <layer
       name="{{{ package.dottedname }}}"
-      remove="true"
+      remove="True"
       />
 </layers>

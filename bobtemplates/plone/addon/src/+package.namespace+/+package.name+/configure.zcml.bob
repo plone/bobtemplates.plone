@@ -19,18 +19,18 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="{{{ package.dottedname }}}"
+      title="{{{ package.distributionname }}}"
       directory="profiles/default"
-      description="Installs the {{{ package.dottedname }}} add-on."
+      description="Installs the {{{ package.distributionname }}} add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.post_install"
       />
 
   <genericsetup:registerProfile
       name="uninstall"
-      title="{{{ package.dottedname }}} (uninstall)"
+      title="{{{ package.distributionname }}} (uninstall)"
       directory="profiles/uninstall"
-      description="Uninstalls the {{{ package.dottedname }}} add-on."
+      description="Uninstalls the {{{ package.distributionname }}} add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.uninstall"
       />

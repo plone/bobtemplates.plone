@@ -1,0 +1,29 @@
+{
+  "name": "{{{ package.name }}}",
+  "version": "1.0.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.20.0"
+  },
+  "dependencies": {
+    "@patternslib/patternslib": ">=9.7.0-alpha.0",
+    "@plone/mockup": ">=5.0.0-alpha.24"
+  },
+  "devDependencies": {
+    "@patternslib/dev": "<4"
+  },
+  "resolutions": {
+      "@patternslib/patternslib": "<10",
+      "jquery": "<4"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production webpack --config webpack.config.js",
+    "start": "NODE_ENV=development webpack serve --config webpack.config.js",
+    "watch": "NODE_ENV=development webpack --config webpack.config.js --watch"
+  },
+  "keywords": [
+      "patternslib",
+      "mockup",
+      "plone"
+  ]
+}

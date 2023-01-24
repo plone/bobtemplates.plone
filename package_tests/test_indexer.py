@@ -2,15 +2,14 @@
 
 """Test view generation."""
 
-import os
-
-import pytest
+from .base import init_package_base_structure
+from bobtemplates.plone import base
+from bobtemplates.plone import indexer
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
 
-from bobtemplates.plone import base, indexer
-
-from .base import init_package_base_structure
+import os
+import pytest
 
 
 def test_update_indexers_configure_zcml(tmpdir):

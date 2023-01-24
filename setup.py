@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import find_packages, setup
+from setuptools import find_packages
+from setuptools import setup
 
-version = "6.0b14.dev0"
+
+version = "6.3.dev0"
 
 
 long_description = "\n\n".join(
@@ -29,6 +31,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: Implementation :: CPython",
         "Development Status :: 5 - Production/Stable",
         "Topic :: Software Development :: Code Generators",
@@ -71,6 +74,7 @@ setup(
             "plone_buildout = bobtemplates.plone.bobregistry:plone_buildout",
             "plone_content_type = bobtemplates.plone.bobregistry:plone_content_type",
             "plone_indexer = bobtemplates.plone.bobregistry:plone_indexer",
+            "plone_mockup_pattern = bobtemplates.plone.bobregistry:plone_mockup_pattern",
             "plone_portlet = bobtemplates.plone.bobregistry:plone_portlet",
             "plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service",  # NOQA E501
             "plone_svelte_app = bobtemplates.plone.bobregistry:plone_svelte_app",
@@ -83,6 +87,7 @@ setup(
             "plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet",
             "plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary",
             "plone_controlpanel = bobtemplates.plone.bobregistry:plone_controlpanel",
+            "plone_form = bobtemplates.plone.bobregistry:plone_form",
         ]
     },
 )

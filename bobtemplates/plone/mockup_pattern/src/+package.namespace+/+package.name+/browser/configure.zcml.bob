@@ -1,0 +1,10 @@
+{{{ original_browser_configure }}}
+
+  <browser:page
+      name="{{{ package.name }}}-pattern-demo"
+      for="*"
+      template="pattern-demo.pt"
+      permission="zope2.View"
+      />
+
+</configure>

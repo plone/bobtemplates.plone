@@ -1,0 +1,6 @@
+import registry from "@patternslib/patternslib/src/core/registry";
+
+{{{ original_imports }}}
+import "./pat-{{{ pattern.name }}}/{{{ pattern.name }}}";
+
+registry.init();

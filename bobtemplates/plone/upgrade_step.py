@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 
+from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import git_commit
+from bobtemplates.plone.base import remove_unwanted_files
+from bobtemplates.plone.base import update_configure_zcml
 from lxml import etree
-
-from bobtemplates.plone.base import (
-    base_prepare_renderer,
-    git_commit,
-    remove_unwanted_files,
-    update_configure_zcml,
-)
 
 
 def _update_package_configure_zcml(configurator):

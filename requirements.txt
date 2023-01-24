@@ -1,3 +1,5 @@
 -cconstraints.txt
 setuptools
 Sphinx
+flake8
+tox

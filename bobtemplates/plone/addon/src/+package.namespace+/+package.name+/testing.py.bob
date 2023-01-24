@@ -8,7 +8,7 @@ from plone.app.testing import (
     FunctionalTesting,
     IntegrationTesting,
 {{% if not plone.is_plone5 %}}
-    PLONE_FIXTURE
+    PLONE_FIXTURE,
 {{% endif %}}
     PloneSandboxLayer,
 )

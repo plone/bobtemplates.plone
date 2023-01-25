@@ -4,7 +4,7 @@ Changelog
 6.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- replace backslash with os.path.sep #531 [me-kell]
 
 
 6.2 (2022-10-28)

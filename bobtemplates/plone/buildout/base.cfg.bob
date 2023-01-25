@@ -28,7 +28,6 @@ versions = versions
 # of Plone packages.
 find-links =
     http://dist.plone.org
-    http://effbot.org/downloads
 
 ############################################
 # Environment Variables

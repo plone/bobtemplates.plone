@@ -87,6 +87,8 @@ New features:
 
 6.2.1 (2023-01-26)
 ------------------
+6.2.1 (unreleased)
+----------------
 
 - replace backslash with os.path.sep #531
   [me-kell]

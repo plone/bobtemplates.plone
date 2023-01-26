@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3 (unreleased)
+6.2.1 (unreleased)
 ----------------
 
 - replace backslash with os.path.sep #531

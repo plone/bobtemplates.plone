@@ -4,7 +4,14 @@ Changelog
 6.3 (unreleased)
 ----------------
 
-- replace backslash with os.path.sep #531 [me-kell]
+- replace backslash with os.path.sep #531
+  [me-kell]
+
+- fix missing tox.ini in addon template
+  [MrTango]
+
+- fix missing comma in testing.py of addon template
+  [MrTango]
 
 
 6.2 (2022-10-28)

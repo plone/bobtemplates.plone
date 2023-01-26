@@ -4,7 +4,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = "6.2.1"
+version = "6.2.2.dev0"
 
 
 long_description = "\n\n".join(

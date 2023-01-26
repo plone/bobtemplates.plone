@@ -19,10 +19,12 @@ import os
 
 def _update_portlets_configure_zcml(configurator):
     file_name = "configure.zcml"
-    directory_path = configurator.variables["package_folder"] + "/portlets/"
-    file_path = directory_path + file_name
-    configure_example_file_path = (
-        configurator.variables["package_folder"] + "/portlets/configure.zcml.example"
+    directory_path = os.path.join(configurator.variables["package_folder"], "portlets")
+    file_path = os.path.join(directory_path, file_name)
+    configure_example_file_path = os.path.join(
+        configurator.variables["package_folder"],
+        "portlets",
+        "configure.zcml.example",
     )  # NOQA: E501
     file_list = os.listdir(os.path.dirname(directory_path))
     if file_name not in file_list:

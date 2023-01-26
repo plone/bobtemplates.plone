@@ -59,7 +59,7 @@ def test_prepare_renderer(tmpdir):
     assert configurator.variables["template_id"] == "theme"
     assert configurator.variables["theme.normalized_name"] == "my-beautiful-theme-2021"
     assert configurator.target_directory.endswith(
-        "/collective.todo/src/collective/todo"
+        os.path.join("", "collective.todo", "src", "collective", "todo")
     )  # NOQA: E501
 
     # nested namespace package
@@ -81,7 +81,7 @@ def test_prepare_renderer(tmpdir):
     assert configurator.variables["template_id"] == "theme"
     assert configurator.variables["theme.normalized_name"] == "my-beautiful-theme-2021"
     assert configurator.target_directory.endswith(
-        "/collective.foo.bar/src/collective/foo/bar"
+        os.path.join("", "collective.foo.bar", "src", "collective", "foo", "bar")
     )  # NOQA: E501
 
 

@@ -63,6 +63,8 @@ setup(
         "tox",
         "isort",
         "black",
+        # TODO: move from here, this is a mr.bob requiremnt
+        "pyreadline3",
     ],
     setup_requires=[],
     tests_require=[],

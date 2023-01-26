@@ -206,7 +206,7 @@ def check_method_name(configurator, question, answer):
 def read_bobtemplates_ini(configurator):
     bob_config = BobConfig()
     config = ConfigParser()
-    path = configurator.target_directory + "/bobtemplate.cfg"
+    path = os.path.join(configurator.target_directory, "bobtemplate.cfg")
     config.read(path)
     if not config.sections():
         return
@@ -447,7 +447,9 @@ def base_prepare_renderer(configurator):
     )
 
     package_subpath = dottedname_to_path(configurator.variables["package.dottedname"])
-    configurator.variables["package_folder_rel_path"] = "/src/" + package_subpath
+    configurator.variables["package_folder_rel_path"] = os.path.join(
+        "", "src", package_subpath
+    )
     configurator.variables["package_folder"] = (
         configurator.variables["package.root_folder"]
         + configurator.variables["package_folder_rel_path"]

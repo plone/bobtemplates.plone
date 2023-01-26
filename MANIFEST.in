@@ -1,4 +1,4 @@
-include *.cfg *.rst *.in
+include *.cfg *.rst *.in tox.ini
 graft bobtemplates
 graft docs
 global-exclude *pyc

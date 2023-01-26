@@ -4,7 +4,6 @@ graft docs
 global-exclude *pyc
 global-exclude tmp
 global-exclude .tox
-global-exclude tox.ini
 prune docs/_build
 prune package_tests/*
 prune skeleton-tests/*

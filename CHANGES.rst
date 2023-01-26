@@ -1,8 +1,8 @@
 Changelog
 =========
 
-6.2.1 (unreleased)
-----------------
+6.2.1 (2023-01-26)
+------------------
 
 - replace backslash with os.path.sep #531
   [me-kell]

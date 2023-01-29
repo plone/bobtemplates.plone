@@ -22,7 +22,7 @@ def test_pre_theme_name():
 
 
 def test_post_theme_name(tmpdir):
-    target_path = tmpdir.strpath + "/collective.theme"
+    target_path = os.path.join(tmpdir.strpath, "collective.theme")
     configurator = Configurator(
         template="bobtemplates.plone:theme_barceloneta", target_directory=target_path
     )
@@ -33,7 +33,7 @@ def test_post_theme_name(tmpdir):
 
 
 def test_prepare_renderer(tmpdir):
-    package_root = tmpdir.strpath + "/collective.todo"
+    package_root = os.path.join(tmpdir.strpath, "collective.todo")
     package_path = init_package_base_structure(package_root)
 
     configurator = Configurator(
@@ -51,7 +51,7 @@ def test_prepare_renderer(tmpdir):
 
 
 def test_post_renderer(tmpdir):
-    package_root = tmpdir.strpath + "/collective.todo"
+    package_root = os.path.join(tmpdir.strpath, "collective.todo")
     package_path = init_package_base_structure(package_root)
 
     configurator = Configurator(

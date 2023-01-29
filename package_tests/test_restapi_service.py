@@ -8,22 +8,22 @@ import os
 
 
 def test_pre_renderer(tmpdir):
-    target_path = tmpdir.strpath + "/collective.todo"
-    package_path = target_path + "/src/collective/todo"
+    target_path = os.path.join(tmpdir.strpath, "collective.todo")
+    package_path = os.path.join(target_path, "src", "collective", "todo")
     os.makedirs(target_path)
     os.makedirs(package_path)
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
+    with open(os.path.join(target_path, "bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    with open(os.path.join(target_path, "setup.py"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
@@ -39,9 +39,9 @@ version=5.1
 
 
 def test_post_renderer(tmpdir):
-    target_path = tmpdir.strpath + "/collective.todo"
-    package_path = target_path + "/src/collective/todo"
-    profiles_path = package_path + "/profiles/default"
+    target_path = os.path.join(tmpdir.strpath, "collective.todo")
+    package_path = os.path.join(target_path, "src", "collective", "todo")
+    profiles_path = os.path.join(package_path, "profiles", "default")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(profiles_path)
@@ -54,21 +54,21 @@ def test_post_renderer(tmpdir):
   </dependencies>
 </metadata>
 """
-    with open(os.path.join(profiles_path + "/metadata.xml"), "w") as f:
+    with open(os.path.join(profiles_path, "metadata.xml"), "w") as f:
         f.write(template)
 
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
+    with open(os.path.join(target_path, "bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    with open(os.path.join(target_path, "setup.py"), "w") as f:
         f.write(template)
 
     template = """
@@ -82,7 +82,7 @@ version=5.1
 
     </configure>
 """
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
@@ -108,12 +108,12 @@ version=5.1
 
 def test_remove_unwanted_files(tmpdir):
     files_to_remove = [
-        "/api/configure.zcml.example",
-        "/api/services/configure.zcml.example",
+        "api/configure.zcml.example",
+        "api/services/configure.zcml.example",
     ]
-    target_path = tmpdir.strpath + "/collective.todo"
-    package_path = target_path + "/src/collective/todo"
-    os.makedirs(package_path + "/api/services/")
+    target_path = os.path.join(tmpdir.strpath, "collective.todo")
+    package_path = os.path.join(target_path, "src", "collective", "todo")
+    os.makedirs(os.path.join(package_path, "api", "services"))
     configurator = Configurator(
         template="bobtemplates.plone:restapi_service",
         target_directory=tmpdir.strpath,
@@ -124,7 +124,7 @@ def test_remove_unwanted_files(tmpdir):
     for file_to_remove in files_to_remove:
         with open(
             os.path.join(
-                package_path + file_to_remove,
+                package_path, file_to_remove,
             ),
             "w",
         ) as f:
@@ -133,28 +133,28 @@ def test_remove_unwanted_files(tmpdir):
 
     for file_to_remove in files_to_remove:
         assert not os.path.isfile(
-            os.path.join(package_path + file_to_remove),
+            os.path.join(package_path, file_to_remove),
         )
 
 
 def test_update_api_configure_zcml(tmpdir):
     """ """
-    target_path = tmpdir.strpath + "/collective.todo"
-    package_path = target_path + "/src/collective/todo"
-    os.makedirs(package_path + "/api/")
+    target_path = os.path.join(tmpdir.strpath, "collective.todo")
+    package_path = os.path.join(target_path, "src", "collective", "todo")
+    os.makedirs(os.path.join(package_path, "api"))
 
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
+    with open(os.path.join(target_path, "bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    with open(os.path.join(target_path, "setup.py"), "w") as f:
         f.write(template)
 
     template = """
@@ -168,9 +168,9 @@ version=5.1
 
     </configure>
 """
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
-    with open(os.path.join(package_path + "/api/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "api/configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:restapi_service",
@@ -189,7 +189,7 @@ version=5.1
 
     with open(
         os.path.join(
-            package_path + "/api/configure.zcml",
+            package_path, "api/configure.zcml",
         ),
         "r",
     ) as f:
@@ -199,22 +199,22 @@ version=5.1
 
 def test_update_services_configure_zcml(tmpdir):
     """ """
-    target_path = tmpdir.strpath + "/collective.todo"
-    package_path = target_path + "/src/collective/todo"
-    os.makedirs(package_path + "/api/services/")
+    target_path = os.path.join(tmpdir.strpath, "collective.todo")
+    package_path = os.path.join(target_path, "src", "collective", "todo")
+    os.makedirs(os.path.join(package_path, "api", "services"))
 
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
+    with open(os.path.join(target_path, "bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    with open(os.path.join(target_path, "setup.py"), "w") as f:
         f.write(template)
 
     template = """
@@ -228,12 +228,12 @@ version=5.1
 
     </configure>
 """
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
-    with open(os.path.join(package_path + "/api/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "api", "configure.zcml"), "w") as f:
         f.write(template)
     with open(
-        os.path.join(package_path + "/api/services/configure.zcml"),
+        os.path.join(package_path, "api", "services", "configure.zcml"),
         "w",
     ) as f:
         f.write(template)
@@ -255,7 +255,7 @@ version=5.1
 
     with open(
         os.path.join(
-            package_path + "/api/services/configure.zcml",
+            package_path, "api", "services", "configure.zcml",
         ),
         "r",
     ) as f:

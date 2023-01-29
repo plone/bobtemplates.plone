@@ -28,8 +28,8 @@ def test_pre_renderer():
 
 def test_update_configure_zcml_with_changes(tmpdir):
     """Test configure changes when changes are already in place."""
-    target_path = tmpdir.strpath + "/collective.demo"
-    package_path = target_path + "/src/collective/demo"
+    target_path = os.path.join(tmpdir.strpath, "collective.demo")
+    package_path = os.path.join(target_path, "src", "collective", "demo")
     os.makedirs(target_path)
     os.makedirs(package_path)
     template = """<configure
@@ -49,7 +49,7 @@ def test_update_configure_zcml_with_changes(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:portlet",
@@ -63,7 +63,7 @@ def test_update_configure_zcml_with_changes(tmpdir):
     )
     portlet._update_configure_zcml(configurator)
 
-    with open(os.path.join(package_path + "/configure.zcml"), "r") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -71,8 +71,8 @@ def test_update_configure_zcml_with_changes(tmpdir):
 
 def test_update_configure_zcml_without_changes(tmpdir):
     """Test configure changes when changes are already in place."""
-    target_path = tmpdir.strpath + "/collective.demo"
-    package_path = target_path + "/src/collective/demo"
+    target_path = os.path.join(tmpdir.strpath, "collective.demo")
+    package_path = os.path.join(target_path, "src", "collective", "demo")
     os.makedirs(target_path)
     os.makedirs(package_path)
     template = """<configure
@@ -90,7 +90,7 @@ def test_update_configure_zcml_without_changes(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:portlet",
@@ -122,7 +122,7 @@ def test_update_configure_zcml_without_changes(tmpdir):
 </configure>
 """
 
-    with open(os.path.join(package_path + "/configure.zcml"), "r") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "r") as f:
         content = f.read()
         if content != complete_template:
             pytest.raises(ValidationError)
@@ -130,9 +130,9 @@ def test_update_configure_zcml_without_changes(tmpdir):
 
 def test_update_portlets_configure_zcml(tmpdir):
     """Test configure changes when changes are already in place."""
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    portlets_path = package_path + "/portlets/"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    portlets_path = os.path.join(package_path, "portlets")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(portlets_path)
@@ -154,7 +154,7 @@ def test_update_portlets_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(portlets_path + "configure.zcml"), "w") as f:
+    with open(os.path.join(portlets_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:portlet",
@@ -173,7 +173,7 @@ def test_update_portlets_configure_zcml(tmpdir):
     )
     portlet._update_portlets_configure_zcml(configurator)
 
-    with open(os.path.join(portlets_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(portlets_path, "configure.zcml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -181,19 +181,19 @@ def test_update_portlets_configure_zcml(tmpdir):
 
 def test_delete_unnecessary_files(tmpdir):
     """Test to remove unwanted file."""
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    portlets_path = package_path + "/portlets/"
-    profile_path = package_path + "/profiles/default/"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    portlets_path = os.path.join(package_path, "portlets")
+    profile_path = os.path.join(package_path, "profiles", "default")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(portlets_path)
     os.makedirs(profile_path)
     file_name = "configure.zcml.example"
-    portlets_file_path = portlets_path + file_name
+    portlets_file_path = os.path.join(portlets_path, file_name)
     open(portlets_file_path, "a").close()
     file_name = "portlets.xml.example"
-    xml_file_path = profile_path + file_name
+    xml_file_path = os.path.join(profile_path, file_name)
     open(xml_file_path, "a").close()
     configurator = Configurator(
         template="bobtemplates.plone:portlet",
@@ -213,9 +213,9 @@ def test_delete_unnecessary_files(tmpdir):
 
 
 def test_update_portlets_xml(tmpdir):
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    profile_path = package_path + "/profiles/default/"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    profile_path = os.path.join(package_path, "profiles", "default")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(profile_path)
@@ -227,7 +227,7 @@ def test_update_portlets_xml(tmpdir):
 
 
 </portlets>"""
-    with open(os.path.join(profile_path + "portlets.xml.example"), "w") as f:
+    with open(os.path.join(profile_path, "portlets.xml.example"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
@@ -273,16 +273,16 @@ def test_update_portlets_xml(tmpdir):
 
 </portlets>"""
 
-    with open(os.path.join(profile_path + "portlets.xml"), "r") as f:
+    with open(os.path.join(profile_path, "portlets.xml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
 
 
 def test_update_portlets_xml_with_changes(tmpdir):
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    profile_path = package_path + "/profiles/default/"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    profile_path = os.path.join(package_path, "profiles", "default")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(profile_path)
@@ -313,7 +313,7 @@ def test_update_portlets_xml_with_changes(tmpdir):
 
 </portlets>"""
 
-    with open(os.path.join(profile_path + "portlets.xml.example"), "w") as f:
+    with open(os.path.join(profile_path, "portlets.xml.example"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
@@ -331,7 +331,7 @@ def test_update_portlets_xml_with_changes(tmpdir):
     )
     portlet._update_portlets_xml(configurator)
 
-    with open(os.path.join(profile_path + "portlets.xml"), "r") as f:
+    with open(os.path.join(profile_path, "portlets.xml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -339,10 +339,10 @@ def test_update_portlets_xml_with_changes(tmpdir):
 
 def test_post_renderer(tmpdir):
     """Test post rendering."""
-    target_path = tmpdir.strpath + "/collective.todo"
-    package_path = target_path + "/src/collective/todo"
-    portlets_path = package_path + "/portlets"
-    profile_path = package_path + "/profiles/default/"
+    target_path = os.path.join(tmpdir.strpath, "collective.todo")
+    package_path = os.path.join(target_path, "src", "collective", "todo")
+    portlets_path = os.path.join(package_path, "portlets")
+    profile_path = os.path.join(package_path, "profiles", "default")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(portlets_path)
@@ -436,7 +436,7 @@ class Renderer(base.Renderer):
     def get_pressure(self):
         return self.result['pressure']
 """
-    with open(os.path.join(portlets_path + "/my_weather.py"), "w") as f:
+    with open(os.path.join(portlets_path, "my_weather.py"), "w") as f:
         f.write(template)
 
     template = """<div class="weather">
@@ -449,7 +449,7 @@ class Renderer(base.Renderer):
     <br>
 </div>
 """
-    with open(os.path.join(portlets_path + "/my_weather.pt"), "w") as f:
+    with open(os.path.join(portlets_path, "my_weather.pt"), "w") as f:
         f.write(template)
     template = """<configure
   xmlns="http://namespaces.zope.org/zope"
@@ -469,7 +469,7 @@ class Renderer(base.Renderer):
     editview=".my_weather.EditForm" />
 
 </configure>"""
-    with open(os.path.join(portlets_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(portlets_path, "configure.zcml"), "w") as f:
         f.write(template)
 
     template = """<configure
@@ -492,14 +492,14 @@ class Renderer(base.Renderer):
 
 </configure>
 """
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
 
     template = """
         dummy
         '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    with open(os.path.join(target_path, "setup.py"), "w") as f:
         f.write(template)
 
     template = """<?xml version="1.0"?>
@@ -530,7 +530,7 @@ class Renderer(base.Renderer):
 
 </portlets>
 """
-    with open(os.path.join(profile_path + "/portlets.xml.example"), "w") as f:
+    with open(os.path.join(profile_path, "portlets.xml.example"), "w") as f:
         f.write(template)
 
     configurator = Configurator(

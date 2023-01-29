@@ -7,10 +7,12 @@ from mrbob.configurator import Configurator
 
 import os
 import pytest
+import sys
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="needs to fix mr.bob to run on windows")
 def test_pre_render(tmpdir):
-    package_root = tmpdir.strpath + "/collective.testpattern"
+    package_root = os.path.join(tmpdir.strpath, "collective.testpattern")
     package_path = init_package_base_structure(package_root)
 
     configurator = Configurator(
@@ -27,8 +29,9 @@ def test_pre_render(tmpdir):
     assert configurator.target_directory.endswith("collective.testpattern")
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="needs to fix mr.bob to run on windows")
 def test_post_render(tmpdir):
-    package_root = tmpdir.strpath + "/collective.testpattern"
+    package_root = os.path.join(tmpdir.strpath, "collective.testpattern")
     package_path = init_package_base_structure(package_root)
 
     configurator = Configurator(
@@ -53,11 +56,14 @@ def test_post_render(tmpdir):
     configurator.render()  # pre/render/post
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="needs to fix mr.bob to run on windows")
 def test_post_pattern_name(tmpdir):
     """Verifies that pattern names are checked for validity."""
-    target_path = tmpdir.strpath + "/collective.testpattern"
+    import pdb; pdb.set_trace()
+    target_path = os.path.join(tmpdir.strpath, "collective.testpattern")
     configurator = Configurator(
-        template="bobtemplates.plone:mockup_pattern", target_directory=target_path
+        template="bobtemplates.plone:mockup_pattern", 
+        target_directory=target_path,
     )
 
     mockup_pattern.post_pattern_name(configurator, None, "test-pattern")

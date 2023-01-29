@@ -90,7 +90,7 @@ def test_prepare_renderer(tmpdir):
         configurator.variables["dexterity_type_name_normalized"] == "special_task"
     )  # NOQA: E501
     assert configurator.target_directory.endswith(
-        "/collective.todo/src/collective/todo"
+        os.path.join("collective.todo", "src", "collective", "todo")
     )  # NOQA: E501
 
     configurator = Configurator(
@@ -113,7 +113,7 @@ def test_prepare_renderer(tmpdir):
         configurator.variables["dexterity_type_name_normalized"] == "special_task"
     )  # NOQA: E501
     assert configurator.target_directory.endswith(
-        "/collective.todo/src/collective/todo"
+        os.path.join("collective.todo", "src", "collective", "todo")
     )  # NOQA: E501
 
     configurator = Configurator(
@@ -136,7 +136,7 @@ def test_prepare_renderer(tmpdir):
         configurator.variables["dexterity_type_name_normalized"] == "special_task"
     )  # NOQA: E501
     assert configurator.target_directory.endswith(
-        "/collective.todo/src/collective/todo"
+        os.path.join("collective.todo", "src", "collective", "todo")
     )  # NOQA: E501
 
     configurator = Configurator(
@@ -159,7 +159,7 @@ def test_prepare_renderer(tmpdir):
         configurator.variables["dexterity_type_name_normalized"] == "special_task"
     )  # NOQA: E501
     assert configurator.target_directory.endswith(
-        "/collective.todo/src/collective/todo"
+        os.path.join("collective.todo", "src", "collective", "todo")
     )  # NOQA: E501
 
 
@@ -198,9 +198,9 @@ def test_check_global_allow_false():
 
 def test_update_parent_types_fti_xml(tmpdir):
     """Test xml changes when changes are already in place."""
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    profiles_path = package_path + "/profiles/default/types"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    profiles_path = os.path.join(package_path, "profiles", "default", "types")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(profiles_path)
@@ -216,7 +216,7 @@ def test_update_parent_types_fti_xml(tmpdir):
   </property>
 </object>
 """
-    with open(os.path.join(profiles_path + "/My_Parent.xml"), "w") as f:
+    with open(os.path.join(profiles_path, "My_Parent.xml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:content_type",
@@ -233,7 +233,7 @@ def test_update_parent_types_fti_xml(tmpdir):
     configurator.variables["package_folder"] = package_path
     content_type._update_parent_types_fti_xml(configurator)
 
-    with open(os.path.join(profiles_path + "/My_Parent.xml"), "r") as f:
+    with open(os.path.join(profiles_path, "My_Parent.xml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -241,9 +241,9 @@ def test_update_parent_types_fti_xml(tmpdir):
 
 def test_update_rolemap_xml(tmpdir):
     """Test rolemap.xml changes when changes are already in place."""
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    profiles_path = package_path + "/profiles/default"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    profiles_path = os.path.join(package_path, "profiles", "default")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(profiles_path)
@@ -261,7 +261,7 @@ def test_update_rolemap_xml(tmpdir):
   </permissions>
 </rolemap>
 """
-    with open(os.path.join(profiles_path + "/rolemap.xml"), "w") as f:
+    with open(os.path.join(profiles_path, "rolemap.xml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:content_type",
@@ -278,7 +278,7 @@ def test_update_rolemap_xml(tmpdir):
     configurator.variables["dexterity_type_name_klass"] = "Parent"
     content_type._update_rolemap_xml(configurator)
 
-    with open(os.path.join(profiles_path + "/rolemap.xml"), "r") as f:
+    with open(os.path.join(profiles_path, "rolemap.xml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -286,8 +286,8 @@ def test_update_rolemap_xml(tmpdir):
 
 def test_update_permissions_zcml(tmpdir):
     """Test zcml changes when changes are already in place."""
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
     os.makedirs(target_path)
     os.makedirs(package_path)
     template = """<configure
@@ -303,7 +303,7 @@ def test_update_permissions_zcml(tmpdir):
   </configure>
 </configure>
 """
-    with open(os.path.join(package_path + "/permissions.zcml"), "w") as f:
+    with open(os.path.join(package_path, "permissions.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:content_type",
@@ -320,7 +320,7 @@ def test_update_permissions_zcml(tmpdir):
     configurator.variables["dexterity_type_name_klass"] = "Parent"
     content_type._update_permissions_zcml(configurator)
 
-    with open(os.path.join(package_path + "/permissions.zcml"), "r") as f:
+    with open(os.path.join(package_path, "permissions.zcml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -328,12 +328,12 @@ def test_update_permissions_zcml(tmpdir):
 
 def test_post_renderer(tmpdir):
     """Test post rendering."""
-    target_path = tmpdir.strpath + "/collective.todo"
-    package_path = target_path + "/src/collective/todo"
-    profiles_path = package_path + "/profiles/default"
+    target_path = os.path.join(tmpdir.strpath, "collective.todo")
+    package_path = os.path.join(target_path, "src", "collective", "todo")
+    profiles_path = os.path.join(package_path, "profiles", "default")
     os.makedirs(target_path)
     os.makedirs(package_path)
-    os.makedirs(profiles_path + "/types")
+    os.makedirs(os.path.join(profiles_path, "types"))
 
     template = """<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
@@ -343,7 +343,7 @@ def test_post_renderer(tmpdir):
   </dependencies>
 </metadata>
 """
-    with open(os.path.join(profiles_path + "/metadata.xml"), "w") as f:
+    with open(os.path.join(profiles_path, "metadata.xml"), "w") as f:
         f.write(template)
 
     template = """<?xml version="1.0"?>
@@ -354,7 +354,7 @@ def test_post_renderer(tmpdir):
   </permissions>
 </rolemap>
 """
-    with open(os.path.join(profiles_path + "/rolemap.xml"), "w") as f:
+    with open(os.path.join(profiles_path, "rolemap.xml"), "w") as f:
         f.write(template)
 
     template = """<?xml version="1.0"?>
@@ -364,7 +364,7 @@ def test_post_renderer(tmpdir):
  <!--<object name="example_ct" meta_type="Dexterity FTI"/>-->
 </object>
 """
-    with open(os.path.join(profiles_path + "/types.xml"), "w") as f:
+    with open(os.path.join(profiles_path, "types.xml"), "w") as f:
         f.write(template)
 
     template = """<configure
@@ -380,21 +380,21 @@ def test_post_renderer(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(package_path + "/permissions.zcml"), "w") as f:
+    with open(os.path.join(package_path, "permissions.zcml"), "w") as f:
         f.write(template)
 
     template = """
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
+    with open(os.path.join(target_path, "bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    with open(os.path.join(target_path, "setup.py"), "w") as f:
         f.write(template)
 
     configurator = Configurator(

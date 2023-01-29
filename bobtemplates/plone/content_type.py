@@ -60,10 +60,10 @@ def check_global_allow(configurator, answer):
 def _update_metadata_xml(configurator):
     """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""  # NOQA: E501
     metadata_file_name = "metadata.xml"
-    metadata_file_dir = "profiles/default"
     metadata_file_path = os.path.join(
         configurator.variables["package_folder"],
-        metadata_file_dir,
+        "profiles",
+        "default",
         metadata_file_name,
     )
 
@@ -227,7 +227,7 @@ def _update_rolemap_xml(configurator):
 
 def _update_permissions_zcml(configurator):
     file_name = "permissions.zcml"
-    file_path = os.path.jon(configurator.variables["package_folder"], file_name)
+    file_path = os.path.join(configurator.variables["package_folder"], file_name)
     nsprefix = "{http://namespaces.zope.org/zope}"
 
     with open(file_path, "r") as xml_file:

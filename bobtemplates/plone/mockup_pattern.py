@@ -15,7 +15,7 @@ def pre_render(configurator):
     configurator.variables["template_id"] = "mockup_pattern"
 
     bundle_js_path = os.path.join(
-        configurator.variables["package.root_folder"], "resources/bundle.js"
+        configurator.variables["package.root_folder"], "resources", "bundle.js"
     )
     configurator.variables["original_imports"] = ""
     if os.path.exists(bundle_js_path):

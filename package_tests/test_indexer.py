@@ -13,9 +13,9 @@ import pytest
 
 
 def test_update_indexers_configure_zcml(tmpdir):
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    indexers_path = package_path + "/indexers/"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    indexers_path = os.path.join(package_path, "indexers")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(indexers_path)
@@ -27,7 +27,7 @@ def test_update_indexers_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(indexers_path + "configure.zcml"), "w") as f:
+    with open(os.path.join(indexers_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:indexer",
@@ -40,7 +40,7 @@ def test_update_indexers_configure_zcml(tmpdir):
     )
     indexer._update_indexers_configure_zcml(configurator)
 
-    with open(os.path.join(indexers_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(indexers_path, "configure.zcml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -62,7 +62,9 @@ def test_pre_renderer(tmpdir):
             "indexer_name": "my_cool_index",
             "package_folder": os.path.join(
                 package_root_folder,
-                "src/collective/foo",
+                "src",
+                "collective",
+                "foo",
             ),
         },
     )
@@ -99,7 +101,7 @@ def test_post_renderer(tmpdir):
 
     </configure>
 """
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
 
     os.chdir(package_path)

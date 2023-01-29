@@ -12,7 +12,7 @@ import pytest
 
 
 def test_prep_renderer(tmpdir):
-    package_root = tmpdir.strpath + "/collective.todo"
+    package_root = os.path.join(tmpdir.strpath, "collective.todo")
     init_package_base_structure(package_root)
     configurator = Configurator(
         template="bobtemplates.plone:svelte_app",
@@ -25,7 +25,7 @@ def test_prep_renderer(tmpdir):
 
 
 def test_check_name(tmpdir):
-    target_path = tmpdir.strpath + "/collective.todo"
+    target_path = os.path.join(tmpdir.strpath, "collective.todo")
     question = Question(
         name="svelte_app_name", question="Name of your Svelte app", default=None
     )

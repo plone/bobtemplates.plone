@@ -5,6 +5,7 @@ from mrbob.configurator import Configurator
 
 import os
 import pytest
+import sys
 
 
 def test_to_boolean():
@@ -45,9 +46,9 @@ def test_read_bobtemplate_ini(tmpdir):
     template = """[main]
 version=5.1
 """
-    target_dir = tmpdir.strpath + "/collective.foo"
+    target_dir = os.path.join(tmpdir.strpath, "collective.foo")
     os.mkdir(target_dir)
-    with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
+    with open(os.path.join(target_dir, "bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
@@ -61,9 +62,9 @@ def test_set_global_vars(tmpdir):
 [main]
 version=5.1
 """
-    target_dir = tmpdir.strpath + "/collective.foo"
+    target_dir = os.path.join(tmpdir.strpath, "collective.foo")
     os.mkdir(target_dir)
-    with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
+    with open(os.path.join(target_dir, "bobtemplate.cfg"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:addon",
@@ -85,9 +86,9 @@ def test_set_plone_version_variables(tmpdir):
 [main]
 version=5.1
 """
-    target_dir = tmpdir.strpath + "/collective.foo"
+    target_dir = os.path.join(tmpdir.strpath, "collective.foo")
     os.mkdir(target_dir)
-    with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
+    with open(os.path.join(target_dir, "bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
@@ -137,7 +138,7 @@ version=5.1
 
 def test_dottedname_to_path():
     dottedname = "collective.todo.content"
-    assert base.dottedname_to_path(dottedname) == "collective/todo/content"
+    assert base.dottedname_to_path(dottedname) == os.path.join("collective", "todo", "content")
 
 
 def test_subtemplate_warning(capsys):
@@ -149,7 +150,7 @@ def test_subtemplate_warning(capsys):
 
 def test_is_string_in_file(tmpdir):
     match_str = "-*- extra stuff goes here -*-"
-    path = tmpdir.strpath + "/configure.zcml"
+    path = os.path.join(tmpdir.strpath, "configure.zcml")
     template = """Some text
 
     {0}
@@ -166,7 +167,7 @@ def test_is_string_in_file(tmpdir):
 def test_update_configure_zcml(tmpdir):
     file_name = "configure.zcml"
     path = tmpdir.strpath
-    file_path = path + "/" + file_name
+    file_path = os.path.join(path, file_name)
     match_xpath = "zope:include[@package='.indexers']"
     match_str = "-*- extra stuff goes here -*-"
     insert_str = '\n  <include package=".indexers" />'
@@ -250,14 +251,14 @@ def test_update_configure_zcml(tmpdir):
 
 def test_update_file(tmpdir):
     match_str = "-*- extra stuff goes here -*-"
-    path = tmpdir.strpath + "/configure.zcml"
+    path = os.path.join(tmpdir.strpath, "configure.zcml")
     template = """Some text
 
     {0}
 """.format(
         match_str
     )
-    with open(os.path.join(path), "w") as f:
+    with open(path, "w") as f:
         f.write(template)
 
     base.update_file(None, path, match_str, "INSERTED")
@@ -313,12 +314,15 @@ def test_validate_packagename(tmpdir):
         base.validate_packagename(configurator)
 
     # step 7: test ending dot
-    with pytest.raises(SystemExit):
-        configurator = Configurator(
-            template="bobtemplates.plone:addon",
-            target_directory=os.path.join(base_path, "collective.foo."),
-        )
-        base.validate_packagename(configurator)
+    # skip this test on Win32, because Windows os.path.realpath implementation
+    # (i.e. nt._getfinalpathname) removes dots at the end of the path
+    if sys.platform != "win32":
+        with pytest.raises(SystemExit):
+            configurator = Configurator(
+                template="bobtemplates.plone:addon",
+                target_directory=os.path.join(base_path, "collective.foo."),
+            )
+            base.validate_packagename(configurator)
 
     # step 8: test invalid char
     with pytest.raises(SystemExit):

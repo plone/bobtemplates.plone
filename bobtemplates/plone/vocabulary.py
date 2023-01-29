@@ -15,7 +15,7 @@ import os
 
 def _update_package_configure_zcml(configurator):
     file_name = "configure.zcml"
-    file_path = configurator.variables["package_folder"] + "/" + file_name
+    file_path = os.path.join(configurator.variables["package_folder"], file_name)
 
     with open(file_path, "r") as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
@@ -36,10 +36,14 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_vocabularies_configure_zcml(configurator):
+    directory_path = os.path.join(
+        configurator.variables["package_folder"],
+        "vocabularies",
+    )
     file_name = "configure.zcml"
-    file_path = configurator.variables["package_folder"] + "/vocabularies/" + file_name
+    file_path = os.path.join(directory_path, file_name)
     example_file_path = file_path + ".example"
-    file_list = os.listdir(os.path.dirname(file_path))
+    file_list = os.listdir(directory_path)
     if file_name not in file_list:
         os.rename(example_file_path, file_path)
 

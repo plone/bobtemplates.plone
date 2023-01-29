@@ -128,7 +128,7 @@ def test_update_viewlets_configure_zcml_with_template(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(viewlets_path + "configure.zcml"), "w") as f:
+    with open(os.path.join(viewlets_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:viewlet",
@@ -149,7 +149,7 @@ def test_update_viewlets_configure_zcml_with_template(tmpdir):
     )
     viewlet._update_viewlets_configure_zcml(configurator)
 
-    with open(os.path.join(viewlets_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(viewlets_path, "configure.zcml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -182,7 +182,7 @@ def test_update_viewlets_configure_zcml_without_template(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(viewlets_path + "configure.zcml"), "w") as f:
+    with open(os.path.join(viewlets_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:viewlet",
@@ -202,7 +202,7 @@ def test_update_viewlets_configure_zcml_without_template(tmpdir):
     )
     viewlet._update_viewlets_configure_zcml(configurator)
 
-    with open(os.path.join(viewlets_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(viewlets_path, "configure.zcml"), "r") as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)

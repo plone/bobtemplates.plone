@@ -25,9 +25,9 @@ def test_get_form_name():
 
 def test_update_forms_configure_zcml(tmpdir):
     """Test configure changes when changes are already in place."""
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    forms_path = package_path + "/forms/"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    forms_path = os.path.join(package_path, "forms")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(forms_path)
@@ -41,7 +41,7 @@ def test_update_forms_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(forms_path + "configure.zcml"), "w") as f:
+    with open(os.path.join(forms_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:form",
@@ -77,14 +77,14 @@ def test_update_forms_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(forms_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(forms_path, "configure.zcml"), "r") as f:
         content = f.read()
         assert content == expected
 
 
 def test_update_configure_zcml(tmpdir):
-    target_path = tmpdir.strpath + "/collective.demo"
-    package_path = target_path + "/src/collective/demo"
+    target_path = os.path.join(tmpdir.strpath, "collective.demo")
+    package_path = os.path.join(target_path, "src", "collective", "demo")
     os.makedirs(target_path)
     os.makedirs(package_path)
     template = """<configure
@@ -103,7 +103,7 @@ def test_update_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:form",
@@ -115,7 +115,7 @@ def test_update_configure_zcml(tmpdir):
 
 
 def test_pre_renderer(tmpdir):
-    package_root = tmpdir.strpath + "/collective.todo"
+    package_root = os.path.join(tmpdir.strpath, "collective.todo")
     package_path = init_package_base_structure(package_root)
 
     configurator = Configurator(
@@ -158,7 +158,7 @@ def test_pre_renderer(tmpdir):
 
 def test_post_renderer(tmpdir):
     """Test post rendering."""
-    package_root = tmpdir.strpath + "/collective.todo"
+    package_root = os.path.join(tmpdir.strpath, "collective.todo")
     package_path = init_package_base_structure(package_root)
 
     configurator = Configurator(

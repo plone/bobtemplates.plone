@@ -93,9 +93,9 @@ def test_view_template_and_python_class_false():
 
 def test_update_views_configure_zcml(tmpdir):
     """Test configure changes when changes are already in place."""
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    views_path = package_path + "/views/"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    views_path = os.path.join(package_path, "views/")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(views_path)
@@ -109,7 +109,7 @@ def test_update_views_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(views_path + "configure.zcml"), "w") as f:
+    with open(os.path.join(views_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:view",
@@ -149,16 +149,16 @@ def test_update_views_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(views_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(views_path, "configure.zcml"), "r") as f:
         content = f.read()
         assert content == expected
 
 
 def test_update_views_configure_zcml_without_template(tmpdir):
     """Test configure changes when changes are already in place."""
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    views_path = package_path + "/views/"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    views_path = os.path.join(package_path, "views")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(views_path)
@@ -172,7 +172,7 @@ def test_update_views_configure_zcml_without_template(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(views_path + "configure.zcml"), "w") as f:
+    with open(os.path.join(views_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:view",
@@ -210,16 +210,16 @@ def test_update_views_configure_zcml_without_template(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(views_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(views_path, "configure.zcml"), "r") as f:
         content = f.read()
         assert content == expected
 
 
 def test_update_views_configure_zcml_without_python_class(tmpdir):
     """Test configure changes when changes are already in place."""
-    target_path = tmpdir.strpath + "/collective.sample"
-    package_path = target_path + "/src/collective/sample"
-    views_path = package_path + "/views/"
+    target_path = os.path.join(tmpdir.strpath, "collective.sample")
+    package_path = os.path.join(target_path, "src", "collective", "sample")
+    views_path = os.path.join(package_path, "views")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(views_path)
@@ -233,7 +233,7 @@ def test_update_views_configure_zcml_without_python_class(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(views_path + "configure.zcml"), "w") as f:
+    with open(os.path.join(views_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:view",
@@ -271,15 +271,15 @@ def test_update_views_configure_zcml_without_python_class(tmpdir):
 </configure>
 """
 
-    with open(os.path.join(views_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(views_path, "configure.zcml"), "r") as f:
         content = f.read()
         assert content == expected
 
 
 def test_delete_unwanted_files_template(tmpdir):
-    package_root = tmpdir.strpath + "/collective.todo"
+    package_root = os.path.join(tmpdir.strpath, "collective.todo")
     package_path = init_package_base_structure(package_root)
-    views_path = os.path.join(package_path + "/views/")
+    views_path = os.path.join(package_path, "views")
 
     configurator = Configurator(
         template="bobtemplates.plone:view",
@@ -299,19 +299,19 @@ def test_delete_unwanted_files_template(tmpdir):
     os.chdir(package_path)
     base.set_global_vars(configurator)
     configurator.render()  # pre/render/post
-    # as the post_rederer also calls delete_unwanted_files. we don't need to call here
+    # as the post_rederer also calls delete_unwantd_files. we don't need to call here
     python_file_name = configurator.variables.get("view_python_file_name") + ".py"
     template_file_name = configurator.variables.get("view_template_name") + ".pt"
-    python_file_path = os.path.join(views_path + python_file_name)
-    template_file_path = os.path.join(views_path + template_file_name)
+    python_file_path = os.path.join(views_path, python_file_name)
+    template_file_path = os.path.join(views_path, template_file_name)
     assert os.path.isfile(template_file_path)
     assert not os.path.isfile(python_file_path)
 
 
 def test_delete_unwanted_files_python(tmpdir):
-    package_root = tmpdir.strpath + "/collective.todo"
+    package_root = os.path.join(tmpdir.strpath, "collective.todo")
     package_path = init_package_base_structure(package_root)
-    views_path = os.path.join(package_path + "/views/")
+    views_path = os.path.join(package_path, "views")
 
     configurator = Configurator(
         template="bobtemplates.plone:view",
@@ -334,15 +334,15 @@ def test_delete_unwanted_files_python(tmpdir):
     # as the post_rederer also calls delete_unwanted_files. we don't need to call here
     python_file_name = configurator.variables.get("view_python_file_name") + ".py"
     template_file_name = configurator.variables.get("view_template_name") + ".pt"
-    python_file_path = os.path.join(views_path + python_file_name)
-    template_file_path = os.path.join(views_path + template_file_name)
+    python_file_path = os.path.join(views_path, python_file_name)
+    template_file_path = os.path.join(views_path, template_file_name)
     assert not os.path.isfile(template_file_path)
     assert os.path.isfile(python_file_path)
 
 
 def test_update_configure_zcml(tmpdir):
-    target_path = tmpdir.strpath + "/collective.demo"
-    package_path = target_path + "/src/collective/demo"
+    target_path = os.path.join(tmpdir.strpath, "collective.demo")
+    package_path = os.path.join(target_path, "src", "collective", "demo")
     os.makedirs(target_path)
     os.makedirs(package_path)
     template = """<configure
@@ -360,7 +360,7 @@ def test_update_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:view",
@@ -372,7 +372,7 @@ def test_update_configure_zcml(tmpdir):
 
 
 def test_pre_renderer(tmpdir):
-    package_root = tmpdir.strpath + "/collective.todo"
+    package_root = os.path.join(tmpdir.strpath, "collective.todo")
     package_path = init_package_base_structure(package_root)
 
     configurator = Configurator(
@@ -425,7 +425,7 @@ def test_pre_renderer(tmpdir):
 
 def test_post_renderer(tmpdir):
     """Test post rendering."""
-    package_root = tmpdir.strpath + "/collective.todo"
+    package_root = os.path.join(tmpdir.strpath, "collective.todo")
     package_path = init_package_base_structure(package_root)
 
     configurator = Configurator(

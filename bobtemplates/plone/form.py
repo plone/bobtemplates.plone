@@ -48,12 +48,10 @@ def get_form_configuration(configurator):
 
 def _update_forms_configure_zcml(configurator):
     file_name = "configure.zcml"
-    directory_path = configurator.variables["package_folder"] + "/forms/"
-    file_path = directory_path + file_name
-    configure_example_file_path = (
-        configurator.variables["package_folder"] + "/forms/configure.zcml.example"
-    )
-    file_list = os.listdir(os.path.dirname(directory_path))
+    directory_path = os.path.join(configurator.variables["package_folder"], "forms")
+    file_path = os.path.join(directory_path, file_name)
+    configure_example_file_path = os.path.join(directory_path, "configure.zcml.example")
+    file_list = os.listdir(directory_path)
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
 
@@ -107,7 +105,7 @@ def _update_forms_configure_zcml(configurator):
 
 def _update_configure_zcml(configurator):
     file_name = "configure.zcml"
-    file_path = configurator.variables["package_folder"] + "/" + file_name
+    file_path = os.path.join(configurator.variables["package_folder"], file_name)
     namespaces = "{http://namespaces.zope.org/zope}"
 
     with open(file_path, "r") as xml_file:
@@ -129,12 +127,11 @@ def _update_configure_zcml(configurator):
 
 
 def _delete_unwanted_files(configurator):
-    directory_path = configurator.variables["package_folder"] + "/forms/"
-
+    directory_path = os.path.join(configurator.variables["package_folder"], "forms")
     file_name = "configure.zcml.example"
-    file_list = os.listdir(os.path.dirname(directory_path))
+    file_list = os.listdir(directory_path)
     if file_name in file_list:
-        file_path = directory_path + file_name
+        file_path = os.path.join(directory_path, file_name)
         os.remove(file_path)
 
 

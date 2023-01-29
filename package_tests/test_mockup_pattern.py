@@ -65,9 +65,6 @@ def test_post_render(tmpdir):
 )
 def test_post_pattern_name(tmpdir):
     """Verifies that pattern names are checked for validity."""
-    import pdb
-
-    pdb.set_trace()
     target_path = os.path.join(tmpdir.strpath, "collective.testpattern")
     configurator = Configurator(
         template="bobtemplates.plone:mockup_pattern",

@@ -138,7 +138,9 @@ version=5.1
 
 def test_dottedname_to_path():
     dottedname = "collective.todo.content"
-    assert base.dottedname_to_path(dottedname) == os.path.join("collective", "todo", "content")
+    assert base.dottedname_to_path(dottedname) == os.path.join(
+        "collective", "todo", "content"
+    )
 
 
 def test_subtemplate_warning(capsys):

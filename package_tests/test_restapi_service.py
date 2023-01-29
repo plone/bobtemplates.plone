@@ -124,7 +124,8 @@ def test_remove_unwanted_files(tmpdir):
     for file_to_remove in files_to_remove:
         with open(
             os.path.join(
-                package_path, file_to_remove,
+                package_path,
+                file_to_remove,
             ),
             "w",
         ) as f:
@@ -189,7 +190,8 @@ version=5.1
 
     with open(
         os.path.join(
-            package_path, "api/configure.zcml",
+            package_path,
+            "api/configure.zcml",
         ),
         "r",
     ) as f:
@@ -255,7 +257,10 @@ version=5.1
 
     with open(
         os.path.join(
-            package_path, "api", "services", "configure.zcml",
+            package_path,
+            "api",
+            "services",
+            "configure.zcml",
         ),
         "r",
     ) as f:

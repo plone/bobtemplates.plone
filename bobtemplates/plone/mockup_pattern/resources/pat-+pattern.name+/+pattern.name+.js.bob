@@ -8,7 +8,7 @@ parser.addArgument("example-option", "Stranger");
 class Pattern extends BasePattern {
     static name = "{{{ pattern.name }}}";
     static trigger = ".pat-{{{ pattern.name }}}";
-    parser = parser;
+    static parser = parser;
 
     async init() {
         import("./{{{ pattern.name }}}.scss");

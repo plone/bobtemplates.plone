@@ -1,5 +1,6 @@
-from bobtemplates.plone.base import git_commit, git_support
 from bobtemplates.plone.base import base_prepare_renderer
+from bobtemplates.plone.base import git_commit
+from bobtemplates.plone.base import git_support
 
 
 def prepare_renderer(configurator):

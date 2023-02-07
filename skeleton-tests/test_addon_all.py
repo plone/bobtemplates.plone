@@ -98,7 +98,7 @@ dexterity_type_activate_default_behaviors=False
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/configure.zcml")
+    assert file_exists(wd, "src", "collective", "task", "configure.zcml")
 
     # generate subtemplate behavior:
     template = """[variables]
@@ -120,10 +120,8 @@ behavior_name = Project
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/behaviors/configure.zcml")
-    assert file_exists(
-        wd, "/src/collective/task/behaviors/project.py"
-    )  # NOQA: S101,E501
+    assert file_exists(wd, "src", "collective", "task", "behaviors", "configure.zcml")
+    assert file_exists(wd, "src", "collective", "task", "behaviors", "project.py")
 
     # generate subtemplate indexer:
     template = """[variables]
@@ -145,9 +143,13 @@ indexer_name = my_custom_test_indexer
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/indexers/configure.zcml")
-    assert file_exists(wd, "/src/collective/task/indexers/my_custom_test_indexer.zcml")
-    assert file_exists(wd, "/src/collective/task/indexers/my_custom_test_indexer.py")
+    assert file_exists(wd, "src", "collective", "task", "indexers", "configure.zcml")
+    assert file_exists(
+        wd, "src", "collective", "task", "indexers", "my_custom_test_indexer.zcml"
+    )
+    assert file_exists(
+        wd, "src", "collective", "task", "indexers", "my_custom_test_indexer.py"
+    )
 
     # generate subtemplate portlet:
     template = """[variables]
@@ -189,7 +191,7 @@ portlet_name=Another Weather Portlet
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/configure.zcml")
+    assert file_exists(wd, "src", "collective", "task", "configure.zcml")
 
     # generate subtemplate restapi_service:
     template = """[variables]
@@ -212,7 +214,7 @@ service_name=related-images
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/configure.zcml")
+    assert file_exists(wd, "src", "collective", "task", "configure.zcml")
 
     # generate subtemplate svelte_app:
     template = """[variables]
@@ -235,9 +237,15 @@ svelte_app_custom_element = Yes
     )
     assert result == 0
 
-    assert file_exists(wd, "/svelte_src/my-custom-svelte-element/README.md")
+    assert file_exists(wd, "svelte_src", "my-custom-svelte-element", "README.md")
     assert file_exists(
-        wd, "/src/collective/task/svelte_apps/my-custom-svelte-element/README.md"
+        wd,
+        "src",
+        "collective",
+        "task",
+        "svelte_apps",
+        "my-custom-svelte-element",
+        "README.md",
     )
 
     # generate subtemplate upgrade_step:
@@ -261,9 +269,9 @@ upgrade_step_description = Upgrade the thing
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/upgrades/configure.zcml")
-    assert file_exists(wd, "/src/collective/task/upgrades/1001.zcml")
-    assert file_exists(wd, "/src/collective/task/upgrades/v1001.py")
+    assert file_exists(wd, "src", "collective", "task", "upgrades", "configure.zcml")
+    assert file_exists(wd, "src", "collective", "task", "upgrades", "1001.zcml")
+    assert file_exists(wd, "src", "collective", "task", "upgrades", "v1001.py")
 
     # generate subtemplate view:
     template = """[variables]
@@ -290,7 +298,7 @@ view_register_for=Folder
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/views/configure.zcml")
+    assert file_exists(wd, "src", "collective", "task", "views", "configure.zcml")
 
     # generate subtemplate form:
     template = """[variables]
@@ -314,7 +322,7 @@ form_register_for=Folder
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/forms/configure.zcml")
+    assert file_exists(wd, "src", "collective", "task", "forms", "configure.zcml")
 
     # generate subtemplate viewlet:
     template = """[variables]
@@ -338,7 +346,7 @@ viewlet_template_name=pt_viewlet
         cwd=wd,
     )
     assert result == 0
-    assert file_exists(wd, "/src/collective/task/viewlets/configure.zcml")
+    assert file_exists(wd, "src", "collective", "task", "viewlets", "configure.zcml")
 
     # generate subtemplate viewlet:
     template = """[variables]
@@ -362,7 +370,7 @@ viewlet_template=False
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/viewlets/configure.zcml")
+    assert file_exists(wd, "src", "collective", "task", "viewlets", "configure.zcml")
 
     # generate subtemplate vocabulary:
     template = """[variables]
@@ -384,14 +392,14 @@ vocabulary_name = AvailableTasks
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/collective/task/vocabularies/configure.zcml")
     assert file_exists(
-        wd,
-        "/src/collective/task/tests/test_vocab_available_tasks.py",
+        wd, "src", "collective", "task", "vocabularies", "configure.zcml"
     )
     assert file_exists(
-        wd,
-        "/src/collective/task/vocabularies/available_tasks.py",
+        wd, "src", "collective", "task", "tests", "test_vocab_available_tasks.py"
+    )
+    assert file_exists(
+        wd, "src", "collective", "task", "vocabularies", "available_tasks.py"
     )
 
     with capsys.disabled():

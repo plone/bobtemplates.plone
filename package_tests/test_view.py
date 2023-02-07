@@ -95,7 +95,7 @@ def test_update_views_configure_zcml(tmpdir):
     """Test configure changes when changes are already in place."""
     target_path = os.path.join(tmpdir.strpath, "collective.sample")
     package_path = os.path.join(target_path, "src", "collective", "sample")
-    views_path = os.path.join(package_path, "views/")
+    views_path = os.path.join(package_path, "views")
     os.makedirs(target_path)
     os.makedirs(package_path)
     os.makedirs(views_path)

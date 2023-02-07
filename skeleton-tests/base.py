@@ -22,8 +22,8 @@ def generate_answers_ini(path, template):
         f.write(template)
 
 
-def file_exists(base_path, file_path):
-    is_file = os.path.isfile(base_path + file_path)
+def file_exists(base_path, *parts):
+    is_file = os.path.isfile(os.path.join(base_path, *parts))
     return is_file
 
 

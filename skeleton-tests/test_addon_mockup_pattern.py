@@ -63,15 +63,31 @@ subtemplate_warning=False
         ],
     )
 
-    assert file_exists(wd, "/package.json")
-    assert file_exists(wd, "/webpack.config.js")
+    assert file_exists(wd, "package.json")
+    assert file_exists(wd, "webpack.config.js")
     assert file_exists(
         wd,
-        "/src/collective/testpattern/profiles/default/registry/bundles.xml",
+        "src",
+        "collective",
+        "testpattern",
+        "profiles",
+        "default",
+        "registry",
+        "bundles.xml",
     )
     found_jscompilation = False
     with open(
-        f"{wd}/src/collective/testpattern/profiles/default/registry/bundles.xml", "r"
+        os.path.join(
+            wd,
+            "src",
+            "collective",
+            "testpattern",
+            "profiles",
+            "default",
+            "registry",
+            "bundles.xml",
+        ),
+        "r",
     ) as bundles_file:
         for line in bundles_file.readlines():
             if "jscompilation" in line:

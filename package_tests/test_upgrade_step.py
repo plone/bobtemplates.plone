@@ -11,7 +11,7 @@ import os
 def test_pre_renderer(tmpdir):
     package_root = os.path.join(tmpdir.strpath, "collective.todo")
     package_path = init_package_base_structure(package_root)
-    target_path = os.path.join(package_path, "profiles/default")
+    target_path = os.path.join(package_path, "profiles", "default")
 
     template = """<?xml version='1.0' encoding='UTF-8'?>
 <metadata>
@@ -139,7 +139,7 @@ def test_read_source_version(tmpdir):
 def test_write_dest_version(tmpdir):
     package_root = os.path.join(tmpdir.strpath, "collective.todo")
     package_path = init_package_base_structure(package_root)
-    target_path = os.path.join(package_path, "profiles/default")
+    target_path = os.path.join(package_path, "profiles", "default")
 
     template = """<?xml version='1.0' encoding='UTF-8'?>
 <metadata>

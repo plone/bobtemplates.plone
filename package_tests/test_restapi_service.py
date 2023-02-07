@@ -125,7 +125,7 @@ def test_remove_unwanted_files(tmpdir):
         with open(
             os.path.join(
                 package_path,
-                file_to_remove,
+                *file_to_remove.split("/"),
             ),
             "w",
         ) as f:
@@ -134,7 +134,7 @@ def test_remove_unwanted_files(tmpdir):
 
     for file_to_remove in files_to_remove:
         assert not os.path.isfile(
-            os.path.join(package_path, file_to_remove),
+            os.path.join(package_path, *file_to_remove.split("/")),
         )
 
 
@@ -171,7 +171,7 @@ version=5.1
 """
     with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
-    with open(os.path.join(package_path, "api/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "api", "configure.zcml"), "w") as f:
         f.write(template)
     configurator = Configurator(
         template="bobtemplates.plone:restapi_service",
@@ -191,7 +191,8 @@ version=5.1
     with open(
         os.path.join(
             package_path,
-            "api/configure.zcml",
+            "api",
+            "configure.zcml",
         ),
         "r",
     ) as f:

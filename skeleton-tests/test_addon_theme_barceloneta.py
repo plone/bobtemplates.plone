@@ -65,7 +65,7 @@ subtemplate_warning=False
     )
     assert result == 0
 
-    assert file_exists(wd, "/src/plonetheme/task/theme/manifest.cfg")
+    assert file_exists(wd, "src", "plonetheme", "task", "theme", "manifest.cfg")
 
     with capsys.disabled():
         run_skeleton_tox_env(wd, config)
@@ -127,4 +127,4 @@ subtemplate_warning=False
         cwd=wd,
     )
     assert result == 0
-    assert file_exists(wd, "/src/plonetheme/task/theme/manifest.cfg")
+    assert file_exists(wd, "src", "plonetheme", "task", "theme", "manifest.cfg")

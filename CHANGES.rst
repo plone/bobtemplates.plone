@@ -4,6 +4,9 @@ Changelog
 6.2.2 (unreleased)
 ------------------
 
+- mockup_pattern: Fix imports of config files to point to @patternslib/dev.
+  [thet]
+
 - mockup_pattern: The parser attribute should be a static attribute.
   [thet]
 

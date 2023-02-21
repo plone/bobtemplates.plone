@@ -10,17 +10,18 @@ from plone.app.contenttypes.browser.collection import CollectionView
 {{% else %}}
 from Products.Five.browser import BrowserView
 {{% endif %}}
+from zope.interface import implementer
 from zope.interface import Interface
 {{% if view_template %}}
 
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 {{% endif %}}
 
-
 class I{{{ view_python_class_name }}}(Interface):
     """ Marker Interface for I{{{ view_python_class_name }}}"""
 
 
+@implementer(I{{{ view_python_class_name }}})
 class {{{ view_python_class_name }}}({{{ view_base_class }}}):
 {{% if view_template %}}
     # If you want to define a template here, please remove the template from

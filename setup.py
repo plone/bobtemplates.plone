@@ -34,6 +34,8 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: Implementation :: CPython",
         "Development Status :: 5 - Production/Stable",
+        "Framework :: Plone",
+        "Framework :: Plone :: 6.0",
         "Topic :: Software Development :: Code Generators",
         "Topic :: Utilities",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",

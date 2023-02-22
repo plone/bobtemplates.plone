@@ -4,7 +4,8 @@ Changelog
 6.2.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add Plone Classifiers to show up in Plone add-on gallery
+  [MrTango]
 
 
 6.2.2 (2023-02-22)

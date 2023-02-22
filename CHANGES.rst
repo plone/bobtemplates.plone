@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.3 (unreleased)
+6.2.3 (2023-02-22)
 ------------------
 
 - Add Plone Classifiers to show up in Plone add-on gallery

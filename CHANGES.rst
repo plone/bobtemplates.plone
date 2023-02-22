@@ -10,6 +10,9 @@ Changelog
 - mockup_pattern: The parser attribute should be a static attribute.
   [thet]
 
+- improve view template, implement view interface
+  [MrTango]
+
 
 6.2.1 (2023-01-26)
 ------------------

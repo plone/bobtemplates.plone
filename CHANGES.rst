@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.2 (unreleased)
+6.2.2 (2023-02-22)
 ------------------
 
 - mockup_pattern: Fix imports of config files to point to @patternslib/dev.

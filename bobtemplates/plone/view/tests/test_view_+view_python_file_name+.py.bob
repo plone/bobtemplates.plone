@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
 from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING
+from {{{package.dottedname}}}.views.{{{view_python_file_name}}} import I{{{ view_python_class_name }}}
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -25,25 +26,20 @@ class ViewsIntegrationTest(unittest.TestCase):
             (self.portal['other-folder'], self.portal.REQUEST),
             name='{{{ view_name }}}'
         )
-        self.assertTrue(view.__name__ == '{{{ view_name }}}')
-{{% if view_python_class and view_template %}}
-        # self.assertTrue(
-        #     'Sample View' in view(),
-        #     'Sample View is not found in {{{ view_name }}}'
-        # )
-{{% else %}}
-        # self.assertTrue(
-        #     'Sample View' in view(),
-        #     'Sample View is not found in {{{ view_name }}}'
-        # )
-{{% endif %}}
+        self.assertTrue(I{{{ view_python_class_name }}}.providedBy(view))
 
     def test_{{{view_name_normalized}}}_not_matching_interface(self):
-        with self.assertRaises(ComponentLookupError):
-            getMultiAdapter(
+        view_found = True
+        try:
+            view = getMultiAdapter(
                 (self.portal['front-page'], self.portal.REQUEST),
                 name='{{{ view_name }}}'
             )
+        except ComponentLookupError:
+            view_found = False
+        else:
+            view_found = I{{{ view_python_class_name }}}.providedBy(view)
+        self.assertFalse(view_found)
 
 
 class ViewsFunctionalTest(unittest.TestCase):

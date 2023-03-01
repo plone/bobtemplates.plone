@@ -4,7 +4,8 @@ Changelog
 6.2.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- improve view template, fix name of test file and improve generated tests
+  [MrTango]
 
 
 6.2.3 (2023-02-22)

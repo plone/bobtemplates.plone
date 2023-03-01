@@ -18,13 +18,18 @@ import os
 import six
 
 
+def _view_name_from_python_class(configurator):
+    view_generated_name = ""
+    if configurator.variables["view_python_class"]:
+        view_class_name = configurator.variables["view_python_class_name"]
+        view_generated_name = cc.snakecase(view_class_name).replace("_", "-")
+    return view_generated_name
+
+
 def get_view_name_from_python_class(configurator, question):
     """Generate view default name from python class"""
     if configurator.variables["view_python_class"]:
-        view_class_name = configurator.variables["view_python_class_name"]
-        view_generated_name = cc.snakecase(view_class_name).replace(
-            "_", "-"
-        )  # NOQA: E501
+        view_generated_name = _view_name_from_python_class(configurator)
         question.default = view_generated_name
     else:
         question.default = "my_view"
@@ -123,10 +128,15 @@ def _update_views_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_xpath = "./browser:page[@name='{0}']".format(
-            configurator.variables["view_name"],
+        view_name_xpath = "./browser:page[@name='{0}']".format(
+            view_config["name"],
         )
-        if len(tree_root.xpath(view_xpath, namespaces=ZCML_NAMESPACES)):
+        view_for_xpath = "./browser:page[@for='{0}']".format(
+            view_config["for"],
+        )
+        if len(tree_root.xpath(view_name_xpath, namespaces=ZCML_NAMESPACES)) and len(
+            tree_root.xpath(view_for_xpath, namespaces=ZCML_NAMESPACES)
+        ):
             echo(
                 "{0} already in configure.zcml, do you really want to add this config?"
                 "\n\n{1}\n [y/N]: ".format(

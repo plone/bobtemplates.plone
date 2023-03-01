@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.4 (unreleased)
+6.2.4 (2023-03-01)
 ------------------
 
 - improve view template, fix name of test file and improve generated tests

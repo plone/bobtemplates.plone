@@ -4,7 +4,8 @@ Changelog
 6.2.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- fix generated view template
+  [MrTango]
 
 
 6.2.4 (2023-03-01)

@@ -18,7 +18,7 @@
 
   </metal:custom_title>
 
-  <metal:custom_description fill-slot="content-title">
+  <metal:custom_description fill-slot="content-description">
     <p tal:replace="structure context/@@description" />
   </metal:custom_description>
 

@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.5 (unreleased)
+6.2.5 (2023-03-02)
 ------------------
 
 - fix generated view template

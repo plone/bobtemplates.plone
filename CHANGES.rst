@@ -1,6 +1,13 @@
 Changelog
 =========
 
+6.2.7 (2023-03-05)
+------------------
+
+- fixed the msg in view , added tal:content="view/msg" expression in the <p> tag that will call the msg
+  [Coder-aadarsh]
+
+
 6.2.6 (unreleased)
 ------------------
 

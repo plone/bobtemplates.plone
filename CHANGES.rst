@@ -4,7 +4,8 @@ Changelog
 6.2.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- mockup_pattern: Fix .prettierignore file to not exclude files within the /resources directory.
+  [thet]
 
 
 6.2.5 (2023-03-02)

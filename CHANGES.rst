@@ -1,11 +1,48 @@
 Changelog
 =========
 
-6.2.2 (unreleased)
+6.2.6 (unreleased)
 ------------------
+
+- Fix the GitLab CI cache for pip.
+  [thet]
+
+- mockup_pattern: Fix .prettierignore file to not exclude files within the /resources directory.
+  [thet]
+
+
+6.2.5 (2023-03-02)
+------------------
+
+- fix generated view template
+  [MrTango]
+
+
+6.2.4 (2023-03-01)
+------------------
+
+- improve view template, fix name of test file and improve generated tests
+  [MrTango]
+
+
+6.2.3 (2023-02-22)
+------------------
+
+- Add Plone Classifiers to show up in Plone add-on gallery
+  [MrTango]
+
+
+6.2.2 (2023-02-22)
+------------------
+
+- mockup_pattern: Fix imports of config files to point to @patternslib/dev.
+  [thet]
 
 - mockup_pattern: The parser attribute should be a static attribute.
   [thet]
+
+- improve view template, implement view interface
+  [MrTango]
 
 
 6.2.1 (2023-01-26)

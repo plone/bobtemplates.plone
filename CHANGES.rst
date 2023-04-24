@@ -10,6 +10,9 @@ Changelog
 - mockup_pattern: Fix .prettierignore file to not exclude files within the /resources directory.
   [thet]
 
+- Fix Plone 6 constraints file in addon template
+  [MrTango]
+
 
 6.2.5 (2023-03-02)
 ------------------

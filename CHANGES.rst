@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.6 (unreleased)
+6.2.6 (2023-04-24)
 ------------------
 
 - Fix the GitLab CI cache for pip.

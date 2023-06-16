@@ -15,13 +15,13 @@
     "tinymce": "^5.10.2"
   },
   "scripts": {
-    "watch": "nodemon --watch styles/ --ext scss --exec \"npm run css-main\"",
+    "watch": "nodemon --watch scss/ --ext scss --exec \"npm run css-main\"",
     "build": "npm-run-all css-compile-main css-prefix-main css-minify-main",
     "css-main": "npm-run-all css-compile-main css-prefix-main css-minify-main",
-    "css-compile-main": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css styles/theme.scss:styles/theme.css",
+    "css-compile-main": "sass --load-path=node_modules --style expanded --source-map --embed-sources --no-error-css scss/theme.scss:styles/theme.css",
     "css-prefix-main": "postcss --config postcss.config.js --replace \"styles/*.css\" \"!styles/*.min.css\"",
     "css-minify-main": "cleancss -O1 --format breakWith=lf --with-rebase --source-map --source-map-inline-sources --output styles/theme.min.css styles/theme.css",
-    "css-lint": "stylelint \"styles/**/*.scss\" --cache --cache-location .cache/.stylelintcache"
+    "css-lint": "stylelint \"scss/**/*.scss\" --cache --cache-location .cache/.stylelintcache"
   },
   "dependencies": {
     "@plone/plonetheme-barceloneta-base": "^3.1.3"

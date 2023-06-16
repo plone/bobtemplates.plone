@@ -4,7 +4,8 @@ Changelog
 6.2.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix SCSS imports for latest Bootstrap 5.3.
+  [petschki]
 
 
 6.2.6 (2023-04-24)

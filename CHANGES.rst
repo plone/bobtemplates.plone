@@ -4,7 +4,10 @@ Changelog
 6.2.7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- `theme_barceloneta`: pin version of `@plone/plonetheme-barceloneta-base` to
+  `3.0.x` patch releases which is based on Bootstrap 5.2.
+  Bootstrap 5.3 support will come with version `6.3.x`.
+  [petschki]
 
 
 6.2.6 (2023-04-24)

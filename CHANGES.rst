@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.8 (unreleased)
+6.3.0 (2023-06-19)
 ------------------
 
 New features:

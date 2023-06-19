@@ -10,7 +10,7 @@ Breaking changes:
 
 New features:
 
-- *add item here*
+- Fix SCSS imports for latest Bootstrap 5.3.
 
 Bug fixes:
 

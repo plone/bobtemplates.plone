@@ -1,6 +1,22 @@
 Changelog
 =========
 
+6.2.8 (unreleased)
+------------------
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
 6.2.7 (2023-06-19)
 ------------------
 

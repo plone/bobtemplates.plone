@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.2.8 (unreleased)
+6.3.1 (unreleased)
 ------------------
 
 Breaking changes:
@@ -10,11 +10,22 @@ Breaking changes:
 
 New features:
 
-- Fix SCSS imports for latest Bootstrap 5.3.
+- *add item here*
 
 Bug fixes:
 
 - *add item here*
+
+
+6.3.0 (2023-06-19)
+------------------
+
+New features:
+
+- Fix SCSS imports for latest Bootstrap 5.3.
+  See `Upgrade notes <https://github.com/plone/bobtemplates.plone/blob/main/docs/templates/addon/theme_barceloneta/index.rst#upgrade-notes>`_
+  how you can update your existing theme.
+  [petschki]
 
 
 6.2.7 (2023-06-19)

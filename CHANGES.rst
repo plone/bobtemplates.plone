@@ -1,7 +1,23 @@
 Changelog
 =========
 
-6.2.7 (unreleased)
+6.2.8 (unreleased)
+------------------
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- *add item here*
+
+Bug fixes:
+
+- *add item here*
+
+
+6.2.7 (2023-06-19)
 ------------------
 
 - `theme_barceloneta`: pin version of `@plone/plonetheme-barceloneta-base` to

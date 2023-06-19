@@ -60,13 +60,11 @@ def check_global_allow(configurator, answer):
 def _update_metadata_xml(configurator):
     """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""  # NOQA: E501
     metadata_file_name = "metadata.xml"
-    metadata_file_dir = "profiles/default"
-    metadata_file_path = (
-        configurator.variables["package_folder"]
-        + "/"
-        + metadata_file_dir
-        + "/"
-        + metadata_file_name
+    metadata_file_path = os.path.join(
+        configurator.variables["package_folder"],
+        "profiles",
+        "default",
+        metadata_file_name,
     )
 
     with open(metadata_file_path, "r") as xml_file:
@@ -111,11 +109,11 @@ def _update_types_xml(configurator):
     """Add the new type to types.xml in Generic Setup profiles."""
     types_file_name = "types.xml"
     types_file_dir = "profiles/default"
-    types_file_path = (
-        configurator.target_directory + "/" + types_file_dir + "/" + types_file_name
+    types_file_path = os.path.join(
+        configurator.target_directory, types_file_dir, types_file_name
     )
-    types_example_file_path = (
-        configurator.target_directory + "/" + types_file_dir + "/types.xml.example"
+    types_example_file_path = os.path.join(
+        configurator.target_directory, types_file_dir, "types.xml.example"
     )
     file_list = os.listdir(os.path.dirname(types_file_path))
     if types_file_name not in file_list:
@@ -156,8 +154,11 @@ def _update_parent_types_fti_xml(configurator):
     file_name = "{0}.xml".format(
         parent_dexterity_type_fti_file_name,
     )
-    file_path = "{0}/profiles/default/types/{1}".format(
+    file_path = os.path.join(
         configurator.variables["package_folder"],
+        "profiles",
+        "default",
+        "types",
         file_name,
     )
 
@@ -186,8 +187,10 @@ def _update_parent_types_fti_xml(configurator):
 
 def _update_rolemap_xml(configurator):
     file_name = "rolemap.xml"
-    file_path = "{0}/profiles/default/{1}".format(
+    file_path = os.path.join(
         configurator.variables["package_folder"],
+        "profiles",
+        "default",
         file_name,
     )
 
@@ -224,7 +227,7 @@ def _update_rolemap_xml(configurator):
 
 def _update_permissions_zcml(configurator):
     file_name = "permissions.zcml"
-    file_path = configurator.variables["package_folder"] + "/" + file_name
+    file_path = os.path.join(configurator.variables["package_folder"], file_name)
     nsprefix = "{http://namespaces.zope.org/zope}"
 
     with open(file_path, "r") as xml_file:

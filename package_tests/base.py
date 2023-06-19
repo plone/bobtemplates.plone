@@ -8,11 +8,10 @@ def init_package_base_structure(package_root):
     expects: package_root
     returns: package_path
     """
-    package_name = package_root.split("/")[-1]
+    package_name = os.path.split(package_root)[-1]
     namespace_parts = package_name.split(".")
-    package_namespace_path = "/".join(namespace_parts)
-    package_path = os.path.join(package_root, "src/" + package_namespace_path)
-    profiles_path = os.path.join(package_path, "profiles/default")
+    package_path = os.path.join(package_root, "src", *namespace_parts)
+    profiles_path = os.path.join(package_path, "profiles", "default")
     svelte_apps_path = os.path.join(package_path, "svelte_apps")
     theme_path = os.path.join(package_path, "theme")
     os.makedirs(package_root)
@@ -24,14 +23,14 @@ def init_package_base_structure(package_root):
 [main]
 version=5.1
 """
-    with open(os.path.join(package_root + "/bobtemplate.cfg"), "w") as f:
+    with open(os.path.join(package_root, "bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     template = """
     dummy
     '-*- Extra requirements: -*-'
 """
-    with open(os.path.join(package_root + "/setup.py"), "w") as f:
+    with open(os.path.join(package_root, "setup.py"), "w") as f:
         f.write(template)
 
     template = """<configure
@@ -53,7 +52,7 @@ version=5.1
 
 </configure>
 """
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+    with open(os.path.join(package_path, "configure.zcml"), "w") as f:
         f.write(template)
 
     template = """<?xml version="1.0" encoding="UTF-8"?>
@@ -64,7 +63,7 @@ version=5.1
   </dependencies>
 </metadata>
 """
-    with open(os.path.join(profiles_path + "/metadata.xml"), "w") as f:
+    with open(os.path.join(profiles_path, "metadata.xml"), "w") as f:
         f.write(template)
 
     return package_path

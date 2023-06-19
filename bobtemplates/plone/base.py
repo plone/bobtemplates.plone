@@ -206,7 +206,7 @@ def check_method_name(configurator, question, answer):
 def read_bobtemplates_ini(configurator):
     bob_config = BobConfig()
     config = ConfigParser()
-    path = configurator.target_directory + "/bobtemplate.cfg"
+    path = os.path.join(configurator.target_directory, "bobtemplate.cfg")
     config.read(path)
     if not config.sections():
         return
@@ -337,12 +337,10 @@ def update_configure_zcml(
     match_str=None,
     insert_str=None,
 ):
-    if path[-1] != "/":
-        path += "/"
     file_path = os.path.join(path, file_name)
     if example_file_name:
         example_file_path = os.path.join(path, example_file_name)
-        file_list = os.listdir(os.path.dirname(path))
+        file_list = os.listdir(path)
         if file_name not in file_list:
             print("rename example zcml file")
             os.rename(example_file_path, file_path)
@@ -421,7 +419,7 @@ def check_root_folder(configurator, question):
 
 
 def dottedname_to_path(dottedname):
-    path = "/".join(dottedname.split("."))
+    path = os.path.join(*dottedname.split("."))
     return path
 
 
@@ -447,10 +445,12 @@ def base_prepare_renderer(configurator):
     )
 
     package_subpath = dottedname_to_path(configurator.variables["package.dottedname"])
-    configurator.variables["package_folder_rel_path"] = "/src/" + package_subpath
-    configurator.variables["package_folder"] = (
-        configurator.variables["package.root_folder"]
-        + configurator.variables["package_folder_rel_path"]
+    configurator.variables["package_folder_rel_path"] = os.path.join(
+        "", "src", package_subpath
+    )
+    configurator.variables["package_folder"] = os.path.join(
+        configurator.variables["package.root_folder"],
+        configurator.variables["package_folder_rel_path"],
     )
     configurator.target_directory = configurator.variables["package.root_folder"]
     camelcasename = (

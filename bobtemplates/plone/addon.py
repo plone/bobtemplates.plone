@@ -46,11 +46,9 @@ def pre_render(configurator):
     configurator.variables["package.longname"] = camelcasename.lower()
 
     # jenkins.directories = 'collective/foo/something'
-    configurator.variables["jenkins.directories"] = configurator.variables[
-        "package.distributionname"
-    ].replace(
-        ".", "/"
-    )  # NOQA: E501
+    configurator.variables["jenkins.directories"] = os.path.join(
+        *configurator.variables["package.distributionname"].split(".")
+    )
 
     if namespaces:
         configurator.variables["package.namespace_packages"] = ", ".join(

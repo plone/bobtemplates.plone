@@ -19,12 +19,14 @@ import os
 
 def _update_portlets_configure_zcml(configurator):
     file_name = "configure.zcml"
-    directory_path = configurator.variables["package_folder"] + "/portlets/"
-    file_path = directory_path + file_name
-    configure_example_file_path = (
-        configurator.variables["package_folder"] + "/portlets/configure.zcml.example"
+    directory_path = os.path.join(configurator.variables["package_folder"], "portlets")
+    file_path = os.path.join(directory_path, file_name)
+    configure_example_file_path = os.path.join(
+        configurator.variables["package_folder"],
+        "portlets",
+        "configure.zcml.example",
     )  # NOQA: E501
-    file_list = os.listdir(os.path.dirname(directory_path))
+    file_list = os.listdir(directory_path)
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
 
@@ -70,15 +72,17 @@ def _update_portlets_configure_zcml(configurator):
 
 def _update_portlets_xml(configurator):
     file_name = "portlets.xml"
-    directory_path = (
-        configurator.variables["package_folder"] + "/profiles/default/"
-    )  # NOQA: E501
-    file_path = directory_path + file_name
-    configure_example_file_path = (
-        configurator.variables["package_folder"]
-        + "/profiles/default/portlets.xml.example"
-    )  # NOQA: E501
-    file_list = os.listdir(os.path.dirname(directory_path))
+    directory_path = os.path.join(
+        configurator.variables["package_folder"],
+        "profiles",
+        "default",
+    )
+    file_path = os.path.join(directory_path, file_name)
+    configure_example_file_path = os.path.join(
+        directory_path,
+        "portlets.xml.example",
+    )
+    file_list = os.listdir(directory_path)
     if file_name not in file_list:
         os.rename(configure_example_file_path, file_path)
 
@@ -132,23 +136,23 @@ def _update_portlets_xml(configurator):
 
 def _delete_unnecessary_files(configurator):
     directory_path = configurator.variables["package_folder"]
-    configure_path = directory_path + "/portlets/"
+    configure_path = os.path.join(directory_path, "portlets")
     file_name = "configure.zcml.example"
-    file_list = os.listdir(os.path.dirname(configure_path))
+    file_list = os.listdir(configure_path)
     if file_name in file_list:
-        file_path = configure_path + file_name
+        file_path = os.path.join(configure_path, file_name)
         os.remove(file_path)
-    portlets_xml_path = directory_path + "/profiles/default/"
+    portlets_xml_path = os.path.join(directory_path, "profiles", "default")
     file_name = "portlets.xml.example"
-    file_list = os.listdir(os.path.dirname(portlets_xml_path))
+    file_list = os.listdir(portlets_xml_path)
     if file_name in file_list:
-        file_path = portlets_xml_path + file_name
+        file_path = os.path.join(portlets_xml_path, file_name)
         os.remove(file_path)
 
 
 def _update_configure_zcml(configurator):
     file_name = "configure.zcml"
-    file_path = configurator.variables["package_folder"] + "/" + file_name
+    file_path = os.path.join(configurator.variables["package_folder"], file_name)
 
     with open(file_path, "r") as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)

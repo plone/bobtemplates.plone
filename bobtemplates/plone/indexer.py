@@ -8,6 +8,7 @@ from bobtemplates.plone.utils import run_black
 from bobtemplates.plone.utils import run_isort
 
 import case_conversion as cc
+import os
 
 
 def _update_package_configure_zcml(configurator):
@@ -31,8 +32,9 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_indexers_configure_zcml(configurator):
-    path = "{0}/indexers".format(
+    path = os.path.join(
         configurator.variables["package_folder"],
+        "indexers",
     )
     file_name = "configure.zcml"
     example_file_name = "{0}.example".format(file_name)
@@ -59,11 +61,11 @@ def _update_indexers_configure_zcml(configurator):
 def _remove_unwanted_files(configurator):
     file_paths = []
     rel_file_paths = [
-        "/indexers/configure.zcml.example",
+        os.path.join("indexers", "configure.zcml.example"),
     ]
     base_path = configurator.variables["package_folder"]
     for rel_file_path in rel_file_paths:
-        file_paths.append("{0}{1}".format(base_path, rel_file_path))
+        file_paths.append(os.path.join(base_path, rel_file_path))
     remove_unwanted_files(file_paths)
 
 

@@ -9,6 +9,7 @@ from bobtemplates.plone.utils import run_isort
 from lxml import etree
 
 import case_conversion as cc
+import os
 
 
 def get_service_name_from_python_class(configurator, question):
@@ -42,8 +43,9 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_api_configure_zcml(configurator):
-    path = "{0}/api".format(
+    path = os.path.join(
         configurator.variables["package_folder"],
+        "api",
     )
     file_name = "configure.zcml"
     example_file_name = "{0}.example".format(file_name)
@@ -64,8 +66,10 @@ def _update_api_configure_zcml(configurator):
 
 
 def _update_services_configure_zcml(configurator):
-    path = "{0}/api/services".format(
+    path = os.path.join(
         configurator.variables["package_folder"],
+        "api",
+        "services",
     )
     file_name = "configure.zcml"
     example_file_name = "{0}.example".format(file_name)
@@ -93,12 +97,10 @@ def _update_metadata_xml(configurator):
     """
     metadata_file_name = "metadata.xml"
     metadata_file_dir = "profiles/default"
-    metadata_file_path = (
-        configurator.variables["package_folder"]
-        + "/"
-        + metadata_file_dir
-        + "/"
-        + metadata_file_name
+    metadata_file_path = os.path.join(
+        configurator.variables["package_folder"],
+        metadata_file_dir,
+        metadata_file_name,
     )
 
     with open(metadata_file_path, "r") as xml_file:

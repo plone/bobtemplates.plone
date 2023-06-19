@@ -17,6 +17,7 @@ _build
 __pycache__
 .cache
 .vagrant
+/Scripts
 # files
 local.cfg
 pip-selfcheck.json

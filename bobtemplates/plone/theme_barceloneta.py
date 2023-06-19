@@ -56,12 +56,10 @@ def _update_metadata_xml(configurator):
     profiles."""
     metadata_file_name = "metadata.xml"
     metadata_file_dir = "profiles/default"
-    metadata_file_path = (
-        configurator.variables["package_folder"]
-        + "/"
-        + metadata_file_dir
-        + "/"
-        + metadata_file_name
+    metadata_file_path = os.path.join(
+        configurator.variables["package_folder"],
+        metadata_file_dir,
+        metadata_file_name,
     )
 
     with open(metadata_file_path, "r") as xml_file:
@@ -88,7 +86,7 @@ def _update_metadata_xml(configurator):
 
 def _update_configure_zcml(configurator):
     file_name = "configure.zcml"
-    file_path = configurator.variables["package_folder"] + "/" + file_name
+    file_path = os.path.join(configurator.variables["package_folder"], file_name)
     namespaces = {"plone": "http://namespaces.plone.org/plone"}
 
     with open(file_path, "r") as xml_file:
@@ -119,7 +117,7 @@ def _update_configure_zcml(configurator):
 
 # def _update_setup_py(configurator):
 #     file_name = u"setup.py"
-#     file_path = configurator.variables["package.root_folder"] + "/" + file_name
+#     file_path = os.path.join(configurator.variables["package.root_folder"], file_name)
 #     match_str = "-*- Extra requirements: -*-"
 #     insert_strings = [
 #         # "collective.themesitesetup",  # disable while not ready for Plone 5.2

@@ -10,6 +10,7 @@ from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
 import case_conversion as cc
+import os
 import re
 
 
@@ -25,7 +26,7 @@ def check_name(configurator, question, answer):
 
 def _update_configure_zcml(configurator):
     file_name = "configure.zcml"
-    file_path = configurator.variables["package_folder"] + "/" + file_name
+    file_path = os.path.join(configurator.variables["package_folder"], file_name)
     namespaces = {"plone": "http://namespaces.plone.org/plone"}
 
     with open(file_path, "r") as xml_file:

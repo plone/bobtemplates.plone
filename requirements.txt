@@ -1,5 +1,6 @@
 -cconstraints.txt
 setuptools
+wheel
 Sphinx
 flake8
 tox

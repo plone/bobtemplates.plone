@@ -6,6 +6,8 @@ from bobtemplates.plone.base import remove_unwanted_files
 from bobtemplates.plone.base import update_configure_zcml
 from lxml import etree
 
+import os
+
 
 def _update_package_configure_zcml(configurator):
     path = "{0}".format(
@@ -83,12 +85,10 @@ def _write_dest_version(configurator):
     """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""  # NOQA: E501
     metadata_file_name = "metadata.xml"
     metadata_file_dir = "profiles/default"
-    metadata_file_path = (
-        configurator.variables["package_folder"]
-        + "/"
-        + metadata_file_dir
-        + "/"
-        + metadata_file_name
+    metadata_file_path = os.path.join(
+        configurator.variables["package_folder"],
+        metadata_file_dir,
+        metadata_file_name,
     )
 
     with open(metadata_file_path, "r") as xml_file:

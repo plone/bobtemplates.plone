@@ -1,0 +1,12 @@
+$theme-plone-colors: (
+  "link-color-on-dark": $secondary,
+  "link-hover-color": $tertiary,
+);
+
+$plone-colors: map-merge($plone-colors, $theme-plone-colors);
+
+$theme-state-colors: (
+  "published": $primary,
+);
+
+$state-colors: map-merge($state-colors, $theme-state-colors);

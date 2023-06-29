@@ -10,7 +10,8 @@ Breaking changes:
 
 New features:
 
-- *add item here*
+- Add `icon_expr` for `content_type`` view/edit actions and ask for "Content type icon" when adding a `content_type`.
+  [petschki]
 
 Bug fixes:
 

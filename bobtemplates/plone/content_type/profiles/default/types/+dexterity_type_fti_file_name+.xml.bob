@@ -14,7 +14,7 @@
 
   <property name="allow_discussion">False</property>
   <property name="factory">{{{ dexterity_type_name }}}</property>
-  <property name="icon_expr"></property>
+  <property name="icon_expr">string:{{{ dexterity_type_icon_expr }}}</property>
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
@@ -121,6 +121,7 @@
       i18n:attributes="title"
       i18n:domain="plone"
       title="View"
+      icon_expr="string:toolbar-action/view"
       url_expr="string:${object_url}"
       visible="True">
     <permission value="View"/>
@@ -136,6 +137,7 @@
       i18n:attributes="title"
       i18n:domain="plone"
       title="Edit"
+      icon_expr="string:toolbar-action/edit"
       url_expr="string:${object_url}/edit"
       visible="True">
     <permission value="Modify portal content"/>

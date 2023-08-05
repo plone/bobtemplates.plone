@@ -1,5 +1,5 @@
 // Theme import structure is based on Bootstrap documentation
-// https://getbootstrap.com/docs/5.2/customize/sass/#importing
+// https://getbootstrap.com/docs/5.3/customize/sass/#importing
 
 // Barceloneta and Bootstrap import are using --load-path=node_modules
 
@@ -10,14 +10,18 @@ $enable-roboto-webfont: false !default;
 @import "bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
+@import "variables";
 
 // 3. Include remainder of required Barceloneta and Bootstrap stylesheets
 @import "@plone/plonetheme-barceloneta-base/scss/variables.colors.plone";
+@import "@plone/plonetheme-barceloneta-base/scss/variables.colors.dark.plone";
 @import "@plone/plonetheme-barceloneta-base/scss/variables.properties";
 @import "@plone/plonetheme-barceloneta-base/scss/variables.barceloneta";
 @import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
 
 // 4. Include any default map overrides here
+@import "maps";
 
 // 5. Include remainder of required parts
 @import "bootstrap/scss/maps";
@@ -94,3 +98,4 @@ $enable-roboto-webfont: false !default;
 
 
 // 9. Add additional custom code here
+@import "custom";

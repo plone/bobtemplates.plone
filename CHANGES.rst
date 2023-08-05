@@ -1,14 +1,50 @@
 Changelog
 =========
 
-6.2.7 (2023-03-05)
+6.2.6 (2023-08-05)
 ------------------
 
 - fixed the msg in view , added tal:content="view/msg" expression in the <p> tag that will call the msg
   [Coder-aadarsh]
 
+6.3.1 (unreleased)
+------------------
 
-6.2.6 (unreleased)
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- Add `icon_expr` for `content_type`` view/edit actions and ask for "Content type icon" when adding a `content_type`.
+  [petschki]
+
+Bug fixes:
+
+- *add item here*
+
+
+6.3.0 (2023-06-19)
+------------------
+
+New features:
+
+- Fix SCSS imports for latest Bootstrap 5.3.
+  See `Upgrade notes <https://github.com/plone/bobtemplates.plone/blob/main/docs/templates/addon/theme_barceloneta/index.rst#upgrade-notes>`_
+  how you can update your existing theme.
+  [petschki]
+
+
+6.2.7 (2023-06-19)
+------------------
+
+- `theme_barceloneta`: pin version of `@plone/plonetheme-barceloneta-base` to
+  `3.0.x` patch releases which is based on Bootstrap 5.2.
+  Bootstrap 5.3 support will come with version `6.3.x`.
+  [petschki]
+
+
+6.2.6 (2023-04-24)
 ------------------
 
 - Fix the GitLab CI cache for pip.
@@ -16,6 +52,9 @@ Changelog
 
 - mockup_pattern: Fix .prettierignore file to not exclude files within the /resources directory.
   [thet]
+
+- Fix Plone 6 constraints file in addon template
+  [MrTango]
 
 
 6.2.5 (2023-03-02)

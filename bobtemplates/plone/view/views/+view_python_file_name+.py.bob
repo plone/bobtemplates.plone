@@ -37,7 +37,7 @@ class {{{ view_python_class_name }}}({{{ view_base_class }}}):
 {{% endif %}}
 
     def msg(self):
-        return "msg from '{}".format(self.__class__.__name__)
+        return f"msg from {self.__class__.__name__}"
 
 {{% else %}}
     def __call__(self):

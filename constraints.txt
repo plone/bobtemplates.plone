@@ -2,7 +2,7 @@
 # -----------------------------------------------
 # Pin Versions / Version Ranges if necessary.
 setuptools==57.0.0
-tox==4.3.5
+tox>=4.4.0
 isort>=5
 flake8==5.0.4
 flake8-html==0.4.2

@@ -41,7 +41,7 @@ jobs:
                   pip install tox-gh-actions>=3.0.0
             - name: Black-Check
               run: |
-                  tox -e py -e black-check
+                  tox -e black-check
             - name: Test with tox
               run: |
                   tox -e py -r

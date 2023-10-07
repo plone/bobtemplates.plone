@@ -41,9 +41,9 @@ jobs:
                   pip install tox-gh-actions>=3.0.0
             - name: Black-Check
               run: |
-                  tox -e black-check
+                  tox -e black-check -r
             - name: Test with tox
               run: |
-                  tox -e py
+                  tox -e py -r
               env:
                   PLATFORM: ${{ matrix.os }}

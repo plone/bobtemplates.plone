@@ -44,6 +44,6 @@ jobs:
                   tox -e black-check
             - name: Test with tox
               run: |
-                  tox -e py -r
+                  tox
               env:
                   PLATFORM: ${{ matrix.os }}

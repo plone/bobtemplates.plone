@@ -15,7 +15,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Fix permissions.zcml loaded to late
+  [MrTango]
 
 
 6.3.0 (2023-06-19)

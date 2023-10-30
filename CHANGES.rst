@@ -21,6 +21,9 @@ Bug fixes:
 - Fix permissions.zcml loaded too late
   [MrTango]
 
+- Use portal_url to root all CSS and rules file links
+  [erral]
+
 
 6.3.0 (2023-06-19)
 ------------------

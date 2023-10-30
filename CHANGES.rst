@@ -18,6 +18,9 @@ Bug fixes:
 - Fix TinyMCE templates readme to work on Plone 6.
   [maurits]
 
+- Use portal_url to root all CSS and rules file links
+  [erral]
+
 
 6.3.0 (2023-06-19)
 ------------------

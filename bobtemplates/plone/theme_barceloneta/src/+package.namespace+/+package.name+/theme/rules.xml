@@ -5,7 +5,7 @@
        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
        xmlns:xi="http://www.w3.org/2001/XInclude">
 
-  <!-- <xi:include href="++theme++barceloneta/grid-col-marker.xml"/> -->
+  <!-- <xi:include href="{$portal_url}/++theme++barceloneta/grid-col-marker.xml"/> -->
 
   <theme href="index.html" />
   <notheme css:if-not-content="#visual-portal-wrapper" />

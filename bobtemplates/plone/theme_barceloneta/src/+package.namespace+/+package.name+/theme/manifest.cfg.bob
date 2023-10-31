@@ -18,4 +18,4 @@ tinymce-content-css = /++theme++{{{ theme.normalized_name }}}/styles/theme.min.c
 #directory = template-overrides
 
 [theme:parameters]
-# portal_url = python: portal.absolute_url()
+portal_url = python: portal.absolute_url()

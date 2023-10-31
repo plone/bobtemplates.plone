@@ -4,7 +4,17 @@ Changelog
 6.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+Breaking changes:
+
+-
+
+New features:
+
+-
+
+Bug fixes:
+
+-
 
 
 6.3.1 (2023-10-31)
@@ -12,7 +22,7 @@ Changelog
 
 Breaking changes:
 
-- *add item here*
+-
 
 New features:
 

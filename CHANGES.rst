@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.1 (unreleased)
+6.3.1 (2023-10-31)
 ------------------
 
 Breaking changes:

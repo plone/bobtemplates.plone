@@ -18,6 +18,7 @@ Bug fixes:
 - Fix TinyMCE templates readme to work on Plone 6.
   [maurits]
 - Fix permissions.zcml loaded to late
+- Fix permissions.zcml loaded too late
   [MrTango]
 
 

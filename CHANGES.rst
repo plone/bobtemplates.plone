@@ -15,7 +15,7 @@ New features:
 
 Bug fixes:
 
-- Fix permissions.zcml loaded to late
+- Fix permissions.zcml loaded too late
   [MrTango]
 
 

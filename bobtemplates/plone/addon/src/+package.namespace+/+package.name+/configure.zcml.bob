@@ -13,9 +13,10 @@
   -->
   <!--<includeDependencies package="." />-->
 
-  <include package=".browser" />
-
+  <!-- has to be loaded before permissions are used, so keep above views aso. -->
   <include file="permissions.zcml" />
+
+  <include package=".browser" />
 
   <genericsetup:registerProfile
       name="default"

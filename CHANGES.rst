@@ -15,6 +15,9 @@ New features:
 
 Bug fixes:
 
+- Fix permissions.zcml loaded too late
+  [MrTango]
+
 - Fix TinyMCE templates readme to work on Plone 6.
   [maurits]
 

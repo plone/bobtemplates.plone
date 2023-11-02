@@ -11,4 +11,4 @@ tinymce-content-css = ++theme++{{{ theme.normalized_name }}}/styles/theme.min.cs
 # production-js = ++theme++{{{ theme.normalized_name }}}/js/theme.min.js
 
 [theme:parameters]
-# portal_url = python: portal.absolute_url()
+portal_url = python: portal.absolute_url()

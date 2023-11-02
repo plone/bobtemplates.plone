@@ -1,18 +1,29 @@
 Changelog
 =========
 
-6.2.6 (2023-08-05)
-------------------
-
-- fixed the msg in view , added tal:content="view/msg" expression in the <p> tag that will call the msg
-  [Coder-aadarsh]
-
-6.3.1 (unreleased)
+6.3.2 (unreleased)
 ------------------
 
 Breaking changes:
 
-- *add item here*
+-
+
+New features:
+
+-
+
+Bug fixes:
+
+- fixed the msg in view , added tal:content="view/msg" expression in the <p> tag that will call the msg
+  [Coder-aadarsh]
+
+
+6.3.1 (2023-10-31)
+------------------
+
+Breaking changes:
+
+-
 
 New features:
 
@@ -21,8 +32,14 @@ New features:
 
 Bug fixes:
 
+- Fix permissions.zcml loaded too late
+  [MrTango]
+
 - Fix TinyMCE templates readme to work on Plone 6.
   [maurits]
+
+- Use portal_url to root all CSS and rules file links
+  [erral]
 
 
 6.3.0 (2023-06-19)

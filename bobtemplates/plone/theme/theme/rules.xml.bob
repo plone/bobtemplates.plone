@@ -7,7 +7,7 @@
 
 
   <!-- Include barceloneta's backend.xml for backend theming. -->
-  <xi:include href="++theme++barceloneta/backend.xml"><xi:fallback /></xi:include>
+  <xi:include href="{$portal_url}/++theme++barceloneta/backend.xml"><xi:fallback /></xi:include>
   <!--
     The backend.xml it self uses the following rules condition, to exclude the frontend
     If you want to include anything just for the backend, you can do the same,

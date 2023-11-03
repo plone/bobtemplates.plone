@@ -17,6 +17,10 @@ Bug fixes:
 - fixed the msg in view , added tal:content="view/msg" expression in the <p> tag that will call the msg
   [Coder-aadarsh]
 
+- add min_version = 4.11.0 to addon tempalte tox.ini
+  [MrTango]
+
+
 
 6.3.1 (2023-10-31)
 ------------------

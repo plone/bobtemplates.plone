@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
--
+- add min_version = 4.11.0 to addon tempalte tox.ini
+  [MrTango]
 
 
 6.3.1 (2023-10-31)

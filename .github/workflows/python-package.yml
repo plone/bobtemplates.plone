@@ -42,6 +42,7 @@ jobs:
             - name: Black-Check
               run: |
                   tox -r -e black-check
+              if: matrix.python-version == '3.11'
             - name: Test with tox
               run: |
                   tox -r

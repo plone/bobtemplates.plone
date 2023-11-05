@@ -13,6 +13,7 @@ profile = plone
 # black compatible flake8 rules:
 ignore =
     W503,
+    W391,
     C812,
     E501
     T001

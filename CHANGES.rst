@@ -125,6 +125,9 @@ New features:
 6.2 (2022-10-28)
 ----------------
 
+- Add a starter subtemplate to initialize a Plone site with some sane default values
+  [erral]
+
 - Improve namespace support #419
   [mamico]
 

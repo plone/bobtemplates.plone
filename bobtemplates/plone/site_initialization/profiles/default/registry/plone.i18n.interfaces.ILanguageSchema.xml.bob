@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<registry>
+  <records interface="plone.i18n.interfaces.ILanguageSchema" prefix="plone" purge="false">
+    <value key="available_languages">
+      <element>{{{ language }}}</element>
+    </value>
+    <value key="default_language">{{{ language }}}</value>
+  </records>
+</registry>

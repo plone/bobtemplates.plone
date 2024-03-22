@@ -90,6 +90,7 @@ setup(
             "plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary",
             "plone_controlpanel = bobtemplates.plone.bobregistry:plone_controlpanel",
             "plone_form = bobtemplates.plone.bobregistry:plone_form",
+            "plone_site_initialization = bobtemplates.plone.bobregistry:plone_site_initialization",
         ]
     },
 )

@@ -10,7 +10,8 @@ Breaking changes:
 
 New features:
 
--
+- Upgraded the default values from the ".mrbob.ini" file to "buildout" template.
+  [macagua]
 
 Bug fixes:
 

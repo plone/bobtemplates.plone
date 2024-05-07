@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.2 (unreleased)
+6.3.2 (2024-05-07)
 ------------------
 
 New features:

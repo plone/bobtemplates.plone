@@ -1,16 +1,20 @@
 Changelog
 =========
 
-6.3.2 (unreleased)
+6.3.3 (unreleased)
 ------------------
 
-Breaking changes:
+- Nothing changed yet.
 
--
+
+6.3.2 (2024-05-07)
+------------------
 
 New features:
 
--
+- Add a starter subtemplate to initialize a Plone site with some sane default values
+  [erral]
+
 
 Bug fixes:
 
@@ -23,10 +27,6 @@ Bug fixes:
 
 6.3.1 (2023-10-31)
 ------------------
-
-Breaking changes:
-
--
 
 New features:
 

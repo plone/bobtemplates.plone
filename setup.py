@@ -4,7 +4,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = "6.3.2.dev0"
+version = "6.3.3.dev0"
 
 
 long_description = "\n\n".join(
@@ -90,6 +90,7 @@ setup(
             "plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary",
             "plone_controlpanel = bobtemplates.plone.bobregistry:plone_controlpanel",
             "plone_form = bobtemplates.plone.bobregistry:plone_form",
+            "plone_site_initialization = bobtemplates.plone.bobregistry:plone_site_initialization",
         ]
     },
 )

@@ -4,7 +4,8 @@ Changelog
 6.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- always activate plone.namefromtitle and plone.locking behaviors, even if activate default behaviors is False.
+  [MrTango]
 
 
 6.3.2 (2024-05-07)

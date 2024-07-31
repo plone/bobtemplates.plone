@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.3 (unreleased)
+6.3.3 (2024-07-31)
 ------------------
 
 - always activate plone.namefromtitle and plone.locking behaviors, even if activate default behaviors is False.

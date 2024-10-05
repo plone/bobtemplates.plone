@@ -4,7 +4,8 @@ Changelog
 6.3.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Allow overriding package.dottedname in the configuration file
+  [erral]
 
 
 6.3.3 (2024-07-31)

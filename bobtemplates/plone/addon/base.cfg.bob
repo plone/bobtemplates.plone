@@ -69,6 +69,7 @@ eggs = coverage
 recipe = collective.recipe.template
 input = inline:
     #!/bin/bash
+    set -e
     export TZ=UTC
     ${buildout:directory}/bin/coverage run bin/test $*
     ${buildout:directory}/bin/coverage html

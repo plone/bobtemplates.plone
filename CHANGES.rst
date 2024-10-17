@@ -4,7 +4,8 @@ Changelog
 6.3.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- fix test-coverage bash script, so that it will fail if the tests fail
+  [mamico]
 
 
 6.3.3 (2024-07-31)

@@ -7,6 +7,9 @@ Changelog
 - Allow overriding package.dottedname in the configuration file
   [erral]
 
+- fix test-coverage bash script, so that it will fail if the tests fail
+  [mamico]
+
 
 6.3.3 (2024-07-31)
 ------------------

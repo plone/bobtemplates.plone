@@ -1,16 +1,31 @@
 Changelog
 =========
 
-6.3.2 (unreleased)
+6.3.4 (unreleased)
 ------------------
 
-Breaking changes:
+- Allow overriding package.dottedname in the configuration file
+  [erral]
 
--
+- fix test-coverage bash script, so that it will fail if the tests fail
+  [mamico]
+
+
+6.3.3 (2024-07-31)
+------------------
+
+- always activate plone.namefromtitle and plone.locking behaviors, even if activate default behaviors is False.
+  [MrTango]
+
+
+6.3.2 (2024-05-07)
+------------------
 
 New features:
 
--
+- Add a starter subtemplate to initialize a Plone site with some sane default values
+  [erral]
+
 
 Bug fixes:
 
@@ -24,10 +39,6 @@ Bug fixes:
 
 6.3.1 (2023-10-31)
 ------------------
-
-Breaking changes:
-
--
 
 New features:
 

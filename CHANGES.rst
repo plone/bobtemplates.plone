@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.4 (unreleased)
+6.3.4 (2024-11-05)
 ------------------
 
 - Allow overriding package.dottedname in the configuration file

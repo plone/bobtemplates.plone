@@ -4,7 +4,10 @@ Changelog
 6.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+New feature:
+
+- use playwright based robot tests in example.robot, drop selenium based robot tests
+  [1letter]
 
 
 6.3.4 (2024-11-05)

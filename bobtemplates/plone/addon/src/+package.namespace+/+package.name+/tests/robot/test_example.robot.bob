@@ -2,65 +2,68 @@
 # EXAMPLE ROBOT TESTS
 # ============================================================================
 #
-# Run this robot test stand-alone:
+# Start a single robot test
+# 
+# make sure the rfbrowser is initialized via 
 #
-#  $ bin/test -s {{{ package.dottedname }}} -t test_example.robot --all
+# $ rfbrowser init`
 #
-# Run this robot test with robot server (which is faster):
+# Start the robot server
 #
-# 1) Start robot server:
+# $ WSGI_SERVER_HOST=localhost WSGI_SERVER_PORT=50003 robot-server {{{ package.dottedname }}}.testing.{{{package.uppercasename}}}_ACCEPTANCE_TESTING
 #
-# $ bin/robot-server --reload-path src {{{ package.dottedname }}}.testing.{{{package.uppercasename}}}_ACCEPTANCE_TESTING
+# Start the robot test
 #
-# 2) Run robot tests:
+# $ WSGI_SERVER_HOST=localhost WSGI_SERVER_PORT=50003 robot src/{{{ jenkins.directories }}}/tests/robot/test_example.robot
 #
-# $ bin/robot src/{{{ jenkins.directories }}}/tests/robot/test_example.robot
-#
-# See the http://docs.plone.org for further details (search for robot
-# framework).
-#
+# Keyword Documentation: https://marketsquare.github.io/robotframework-browser/Browser.html
+# 
 # ============================================================================
 
-*** Settings *****************************************************************
+*** Settings ***
 
-Resource  plone/app/robotframework/selenium.robot
-Resource  plone/app/robotframework/keywords.robot
+Resource    plone/app/robotframework/browser.robot
+Resource    keywords.robot
 
-Library  Remote  ${PLONE_URL}/RobotRemote
+Library    Remote    ${PLONE_URL}/RobotRemote
 
-Test Setup  Open test browser
-Test Teardown  Close all browsers
+Test Setup    Run Keywords    Plone test setup
+Test Teardown    Run keywords     Plone test teardown
 
+# disable headless mode for browser
+# set the variable BROWSER to chrome or firefox
+# *** Variables ***
+# ${BROWSER}    chrome
 
-*** Test Cases ***************************************************************
+*** Test Cases ***
 
 Scenario: As a member I want to be able to log into the website
-  [Documentation]  Example of a BDD-style (Behavior-driven development) test.
-  Given a login form
-   When I enter valid credentials
-   Then I am logged in
+    [Documentation]  Example of a BDD-style (Behavior-driven development) test.
+    Given a login form
+     When I enter valid credentials
+     Then I am logged in
 
 
-*** Keywords *****************************************************************
+*** Keywords ***
 
 # --- Given ------------------------------------------------------------------
 
 a login form
-  Go To  ${PLONE_URL}/login_form
-  Wait until page contains  Login Name
-  Wait until page contains  Password
+    Go To   ${PLONE_URL}/login_form
+    Wait for Condition    Text    //body    contains    Login Name
+    Wait for Condition    Text    //body    contains    Password
 
 
 # --- WHEN -------------------------------------------------------------------
 
 I enter valid credentials
-  Input Text  __ac_name  admin
-  Input Text  __ac_password  secret
-  Click Button  Log in
+    Type Text    //input[@name="__ac_name"]    admin
+    Type Text    //input[@name="__ac_password"]    secret
+    Click    //button[@name="buttons.login"]
+
 
 
 # --- THEN -------------------------------------------------------------------
 
 I am logged in
-  Wait until page contains  You are now logged in
-  Page should contain  You are now logged in
+    Wait For Condition    Text    //body    contains    You are now logged in

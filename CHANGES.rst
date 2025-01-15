@@ -4,7 +4,8 @@ Changelog
 6.3.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- add static_catalog_vocab option to vocabulary template
+  [MrTango]
 
 
 6.3.4 (2024-11-05)

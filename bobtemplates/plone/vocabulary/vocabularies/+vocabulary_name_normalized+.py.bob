@@ -3,7 +3,7 @@
 # from plone import api
 from zope.schema.interfaces import IVocabularyFactory
 from zope.interface import implementer
-{{% if is_static_catalog_vocab %}}
+{{% if is_static_catalog_vocab == 'y' %}}
 from plone.app.vocabularies.catalog import StaticCatalogVocabulary
 {{% else %}}
 from {{{package.dottedname}}} import _
@@ -14,7 +14,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 {{% endif %}}
 
 
-{{% if not is_static_catalog_vocab %}}
+{{% if is_static_catalog_vocab != 'y' %}}
 class VocabItem(object):
     def __init__(self, token, value):
         self.token = token
@@ -28,7 +28,8 @@ class {{{ vocabulary_name_klass }}}(object):
     """
 
     def __call__(self, context):
-{{% if is_static_catalog_vocab %}}
+{{% if is_static_catalog_vocab == 'y' %}}
+        {{{ is_static_catalog_vocab }}}
         return StaticCatalogVocabulary(
             {
                 # possible portal_types:

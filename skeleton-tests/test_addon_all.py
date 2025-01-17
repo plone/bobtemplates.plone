@@ -368,6 +368,7 @@ viewlet_template=False
     template = """[variables]
 subtemplate_warning = Yes
 vocabulary_name = AvailableTasks
+is_static_catalog_vocab = n
 """
     generate_answers_ini(package_dir, template)
 

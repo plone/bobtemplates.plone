@@ -74,6 +74,7 @@ version=5.1
             "plone.version": "5.1",
             "vocabulary_name": "AvailableTasks",
             "vocabulary_description": "Bla",
+            "is_static_catalog_vocab": "n",
         },
     )
 

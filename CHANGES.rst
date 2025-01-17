@@ -1,13 +1,20 @@
 Changelog
 =========
 
-6.3.5 (unreleased)
+6.4.1 (unreleased)
 ------------------
 
 New feature:
 
 - use playwright based robot tests in example.robot, drop selenium based robot tests
   [1letter]
+
+
+6.4.0 (2025-01-17)
+------------------
+
+- add static_catalog_vocab option to vocabulary template
+  [MrTango]
 
 
 6.3.4 (2024-11-05)

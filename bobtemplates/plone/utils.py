@@ -98,7 +98,7 @@ def run_black(configurator):
         print("\nblack-enforce: successful:\n{0}\n".format(safe_unicode(test_result)))
     except OSError as e:
         print(
-            "Error on black-enforce: {0}, make sure you have tox an black installed globally!".format(
+            "Error on black-enforce: {0}, make sure you have tox and black installed globally!".format(
                 safe_unicode(e)
             )
         )

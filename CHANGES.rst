@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.3.5 (unreleased)
+6.4.0 (unreleased)
 ------------------
 
 - add static_catalog_vocab option to vocabulary template

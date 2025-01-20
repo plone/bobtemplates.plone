@@ -4,7 +4,8 @@ Changelog
 6.4.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix vocabulary template
+  [MrTango]
 
 
 6.4.0 (2025-01-17)

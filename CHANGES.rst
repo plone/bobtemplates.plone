@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.4.1 (unreleased)
+6.4.1 (2025-01-20)
 ------------------
 
 - Fix vocabulary template

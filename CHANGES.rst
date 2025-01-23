@@ -1,13 +1,20 @@
 Changelog
 =========
 
-6.4.1 (unreleased)
+6.4.2 (unreleased)
 ------------------
 
 New feature:
 
 - use playwright based robot tests in example.robot, drop selenium based robot tests
   [1letter]
+
+
+6.4.1 (2025-01-20)
+------------------
+
+- Fix vocabulary template
+  [MrTango]
 
 
 6.4.0 (2025-01-17)

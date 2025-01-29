@@ -4,7 +4,8 @@ Changelog
 6.4.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- improve subscriber template, check addon browserlayer in subscriber to only run when addon is enabled
+  [MrTango]
 
 
 6.4.1 (2025-01-20)

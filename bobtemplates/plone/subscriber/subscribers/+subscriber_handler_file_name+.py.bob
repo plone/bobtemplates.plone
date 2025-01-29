@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
+from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
 
 
 def handler(obj, event):

@@ -127,7 +127,9 @@ def git_commit(configurator, msg):
     if variable in configurator.variables:
         # The operator requested a certain behavior,
         # we should oblige, irrespective of interactive/non-interactive
-        run_git_commit = hooks.to_boolean(None, None, configurator.variables.get(variable))
+        run_git_commit = hooks.to_boolean(
+            None, None, configurator.variables.get(variable)
+        )
     else:
         # no indication from the operator: now we ask only if in interactive mode
         non_interactive = configurator.bobconfig.get("non_interactive")

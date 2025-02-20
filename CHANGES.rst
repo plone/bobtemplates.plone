@@ -4,7 +4,8 @@ Changelog
 6.4.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Honor "package.git.autocommit" variable
+  [gamboz]
 
 
 6.4.1 (2025-01-20)

@@ -117,28 +117,34 @@ def git_init(configurator):
 def git_commit(configurator, msg):
     if not git_support(configurator):
         return
-    non_interactive = configurator.bobconfig.get("non_interactive")
     working_dir = (
         configurator.variables.get("package.root_folder")
         or configurator.target_directory
     )
     params1 = ["git", "add", "."]
     params2 = ["git", "commit", "-m", '"{0}"'.format(msg)]
-    git_autocommit = None
-    run_git_commit = True
-    autocommit_flag = configurator.variables.get("package.git.autocommit", "False")
-    if hooks.to_boolean(None, None, autocommit_flag):
-        git_autocommit = True
-    if not non_interactive and not git_autocommit:
-        echo(
-            "Should we run?:\n{0}\n{1}\nin: {2}".format(
-                " ".join(params1), " ".join(params2), working_dir
-            ),
-            "info",
+    variable = "package.git.autocommit"
+    if variable in configurator.variables:
+        # The operator requested a certain behavior,
+        # we should oblige, irrespective of interactive/non-interactive
+        run_git_commit = hooks.to_boolean(
+            None, None, configurator.variables.get(variable)
         )
-        run_git_commit = (input("[y]/n: ") or "y").lower() == "y"
+    else:
+        # no indication from the operator: now we ask only if in interactive mode
+        non_interactive = configurator.bobconfig.get("non_interactive")
+        if non_interactive:
+            run_git_commit = True
+        else:
+            echo(
+                "Should we run?:\n{0}\n{1}\nin: {2}".format(
+                    " ".join(params1), " ".join(params2), working_dir
+                ),
+                "info",
+            )
+            run_git_commit = (input("[y]/n: ") or "y").lower() == "y"
 
-    if not run_git_commit and not git_autocommit:
+    if not run_git_commit:
         echo("Skip git commit!", "warning")
         return
 

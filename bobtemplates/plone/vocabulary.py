@@ -85,7 +85,7 @@ def prepare_renderer(configurator):
         vocabulary_name
     )
     configurator.target_directory = configurator.variables["package_folder"]
-    is_static_catalog_vocab = configurator.variables.get('is_static_catalog_vocab')
+    is_static_catalog_vocab = configurator.variables.get("is_static_catalog_vocab")
     if is_static_catalog_vocab:
         configurator.variables["is_static_catalog_vocab"] = maybe_bool(
             configurator.variables["is_static_catalog_vocab"]

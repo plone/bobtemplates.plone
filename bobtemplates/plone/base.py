@@ -124,7 +124,7 @@ def git_commit(configurator, msg):
         or configurator.target_directory
     )
     params1 = ["git", "add", "."]
-    params2 = ["git", "commit", "-m", '"{0}"'.format(msg)]
+    params2 = ["git", "commit", "-m", "{0}".format(msg)]
     git_autocommit = None
     run_git_commit = True
     autocommit_flag = configurator.variables.get("package.git.autocommit", "False")
@@ -442,12 +442,13 @@ def base_prepare_renderer(configurator):
     configurator.variables["package.root_folder"] = _get_package_root_folder(
         configurator
     )
+    # run this before setting more variables:
+    set_global_vars(configurator)
 
     if not configurator.variables.get("package.dottedname"):
         configurator.variables["package.dottedname"] = configurator.variables[
             "package.root_folder"
         ].split(os.path.sep)[-1]
-
     configurator.variables["package.namespace"] = configurator.variables[
         "package.dottedname"
     ].split(".")[0]
@@ -477,7 +478,6 @@ def base_prepare_renderer(configurator):
 
     # package.browserlayer = 'CollectiveFooSomethingLayer'
     configurator.variables["package.browserlayer"] = browserlayer
-    set_global_vars(configurator)
     return configurator
 
 

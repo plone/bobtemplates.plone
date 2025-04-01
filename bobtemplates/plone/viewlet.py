@@ -88,7 +88,7 @@ def _update_viewlets_configure_zcml(configurator):
      name="{0}"
      for="{1}"
      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
-     layer="{2}.interfaces.{3}"
+     layer="{2}.interfaces.I{3}"
      class=".{4}.{5}"
      template="{6}.pt"
      permission="zope2.View"
@@ -109,7 +109,7 @@ def _update_viewlets_configure_zcml(configurator):
      name="{0}"
      for="{1}"
      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
-     layer="{2}.interfaces.{3}"
+     layer="{2}.interfaces.I{3}"
      class=".{4}.{5}"
      permission="zope2.View"
      />

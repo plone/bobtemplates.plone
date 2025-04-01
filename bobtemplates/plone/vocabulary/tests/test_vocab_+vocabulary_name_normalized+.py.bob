@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from {{{ package.dottedname }}} import _
 from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
 from plone.app.testing import setRoles

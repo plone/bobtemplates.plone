@@ -97,7 +97,7 @@ def _update_viewlets_configure_zcml(configurator):
             configurator.variables["viewlet_name"],
             iface_name,
             configurator.variables["package.dottedname"],
-            configurator.variables["browser_layer"],
+            configurator.variables["package.browserlayer"],
             configurator.variables["viewlet_python_file_name"],
             configurator.variables["viewlet_python_class_name"],
             configurator.variables["viewlet_template_name"],
@@ -117,7 +117,7 @@ def _update_viewlets_configure_zcml(configurator):
             configurator.variables["viewlet_name"],
             iface_name,
             configurator.variables["package.dottedname"],
-            configurator.variables["browser_layer"],
+            configurator.variables["package.browserlayer"],
             configurator.variables["viewlet_python_file_name"],
             configurator.variables["viewlet_python_class_name"],
         )
@@ -163,11 +163,6 @@ def prepare_renderer(configurator):
         "viewlet_python_file_name"
     ] = viewlet_python_file_name  # NOQA: E501
     configurator.target_directory = configurator.variables["package_folder"]
-    package_name = configurator.variables["package.dottedname"].replace(
-        ".", "_"
-    )  # NOQA: E501
-    browser_layer = cc.pascalcase(package_name)
-    configurator.variables["browser_layer"] = "I{0}Layer".format(browser_layer)
 
 
 def post_renderer(configurator):

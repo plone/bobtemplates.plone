@@ -436,10 +436,9 @@ def dottedname_to_path(dottedname):
     path = "/".join(dottedname.split("."))
     return path
 
+
 def has_package_dir(configurator):
-    package_root_folder = _get_package_root_folder(
-        configurator
-    )
+    package_root_folder = _get_package_root_folder(configurator)
     os.chdir(package_root_folder)
     cur_dir = os.getcwd()
     files = os.listdir(cur_dir)
@@ -452,6 +451,7 @@ def has_package_dir(configurator):
                 return True
             line = file.readline()
     return False
+
 
 def base_prepare_renderer(configurator):
     """generic rendering before template specific rendering."""

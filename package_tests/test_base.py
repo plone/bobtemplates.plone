@@ -205,6 +205,7 @@ setup(
     res = base.has_package_dir(configurator)
     assert res is False
 
+
 def test_set_global_vars(tmpdir):
     template = """
 [main]

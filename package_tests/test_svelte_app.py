@@ -1,5 +1,5 @@
-from .base import SETUPPY_TEMPLATE
 from .base import init_package_base_structure
+from .base import SETUPPY_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import svelte_app
 from mrbob.bobexceptions import ValidationError

@@ -368,6 +368,7 @@ class MyViewlet(ViewletBase):
     viewlet.prepare_renderer(configurator)
     viewlet.post_renderer(configurator)
 
+
 def test_post_renderer_without_template(tmpdir):
     """Test post rendering."""
     target_path = tmpdir.strpath + "/collective.todo"

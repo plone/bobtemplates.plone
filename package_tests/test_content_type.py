@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-
 """Test dexterity content type generation."""
 
+from .base import SETUPPY_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import content_type
 from mrbob.bobexceptions import SkipQuestion
@@ -70,6 +69,12 @@ def test_is_container_true():
 
 def test_prepare_renderer(tmpdir):
     """Test prepare renderer."""
+    target_dir = tmpdir.strpath + "/collective.foo.bar"
+    os.mkdir(target_dir)
+    template = SETUPPY_TEMPLATE
+    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+        f.write(template)
+
     configurator = Configurator(
         template="bobtemplates.plone:content_type",
         target_directory="collective.foo.bar",
@@ -328,12 +333,16 @@ def test_update_permissions_zcml(tmpdir):
 
 def test_post_renderer(tmpdir):
     """Test post rendering."""
-    target_path = tmpdir.strpath + "/collective.todo"
-    package_path = target_path + "/src/collective/todo"
+    target_dir = tmpdir.strpath + "/collective.foo"
+    package_path = target_dir + "/src/collective/foo"
     profiles_path = package_path + "/profiles/default"
-    os.makedirs(target_path)
+    os.makedirs(target_dir)
     os.makedirs(package_path)
     os.makedirs(profiles_path + "/types")
+
+    template = SETUPPY_TEMPLATE
+    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+        f.write(template)
 
     template = """<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
@@ -387,14 +396,7 @@ def test_post_renderer(tmpdir):
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
-        f.write(template)
-
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
     configurator = Configurator(

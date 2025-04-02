@@ -4,7 +4,8 @@ Changelog
 6.4.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- allow package structures without package_dir (src-folder), like `/collective.something/collective/something` to work
+  [MrTango]
 
 
 6.4.2 (2025-04-02)

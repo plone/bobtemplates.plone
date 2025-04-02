@@ -76,11 +76,13 @@ the only exceptions are the theming templates. Those are Plone 6 only, because t
 If you need to create Plone packages for older versions of Plone and Python, please use bobtemplates.plone 5.x.
 It should work on Linux, Mac and Windows.
 
-If you want to use ``plonecli`` and ``bobtemplates.plone`` in projects created by `cookieplone <https://github.com/plone/cookieplone>`_, you need to add the backend package name to the `bobtemplates.cfg` file.
+If you want to use ``plonecli`` and ``bobtemplates.plone`` in projects created by `cookieplone <https://github.com/plone/cookieplone>`_, you need to add the backend package name to the `bobtemplate.cfg` file.
 
 .. code-block:: ini
 
     package.dottedname = tagung.plone.de
+
+Will work for package without a `src` folder in the structure, from version `6.4.3` on.
 
 
 Documentation

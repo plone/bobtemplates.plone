@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-
+from .base import SETUPPY_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import behavior
 from mrbob.configurator import Configurator
@@ -7,10 +6,16 @@ from mrbob.configurator import Configurator
 import os
 
 
-def test_prepare_renderer():
+def test_prepare_renderer(tmpdir):
+    target_dir = tmpdir.strpath + "/collective.foo"
+    os.mkdir(target_dir)
+    template = SETUPPY_TEMPLATE
+    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+        f.write(template)
+
     configurator = Configurator(
         template="bobtemplates.plone:behavior",
-        target_directory=".",
+        target_directory=target_dir,
         variables={
             "behavior_name": "AttachmentType",
         },
@@ -20,10 +25,10 @@ def test_prepare_renderer():
 
 
 def test_post_renderer(tmpdir):
-    target_path = tmpdir.strpath + "/collective.todo"
-    package_path = target_path + "/src/collective/todo"
+    target_dir = tmpdir.strpath + "/collective.todo"
+    package_path = target_dir + "/src/collective/todo"
     profiles_path = package_path + "/profiles/default"
-    os.makedirs(target_path)
+    os.makedirs(target_dir)
     os.makedirs(package_path)
     os.makedirs(profiles_path)
 
@@ -42,14 +47,11 @@ def test_post_renderer(tmpdir):
 [main]
 version=5.1
 """
-    with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
+    with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    template = SETUPPY_TEMPLATE
+    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
         f.write(template)
 
     template = """

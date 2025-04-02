@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-
+from .base import SETUPPY_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import restapi_service
 from mrbob.configurator import Configurator
@@ -19,10 +18,7 @@ version=5.1
     with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
+    template = SETUPPY_TEMPLATE
     with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 
@@ -64,10 +60,7 @@ version=5.1
     with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
+    template = SETUPPY_TEMPLATE
     with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 
@@ -150,10 +143,7 @@ version=5.1
     with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
+    template = SETUPPY_TEMPLATE
     with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 
@@ -210,10 +200,7 @@ version=5.1
     with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
+    template = SETUPPY_TEMPLATE
     with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 

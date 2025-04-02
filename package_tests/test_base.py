@@ -56,6 +56,155 @@ version=5.1
     base.read_bobtemplates_ini(configurator)
 
 
+def test_has_package_dir(tmpdir):
+    target_dir = tmpdir.strpath + "/collective.foo"
+    os.mkdir(target_dir)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon", target_directory=target_dir
+    )
+    base.read_bobtemplates_ini(configurator)
+
+    template = """[main]
+version=6.1
+"""
+    with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
+        f.write(template)
+
+    template = """
+from setuptools import find_packages
+from setuptools import setup
+
+long_description = "\n\n".join(
+    [
+        open("README.rst").read(),
+        open("CONTRIBUTORS.rst").read(),
+        open("CHANGES.rst").read(),
+    ]
+)
+
+setup(
+    name="collective.checklist",
+    version="0.1a3.dev0",
+    description="Checklist App for Plone",
+    long_description=long_description,
+    classifiers=[
+        "Environment :: Web Environment",
+        "Framework :: Plone",
+        "Framework :: Plone :: Addon",
+        "Framework :: Plone :: 6.0",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.11",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    ],
+    keywords="Python Plone CMS",
+    author="Maik Derstappen",
+    author_email="md@derico.de",
+    url="https://github.com/collective/collective.checklist",
+    project_urls={
+        "PyPI": "https://pypi.org/project/collective.checklist/",
+        "Source": "https://github.com/collective/collective.checklist",
+        "Tracker": "https://github.com/collective/collective.checklist/issues",
+        # 'Documentation': 'https://collective.checklist.readthedocs.io/en/latest/',
+    },
+    license="GPL version 2",
+    packages=find_packages("src", exclude=["ez_setup"]),
+    namespace_packages=["collective"],
+    package_dir={"": "src"},
+    include_package_data=True,
+    zip_safe=False,
+    python_requires=">=3.11",
+    install_requires=[
+        "setuptools",
+        # -*- Extra requirements: -*-
+        "z3c.jbot",
+        "plone.api>=1.8.4",
+        "plone.app.dexterity",
+        "plone.schema",
+        "plone.app.z3cform>=4.4.1",
+    ],
+    extras_require={
+        "test": [
+            "plone.app.testing",
+            "plone.testing>=5.0.0",
+            "plone.app.contenttypes",
+            "plone.app.robotframework[debug]",
+        ],
+    },
+)
+"""
+    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+        f.write(template)
+    res = base.has_package_dir(configurator)
+    assert res is True
+
+    template = """
+from setuptools import find_packages
+from setuptools import setup
+
+long_description = "\n\n".join(
+    [
+        open("README.rst").read(),
+        open("CONTRIBUTORS.rst").read(),
+        open("CHANGES.rst").read(),
+    ]
+)
+
+setup(
+    name="collective.checklist",
+    version="0.1a3.dev0",
+    description="Checklist App for Plone",
+    long_description=long_description,
+    classifiers=[
+        "Environment :: Web Environment",
+        "Framework :: Plone",
+        "Framework :: Plone :: Addon",
+        "Framework :: Plone :: 6.0",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.11",
+        "Operating System :: OS Independent",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    ],
+    keywords="Python Plone CMS",
+    author="Maik Derstappen",
+    author_email="md@derico.de",
+    url="https://github.com/collective/collective.checklist",
+    project_urls={
+        "PyPI": "https://pypi.org/project/collective.checklist/",
+        "Source": "https://github.com/collective/collective.checklist",
+        "Tracker": "https://github.com/collective/collective.checklist/issues",
+        # 'Documentation': 'https://collective.checklist.readthedocs.io/en/latest/',
+    },
+    license="GPL version 2",
+    packages=find_packages(exclude=["ez_setup"]),
+    namespace_packages=["collective"],
+    include_package_data=True,
+    zip_safe=False,
+    python_requires=">=3.11",
+    install_requires=[
+        "setuptools",
+        # -*- Extra requirements: -*-
+        "z3c.jbot",
+        "plone.api>=1.8.4",
+        "plone.app.dexterity",
+        "plone.schema",
+        "plone.app.z3cform>=4.4.1",
+    ],
+    extras_require={
+        "test": [
+            "plone.app.testing",
+            "plone.testing>=5.0.0",
+            "plone.app.contenttypes",
+            "plone.app.robotframework[debug]",
+        ],
+    },
+)
+"""
+    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+        f.write(template)
+    res = base.has_package_dir(configurator)
+    assert res is False
+
 def test_set_global_vars(tmpdir):
     template = """
 [main]

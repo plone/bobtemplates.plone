@@ -80,6 +80,26 @@ version=5.1
     base.set_global_vars(configurator)
 
 
+def test_set_package_dottedname_in_global_vars(tmpdir):
+    template = """
+[main]
+version=5.1
+package.dottedname = someother.packagename
+"""
+    target_dir = tmpdir.strpath + "/collective.foo"
+    os.mkdir(target_dir)
+    with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
+        f.write(template)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=target_dir,
+        variables={"year": 1970, "plone.version": "5.1-latest"},
+    )
+    base.set_global_vars(configurator)
+
+    assert configurator.variables["package.dottedname"] == "someother.packagename"
+
+
 def test_set_plone_version_variables(tmpdir):
     template = """
 [main]

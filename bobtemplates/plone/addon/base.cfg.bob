@@ -14,7 +14,6 @@ parts =
     releaser
     i18ndude
     omelette
-    robot
     plone-helper-scripts
 {{% if vscode_support %}}
     vscode
@@ -83,13 +82,6 @@ mode = 755
 [createcoverage]
 recipe = zc.recipe.egg
 eggs = createcoverage
-
-
-[robot]
-recipe = zc.recipe.egg
-eggs =
-    ${test:eggs}
-    plone.app.robotframework[debug,reload]
 
 
 [releaser]

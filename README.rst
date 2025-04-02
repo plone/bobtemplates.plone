@@ -70,11 +70,17 @@ These templates are meant to be used inside a package which was created by the a
 Compatibility
 =============
 
-Add-on's created with ``bobtemplates.plone`` are tested to work in **Plone >= 5.2** and **Python >= 3.7**.
+Add-on's created with ``bobtemplates.plone`` are tested to work in **Plone >= 5.2** and **Python >= 3.8**.
 the only exceptions are the theming templates. Those are Plone 6 only, because the markup and Diazo rules have changed.
 
 If you need to create Plone packages for older versions of Plone and Python, please use bobtemplates.plone 5.x.
 It should work on Linux, Mac and Windows.
+
+If you want to use ``plonecli`` and ``bobtemplates.plone`` in projects created by `cookieplone <https://github.com/plone/cookieplone>`_, you need to add the backend package name to the `bobtemplates.cfg` file.
+
+.. code-block:: ini
+
+    package.dottedname = tagung.plone.de
 
 
 Documentation

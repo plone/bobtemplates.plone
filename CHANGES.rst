@@ -1,10 +1,20 @@
 Changelog
 =========
 
-6.4.2 (unreleased)
+6.4.3 (unreleased)
 ------------------
 
 - improve subscriber template, check addon browserlayer in subscriber to only run when addon is enabled
+  [MrTango]
+
+
+6.4.2 (2025-04-02)
+------------------
+
+- allow setting package.dottedname in bobtemplate.cfg to allow it working with cookieplone generated templates, which use backend folder as root folder
+  [MrTango]
+
+- fix vocabulary test
   [MrTango]
 
 

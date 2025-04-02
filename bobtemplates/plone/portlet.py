@@ -184,13 +184,6 @@ def prepare_renderer(configurator):
         portlet_config_name,
     )
     configurator.target_directory = configurator.variables["package_folder"]
-    package_name = configurator.variables["package.dottedname"].replace(
-        ".", "_"
-    )  # NOQA: E501
-    browser_layer = cc.pascalcase(package_name)
-    configurator.variables["browser_layer"] = "I{0}Layer".format(
-        browser_layer,
-    )
 
 
 def post_renderer(configurator):

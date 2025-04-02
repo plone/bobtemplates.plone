@@ -11,10 +11,14 @@ import os
 import pytest
 
 
-def test_pre_renderer():
+def test_pre_renderer(tmpdir):
+    target_path = tmpdir.strpath + "/collective.demo"
+    package_path = target_path + "/src/collective/demo"
+    os.makedirs(target_path)
+    os.makedirs(package_path)
     configurator = Configurator(
         template="bobtemplates.plone:portlet",
-        target_directory=".",
+        target_directory="collective.demo",
         variables={
             "portlet_name": "My nice portlet, with umlauts: öÖÖÖÖ".encode(
                 "utf8",

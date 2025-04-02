@@ -436,6 +436,22 @@ def dottedname_to_path(dottedname):
     path = "/".join(dottedname.split("."))
     return path
 
+def has_package_dir(configurator):
+    package_root_folder = _get_package_root_folder(
+        configurator
+    )
+    os.chdir(package_root_folder)
+    cur_dir = os.getcwd()
+    files = os.listdir(cur_dir)
+    if "setup.py" not in files:
+        return False
+    with open("setup.py", "r") as file:
+        line = file.readline()
+        while line:
+            if "package_dir" in line:
+                return True
+            line = file.readline()
+    return False
 
 def base_prepare_renderer(configurator):
     """generic rendering before template specific rendering."""
@@ -449,23 +465,31 @@ def base_prepare_renderer(configurator):
         configurator.variables["package.dottedname"] = configurator.variables[
             "package.root_folder"
         ].split(os.path.sep)[-1]
+
     configurator.variables["package.namespace"] = configurator.variables[
         "package.dottedname"
     ].split(".")[0]
+
     configurator.variables["package.name"] = configurator.variables[
         "package.dottedname"
     ].split(".")[-1]
-    # package.uppercasename = 'COLLECTIVE_FOO_SOMETHING'
+
     configurator.variables["package.uppercasename"] = (
         configurator.variables["package.dottedname"].replace(".", "_").upper()
     )
 
     package_subpath = dottedname_to_path(configurator.variables["package.dottedname"])
-    configurator.variables["package_folder_rel_path"] = "/src/" + package_subpath
+
+    if has_package_dir(configurator):
+        configurator.variables["package_folder_rel_path"] = "/src/" + package_subpath
+    else:
+        configurator.variables["package_folder_rel_path"] = "/" + package_subpath
+
     configurator.variables["package_folder"] = (
         configurator.variables["package.root_folder"]
         + configurator.variables["package_folder_rel_path"]
     )
+
     configurator.target_directory = configurator.variables["package.root_folder"]
     camelcasename = (
         configurator.variables["package.dottedname"]
@@ -476,7 +500,6 @@ def base_prepare_renderer(configurator):
     )
     browserlayer = "{0}Layer".format(camelcasename)
 
-    # package.browserlayer = 'CollectiveFooSomethingLayer'
     configurator.variables["package.browserlayer"] = browserlayer
     return configurator
 

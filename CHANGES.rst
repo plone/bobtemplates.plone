@@ -1,7 +1,7 @@
 Changelog
 =========
 
-6.4.3 (unreleased)
+6.4.3 (2025-04-02)
 ------------------
 
 - allow package structures without package_dir (src-folder), like `/collective.something/collective/something` to work

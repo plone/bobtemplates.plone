@@ -4,7 +4,11 @@ Changelog
 6.4.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- allow setting package.dottedname in bobtemplate.cfg to allow it working with cookieplone generated templates, which use backend folder as root folder
+  [MrTango]
+
+- fix vocabulary test
+  [MrTango]
 
 
 6.4.1 (2025-01-20)

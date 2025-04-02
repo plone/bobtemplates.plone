@@ -83,6 +83,7 @@ class BobConfig(object):
         self.version = None
         self.git_init = None
         self.template = None
+        self.package_dottedname = None
 
 
 def git_support(configurator):
@@ -123,7 +124,7 @@ def git_commit(configurator, msg):
         or configurator.target_directory
     )
     params1 = ["git", "add", "."]
-    params2 = ["git", "commit", "-m", '"{0}"'.format(msg)]
+    params2 = ["git", "commit", "-m", "{0}".format(msg)]
     git_autocommit = None
     run_git_commit = True
     autocommit_flag = configurator.variables.get("package.git.autocommit", "False")
@@ -214,6 +215,8 @@ def read_bobtemplates_ini(configurator):
     bob_config.git_init = None
     if config.has_option("main", "git_init"):
         bob_config.git_init = config.get("main", "git_init")
+    if config.has_option("main", "package.dottedname"):
+        bob_config.package_dottedname = config.get("main", "package.dottedname")
     return bob_config
 
 
@@ -226,6 +229,8 @@ def set_global_vars(configurator):
         version = bob_config.version
     configurator.variables["plone.version"] = version
     set_plone_version_variables(configurator)
+    if hasattr(bob_config, "package_dottedname"):
+        configurator.variables["package.dottedname"] = bob_config.package_dottedname
 
 
 def set_plone_version_variables(configurator, answer=None):
@@ -386,20 +391,27 @@ def update_file(configurator, file_path, match_str, insert_str):
 
 
 def _get_package_root_folder(configurator):
-    file_name = "setup.py"
+    file_names = ["setup.py", "bobtemplate.cfg", "pyproject.toml"]
     root_folder = None
     os.chdir(configurator.target_directory)
     cur_dir = os.getcwd()
+
     while True:
         files = os.listdir(cur_dir)
         parent_dir = os.path.dirname(cur_dir)
-        if file_name in files:
-            root_folder = cur_dir
+        for file_name in file_names:
+            if file_name in files:
+                root_folder = cur_dir
+        if root_folder:
             break
         else:
             if cur_dir == parent_dir:
                 break
             cur_dir = parent_dir
+    if not root_folder:
+        raise MrBobError(
+            "No package root folder found in path!\nPlease make sure you have one of the following files: setup.py, bobtemplate.cfg, pyproject.toml in your package root"
+        )
     return root_folder
 
 
@@ -430,14 +442,13 @@ def base_prepare_renderer(configurator):
     configurator.variables["package.root_folder"] = _get_package_root_folder(
         configurator
     )
-    if not configurator.variables["package.root_folder"]:
-        raise MrBobError("No setup.py found in path!\n")
+    # run this before setting more variables:
+    set_global_vars(configurator)
 
-    if "package.dottedname" not in configurator.variables:
+    if not configurator.variables.get("package.dottedname"):
         configurator.variables["package.dottedname"] = configurator.variables[
             "package.root_folder"
         ].split(os.path.sep)[-1]
-
     configurator.variables["package.namespace"] = configurator.variables[
         "package.dottedname"
     ].split(".")[0]
@@ -467,7 +478,6 @@ def base_prepare_renderer(configurator):
 
     # package.browserlayer = 'CollectiveFooSomethingLayer'
     configurator.variables["package.browserlayer"] = browserlayer
-    set_global_vars(configurator)
     return configurator
 
 

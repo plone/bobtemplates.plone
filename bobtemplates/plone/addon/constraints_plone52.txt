@@ -1,5 +1,6 @@
--c https://dist.plone.org/release/5.2-latest/requirements.txt
-
+# -c https://dist.plone.org/release/5.2-latest/requirements.txt
+zc.buildout==3.3
+setuptools==65.7.0
 # setuptools==40.2.0
 # zc.buildout==2.13.2
 

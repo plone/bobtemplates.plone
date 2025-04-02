@@ -11,9 +11,7 @@ def test_prepare_renderer():
     configurator = Configurator(
         template="bobtemplates.plone:vocabulary",
         target_directory=".",
-        variables={
-            "vocabulary_name": "ExampleVocabulary",
-        },
+        variables={"vocabulary_name": "ExampleVocabulary", "dottedname": "n"},
     )
     vocabulary.prepare_renderer(configurator)
 

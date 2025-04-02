@@ -8,6 +8,7 @@ from bobtemplates.plone.base import ZCML_NAMESPACES
 from bobtemplates.plone.utils import run_black
 from bobtemplates.plone.utils import run_isort
 from lxml import etree
+from mrbob.configurator import maybe_bool
 
 import case_conversion as cc
 import os
@@ -84,6 +85,11 @@ def prepare_renderer(configurator):
         vocabulary_name
     )
     configurator.target_directory = configurator.variables["package_folder"]
+    is_static_catalog_vocab = configurator.variables.get("is_static_catalog_vocab")
+    if is_static_catalog_vocab:
+        configurator.variables["is_static_catalog_vocab"] = maybe_bool(
+            configurator.variables["is_static_catalog_vocab"]
+        )
 
 
 def post_renderer(configurator):

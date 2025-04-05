@@ -15,6 +15,9 @@ class SubscriberIntegrationTest(unittest.TestCase):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
+    def test_dummy(self):
+        self.assertTrue(True)
+
 
 class SubscriberFunctionalTest(unittest.TestCase):
 
@@ -23,3 +26,6 @@ class SubscriberFunctionalTest(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
+
+    def test_dummy(self):
+        self.assertTrue(True)

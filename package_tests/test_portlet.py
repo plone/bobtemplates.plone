@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-
 """Test view generation."""
 
+from .base import SETUPPY_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import portlet
 from mrbob.bobexceptions import ValidationError
@@ -499,10 +498,7 @@ class Renderer(base.Renderer):
     with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
         f.write(template)
 
-    template = """
-        dummy
-        '-*- Extra requirements: -*-'
-"""
+    template = SETUPPY_TEMPLATE
     with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 

@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-
 """Test view generation."""
 
+from .base import SETUPPY_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import viewlet
 from mrbob.bobexceptions import SkipQuestion
@@ -360,10 +359,7 @@ class MyViewlet(ViewletBase):
         },
     )
 
-    template = """
-        dummy
-        '-*- Extra requirements: -*-'
-"""
+    template = SETUPPY_TEMPLATE
     with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 
@@ -460,10 +456,7 @@ class MyViewlet(ViewletBase):
         },
     )
 
-    template = """
-        dummy
-        '-*- Extra requirements: -*-'
-"""
+    template = SETUPPY_TEMPLATE
     with open(os.path.join(target_path + "/setup.py"), "w") as f:
         f.write(template)
 

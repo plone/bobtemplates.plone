@@ -18,6 +18,7 @@ import six
 import string
 import subprocess
 import sys
+import tomllib
 
 
 try:
@@ -437,7 +438,7 @@ def dottedname_to_path(dottedname):
     return path
 
 
-def has_package_dir(configurator):
+def setuppy_has_package_dir(configurator):
     package_root_folder = _get_package_root_folder(configurator)
     os.chdir(package_root_folder)
     cur_dir = os.getcwd()
@@ -451,6 +452,52 @@ def has_package_dir(configurator):
                 return True
             line = file.readline()
     return False
+
+
+def pyproject_has_package_dir(configurator):
+    """ """
+    package_root_folder = _get_package_root_folder(configurator)
+    os.chdir(package_root_folder)
+    cur_dir = os.getcwd()
+    files = os.listdir(cur_dir)
+    if "pyproject.toml" not in files:
+        return False
+
+    with open("pyproject.toml", "rb") as f:
+        data = tomllib.load(f)
+        # tool.hatch.build.targets.wheel
+        tool = data.get("tool")
+        if not tool:
+            return False
+        hatch = tool.get("hatch")
+        if not hatch:
+            return False
+        build = hatch.get("build")
+        if not build:
+            return False
+        targets = build.get("targets")
+        if not targets:
+            return False
+        wheel = targets.get("wheel")
+        if not wheel:
+            return False
+        packages = wheel.get("packages")
+        if not packages:
+            return False
+        for package in packages:
+            if "src/" in package:
+                return True
+        return False
+
+
+def get_rel_package_folder(configurator):
+    """read pyproject or setup.py to determent the package_folder"""
+    package_subpath = dottedname_to_path(configurator.variables["package.dottedname"])
+    if setuppy_has_package_dir(configurator) or pyproject_has_package_dir(configurator):
+        package_folder_rel_path = "/src/" + package_subpath
+    else:
+        package_folder_rel_path = "/" + package_subpath
+    return f"{configurator.variables['package.root_folder']}{package_folder_rel_path}"
 
 
 def base_prepare_renderer(configurator):
@@ -478,29 +525,21 @@ def base_prepare_renderer(configurator):
         configurator.variables["package.dottedname"].replace(".", "_").upper()
     )
 
-    package_subpath = dottedname_to_path(configurator.variables["package.dottedname"])
-
-    if has_package_dir(configurator):
-        configurator.variables["package_folder_rel_path"] = "/src/" + package_subpath
-    else:
-        configurator.variables["package_folder_rel_path"] = "/" + package_subpath
-
-    configurator.variables["package_folder"] = (
-        configurator.variables["package.root_folder"]
-        + configurator.variables["package_folder_rel_path"]
-    )
+    configurator.variables["package_folder"] = get_rel_package_folder(configurator)
 
     configurator.target_directory = configurator.variables["package.root_folder"]
-    camelcasename = (
-        configurator.variables["package.dottedname"]
-        .replace(".", " ")
-        .title()
-        .replace(" ", "")
-        .replace("_", "")
-    )
-    browserlayer = "{0}Layer".format(camelcasename)
 
-    configurator.variables["package.browserlayer"] = browserlayer
+    if "package.browserlayer" not in configurator.variables:
+        camelcasename = (
+            configurator.variables["package.dottedname"]
+            .replace(".", " ")
+            .title()
+            .replace(" ", "")
+            .replace("_", "")
+        )
+        browserlayer = "{0}Layer".format(camelcasename)
+        configurator.variables["package.browserlayer"] = browserlayer
+
     return configurator
 
 

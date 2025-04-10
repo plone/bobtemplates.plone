@@ -525,8 +525,12 @@ def base_prepare_renderer(configurator):
         configurator.variables["package.dottedname"].replace(".", "_").upper()
     )
 
-    configurator.variables["package_folder_rel_path"] = get_package_folder_rel_path(configurator)
-    configurator.variables["package_folder"] = f"{configurator.variables['package.root_folder']}{configurator.variables['package_folder_rel_path']}"
+    configurator.variables["package_folder_rel_path"] = get_package_folder_rel_path(
+        configurator
+    )
+    configurator.variables[
+        "package_folder"
+    ] = f"{configurator.variables['package.root_folder']}{configurator.variables['package_folder_rel_path']}"
 
     configurator.target_directory = configurator.variables["package.root_folder"]
 

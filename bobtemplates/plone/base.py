@@ -490,14 +490,14 @@ def pyproject_has_package_dir(configurator):
         return False
 
 
-def get_rel_package_folder(configurator):
+def get_package_folder_rel_path(configurator):
     """read pyproject or setup.py to determent the package_folder"""
     package_subpath = dottedname_to_path(configurator.variables["package.dottedname"])
     if setuppy_has_package_dir(configurator) or pyproject_has_package_dir(configurator):
         package_folder_rel_path = "/src/" + package_subpath
     else:
         package_folder_rel_path = "/" + package_subpath
-    return f"{configurator.variables['package.root_folder']}{package_folder_rel_path}"
+    return package_folder_rel_path
 
 
 def base_prepare_renderer(configurator):
@@ -525,7 +525,8 @@ def base_prepare_renderer(configurator):
         configurator.variables["package.dottedname"].replace(".", "_").upper()
     )
 
-    configurator.variables["package_folder"] = get_rel_package_folder(configurator)
+    configurator.variables["package_folder_rel_path"] = get_package_folder_rel_path(configurator)
+    configurator.variables["package_folder"] = f"{configurator.variables['package.root_folder']}{configurator.variables['package_folder_rel_path']}"
 
     configurator.target_directory = configurator.variables["package.root_folder"]
 

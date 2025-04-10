@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from colorama import Fore
 from colorama import Style
 from datetime import date
@@ -8,7 +7,7 @@ from mrbob.bobexceptions import MrBobError
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
 from mrbob.rendering import jinja2_env
-from six.moves import input
+from six.moves import input as six_input
 
 import case_conversion as cc
 import codecs
@@ -79,7 +78,7 @@ def echo(msg, msg_type=None):
     print(colored_msg)
 
 
-class BobConfig(object):
+class BobConfig:
     def __init__(self):
         self.version = None
         self.git_init = None
@@ -125,7 +124,7 @@ def git_commit(configurator, msg):
         or configurator.target_directory
     )
     params1 = ["git", "add", "."]
-    params2 = ["git", "commit", "-m", "{0}".format(msg)]
+    params2 = ["git", "commit", "-m", f"{msg}"]
     git_autocommit = None
     run_git_commit = True
     autocommit_flag = configurator.variables.get("package.git.autocommit", "False")
@@ -138,7 +137,7 @@ def git_commit(configurator, msg):
             ),
             "info",
         )
-        run_git_commit = (input("[y]/n: ") or "y").lower() == "y"
+        run_git_commit = (six_input("[y]/n: ") or "y").lower() == "y"
 
     if not run_git_commit and not git_autocommit:
         echo("Skip git commit!", "warning")
@@ -176,32 +175,24 @@ def git_clean_state_check(configurator, question):
             echo("Git state is clean.\n", "info")
             raise SkipQuestion("Git state is clean, so we skip this question.")
         echo(
-            "git status result:\n----------------------------\n{0}".format(result),
+            f"git status result:\n----------------------------\n{result}",
             "warning",
         )
 
 
 def check_klass_name(configurator, question, answer):
     if keyword.iskeyword(answer):
-        raise ValidationError(
-            "{key} is a reserved Python keyword".format(key=answer)
-        )  # NOQA: E501
+        raise ValidationError(f"{answer} is a reserved Python keyword")
     if not answer.isidentifier():
-        raise ValidationError(
-            "{key} is not a valid class identifier".format(key=answer)
-        )  # NOQA: E501
+        raise ValidationError(f"{answer} is not a valid class identifier")
     return answer
 
 
 def check_method_name(configurator, question, answer):
     if keyword.iskeyword(answer):
-        raise ValidationError(
-            "{key} is a reserved Python keyword".format(key=answer)
-        )  # NOQA: E501
+        raise ValidationError(f"{answer} is a reserved Python keyword")
     if not answer.isidentifier():
-        raise ValidationError(
-            "{key} is not a valid method identifier".format(key=answer)
-        )  # NOQA: E501
+        raise ValidationError(f"{answer} is not a valid method identifier")
     return answer
 
 
@@ -258,8 +249,8 @@ def get_git_info(value):
     """Try to get information from the git-config."""
     gitargs = [b"git", b"config", b"--get"]
     try:
-        result = subprocess.check_output(gitargs + [value]).strip()
-        if six.PY3 and isinstance(result, six.binary_type):
+        result = subprocess.check_output(*gitargs, [value]).strip()
+        if isinstance(result, six.binary_type):
             result = result.decode("utf8")
         return result
     except (OSError, subprocess.CalledProcessError):
@@ -285,9 +276,9 @@ def validate_packagename(configurator):
 
     if fail:
         msg = (
-            "Error: '{0}' is not a valid packagename.\n"
+            f"Error: '{package_dir}' is not a valid packagename.\n"
             "Please use a valid name (like collective.myaddon or "
-            "plone.app.myaddon)".format(package_dir)
+            "plone.app.myaddon)"
         )
         sys.exit(msg)
 
@@ -323,10 +314,7 @@ def is_string_in_file(configurator, file_path, match_str):
     """
     with open(file_path, "r+") as xml_file:
         contents = xml_file.readlines()
-    for index, line in enumerate(contents):
-        if match_str in line:
-            return True
-    return False
+    return any(match_str in line for line in contents)
 
 
 def make_path(*args):
@@ -358,11 +346,11 @@ def update_configure_zcml(
         "i18n": "http://namespaces.zope.org/i18n",
         "plone": "http://namespaces.plone.org/plone",
     }
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         if len(tree.xpath(match_xpath, namespaces=namespaces)):
-            print("{0} already in {1}, skip adding!".format(insert_str, file_path))
+            print(f"{insert_str} already in {file_path}, skip adding!")
             return
     update_file(configurator, file_path, match_str, insert_str)
 
@@ -386,8 +374,7 @@ def update_file(configurator, file_path, match_str, insert_str):
 
     if not changed:
         print(
-            "WARNING: We couldn't find the match_str, "  # NOQA
-            "skip inserting into {0}:\n".format(file_path)  # NOQA
+            f"WARNING: We couldn't find the match_str, skip inserting into: {file_path}"
         )
 
 
@@ -411,7 +398,9 @@ def _get_package_root_folder(configurator):
             cur_dir = parent_dir
     if not root_folder:
         raise MrBobError(
-            "No package root folder found in path!\nPlease make sure you have one of the following files: setup.py, bobtemplate.cfg, pyproject.toml in your package root"
+            "No package root folder found in path!\n"
+            "Please make sure you have one of the following files:"
+            " setup.py, bobtemplate.cfg, pyproject.toml in your package root"
         )
     return root_folder
 
@@ -445,7 +434,7 @@ def setuppy_has_package_dir(configurator):
     files = os.listdir(cur_dir)
     if "setup.py" not in files:
         return False
-    with open("setup.py", "r") as file:
+    with open("setup.py") as file:
         line = file.readline()
         while line:
             if "package_dir" in line:
@@ -484,9 +473,10 @@ def pyproject_has_package_dir(configurator):
         packages = wheel.get("packages")
         if not packages:
             return False
-        for package in packages:
-            if "src/" in package:
-                return True
+        # for package in packages:
+        #     if "src/" in package:
+        #         return True
+        return any("src/" in package for package in packages)
         return False
 
 
@@ -528,9 +518,9 @@ def base_prepare_renderer(configurator):
     configurator.variables["package_folder_rel_path"] = get_package_folder_rel_path(
         configurator
     )
-    configurator.variables[
-        "package_folder"
-    ] = f"{configurator.variables['package.root_folder']}{configurator.variables['package_folder_rel_path']}"
+    configurator.variables["package_folder"] = (
+        f"{configurator.variables['package.root_folder']}{configurator.variables['package_folder_rel_path']}"
+    )
 
     configurator.target_directory = configurator.variables["package.root_folder"]
 
@@ -542,7 +532,7 @@ def base_prepare_renderer(configurator):
             .replace(" ", "")
             .replace("_", "")
         )
-        browserlayer = "{0}Layer".format(camelcasename)
+        browserlayer = f"{camelcasename}Layer"
         configurator.variables["package.browserlayer"] = browserlayer
 
     return configurator

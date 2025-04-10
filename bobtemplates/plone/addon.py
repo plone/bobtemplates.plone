@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import git_init
 from bobtemplates.plone.base import make_path
@@ -37,7 +35,7 @@ def pre_render(configurator):
         .replace(" ", "")
         .replace("_", "")
     )
-    browserlayer = "{0}Layer".format(camelcasename)
+    browserlayer = f"{camelcasename}Layer"
 
     # package.browserlayer = 'CollectiveFooSomethingLayer'
     configurator.variables["package.browserlayer"] = browserlayer
@@ -48,9 +46,7 @@ def pre_render(configurator):
     # jenkins.directories = 'collective/foo/something'
     configurator.variables["jenkins.directories"] = configurator.variables[
         "package.distributionname"
-    ].replace(
-        ".", "/"
-    )  # NOQA: E501
+    ].replace(".", "/")
 
     if namespaces:
         configurator.variables["package.namespace_packages"] = ", ".join(

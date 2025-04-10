@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import remove_unwanted_files
@@ -46,7 +44,7 @@ def _update_api_configure_zcml(configurator):
         configurator.variables["package_folder"],
     )
     file_name = "configure.zcml"
-    example_file_name = "{0}.example".format(file_name)
+    example_file_name = f"{file_name}.example"
     match_xpath = "zope:include[@package='.services']"
     match_str = "-*- extra stuff goes here -*-"
     insert_str = """
@@ -68,7 +66,7 @@ def _update_services_configure_zcml(configurator):
         configurator.variables["package_folder"],
     )
     file_name = "configure.zcml"
-    example_file_name = "{0}.example".format(file_name)
+    example_file_name = f"{file_name}.example"
     match_xpath = "zope:include[@package='.{0}']".format(
         configurator.variables["service_class_name_normalized"],
     )
@@ -101,7 +99,7 @@ def _update_metadata_xml(configurator):
         + metadata_file_name
     )
 
-    with open(metadata_file_path, "r") as xml_file:
+    with open(metadata_file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         dependencies = tree.xpath("/metadata/dependencies")[0]
@@ -114,9 +112,7 @@ def _update_metadata_xml(configurator):
 
         if dep_exists:
             print(
-                "{dep} already in metadata.xml, skip adding!".format(
-                    dep=dep,
-                ),
+                f"{dep} already in metadata.xml, skip adding!",
             )
             return
         dep_element = etree.Element("dependency")
@@ -140,7 +136,7 @@ def _remove_unwanted_files(configurator):
     ]
     base_path = configurator.variables["package_folder"]
     for rel_file_path in rel_file_paths:
-        file_paths.append("{0}{1}".format(base_path, rel_file_path))
+        file_paths.append(f"{base_path}{rel_file_path}")
     remove_unwanted_files(file_paths)
 
 
@@ -151,8 +147,8 @@ def pre_renderer(configurator):
     name = configurator.variables["service_name"].strip("_")
     name_normalized = cc.snakecase(name)
     configurator.variables["service_name_normalized"] = name_normalized
-    class_name = configurator.variables["service_class_name"].strip("_")  # NOQA: E501
-    configurator.variables["service_class_name"] = cc.pascalcase(  # NOQA: E501
+    class_name = configurator.variables["service_class_name"].strip("_")
+    configurator.variables["service_class_name"] = cc.pascalcase(
         class_name,
     )
     configurator.variables["service_class_name_normalized"] = cc.snakecase(

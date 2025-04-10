@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
@@ -18,14 +16,14 @@ def _update_package_configure_zcml(configurator):
     file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
         permid = ".vocabularies"
-        xpath_selector = "./include[@package='{0}']".format(permid)  # NOQA: E501
+        xpath_selector = f"./include[@package='{permid}']"
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
-            print("{0} already in configure.zcml, skip adding!".format(permid))
+            print(f"{permid} already in configure.zcml, skip adding!")
             return
 
     match_str = "-*- extra stuff goes here -*-"
@@ -44,21 +42,17 @@ def _update_vocabularies_configure_zcml(configurator):
     if file_name not in file_list:
         os.rename(example_file_path, file_path)
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        vocab_name = "{0}.{1}".format(
-            configurator.variables["package.dottedname"],
-            configurator.variables["vocabulary_name_klass"],
+        vocab_name = (
+            f"{configurator.variables['package.dottedname']}"
+            f".{configurator.variables['vocabulary_name_klass']}"
         )
-        xpath_selector = "./utility[@name='{0}']".format(
-            vocab_name,
-        )
+        xpath_selector = f"./utility[@name='{vocab_name}']"
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
-            print(
-                "{0} already in configure.zcml, skip adding!".format(vocab_name)
-            )  # NOQA: E501
+            print(f"{vocab_name} already in configure.zcml, skip adding!")
             return
 
     match_str = "-*- extra stuff goes here -*-"
@@ -81,9 +75,7 @@ def prepare_renderer(configurator):
     configurator.variables["template_id"] = "vocabulary"
     vocabulary_name = configurator.variables["vocabulary_name"].strip("_")
     configurator.variables["vocabulary_name_klass"] = cc.pascalcase(vocabulary_name)
-    configurator.variables["vocabulary_name_normalized"] = cc.snakecase(  # NOQA: E501
-        vocabulary_name
-    )
+    configurator.variables["vocabulary_name_normalized"] = cc.snakecase(vocabulary_name)
     configurator.target_directory = configurator.variables["package_folder"]
     is_static_catalog_vocab = configurator.variables.get("is_static_catalog_vocab")
     if is_static_catalog_vocab:
@@ -99,23 +91,17 @@ def post_renderer(configurator):
     run_isort(configurator)
     run_black(configurator)
     git_commit(
-        configurator,
-        "Add vocabulary: {0}".format(
-            configurator.variables["vocabulary_name"],
-        ),
+        configurator, f"Add vocabulary: {configurator.variables['vocabulary_name']}"
     )
-    registered_vocabulary = "{0}.{1}".format(
-        configurator.variables["package.dottedname"],
-        configurator.variables["vocabulary_name_klass"],
+    registered_vocabulary = (
+        f"{configurator.variables['package.dottedname']}"
+        f".{configurator.variables['vocabulary_name_klass']}"
     )
     echo(
-        "------------------------\nSucessfully added: {0} template.\n".format(
-            configurator.variables["template_id"],
-        ),
+        f"------------------------\n"
+        f"Sucessfully added: {configurator.variables['template_id']} template.\n"
     )
     echo(
-        "You can lookup your vocabulary by the name: {0}\n".format(
-            registered_vocabulary,
-        ),
+        f"You can lookup your vocabulary by the name: {registered_vocabulary}\n",
         "info",
     )

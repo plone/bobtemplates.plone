@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Generate form."""
 
 from bobtemplates.plone.base import base_prepare_renderer
@@ -22,13 +21,13 @@ import six
 def get_form_name_from_python_class(configurator, question):
     """Generate form default name from python class"""
     form_class_name = configurator.variables["form_python_class_name"]
-    form_generated_name = cc.snakecase(form_class_name).replace("_", "-")  # NOQA: E501
+    form_generated_name = cc.snakecase(form_class_name).replace("_", "-")
     question.default = form_generated_name
 
 
 def get_form_configuration(configurator):
     """return a dict with form configuration used for registration in zcml"""
-    config = dict()
+    config = {}
     config["name"] = configurator.variables["form_name"]
     # get Interface by content type or use the string it self as interface
     config["for"] = "{0}".format(
@@ -80,7 +79,7 @@ def _update_forms_configure_zcml(configurator):
     )
     insert_str += "    />\n"
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
@@ -110,11 +109,11 @@ def _update_configure_zcml(configurator):
     file_path = configurator.variables["package_folder"] + "/" + file_name
     namespaces = "{http://namespaces.zope.org/zope}"
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        form_xpath = "{0}include[@package='.forms']".format(namespaces)
+        form_xpath = f"{namespaces}include[@package='.forms']"
         if len(tree_root.findall(form_xpath)):
             print(
                 ".forms already in configure.zcml, skip adding!",
@@ -146,7 +145,7 @@ def prepare_renderer(configurator):
     normalized_form_name = cc.snakecase(form_name)
     configurator.variables["form_name_normalized"] = normalized_form_name
     python_class_name = configurator.variables["form_python_class_name"].strip("_")
-    configurator.variables["form_python_class_name"] = cc.pascalcase(  # NOQA: E501
+    configurator.variables["form_python_class_name"] = cc.pascalcase(
         python_class_name,
     )
     form_python_file_name = cc.snakecase(python_class_name)

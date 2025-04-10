@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from setuptools import find_packages
 from setuptools import setup
 
@@ -7,13 +5,11 @@ from setuptools import setup
 version = "7.0.0.dev0"
 
 
-long_description = "\n\n".join(
-    [
-        open("README.rst").read(),
-        open("CONTRIBUTORS.rst").read(),
-        open("CHANGES.rst").read(),
-    ]
-)
+long_description = "\n\n".join([
+    open("README.rst").read(),
+    open("CONTRIBUTORS.rst").read(),
+    open("CHANGES.rst").read(),
+])
 
 
 setup(
@@ -73,21 +69,21 @@ setup(
             "plone_buildout = bobtemplates.plone.bobregistry:plone_buildout",
             "plone_content_type = bobtemplates.plone.bobregistry:plone_content_type",
             "plone_indexer = bobtemplates.plone.bobregistry:plone_indexer",
-            "plone_mockup_pattern = bobtemplates.plone.bobregistry:plone_mockup_pattern",
+            "plone_mockup_pattern = bobtemplates.plone.bobregistry:plone_mockup_pattern",  # noqa: E501
             "plone_portlet = bobtemplates.plone.bobregistry:plone_portlet",
-            "plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service",  # NOQA E501
+            "plone_restapi_service = bobtemplates.plone.bobregistry:plone_restapi_service",  # noqa: E501
             "plone_svelte_app = bobtemplates.plone.bobregistry:plone_svelte_app",
             "plone_subscriber = bobtemplates.plone.bobregistry:plone_subscriber",
             "plone_theme = bobtemplates.plone.bobregistry:plone_theme",
-            "plone_theme_barceloneta = bobtemplates.plone.bobregistry:plone_theme_barceloneta",  # NOQA E501
-            "plone_theme_basic = bobtemplates.plone.bobregistry:plone_theme_basic",  # NOQA E501
+            "plone_theme_barceloneta = bobtemplates.plone.bobregistry:plone_theme_barceloneta",  # noqa: E501
+            "plone_theme_basic = bobtemplates.plone.bobregistry:plone_theme_basic",
             "plone_upgrade_step = bobtemplates.plone.bobregistry:plone_upgrade_step",
             "plone_view = bobtemplates.plone.bobregistry:plone_view",
             "plone_viewlet = bobtemplates.plone.bobregistry:plone_viewlet",
             "plone_vocabulary = bobtemplates.plone.bobregistry:plone_vocabulary",
             "plone_controlpanel = bobtemplates.plone.bobregistry:plone_controlpanel",
             "plone_form = bobtemplates.plone.bobregistry:plone_form",
-            "plone_site_initialization = bobtemplates.plone.bobregistry:plone_site_initialization",
+            "plone_site_initialization = bobtemplates.plone.bobregistry:plone_site_initialization",  # noqa: E501
         ]
     },
 )

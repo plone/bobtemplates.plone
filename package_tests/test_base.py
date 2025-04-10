@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from bobtemplates.plone import base
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
@@ -489,12 +488,10 @@ def test_subtemplate_warning(capsys):
 def test_is_string_in_file(tmpdir):
     match_str = "-*- extra stuff goes here -*-"
     path = tmpdir.strpath + "/configure.zcml"
-    template = """Some text
+    template = f"""Some text
 
-    {0}
-""".format(
-        match_str
-    )
+    {match_str}
+"""
     with open(os.path.join(path), "w") as f:
         f.write(template)
 
@@ -581,7 +578,7 @@ def test_update_configure_zcml(tmpdir):
     with open(file_path, "r+") as xml_file:
         contents = xml_file.readlines()
     count = 0
-    for index, line in enumerate(contents):
+    for line in contents:
         if insert_str.strip() in line:
             count += 1
     assert count == 1
@@ -590,12 +587,10 @@ def test_update_configure_zcml(tmpdir):
 def test_update_file(tmpdir):
     match_str = "-*- extra stuff goes here -*-"
     path = tmpdir.strpath + "/configure.zcml"
-    template = """Some text
+    template = f"""Some text
 
-    {0}
-""".format(
-        match_str
-    )
+    {match_str}
+"""
     with open(os.path.join(path), "w") as f:
         f.write(template)
 

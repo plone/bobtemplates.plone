@@ -181,7 +181,6 @@ version=5.1
         os.path.join(
             package_path + "/api/configure.zcml",
         ),
-        "r",
     ) as f:
         content = f.read()
         assert content != template, "configure.zcml was not updated!"
@@ -244,7 +243,6 @@ version=5.1
         os.path.join(
             package_path + "/api/services/configure.zcml",
         ),
-        "r",
     ) as f:
         content = f.read()
         assert content != template, "configure.zcml was not updated!"

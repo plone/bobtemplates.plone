@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from .base import init_package_base_structure
 from bobtemplates.plone import base
 from bobtemplates.plone import theme_basic
@@ -47,7 +45,7 @@ def test_prepare_renderer(tmpdir):
 
     assert configurator.variables["template_id"] == "theme_basic"
     assert configurator.variables["theme.normalized_name"] == "test.theme"
-    assert configurator.target_directory.endswith("collective.todo")  # NOQA: E501
+    assert configurator.target_directory.endswith("collective.todo")
 
 
 def test_post_renderer(tmpdir):

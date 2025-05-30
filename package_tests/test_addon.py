@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone import addon
 from bobtemplates.plone import base
 from mrbob.configurator import Configurator

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import remove_unwanted_files
@@ -35,16 +33,14 @@ def _update_indexers_configure_zcml(configurator):
         configurator.variables["package_folder"],
     )
     file_name = "configure.zcml"
-    example_file_name = "{0}.example".format(file_name)
+    example_file_name = f"{file_name}.example"
     match_xpath = "zope:include[@package='.{0}']".format(
         configurator.variables["indexer_name"]
     )
     match_str = "-*- extra stuff goes here -*-"
     insert_str = """
   <include file="{0}.zcml" />
-""".format(
-        configurator.variables["indexer_name"]
-    )
+""".format(configurator.variables["indexer_name"])
     update_configure_zcml(
         configurator,
         path,
@@ -63,7 +59,7 @@ def _remove_unwanted_files(configurator):
     ]
     base_path = configurator.variables["package_folder"]
     for rel_file_path in rel_file_paths:
-        file_paths.append("{0}{1}".format(base_path, rel_file_path))
+        file_paths.append(f"{base_path}{rel_file_path}")
     remove_unwanted_files(file_paths)
 
 

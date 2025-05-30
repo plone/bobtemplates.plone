@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from base import file_exists
 from base import generate_answers_ini
 from base import run_skeleton_tox_env
@@ -23,7 +21,7 @@ addon_files = [
 
 
 def test_addon(tmpdir, capsys, config):
-    template = """[variables]
+    template = f"""[variables]
 package.description = Dummy package
 package.example = True
 package.git.disabled = True
@@ -32,10 +30,8 @@ author.name = The Plone Collective
 author.email = collective@plone.org
 author.github.user = collective
 
-plone.version = {version}
-""".format(
-        version=config.version,
-    )
+plone.version = {config.version}
+"""
     generate_answers_ini(tmpdir.strpath, template)
 
     config.template = "addon"
@@ -74,6 +70,6 @@ plone.version = {version}
 
     with capsys.disabled():
         returncode = run_skeleton_tox_env(wd, config)
-        assert (
-            returncode == 0
-        ), "The tests inside the generated package are failing, please check the output above!"
+        assert returncode == 0, (
+            "The tests inside the generated package are failing, please check the output above!"
+        )

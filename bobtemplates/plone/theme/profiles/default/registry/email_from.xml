@@ -1,8 +1,8 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <registry>
 
-<!-- Configure the Plone email settings -->
-<!--
+  <!-- Configure the Plone email settings -->
+  <!--
   <record name="plone.email_from_address" interface="Products.CMFPlone.interfaces.controlpanel.IMailSchema" field="email_from_address">
     <value>info@example.com</value>
   </record>

@@ -93,7 +93,7 @@ def test_update_configure_zcml(tmpdir):
     )
     viewlet._update_configure_zcml(configurator)
 
-    with open(os.path.join(package_path + "/configure.zcml"), "r") as f:
+    with open(os.path.join(package_path + "/configure.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -148,7 +148,7 @@ def test_update_viewlets_configure_zcml_with_template(tmpdir):
     )
     viewlet._update_viewlets_configure_zcml(configurator)
 
-    with open(os.path.join(viewlets_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(viewlets_path + "configure.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -201,7 +201,7 @@ def test_update_viewlets_configure_zcml_without_template(tmpdir):
     )
     viewlet._update_viewlets_configure_zcml(configurator)
 
-    with open(os.path.join(viewlets_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(viewlets_path + "configure.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)

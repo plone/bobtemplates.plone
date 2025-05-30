@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from bobtemplates.plone import base
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
@@ -56,7 +55,7 @@ version=5.1
     base.read_bobtemplates_ini(configurator)
 
 
-def test_has_package_dir(tmpdir):
+def test_setuppy_has_package_dir(tmpdir):
     target_dir = tmpdir.strpath + "/collective.foo"
     os.mkdir(target_dir)
     configurator = Configurator(
@@ -135,7 +134,7 @@ setup(
 """
     with open(os.path.join(target_dir + "/setup.py"), "w") as f:
         f.write(template)
-    res = base.has_package_dir(configurator)
+    res = base.setuppy_has_package_dir(configurator)
     assert res is True
 
     template = """
@@ -202,7 +201,176 @@ setup(
 """
     with open(os.path.join(target_dir + "/setup.py"), "w") as f:
         f.write(template)
-    res = base.has_package_dir(configurator)
+    res = base.setuppy_has_package_dir(configurator)
+    assert res is False
+
+
+def test_pyproject_has_package_dir(tmpdir):
+    target_dir = tmpdir.strpath + "/collective.foo"
+    os.mkdir(target_dir)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon", target_directory=target_dir
+    )
+    base.read_bobtemplates_ini(configurator)
+
+    template = """[main]
+version=6.1
+"""
+    with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
+        f.write(template)
+
+    template = """
+[project]
+name = "plonecli.in.cookieplone"
+dynamic = ["version"]
+description = "A new project using Plone 6."
+readme = "README.md"
+license = "GPL-2.0-only"
+requires-python = ">=3.12"
+authors = [
+    { name = "Plone Foundation", email = "collective@plone.org" },
+]
+keywords = [
+    "CMS",
+    "Plone",
+    "Python",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Web Environment",
+    "Framework :: Plone","Framework :: Plone :: 6.1",
+    "Framework :: Plone :: Addon",
+    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python","Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "Products.CMFPlone==6.1.1",
+    "plone.api",
+    "plone.restapi",
+    "plone.volto",
+]
+
+[project.optional-dependencies]
+test = [
+    "plone.app.testing",
+    "plone.restapi[test]",
+    "pytest",
+    "pytest-cov",
+    "pytest-plone>=0.5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/collective/plonecli-in-cookieplone"
+PyPI = "https://pypi.org/project/plonecli.in.cookieplone"
+Source = "https://github.com/collective/plonecli-in-cookieplone"
+Tracker = "https://github.com/collective/plonecli-in-cookieplone/issues"
+
+
+[project.entry-points."plone.autoinclude.plugin"]
+target = "plone"
+
+[tool.uv]
+managed = false
+
+[tool.hatch.version]
+path = "src/plonecli/in/cookieplone/__init__.py"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+strict-naming = true
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.github",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/plonecli"]
+"""
+    with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
+        f.write(template)
+    res = base.pyproject_has_package_dir(configurator)
+    assert res is True
+
+    template = """
+[project]
+name = "plonecli.in.cookieplone"
+dynamic = ["version"]
+description = "A new project using Plone 6."
+readme = "README.md"
+license = "GPL-2.0-only"
+requires-python = ">=3.12"
+authors = [
+    { name = "Plone Foundation", email = "collective@plone.org" },
+]
+keywords = [
+    "CMS",
+    "Plone",
+    "Python",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Web Environment",
+    "Framework :: Plone","Framework :: Plone :: 6.1",
+    "Framework :: Plone :: Addon",
+    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python","Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "Products.CMFPlone==6.1.1",
+    "plone.api",
+    "plone.restapi",
+    "plone.volto",
+]
+
+[project.optional-dependencies]
+test = [
+    "plone.app.testing",
+    "plone.restapi[test]",
+    "pytest",
+    "pytest-cov",
+    "pytest-plone>=0.5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/collective/plonecli-in-cookieplone"
+PyPI = "https://pypi.org/project/plonecli.in.cookieplone"
+Source = "https://github.com/collective/plonecli-in-cookieplone"
+Tracker = "https://github.com/collective/plonecli-in-cookieplone/issues"
+
+
+[project.entry-points."plone.autoinclude.plugin"]
+target = "plone"
+
+[tool.uv]
+managed = false
+
+[tool.hatch.version]
+path = "src/plonecli/in/cookieplone/__init__.py"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+strict-naming = true
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.github",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["plonecli"]
+"""
+    with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
+        f.write(template)
+    res = base.pyproject_has_package_dir(configurator)
     assert res is False
 
 
@@ -320,12 +488,10 @@ def test_subtemplate_warning(capsys):
 def test_is_string_in_file(tmpdir):
     match_str = "-*- extra stuff goes here -*-"
     path = tmpdir.strpath + "/configure.zcml"
-    template = """Some text
+    template = f"""Some text
 
-    {0}
-""".format(
-        match_str
-    )
+    {match_str}
+"""
     with open(os.path.join(path), "w") as f:
         f.write(template)
 
@@ -412,7 +578,7 @@ def test_update_configure_zcml(tmpdir):
     with open(file_path, "r+") as xml_file:
         contents = xml_file.readlines()
     count = 0
-    for index, line in enumerate(contents):
+    for line in contents:
         if insert_str.strip() in line:
             count += 1
     assert count == 1
@@ -421,12 +587,10 @@ def test_update_configure_zcml(tmpdir):
 def test_update_file(tmpdir):
     match_str = "-*- extra stuff goes here -*-"
     path = tmpdir.strpath + "/configure.zcml"
-    template = """Some text
+    template = f"""Some text
 
-    {0}
-""".format(
-        match_str
-    )
+    {match_str}
+"""
     with open(os.path.join(path), "w") as f:
         f.write(template)
 

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
@@ -16,10 +14,9 @@ import re
 def check_name(configurator, question, answer):
     if not re.match("^[a-z]+-+[a-z0-9]+(-+[a-z0-9]+)*$", answer):
         raise ValidationError(
-            "{key} is not a valid custom-element identifier. Please try something like this 'my-element'".format(
-                key=answer
-            )
-        )  # NOQA: E501
+            f"{answer} is not a valid custom-element identifier."
+            f" Please try something like this 'my-element'"
+        )
     return answer
 
 
@@ -28,7 +25,7 @@ def _update_configure_zcml(configurator):
     file_path = configurator.variables["package_folder"] + "/" + file_name
     namespaces = {"plone": "http://namespaces.plone.org/plone"}
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
@@ -51,9 +48,7 @@ def _update_configure_zcml(configurator):
       name="{0}.svelte"
       />
 
-""".format(
-        configurator.variables["package.dottedname"]
-    )
+""".format(configurator.variables["package.dottedname"])
     update_file(configurator, file_path, match_str, insert_str)
 
 

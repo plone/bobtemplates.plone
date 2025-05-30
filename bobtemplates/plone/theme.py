@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import get_normalized_themename
@@ -32,7 +30,7 @@ def pre_theme_name(configurator, question):
 def post_theme_name(configurator, question, answer):
     regex = r"^\w+[a-zA-Z0-9 \.\-_\(\)]*$"
     if not re.match(regex, answer):
-        msg = "Error: '{0}' is not a valid themename.\n".format(answer)
+        msg = f"Error: '{answer}' is not a valid themename.\n"
         msg += "Please use a valid name (like 'My Tango' or 'my-tango.com')!\n"
         msg += "At beginning only letters|diggits are allowed.\n"
         msg += "Inside the name also '.-_()' are allowed.\n"
@@ -65,7 +63,7 @@ def _update_metadata_xml(configurator):
         + metadata_file_name
     )
 
-    with open(metadata_file_path, "r") as xml_file:
+    with open(metadata_file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         dependencies = tree.xpath("/metadata/dependencies")[0]
@@ -78,9 +76,7 @@ def _update_metadata_xml(configurator):
 
         if dep_exists:
             print(
-                "{dep} already in metadata.xml, skip adding!".format(
-                    dep=dep,
-                ),
+                f"{dep} already in metadata.xml, skip adding!",
             )
             return
         dep_element = etree.Element("dependency")
@@ -100,17 +96,15 @@ def _update_configure_zcml(configurator):
     file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
         theme_name = configurator.variables["theme.normalized_name"]
-        theme_xpath = "./plone:static[@name='{0}']".format(theme_name)
+        theme_xpath = f"./plone:static[@name='{theme_name}']"
         if len(tree_root.xpath(theme_xpath, namespaces=ZCML_NAMESPACES)):
             print(
-                "{name} already in configure.zcml, skip adding!".format(
-                    name=theme_name,
-                ),
+                f"{theme_name} already in configure.zcml, skip adding!",
             )
             return
 
@@ -122,9 +116,7 @@ def _update_configure_zcml(configurator):
       name="{0}"
       />
 
-""".format(
-        configurator.variables["theme.normalized_name"]
-    )
+""".format(configurator.variables["theme.normalized_name"])
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -136,7 +128,7 @@ def _update_setup_py(configurator):
         # "plone.app.themingplugins",
     ]
     for insert_str in insert_strings:
-        insert_str = "        '{0}',\n".format(insert_str)
+        insert_str = f"        '{insert_str}',\n"
         if is_string_in_file(configurator, file_path, insert_str):
             continue
         update_file(configurator, file_path, match_str, insert_str)

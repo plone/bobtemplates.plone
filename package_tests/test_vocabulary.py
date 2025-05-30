@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from .base import SETUPPY_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import vocabulary

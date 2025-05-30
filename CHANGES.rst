@@ -7,6 +7,9 @@ Changelog
 - fix src package dir detection in cookieplone projects, by reading also pyproject.toml
   [MrTango]
 
+- removing addon template, either use cookieplone template or the upcomming copier templates
+  [MrTango]
+
 
 6.4.3 (2025-04-02)
 ------------------

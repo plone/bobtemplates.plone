@@ -4,7 +4,7 @@ Changelog
 7.0.0a2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- cleanup registry
 
 
 7.0.0a1 (2025-05-30)

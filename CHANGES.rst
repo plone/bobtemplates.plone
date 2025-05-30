@@ -1,8 +1,8 @@
 Changelog
 =========
 
-7.0.0a1 (unreleased)
-------------------
+7.0.0a1 (2025-05-30)
+--------------------
 
 - fix src package dir detection in cookieplone projects, by reading also pyproject.toml
   [MrTango]

@@ -64,7 +64,7 @@ setup(
     extras_require={},
     entry_points={
         "mrbob_templates": [
-            "plone_addon = bobtemplates.plone.bobregistry:plone_addon",
+            # "plone_addon = bobtemplates.plone.bobregistry:plone_addon",
             "plone_behavior = bobtemplates.plone.bobregistry:plone_behavior",
             "plone_buildout = bobtemplates.plone.bobregistry:plone_buildout",
             "plone_content_type = bobtemplates.plone.bobregistry:plone_content_type",

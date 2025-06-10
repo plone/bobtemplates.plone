@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from base import file_exists
 from base import generate_answers_ini
 from base import run_skeleton_tox_env
@@ -11,7 +9,7 @@ import subprocess
 def test_addon_all(tmpdir, capsys, config):
     answers_init_path = os.path.join(tmpdir.strpath, "answers.ini")
     package_dir = os.path.abspath(tmpdir.strpath)
-    template = """[variables]
+    template = f"""[variables]
 package.description = Dummy package
 package.example = True
 package.git.init = True
@@ -20,10 +18,8 @@ author.name = The Plone Collective
 author.email = collective@plone.org
 author.github.user = collective
 
-plone.version = {version}
-""".format(
-        version=config.version,
-    )
+plone.version = {config.version}
+"""
     generate_answers_ini(package_dir, template)
 
     # generate template addon:
@@ -121,9 +117,7 @@ behavior_name = Project
     assert result == 0
 
     assert file_exists(wd, "/src/collective/task/behaviors/configure.zcml")
-    assert file_exists(
-        wd, "/src/collective/task/behaviors/project.py"
-    )  # NOQA: S101,E501
+    assert file_exists(wd, "/src/collective/task/behaviors/project.py")
 
     # generate subtemplate indexer:
     template = """[variables]
@@ -397,6 +391,6 @@ is_static_catalog_vocab = False
 
     with capsys.disabled():
         returncode = run_skeleton_tox_env(wd, config)
-        assert (
-            returncode == 0
-        ), "The tests inside the generated package are failing, please check the output above!"
+        assert returncode == 0, (
+            "The tests inside the generated package are failing, please check the output above!"
+        )

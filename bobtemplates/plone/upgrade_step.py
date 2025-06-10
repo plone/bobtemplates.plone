@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import remove_unwanted_files
@@ -32,15 +30,13 @@ def _update_upgrades_configure_zcml(configurator):
         configurator.variables["package_folder"],
     )
     file_name = "configure.zcml"
-    example_file_name = "{0}.example".format(file_name)
+    example_file_name = f"{file_name}.example"
     zcml_package_name = configurator.variables["upgrade_step_dest_version"]
-    match_xpath = "zope:include[@file='{0}.zcml']".format(zcml_package_name)
+    match_xpath = f"zope:include[@file='{zcml_package_name}.zcml']"
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
-  <include file="{0}.zcml" />
-""".format(
-        zcml_package_name
-    )
+    insert_str = f"""
+  <include file="{zcml_package_name}.zcml" />
+"""
     update_configure_zcml(
         configurator,
         path,
@@ -59,15 +55,15 @@ def _remove_unwanted_files(configurator):
     ]
     base_path = configurator.variables["package_folder"]
     for rel_file_path in rel_file_paths:
-        file_paths.append("{0}{1}".format(base_path, rel_file_path))
+        file_paths.append(f"{base_path}{rel_file_path}")
     remove_unwanted_files(file_paths)
 
 
 def _read_source_version(configurator):
     base_path = configurator.variables["package_folder"]
     rel_file_path = "/profiles/default/metadata.xml"
-    metadata_path = "{0}{1}".format(base_path, rel_file_path)
-    with open(metadata_path, "r") as xml_file:
+    metadata_path = f"{base_path}{rel_file_path}"
+    with open(metadata_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
@@ -80,7 +76,7 @@ def _read_source_version(configurator):
 
 
 def _write_dest_version(configurator):
-    """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""  # NOQA: E501
+    """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""
     metadata_file_name = "metadata.xml"
     metadata_file_dir = "profiles/default"
     metadata_file_path = (
@@ -91,7 +87,7 @@ def _write_dest_version(configurator):
         + metadata_file_name
     )
 
-    with open(metadata_file_path, "r") as xml_file:
+    with open(metadata_file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         version = tree.xpath("/metadata/version")[0]

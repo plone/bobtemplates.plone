@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
@@ -16,14 +14,14 @@ def _update_package_configure_zcml(configurator):
     file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
         permid = ".controlpanels"
-        xpath_selector = "./include[@package='{0}']".format(permid)  # NOQA: E501
+        xpath_selector = f"./include[@package='{permid}']"
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
-            print("{0} already in configure.zcml, skip adding!".format(permid))
+            print(f"{permid} already in configure.zcml, skip adding!")
             return
 
     match_str = "-*- extra stuff goes here -*-"
@@ -42,7 +40,7 @@ def _update_controlpanels_configure_zcml(configurator):
     if file_name not in file_list:
         os.rename(example_file_path, file_path)
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
@@ -55,7 +53,7 @@ def _update_controlpanels_configure_zcml(configurator):
                 "{0} already in configure.zcml, skip adding!".format(
                     configurator.variables["controlpanel_name_normalized"]
                 )
-            )  # NOQA: E501
+            )
             return
 
     match_str = "-*- extra stuff goes here -*-"
@@ -80,7 +78,7 @@ def _update_profile_controlpanel_xml(configurator):
     if file_name not in file_list:
         os.rename(example_file_path, file_path)
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
@@ -94,7 +92,7 @@ def _update_profile_controlpanel_xml(configurator):
                     configurator.variables["controlpanel_name_normalized"],
                     file_name,
                 )
-            )  # NOQA: E501
+            )
             return
 
     match_str = "-*- extra stuff goes here -*-"
@@ -126,7 +124,7 @@ def prepare_renderer(configurator):
         "_"
     )
     configurator.variables["controlpanel_name_klass"] = cc.pascalcase(controlpanel_name)
-    configurator.variables["controlpanel_name_normalized"] = cc.snakecase(  # NOQA: E501
+    configurator.variables["controlpanel_name_normalized"] = cc.snakecase(
         controlpanel_name
     )
     configurator.variables["controlpanel_separated_name"] = cc.separate_words(
@@ -142,7 +140,7 @@ def prepare_renderer(configurator):
         .replace(" ", "")
         .replace("_", "")
     )
-    configurator.variables["package.browserlayer"] = "{0}Layer".format(camelcasename)
+    configurator.variables["package.browserlayer"] = f"{camelcasename}Layer"
 
 
 def post_renderer(configurator):

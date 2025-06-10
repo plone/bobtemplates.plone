@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Generate content type."""
 
 from bobtemplates.plone.base import base_prepare_renderer
@@ -36,15 +35,11 @@ def supermodel_is_used(configurator, question):
 def check_dexterity_type_name(configurator, question, answer):
     """Test if type name is valid."""
     if keyword.iskeyword(answer):
-        raise ValidationError(
-            '"{key}" is a reserved Python keyword!'.format(key=answer)
-        )  # NOQA: E501
+        raise ValidationError(f'"{answer}" is a reserved Python keyword!')
     if not re.match("[_a-zA-Z ]*$", answer):
         raise ValidationError(
-            '"{key}" is not a valid identifier!\n'
-            "Allowed characters: _ a-z A-Z and whitespace.\n".format(
-                key=answer
-            ),  # NOQA: E501
+            f'"{answer}" is not a valid identifier!\n'
+            "Allowed characters: _ a-z A-Z and whitespace.\n",
         )
     return answer
 
@@ -54,11 +49,11 @@ def check_global_allow(configurator, answer):
     if configurator.variables.get("dexterity_type_global_allow", False):
         raise SkipQuestion(
             "global_allow is true, so we skip parent container name question."
-        )  # NOQA: E501
+        )
 
 
 def _update_metadata_xml(configurator):
-    """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""  # NOQA: E501
+    """Add plone.app.dexterity dependency metadata.xml in Generic Setup profiles."""
     metadata_file_name = "metadata.xml"
     metadata_file_dir = "profiles/default"
     metadata_file_path = (
@@ -69,7 +64,7 @@ def _update_metadata_xml(configurator):
         + metadata_file_name
     )
 
-    with open(metadata_file_path, "r") as xml_file:
+    with open(metadata_file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         dependencies = tree.xpath("/metadata/dependencies")[0]
@@ -85,9 +80,7 @@ def _update_metadata_xml(configurator):
                     dep_exists = True
             if dep_exists:
                 print(
-                    "{dep} already in metadata.xml, skip adding!".format(
-                        dep=dep,
-                    ),
+                    f"{dep} already in metadata.xml, skip adding!",
                 )
                 continue
             dep_element = etree.Element("dependency")
@@ -121,15 +114,13 @@ def _update_types_xml(configurator):
     if types_file_name not in file_list:
         os.rename(types_example_file_path, types_file_path)
 
-    with open(types_file_path, "r") as xml_file:
+    with open(types_file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         types = tree.xpath("/object[@name='portal_types']")[0]
         type_name = configurator.variables["dexterity_type_name"]
-        if len(types.xpath("./object[@name='{name}']".format(name=type_name))):
-            print(
-                "{name} already in types.xml, skip adding!".format(name=type_name)
-            )  # NOQA: E501
+        if len(types.xpath(f"./object[@name='{type_name}']")):
+            print(f"{type_name} already in types.xml, skip adding!")
             return
         types.append(
             etree.Element("object", name=type_name, meta_type="Dexterity FTI"),
@@ -145,34 +136,23 @@ def _update_types_xml(configurator):
 
 
 def _update_parent_types_fti_xml(configurator):
-    parent_ct_name = configurator.variables.get(
-        "dexterity_parent_container_type_name"
-    )  # NOQA: E501
+    parent_ct_name = configurator.variables.get("dexterity_parent_container_type_name")
     if not parent_ct_name:
         return
-    parent_dexterity_type_fti_file_name = get_normalized_ftiname(
-        parent_ct_name
-    )  # NOQA: E501
-    file_name = "{0}.xml".format(
-        parent_dexterity_type_fti_file_name,
-    )
+    parent_dexterity_type_fti_file_name = get_normalized_ftiname(parent_ct_name)
+    file_name = f"{parent_dexterity_type_fti_file_name}.xml"
     file_path = "{0}/profiles/default/types/{1}".format(
         configurator.variables["package_folder"],
         file_name,
     )
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         type_name = configurator.variables["dexterity_type_name"]
-        if len(
-            tree.xpath(".//element[@value='{name}']".format(name=type_name))
-        ):  # NOQA: E501
+        if len(tree.xpath(f".//element[@value='{type_name}']")):
             print(
-                "{name} already in {filename}, skip adding!".format(
-                    name=type_name,
-                    filename=file_name,
-                ),
+                f"{type_name} already in {file_name}, skip adding!",
             )
             return
 
@@ -191,7 +171,7 @@ def _update_rolemap_xml(configurator):
         file_name,
     )
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
@@ -199,11 +179,9 @@ def _update_rolemap_xml(configurator):
             configurator.variables["package.dottedname"],
             configurator.variables["dexterity_type_name_klass"],
         )
-        xpath_selector = ".//permission[@name='{0}']".format(permname)
+        xpath_selector = f".//permission[@name='{permname}']"
         if len(tree_root.findall(xpath_selector)):
-            print(
-                "{name} already in rolemap.xml, skip adding!".format(name=permname)
-            )  # NOQA: E501
+            print(f"{permname} already in rolemap.xml, skip adding!")
             return
 
     match_str = "-*- extra stuff goes here -*-"
@@ -227,7 +205,7 @@ def _update_permissions_zcml(configurator):
     file_path = configurator.variables["package_folder"] + "/" + file_name
     nsprefix = "{http://namespaces.zope.org/zope}"
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
@@ -235,13 +213,9 @@ def _update_permissions_zcml(configurator):
             configurator.variables["package.dottedname"],
             configurator.variables["dexterity_type_name_klass"],
         )
-        xpath_selector = ".//{0}permission[@id='{1}']".format(nsprefix, permid)
+        xpath_selector = f".//{nsprefix}permission[@id='{permid}']"
         if len(tree_root.findall(xpath_selector)):
-            print(
-                "{permission} already in permissions.zcml, skip adding!".format(
-                    permission=permid
-                )
-            )  # NOQA: E501
+            print(f"{permid} already in permissions.zcml, skip adding!")
             return
 
     match_str = "-*- extra stuff goes here -*-"
@@ -270,13 +244,9 @@ def prepare_renderer(configurator):
     dx_type_name_klass = get_normalized_classname(type_name)
     configurator.variables["dexterity_type_name_klass"] = dx_type_name_klass
     dx_type_fti_file_name = get_normalized_ftiname(type_name)
-    configurator.variables[
-        "dexterity_type_fti_file_name"
-    ] = dx_type_fti_file_name  # NOQA: E501
+    configurator.variables["dexterity_type_fti_file_name"] = dx_type_fti_file_name
     dx_type_name_normalized = get_normalized_dxtypename(type_name)
-    configurator.variables[
-        "dexterity_type_name_normalized"
-    ] = dx_type_name_normalized  # NOQA: E501
+    configurator.variables["dexterity_type_name_normalized"] = dx_type_name_normalized
     configurator.target_directory = configurator.variables["package_folder"]
 
 

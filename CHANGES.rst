@@ -1,10 +1,26 @@
 Changelog
 =========
 
-6.4.4 (unreleased)
-------------------
+7.0.0a3 (unreleased)
+--------------------
 
 - Nothing changed yet.
+
+
+7.0.0a2 (2025-05-30)
+--------------------
+
+- cleanup registry
+
+
+7.0.0a1 (2025-05-30)
+--------------------
+
+- fix src package dir detection in cookieplone projects, by reading also pyproject.toml
+  [MrTango]
+
+- removing addon template, either use cookieplone template or the upcomming copier templates
+  [MrTango]
 
 
 6.4.3 (2025-04-02)

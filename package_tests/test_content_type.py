@@ -87,16 +87,12 @@ def test_prepare_renderer(tmpdir):
     )
     content_type.prepare_renderer(configurator)
     assert configurator.variables["dexterity_type_name"] == "Special Task"
-    assert (
-        configurator.variables["dexterity_type_fti_file_name"] == "Special_Task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_fti_file_name"] == "Special_Task"
     assert configurator.variables["dexterity_type_name_klass"] == "SpecialTask"
-    assert (
-        configurator.variables["dexterity_type_name_normalized"] == "special_task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_name_normalized"] == "special_task"
     assert configurator.target_directory.endswith(
         "/collective.todo/src/collective/todo"
-    )  # NOQA: E501
+    )
 
     configurator = Configurator(
         template="bobtemplates.plone:content_type",
@@ -110,16 +106,12 @@ def test_prepare_renderer(tmpdir):
     )
     content_type.prepare_renderer(configurator)
     assert configurator.variables["dexterity_type_name"] == "SpecialTask"
-    assert (
-        configurator.variables["dexterity_type_fti_file_name"] == "SpecialTask"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_fti_file_name"] == "SpecialTask"
     assert configurator.variables["dexterity_type_name_klass"] == "SpecialTask"
-    assert (
-        configurator.variables["dexterity_type_name_normalized"] == "special_task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_name_normalized"] == "special_task"
     assert configurator.target_directory.endswith(
         "/collective.todo/src/collective/todo"
-    )  # NOQA: E501
+    )
 
     configurator = Configurator(
         template="bobtemplates.plone:content_type",
@@ -133,16 +125,12 @@ def test_prepare_renderer(tmpdir):
     )
     content_type.prepare_renderer(configurator)
     assert configurator.variables["dexterity_type_name"] == "special task"
-    assert (
-        configurator.variables["dexterity_type_fti_file_name"] == "special_task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_fti_file_name"] == "special_task"
     assert configurator.variables["dexterity_type_name_klass"] == "SpecialTask"
-    assert (
-        configurator.variables["dexterity_type_name_normalized"] == "special_task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_name_normalized"] == "special_task"
     assert configurator.target_directory.endswith(
         "/collective.todo/src/collective/todo"
-    )  # NOQA: E501
+    )
 
     configurator = Configurator(
         template="bobtemplates.plone:content_type",
@@ -156,16 +144,12 @@ def test_prepare_renderer(tmpdir):
     )
     content_type.prepare_renderer(configurator)
     assert configurator.variables["dexterity_type_name"] == "Special_Task"
-    assert (
-        configurator.variables["dexterity_type_fti_file_name"] == "Special_Task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_fti_file_name"] == "Special_Task"
     assert configurator.variables["dexterity_type_name_klass"] == "SpecialTask"
-    assert (
-        configurator.variables["dexterity_type_name_normalized"] == "special_task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_name_normalized"] == "special_task"
     assert configurator.target_directory.endswith(
         "/collective.todo/src/collective/todo"
-    )  # NOQA: E501
+    )
 
 
 def test_check_global_allow_true():
@@ -238,7 +222,7 @@ def test_update_parent_types_fti_xml(tmpdir):
     configurator.variables["package_folder"] = package_path
     content_type._update_parent_types_fti_xml(configurator)
 
-    with open(os.path.join(profiles_path + "/My_Parent.xml"), "r") as f:
+    with open(os.path.join(profiles_path + "/My_Parent.xml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -283,7 +267,7 @@ def test_update_rolemap_xml(tmpdir):
     configurator.variables["dexterity_type_name_klass"] = "Parent"
     content_type._update_rolemap_xml(configurator)
 
-    with open(os.path.join(profiles_path + "/rolemap.xml"), "r") as f:
+    with open(os.path.join(profiles_path + "/rolemap.xml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -325,7 +309,7 @@ def test_update_permissions_zcml(tmpdir):
     configurator.variables["dexterity_type_name_klass"] = "Parent"
     content_type._update_permissions_zcml(configurator)
 
-    with open(os.path.join(package_path + "/permissions.zcml"), "r") as f:
+    with open(os.path.join(package_path + "/permissions.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)

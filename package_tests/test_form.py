@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Test form generation."""
 
 from .base import init_package_base_structure
@@ -77,7 +75,7 @@ def test_update_forms_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(forms_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(forms_path + "configure.zcml")) as f:
         content = f.read()
         assert content == expected
 

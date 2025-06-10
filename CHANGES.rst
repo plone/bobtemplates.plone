@@ -4,8 +4,8 @@ Changelog
 7.0.0a3 (unreleased)
 --------------------
 
-- Nothing changed yet.
-
+- Allow overriding browser layer in bobtemplates.cfg
+  [erral]
 
 7.0.0a2 (2025-05-30)
 --------------------

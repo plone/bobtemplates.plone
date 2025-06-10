@@ -418,6 +418,26 @@ package.dottedname = someother.packagename
     assert configurator.variables["package.dottedname"] == "someother.packagename"
 
 
+def test_set_browser_layer_in_global_vars(tmpdir):
+    template = """
+[main]
+version=5.1
+package.browserlayer = BrowserLayer
+"""
+    target_dir = tmpdir.strpath + "/collective.foo"
+    os.mkdir(target_dir)
+    with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
+        f.write(template)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=target_dir,
+        variables={"year": 1970, "plone.version": "5.1-latest"},
+    )
+    base.set_global_vars(configurator)
+
+    assert configurator.variables["package.browserlayer"] == "BrowserLayer"
+
+
 def test_set_plone_version_variables(tmpdir):
     template = """
 [main]

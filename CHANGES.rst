@@ -4,7 +4,8 @@ Changelog
 7.0.0a3 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- improve subscriber template, check addon browserlayer in subscriber to only run when addon is enabled
+  [MrTango]
 
 
 7.0.0a2 (2025-05-30)

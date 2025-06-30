@@ -43,7 +43,7 @@ def _update_configure_zcml(configurator):
     match_str = "-*- extra stuff goes here -*-"
     insert_str = """
   <plone:static
-      directory="svelte_apps"
+      directory="apps"
       type="plone"
       name="{0}.svelte"
       />
@@ -68,13 +68,13 @@ def post_renderer(configurator):
     run_black(configurator)
     git_commit(
         configurator,
-        "Add Svelte app: in svelte_apps/{0}".format(
+        "Add Svelte app: in apps/{0}".format(
             configurator.variables["svelte_app_name"],
         ),
     )
     echo(
         "===================================================\n"
-        "=> Sucessfully added: {0} in svelte_apps/{1} \n"
+        "=> Sucessfully added: {0} in apps/{1} \n"
         "=> you might want to go into the dir and run:\n"
         "$ yarn\n"
         "and then:"

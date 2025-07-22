@@ -4,7 +4,8 @@ Changelog
 7.0.0a3 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- pyproject_has_package_dir is now supporting also pyproject.toml with setuptools build backend
+  [MrTango]
 
 
 7.0.0a2 (2025-05-30)

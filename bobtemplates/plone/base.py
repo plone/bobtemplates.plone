@@ -455,28 +455,43 @@ def pyproject_has_package_dir(configurator):
     with open("pyproject.toml", "rb") as f:
         data = tomllib.load(f)
         # tool.hatch.build.targets.wheel
+        # or tool.setuptools.packages.find
         tool = data.get("tool")
         if not tool:
             return False
         hatch = tool.get("hatch")
-        if not hatch:
+        setuptools = tool.get("setuptools")
+        if not hatch and not setuptools:
             return False
-        build = hatch.get("build")
-        if not build:
-            return False
-        targets = build.get("targets")
-        if not targets:
-            return False
-        wheel = targets.get("wheel")
-        if not wheel:
-            return False
-        packages = wheel.get("packages")
-        if not packages:
-            return False
-        # for package in packages:
-        #     if "src/" in package:
-        #         return True
-        return any("src/" in package for package in packages)
+        if hatch:
+            build = hatch.get("build")
+            if not build:
+                return False
+            targets = build.get("targets")
+            if not targets:
+                return False
+            wheel = targets.get("wheel")
+            if not wheel:
+                return False
+            packages = wheel.get("packages")
+            if not packages:
+                return False
+            # for package in packages:
+            #     if "src/" in package:
+            #         return True
+            return any("src/" in package for package in packages)
+        elif setuptools:
+            packages = setuptools.get("packages")
+            if not packages:
+                return False
+            find = packages.get("find")
+            if not find:
+                return False
+            where = find.get("where")
+            if not where:
+                return False
+            return "src" in where
+
         return False
 
 

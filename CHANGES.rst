@@ -1,11 +1,18 @@
 Changelog
 =========
 
-7.0.0a3 (unreleased)
+7.0.0a4 (unreleased)
 --------------------
 
 - Allow overriding browser layer in bobtemplates.cfg
   [erral]
+
+7.0.0a3 (2025-07-22)
+--------------------
+
+- pyproject_has_package_dir is now supporting also pyproject.toml with setuptools build backend
+  [MrTango]
+
 
 7.0.0a2 (2025-05-30)
 --------------------

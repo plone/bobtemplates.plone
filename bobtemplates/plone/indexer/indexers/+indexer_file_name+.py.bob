@@ -14,4 +14,10 @@ def dummy(obj):
 @indexer(IDocument)  # ADJUST THIS!
 def {{{ indexer_name }}}(obj):
     """Calculate and return the value for the indexer"""
-    return obj.{{{ indexer_name }}}
+    attribute_value = None
+    attribute_name = "{{{ indexer_name }}}"
+
+    attribute_value = getattr(obj, attribute_name)
+    if not attribute_value:
+        return attribute_value
+    return attribute_value

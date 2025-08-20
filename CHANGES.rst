@@ -1,7 +1,7 @@
 Changelog
 =========
 
-7.0.0a4 (unreleased)
+7.0.0a4 (2025-08-20)
 --------------------
 
 - reactivate reg.depend_on = "plone_addon" for sub templates, we need this plonecli

@@ -4,7 +4,8 @@ Changelog
 7.0.0a4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- reactivate reg.depend_on = "plone_addon" for sub templates, we need this plonecli
+  [MrTango]
 
 
 7.0.0a3 (2025-07-22)

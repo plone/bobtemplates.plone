@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+t<?xml version="1.0"?>
 <registry
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="{{{ package.dottedname }}}">
@@ -8,8 +8,8 @@
     <value key="enabled">True</value>
     <value key="load_defer">True</value>
     <value key="compile">False</value>
-    <value key="jscompilation">++plone++{{{ package.dottedname }}}.svelte/{{{ svelte_app_name_dashed }}}/{{{ svelte_app_name_dashed }}}-bundle.js</value>
-    <value key="csscompilation">++plone++{{{ package.dottedname }}}.svelte/{{{ svelte_app_name_dashed }}}/{{{ svelte_app_name_dashed }}}-bundle.css</value>
+    <value key="jscompilation">++plone++{{{ package.dottedname }}}.svelte/{{{ svelte_app_name_dashed }}}/assets/{{{ svelte_app_name_dashed }}}-main.js</value>
+    <!-- <value key="csscompilation">++plone++{{{ package.dottedname }}}.svelte/{{{ svelte_app_name_dashed }}}/assets/{{{ svelte_app_name_dashed }}}-main.css</value> -->
     <value key="last_compilation">2020-10-29 22:00:00</value>
   </records>
 
@@ -25,8 +25,10 @@
     </value>
   </records>
 
-  <!-- <records interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" prefix="plone">
+  <!--
+  <records interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" prefix="plone">
     <value key="other_settings" purge="false">{"custom_elements": "{{{ svelte_app_name_dashed }}}"}</value>
-  </records> -->
+  </records>
+  -->
 
 </registry>

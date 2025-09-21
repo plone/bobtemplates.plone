@@ -52,7 +52,7 @@ setup(
         "setuptools",
         "mr.bob",
         "lxml",
-        "case-conversion",
+        "case-conversion<3.0.0",
         "colorama",
         "tox",
         "isort",

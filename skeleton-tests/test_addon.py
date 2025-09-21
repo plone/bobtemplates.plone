@@ -8,10 +8,9 @@ import subprocess
 
 
 base_files = [
-    ".editorconfig",
-    "setup.py",
-    "setup.cfg",
-    "bobtemplate.cfg",
+    "README.md",
+    "pyproject.toml",
+    "mx.ini",
 ]
 
 
@@ -57,7 +56,7 @@ plone.version = {config.version}
     )
     length = len(tmpdir.strpath + "/" + config.package_name + "/")
     generated_files = [f[length:] for f in generated_files]
-    required_files = base_files + addon_files
+    required_files = base_files + ['src/collective']
     assert required_files <= generated_files
 
     base_path = tmpdir.strpath + "/" + config.package_name

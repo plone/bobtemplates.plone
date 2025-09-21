@@ -5,6 +5,7 @@ from mrbob.cli import main
 
 import os
 import re
+import subprocess
 
 
 def test_addon_pattern(tmpdir, capsys, config):
@@ -28,17 +29,17 @@ plone.version = {config.version}
     config.package_name = "collective.testpattern"
 
     wd = os.path.abspath(os.path.join(tmpdir.strpath, config.package_name))
-    main(
+    result = subprocess.call(
         [
+            "mrbob",
             "-O",
             config.package_name,
             "bobtemplates.plone:" + config.template,
             "--config",
             answers_ini_path,
             "--non-interactive",
-            "--target-directory",
-            wd,
         ],
+        cwd=tmpdir.strpath,
     )
 
     # generate subtemplate content_type:
@@ -49,16 +50,19 @@ subtemplate_warning=False
     generate_answers_ini(package_dir, template)
 
     config.template = "mockup_pattern"
-    main(
+    result = subprocess.call(
         [
+            "mrbob",
+            "-O",
+            config.package_name,
             "bobtemplates.plone:" + config.template,
             "--config",
             answers_ini_path,
             "--non-interactive",
-            "--target-directory",
-            wd,
         ],
+        cwd=tmpdir.strpath,
     )
+
 
     assert file_exists(wd, "/package.json")
     assert file_exists(wd, "/webpack.config.js")

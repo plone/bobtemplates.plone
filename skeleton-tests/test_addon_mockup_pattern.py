@@ -63,7 +63,6 @@ subtemplate_warning=False
         cwd=tmpdir.strpath,
     )
 
-
     assert file_exists(wd, "/package.json")
     assert file_exists(wd, "/webpack.config.js")
     assert file_exists(

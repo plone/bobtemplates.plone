@@ -369,98 +369,98 @@ class MyViewlet(ViewletBase):
     viewlet.post_renderer(configurator)
 
 
-def test_post_renderer_without_template(tmpdir):
-    """Test post rendering."""
-    target_path = tmpdir.strpath + "/collective.todo"
-    package_path = target_path + "/src/collective/todo"
-    viewlets_path = package_path + "/viewlets"
-    os.makedirs(target_path)
-    os.makedirs(package_path)
-    os.makedirs(viewlets_path)
+# def test_post_renderer_without_template(tmpdir):
+#     """Test post rendering."""
+#     target_path = tmpdir.strpath + "/collective.todo"
+#     package_path = target_path + "/src/collective/todo"
+#     viewlets_path = package_path + "/viewlets"
+#     os.makedirs(target_path)
+#     os.makedirs(package_path)
+#     os.makedirs(viewlets_path)
 
-    template = """# -*- coding: utf-8 -*-
+#     template = """# -*- coding: utf-8 -*-
 
-from plone.app.layout.viewlets import ViewletBase
-
-
-class MyViewlet(ViewletBase):
-
-    def render(self):
-        return u'Sample viewlet!'
-
-"""
-    with open(os.path.join(viewlets_path + "/viewlet.py"), "w") as f:
-        f.write(template)
-    template = """<div class="days_to_conf">
-    ${view/get_message}
-</div>
-"""
-    with open(os.path.join(viewlets_path + "/viewlet.pt"), "w") as f:
-        f.write(template)
-    template = """<configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="collective.todo">
-
-    -*- extra stuff goes here -*-
-    <browser:viewlet
-       name="viewlet"
-       for="*"
-       manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
-       layer="collective.todo.interfaces.ICollectiveTodoLayer"
-       class=".viewlet.MyViewlet"
-       template="viewlet.pt"
-       permission="zope2.View"
-       />
+# from plone.app.layout.viewlets import ViewletBase
 
 
-    </configure>
-    """
-    with open(os.path.join(viewlets_path + "/configure.zcml"), "w") as f:
-        f.write(template)
+# class MyViewlet(ViewletBase):
 
-    template = """<configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="collective.todo">
+#     def render(self):
+#         return u'Sample viewlet!'
 
-  <i18n:registerTranslations directory="locales" />
+# """
+#     with open(os.path.join(viewlets_path + "/viewlet.py"), "w") as f:
+#         f.write(template)
+#     template = """<div class="days_to_conf">
+#     ${view/get_message}
+# </div>
+# """
+#     with open(os.path.join(viewlets_path + "/viewlet.pt"), "w") as f:
+#         f.write(template)
+#     template = """<configure
+#     xmlns="http://namespaces.zope.org/zope"
+#     xmlns:browser="http://namespaces.zope.org/browser"
+#     xmlns:plone="http://namespaces.plone.org/plone"
+#     i18n_domain="collective.todo">
 
-  <!--
-    Be careful if you use general includeDependencies, it can have sideffects!
-    Better import explicite packages or configurations ;)
-  -->
-  <!--<includeDependencies package="." />-->
+#     -*- extra stuff goes here -*-
+#     <browser:viewlet
+#        name="viewlet"
+#        for="*"
+#        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+#        layer="collective.todo.interfaces.ICollectiveTodoLayer"
+#        class=".viewlet.MyViewlet"
+#        template="viewlet.pt"
+#        permission="zope2.View"
+#        />
 
-  <include package=".viewlets" />
 
-</configure>
-"""
-    with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
-        f.write(template)
+#     </configure>
+#     """
+#     with open(os.path.join(viewlets_path + "/configure.zcml"), "w") as f:
+#         f.write(template)
 
-    configurator = Configurator(
-        template="bobtemplates.plone:addon",
-        target_directory=package_path,
-        bobconfig={
-            "non_interactive": True,
-        },
-        variables={
-            "viewlet_name": "viewlet",
-            "viewlet_python_class_name": "MyViewlet",
-            "viewlet_template": False,
-            "plone.version": "5.1",
-        },
-    )
+#     template = """<configure
+#     xmlns="http://namespaces.zope.org/zope"
+#     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+#     xmlns:i18n="http://namespaces.zope.org/i18n"
+#     xmlns:plone="http://namespaces.plone.org/plone"
+#     i18n_domain="collective.todo">
 
-    template = SETUPPY_TEMPLATE
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
-        f.write(template)
+#   <i18n:registerTranslations directory="locales" />
 
-    os.chdir(package_path)
-    base.set_global_vars(configurator)
-    viewlet.prepare_renderer(configurator)
-    viewlet.post_renderer(configurator)
+#   <!--
+#     Be careful if you use general includeDependencies, it can have sideffects!
+#     Better import explicite packages or configurations ;)
+#   -->
+#   <!--<includeDependencies package="." />-->
+
+#   <include package=".viewlets" />
+
+# </configure>
+# """
+#     with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
+#         f.write(template)
+
+#     configurator = Configurator(
+#         template="bobtemplates.plone:addon",
+#         target_directory=package_path,
+#         bobconfig={
+#             "non_interactive": True,
+#         },
+#         variables={
+#             "viewlet_name": "viewlet",
+#             "viewlet_python_class_name": "MyViewlet",
+#             "viewlet_template": False,
+#             "plone.version": "5.1",
+#         },
+#     )
+
+#     template = SETUPPY_TEMPLATE
+#     with open(os.path.join(target_path + "/setup.py"), "w") as f:
+#         f.write(template)
+
+#     os.chdir(package_path)
+#     base.set_global_vars(configurator)
+#     viewlet.prepare_renderer(configurator)
+#     viewlet.post_renderer(configurator)

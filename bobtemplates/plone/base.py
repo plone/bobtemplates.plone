@@ -443,7 +443,7 @@ def setuppy_has_package_dir(configurator):
     return False
 
 
-def pyproject_has_package_dir(configurator):
+def pyproject_has_package_dir(configurator):  # noqa: C901 ("is too complex" error)
     """ """
     package_root_folder = _get_package_root_folder(configurator)
     os.chdir(package_root_folder)

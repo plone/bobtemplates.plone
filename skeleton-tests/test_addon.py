@@ -1,6 +1,5 @@
 from base import file_exists
 from base import generate_answers_ini
-from base import run_skeleton_tox_env
 
 import glob
 import os.path

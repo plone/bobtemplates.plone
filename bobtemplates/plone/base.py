@@ -396,6 +396,7 @@ def _get_package_root_folder(configurator):
             if cur_dir == parent_dir:
                 break
             cur_dir = parent_dir
+
     if not root_folder:
         raise MrBobError(
             "No package root folder found in path!\n"

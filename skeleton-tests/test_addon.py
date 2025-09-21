@@ -2,7 +2,6 @@ from base import file_exists
 from base import generate_answers_ini
 
 import glob
-import os.path
 import subprocess
 
 
@@ -55,16 +54,16 @@ plone.version = {config.version}
     )
     length = len(tmpdir.strpath + "/" + config.package_name + "/")
     generated_files = [f[length:] for f in generated_files]
-    required_files = base_files + ["src/collective"]
+    required_files = [*base_files, "src/collective"]
     assert required_files <= generated_files
 
     base_path = tmpdir.strpath + "/" + config.package_name
 
     assert file_exists(base_path, "/src/collective/task/configure.zcml")
 
-    wd = os.path.abspath(
-        os.path.join(tmpdir.strpath, config.package_name),
-    )
+    # wd = os.path.abspath(
+    #     os.path.join(tmpdir.strpath, config.package_name),
+    # )
 
     # with capsys.disabled():
     #     returncode = run_skeleton_tox_env(wd, config)

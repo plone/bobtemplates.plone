@@ -27,7 +27,7 @@ plone.version = {config.version}
     config.package_name = "collective.testpattern"
 
     wd = os.path.abspath(os.path.join(tmpdir.strpath, config.package_name))
-    result = subprocess.call(
+    subprocess.call(
         [
             "mrbob",
             "-O",
@@ -48,7 +48,7 @@ subtemplate_warning=False
     generate_answers_ini(package_dir, template)
 
     config.template = "mockup_pattern"
-    result = subprocess.call(
+    subprocess.call(
         [
             "mrbob",
             "-O",

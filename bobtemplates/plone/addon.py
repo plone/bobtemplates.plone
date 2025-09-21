@@ -27,16 +27,18 @@ def pre_render(configurator):
 
     # mr.bob creates the folder, but we need cookieplone to create it
     # so we delete it here :/
-    shutil.rmtree(package_dir)
+    shutil.rmtree(package_dir, ignore_errors=True)
 
-    subprocess.run([
-        "uvx",
-        "cookieplone",
-        "backend_addon",
-        "--no-input",
-        "--config-file",
-        "answers.json",
-    ])
+    subprocess.run(
+        [
+            "uvx",
+            "cookieplone",
+            "backend_addon",
+            "--no-input",
+            "--config-file",
+            "answers.json",
+        ]
+    )
 
 
 def pre_ask(configurator):

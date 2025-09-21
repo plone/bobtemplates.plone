@@ -379,7 +379,7 @@ def update_file(configurator, file_path, match_str, insert_str):
 
 
 def _get_package_root_folder(configurator):
-    file_names = ["setup.py", "bobtemplate.cfg", "pyproject.toml"]
+    file_names = ["mx.ini", "README.md", "pyproject.toml"]
     root_folder = None
     os.chdir(configurator.target_directory)
     cur_dir = os.getcwd()

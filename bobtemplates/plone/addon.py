@@ -1,8 +1,3 @@
-from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import git_init
-from bobtemplates.plone.base import make_path
-from bobtemplates.plone.utils import run_black
-from bobtemplates.plone.utils import run_isort
 
 import json
 import os
@@ -19,22 +14,22 @@ def pre_render(configurator):
         "default_context":{
             "title": ".".join(namespaces),
             "python_package_name": ".".join(namespaces),
-            "author": configurator.variables['author.name'],
-            "email": configurator.variables['author.email'],
-            "github_organization": configurator.variables['author.github.user'] or 'collective',
-            "plone_version": configurator.variables['plone.version']
+            "author": configurator.variables.get('author.name') or 'Dummy',
+            "email": configurator.variables.get('author.email') or 'collective@plone.org',
+            "github_organization": configurator.variables.get('author.github.user') or 'collective',
+            "plone_version": configurator.variables.get('plone.version') or '6.1.2'
         }
     }
 
-    try:
-        os.makedirs(package_dir)
-    except:
-        pass
-
-    with open(f'{package_dir}/answers.json', 'w') as fp:
+    # prepare the answers file for cookieplone
+    with open('answers.json', 'w') as fp:
         json.dump(backend_addon_data, fp)
 
-    os.chdir(package_dir)
+    # mr.bob creates the folder, but we need cookieplone to create it
+    # so we delete it here :/
+    shutil.rmtree(package_dir)
+
+
     subprocess.run(["uvx", "cookieplone", "backend_addon", "--no-input", "--config-file", "answers.json"])
 
 def pre_ask(configurator):

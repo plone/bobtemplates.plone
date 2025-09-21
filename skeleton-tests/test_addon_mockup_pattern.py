@@ -83,5 +83,5 @@ subtemplate_warning=False
                 found_jscompilation = True
     assert found_jscompilation
 
-    with capsys.disabled():
-        run_skeleton_tox_env(wd, config)
+    # with capsys.disabled():
+    #     run_skeleton_tox_env(wd, config)

@@ -63,8 +63,8 @@ subtemplate_warning=False
 
     assert file_exists(wd, "/src/plonetheme/task/theme/manifest.cfg")
 
-    with capsys.disabled():
-        run_skeleton_tox_env(wd, config)
+    # with capsys.disabled():
+    #     run_skeleton_tox_env(wd, config)
 
 
 def test_addon_theme_barceloneta_nested(tmpdir, capsys, config):

@@ -249,7 +249,7 @@ def get_git_info(value):
     """Try to get information from the git-config."""
     gitargs = [b"git", b"config", b"--get"]
     try:
-        result = subprocess.check_output(*gitargs, [value]).strip()
+        result = subprocess.check_output(gitargs + [value]).strip()
         if isinstance(result, six.binary_type):
             result = result.decode("utf8")
         return result

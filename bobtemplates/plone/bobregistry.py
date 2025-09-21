@@ -7,11 +7,11 @@ class RegEntry:
         self.info = ""
 
 
-# def plone_addon():
-#     reg = RegEntry()
-#     reg.template = "bobtemplates.plone:addon"
-#     reg.plonecli_alias = "addon"
-#     return reg
+def plone_addon():
+    reg = RegEntry()
+    reg.template = "bobtemplates.plone:addon"
+    reg.plonecli_alias = "addon"
+    return reg
 
 
 def plone_buildout():

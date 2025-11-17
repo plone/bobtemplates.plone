@@ -17,6 +17,8 @@ Changelog
 - pyproject_has_package_dir is now supporting also pyproject.toml with setuptools build backend
   [MrTango]
 
+- Allow overriding browser layer in bobtemplates.cfg
+  [erral]
 
 7.0.0a2 (2025-05-30)
 --------------------

@@ -209,6 +209,9 @@ def read_bobtemplates_ini(configurator):
         bob_config.git_init = config.get("main", "git_init")
     if config.has_option("main", "package.dottedname"):
         bob_config.package_dottedname = config.get("main", "package.dottedname")
+    if config.has_option("main", "package.browserlayer"):
+        bob_config.package_browserlayer = config.get("main", "package.browserlayer")
+
     return bob_config
 
 
@@ -223,6 +226,8 @@ def set_global_vars(configurator):
     set_plone_version_variables(configurator)
     if hasattr(bob_config, "package_dottedname"):
         configurator.variables["package.dottedname"] = bob_config.package_dottedname
+    if hasattr(bob_config, "package_browserlayer"):
+        configurator.variables["package.browserlayer"] = bob_config.package_browserlayer
 
 
 def set_plone_version_variables(configurator, answer=None):

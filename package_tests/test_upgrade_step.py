@@ -1,5 +1,5 @@
 from .base import init_package_base_structure
-from .base import SETUPPY_TEMPLATE
+from .base import PYPROJECTTOML_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import upgrade_step
 from mrbob.configurator import Configurator
@@ -64,8 +64,8 @@ version=5.1
     with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = SETUPPY_TEMPLATE
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_path + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     template = """

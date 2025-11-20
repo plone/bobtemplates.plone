@@ -1,6 +1,6 @@
 """Test dexterity content type generation."""
 
-from .base import SETUPPY_TEMPLATE
+from .base import PYPROJECTTOML_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import content_type
 from mrbob.bobexceptions import SkipQuestion
@@ -71,8 +71,8 @@ def test_prepare_renderer(tmpdir):
     """Test prepare renderer."""
     target_dir = tmpdir.strpath + "/collective.foo.bar"
     os.mkdir(target_dir)
-    template = SETUPPY_TEMPLATE
-    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
@@ -324,8 +324,8 @@ def test_post_renderer(tmpdir):
     os.makedirs(package_path)
     os.makedirs(profiles_path + "/types")
 
-    template = SETUPPY_TEMPLATE
-    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     template = """<?xml version="1.0" encoding="UTF-8"?>

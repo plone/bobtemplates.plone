@@ -20,7 +20,8 @@ lint.select = [
     # mccabe
     "C90",
     # pycodestyle
-    "E", "W",
+    "E",
+    "W",
     # pyflakes
     "F",
     # pygrep-hooks
@@ -33,10 +34,10 @@ lint.select = [
 lint.ignore = [
     # DoNotAssignLambda
     "E731",
-    "S320",
+    # "S320", # this rule has been removed and ignoring it has no effect
     "S607",  # we can't really use absolute paths here
     "S603",
-    "UP030",  # can be activated and worked on later
+    "UP030", # can be activated and worked on later
 ]
 
 [tool.ruff.lint.isort]

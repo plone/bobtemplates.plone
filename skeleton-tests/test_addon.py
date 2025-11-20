@@ -1,17 +1,14 @@
 from base import file_exists
 from base import generate_answers_ini
-from base import run_skeleton_tox_env
 
 import glob
-import os.path
 import subprocess
 
 
 base_files = [
-    ".editorconfig",
-    "setup.py",
-    "setup.cfg",
-    "bobtemplate.cfg",
+    "README.md",
+    "pyproject.toml",
+    "mx.ini",
 ]
 
 
@@ -57,19 +54,21 @@ plone.version = {config.version}
     )
     length = len(tmpdir.strpath + "/" + config.package_name + "/")
     generated_files = [f[length:] for f in generated_files]
-    required_files = base_files + addon_files
-    assert required_files <= generated_files
+    required_files = [*base_files, "src"]
+
+    for required_file in required_files:
+        assert required_file in generated_files
 
     base_path = tmpdir.strpath + "/" + config.package_name
 
     assert file_exists(base_path, "/src/collective/task/configure.zcml")
 
-    wd = os.path.abspath(
-        os.path.join(tmpdir.strpath, config.package_name),
-    )
+    # wd = os.path.abspath(
+    #     os.path.join(tmpdir.strpath, config.package_name),
+    # )
 
-    with capsys.disabled():
-        returncode = run_skeleton_tox_env(wd, config)
-        assert returncode == 0, (
-            "The tests inside the generated package are failing, please check the output above!"
-        )
+    # with capsys.disabled():
+    #     returncode = run_skeleton_tox_env(wd, config)
+    #     assert returncode == 0, (
+    #         "The tests inside the generated package are failing, please check the output above!"
+    #     )

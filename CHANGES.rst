@@ -1,10 +1,29 @@
 Changelog
 =========
 
-7.0.0a3 (unreleased)
+7.0.0a4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- editorconfig: Don't use inline comments.
+  Inline comments are invalid since editorconfig v0.15.0.
+  [thet]
+
+- Fix generated file detection test
+  [erral]
+
+- Refactor all tests to adapt to the new package structure created by cookieplone
+  [erral]
+
+- Use cookieplone to create an addon
+  [erral]
+
+
+
+7.0.0a3 (2025-07-22)
+--------------------
+
+- pyproject_has_package_dir is now supporting also pyproject.toml with setuptools build backend
+  [MrTango]
 
 
 7.0.0a2 (2025-05-30)

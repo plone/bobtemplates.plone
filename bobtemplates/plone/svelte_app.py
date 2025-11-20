@@ -29,6 +29,7 @@ def _update_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
+
         xpath = "./plone:static[@name='{}.svelte']".format(
             configurator.variables["package.dottedname"]
         )
@@ -43,6 +44,7 @@ def _update_configure_zcml(configurator):
     match_str = "-*- extra stuff goes here -*-"
     insert_str = """
   <plone:static
+      xmlns:plone="http://namespaces.plone.org/plone"
       directory="svelte_apps"
       type="plone"
       name="{0}.svelte"

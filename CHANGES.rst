@@ -4,6 +4,9 @@ Changelog
 7.0.0a4 (unreleased)
 --------------------
 
+- Fix generated file detection test
+  [erral]
+
 - Refactor all tests to adapt to the new package structure created by cookieplone
   [erral]
 

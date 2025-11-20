@@ -55,7 +55,9 @@ plone.version = {config.version}
     length = len(tmpdir.strpath + "/" + config.package_name + "/")
     generated_files = [f[length:] for f in generated_files]
     required_files = [*base_files, "src/collective"]
-    assert required_files <= generated_files
+
+    for required_file in required_files:
+        assert required_file in generated_files
 
     base_path = tmpdir.strpath + "/" + config.package_name
 

@@ -249,7 +249,7 @@ def get_git_info(value):
     """Try to get information from the git-config."""
     gitargs = [b"git", b"config", b"--get"]
     try:
-        result = subprocess.check_output(*gitargs, [value]).strip()
+        result = subprocess.check_output([*gitargs, value]).strip()
         if isinstance(result, six.binary_type):
             result = result.decode("utf8")
         return result
@@ -379,7 +379,7 @@ def update_file(configurator, file_path, match_str, insert_str):
 
 
 def _get_package_root_folder(configurator):
-    file_names = ["setup.py", "bobtemplate.cfg", "pyproject.toml"]
+    file_names = ["mx.ini", "README.md", "pyproject.toml"]
     root_folder = None
     os.chdir(configurator.target_directory)
     cur_dir = os.getcwd()
@@ -396,6 +396,7 @@ def _get_package_root_folder(configurator):
             if cur_dir == parent_dir:
                 break
             cur_dir = parent_dir
+
     if not root_folder:
         raise MrBobError(
             "No package root folder found in path!\n"
@@ -443,7 +444,7 @@ def setuppy_has_package_dir(configurator):
     return False
 
 
-def pyproject_has_package_dir(configurator):
+def pyproject_has_package_dir(configurator):  # noqa: C901
     """ """
     package_root_folder = _get_package_root_folder(configurator)
     os.chdir(package_root_folder)

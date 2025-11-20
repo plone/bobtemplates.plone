@@ -4,7 +4,11 @@ Changelog
 7.0.0a4 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Refactor all tests to adapt to the new package structure created by cookieplone
+  [erral]
+
+- Use cookieplone to create an addon
+  [erral]
 
 
 7.0.0a3 (2025-07-22)

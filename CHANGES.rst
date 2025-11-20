@@ -4,6 +4,13 @@ Changelog
 7.0.0a4 (unreleased)
 --------------------
 
+- editorconfig: Don't use inline comments.
+  Inline comments are invalid since editorconfig v0.15.0.
+  [thet]
+
+- Fix generated file detection test
+  [erral]
+
 - Refactor all tests to adapt to the new package structure created by cookieplone
   [erral]
 
@@ -12,6 +19,7 @@ Changelog
 
 - Allow overriding browser layer in bobtemplates.cfg
   [erral]
+
 
 
 7.0.0a3 (2025-07-22)

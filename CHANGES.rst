@@ -8,6 +8,9 @@ Changelog
   Inline comments are invalid since editorconfig v0.15.0.
   [thet]
 
+- Fix generated file detection test
+  [erral]
+
 - Refactor all tests to adapt to the new package structure created by cookieplone
   [erral]
 

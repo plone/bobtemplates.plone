@@ -4,6 +4,10 @@ Changelog
 7.0.0a4 (unreleased)
 --------------------
 
+- editorconfig: Don't use inline comments.
+  Inline comments are invalid since editorconfig v0.15.0.
+  [thet]
+
 - Fix generated file detection test
   [erral]
 
@@ -12,6 +16,7 @@ Changelog
 
 - Use cookieplone to create an addon
   [erral]
+
 
 
 7.0.0a3 (2025-07-22)

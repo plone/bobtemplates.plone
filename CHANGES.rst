@@ -17,6 +17,9 @@ Changelog
 - Use cookieplone to create an addon
   [erral]
 
+- Allow overriding browser layer in bobtemplates.cfg
+  [erral]
+
 
 
 7.0.0a3 (2025-07-22)

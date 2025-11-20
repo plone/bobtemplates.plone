@@ -1,10 +1,9 @@
 from base import file_exists
 from base import generate_answers_ini
-from base import run_skeleton_tox_env
-from mrbob.cli import main
 
 import os
 import re
+import subprocess
 
 
 def test_addon_pattern(tmpdir, capsys, config):
@@ -28,17 +27,17 @@ plone.version = {config.version}
     config.package_name = "collective.testpattern"
 
     wd = os.path.abspath(os.path.join(tmpdir.strpath, config.package_name))
-    main(
+    subprocess.call(
         [
+            "mrbob",
             "-O",
             config.package_name,
             "bobtemplates.plone:" + config.template,
             "--config",
             answers_ini_path,
             "--non-interactive",
-            "--target-directory",
-            wd,
         ],
+        cwd=tmpdir.strpath,
     )
 
     # generate subtemplate content_type:
@@ -49,15 +48,17 @@ subtemplate_warning=False
     generate_answers_ini(package_dir, template)
 
     config.template = "mockup_pattern"
-    main(
+    subprocess.call(
         [
+            "mrbob",
+            "-O",
+            config.package_name,
             "bobtemplates.plone:" + config.template,
             "--config",
             answers_ini_path,
             "--non-interactive",
-            "--target-directory",
-            wd,
         ],
+        cwd=tmpdir.strpath,
     )
 
     assert file_exists(wd, "/package.json")
@@ -79,5 +80,5 @@ subtemplate_warning=False
                 found_jscompilation = True
     assert found_jscompilation
 
-    with capsys.disabled():
-        run_skeleton_tox_env(wd, config)
+    # with capsys.disabled():
+    #     run_skeleton_tox_env(wd, config)

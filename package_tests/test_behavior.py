@@ -1,4 +1,4 @@
-from .base import SETUPPY_TEMPLATE
+from .base import PYPROJECTTOML_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import behavior
 from mrbob.configurator import Configurator
@@ -9,8 +9,8 @@ import os
 def test_prepare_renderer(tmpdir):
     target_dir = tmpdir.strpath + "/collective.foo"
     os.mkdir(target_dir)
-    template = SETUPPY_TEMPLATE
-    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
@@ -50,8 +50,8 @@ version=5.1
     with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = SETUPPY_TEMPLATE
-    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     template = """

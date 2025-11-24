@@ -132,16 +132,6 @@ def prepare_renderer(configurator):
     )
     configurator.target_directory = configurator.variables["package_folder"]
 
-    # compute the browserlayer like the addon template does
-    camelcasename = (
-        configurator.variables["package.dottedname"]
-        .replace(".", " ")
-        .title()
-        .replace(" ", "")
-        .replace("_", "")
-    )
-    configurator.variables["package.browserlayer"] = f"{camelcasename}Layer"
-
 
 def post_renderer(configurator):
     """"""

@@ -5,11 +5,13 @@ from setuptools import setup
 version = "7.0.0a4.dev0"
 
 
-long_description = "\n\n".join([
-    open("README.rst").read(),
-    open("CONTRIBUTORS.rst").read(),
-    open("CHANGES.rst").read(),
-])
+long_description = "\n\n".join(
+    [
+        open("README.rst").read(),
+        open("CONTRIBUTORS.rst").read(),
+        open("CHANGES.rst").read(),
+    ]
+)
 
 
 setup(
@@ -25,10 +27,14 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
         "Programming Language :: Python :: Implementation :: CPython",
         "Development Status :: 5 - Production/Stable",
         "Framework :: Plone",
         "Framework :: Plone :: 6.0",
+        "Framework :: Plone :: 6.1",
         "Topic :: Software Development :: Code Generators",
         "Topic :: Utilities",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",

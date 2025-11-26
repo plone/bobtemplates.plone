@@ -4,6 +4,9 @@ Changelog
 7.0.0a4 (unreleased)
 --------------------
 
+- test package in more python versions
+  [erral]
+
 - remove layer computation from controlpanel template
   [erral]
 

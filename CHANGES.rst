@@ -20,6 +20,10 @@ Features:
 - test package in more python versions
   [erral]
 
+- Refactor all tests to adapt to the new package structure created by cookieplone
+  [erral]
+
+
 Bugfixes:
 
 - remove layer computation from controlpanel template
@@ -31,11 +35,6 @@ Bugfixes:
 
 - Fix generated file detection test
   [erral]
-
-- Refactor all tests to adapt to the new package structure created by cookieplone
-  [erral]
-
-
 
 
 7.0.0a3 (2025-07-22)

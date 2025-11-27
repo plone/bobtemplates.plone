@@ -12,5 +12,5 @@ exclude jsconfig.json
 exclude constraints.txt
 exclude appveyor.yml
 prune */__pycache__
-
-
+include *.yaml
+recursive-include news *

@@ -1,11 +1,38 @@
 Changelog
 =========
 
-7.0.0a4 (unreleased)
+.. You should *NOT* be adding new change log entries to this file.
+   You should create a file in the news directory instead.
+   For helpful instructions, please see:
+   https://github.com/plone/plone.releaser/blob/master/ADD-A-NEWS-ITEM.rst
+
+.. towncrier release notes start
+
+7.0.0a5 (2025-11-27)
 --------------------
+
+Internal:
+
+
+- Handle changelog entries using towncrier @erral
+
+
+Features:
+
+- Use cookieplone to create an addon
+  [erral]
+
+- Allow overriding browser layer in bobtemplates.cfg
+  [erral]
 
 - test package in more python versions
   [erral]
+
+- Refactor all tests to adapt to the new package structure created by cookieplone
+  [erral]
+
+
+Bugfixes:
 
 - remove layer computation from controlpanel template
   [erral]
@@ -16,16 +43,6 @@ Changelog
 
 - Fix generated file detection test
   [erral]
-
-- Refactor all tests to adapt to the new package structure created by cookieplone
-  [erral]
-
-- Use cookieplone to create an addon
-  [erral]
-
-- Allow overriding browser layer in bobtemplates.cfg
-  [erral]
-
 
 
 7.0.0a3 (2025-07-22)

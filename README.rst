@@ -39,7 +39,7 @@ Package created with ``bobtemplates.plone`` use the current best-practices when 
 Provided templates
 ------------------
 
-- addon
+- addon (it is provided as a base for the rest of subtemplates, but it is created using `cookieplone`_)
 - buildout (useful setup a development buildout or to test new pending Plone versions)
 
 
@@ -80,6 +80,7 @@ If you want to use ``plonecli`` and ``bobtemplates.plone`` in projects created b
 .. code-block:: ini
 
     package.dottedname = tagung.plone.de
+    package.browserlayer = BrowserLayer
 
 Will work for package without a `src` folder in the structure, from version `6.4.3` on.
 
@@ -216,3 +217,6 @@ Support
 
 If you are having issues, please let us know.
 Just open an issue here.
+
+
+.. _cookieplone: https://github.com/plone/cookieplone

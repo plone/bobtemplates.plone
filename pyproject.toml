@@ -57,3 +57,39 @@ preview = true
 "**/test_*" = ["E501", "RUF001", "S101", "S603", "S607"]
 "skeleton-tests/*" = ["E501", "RUF001", "S101", "S603", "S607"]
 "setup.py" = ["SIM115"]
+
+[tool.towncrier]
+directory = "news/"
+filename = "CHANGES.rst"
+title_format = "{version} ({project_date})"
+underlines = ["-", ""]
+
+[[tool.towncrier.type]]
+directory = "breaking"
+name = "Breaking changes:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "feature"
+name = "New features:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "bugfix"
+name = "Bug fixes:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "internal"
+name = "Internal:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "documentation"
+name = "Documentation:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "tests"
+name = "Tests:"
+showcontent = true

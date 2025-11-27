@@ -8,6 +8,14 @@ Changelog
 
 .. towncrier release notes start
 
+7.0.0a5 (2025-11-27)
+--------------------
+
+Internal:
+
+
+- Handle changelog entries using towncrier @erral
+
 
 Features:
 

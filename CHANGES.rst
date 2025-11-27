@@ -1,11 +1,15 @@
-Changelog
-=========
+Features:
 
-7.0.0a4 (unreleased)
---------------------
+- Use cookieplone to create an addon
+  [erral]
+
+- Allow overriding browser layer in bobtemplates.cfg
+  [erral]
 
 - test package in more python versions
   [erral]
+
+Bugfixes:
 
 - remove layer computation from controlpanel template
   [erral]
@@ -20,11 +24,6 @@ Changelog
 - Refactor all tests to adapt to the new package structure created by cookieplone
   [erral]
 
-- Use cookieplone to create an addon
-  [erral]
-
-- Allow overriding browser layer in bobtemplates.cfg
-  [erral]
 
 
 

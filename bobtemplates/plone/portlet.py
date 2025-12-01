@@ -4,8 +4,6 @@ from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import ZCML_NAMESPACES
-from bobtemplates.plone.utils import run_black
-from bobtemplates.plone.utils import run_isort
 from bobtemplates.plone.utils import slugify
 from lxml import etree
 
@@ -32,11 +30,13 @@ def _update_portlets_configure_zcml(configurator):
             configurator.variables["portlet_name"],
         )
         if len(tree_root.xpath(portlet_xpath, namespaces=ZCML_NAMESPACES)):
-            print((
-                "{0} already in configure.zcml, skip adding!".format(
-                    configurator.variables["portlet_name"],
-                ),
-            ))
+            print(
+                (
+                    "{0} already in configure.zcml, skip adding!".format(
+                        configurator.variables["portlet_name"],
+                    ),
+                )
+            )
             return
 
     match_str = "-*- extra stuff goes here -*-"
@@ -82,11 +82,13 @@ def _update_portlets_xml(configurator):
             configurator.variables["portlet_configuration_name"],
         )
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
-            print((
-                "{0} already in portlets.xml, skip adding!".format(
-                    configurator.variables["portlet_configuration_name"],
-                ),
-            ))
+            print(
+                (
+                    "{0} already in portlets.xml, skip adding!".format(
+                        configurator.variables["portlet_configuration_name"],
+                    ),
+                )
+            )
             return
 
     match_str = "<!-- Extra portlets here  -->"
@@ -180,8 +182,6 @@ def post_renderer(configurator):
     _update_portlets_configure_zcml(configurator)
     _update_portlets_xml(configurator)
     _delete_unnecessary_files(configurator)
-    run_isort(configurator)
-    run_black(configurator)
     git_commit(
         configurator,
         "Add portlet: {0}".format(

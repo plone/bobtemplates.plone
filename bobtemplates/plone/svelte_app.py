@@ -2,8 +2,6 @@ from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
-from bobtemplates.plone.utils import run_black
-from bobtemplates.plone.utils import run_isort
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
@@ -50,7 +48,9 @@ def _update_configure_zcml(configurator):
       name="{0}.svelte"
       />
 
-""".format(configurator.variables["package.dottedname"])
+""".format(
+        configurator.variables["package.dottedname"]
+    )
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -66,8 +66,6 @@ def pre_renderer(configurator):
 def post_renderer(configurator):
     """Post rendering."""
     _update_configure_zcml(configurator)
-    run_isort(configurator)
-    run_black(configurator)
     git_commit(
         configurator,
         "Add Svelte app: in svelte_apps/{0}".format(

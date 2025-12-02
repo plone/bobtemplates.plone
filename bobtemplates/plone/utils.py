@@ -55,39 +55,3 @@ def slugify(value):
     )
     value = re.sub(r"[^\w\s-]", "", value).strip().lower()
     return re.sub(r"[-\s]+", "-", value)
-
-
-def run_isort(configurator):
-    root_folder = _get_package_root_folder(configurator)
-    try:
-        test_result = subprocess.check_output(
-            ["tox", "-e", "isort-apply"],
-            cwd=root_folder,
-        )
-        print(f"\nisort-apply: successful:\n{safe_unicode(test_result)}\n")
-    except OSError as e:
-        print(
-            f"Error on isort-apply: {safe_unicode(e)},"
-            f" make sure you have tox and isort installed globally!"
-        )
-        raise
-    except subprocess.CalledProcessError as execinfo:
-        print(f"Error on isort-apply: {safe_unicode(execinfo.output)}")
-
-
-def run_black(configurator):
-    root_folder = _get_package_root_folder(configurator)
-    try:
-        test_result = subprocess.check_output(
-            ["tox", "-e", "black-enforce"],
-            cwd=root_folder,
-        )
-        print(f"\nblack-enforce: successful:\n{safe_unicode(test_result)}\n")
-    except OSError as e:
-        print(
-            f"Error on black-enforce: {safe_unicode(e)},"
-            f" make sure you have tox and black installed globally!"
-        )
-        raise
-    except subprocess.CalledProcessError as execinfo:
-        print(f"Error on black-enforce: {safe_unicode(execinfo.output)}")

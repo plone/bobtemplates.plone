@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
-from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING
+from {{{package.dottedname}}}.testing import FUNCTIONAL_TESTING
+from {{{package.dottedname}}}.testing import INTEGRATION_TESTING
 
 import unittest
 
 
 class IndexerIntegrationTest(unittest.TestCase):
 
-    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+    layer = INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
@@ -21,7 +21,7 @@ class IndexerIntegrationTest(unittest.TestCase):
 
 class IndexerFunctionalTest(unittest.TestCase):
 
-    layer = {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+    layer = FUNCTIONAL_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']

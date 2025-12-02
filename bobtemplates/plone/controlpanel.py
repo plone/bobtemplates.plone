@@ -2,8 +2,6 @@ from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import ZCML_NAMESPACES
-from bobtemplates.plone.utils import run_black
-from bobtemplates.plone.utils import run_isort
 from lxml import etree
 
 import case_conversion as cc
@@ -132,24 +130,12 @@ def prepare_renderer(configurator):
     )
     configurator.target_directory = configurator.variables["package_folder"]
 
-    # compute the browserlayer like the addon template does
-    camelcasename = (
-        configurator.variables["package.dottedname"]
-        .replace(".", " ")
-        .title()
-        .replace(" ", "")
-        .replace("_", "")
-    )
-    configurator.variables["package.browserlayer"] = f"{camelcasename}Layer"
-
 
 def post_renderer(configurator):
     """"""
     _update_package_configure_zcml(configurator)
     _update_controlpanels_configure_zcml(configurator)
     _update_profile_controlpanel_xml(configurator)
-    run_isort(configurator)
-    run_black(configurator)
     git_commit(
         configurator,
         "Add Control Panel: {0}".format(

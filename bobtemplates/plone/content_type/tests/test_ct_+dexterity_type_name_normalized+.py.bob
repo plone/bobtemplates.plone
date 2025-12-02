@@ -2,7 +2,7 @@
 {{% if dexterity_type_create_class or not dexterity_type_supermodel %}}
 from {{{ package.dottedname }}}.content.{{{ dexterity_type_name_normalized }}} import I{{{ dexterity_type_name_klass }}}  # NOQA E501
 {{% endif %}}
-from {{{ package.dottedname }}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING  # noqa
+from {{{ package.dottedname }}}.testing import INTEGRATION_TESTING  # noqa
 from plone import api
 {{% if dexterity_type_filter_content_types | to_boolean and dexterity_type_base_class | lower == 'container' %}}
 from plone.api.exc import InvalidParameterError
@@ -35,7 +35,7 @@ except ImportError:
 
 class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
 
-    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+    layer = INTEGRATION_TESTING
 
     def setUp(self):
         """Custom shared utility setup for tests."""

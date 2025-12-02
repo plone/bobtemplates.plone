@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from {{{package.dottedname}}}.interfaces import I{{{package.browserlayer}}}
-from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
-from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING
+from {{{package.dottedname}}}.testing import FUNCTIONAL_TESTING
+from {{{package.dottedname}}}.testing import INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -15,7 +15,7 @@ import unittest
 
 class ViewletIntegrationTest(unittest.TestCase):
 
-    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+    layer = INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
@@ -59,7 +59,7 @@ class ViewletIntegrationTest(unittest.TestCase):
 
 class ViewletFunctionalTest(unittest.TestCase):
 
-    layer = {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+    layer = FUNCTIONAL_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']

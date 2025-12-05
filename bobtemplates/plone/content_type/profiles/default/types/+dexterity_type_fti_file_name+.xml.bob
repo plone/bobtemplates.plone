@@ -83,7 +83,7 @@
     <!--<element value="plone.nextprevioustoggle" />-->
     <!--<element value="plone.nextpreviousenabled" />-->
     <!--<element value="plone.navigationroot" />-->
-    <!--<element value="plone.selectablecontrainstypes" />-->
+    <element value="plone.constraintypes" />
 {{% endif %}}
   </property>
 

@@ -320,9 +320,11 @@ def test_post_renderer(tmpdir):
     target_dir = tmpdir.strpath + "/collective.foo"
     package_path = target_dir + "/src/collective/foo"
     profiles_path = package_path + "/profiles/default"
+    registry_path = profiles_path + "/registry"
     os.makedirs(target_dir)
     os.makedirs(package_path)
     os.makedirs(profiles_path + "/types")
+    os.makedirs(registry_path)
 
     template = PYPROJECTTOML_TEMPLATE
     with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
@@ -381,6 +383,20 @@ def test_post_renderer(tmpdir):
 version=5.1
 """
     with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
+        f.write(template)
+
+    template = """<?xml version="1.0"?>
+<registry>
+  <record name="plone.displayed_types" interface="plone.base.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="false">
+      <element>Parent</element>
+    </value>
+  </record>
+</registry>
+"""
+    with open(
+        os.path.join(registry_path + "/plone.displayed_types.Task.xml"), "w"
+    ) as f:
         f.write(template)
 
     configurator = Configurator(

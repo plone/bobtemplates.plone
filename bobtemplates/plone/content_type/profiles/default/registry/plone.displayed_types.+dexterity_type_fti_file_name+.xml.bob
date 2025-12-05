@@ -1,0 +1,7 @@
+<registry>
+  <record name="plone.displayed_types" interface="plone.base.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="false">
+      <element>{{{ dexterity_type_name }}}</element>
+    </value>
+  </record>
+</registry>

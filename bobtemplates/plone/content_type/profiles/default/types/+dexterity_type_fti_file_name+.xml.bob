@@ -60,6 +60,8 @@
     <element value="plone.publication"/>
     <element value="plone.categorization"/>
     <element value="plone.locking" />
+    <element value="plone.textindexer" />
+    <element value="plone.relateditems"/>
     <element value="plone.versioning" />
 {{% endif %}}
 {{% if not dexterity_type_activate_default_behaviors %}}
@@ -75,7 +77,6 @@
     <element value="plone.versioning" />
 {{% endif %}}
     <!--<element value="plone.leadimage"/>-->
-    <!--<element value="plone.relateditems"/>-->
     <!--<element value="plone.richtext"/>-->
     <!--<element value="plone.tableofcontents"/>-->
     <!--<element value="plone.translatable" />-->
@@ -83,7 +84,7 @@
     <!--<element value="plone.nextprevioustoggle" />-->
     <!--<element value="plone.nextpreviousenabled" />-->
     <!--<element value="plone.navigationroot" />-->
-    <!--<element value="plone.selectablecontrainstypes" />-->
+    <element value="plone.constraintypes" />
 {{% endif %}}
   </property>
 

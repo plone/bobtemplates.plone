@@ -18,6 +18,13 @@ def get_view_name_from_python_class(configurator, question):
     question.default = view_generated_name
 
 
+def get_viewlet_template_name_from_python_class(configurator, question):
+    """Generate view default template name from viewlet name"""
+    viewlet_name = configurator.variables["viewlet_name"]
+    view_generated_name = cc.snakecase(viewlet_name)
+    question.default = view_generated_name
+
+
 def check_viewlet_template_answer(configurator, question):
     if not configurator.variables["viewlet_template"]:
         raise SkipQuestion("No view template, so we skip view template name question.")

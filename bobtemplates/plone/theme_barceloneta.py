@@ -46,7 +46,7 @@ def prepare_renderer(configurator):
         configurator.variables.get("theme.name")
     ).lower()
 
-    # configurator.target_directory = configurator.variables['package_folder']
+    configurator.target_directory = configurator.variables["package_folder"]
 
 
 def _update_metadata_xml(configurator):
@@ -107,7 +107,9 @@ def _update_configure_zcml(configurator):
       name="{0}"
       />
 
-""".format(configurator.variables["theme.normalized_name"])
+""".format(
+        configurator.variables["theme.normalized_name"]
+    )
     update_file(configurator, file_path, match_str, insert_str)
 
 

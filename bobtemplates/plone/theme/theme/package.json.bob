@@ -19,7 +19,7 @@
     "reload": "^3.2.0",
     "sass": "^1.54.7",
     "stylelint-config-twbs-bootstrap": "^5.0.0",
-    "@plone/plonetheme-barceloneta-base": "^3.0.0b6",
+    "@plone/plonetheme-barceloneta-base": "^3.3.1",
     "bootstrap": "^5.2.0"
   },
   "scripts": {

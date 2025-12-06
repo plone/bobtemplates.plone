@@ -8,6 +8,25 @@ Changelog
 
 .. towncrier release notes start
 
+7.0.0a6 (2025-12-06)
+--------------------
+
+New features:
+
+
+- Add plone.textindexer and plone.relateditems to the default behaviors for a content-type. @erral
+  Add plone.constraintypes to the default behaviors for Containers @erral
+- Show created content types by default in the navigation @erral
+
+
+Bug fixes:
+
+
+- Do not use tox.ini based tasks @erral
+- Generate viewlet template name like the python file name @erral
+- adapt tests to use cookieplone created layers @erral
+
+
 7.0.0a5 (2025-11-27)
 --------------------
 

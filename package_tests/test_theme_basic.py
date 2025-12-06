@@ -44,8 +44,10 @@ def test_prepare_renderer(tmpdir):
     theme_basic.prepare_renderer(configurator)
 
     assert configurator.variables["template_id"] == "theme_basic"
-    assert configurator.variables["theme.normalized_name"] == "test.theme"
-    assert configurator.target_directory.endswith("collective.todo")
+    assert configurator.variables["theme.normalized_name"] == "test-theme"
+    assert configurator.target_directory.endswith(
+        "/collective.todo/src/collective/todo"
+    )
 
 
 def test_post_renderer(tmpdir):

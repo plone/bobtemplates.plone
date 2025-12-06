@@ -46,7 +46,7 @@ def prepare_renderer(configurator):
         configurator.variables.get("theme.name")
     ).lower()
 
-    # configurator.target_directory = configurator.variables['package_folder']
+    configurator.target_directory = configurator.variables["package_folder"]
 
 
 def _update_metadata_xml(configurator):

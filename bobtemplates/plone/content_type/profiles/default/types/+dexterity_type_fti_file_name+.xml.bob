@@ -62,6 +62,7 @@
     <element value="plone.locking" />
     <element value="plone.textindexer" />
     <element value="plone.relateditems"/>
+    <element value="plone.versioning" />
 {{% endif %}}
 {{% if not dexterity_type_activate_default_behaviors %}}
     <!-- <element value="plone.basic"/> -->
@@ -73,11 +74,11 @@
     <!-- <element value="plone.publication"/> -->
     <!-- <element value="plone.categorization"/> -->
     <element value="plone.locking" />
+    <element value="plone.versioning" />
 {{% endif %}}
     <!--<element value="plone.leadimage"/>-->
     <!--<element value="plone.richtext"/>-->
     <!--<element value="plone.tableofcontents"/>-->
-    <!--<element value="plone.versioning" />-->
     <!--<element value="plone.translatable" />-->
 {{% if dexterity_type_base_class == "Container" %}}
     <!--<element value="plone.nextprevioustoggle" />-->

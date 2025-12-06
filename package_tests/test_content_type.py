@@ -415,3 +415,84 @@ version=5.1
     base.set_global_vars(configurator)
     content_type.prepare_renderer(configurator)
     content_type.post_renderer(configurator)
+
+
+def test_update_repositorytool(tmpdir):
+    """Test repositorytool.xml changes when changes are already in place."""
+    target_path = tmpdir.strpath + "/collective.sample"
+    package_path = target_path + "/src/collective/sample"
+    profiles_path = package_path + "/profiles/default"
+    os.makedirs(target_path)
+    os.makedirs(package_path)
+    os.makedirs(profiles_path)
+    template = """<?xml version="1.0"?>
+<repositorytool>
+  <policymap>
+    <type name="parent">
+        <policy name="at_edit_autoversion"/>
+        <policy name="version_on_revert"/>
+    </type>
+  </policymap>
+</repositorytool>
+"""
+    with open(os.path.join(profiles_path + "/repositorytool.xml"), "w") as f:
+        f.write(template)
+    configurator = Configurator(
+        template="bobtemplates.plone:content_type",
+        target_directory="collective.sample",
+        bobconfig={
+            "non_interactive": True,
+        },
+        variables={
+            "dexterity_type_name": "parent",
+        },
+    )
+    configurator.variables["package_folder"] = package_path
+    configurator.variables["package.dottedname"] = "bobtemplates.plone"
+    configurator.variables["dexterity_type_name_klass"] = "Parent"
+    content_type._update_repositorytool_xml(configurator)
+
+    with open(os.path.join(profiles_path + "/repositorytool.xml")) as f:
+        content = f.read()
+        if content != template:
+            pytest.raises(ValidationError)
+
+
+def test_update_difftool(tmpdir):
+    """Test diff_tool.xml changes when changes are already in place."""
+    target_path = tmpdir.strpath + "/collective.sample"
+    package_path = target_path + "/src/collective/sample"
+    profiles_path = package_path + "/profiles/default"
+    os.makedirs(target_path)
+    os.makedirs(package_path)
+    os.makedirs(profiles_path)
+    template = """<?xml version="1.0"?>
+<object>
+  <difftypes>
+    <type name="parent">
+        <field name="any" difftype="Compound Diff for Dexterity types"/>
+    </type>
+  </difftypes>
+</object>
+"""
+    with open(os.path.join(profiles_path + "/diff_tool.xml"), "w") as f:
+        f.write(template)
+    configurator = Configurator(
+        template="bobtemplates.plone:content_type",
+        target_directory="collective.sample",
+        bobconfig={
+            "non_interactive": True,
+        },
+        variables={
+            "dexterity_type_name": "parent",
+        },
+    )
+    configurator.variables["package_folder"] = package_path
+    configurator.variables["package.dottedname"] = "bobtemplates.plone"
+    configurator.variables["dexterity_type_name_klass"] = "Parent"
+    content_type._update_difftool_xml(configurator)
+
+    with open(os.path.join(profiles_path + "/diff_tool.xml")) as f:
+        content = f.read()
+        if content != template:
+            pytest.raises(ValidationError)

@@ -230,6 +230,129 @@ def _update_permissions_zcml(configurator):
     update_file(configurator, file_path, match_str, insert_str)
 
 
+def _update_repositorytool_xml(configurator):
+    """update the repositorytool.xml file with the information of the content type"""
+    repositorytool_file_name = "repositorytool.xml"
+    repositorytool_file_dir = "profiles/default"
+    repositorytool_file_path = (
+        configurator.variables["package_folder"]
+        + "/"
+        + repositorytool_file_dir
+        + "/"
+        + repositorytool_file_name
+    )
+
+    if not os.path.exists(repositorytool_file_path):
+        # Create new file if it does not exist
+        root = etree.Element("repositorytool")
+        root.append(etree.Element("policymap"))
+        tree = etree.ElementTree(root)
+    else:
+        with open(repositorytool_file_path) as xml_file:
+            parser = etree.XMLParser(remove_blank_text=True)
+            tree = etree.parse(xml_file, parser)
+
+    type_name = configurator.variables["dexterity_type_name"]
+
+    # Check whether it was already added
+    if tree.xpath(f"//type[@name='{type_name}']"):
+        print(f"'{type_name}' already in repositorytool.xml, skip adding!")
+        return
+
+    type_element = etree.Element("type", name=type_name)
+
+    type_element.append(
+        etree.Element("policy", name="at_edit_autoversion"),
+    )
+    type_element.append(
+        etree.Element("policy", name="version_on_revert"),
+    )
+
+    # Find the <repositorytool> element and create if does not exist
+    repositorytool_nodes = tree.xpath("/repositorytool")
+    if repositorytool_nodes:
+        repositorytool_node = repositorytool_nodes[0]
+    else:
+        repositorytool_node = etree.Element("repositorytool")
+        tree.getroot().addnext(repositorytool_node)
+
+    # Find <policymap> in <repositorytool>
+    policymap_nodes = repositorytool_node.xpath("policymap")
+    if policymap_nodes:
+        policymap_node = policymap_nodes[0]
+    else:
+        policymap_node = etree.Element("policymap")
+        repositorytool_node.append(policymap_node)
+
+    policymap_node.append(type_element)
+
+    with open(repositorytool_file_path, "wb") as xml_file:
+        tree.write(
+            xml_file,
+            pretty_print=True,
+            xml_declaration=True,
+            encoding="utf-8",
+        )
+
+
+def _update_difftool_xml(configurator):
+    """Update the diff_tool.xml file with the information of the content type."""
+    difftool_file_name = "diff_tool.xml"
+    difftool_file_dir = "profiles/default"
+    difftool_file_path = (
+        configurator.variables["package_folder"]
+        + "/"
+        + difftool_file_dir
+        + "/"
+        + difftool_file_name
+    )
+
+    if not os.path.exists(difftool_file_path):
+        # Create new file if it does not exist
+        root = etree.Element("object")
+        tree = etree.ElementTree(root)
+    else:
+        with open(difftool_file_path) as xml_file:
+            parser = etree.XMLParser(remove_blank_text=True)
+            tree = etree.parse(xml_file, parser)
+
+    type_name = configurator.variables["dexterity_type_name"]
+
+    # Check if element is already added
+    if tree.xpath(f"//type[@portal_type='{type_name}']"):
+        print(f"'{type_name}' already in diff_tool.xml, skip adding!")
+        return
+
+    # Create new elements
+    type_element = etree.Element("type", portal_type=type_name)
+    field_element = etree.Element(
+        "field",
+        name="any",
+        difftype="Compound Diff for Dexterity types",
+    )
+    type_element.append(field_element)
+
+    # find the <difftypes> element and create if not
+    object_node = tree.xpath("/object")[0]
+    difftypes_nodes = object_node.xpath("difftypes")
+    if difftypes_nodes:
+        difftypes_node = difftypes_nodes[0]
+    else:
+        difftypes_node = etree.Element("difftypes")
+        object_node.append(difftypes_node)
+
+    # Add new node in there
+    difftypes_node.append(type_element)
+
+    with open(difftool_file_path, "wb") as xml_file:
+        tree.write(
+            xml_file,
+            pretty_print=True,
+            xml_declaration=True,
+            encoding="utf-8",
+        )
+
+
 def pre_ask(configurator):
     """Empty pre ask."""
 
@@ -255,6 +378,8 @@ def post_renderer(configurator):
     _update_permissions_zcml(configurator)
     _update_rolemap_xml(configurator)
     _update_metadata_xml(configurator)
+    _update_repositorytool_xml(configurator)
+    _update_difftool_xml(configurator)
     git_commit(
         configurator,
         "Add content_type: {0}".format(

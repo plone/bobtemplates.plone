@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
-
 import os
 import pytest
 
 
-class Config(object):
+class Config:
     def __init__(self):
         self.version = None
         self.verbose = None
@@ -20,8 +18,5 @@ def config():
     config = Config()
     config.verbose = bool(os.environ.get("VERBOSE"))
     config.version = os.environ.get("VERSION", "5.2.1")
-    config.skeleton_tox_env = "{0}-{1},{0}-lint".format(
-        skeleton_tox_env_parts[0],
-        skeleton_tox_env_parts[2],
-    )
+    config.skeleton_tox_env = f"{skeleton_tox_env_parts[0]}-{skeleton_tox_env_parts[2]},{skeleton_tox_env_parts[0]}-lint"
     return config

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .base import init_package_base_structure
 from bobtemplates.plone import base
 from bobtemplates.plone import mockup_pattern

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # from bobtemplates.plone.utils import safe_encode
 from bobtemplates.plone.utils import safe_unicode
 
@@ -45,5 +43,5 @@ def run_skeleton_tox_env(wd, config):
         )
         return returncode
     except subprocess.CalledProcessError as execinfo:
-        logger.debug("{0}".format(safe_unicode(execinfo.output)))
+        logger.debug(f"{safe_unicode(execinfo.output)}")
         return execinfo.returncode

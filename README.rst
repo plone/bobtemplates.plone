@@ -39,7 +39,7 @@ Package created with ``bobtemplates.plone`` use the current best-practices when 
 Provided templates
 ------------------
 
-- addon
+- addon (it is provided as a base for the rest of subtemplates, but it is created using `cookieplone`_)
 - buildout (useful setup a development buildout or to test new pending Plone versions)
 
 
@@ -70,17 +70,17 @@ These templates are meant to be used inside a package which was created by the a
 Compatibility
 =============
 
-Add-on's created with ``bobtemplates.plone`` are tested to work in **Plone >= 5.2** and **Python >= 3.8**.
-the only exceptions are the theming templates. Those are Plone 6 only, because the markup and Diazo rules have changed.
+Add-on's created with ``bobtemplates.plone`` version 7.x and higher are tested to work in **Plone >= 6.0** and **Python >= 3.11**.
 
-If you need to create Plone packages for older versions of Plone and Python, please use bobtemplates.plone 5.x.
+If you need to create Plone packages for older versions of Plone and Python, please use bobtemplates.plone 6.x or 5.x.
 It should work on Linux, Mac and Windows.
 
-If you want to use ``plonecli`` and ``bobtemplates.plone`` in projects created by `cookieplone <https://github.com/plone/cookieplone>`_, you need to add the backend package name to the `bobtemplate.cfg` file.
+If you want to use ``plonecli`` and ``bobtemplates.plone`` in projects created by `cookieplone <https://github.com/plone/cookieplone>`_, you need to add the backend package name to the `bobtemplate.cfg` file into the main section.
 
 .. code-block:: ini
 
     package.dottedname = tagung.plone.de
+    package.browserlayer = BrowserLayer
 
 Will work for package without a `src` folder in the structure, from version `6.4.3` on.
 
@@ -217,3 +217,6 @@ Support
 
 If you are having issues, please let us know.
 Just open an issue here.
+
+
+.. _cookieplone: https://github.com/plone/cookieplone

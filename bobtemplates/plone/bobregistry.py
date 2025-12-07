@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-
-
-class RegEntry(object):
+class RegEntry:
     def __init__(self):
         self.template = ""
         self.plonecli_alias = ""

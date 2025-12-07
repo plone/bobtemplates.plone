@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Test view generation."""
 
 from .base import init_package_base_structure
@@ -40,7 +38,7 @@ def test_update_indexers_configure_zcml(tmpdir):
     )
     indexer._update_indexers_configure_zcml(configurator)
 
-    with open(os.path.join(indexers_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(indexers_path + "configure.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)

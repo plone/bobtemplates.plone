@@ -1,6 +1,6 @@
 """Test dexterity content type generation."""
 
-from .base import SETUPPY_TEMPLATE
+from .base import PYPROJECTTOML_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import content_type
 from mrbob.bobexceptions import SkipQuestion
@@ -71,8 +71,8 @@ def test_prepare_renderer(tmpdir):
     """Test prepare renderer."""
     target_dir = tmpdir.strpath + "/collective.foo.bar"
     os.mkdir(target_dir)
-    template = SETUPPY_TEMPLATE
-    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
@@ -87,16 +87,12 @@ def test_prepare_renderer(tmpdir):
     )
     content_type.prepare_renderer(configurator)
     assert configurator.variables["dexterity_type_name"] == "Special Task"
-    assert (
-        configurator.variables["dexterity_type_fti_file_name"] == "Special_Task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_fti_file_name"] == "Special_Task"
     assert configurator.variables["dexterity_type_name_klass"] == "SpecialTask"
-    assert (
-        configurator.variables["dexterity_type_name_normalized"] == "special_task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_name_normalized"] == "special_task"
     assert configurator.target_directory.endswith(
         "/collective.todo/src/collective/todo"
-    )  # NOQA: E501
+    )
 
     configurator = Configurator(
         template="bobtemplates.plone:content_type",
@@ -110,16 +106,12 @@ def test_prepare_renderer(tmpdir):
     )
     content_type.prepare_renderer(configurator)
     assert configurator.variables["dexterity_type_name"] == "SpecialTask"
-    assert (
-        configurator.variables["dexterity_type_fti_file_name"] == "SpecialTask"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_fti_file_name"] == "SpecialTask"
     assert configurator.variables["dexterity_type_name_klass"] == "SpecialTask"
-    assert (
-        configurator.variables["dexterity_type_name_normalized"] == "special_task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_name_normalized"] == "special_task"
     assert configurator.target_directory.endswith(
         "/collective.todo/src/collective/todo"
-    )  # NOQA: E501
+    )
 
     configurator = Configurator(
         template="bobtemplates.plone:content_type",
@@ -133,16 +125,12 @@ def test_prepare_renderer(tmpdir):
     )
     content_type.prepare_renderer(configurator)
     assert configurator.variables["dexterity_type_name"] == "special task"
-    assert (
-        configurator.variables["dexterity_type_fti_file_name"] == "special_task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_fti_file_name"] == "special_task"
     assert configurator.variables["dexterity_type_name_klass"] == "SpecialTask"
-    assert (
-        configurator.variables["dexterity_type_name_normalized"] == "special_task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_name_normalized"] == "special_task"
     assert configurator.target_directory.endswith(
         "/collective.todo/src/collective/todo"
-    )  # NOQA: E501
+    )
 
     configurator = Configurator(
         template="bobtemplates.plone:content_type",
@@ -156,16 +144,12 @@ def test_prepare_renderer(tmpdir):
     )
     content_type.prepare_renderer(configurator)
     assert configurator.variables["dexterity_type_name"] == "Special_Task"
-    assert (
-        configurator.variables["dexterity_type_fti_file_name"] == "Special_Task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_fti_file_name"] == "Special_Task"
     assert configurator.variables["dexterity_type_name_klass"] == "SpecialTask"
-    assert (
-        configurator.variables["dexterity_type_name_normalized"] == "special_task"
-    )  # NOQA: E501
+    assert configurator.variables["dexterity_type_name_normalized"] == "special_task"
     assert configurator.target_directory.endswith(
         "/collective.todo/src/collective/todo"
-    )  # NOQA: E501
+    )
 
 
 def test_check_global_allow_true():
@@ -238,7 +222,7 @@ def test_update_parent_types_fti_xml(tmpdir):
     configurator.variables["package_folder"] = package_path
     content_type._update_parent_types_fti_xml(configurator)
 
-    with open(os.path.join(profiles_path + "/My_Parent.xml"), "r") as f:
+    with open(os.path.join(profiles_path + "/My_Parent.xml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -283,7 +267,7 @@ def test_update_rolemap_xml(tmpdir):
     configurator.variables["dexterity_type_name_klass"] = "Parent"
     content_type._update_rolemap_xml(configurator)
 
-    with open(os.path.join(profiles_path + "/rolemap.xml"), "r") as f:
+    with open(os.path.join(profiles_path + "/rolemap.xml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -325,7 +309,7 @@ def test_update_permissions_zcml(tmpdir):
     configurator.variables["dexterity_type_name_klass"] = "Parent"
     content_type._update_permissions_zcml(configurator)
 
-    with open(os.path.join(package_path + "/permissions.zcml"), "r") as f:
+    with open(os.path.join(package_path + "/permissions.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -336,12 +320,14 @@ def test_post_renderer(tmpdir):
     target_dir = tmpdir.strpath + "/collective.foo"
     package_path = target_dir + "/src/collective/foo"
     profiles_path = package_path + "/profiles/default"
+    registry_path = profiles_path + "/registry"
     os.makedirs(target_dir)
     os.makedirs(package_path)
     os.makedirs(profiles_path + "/types")
+    os.makedirs(registry_path)
 
-    template = SETUPPY_TEMPLATE
-    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     template = """<?xml version="1.0" encoding="UTF-8"?>
@@ -399,6 +385,20 @@ version=5.1
     with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
+    template = """<?xml version="1.0"?>
+<registry>
+  <record name="plone.displayed_types" interface="plone.base.interfaces.controlpanel.INavigationSchema" field="displayed_types">
+    <value purge="false">
+      <element>Parent</element>
+    </value>
+  </record>
+</registry>
+"""
+    with open(
+        os.path.join(registry_path + "/plone.displayed_types.Task.xml"), "w"
+    ) as f:
+        f.write(template)
+
     configurator = Configurator(
         template="bobtemplates.plone:addon",
         target_directory=package_path,
@@ -415,3 +415,84 @@ version=5.1
     base.set_global_vars(configurator)
     content_type.prepare_renderer(configurator)
     content_type.post_renderer(configurator)
+
+
+def test_update_repositorytool(tmpdir):
+    """Test repositorytool.xml changes when changes are already in place."""
+    target_path = tmpdir.strpath + "/collective.sample"
+    package_path = target_path + "/src/collective/sample"
+    profiles_path = package_path + "/profiles/default"
+    os.makedirs(target_path)
+    os.makedirs(package_path)
+    os.makedirs(profiles_path)
+    template = """<?xml version="1.0"?>
+<repositorytool>
+  <policymap>
+    <type name="parent">
+        <policy name="at_edit_autoversion"/>
+        <policy name="version_on_revert"/>
+    </type>
+  </policymap>
+</repositorytool>
+"""
+    with open(os.path.join(profiles_path + "/repositorytool.xml"), "w") as f:
+        f.write(template)
+    configurator = Configurator(
+        template="bobtemplates.plone:content_type",
+        target_directory="collective.sample",
+        bobconfig={
+            "non_interactive": True,
+        },
+        variables={
+            "dexterity_type_name": "parent",
+        },
+    )
+    configurator.variables["package_folder"] = package_path
+    configurator.variables["package.dottedname"] = "bobtemplates.plone"
+    configurator.variables["dexterity_type_name_klass"] = "Parent"
+    content_type._update_repositorytool_xml(configurator)
+
+    with open(os.path.join(profiles_path + "/repositorytool.xml")) as f:
+        content = f.read()
+        if content != template:
+            pytest.raises(ValidationError)
+
+
+def test_update_difftool(tmpdir):
+    """Test diff_tool.xml changes when changes are already in place."""
+    target_path = tmpdir.strpath + "/collective.sample"
+    package_path = target_path + "/src/collective/sample"
+    profiles_path = package_path + "/profiles/default"
+    os.makedirs(target_path)
+    os.makedirs(package_path)
+    os.makedirs(profiles_path)
+    template = """<?xml version="1.0"?>
+<object>
+  <difftypes>
+    <type name="parent">
+        <field name="any" difftype="Compound Diff for Dexterity types"/>
+    </type>
+  </difftypes>
+</object>
+"""
+    with open(os.path.join(profiles_path + "/diff_tool.xml"), "w") as f:
+        f.write(template)
+    configurator = Configurator(
+        template="bobtemplates.plone:content_type",
+        target_directory="collective.sample",
+        bobconfig={
+            "non_interactive": True,
+        },
+        variables={
+            "dexterity_type_name": "parent",
+        },
+    )
+    configurator.variables["package_folder"] = package_path
+    configurator.variables["package.dottedname"] = "bobtemplates.plone"
+    configurator.variables["dexterity_type_name_klass"] = "Parent"
+    content_type._update_difftool_xml(configurator)
+
+    with open(os.path.join(profiles_path + "/diff_tool.xml")) as f:
+        content = f.read()
+        if content != template:
+            pytest.raises(ValidationError)

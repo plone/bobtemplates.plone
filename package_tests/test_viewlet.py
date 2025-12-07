@@ -1,6 +1,6 @@
 """Test view generation."""
 
-from .base import SETUPPY_TEMPLATE
+from .base import PYPROJECTTOML_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import viewlet
 from mrbob.bobexceptions import SkipQuestion
@@ -93,7 +93,7 @@ def test_update_configure_zcml(tmpdir):
     )
     viewlet._update_configure_zcml(configurator)
 
-    with open(os.path.join(package_path + "/configure.zcml"), "r") as f:
+    with open(os.path.join(package_path + "/configure.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -148,7 +148,7 @@ def test_update_viewlets_configure_zcml_with_template(tmpdir):
     )
     viewlet._update_viewlets_configure_zcml(configurator)
 
-    with open(os.path.join(viewlets_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(viewlets_path + "configure.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -201,7 +201,7 @@ def test_update_viewlets_configure_zcml_without_template(tmpdir):
     )
     viewlet._update_viewlets_configure_zcml(configurator)
 
-    with open(os.path.join(viewlets_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(viewlets_path + "configure.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -359,8 +359,8 @@ class MyViewlet(ViewletBase):
         },
     )
 
-    template = SETUPPY_TEMPLATE
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_path + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     os.chdir(package_path)
@@ -456,8 +456,8 @@ class MyViewlet(ViewletBase):
         },
     )
 
-    template = SETUPPY_TEMPLATE
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_path + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     os.chdir(package_path)

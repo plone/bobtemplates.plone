@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
@@ -19,14 +18,12 @@ def pre_render(configurator):
     )
     configurator.variables["original_imports"] = ""
     if os.path.exists(bundle_js_path):
-        with open(bundle_js_path, "r") as bundle_js:
-            configurator.variables["original_imports"] = "\n".join(
-                [
-                    line.strip()
-                    for line in bundle_js.readlines()
-                    if "import" in line and "patternslib" not in line
-                ]
-            )
+        with open(bundle_js_path) as bundle_js:
+            configurator.variables["original_imports"] = "\n".join([
+                line.strip()
+                for line in bundle_js.readlines()
+                if "import" in line and "patternslib" not in line
+            ])
 
     configurator.variables["original_body"] = value_from_template(
         configurator.variables["package.root_folder"],
@@ -53,7 +50,7 @@ def pre_render(configurator):
 def value_from_template(root_folder, relative_path, regex):
     path = os.path.join(root_folder, relative_path)
     if os.path.exists(path):
-        with open(path, "r") as file:
+        with open(path) as file:
             # Read the HTML file and extract the body
             contents = file.read()
             re_pattern = re.compile(regex, flags=re.DOTALL)

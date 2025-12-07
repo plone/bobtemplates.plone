@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from bobtemplates.plone import base
 from mrbob.bobexceptions import ValidationError
 from mrbob.configurator import Configurator
@@ -56,7 +55,157 @@ version=5.1
     base.read_bobtemplates_ini(configurator)
 
 
-def test_has_package_dir(tmpdir):
+# def test_setuppy_has_package_dir(tmpdir):
+#     target_dir = tmpdir.strpath + "/collective.foo"
+#     os.mkdir(target_dir)
+#     configurator = Configurator(
+#         template="bobtemplates.plone:addon", target_directory=target_dir
+#     )
+#     base.read_bobtemplates_ini(configurator)
+
+#     template = """[main]
+# version=6.1
+# """
+#     with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
+#         f.write(template)
+
+#     template = """
+# from setuptools import find_packages
+# from setuptools import setup
+
+# long_description = "\n\n".join(
+#     [
+#         open("README.rst").read(),
+#         open("CONTRIBUTORS.rst").read(),
+#         open("CHANGES.rst").read(),
+#     ]
+# )
+
+# setup(
+#     name="collective.checklist",
+#     version="0.1a3.dev0",
+#     description="Checklist App for Plone",
+#     long_description=long_description,
+#     classifiers=[
+#         "Environment :: Web Environment",
+#         "Framework :: Plone",
+#         "Framework :: Plone :: Addon",
+#         "Framework :: Plone :: 6.0",
+#         "Programming Language :: Python",
+#         "Programming Language :: Python :: 3.11",
+#         "Operating System :: OS Independent",
+#         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+#     ],
+#     keywords="Python Plone CMS",
+#     author="Maik Derstappen",
+#     author_email="md@derico.de",
+#     url="https://github.com/collective/collective.checklist",
+#     project_urls={
+#         "PyPI": "https://pypi.org/project/collective.checklist/",
+#         "Source": "https://github.com/collective/collective.checklist",
+#         "Tracker": "https://github.com/collective/collective.checklist/issues",
+#         # 'Documentation': 'https://collective.checklist.readthedocs.io/en/latest/',
+#     },
+#     license="GPL version 2",
+#     packages=find_packages("src", exclude=["ez_setup"]),
+#     namespace_packages=["collective"],
+#     package_dir={"": "src"},
+#     include_package_data=True,
+#     zip_safe=False,
+#     python_requires=">=3.11",
+#     install_requires=[
+#         "setuptools",
+#         # -*- Extra requirements: -*-
+#         "z3c.jbot",
+#         "plone.api>=1.8.4",
+#         "plone.app.dexterity",
+#         "plone.schema",
+#         "plone.app.z3cform>=4.4.1",
+#     ],
+#     extras_require={
+#         "test": [
+#             "plone.app.testing",
+#             "plone.testing>=5.0.0",
+#             "plone.app.contenttypes",
+#             "plone.app.robotframework[debug]",
+#         ],
+#     },
+# )
+# """
+#     with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+#         f.write(template)
+#     res = base.setuppy_has_package_dir(configurator)
+#     assert res is True
+
+#     template = """
+# from setuptools import find_packages
+# from setuptools import setup
+
+# long_description = "\n\n".join(
+#     [
+#         open("README.rst").read(),
+#         open("CONTRIBUTORS.rst").read(),
+#         open("CHANGES.rst").read(),
+#     ]
+# )
+
+# setup(
+#     name="collective.checklist",
+#     version="0.1a3.dev0",
+#     description="Checklist App for Plone",
+#     long_description=long_description,
+#     classifiers=[
+#         "Environment :: Web Environment",
+#         "Framework :: Plone",
+#         "Framework :: Plone :: Addon",
+#         "Framework :: Plone :: 6.0",
+#         "Programming Language :: Python",
+#         "Programming Language :: Python :: 3.11",
+#         "Operating System :: OS Independent",
+#         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+#     ],
+#     keywords="Python Plone CMS",
+#     author="Maik Derstappen",
+#     author_email="md@derico.de",
+#     url="https://github.com/collective/collective.checklist",
+#     project_urls={
+#         "PyPI": "https://pypi.org/project/collective.checklist/",
+#         "Source": "https://github.com/collective/collective.checklist",
+#         "Tracker": "https://github.com/collective/collective.checklist/issues",
+#         # 'Documentation': 'https://collective.checklist.readthedocs.io/en/latest/',
+#     },
+#     license="GPL version 2",
+#     packages=find_packages(exclude=["ez_setup"]),
+#     namespace_packages=["collective"],
+#     include_package_data=True,
+#     zip_safe=False,
+#     python_requires=">=3.11",
+#     install_requires=[
+#         "setuptools",
+#         # -*- Extra requirements: -*-
+#         "z3c.jbot",
+#         "plone.api>=1.8.4",
+#         "plone.app.dexterity",
+#         "plone.schema",
+#         "plone.app.z3cform>=4.4.1",
+#     ],
+#     extras_require={
+#         "test": [
+#             "plone.app.testing",
+#             "plone.testing>=5.0.0",
+#             "plone.app.contenttypes",
+#             "plone.app.robotframework[debug]",
+#         ],
+#     },
+# )
+# """
+#     with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+#         f.write(template)
+#     res = base.setuppy_has_package_dir(configurator)
+#     assert res is False
+
+
+def test_pyproject_has_package_dir(tmpdir):
     target_dir = tmpdir.strpath + "/collective.foo"
     os.mkdir(target_dir)
     configurator = Configurator(
@@ -71,138 +220,157 @@ version=6.1
         f.write(template)
 
     template = """
-from setuptools import find_packages
-from setuptools import setup
+[project]
+name = "plonecli.in.cookieplone"
+dynamic = ["version"]
+description = "A new project using Plone 6."
+readme = "README.md"
+license = "GPL-2.0-only"
+requires-python = ">=3.12"
+authors = [
+    { name = "Plone Foundation", email = "collective@plone.org" },
+]
+keywords = [
+    "CMS",
+    "Plone",
+    "Python",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Web Environment",
+    "Framework :: Plone","Framework :: Plone :: 6.1",
+    "Framework :: Plone :: Addon",
+    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python","Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "Products.CMFPlone==6.1.1",
+    "plone.api",
+    "plone.restapi",
+    "plone.volto",
+]
 
-long_description = "\n\n".join(
-    [
-        open("README.rst").read(),
-        open("CONTRIBUTORS.rst").read(),
-        open("CHANGES.rst").read(),
-    ]
-)
+[project.optional-dependencies]
+test = [
+    "plone.app.testing",
+    "plone.restapi[test]",
+    "pytest",
+    "pytest-cov",
+    "pytest-plone>=0.5.0",
+]
 
-setup(
-    name="collective.checklist",
-    version="0.1a3.dev0",
-    description="Checklist App for Plone",
-    long_description=long_description,
-    classifiers=[
-        "Environment :: Web Environment",
-        "Framework :: Plone",
-        "Framework :: Plone :: Addon",
-        "Framework :: Plone :: 6.0",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3.11",
-        "Operating System :: OS Independent",
-        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
-    ],
-    keywords="Python Plone CMS",
-    author="Maik Derstappen",
-    author_email="md@derico.de",
-    url="https://github.com/collective/collective.checklist",
-    project_urls={
-        "PyPI": "https://pypi.org/project/collective.checklist/",
-        "Source": "https://github.com/collective/collective.checklist",
-        "Tracker": "https://github.com/collective/collective.checklist/issues",
-        # 'Documentation': 'https://collective.checklist.readthedocs.io/en/latest/',
-    },
-    license="GPL version 2",
-    packages=find_packages("src", exclude=["ez_setup"]),
-    namespace_packages=["collective"],
-    package_dir={"": "src"},
-    include_package_data=True,
-    zip_safe=False,
-    python_requires=">=3.11",
-    install_requires=[
-        "setuptools",
-        # -*- Extra requirements: -*-
-        "z3c.jbot",
-        "plone.api>=1.8.4",
-        "plone.app.dexterity",
-        "plone.schema",
-        "plone.app.z3cform>=4.4.1",
-    ],
-    extras_require={
-        "test": [
-            "plone.app.testing",
-            "plone.testing>=5.0.0",
-            "plone.app.contenttypes",
-            "plone.app.robotframework[debug]",
-        ],
-    },
-)
+[project.urls]
+Homepage = "https://github.com/collective/plonecli-in-cookieplone"
+PyPI = "https://pypi.org/project/plonecli.in.cookieplone"
+Source = "https://github.com/collective/plonecli-in-cookieplone"
+Tracker = "https://github.com/collective/plonecli-in-cookieplone/issues"
+
+
+[project.entry-points."plone.autoinclude.plugin"]
+target = "plone"
+
+[tool.uv]
+managed = false
+
+[tool.hatch.version]
+path = "src/plonecli/in/cookieplone/__init__.py"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+strict-naming = true
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.github",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/plonecli"]
 """
-    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+    with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
         f.write(template)
-    res = base.has_package_dir(configurator)
+    res = base.pyproject_has_package_dir(configurator)
     assert res is True
 
     template = """
-from setuptools import find_packages
-from setuptools import setup
+[project]
+name = "plonecli.in.cookieplone"
+dynamic = ["version"]
+description = "A new project using Plone 6."
+readme = "README.md"
+license = "GPL-2.0-only"
+requires-python = ">=3.12"
+authors = [
+    { name = "Plone Foundation", email = "collective@plone.org" },
+]
+keywords = [
+    "CMS",
+    "Plone",
+    "Python",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Web Environment",
+    "Framework :: Plone","Framework :: Plone :: 6.1",
+    "Framework :: Plone :: Addon",
+    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python","Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "Products.CMFPlone==6.1.1",
+    "plone.api",
+    "plone.restapi",
+    "plone.volto",
+]
 
-long_description = "\n\n".join(
-    [
-        open("README.rst").read(),
-        open("CONTRIBUTORS.rst").read(),
-        open("CHANGES.rst").read(),
-    ]
-)
+[project.optional-dependencies]
+test = [
+    "plone.app.testing",
+    "plone.restapi[test]",
+    "pytest",
+    "pytest-cov",
+    "pytest-plone>=0.5.0",
+]
 
-setup(
-    name="collective.checklist",
-    version="0.1a3.dev0",
-    description="Checklist App for Plone",
-    long_description=long_description,
-    classifiers=[
-        "Environment :: Web Environment",
-        "Framework :: Plone",
-        "Framework :: Plone :: Addon",
-        "Framework :: Plone :: 6.0",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3.11",
-        "Operating System :: OS Independent",
-        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
-    ],
-    keywords="Python Plone CMS",
-    author="Maik Derstappen",
-    author_email="md@derico.de",
-    url="https://github.com/collective/collective.checklist",
-    project_urls={
-        "PyPI": "https://pypi.org/project/collective.checklist/",
-        "Source": "https://github.com/collective/collective.checklist",
-        "Tracker": "https://github.com/collective/collective.checklist/issues",
-        # 'Documentation': 'https://collective.checklist.readthedocs.io/en/latest/',
-    },
-    license="GPL version 2",
-    packages=find_packages(exclude=["ez_setup"]),
-    namespace_packages=["collective"],
-    include_package_data=True,
-    zip_safe=False,
-    python_requires=">=3.11",
-    install_requires=[
-        "setuptools",
-        # -*- Extra requirements: -*-
-        "z3c.jbot",
-        "plone.api>=1.8.4",
-        "plone.app.dexterity",
-        "plone.schema",
-        "plone.app.z3cform>=4.4.1",
-    ],
-    extras_require={
-        "test": [
-            "plone.app.testing",
-            "plone.testing>=5.0.0",
-            "plone.app.contenttypes",
-            "plone.app.robotframework[debug]",
-        ],
-    },
-)
+[project.urls]
+Homepage = "https://github.com/collective/plonecli-in-cookieplone"
+PyPI = "https://pypi.org/project/plonecli.in.cookieplone"
+Source = "https://github.com/collective/plonecli-in-cookieplone"
+Tracker = "https://github.com/collective/plonecli-in-cookieplone/issues"
+
+
+[project.entry-points."plone.autoinclude.plugin"]
+target = "plone"
+
+[tool.uv]
+managed = false
+
+[tool.hatch.version]
+path = "src/plonecli/in/cookieplone/__init__.py"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+strict-naming = true
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.github",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["plonecli"]
 """
-    with open(os.path.join(target_dir + "/setup.py"), "w") as f:
+    with open(os.path.join(target_dir + "/pyproject.toml"), "w") as f:
         f.write(template)
-    res = base.has_package_dir(configurator)
+    res = base.pyproject_has_package_dir(configurator)
     assert res is False
 
 
@@ -248,6 +416,26 @@ package.dottedname = someother.packagename
     base.set_global_vars(configurator)
 
     assert configurator.variables["package.dottedname"] == "someother.packagename"
+
+
+def test_set_browser_layer_in_global_vars(tmpdir):
+    template = """
+[main]
+version=5.1
+package.browserlayer = BrowserLayer
+"""
+    target_dir = tmpdir.strpath + "/collective.foo"
+    os.mkdir(target_dir)
+    with open(os.path.join(target_dir + "/bobtemplate.cfg"), "w") as f:
+        f.write(template)
+    configurator = Configurator(
+        template="bobtemplates.plone:addon",
+        target_directory=target_dir,
+        variables={"year": 1970, "plone.version": "5.1-latest"},
+    )
+    base.set_global_vars(configurator)
+
+    assert configurator.variables["package.browserlayer"] == "BrowserLayer"
 
 
 def test_set_plone_version_variables(tmpdir):
@@ -320,12 +508,10 @@ def test_subtemplate_warning(capsys):
 def test_is_string_in_file(tmpdir):
     match_str = "-*- extra stuff goes here -*-"
     path = tmpdir.strpath + "/configure.zcml"
-    template = """Some text
+    template = f"""Some text
 
-    {0}
-""".format(
-        match_str
-    )
+    {match_str}
+"""
     with open(os.path.join(path), "w") as f:
         f.write(template)
 
@@ -412,7 +598,7 @@ def test_update_configure_zcml(tmpdir):
     with open(file_path, "r+") as xml_file:
         contents = xml_file.readlines()
     count = 0
-    for index, line in enumerate(contents):
+    for line in contents:
         if insert_str.strip() in line:
             count += 1
     assert count == 1
@@ -421,12 +607,10 @@ def test_update_configure_zcml(tmpdir):
 def test_update_file(tmpdir):
     match_str = "-*- extra stuff goes here -*-"
     path = tmpdir.strpath + "/configure.zcml"
-    template = """Some text
+    template = f"""Some text
 
-    {0}
-""".format(
-        match_str
-    )
+    {match_str}
+"""
     with open(os.path.join(path), "w") as f:
         f.write(template)
 

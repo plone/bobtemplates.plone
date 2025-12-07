@@ -1,5 +1,6 @@
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
+from bobtemplates.plone.base import get_normalized_themename
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import validate_packagename
@@ -37,16 +38,11 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables["template_id"] = "theme_barceloneta"
 
-    def normalize_theme_name(value):
-        value = "-".join(value.split("_"))
-        value = "-".join(value.split())
-        return value
-
-    configurator.variables["theme.normalized_name"] = normalize_theme_name(
+    configurator.variables["theme.normalized_name"] = get_normalized_themename(
         configurator.variables.get("theme.name")
     ).lower()
 
-    # configurator.target_directory = configurator.variables['package_folder']
+    configurator.target_directory = configurator.variables["package_folder"]
 
 
 def _update_metadata_xml(configurator):
@@ -107,30 +103,15 @@ def _update_configure_zcml(configurator):
       name="{0}"
       />
 
-""".format(configurator.variables["theme.normalized_name"])
+""".format(
+        configurator.variables["theme.normalized_name"]
+    )
     update_file(configurator, file_path, match_str, insert_str)
-
-
-# def _update_setup_py(configurator):
-#     file_name = u"setup.py"
-#     file_path = configurator.variables["package.root_folder"] + "/" + file_name
-#     match_str = "-*- Extra requirements: -*-"
-#     insert_strings = [
-#         # "collective.themesitesetup",  # disable while not ready for Plone 5.2
-#         "collective.themefragments",
-#         "plone.app.themingplugins",
-#     ]
-#     for insert_str in insert_strings:
-#         insert_str = "        '{0}',\n".format(insert_str)
-#         if is_string_in_file(configurator, file_path, insert_str):
-#             continue
-#         update_file(configurator, file_path, match_str, insert_str)
 
 
 def post_renderer(configurator):
     """"""
     _update_configure_zcml(configurator)
-    # _update_setup_py(configurator)
     _update_metadata_xml(configurator)
     git_commit(
         configurator, "Add theme: {0}".format(configurator.variables["theme.name"])

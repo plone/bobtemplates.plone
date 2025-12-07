@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-
+from .base import PYPROJECTTOML_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import vocabulary
 from mrbob.configurator import Configurator
@@ -11,9 +10,7 @@ def test_prepare_renderer():
     configurator = Configurator(
         template="bobtemplates.plone:vocabulary",
         target_directory=".",
-        variables={
-            "vocabulary_name": "ExampleVocabulary",
-        },
+        variables={"vocabulary_name": "ExampleVocabulary", "dottedname": "n"},
     )
     vocabulary.prepare_renderer(configurator)
 
@@ -44,11 +41,8 @@ version=5.1
     with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_path + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     template = """
@@ -74,6 +68,7 @@ version=5.1
             "plone.version": "5.1",
             "vocabulary_name": "AvailableTasks",
             "vocabulary_description": "Bla",
+            "is_static_catalog_vocab": "n",
         },
     )
 

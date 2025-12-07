@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
+from bobtemplates.plone.base import get_normalized_themename
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import validate_packagename
@@ -25,7 +24,7 @@ def pre_theme_name(configurator, question):
 def post_theme_name(configurator, question, answer):
     regex = r"^\w+[a-zA-Z0-9 \.\-_]*\w$"
     if not re.match(regex, answer):
-        msg = "Error: '{0}' is not a valid themename.\n".format(answer)
+        msg = f"Error: '{answer}' is not a valid themename.\n"
         msg += "Please use a valid name (like 'Tango' or 'my-tango.com')!\n"
         msg += "At beginning or end only letters|diggits are allowed.\n"
         msg += "Inside the name also '.-_' are allowed.\n"
@@ -39,16 +38,11 @@ def prepare_renderer(configurator):
     configurator = base_prepare_renderer(configurator)
     configurator.variables["template_id"] = "theme_basic"
 
-    def normalize_theme_name(value):
-        value = "-".join(value.split("_"))
-        value = "-".join(value.split())
-        return value
-
-    configurator.variables["theme.normalized_name"] = normalize_theme_name(
+    configurator.variables["theme.normalized_name"] = get_normalized_themename(
         configurator.variables.get("theme.name")
     ).lower()
 
-    # configurator.target_directory = configurator.variables['package_folder']
+    configurator.target_directory = configurator.variables["package_folder"]
 
 
 def _update_metadata_xml(configurator):
@@ -64,7 +58,7 @@ def _update_metadata_xml(configurator):
         + metadata_file_name
     )
 
-    with open(metadata_file_path, "r") as xml_file:
+    with open(metadata_file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         dependencies = tree.xpath("/metadata/dependencies")[0]
@@ -76,7 +70,7 @@ def _update_metadata_xml(configurator):
                 dep_exists = True
 
         if dep_exists:
-            print("{dep} already in metadata.xml, skip adding!".format(dep=dep))
+            print(f"{dep} already in metadata.xml, skip adding!")
             return
         dep_element = etree.Element("dependency")
         dep_element.text = dep
@@ -91,16 +85,14 @@ def _update_configure_zcml(configurator):
     file_path = configurator.variables["package_folder"] + "/" + file_name
     namespaces = {"plone": "http://namespaces.plone.org/plone"}
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
         theme_name = configurator.variables["theme.normalized_name"]
-        theme_xpath = "./plone:static[@name='{0}']".format(theme_name)
+        theme_xpath = f"./plone:static[@name='{theme_name}']"
         if len(tree_root.xpath(theme_xpath, namespaces=namespaces)):
-            print(
-                "{name} already in configure.zcml, skip adding!".format(name=theme_name)
-            )
+            print(f"{theme_name} already in configure.zcml, skip adding!")
             return
 
     match_str = "-*- extra stuff goes here -*-"

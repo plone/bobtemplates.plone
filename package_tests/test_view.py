@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Test view generation."""
 
 from .base import init_package_base_structure
@@ -149,7 +147,7 @@ def test_update_views_configure_zcml(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(views_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(views_path + "configure.zcml")) as f:
         content = f.read()
         assert content == expected
 
@@ -210,7 +208,7 @@ def test_update_views_configure_zcml_without_template(tmpdir):
 
 </configure>
 """
-    with open(os.path.join(views_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(views_path + "configure.zcml")) as f:
         content = f.read()
         assert content == expected
 
@@ -271,7 +269,7 @@ def test_update_views_configure_zcml_without_python_class(tmpdir):
 </configure>
 """
 
-    with open(os.path.join(views_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(views_path + "configure.zcml")) as f:
         content = f.read()
         assert content == expected
 

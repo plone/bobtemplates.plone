@@ -21,7 +21,7 @@ from plone.supermodel import model
 {{% if dexterity_type_create_class %}}
 from zope.interface import implementer
 {{% endif %}}
-
+from plone.app.dexterity.textindexer import searchable
 
 {{% if not dexterity_type_supermodel %}}
 # from {{{package.dottedname}}} import _
@@ -39,6 +39,11 @@ class I{{{ dexterity_type_name_klass }}}(model.Schema):
     # and customize it in Python:
 
     # model.load('{{{ dexterity_type_name_normalized }}}.xml')
+
+    # add the following line to make your field searchable in
+    # the default SearchableText index
+    #
+    # searchable('fieldname')
 
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(

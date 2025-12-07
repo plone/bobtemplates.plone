@@ -1,10 +1,138 @@
 Changelog
 =========
 
-6.3.3 (unreleased)
+.. You should *NOT* be adding new change log entries to this file.
+   You should create a file in the news directory instead.
+   For helpful instructions, please see:
+   https://github.com/plone/plone.releaser/blob/master/ADD-A-NEWS-ITEM.rst
+
+.. towncrier release notes start
+
+7.0.0a6 (2025-12-06)
+--------------------
+
+New features:
+
+
+- Add plone.textindexer and plone.relateditems to the default behaviors for a content-type. @erral
+  Add plone.constraintypes to the default behaviors for Containers @erral
+- Show created content types by default in the navigation @erral
+
+
+Bug fixes:
+
+
+- Do not use tox.ini based tasks @erral
+- Generate viewlet template name like the python file name @erral
+- adapt tests to use cookieplone created layers @erral
+
+
+7.0.0a5 (2025-11-27)
+--------------------
+
+Internal:
+
+
+- Handle changelog entries using towncrier @erral
+
+
+Features:
+
+- Use cookieplone to create an addon
+  [erral]
+
+- Allow overriding browser layer in bobtemplates.cfg
+  [erral]
+
+- test package in more python versions
+  [erral]
+
+- Refactor all tests to adapt to the new package structure created by cookieplone
+  [erral]
+
+
+Bugfixes:
+
+- remove layer computation from controlpanel template
+  [erral]
+
+- editorconfig: Don't use inline comments.
+  Inline comments are invalid since editorconfig v0.15.0.
+  [thet]
+
+- Fix generated file detection test
+  [erral]
+
+
+7.0.0a3 (2025-07-22)
+--------------------
+
+- pyproject_has_package_dir is now supporting also pyproject.toml with setuptools build backend
+  [MrTango]
+
+
+7.0.0a2 (2025-05-30)
+--------------------
+
+- cleanup registry
+
+
+7.0.0a1 (2025-05-30)
+--------------------
+
+- fix src package dir detection in cookieplone projects, by reading also pyproject.toml
+  [MrTango]
+
+- removing addon template, either use cookieplone template or the upcomming copier templates
+  [MrTango]
+
+
+6.4.3 (2025-04-02)
 ------------------
 
-- Nothing changed yet.
+- allow package structures without package_dir (src-folder), like `/collective.something/collective/something` to work
+  [MrTango]
+
+
+6.4.2 (2025-04-02)
+------------------
+
+- allow setting package.dottedname in bobtemplate.cfg to allow it working with cookieplone generated templates, which use backend folder as root folder
+  [MrTango]
+
+- fix vocabulary test
+  [MrTango]
+
+
+6.4.1 (2025-01-20)
+------------------
+
+- Fix vocabulary template
+  [MrTango]
+
+
+6.4.0 (2025-01-17)
+------------------
+
+- add static_catalog_vocab option to vocabulary template
+  [MrTango]
+
+
+6.3.4 (2024-11-05)
+------------------
+
+- Allow overriding package.dottedname in the configuration file
+  [erral]
+
+- fix test-coverage bash script, so that it will fail if the tests fail
+  [mamico]
+
+
+6.3.3 (2024-07-31)
+------------------
+
+- always activate plone.namefromtitle and plone.locking behaviors, even if activate default behaviors is False.
+  [MrTango]
 
 
 6.3.2 (2024-05-07)

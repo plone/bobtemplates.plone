@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Generate view."""
 
 from bobtemplates.plone.base import base_prepare_renderer
@@ -7,8 +6,6 @@ from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import ZCML_NAMESPACES
-from bobtemplates.plone.utils import run_black
-from bobtemplates.plone.utils import run_isort
 from lxml import etree
 from mrbob.bobexceptions import SkipQuestion
 from mrbob.bobexceptions import ValidationError
@@ -38,7 +35,7 @@ def get_view_name_from_python_class(configurator, question):
 def get_view_template_name_from_python_class(configurator, question):
     if configurator.variables["view_python_class"]:
         view_class_name = configurator.variables["view_python_class_name"]
-        view_generated_name = cc.snakecase(view_class_name)  # NOQA: E501
+        view_generated_name = cc.snakecase(view_class_name)
         question.default = view_generated_name
     else:
         question.default = "my_view"
@@ -46,28 +43,22 @@ def get_view_template_name_from_python_class(configurator, question):
 
 def check_python_class_answer(configurator, question):
     if not configurator.variables["view_python_class"]:
-        raise SkipQuestion(
-            "No python class, so we skip python class name question."
-        )  # NOQA: E501
+        raise SkipQuestion("No python class, so we skip python class name question.")
 
 
 def check_view_template_answer(configurator, question):
     if (
         not configurator.variables["view_template"]
         and not configurator.variables["view_python_class"]
-    ):  # NOQA: E501
-        raise ValidationError(
-            "View must at least have a template or a python class"
-        )  # NOQA: E501
+    ):
+        raise ValidationError("View must at least have a template or a python class")
     elif not configurator.variables["view_template"]:
-        raise SkipQuestion(
-            "No view template, so we skip view template name question."
-        )  # NOQA: E501
+        raise SkipQuestion("No view template, so we skip view template name question.")
 
 
 def get_view_configuration(configurator):
     """return a dict with view configuration used for registration in zcml"""
-    config = dict()
+    config = {}
     config["name"] = configurator.variables["view_name"]
     # get Interface by content type or use the string it self as interface
     config["for"] = "{0}".format(
@@ -124,22 +115,22 @@ def _update_views_configure_zcml(configurator):
     )
     insert_str += "    />\n"
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_name_xpath = "./browser:page[@name='{0}']".format(
+        view_name_xpath = "./browser:page[@name='{}']".format(
             view_config["name"],
         )
-        view_for_xpath = "./browser:page[@for='{0}']".format(
+        view_for_xpath = "./browser:page[@for='{}']".format(
             view_config["for"],
         )
         if len(tree_root.xpath(view_name_xpath, namespaces=ZCML_NAMESPACES)) and len(
             tree_root.xpath(view_for_xpath, namespaces=ZCML_NAMESPACES)
         ):
             echo(
-                "{0} already in configure.zcml, do you really want to add this config?"
-                "\n\n{1}\n [y/N]: ".format(
+                "{} already in configure.zcml, do you really want to add this config?"
+                "\n\n{}\n [y/N]: ".format(
                     configurator.variables["view_name"],
                     insert_str,
                 ),
@@ -159,11 +150,11 @@ def _update_configure_zcml(configurator):
     file_path = configurator.variables["package_folder"] + "/" + file_name
     namespaces = "{http://namespaces.zope.org/zope}"
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_xpath = "{0}include[@package='.views']".format(namespaces)
+        view_xpath = f"{namespaces}include[@package='.views']"
         if len(tree_root.findall(view_xpath)):
             print(
                 ".views already in configure.zcml, skip adding!",
@@ -180,16 +171,12 @@ def _update_configure_zcml(configurator):
 def _delete_unwanted_files(configurator):
     directory_path = configurator.variables["package_folder"] + "/views/"
     if not configurator.variables["view_template"]:
-        file_name = "{0}.pt".format(
-            configurator.variables["view_template_name"],
-        )
+        file_name = f"{configurator.variables['view_template_name']}.pt"
         file_path = directory_path + file_name
         os.remove(file_path)
 
     elif not configurator.variables["view_python_class"]:
-        file_name = "{0}.py".format(
-            configurator.variables["view_python_file_name"],
-        )
+        file_name = f"{configurator.variables['view_python_file_name']}.py"
         file_path = directory_path + file_name
         os.remove(file_path)
 
@@ -208,10 +195,8 @@ def prepare_renderer(configurator):
     normalized_view_name = cc.snakecase(view_name)
     configurator.variables["view_name_normalized"] = normalized_view_name
     if configurator.variables["view_python_class"]:
-        python_class_name = configurator.variables["view_python_class_name"].strip(
-            "_"
-        )  # NOQA: E501
-        configurator.variables["view_python_class_name"] = cc.pascalcase(  # NOQA: E501
+        python_class_name = configurator.variables["view_python_class_name"].strip("_")
+        configurator.variables["view_python_class_name"] = cc.pascalcase(
             python_class_name,
         )
         view_python_file_name = cc.snakecase(python_class_name)
@@ -237,11 +222,7 @@ def post_renderer(configurator):
     _update_configure_zcml(configurator)
     _update_views_configure_zcml(configurator)
     _delete_unwanted_files(configurator)
-    run_isort(configurator)
-    run_black(configurator)
     git_commit(
         configurator,
-        "Add view: {0}".format(
-            configurator.variables["view_name"],
-        ),
+        f"Add view: {configurator.variables['view_name']}",
     )

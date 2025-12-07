@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from {{{package.dottedname}}}.interfaces import {{{browser_layer}}}
-from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_FUNCTIONAL_TESTING
-from {{{package.dottedname}}}.testing import {{{package.uppercasename}}}_INTEGRATION_TESTING
+from {{{package.dottedname}}}.interfaces import I{{{package.browserlayer}}}
+from {{{package.dottedname}}}.testing import FUNCTIONAL_TESTING
+from {{{package.dottedname}}}.testing import INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -15,7 +15,7 @@ import unittest
 
 class ViewletIntegrationTest(unittest.TestCase):
 
-    layer = {{{package.uppercasename}}}_INTEGRATION_TESTING
+    layer = INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
@@ -28,7 +28,7 @@ class ViewletIntegrationTest(unittest.TestCase):
     def test_{{{viewlet_name_normalized}}}_is_registered(self):
         view = BrowserView(self.portal['other-document'], self.request)
         manager_name = 'plone.abovecontenttitle'
-        alsoProvides(self.request, {{{browser_layer}}})
+        alsoProvides(self.request, I{{{package.browserlayer}}})
         manager = queryMultiAdapter(
             (self.portal['other-document'], self.request, view),
             IViewletManager,
@@ -44,7 +44,7 @@ class ViewletIntegrationTest(unittest.TestCase):
     # def test_{{{viewlet_name_normalized}}}_is_not_available_on_newsitem(self):
     #     view = BrowserView(self.portal['newsitem'], self.request)
     #     manager_name = 'plone.abovecontenttitle'
-    #     alsoProvides(self.request, {{{browser_layer}}})
+    #     alsoProvides(self.request, I{{{package.browserlayer}}})
     #     manager = queryMultiAdapter(
     #         (self.portal['newsitem'], self.request, view),
     #         IViewletManager,
@@ -59,7 +59,7 @@ class ViewletIntegrationTest(unittest.TestCase):
 
 class ViewletFunctionalTest(unittest.TestCase):
 
-    layer = {{{package.uppercasename}}}_FUNCTIONAL_TESTING
+    layer = FUNCTIONAL_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']

@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import remove_unwanted_files
 from bobtemplates.plone.base import update_configure_zcml
-from bobtemplates.plone.utils import run_black
-from bobtemplates.plone.utils import run_isort
 
 import case_conversion as cc
 
@@ -35,7 +31,7 @@ def _update_indexers_configure_zcml(configurator):
         configurator.variables["package_folder"],
     )
     file_name = "configure.zcml"
-    example_file_name = "{0}.example".format(file_name)
+    example_file_name = f"{file_name}.example"
     match_xpath = "zope:include[@package='.{0}']".format(
         configurator.variables["indexer_name"]
     )
@@ -63,7 +59,7 @@ def _remove_unwanted_files(configurator):
     ]
     base_path = configurator.variables["package_folder"]
     for rel_file_path in rel_file_paths:
-        file_paths.append("{0}{1}".format(base_path, rel_file_path))
+        file_paths.append(f"{base_path}{rel_file_path}")
     remove_unwanted_files(file_paths)
 
 
@@ -83,8 +79,6 @@ def post_renderer(configurator):
     _update_package_configure_zcml(configurator)
     _update_indexers_configure_zcml(configurator)
     _remove_unwanted_files(configurator)
-    run_isort(configurator)
-    run_black(configurator)
     git_commit(
         configurator,
         "Add indexer: {0}".format(

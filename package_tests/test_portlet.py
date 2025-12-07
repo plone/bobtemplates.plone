@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-
 """Test view generation."""
 
+from .base import PYPROJECTTOML_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import portlet
 from mrbob.bobexceptions import ValidationError
@@ -11,14 +10,16 @@ import os
 import pytest
 
 
-def test_pre_renderer():
+def test_pre_renderer(tmpdir):
+    target_path = tmpdir.strpath + "/collective.demo"
+    package_path = target_path + "/src/collective/demo"
+    os.makedirs(target_path)
+    os.makedirs(package_path)
     configurator = Configurator(
         template="bobtemplates.plone:portlet",
-        target_directory=".",
+        target_directory="collective.demo",
         variables={
-            "portlet_name": "My nice portlet, with umlauts: öÖÖÖÖ".encode(
-                "utf8",
-            ),
+            "portlet_name": "My nice portlet, with umlauts: öÖÖÖÖ".encode(),
         },
     )
     portlet.prepare_renderer(configurator)
@@ -63,7 +64,7 @@ def test_update_configure_zcml_with_changes(tmpdir):
     )
     portlet._update_configure_zcml(configurator)
 
-    with open(os.path.join(package_path + "/configure.zcml"), "r") as f:
+    with open(os.path.join(package_path + "/configure.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -122,7 +123,7 @@ def test_update_configure_zcml_without_changes(tmpdir):
 </configure>
 """
 
-    with open(os.path.join(package_path + "/configure.zcml"), "r") as f:
+    with open(os.path.join(package_path + "/configure.zcml")) as f:
         content = f.read()
         if content != complete_template:
             pytest.raises(ValidationError)
@@ -165,7 +166,7 @@ def test_update_portlets_configure_zcml(tmpdir):
         variables={
             "portlet_name": "MyWeather",
             "portlet_name_normalized": "my_weather",
-            "portlet_configuration_name": "collective.sample.portlets.MyWeather",  # NOQA: E501
+            "portlet_configuration_name": "collective.sample.portlets.MyWeather",
             "data_provider_class_name": "IMyWeatherPortlet",
             "package_folder": package_path,
             "package.dottedname": "collective.sample",
@@ -173,7 +174,7 @@ def test_update_portlets_configure_zcml(tmpdir):
     )
     portlet._update_portlets_configure_zcml(configurator)
 
-    with open(os.path.join(portlets_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(portlets_path + "configure.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -239,7 +240,7 @@ def test_update_portlets_xml(tmpdir):
         variables={
             "portlet_name": "My Weather",
             "portlet_name_normalized": "my_weather",
-            "portlet_configuration_name": "collective.sample.portlets.MyWeather",  # NOQA: E501
+            "portlet_configuration_name": "collective.sample.portlets.MyWeather",
             "package_folder": package_path,
         },
     )
@@ -273,7 +274,7 @@ def test_update_portlets_xml(tmpdir):
 
 </portlets>"""
 
-    with open(os.path.join(profile_path + "portlets.xml"), "r") as f:
+    with open(os.path.join(profile_path + "portlets.xml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -325,13 +326,13 @@ def test_update_portlets_xml_with_changes(tmpdir):
         variables={
             "portlet_name": "My Weather",
             "portlet_name_normalized": "my_weather",
-            "portlet_configuration_name": "collective.sample.portlets.MyWeather",  # NOQA: E501
+            "portlet_configuration_name": "collective.sample.portlets.MyWeather",
             "package_folder": package_path,
         },
     )
     portlet._update_portlets_xml(configurator)
 
-    with open(os.path.join(profile_path + "portlets.xml"), "r") as f:
+    with open(os.path.join(profile_path + "portlets.xml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)
@@ -495,11 +496,8 @@ class Renderer(base.Renderer):
     with open(os.path.join(package_path + "/configure.zcml"), "w") as f:
         f.write(template)
 
-    template = """
-        dummy
-        '-*- Extra requirements: -*-'
-"""
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_path + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     template = """<?xml version="1.0"?>

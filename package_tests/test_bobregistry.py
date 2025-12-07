@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone import bobregistry
 
 

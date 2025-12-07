@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from .base import init_package_base_structure
 from bobtemplates.plone import base
 from bobtemplates.plone import theme_barceloneta
@@ -46,8 +44,10 @@ def test_prepare_renderer(tmpdir):
     theme_barceloneta.prepare_renderer(configurator)
 
     assert configurator.variables["template_id"] == "theme_barceloneta"
-    assert configurator.variables["theme.normalized_name"] == "test.theme"
-    assert configurator.target_directory.endswith("collective.todo")  # NOQA: E501
+    assert configurator.variables["theme.normalized_name"] == "test-theme"
+    assert configurator.target_directory.endswith(
+        "/collective.todo/src/collective/todo"
+    )
 
 
 def test_post_renderer(tmpdir):

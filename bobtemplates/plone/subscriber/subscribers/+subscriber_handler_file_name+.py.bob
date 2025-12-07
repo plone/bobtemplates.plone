@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
+from zope.globalrequest import getRequest
 
 
 def handler(obj, event):
     """ Event handler
     """
-    # exit when add is not activated:
-    if not I{{{ package.browserlayer }}}.providedBy(event.object.REQUEST):
+    # exit when add-on is not activated:
+    if not I{{{ package.browserlayer }}}.providedBy(getRequest()):
         return
     print(u"{0} on object {1}".format(event.__class__, obj.absolute_url()))

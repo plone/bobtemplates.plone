@@ -1,9 +1,0 @@
--c https://dist.plone.org/release/5.2-latest/requirements.txt
-
-# setuptools==40.2.0
-# zc.buildout==2.13.2
-
-isort>=5
-black==22.8.0
-tox==4.3.5
-flake8==5.0.4

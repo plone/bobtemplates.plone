@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
-from bobtemplates.plone.utils import run_black
-from bobtemplates.plone.utils import run_isort
 from lxml import etree
 
 import case_conversion as cc
@@ -16,17 +13,14 @@ def _update_package_configure_zcml(configurator):
     file_path = configurator.variables["package_folder"] + "/" + file_name
     nsprefix = "{http://namespaces.zope.org/zope}"
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
         permid = ".behaviors"
-        xpath_selector = ".//{0}include[@package='{1}']".format(
-            nsprefix,
-            permid,
-        )  # NOQA: S100
+        xpath_selector = f".//{nsprefix}include[@package='{permid}']"
         if len(tree_root.findall(xpath_selector)):
-            print("{0} already in configure.zcml, skip adding!".format(permid))
+            print(f"{permid} already in configure.zcml, skip adding!")
             return
 
     match_str = "-*- extra stuff goes here -*-"
@@ -46,7 +40,7 @@ def _update_behaviors_configure_zcml(configurator):
         os.rename(example_file_path, file_path)
 
     namespaces = {"plone": "http://namespaces.plone.org/plone"}
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
@@ -54,12 +48,10 @@ def _update_behaviors_configure_zcml(configurator):
             configurator.variables["behavior_name_normalized"],
             configurator.variables["behavior_name_klass"],
         )
-        xpath_str = "./plone:behavior[@factory='{0}']".format(behavior_name)
+        xpath_str = f"./plone:behavior[@factory='{behavior_name}']"
         if len(tree_root.xpath(xpath_str, namespaces=namespaces)):
             print(
-                "{name} already in configure.zcml, skip adding!".format(
-                    name=behavior_name,
-                ),
+                f"{behavior_name} already in configure.zcml, skip adding!",
             )
             return
 
@@ -89,9 +81,7 @@ def prepare_renderer(configurator):
     configurator.variables["template_id"] = "behavior"
     behavior_name = configurator.variables["behavior_name"].strip("_")
     configurator.variables["behavior_name_klass"] = cc.pascalcase(behavior_name)
-    configurator.variables["behavior_name_normalized"] = cc.snakecase(  # NOQA: E501
-        behavior_name
-    )
+    configurator.variables["behavior_name_normalized"] = cc.snakecase(behavior_name)
     configurator.target_directory = configurator.variables["package_folder"]
 
 
@@ -99,8 +89,6 @@ def post_renderer(configurator):
     """ """
     _update_package_configure_zcml(configurator)
     _update_behaviors_configure_zcml(configurator)
-    run_isort(configurator)
-    run_black(configurator)
     git_commit(
         configurator,
         "Add behavior: {0}".format(
@@ -124,10 +112,7 @@ def post_renderer(configurator):
         "info",
     )
     echo(
-        'You can lookup your behavior by the name:\n "{0}"\n'
-        'or by the shorter version:\n "{1}"\n'.format(
-            behavior_name,
-            behavior_name_short,
-        ),
+        f'You can lookup your behavior by the name:\n "{behavior_name}"\n'
+        f'or by the shorter version:\n "{behavior_name_short}"\n',
         "info",
     )

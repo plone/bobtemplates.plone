@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from .base import init_package_base_structure
 from bobtemplates.plone import base
 from bobtemplates.plone import theme
@@ -60,7 +58,7 @@ def test_prepare_renderer(tmpdir):
     assert configurator.variables["theme.normalized_name"] == "my-beautiful-theme-2021"
     assert configurator.target_directory.endswith(
         "/collective.todo/src/collective/todo"
-    )  # NOQA: E501
+    )
 
     # nested namespace package
     package_root = os.path.join(
@@ -82,7 +80,7 @@ def test_prepare_renderer(tmpdir):
     assert configurator.variables["theme.normalized_name"] == "my-beautiful-theme-2021"
     assert configurator.target_directory.endswith(
         "/collective.foo.bar/src/collective/foo/bar"
-    )  # NOQA: E501
+    )
 
 
 def test_post_renderer(tmpdir):

@@ -1,19 +1,25 @@
 # -*- coding: utf-8 -*-
 
 # from plone import api
+from zope.schema.interfaces import IVocabularyFactory
+from zope.interface import implementer
+{{% if is_static_catalog_vocab %}}
+from plone.app.vocabularies.catalog import StaticCatalogVocabulary
+{{% else %}}
 from {{{package.dottedname}}} import _
 from plone.dexterity.interfaces import IDexterityContent
 from zope.globalrequest import getRequest
-from zope.interface import implementer
-from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+{{% endif %}}
 
 
+{{% if not is_static_catalog_vocab %}}
 class VocabItem(object):
     def __init__(self, token, value):
         self.token = token
         self.value = value
+{{% endif %}}
 
 
 @implementer(IVocabularyFactory)
@@ -22,6 +28,18 @@ class {{{ vocabulary_name_klass }}}(object):
     """
 
     def __call__(self, context):
+{{% if is_static_catalog_vocab %}}
+        return StaticCatalogVocabulary(
+            {
+                # possible portal_types:
+                "portal_type": [
+                    "Event",
+                ]
+            },
+            # customizable title of the Choice items, by default brain.Title:
+            title_template="{brain.Title}",
+        )
+{{% else %}}
         # Just an example list of content for our vocabulary,
         # this can be any static or dynamic data, a catalog result for example.
         items = [
@@ -47,6 +65,7 @@ class {{{ vocabulary_name_klass }}}(object):
             )
         # Create a SimpleVocabulary from the terms list and return it:
         return SimpleVocabulary(terms)
+{{% endif %}}
 
 
 {{{ vocabulary_name_klass }}}Factory = {{{ vocabulary_name_klass }}}()

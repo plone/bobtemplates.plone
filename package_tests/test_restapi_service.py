@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-
+from .base import PYPROJECTTOML_TEMPLATE
 from bobtemplates.plone import base
 from bobtemplates.plone import restapi_service
 from mrbob.configurator import Configurator
@@ -19,11 +18,8 @@ version=5.1
     with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_path + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     configurator = Configurator(
@@ -64,11 +60,8 @@ version=5.1
     with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_path + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     template = """
@@ -150,11 +143,8 @@ version=5.1
     with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_path + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     template = """
@@ -191,7 +181,6 @@ version=5.1
         os.path.join(
             package_path + "/api/configure.zcml",
         ),
-        "r",
     ) as f:
         content = f.read()
         assert content != template, "configure.zcml was not updated!"
@@ -210,11 +199,8 @@ version=5.1
     with open(os.path.join(target_path + "/bobtemplate.cfg"), "w") as f:
         f.write(template)
 
-    template = """
-    dummy
-    '-*- Extra requirements: -*-'
-"""
-    with open(os.path.join(target_path + "/setup.py"), "w") as f:
+    template = PYPROJECTTOML_TEMPLATE
+    with open(os.path.join(target_path + "/pyproject.toml"), "w") as f:
         f.write(template)
 
     template = """
@@ -257,7 +243,6 @@ version=5.1
         os.path.join(
             package_path + "/api/services/configure.zcml",
         ),
-        "r",
     ) as f:
         content = f.read()
         assert content != template, "configure.zcml was not updated!"

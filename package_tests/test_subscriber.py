@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Test view generation."""
 
 # from bobtemplates.plone import base
@@ -46,7 +44,7 @@ def test_update_subscribers_configure_zcml(tmpdir):
     )
     subscriber._update_subscribers_configure_zcml(configurator)
 
-    with open(os.path.join(subscribers_path + "configure.zcml"), "r") as f:
+    with open(os.path.join(subscribers_path + "configure.zcml")) as f:
         content = f.read()
         if content != template:
             pytest.raises(ValidationError)

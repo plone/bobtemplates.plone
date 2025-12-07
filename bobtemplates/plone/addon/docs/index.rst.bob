@@ -1,7 +1,0 @@
-{{% for i in package.distributionname %}}={{% endfor %}}
-
-{{{ package.distributionname }}}
-{{% for i in package.distributionname %}}={{% endfor %}}
-
-
-User documentation

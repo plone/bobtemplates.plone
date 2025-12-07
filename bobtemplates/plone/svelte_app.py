@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
-
 from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
-from bobtemplates.plone.utils import run_black
-from bobtemplates.plone.utils import run_isort
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
@@ -16,10 +12,9 @@ import re
 def check_name(configurator, question, answer):
     if not re.match("^[a-z]+-+[a-z0-9]+(-+[a-z0-9]+)*$", answer):
         raise ValidationError(
-            "{key} is not a valid custom-element identifier. Please try something like this 'my-element'".format(
-                key=answer
-            )
-        )  # NOQA: E501
+            f"{answer} is not a valid custom-element identifier."
+            f" Please try something like this 'my-element'"
+        )
     return answer
 
 
@@ -28,10 +23,11 @@ def _update_configure_zcml(configurator):
     file_path = configurator.variables["package_folder"] + "/" + file_name
     namespaces = {"plone": "http://namespaces.plone.org/plone"}
 
-    with open(file_path, "r") as xml_file:
+    with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
+
         xpath = "./plone:static[@name='{}.svelte']".format(
             configurator.variables["package.dottedname"]
         )
@@ -46,6 +42,7 @@ def _update_configure_zcml(configurator):
     match_str = "-*- extra stuff goes here -*-"
     insert_str = """
   <plone:static
+      xmlns:plone="http://namespaces.plone.org/plone"
       directory="svelte_apps"
       type="plone"
       name="{0}.svelte"
@@ -69,8 +66,6 @@ def pre_renderer(configurator):
 def post_renderer(configurator):
     """Post rendering."""
     _update_configure_zcml(configurator)
-    run_isort(configurator)
-    run_black(configurator)
     git_commit(
         configurator,
         "Add Svelte app: in svelte_apps/{0}".format(

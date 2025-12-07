@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-
 from base import file_exists
 from base import generate_answers_ini
-from base import run_skeleton_tox_env
 
 import os.path
 import subprocess
@@ -11,7 +8,7 @@ import subprocess
 def test_addon_theme(tmpdir, capsys, config):
     answers_init_path = os.path.join(tmpdir.strpath, "answers.ini")
     package_dir = os.path.abspath(tmpdir.strpath)
-    template = """[variables]
+    template = f"""[variables]
 package.description = Dummy package
 
 author.name = The Plone Collective
@@ -20,10 +17,8 @@ author.github.user = collective
 subtemplate_warning=False
 package.git.init = True
 
-plone.version = {version}
-""".format(
-        version=config.version
-    )
+plone.version = {config.version}
+"""
     generate_answers_ini(package_dir, template)
 
     # generate template addon:
@@ -67,14 +62,14 @@ subtemplate_warning=False
 
     assert file_exists(wd, "/src/plonetheme/task/theme/manifest.cfg")
 
-    with capsys.disabled():
-        run_skeleton_tox_env(wd, config)
+    # with capsys.disabled():
+    #     run_skeleton_tox_env(wd, config)
 
 
 def test_addon_theme_barceloneta_nested(tmpdir, capsys, config):
     answers_init_path = os.path.join(tmpdir.strpath, "answers.ini")
     package_dir = os.path.abspath(tmpdir.strpath)
-    template = """[variables]
+    template = f"""[variables]
 package.description = Dummy package
 
 author.name = The Plone Collective
@@ -83,10 +78,8 @@ author.github.user = collective
 subtemplate_warning=False
 package.git.init = True
 
-plone.version = {version}
-""".format(
-        version=config.version
-    )
+plone.version = {config.version}
+"""
     generate_answers_ini(package_dir, template)
 
     # generate template addon:

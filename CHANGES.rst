@@ -8,6 +8,18 @@ Changelog
 
 .. towncrier release notes start
 
+7.0.0b1 (2025-12-19)
+--------------------
+
+New features:
+
+
+- Add plone.versioning as a default behavior, and fill repositorytool.xml and portal_diff.xml in profile @erral
+- Improve subscriber template, check addon browserlayer in subscriber to only run when addon is enabled @MrTango
+- Normalize theme subtemplates to work in the same way @erral
+  Update plonetheme-barceloneta-base dependencies @erral
+
+
 7.0.0a6 (2025-12-06)
 --------------------
 

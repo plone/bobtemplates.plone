@@ -224,7 +224,7 @@ def set_global_vars(configurator):
         version = bob_config.version
     configurator.variables["plone.version"] = version
     set_plone_version_variables(configurator)
-    if hasattr(bob_config, "package_dottedname"):
+    if hasattr(bob_config, "package_dottedname") and bob_config.package_dottedname:
         configurator.variables["package.dottedname"] = bob_config.package_dottedname
     if hasattr(bob_config, "package_browserlayer"):
         configurator.variables["package.browserlayer"] = bob_config.package_browserlayer

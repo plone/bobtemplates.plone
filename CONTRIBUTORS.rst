@@ -20,3 +20,4 @@ This package was originally based on `bobtemplates.niteoweb <https://github.com/
 - Alexander Loechel [loechel]
 - Peter Holzer [agitator]
 - Manuel Reinhardt [reinhardt]
+- Mikel Larreategi [erral]

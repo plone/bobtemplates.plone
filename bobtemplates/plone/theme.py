@@ -2,10 +2,9 @@ from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import get_normalized_themename
 from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import is_string_in_file
+from bobtemplates.plone.base import add_namespaces_to_file
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import validate_packagename
-from bobtemplates.plone.base import ZCML_NAMESPACES
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 
@@ -95,6 +94,9 @@ def _update_metadata_xml(configurator):
 def _update_configure_zcml(configurator):
     file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
+    namespaces = {"plone": "http://namespaces.plone.org/plone"}
+    # Add plone namespace in case it is missing
+    add_namespaces_to_file(file_path, namespaces)
 
     with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
@@ -102,7 +104,7 @@ def _update_configure_zcml(configurator):
         tree_root = tree.getroot()
         theme_name = configurator.variables["theme.normalized_name"]
         theme_xpath = f"./plone:static[@name='{theme_name}']"
-        if len(tree_root.xpath(theme_xpath, namespaces=ZCML_NAMESPACES)):
+        if len(tree_root.xpath(theme_xpath, namespaces=namespaces)):
             print(
                 f"{theme_name} already in configure.zcml, skip adding!",
             )
@@ -116,28 +118,15 @@ def _update_configure_zcml(configurator):
       name="{0}"
       />
 
-""".format(configurator.variables["theme.normalized_name"])
+""".format(
+        configurator.variables["theme.normalized_name"]
+    )
     update_file(configurator, file_path, match_str, insert_str)
-
-
-def _update_setup_py(configurator):
-    file_name = "setup.py"
-    file_path = configurator.variables["package.root_folder"] + "/" + file_name
-    match_str = "-*- Extra requirements: -*-"
-    insert_strings = [
-        # "plone.app.themingplugins",
-    ]
-    for insert_str in insert_strings:
-        insert_str = f"        '{insert_str}',\n"
-        if is_string_in_file(configurator, file_path, insert_str):
-            continue
-        update_file(configurator, file_path, match_str, insert_str)
 
 
 def post_renderer(configurator):
     """"""
     _update_configure_zcml(configurator)
-    # _update_setup_py(configurator)
     _update_metadata_xml(configurator)
     git_commit(
         configurator,

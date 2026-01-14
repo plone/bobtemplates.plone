@@ -19,7 +19,7 @@ class {{{ viewlet_python_class_name }}}(ViewletBase):
 
     def index(self):
 {{% if viewlet_template %}}
-        return super({{{ viewlet_python_class_name }}}, self).render()
+        return super().render()
 {{% else %}}
         return self.message
 {{% endif %}}

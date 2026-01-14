@@ -31,7 +31,7 @@ class {{{ view_python_class_name }}}({{{ view_base_class }}}):
     def __call__(self):
         # Implement your own actions:
 {{% if view_base_class != 'BrowserView' %}}
-        return super({{{ view_python_class_name }}}, self).__call__()
+        return super().__call__()
 {{% else %}}
         return self.index()
 {{% endif %}}

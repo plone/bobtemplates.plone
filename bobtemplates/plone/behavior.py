@@ -2,6 +2,7 @@ from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import update_file
+from bobtemplates.plone.base import update_configure_with_package
 from lxml import etree
 
 import case_conversion as cc
@@ -11,24 +12,7 @@ import os
 def _update_package_configure_zcml(configurator):
     file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
-    nsprefix = "{http://namespaces.zope.org/zope}"
-
-    with open(file_path) as xml_file:
-        parser = etree.XMLParser(remove_blank_text=True)
-        tree = etree.parse(xml_file, parser)
-        tree_root = tree.getroot()
-        permid = ".behaviors"
-        xpath_selector = f".//{nsprefix}include[@package='{permid}']"
-        if len(tree_root.findall(xpath_selector)):
-            print(f"{permid} already in configure.zcml, skip adding!")
-            return
-
-    match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
-    <include package=".behaviors" />
-
-"""
-    update_file(configurator, file_path, match_str, insert_str)
+    update_configure_with_package(configurator, file_path, "behaviors")
 
 
 def _update_behaviors_configure_zcml(configurator):

@@ -2,6 +2,7 @@ from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import remove_unwanted_files
 from bobtemplates.plone.base import update_configure_zcml
+from bobtemplates.plone.base import update_configure_with_package
 from lxml import etree
 
 import case_conversion as cc
@@ -18,23 +19,9 @@ def get_service_name_from_python_class(configurator, question):
 
 
 def _update_package_configure_zcml(configurator):
-    path = "{0}".format(
-        configurator.variables["package_folder"],
-    )
     file_name = "configure.zcml"
-    match_xpath = "include[@package='.api']"
-    match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
-  <include package=".api" />
-"""
-    update_configure_zcml(
-        configurator,
-        path,
-        file_name=file_name,
-        match_xpath=match_xpath,
-        match_str=match_str,
-        insert_str=insert_str,
-    )
+    file_path = configurator.variables["package_folder"] + "/" + file_name
+    update_configure_with_package(configurator, file_path, "api")
 
 
 def _update_api_configure_zcml(configurator):

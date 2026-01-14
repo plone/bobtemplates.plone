@@ -611,6 +611,29 @@ def get_normalized_themename(name):
     return normalized_name
 
 
+def update_configure_with_package(configurator, file_path, package_name):
+    """updates configure.zcml adding an stanza like the following
+    depending on the package name passed as parameter
+        <include package=".views" />
+    """
+    namespaces = "{http://namespaces.zope.org/zope}"
+
+    with open(file_path) as xml_file:
+        parser = etree.XMLParser(remove_blank_text=True)
+        tree = etree.parse(xml_file, parser)
+        tree_root = tree.getroot()
+        view_xpath = f"{namespaces}include[@package='.{package_name}']"
+        if len(tree_root.findall(view_xpath)):
+            print(
+                f".{package_name} already in configure.zcml, skip adding!",
+            )
+            return
+    match_str = "-*- extra stuff goes here -*-"
+    insert_str = f"""
+  <include package=".{package_name}" />
+"""
+    update_file(configurator, file_path, match_str, insert_str)
+
 def add_namespaces_to_file(file_path, namespaces):
     """add the namespaces to the zcml file passed as parameter if they are not in there"""
     content = ""

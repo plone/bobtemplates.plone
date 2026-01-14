@@ -634,8 +634,11 @@ def update_configure_with_package(configurator, file_path, package_name):
 """
     update_file(configurator, file_path, match_str, insert_str)
 
+
 def add_namespaces_to_file(file_path, namespaces):
-    """add the namespaces to the zcml file passed as parameter if they are not in there"""
+    """add the namespaces to the zcml file passed as parameter
+    if they are not in there
+    """
     content = ""
     if os.path.exists(file_path):
         with codecs.open(file_path, "r", encoding="utf-8") as xml_file:

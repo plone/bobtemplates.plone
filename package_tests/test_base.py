@@ -781,3 +781,32 @@ def test_get_normalized_theme_name():
         base.get_normalized_themename(themename)
         == "start-bootstrap-business-casual-2021"
     )
+
+
+def test_add_namespaces_to_file(tmpdir):
+    file_name = "test.zcml"
+    file_path = tmpdir.strpath + "/" + file_name
+    template = """<configure
+    xmlns="http://namespaces.zope.org/zope">
+
+</configure>"""
+    with open(os.path.join(file_path), "w") as f:
+        f.write(template)
+
+    namespaces = {
+        "browser": "http://namespaces.zope.org/browser",
+        "plone": "http://namespaces.plone.org/plone",
+    }
+    base.add_namespaces_to_file(file_path, namespaces)
+
+    with open(file_path) as f:
+        content = f.read()
+    assert 'xmlns:browser="http://namespaces.zope.org/browser"' in content
+    assert 'xmlns:plone="http://namespaces.plone.org/plone"' in content
+
+    # Test that existing namespaces are not duplicated
+    base.add_namespaces_to_file(file_path, namespaces)
+    with open(file_path) as f:
+        content = f.read()
+    assert content.count('xmlns:browser="http://namespaces.zope.org/browser"') == 1
+    assert content.count('xmlns:plone="http://namespaces.plone.org/plone"') == 1

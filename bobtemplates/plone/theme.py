@@ -2,7 +2,7 @@ from bobtemplates.plone.base import base_prepare_renderer
 from bobtemplates.plone.base import echo
 from bobtemplates.plone.base import get_normalized_themename
 from bobtemplates.plone.base import git_commit
-from bobtemplates.plone.base import is_string_in_file
+from bobtemplates.plone.base import add_namespaces_to_file
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import validate_packagename
 from bobtemplates.plone.base import ZCML_NAMESPACES
@@ -95,6 +95,9 @@ def _update_metadata_xml(configurator):
 def _update_configure_zcml(configurator):
     file_name = "configure.zcml"
     file_path = configurator.variables["package_folder"] + "/" + file_name
+    namespaces = {"plone": "http://namespaces.plone.org/plone"}
+    # Add plone namespace in case it is missing
+    add_namespaces_to_file(file_path, namespaces)
 
     with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
@@ -102,7 +105,7 @@ def _update_configure_zcml(configurator):
         tree_root = tree.getroot()
         theme_name = configurator.variables["theme.normalized_name"]
         theme_xpath = f"./plone:static[@name='{theme_name}']"
-        if len(tree_root.xpath(theme_xpath, namespaces=ZCML_NAMESPACES)):
+        if len(tree_root.xpath(theme_xpath, namespaces=namespaces)):
             print(
                 f"{theme_name} already in configure.zcml, skip adding!",
             )

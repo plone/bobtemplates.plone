@@ -609,3 +609,40 @@ def get_normalized_themename(name):
     name = name.replace(" ", "_")
     normalized_name = cc.dashcase(name)
     return normalized_name
+
+
+def add_namespaces_to_file(file_path, namespaces):
+    """add the namespaces to the zcml file passed as parameter if they are not in there"""
+    content = ""
+    if os.path.exists(file_path):
+        with codecs.open(file_path, "r", encoding="utf-8") as xml_file:
+            content = xml_file.read()
+
+    parser = etree.XMLParser(remove_blank_text=True, recover=True)
+    if not content.strip():
+        # Create a new basic root element if the file is empty
+        new_nsmap = {None: "http://namespaces.zope.org/zope"}
+        new_nsmap.update(namespaces)
+        root = etree.Element("configure", nsmap=new_nsmap)
+        tree = etree.ElementTree(root)
+    else:
+        try:
+            tree = etree.parse(six.BytesIO(content.encode("utf-8")), parser)
+            root = tree.getroot()
+        except etree.XMLSyntaxError:
+            # If parsing fails, create a new basic root element
+            root = etree.Element("configure")
+            tree = etree.ElementTree(root)
+
+        new_nsmap = root.nsmap.copy()
+        new_nsmap.update(namespaces)
+
+        new_root = etree.Element(root.tag, nsmap=new_nsmap, **root.attrib)
+        new_root[:] = root[:]
+
+        with codecs.open(file_path, "w", encoding="utf-8") as xml_file:
+            xml_file.write(
+                etree.tostring(new_root, pretty_print=True, encoding="utf-8").decode(
+                    "utf-8"
+                )
+            )

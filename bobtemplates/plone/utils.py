@@ -2,8 +2,6 @@
 import re
 import six
 import unicodedata
-from lxml import etree
-from bobtemplates.plone.base import update_file
 
 
 def safe_unicode(value, encoding="utf-8"):

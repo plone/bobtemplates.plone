@@ -116,28 +116,15 @@ def _update_configure_zcml(configurator):
       name="{0}"
       />
 
-""".format(configurator.variables["theme.normalized_name"])
+""".format(
+        configurator.variables["theme.normalized_name"]
+    )
     update_file(configurator, file_path, match_str, insert_str)
-
-
-def _update_setup_py(configurator):
-    file_name = "setup.py"
-    file_path = configurator.variables["package.root_folder"] + "/" + file_name
-    match_str = "-*- Extra requirements: -*-"
-    insert_strings = [
-        # "plone.app.themingplugins",
-    ]
-    for insert_str in insert_strings:
-        insert_str = f"        '{insert_str}',\n"
-        if is_string_in_file(configurator, file_path, insert_str):
-            continue
-        update_file(configurator, file_path, match_str, insert_str)
 
 
 def post_renderer(configurator):
     """"""
     _update_configure_zcml(configurator)
-    # _update_setup_py(configurator)
     _update_metadata_xml(configurator)
     git_commit(
         configurator,

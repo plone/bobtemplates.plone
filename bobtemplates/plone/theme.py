@@ -5,7 +5,6 @@ from bobtemplates.plone.base import git_commit
 from bobtemplates.plone.base import add_namespaces_to_file
 from bobtemplates.plone.base import update_file
 from bobtemplates.plone.base import validate_packagename
-from bobtemplates.plone.base import ZCML_NAMESPACES
 from lxml import etree
 from mrbob.bobexceptions import ValidationError
 

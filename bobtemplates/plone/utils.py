@@ -1,8 +1,6 @@
-from bobtemplates.plone.base import _get_package_root_folder
 
 import re
 import six
-import subprocess
 import unicodedata
 from lxml import etree
 from bobtemplates.plone.base import update_file

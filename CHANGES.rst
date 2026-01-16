@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+7.0.0b2 (2026-01-16)
+--------------------
+
+New features:
+
+
+- use the same way to add features to the root configure.zcml calling always the same function @erral (#608)
+- Add missing plone namespace to root configure.zcml when adding a theme @erral
+
+
 7.0.0b1 (2025-12-19)
 --------------------
 

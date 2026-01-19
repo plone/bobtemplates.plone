@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+7.0.0 (2026-01-19)
+------------------
+
+New features:
+
+
+- Upgrade Svelte version to minimum 4.2.9 @erral (svelte)
+
+
 7.0.0b2 (2026-01-16)
 --------------------
 

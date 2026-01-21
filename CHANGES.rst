@@ -177,7 +177,10 @@ New features:
 
 Bug fixes:
 
-- add min_version = 4.11.0 to addon tempalte tox.ini
+- add min_version = 4.11.0 to addon template tox.ini
+  [MrTango]
+
+- improve generated test_ct_..._adding method
   [MrTango]
 
 

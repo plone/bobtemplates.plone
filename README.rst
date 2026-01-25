@@ -209,7 +209,7 @@ Contribute
 
 - Issue Tracker: https://github.com/plone/bobtemplates.plone/issues
 - Source Code: https://github.com/plone/bobtemplates.plone
-- Documentation: https://docs.plone.org/develop/addons/bobtemplates.plone/docs/ or https://bobtemplatesplone.readthedocs.io/en/latest/
+- Documentation: https://5.docs.plone.org/develop/addons/bobtemplates.plone/bobtemplates.plone/docs/ or https://bobtemplatesplone.readthedocs.io/
 
 
 Support

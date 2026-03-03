@@ -35,6 +35,10 @@ class {{{ view_python_class_name }}}({{{ view_base_class }}}):
 {{% else %}}
         return self.index()
 {{% endif %}}
+
+    def msg(self):
+        return f"msg from {self.__class__.__name__}"
+
 {{% else %}}
     def __call__(self):
         template = '''<li class="heading" i18n:translate="">

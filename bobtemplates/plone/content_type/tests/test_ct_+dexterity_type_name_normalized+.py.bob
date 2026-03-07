@@ -76,20 +76,20 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
 {{% if dexterity_type_create_class %}}
         self.assertTrue(
             I{{{ dexterity_type_name_klass }}}.providedBy(obj),
-            u'I{{{ dexterity_type_name_klass }}} not provided by {0}!'.format(
+            'I{{{ dexterity_type_name_klass }}} not provided by {0}!'.format(
                 obj,
             ),
         )
 {{% elif dexterity_type_name_klass == 'Container' %}}
         self.assertTrue(
             IDexterityContainer.providedBy(obj),
-            u'IDexterityContainer not provided by {0}!'.format(obj),
+            'IDexterityContainer not provided by {0}!'.format(obj),
         )
         self.assertTrue()
 {{% elif dexterity_type_name_klass == 'Item' %}}
         self.assertTrue(
             IDexterityItem.providedBy(obj),
-            u'IDexterityItem not provided by {0}!'.format(obj),
+            'IDexterityItem not provided by {0}!'.format(obj),
         )
         self.assertTrue(IDexterityItem.providedBy(obj))
 {{% endif %}}
@@ -113,20 +113,20 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
 {{% if dexterity_type_create_class %}}
         self.assertTrue(
             I{{{ dexterity_type_name_klass }}}.providedBy(obj),
-            u'I{{{ dexterity_type_name_klass }}} not provided by {0}!'.format(
+            'I{{{ dexterity_type_name_klass }}} not provided by {0}!'.format(
                 obj.id,
             ),
         )
 {{% elif dexterity_type_name_klass == 'Container' %}}
         self.assertTrue(
             IDexterityContainer.providedBy(obj),
-            u'IDexterityContainer not provided by {0}!'.format(obj.id),
+            'IDexterityContainer not provided by {0}!'.format(obj.id),
         )
         self.assertTrue()
 {{% elif dexterity_type_name_klass == 'Item' %}}
         self.assertTrue(
             IDexterityItem.providedBy(obj),
-            u'IDexterityItem not provided by {0}!'.format(obj.id),
+            'IDexterityItem not provided by {0}!'.format(obj.id),
         )
         self.assertTrue(IDexterityItem.providedBy(obj))
 {{% endif %}}
@@ -144,7 +144,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name }}}')
         self.assertTrue(
             fti.global_allow,
-            u'{0} is not globally addable!'.format(fti.id)
+            '{0} is not globally addable!'.format(fti.id)
         )
 {{% else %}}
     def test_ct_{{{ dexterity_type_name_normalized }}}_globally_not_addable(self):
@@ -152,7 +152,7 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         fti = queryUtility(IDexterityFTI, name='{{{ dexterity_type_name }}}')
         self.assertFalse(
             fti.global_allow,
-            u'{0} is globally addable!'.format(fti.id)
+            '{0} is globally addable!'.format(fti.id)
         )
 {{% endif %}}
 {{% if dexterity_type_filter_content_types | to_boolean and dexterity_type_base_class | lower == 'container' %}}
@@ -194,6 +194,6 @@ class {{{ dexterity_type_name_klass }}}IntegrationTest(unittest.TestCase):
         )
         self.assertTrue(
             obj,
-            u'Cannot add {0} to {1} container!'.format(obj.id, fti.id)
+            'Cannot add {0} to {1} container!'.format(obj.id, fti.id)
         )
 {{% endif %}}

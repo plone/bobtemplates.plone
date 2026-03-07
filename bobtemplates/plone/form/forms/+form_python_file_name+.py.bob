@@ -22,7 +22,7 @@ class {{{ form_python_class_name }}}(AutoExtensibleForm, form.EditForm):
     label = u"What's your name?"
     description = u"Simple, sample form"
 
-    @button.buttonAndHandler(u'Ok')
+    @button.buttonAndHandler('Ok')
     def handleApply(self, action):
         data, errors = self.extractData()
         if errors:

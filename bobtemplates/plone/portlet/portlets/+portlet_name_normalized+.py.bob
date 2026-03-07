@@ -19,10 +19,10 @@ import six.moves.urllib.request
 
 class {{{data_provider_class_name}}}(IPortletDataProvider):
     place_str = schema.TextLine(
-        title=_(u'Name of your place with country code'),
-        description=_(u'City name along with country code i.e Delhi,IN'),  # NOQA: E501
+        title=_('Name of your place with country code'),
+        description=_('City name along with country code i.e Delhi,IN'),  # NOQA: E501
         required=True,
-        default=u'delhi,in'
+        default='delhi,in'
     )
 
 
@@ -35,14 +35,14 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return _(u'Weather of the place')
+        return _('Weather of the place')
 
 
 class AddForm(base.AddForm):
     schema = {{{data_provider_class_name}}}
     form_fields = field.Fields({{{data_provider_class_name}}})
-    label = _(u'Add Place weather')
-    description = _(u'This portlet displays weather of the place.')
+    label = _('Add Place weather')
+    description = _('This portlet displays weather of the place.')
 
     def create(self, data):
         return Assignment(
@@ -53,8 +53,8 @@ class AddForm(base.AddForm):
 class EditForm(base.EditForm):
     schema = {{{data_provider_class_name}}}
     form_fields = field.Fields({{{data_provider_class_name}}})
-    label = _(u'Edit Place weather')
-    description = _(u'This portlet displays weather of the place.')
+    label = _('Edit Place weather')
+    description = _('This portlet displays weather of the place.')
 
 
 class Renderer(base.Renderer):
@@ -66,7 +66,7 @@ class Renderer(base.Renderer):
         context = aq_inner(self.context)
         portal_state = getMultiAdapter(
             (context, self.request),
-            name=u'plone_portal_state'
+            name='plone_portal_state'
         )
         self.anonymous = portal_state.anonymous()
 

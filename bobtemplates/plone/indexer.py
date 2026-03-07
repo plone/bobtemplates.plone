@@ -14,20 +14,14 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_indexers_configure_zcml(configurator):
-    path = "{0}/indexers".format(
-        configurator.variables["package_folder"],
-    )
+    path = f"{configurator.variables['package_folder']}/indexers"
     file_name = "configure.zcml"
     example_file_name = f"{file_name}.example"
-    match_xpath = "zope:include[@package='.{0}']".format(
-        configurator.variables["indexer_name"]
-    )
+    match_xpath = f"zope:include[@package='.{configurator.variables['indexer_name']}']"
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
-  <include file="{0}.zcml" />
-""".format(
-        configurator.variables["indexer_name"]
-    )
+    insert_str = f"""
+  <include file="{configurator.variables["indexer_name"]}.zcml" />
+"""
     update_configure_zcml(
         configurator,
         path,
@@ -68,7 +62,5 @@ def post_renderer(configurator):
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        "Add indexer: {0}".format(
-            configurator.variables["indexer_name"],
-        ),
+        f"Add indexer: {configurator.variables['indexer_name']}",
     )

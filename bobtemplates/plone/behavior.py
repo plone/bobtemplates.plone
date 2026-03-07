@@ -28,9 +28,9 @@ def _update_behaviors_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        behavior_name = "{0}.{1}".format(
-            configurator.variables["behavior_name_normalized"],
-            configurator.variables["behavior_name_klass"],
+        behavior_name = (
+            f"{configurator.variables['behavior_name_normalized']}."
+            f"{configurator.variables['behavior_name_klass']}"
         )
         xpath_str = f"./plone:behavior[@factory='{behavior_name}']"
         if len(tree_root.xpath(xpath_str, namespaces=namespaces)):
@@ -40,23 +40,17 @@ def _update_behaviors_configure_zcml(configurator):
             return
 
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
+    insert_str = f"""
     <plone:behavior
-        name="{package_dottedname}.{normalized_name}"
-        title="{title}"
-        description="{description}"
-        provides=".{normalized_name}.I{klass_name}"
-        factory=".{normalized_name}.{klass_name}"
-        marker=".{normalized_name}.I{klass_name}Marker"
+        name="{configurator.variables["package.dottedname"]}.{configurator.variables["behavior_name_normalized"]}"
+        title="{configurator.variables["behavior_name_klass"]}"
+        description="{configurator.variables["behavior_description"]}"
+        provides=".{configurator.variables["behavior_name_normalized"]}.I{configurator.variables["behavior_name_klass"]}"
+        factory=".{configurator.variables["behavior_name_normalized"]}.{configurator.variables["behavior_name_klass"]}"
+        marker=".{configurator.variables["behavior_name_normalized"]}.I{configurator.variables["behavior_name_klass"]}Marker"
         />
 
-""".format(
-        title=configurator.variables["behavior_name_klass"],
-        description=configurator.variables["behavior_description"],
-        normalized_name=configurator.variables["behavior_name_normalized"],
-        klass_name=configurator.variables["behavior_name_klass"],
-        package_dottedname=configurator.variables["package.dottedname"],
-    )
+"""
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -75,24 +69,21 @@ def post_renderer(configurator):
     _update_behaviors_configure_zcml(configurator)
     git_commit(
         configurator,
-        "Add behavior: {0}".format(
-            configurator.variables["behavior_name"],
-        ),
+        f"Add behavior: {configurator.variables['behavior_name']}",
     )
-    behavior_name = "{0}.behaviors.{1}.{2}".format(
-        configurator.variables["package.dottedname"],
-        configurator.variables["behavior_name_normalized"],
-        configurator.variables["behavior_name_klass"],
+    behavior_name = (
+        f"{configurator.variables['package.dottedname']}."
+        f"behaviors.{configurator.variables['behavior_name_normalized']}."
+        f"{configurator.variables['behavior_name_klass']}"
     )
-    behavior_name_short = "{0}.{1}".format(
-        configurator.variables["package.dottedname"],
-        configurator.variables["behavior_name_normalized"],
+    behavior_name_short = (
+        f"{configurator.variables['package.dottedname']}."
+        f"{configurator.variables['behavior_name_normalized']}"
     )
     echo(
-        "===================================================\n"
-        "=> Sucessfully added: {0} template.  \\o/ \n\n".format(
-            configurator.variables["template_id"],
-        ),
+        f"===================================================\n"
+        f"=> Sucessfully added: {configurator.variables['template_id']} "
+        "template.  \\o/ \n\n",
         "info",
     )
     echo(

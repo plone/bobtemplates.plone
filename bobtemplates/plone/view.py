@@ -62,20 +62,14 @@ def get_view_configuration(configurator):
     config = {}
     config["name"] = configurator.variables["view_name"]
     # get Interface by content type or use the string it self as interface
-    config["for"] = "{0}".format(
-        CONTENT_TYPE_INTERFACES.get(
-            configurator.variables["view_register_for"],
-            configurator.variables["view_register_for"],
-        )
-    )
+    view_register_for = configurator.variables["view_register_for"]
+    config["for"] = CONTENT_TYPE_INTERFACES.get(view_register_for, view_register_for)
     if configurator.variables["view_template"]:
-        config["template"] = "{0}.pt".format(
-            configurator.variables["view_template_name"]
-        )
+        config["template"] = f"{configurator.variables['view_template_name']}.pt"
     if configurator.variables["view_python_class"]:
-        config["class"] = ".{0}.{1}".format(
-            configurator.variables["view_python_file_name"],
-            configurator.variables["view_python_class_name"],
+        config["class"] = (
+            f".{configurator.variables['view_python_file_name']}."
+            f"{configurator.variables['view_python_class_name']}"
         )
     # if configurator.variables["view_permission"]:
     config["permission"] = "zope2.View"
@@ -96,23 +90,20 @@ def _update_views_configure_zcml(configurator):
     match_str = "-*- extra stuff goes here -*-"
 
     view_config = get_view_configuration(configurator)
-    insert_str = """
+    insert_str = f"""
   <browser:page
-    name="{0}"
-    for="{1}"
-""".format(
-        view_config["name"],
-        view_config["for"],
-    )
+    name="{view_config["name"]}"
+    for="{view_config["for"]}"
+"""
     if "class" in view_config:
-        insert_str += '    class="{0}"\n'.format(view_config["class"])
+        insert_str += f'    class="{view_config["class"]}"\n'
     if "template" in view_config:
-        insert_str += '    template="{0}"\n'.format(view_config["template"])
+        insert_str += f'    template="{view_config["template"]}"\n'
     if "permission" in view_config:
-        insert_str += '    permission="{0}"\n'.format(view_config["permission"])
-    insert_str += '    layer="{0}.interfaces.I{1}"\n'.format(
-        configurator.variables["package.dottedname"],
-        configurator.variables["package.browserlayer"],
+        insert_str += f'    permission="{view_config["permission"]}"\n'
+    insert_str += (
+        f'    layer="{configurator.variables["package.dottedname"]}.interfaces.'
+        f'I{configurator.variables["package.browserlayer"]}"\n'
     )
     insert_str += "    />\n"
 
@@ -120,21 +111,15 @@ def _update_views_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        view_name_xpath = "./browser:page[@name='{}']".format(
-            view_config["name"],
-        )
-        view_for_xpath = "./browser:page[@for='{}']".format(
-            view_config["for"],
-        )
+        view_name_xpath = f"./browser:page[@name='{view_config['name']}']"
+        view_for_xpath = f"./browser:page[@for='{view_config['for']}']"
         if len(tree_root.xpath(view_name_xpath, namespaces=ZCML_NAMESPACES)) and len(
             tree_root.xpath(view_for_xpath, namespaces=ZCML_NAMESPACES)
         ):
             echo(
-                "{} already in configure.zcml, do you really want to add this config?"
-                "\n\n{}\n [y/N]: ".format(
-                    configurator.variables["view_name"],
-                    insert_str,
-                ),
+                f"{configurator.variables['view_name']} already in configure.zcml, "
+                "do you really want to add this config?"
+                f"\n\n{insert_str}\n [y/N]: ",
                 "info",
             )
             if configurator.bobconfig.get("non_interactive"):

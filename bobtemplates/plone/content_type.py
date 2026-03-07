@@ -139,9 +139,8 @@ def _update_parent_types_fti_xml(configurator):
         return
     parent_dexterity_type_fti_file_name = get_normalized_ftiname(parent_ct_name)
     file_name = f"{parent_dexterity_type_fti_file_name}.xml"
-    file_path = "{0}/profiles/default/types/{1}".format(
-        configurator.variables["package_folder"],
-        file_name,
+    file_path = (
+        f"{configurator.variables['package_folder']}/profiles/default/types/{file_name}"
     )
 
     with open(file_path) as xml_file:
@@ -155,27 +154,26 @@ def _update_parent_types_fti_xml(configurator):
             return
 
     match_str = """<property name="allowed_content_types">"""
-    insert_str = """    <element value="{0}" />
-    """.format(
-        configurator.variables["dexterity_type_name"],
+    insert_str = (
+        f"""    <element value="{configurator.variables["dexterity_type_name"]}" />"""
+        """\n    """
     )
     update_file(configurator, file_path, match_str, insert_str)
 
 
 def _update_rolemap_xml(configurator):
     file_name = "rolemap.xml"
-    file_path = "{0}/profiles/default/{1}".format(
-        configurator.variables["package_folder"],
-        file_name,
+    file_path = (
+        f"{configurator.variables['package_folder']}/profiles/default/{file_name}"
     )
 
     with open(file_path) as xml_file:
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        permname = "{0}: Add {1}".format(
-            configurator.variables["package.dottedname"],
-            configurator.variables["dexterity_type_name_klass"],
+        permname = (
+            f"{configurator.variables['package.dottedname']}: "
+            f"Add {configurator.variables['dexterity_type_name_klass']}"
         )
         xpath_selector = f".//permission[@name='{permname}']"
         if len(tree_root.findall(xpath_selector)):
@@ -183,18 +181,17 @@ def _update_rolemap_xml(configurator):
             return
 
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
-    <permission name="{0}: Add {1}" acquire="True">
+    insert_str = f"""
+    <permission
+        name="{permname}"
+        acquire="True">
       <role name="Manager"/>
       <role name="Site Administrator"/>
       <role name="Owner"/>
       <role name="Contributor"/>
     </permission>
 
-""".format(
-        configurator.variables["package.dottedname"],
-        configurator.variables["dexterity_type_name_klass"],
-    )
+"""
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -207,9 +204,9 @@ def _update_permissions_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        permid = "{0}.Add{1}".format(
-            configurator.variables["package.dottedname"],
-            configurator.variables["dexterity_type_name_klass"],
+        permid = (
+            f"{configurator.variables['package.dottedname']}."
+            f"Add{configurator.variables['dexterity_type_name_klass']}"
         )
         xpath_selector = f".//{nsprefix}permission[@id='{permid}']"
         if len(tree_root.findall(xpath_selector)):
@@ -217,16 +214,17 @@ def _update_permissions_zcml(configurator):
             return
 
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
+    permtitle = (
+        f"{configurator.variables['package.dottedname']}: "
+        f"Add {configurator.variables['dexterity_type_name_klass']}"
+    )
+    insert_str = f"""
     <permission
-        id="{0}.Add{1}"
-        title="{0}: Add {1}"
+        id="{permid}"
+        title="{permtitle}"
     />
 
-""".format(
-        configurator.variables["package.dottedname"],
-        configurator.variables["dexterity_type_name_klass"],
-    )
+"""
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -382,7 +380,5 @@ def post_renderer(configurator):
     _update_difftool_xml(configurator)
     git_commit(
         configurator,
-        "Add content_type: {0}".format(
-            configurator.variables["dexterity_type_name"],
-        ),
+        f"Add content_type: {configurator.variables['dexterity_type_name']}",
     )

@@ -9,4 +9,4 @@ def handler(obj, event):
     # exit when add-on is not activated:
     if not I{{{ package.browserlayer }}}.providedBy(getRequest()):
         return
-    print(u"{0} on object {1}".format(event.__class__, obj.absolute_url()))
+    print(f"{event.__class__} on object {obj.absolute_url()}")

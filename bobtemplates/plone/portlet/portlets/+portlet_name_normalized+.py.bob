@@ -92,9 +92,7 @@ class Renderer(base.Renderer):
     @memoize
     def _data(self):
         baseurl = 'https://query.yahooapis.com/v1/public/yql?'
-        yql_query = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="{0}")'.format(  # NOQA: E501
-            self.data.place_str,
-        )
+        yql_query = f'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="{self.data.place_str}")'  # noqa: E501
         yql_url = baseurl + six.moves.urllib.parse.urlencode(
             {'q': yql_query},
         ) + '&format=json'

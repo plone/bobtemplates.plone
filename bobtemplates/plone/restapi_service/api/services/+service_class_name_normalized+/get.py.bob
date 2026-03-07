@@ -18,9 +18,7 @@ class {{{ service_class_name }}}(object):
     def __call__(self, expand=False):
         result = {
             '{{{ service_name_normalized }}}': {
-                '@id': '{}/@{{{ service_class_name_normalized }}}'.format(
-                    self.context.absolute_url(),
-                ),
+                '@id': f'{self.context.absolute_url()}/@{{{ service_class_name_normalized }}}',
             },
         }
         if not expand:

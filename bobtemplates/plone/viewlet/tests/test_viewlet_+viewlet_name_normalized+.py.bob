@@ -37,7 +37,7 @@ class ViewletIntegrationTest(unittest.TestCase):
         )
         self.assertIsNotNone(manager)
         manager.update()
-        my_viewlet = [v for v in manager.viewlets if v.__name__ == '{{{viewlet_name}}}']  # NOQA: E501
+        my_viewlet = [v for v in manager.viewlets if v.__name__ == '{{{viewlet_name}}}']  # noqa: E501
         self.assertEqual(len(my_viewlet), 1)
 
     # XXX would be nice to have this test working:
@@ -53,7 +53,7 @@ class ViewletIntegrationTest(unittest.TestCase):
     #     )
     #     self.assertIsNotNone(manager)
     #     manager.update()
-    #     my_viewlet = [v for v in manager.viewlets if v.__name__ == '{{{viewlet_name}}}']  # NOQA: E501
+    #     my_viewlet = [v for v in manager.viewlets if v.__name__ == '{{{viewlet_name}}}']  # noqa: E501
     #     self.assertEqual(len(my_viewlet), 0)
 
 

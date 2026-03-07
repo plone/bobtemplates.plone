@@ -20,7 +20,7 @@ import six.moves.urllib.request
 class {{{data_provider_class_name}}}(IPortletDataProvider):
     place_str = schema.TextLine(
         title=_('Name of your place with country code'),
-        description=_('City name along with country code i.e Delhi,IN'),  # NOQA: E501
+        description=_('City name along with country code i.e Delhi,IN'),  # noqa: E501
         required=True,
         default='delhi,in'
     )
@@ -99,7 +99,7 @@ class Renderer(base.Renderer):
         result = six.moves.urllib.request.urlopen(yql_url).read()
         data = json.loads(result)
         result = {}
-        result['description'] = data['query']['results']['channel']['description']  # NOQA: E501
-        result['pressure'] = data['query']['results']['channel']['atmosphere']['pressure']  # NOQA: E501
-        result['humidity'] = data['query']['results']['channel']['atmosphere']['humidity']  # NOQA: E501
+        result['description'] = data['query']['results']['channel']['description']  # noqa: E501
+        result['pressure'] = data['query']['results']['channel']['atmosphere']['pressure']  # noqa: E501
+        result['humidity'] = data['query']['results']['channel']['atmosphere']['humidity']  # noqa: E501
         return result

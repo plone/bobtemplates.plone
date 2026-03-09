@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 from {{{ package.dottedname }}} import _
 from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper

@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 from {{{ package.dottedname }}}.interfaces import I{{{ package.browserlayer }}}
 from zope.globalrequest import getRequest
-
 
 def handler(obj, event):
     """ Event handler

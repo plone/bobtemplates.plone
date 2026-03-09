@@ -349,8 +349,7 @@ def test_post_renderer(tmpdir):
     os.makedirs(portlets_path)
     os.makedirs(profile_path)
 
-    template = """# -*- coding: utf-8 -*-
-from Acquisition import aq_inner
+    template = """from Acquisition import aq_inner
 from collective.todo import _
 from plone import schema
 from plone.app.portlets.portlets import base

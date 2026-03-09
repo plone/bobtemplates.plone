@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from {{{package.dottedname}}}.interfaces import I{{{package.browserlayer}}}
 from {{{package.dottedname}}}.testing import FUNCTIONAL_TESTING
 from {{{package.dottedname}}}.testing import INTEGRATION_TESTING

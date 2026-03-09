@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {{% if not dexterity_type_supermodel %}}
 # from plone.app.textfield import RichText
 # from plone.autoform import directives

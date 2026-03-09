@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 {{% if dexterity_type_create_class or not dexterity_type_supermodel %}}
 from {{{ package.dottedname }}}.content.{{{ dexterity_type_name_normalized }}} import I{{{ dexterity_type_name_klass }}}  # noqa: E501
 {{% endif %}}

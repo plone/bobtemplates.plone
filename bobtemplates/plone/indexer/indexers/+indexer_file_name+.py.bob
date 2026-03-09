@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from plone.app.contenttypes.interfaces import IDocument
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer

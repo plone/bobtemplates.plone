@@ -280,7 +280,7 @@ def test_post_renderer_with_template(tmpdir):
     os.makedirs(package_path)
     os.makedirs(viewlets_path)
 
-    template = """# -*- coding: utf-8 -*-
+    template = """
 
 from plone.app.layout.viewlets import ViewletBase
 
@@ -378,9 +378,7 @@ def test_post_renderer_without_template(tmpdir):
     os.makedirs(package_path)
     os.makedirs(viewlets_path)
 
-    template = """# -*- coding: utf-8 -*-
-
-from plone.app.layout.viewlets import ViewletBase
+    template = """from plone.app.layout.viewlets import ViewletBase
 
 
 class MyViewlet(ViewletBase):

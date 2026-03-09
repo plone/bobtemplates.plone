@@ -21,8 +21,8 @@ class I{{{behavior_name_klass}}}(model.Schema):
     """
 
     project = schema.TextLine(
-        title=_(u'Project'),
-        description=_(u'Give in a project name'),
+        title=_('Project'),
+        description=_('Give in a project name'),
         required=False,
     )
 

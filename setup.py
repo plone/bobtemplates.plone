@@ -51,7 +51,6 @@ setup(
     },
     license="GPL version 2",
     packages=find_packages(exclude=["ez_setup"]),
-    namespace_packages=["bobtemplates"],
     include_package_data=True,
     zip_safe=False,
     python_requires=">=3.11",

@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+8.0.0 (2026-04-16)
+------------------
+
+New features:
+
+
+- Upgrade required svelte version in svelte app addon to 5.53.5 @erral @dependabot
+
+
 8.0.0b1 (2026-04-16)
 --------------------
 

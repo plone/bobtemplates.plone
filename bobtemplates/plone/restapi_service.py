@@ -25,9 +25,7 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_api_configure_zcml(configurator):
-    path = "{0}/api".format(
-        configurator.variables["package_folder"],
-    )
+    path = f"{configurator.variables['package_folder']}/api"
     file_name = "configure.zcml"
     example_file_name = f"{file_name}.example"
     match_xpath = "zope:include[@package='.services']"
@@ -47,17 +45,17 @@ def _update_api_configure_zcml(configurator):
 
 
 def _update_services_configure_zcml(configurator):
-    path = "{0}/api/services".format(
-        configurator.variables["package_folder"],
-    )
+    path = f"{configurator.variables['package_folder']}/api/services"
     file_name = "configure.zcml"
     example_file_name = f"{file_name}.example"
-    match_xpath = "zope:include[@package='.{0}']".format(
-        configurator.variables["service_class_name_normalized"],
+    match_xpath = (
+        f"zope:include[@package='."
+        f"{configurator.variables['service_class_name_normalized']}']"
     )
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = '<include package=".{0}" />\n'.format(
-        configurator.variables["service_class_name_normalized"],
+    insert_str = (
+        f'<include package=".{configurator.variables["service_class_name_normalized"]}"'
+        " />\n"
     )
     update_configure_zcml(
         configurator,
@@ -151,7 +149,5 @@ def post_renderer(configurator):
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        "Add restapi_service: {0}".format(
-            configurator.variables["service_name"],
-        ),
+        f"Add restapi_service: {configurator.variables['service_name']}",
     )

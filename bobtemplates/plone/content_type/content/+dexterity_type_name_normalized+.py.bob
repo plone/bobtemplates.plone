@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {{% if not dexterity_type_supermodel %}}
 # from plone.app.textfield import RichText
 # from plone.autoform import directives
@@ -47,36 +46,36 @@ class I{{{ dexterity_type_name_klass }}}(model.Schema):
 
     # directives.widget(level=RadioFieldWidget)
     # level = schema.Choice(
-    #     title=_(u'Sponsoring Level'),
+    #     title=_('Sponsoring Level'),
     #     vocabulary=LevelVocabulary,
     #     required=True
     # )
 
     # text = RichText(
-    #     title=_(u'Text'),
+    #     title=_('Text'),
     #     required=False
     # )
 
     # url = schema.URI(
-    #     title=_(u'Link'),
+    #     title=_('Link'),
     #     required=False
     # )
 
     # fieldset('Images', fields=['logo', 'advertisement'])
     # logo = namedfile.NamedBlobImage(
-    #     title=_(u'Logo'),
+    #     title=_('Logo'),
     #     required=False,
     # )
 
     # advertisement = namedfile.NamedBlobImage(
-    #     title=_(u'Advertisement (Gold-sponsors and above)'),
+    #     title=_('Advertisement (Gold-sponsors and above)'),
     #     required=False,
     # )
 
     # directives.read_permission(notes='cmf.ManagePortal')
     # directives.write_permission(notes='cmf.ManagePortal')
     # notes = RichText(
-    #     title=_(u'Secret Notes (only for site-admins)'),
+    #     title=_('Secret Notes (only for site-admins)'),
     #     required=False
     # )
 {{% endif %}}

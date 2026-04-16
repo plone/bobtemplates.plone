@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 from {{{package.dottedname}}}.testing import FUNCTIONAL_TESTING
 from {{{package.dottedname}}}.testing import INTEGRATION_TESTING
 from plone import api

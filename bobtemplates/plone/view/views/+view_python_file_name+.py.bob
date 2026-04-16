@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 {{% if view_template %}}
 # from {{{ package.dottedname }}} import _
 {{% endif %}}

@@ -14,23 +14,20 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_subscribers_configure_zcml(configurator):
-    path = "{0}/subscribers".format(
-        configurator.variables["package_folder"],
-    )
+    path = f"{configurator.variables['package_folder']}/subscribers"
     file_name = "configure.zcml"
     example_file_name = f"{file_name}.example"
-    match_xpath = "zope:subscriber[@handler='.{0}.handler']".format(
-        configurator.variables["subscriber_handler_file_name"],
+    match_xpath = (
+        f"zope:subscriber[@handler='."
+        f"{configurator.variables['subscriber_handler_file_name']}.handler']"
     )
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
+    insert_str = f"""
   <subscriber for="plone.dexterity.interfaces.IDexterityContent
                    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-              handler=".{0}.handler"
+              handler=".{configurator.variables["subscriber_handler_file_name"]}.handler"
               />
-""".format(
-        configurator.variables["subscriber_handler_file_name"],
-    )
+"""
     update_configure_zcml(
         configurator,
         path,
@@ -69,7 +66,5 @@ def post_renderer(configurator):
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        "Add subscriber: {0}".format(
-            configurator.variables["subscriber_handler_name"],
-        ),
+        f"Add subscriber: {configurator.variables['subscriber_handler_name']}",
     )

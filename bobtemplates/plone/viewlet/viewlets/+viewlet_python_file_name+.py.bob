@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from plone.app.layout.viewlets import ViewletBase
 
 
@@ -10,9 +8,9 @@ class {{{ viewlet_python_class_name }}}(ViewletBase):
 
     def get_message(self):
 {{% if viewlet_template %}}
-        return u'My message'
+        return 'My message'
 {{% else %}}
-        return u'''<li class="heading" i18n:translate="">
+        return '''<li class="heading" i18n:translate="">
           Simple Viewlet!
         </li>'''
 {{% endif %}}

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from __future__ import absolute_import
 from Acquisition import aq_inner
 from {{{package.dottedname}}} import _
@@ -19,10 +18,10 @@ import six.moves.urllib.request
 
 class {{{data_provider_class_name}}}(IPortletDataProvider):
     place_str = schema.TextLine(
-        title=_(u'Name of your place with country code'),
-        description=_(u'City name along with country code i.e Delhi,IN'),  # NOQA: E501
+        title=_('Name of your place with country code'),
+        description=_('City name along with country code i.e Delhi,IN'),  # noqa: E501
         required=True,
-        default=u'delhi,in'
+        default='delhi,in'
     )
 
 
@@ -35,14 +34,14 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return _(u'Weather of the place')
+        return _('Weather of the place')
 
 
 class AddForm(base.AddForm):
     schema = {{{data_provider_class_name}}}
     form_fields = field.Fields({{{data_provider_class_name}}})
-    label = _(u'Add Place weather')
-    description = _(u'This portlet displays weather of the place.')
+    label = _('Add Place weather')
+    description = _('This portlet displays weather of the place.')
 
     def create(self, data):
         return Assignment(
@@ -53,8 +52,8 @@ class AddForm(base.AddForm):
 class EditForm(base.EditForm):
     schema = {{{data_provider_class_name}}}
     form_fields = field.Fields({{{data_provider_class_name}}})
-    label = _(u'Edit Place weather')
-    description = _(u'This portlet displays weather of the place.')
+    label = _('Edit Place weather')
+    description = _('This portlet displays weather of the place.')
 
 
 class Renderer(base.Renderer):
@@ -66,7 +65,7 @@ class Renderer(base.Renderer):
         context = aq_inner(self.context)
         portal_state = getMultiAdapter(
             (context, self.request),
-            name=u'plone_portal_state'
+            name='plone_portal_state'
         )
         self.anonymous = portal_state.anonymous()
 
@@ -92,16 +91,14 @@ class Renderer(base.Renderer):
     @memoize
     def _data(self):
         baseurl = 'https://query.yahooapis.com/v1/public/yql?'
-        yql_query = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="{0}")'.format(  # NOQA: E501
-            self.data.place_str,
-        )
+        yql_query = f'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="{self.data.place_str}")'  # noqa: E501
         yql_url = baseurl + six.moves.urllib.parse.urlencode(
             {'q': yql_query},
         ) + '&format=json'
         result = six.moves.urllib.request.urlopen(yql_url).read()
         data = json.loads(result)
         result = {}
-        result['description'] = data['query']['results']['channel']['description']  # NOQA: E501
-        result['pressure'] = data['query']['results']['channel']['atmosphere']['pressure']  # NOQA: E501
-        result['humidity'] = data['query']['results']['channel']['atmosphere']['humidity']  # NOQA: E501
+        result['description'] = data['query']['results']['channel']['description']  # noqa: E501
+        result['pressure'] = data['query']['results']['channel']['atmosphere']['pressure']  # noqa: E501
+        result['humidity'] = data['query']['results']['channel']['atmosphere']['humidity']  # noqa: E501
         return result

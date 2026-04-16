@@ -39,17 +39,13 @@ def _update_vocabularies_configure_zcml(configurator):
             return
 
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
+    insert_str = f"""
     <utility
-        component=".{0}.{1}Factory"
-        name="{2}.{1}"
+        component=".{configurator.variables["vocabulary_name_normalized"]}.{configurator.variables["vocabulary_name_klass"]}Factory"
+        name="{configurator.variables["package.dottedname"]}.{configurator.variables["vocabulary_name_klass"]}"
     />
 
-""".format(
-        configurator.variables["vocabulary_name_normalized"],
-        configurator.variables["vocabulary_name_klass"],
-        configurator.variables["package.dottedname"],
-    )
+"""
     update_file(configurator, file_path, match_str, insert_str)
 
 

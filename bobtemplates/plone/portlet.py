@@ -27,38 +27,27 @@ def _update_portlets_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        portlet_xpath = "./plone:portlet[@name='{0}']".format(
-            configurator.variables["portlet_name"],
+        portlet_xpath = (
+            f"./plone:portlet[@name='{configurator.variables['portlet_name']}']"
         )
         if len(tree_root.xpath(portlet_xpath, namespaces=ZCML_NAMESPACES)):
-            print(
-                (
-                    "{0} already in configure.zcml, skip adding!".format(
-                        configurator.variables["portlet_name"],
-                    ),
-                )
-            )
+            print((
+                f"{configurator.variables['portlet_name']} "
+                "already in configure.zcml, skip adding!",
+            ))
             return
 
     match_str = "-*- extra stuff goes here -*-"
 
-    insert_str = """
+    insert_str = f"""
   <plone:portlet
-    name="{0}"
-    interface=".{1}.{2}"
-    assignment=".{3}.Assignment"
-    renderer=".{4}.Renderer"
-    addview=".{5}.AddForm"
-    editview=".{6}.EditForm" />
-    """.format(
-        configurator.variables["portlet_configuration_name"],
-        configurator.variables["portlet_name_normalized"],
-        configurator.variables["data_provider_class_name"],
-        configurator.variables["portlet_name_normalized"],
-        configurator.variables["portlet_name_normalized"],
-        configurator.variables["portlet_name_normalized"],
-        configurator.variables["portlet_name_normalized"],
-    )
+    name="{configurator.variables["portlet_configuration_name"]}"
+    interface=".{configurator.variables["portlet_name_normalized"]}.{configurator.variables["data_provider_class_name"]}"
+    assignment=".{configurator.variables["portlet_name_normalized"]}.Assignment"
+    renderer=".{configurator.variables["portlet_name_normalized"]}.Renderer"
+    addview=".{configurator.variables["portlet_name_normalized"]}.AddForm"
+    editview=".{configurator.variables["portlet_name_normalized"]}.EditForm" />
+    """
 
     update_file(configurator, file_path, match_str, insert_str)
 
@@ -79,28 +68,28 @@ def _update_portlets_xml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        xpath_selector = "./portlet[@addview='{0}']".format(
-            configurator.variables["portlet_configuration_name"],
+        xpath_selector = (
+            f"./portlet[@addview='{configurator.variables['portlet_configuration_name']}"
+            "']"
         )
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
-            print(
-                (
-                    "{0} already in portlets.xml, skip adding!".format(
-                        configurator.variables["portlet_configuration_name"],
-                    ),
-                )
-            )
+            print((
+                f"{configurator.variables['portlet_configuration_name']} "
+                "already in portlets.xml, skip adding!",
+            ))
             return
 
     match_str = "<!-- Extra portlets here  -->"
 
-    insert_str = """
+    portlet_name_normalized = configurator.variables["portlet_name_normalized"]
+    insert_str = f"""
   <portlet
-    addview="{0}"
-    title="{1}"
+    addview="{configurator.variables["portlet_configuration_name"]}"
+    title="{configurator.variables["portlet_name"]}"
     description="A portlet which can render weather of the given place."
-    i18n:attributes="title title_{2};
-                     description description_{3}">
+    i18n:attributes="title title_{portlet_name_normalized};
+                     description description_{portlet_name_normalized}"
+    >
 
     <!-- This will enable the portlet for right column,
     left column and the footer too.
@@ -113,12 +102,7 @@ def _update_portlets_xml(configurator):
     <!--<for interface="plone.app.portlets.interfaces.IDashboard" />-->
 
   </portlet>
-""".format(
-        configurator.variables["portlet_configuration_name"],
-        configurator.variables["portlet_name"],
-        configurator.variables["portlet_name_normalized"],
-        configurator.variables["portlet_name_normalized"],
-    )
+"""
 
     update_file(configurator, file_path, match_str, insert_str)
 
@@ -153,9 +137,8 @@ def prepare_renderer(configurator):
     normalized_portlet_name = cc.snakecase(slugify(portlet_name))
     configurator.variables["portlet_name_normalized"] = normalized_portlet_name
     portlet_config_name = cc.pascalcase(normalized_portlet_name)
-    configurator.variables["portlet_configuration_name"] = "{0}.portlets.{1}".format(
-        configurator.variables["package.dottedname"],
-        portlet_config_name,
+    configurator.variables["portlet_configuration_name"] = (
+        f"{configurator.variables['package.dottedname']}.portlets.{portlet_config_name}"
     )
     configurator.variables["data_provider_class_name"] = (
         f"I{portlet_config_name}Portlet"
@@ -171,7 +154,5 @@ def post_renderer(configurator):
     _delete_unnecessary_files(configurator)
     git_commit(
         configurator,
-        "Add portlet: {0}".format(
-            configurator.variables["portlet_name"],
-        ),
+        f"Add portlet: {configurator.variables['portlet_name']}",
     )

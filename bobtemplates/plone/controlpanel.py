@@ -28,26 +28,24 @@ def _update_controlpanels_configure_zcml(configurator):
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
 
-        xpath_selector = "./include[@package='{0}']".format(
-            configurator.variables["controlpanel_name_normalized"],
-        )
+        controlpanel_name_normalized = configurator.variables[
+            "controlpanel_name_normalized"
+        ]
+        xpath_selector = f"./include[@package='{controlpanel_name_normalized}']"
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
             print(
-                "{0} already in configure.zcml, skip adding!".format(
-                    configurator.variables["controlpanel_name_normalized"]
-                )
+                f"{controlpanel_name_normalized} "
+                "already in configure.zcml, skip adding!"
             )
             return
 
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
+    insert_str = f"""
     <include
-        package=".{0}"
+        package=".{controlpanel_name_normalized}"
     />
 
-""".format(
-        configurator.variables["controlpanel_name_normalized"],
-    )
+"""
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -66,37 +64,33 @@ def _update_profile_controlpanel_xml(configurator):
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
 
-        xpath_selector = "./configlet[@action_id='{0}-controlpanel']".format(
-            configurator.variables["controlpanel_name_normalized"],
+        xpath_selector = (
+            f"./configlet[@action_id='{configurator.variables['controlpanel_name_normalized']}"
+            "-controlpanel']"
         )
         if len(tree_root.xpath(xpath_selector, namespaces=ZCML_NAMESPACES)):
             print(
-                "{0} already in {1} skip adding!".format(
-                    configurator.variables["controlpanel_name_normalized"],
-                    file_name,
-                )
+                f"{configurator.variables['controlpanel_name_normalized']} "
+                f"already in {file_name} skip adding!"
             )
             return
 
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
+    insert_str = f"""
   <configlet
       i18n:attributes="title"
-      title="{0}"
-      action_id="{1}-controlpanel"
-      appId="{1}-controlpanel"
+      title="{configurator.variables["controlpanel_separated_name"]}"
+      action_id="{configurator.variables["controlpanel_name_normalized"]}-controlpanel"
+      appId="{configurator.variables["controlpanel_name_normalized"]}-controlpanel"
       category="Products"
       condition_expr=""
       icon_expr=""
-      url_expr="string:${{portal_url}}/@@{1}-controlpanel"
+      url_expr="string:${{portal_url}}/@@{configurator.variables["controlpanel_name_normalized"]}-controlpanel"
       visible="True">
     <permission>Manage Portal</permission>
   </configlet>
 
-""".format(
-        configurator.variables["controlpanel_separated_name"],
-        configurator.variables["controlpanel_name_normalized"],
-    )
+"""
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -123,7 +117,6 @@ def post_renderer(configurator):
     _update_profile_controlpanel_xml(configurator)
     git_commit(
         configurator,
-        "Add Control Panel: {0}".format(
-            configurator.variables["controlpanel_python_class_name"],
-        ),
+        f"Add Control Panel: "
+        f"{configurator.variables['controlpanel_python_class_name']}",
     )

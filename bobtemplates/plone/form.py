@@ -29,15 +29,11 @@ def get_form_configuration(configurator):
     config = {}
     config["name"] = configurator.variables["form_name"]
     # get Interface by content type or use the string it self as interface
-    config["for"] = "{0}".format(
-        CONTENT_TYPE_INTERFACES.get(
-            configurator.variables["form_register_for"],
-            configurator.variables["form_register_for"],
-        )
-    )
-    config["class"] = ".{0}.{1}".format(
-        configurator.variables["form_python_file_name"],
-        configurator.variables["form_python_class_name"],
+    form_register_for = configurator.variables["form_register_for"]
+    config["for"] = CONTENT_TYPE_INTERFACES.get(form_register_for, form_register_for)
+    config["class"] = (
+        f".{configurator.variables['form_python_file_name']}."
+        f"{configurator.variables['form_python_class_name']}"
     )
     # if configurator.variables["form_permission"]:
     config["permission"] = "cmf.ManagePortal"
@@ -58,23 +54,20 @@ def _update_forms_configure_zcml(configurator):
     match_str = "-*- extra stuff goes here -*-"
 
     form_config = get_form_configuration(configurator)
-    insert_str = """
+    insert_str = f"""
   <browser:page
-    name="{0}"
-    for="{1}"
-""".format(
-        form_config["name"],
-        form_config["for"],
-    )
+    name="{form_config["name"]}"
+    for="{form_config["for"]}"
+"""
     if "class" in form_config:
-        insert_str += '    class="{0}"\n'.format(form_config["class"])
+        insert_str += f'    class="{form_config["class"]}"\n'
     # if "template" in form_config:
-    #     insert_str += '    template="{0}"\n'.format(form_config["template"])
+    #     insert_str += f'    template="{form_config["template"]}"\n'
     if "permission" in form_config:
-        insert_str += '    permission="{0}"\n'.format(form_config["permission"])
-    insert_str += '    layer="{0}.interfaces.I{1}"\n'.format(
-        configurator.variables["package.dottedname"],
-        configurator.variables["package.browserlayer"],
+        insert_str += f'    permission="{form_config["permission"]}"\n'
+    insert_str += (
+        f'    layer="{configurator.variables["package.dottedname"]}.interfaces.'
+        f'I{configurator.variables["package.browserlayer"]}"\n'
     )
     insert_str += "    />\n"
 
@@ -82,16 +75,12 @@ def _update_forms_configure_zcml(configurator):
         parser = etree.XMLParser(remove_blank_text=True)
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
-        form_xpath = "./browser:page[@name='{0}']".format(
-            configurator.variables["form_name"],
-        )
+        form_xpath = f"./browser:page[@name='{configurator.variables['form_name']}']"
         if len(tree_root.xpath(form_xpath, namespaces=ZCML_NAMESPACES)):
             echo(
-                "{0} already in configure.zcml, do you really want to add this config?"
-                "\n\n{1}\n [y/N]: ".format(
-                    configurator.variables["form_name"],
-                    insert_str,
-                ),
+                f"{configurator.variables['form_name']} already in configure.zcml, "
+                "do you really want to add this config?"
+                f"\n\n{insert_str}\n [y/N]: ",
                 "info",
             )
             if configurator.bobconfig.get("non_interactive"):
@@ -147,7 +136,5 @@ def post_renderer(configurator):
     _delete_unwanted_files(configurator)
     git_commit(
         configurator,
-        "Add form: {0}".format(
-            configurator.variables["form_name"],
-        ),
+        f"Add form: {configurator.variables['form_name']}",
     )

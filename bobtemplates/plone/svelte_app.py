@@ -28,29 +28,27 @@ def _update_configure_zcml(configurator):
         tree = etree.parse(xml_file, parser)
         tree_root = tree.getroot()
 
-        xpath = "./plone:static[@name='{}.svelte']".format(
-            configurator.variables["package.dottedname"]
+        xpath = (
+            f"./plone:static[@name='{configurator.variables['package.dottedname']}"
+            ".svelte']"
         )
         if len(tree_root.xpath(xpath, namespaces=namespaces)):
             print(
-                "{name}.svelte already in configure.zcml, skip adding!".format(
-                    name=configurator.variables["package.dottedname"]
-                )
+                f"{configurator.variables['package.dottedname']}.svelte "
+                "already in configure.zcml, skip adding!"
             )
             return
 
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
+    insert_str = f"""
   <plone:static
       xmlns:plone="http://namespaces.plone.org/plone"
       directory="svelte_apps"
       type="plone"
-      name="{0}.svelte"
+      name="{configurator.variables["package.dottedname"]}.svelte"
       />
 
-""".format(
-        configurator.variables["package.dottedname"]
-    )
+"""
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -68,19 +66,15 @@ def post_renderer(configurator):
     _update_configure_zcml(configurator)
     git_commit(
         configurator,
-        "Add Svelte app: in svelte_apps/{0}".format(
-            configurator.variables["svelte_app_name"],
-        ),
+        f"Add Svelte app: in svelte_apps/{configurator.variables['svelte_app_name']}",
     )
     echo(
         "===================================================\n"
-        "=> Sucessfully added: {0} in svelte_apps/{1} \n"
+        f"=> Sucessfully added: {configurator.variables['template_id']} "
+        f"in svelte_apps/{configurator.variables['svelte_app_name']} \n"
         "=> you might want to go into the dir and run:\n"
         "$ yarn\n"
         "and then:"
-        "$ yarn dev\n".format(
-            configurator.variables["template_id"],
-            configurator.variables["svelte_app_name"],
-        ),
+        "$ yarn dev\n",
         "info",
     )

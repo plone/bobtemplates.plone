@@ -13,9 +13,7 @@ def _update_package_configure_zcml(configurator):
 
 
 def _update_upgrades_configure_zcml(configurator):
-    path = "{0}/upgrades".format(
-        configurator.variables["package_folder"],
-    )
+    path = f"{configurator.variables['package_folder']}/upgrades"
     file_name = "configure.zcml"
     example_file_name = f"{file_name}.example"
     zcml_package_name = configurator.variables["upgrade_step_dest_version"]
@@ -109,7 +107,5 @@ def post_renderer(configurator):
     _remove_unwanted_files(configurator)
     git_commit(
         configurator,
-        "Add upgrade_step: {0}".format(
-            configurator.variables["upgrade_step_title"],
-        ),
+        f"Add upgrade_step: {configurator.variables['upgrade_step_title']}",
     )

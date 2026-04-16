@@ -104,7 +104,7 @@ def git_init(configurator):
         echo("git init is disabled!")
         return
     params = ["git", "init"]
-    echo("RUN: {0}".format(" ".join(params)), "info")
+    echo(f"RUN: {' '.join(params)}", "info")
     try:
         result = subprocess.check_output(params, cwd=configurator.target_directory)
     except subprocess.CalledProcessError as e:
@@ -132,9 +132,8 @@ def git_commit(configurator, msg):
         git_autocommit = True
     if not non_interactive and not git_autocommit:
         echo(
-            "Should we run?:\n{0}\n{1}\nin: {2}".format(
-                " ".join(params1), " ".join(params2), working_dir
-            ),
+            f"Should we run?:\n{' '.join(params1)}\n{' '.join(params2)}\n"
+            f"in: {working_dir}",
             "info",
         )
         run_git_commit = (six_input("[y]/n: ") or "y").lower() == "y"
@@ -143,7 +142,7 @@ def git_commit(configurator, msg):
         echo("Skip git commit!", "warning")
         return
 
-    echo("RUN: {0}".format(" ".join(params1)), "info")
+    echo(f"RUN: {' '.join(params1)}", "info")
     try:
         result1 = subprocess.check_output(params1, cwd=working_dir)
     except subprocess.CalledProcessError as e:
@@ -152,7 +151,7 @@ def git_commit(configurator, msg):
         if result1:
             echo(result1, "info")
 
-    echo("RUN: {0}".format(" ".join(params2)), "info")
+    echo(f"RUN: {' '.join(params2)}", "info")
     try:
         result2 = subprocess.check_output(params2, cwd=working_dir)
     except subprocess.CalledProcessError as e:
@@ -165,7 +164,7 @@ def git_clean_state_check(configurator, question):
     if not git_support(configurator):
         return
     params = ["git", "status", "--porcelain", "--ignore-submodules"]
-    echo("\nRUN: {0}".format(" ".join(params)), "info")
+    echo(f"\nRUN: {' '.join(params)}", "info")
     try:
         result = subprocess.check_output(params, cwd=configurator.target_directory)
     except subprocess.CalledProcessError as e:
@@ -547,7 +546,8 @@ def base_prepare_renderer(configurator):
 
     if "package.browserlayer" not in configurator.variables:
         camelcasename = (
-            configurator.variables["package.dottedname"]
+            configurator
+            .variables["package.dottedname"]
             .replace(".", " ")
             .title()
             .replace(" ", "")

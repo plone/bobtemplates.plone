@@ -16,7 +16,8 @@ def pre_theme_name(configurator, question):
     validate_packagename(configurator)
 
     default = (
-        os.path.basename(
+        os.path
+        .basename(
             configurator.target_directory,
         )
         .split(".")[-1]
@@ -111,16 +112,14 @@ def _update_configure_zcml(configurator):
             return
 
     match_str = "-*- extra stuff goes here -*-"
-    insert_str = """
+    insert_str = f"""
   <plone:static
       directory="theme"
       type="theme"
-      name="{0}"
+      name="{configurator.variables["theme.normalized_name"]}"
       />
 
-""".format(
-        configurator.variables["theme.normalized_name"]
-    )
+"""
     update_file(configurator, file_path, match_str, insert_str)
 
 
@@ -130,16 +129,12 @@ def post_renderer(configurator):
     _update_metadata_xml(configurator)
     git_commit(
         configurator,
-        "Add theme: {0}".format(
-            configurator.variables["theme.name"],
-        ),
+        f"Add theme: {configurator.variables['theme.name']}",
     )
     echo(
-        """\nYour theme was added here: {0}/theme
-Run 'npm install' to get the dependencies
-and then 'npm run watch' to compile the styles.
-""".format(
-            configurator.variables["package_folder"],
-        ),
+        f"\nYour theme was added here: "
+        f"{configurator.variables['package_folder']}/theme\n"
+        "Run 'npm install' to get the dependencies\n"
+        "and then 'npm run watch' to compile the styles.\n",
         "info",
     )

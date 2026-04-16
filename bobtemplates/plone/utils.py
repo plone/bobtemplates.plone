@@ -1,4 +1,3 @@
-
 import re
 import six
 import unicodedata
@@ -39,7 +38,8 @@ def slugify(value):
     """
     value = safe_unicode(value)
     value = (
-        unicodedata.normalize(
+        unicodedata
+        .normalize(
             "NFKD",
             value,
         )

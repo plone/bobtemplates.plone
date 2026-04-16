@@ -8,6 +8,22 @@ Changelog
 
 .. towncrier release notes start
 
+8.0.0b1 (2026-04-16)
+--------------------
+
+Breaking changes:
+
+
+- Remove pkg_resources style namespaces @erral
+
+
+Internal:
+
+
+- Convert string formatting to use f-strings @erral
+- Remove u-strings @erral
+
+
 7.0.0 (2026-01-19)
 ------------------
 

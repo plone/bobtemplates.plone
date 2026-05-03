@@ -26,6 +26,7 @@
   <metal:block define-macro="content-core">
 
     <h2>Main content</h2>
+    <p tal:content="view/msg">this gets replaced</p>
     <!--<div tal:replace="view/my_custom_view_method" />-->
     <!--<div tal:replace="context/my_custom_field" />-->
 
